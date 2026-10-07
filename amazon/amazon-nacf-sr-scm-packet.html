@@ -153,7 +153,7 @@
 
 <h2 class="break">5. The story bank</h2>
 <p>Sixteen stories. Each is written to be spoken in about 90 seconds, followed by the drill the interviewer will run: <em>what did YOU do, why not X, how did you measure, what would you do differently, walk me through the data pull</em>. Every number is from your resume or your Walmart war book; nothing here is new. The "maps here" line is for your head, not the room — unless they ask.</p>
-<p><strong>Lead with these four</strong> unless their pain word says otherwise: S1 (UDC consolidation), S2 (Cyber Monday allocation), S3 (200 lanes), S7 (roadmap flip).</p>
+<p><strong>Lead with these four</strong> unless their pain word says otherwise: S1 (UDC consolidation), S2 (Cyber Monday allocation), S3 (200 lanes), S7 (roadmap flip). If their pain word is "inventory," "placement," "returns," or "cutover," S10 (S/4HANA) moves into the first four.</p>
 
 <div class="story">
 <h3>S1 — Two warehouses into one omni DC, robots throttled at 30% <span style="font-weight:400;color:#555">(Sephora UDC)</span></h3>
@@ -269,13 +269,21 @@
 </div>
 
 <div class="story">
-<h3>S10 — One signed definition of "available," and the rule I got wrong <span style="font-weight:400;color:#555">(Sephora S/4HANA)</span></h3>
-<p><strong>LPs:</strong> Ownership · Are Right, A Lot (being wrong) · Earn Trust. <strong>Maps here:</strong> inventory flow and placement are vocabulary problems before they are system problems. Also your cleanest "I was wrong" story.</p>
-<div class="say"><p>"On S/4HANA I redesigned the inventory operating model across stores, DCs, dotcom and comingled nodes. Every stock state — available-to-sell, reserved, in-transit, quality-hold, damaged — got one definition, one owner, and one rule about who may promise against it, signed by the business before configuration. Most oversell 'bugs' are vocabulary bugs. One rule I wrote was wrong: I forbade channels from promising against units on a truck. It felt safe. It starved dotcom of sellable units. The data showed the miss, and the fix went through the signed policy — a defined in-transit promise window per lane from real lane data. Conservatism has a price, paid in the same currency as risk."</p></div>
+<h3>S10 — S/4HANA: one definition of "available," returns as first-class stock, and a cutover with a numeric rollback <span style="font-weight:400;color:#555">(Sephora S/4HANA ↔ ISM)</span></h3>
+<p><strong>LPs:</strong> Ownership · Invent and Simplify · Earn Trust · Dive Deep · Deliver Results · Are Right, A Lot (being wrong). <strong>Maps here:</strong> this is the JD's "optimize and manage the flow of inventory within the network," literally. Returns and quality-hold are reverse flow; they consume storage and throughput and are usually invisible to the plan until they are promised to a customer. It is also your cleanest "I was wrong" story and your cleanest one-way-door cutover story.</p>
+<div class="say"><p>"Sephora was standing up S/4HANA as the inventory system of record for stores, the retail DC and dotcom, with a warehouse execution system beside it. The problem was not the software. 'Available' meant something different in every system, because each definition protected a different number — fill rate for stores, labor for the DC, the customer promise for dotcom, the credit memo for finance. Customer returns, return-to-vendor stock, quality-hold and lost-and-found were being promised to customers because somewhere they counted as available.</p>
+<p>I redesigned the inventory operating model. Every stock state — available-to-sell, reserved, in-transit, quality-inspection, blocked, lost-and-found — got one definition, one owner, and one rule about who may promise against it, signed by the business before anyone configured anything. Returns got a plant of their own. Return-to-vendor stock-transport orders were modeled as pick-reserve so credit could never run ahead of the physical unit: receive, grade, then restock, scrap or RTV. Nothing in that path was promiseable until disposition.</p>
+<p>I ran it as a program, not a configuration: a RAID log, a weekly CIO/COO pack across sixty-plus stakeholders on frozen metrics so a red stayed red, and a 343-task weekend cutover runbook with rollback written as a number before the weekend — interface sync under 99% for four hours, or p95 latency over twice budget for one hour. It never fired. The legacy inventory system, MCS, came out only after the new definition held in production. Zero customer-facing incidents on the staged go-lives.</p>
+<p>One rule I wrote was wrong. I forbade every channel from promising against units on a truck. It felt safe. It starved dotcom of sellable units while physical inventory in transit rose. The data showed the miss, and the fix went through the same signed policy — a defined in-transit promise window per lane, from real lane data. Conservatism has a price, paid in the same currency as risk."</p></div>
 <div class="drill">
-<p><strong>How did you know you were wrong?</strong> Dotcom availability fell while physical units in transit rose. The two lines diverging is the signal.</p>
-<p><strong>Why a signed policy instead of a config change?</strong> A config change nobody signed becomes next quarter's argument. The policy made the fix durable.</p>
-<p><strong>Data pull?</strong> Sellable units by channel by day against in-transit units by lane; lane transit distributions to set the window.</p>
+<p><strong>What did YOU do?</strong> Wrote the stock-state definitions and took them to steering with the failure mode attached. Designed the returns plant and the pick-reserve RTV model. Owned the RAID, the weekly pack, the runbook, and wrote the rollback triggers. Made the MCS retirement call.</p>
+<p><strong>Why a signed policy before configuration?</strong> Most oversell "bugs" are vocabulary bugs. A config change nobody signed becomes next quarter's argument. Once the rule was signed, the design arguments got small — the plant and the STOs were just the implementation of a sentence everyone had already agreed to.</p>
+<p><strong>Why rollback as a number?</strong> A rollback that is a paragraph gets debated at 2 AM by tired people. A number gets called by whoever is on the bridge, no meeting. The triggers existed so the weekend could start.</p>
+<p><strong>How did you measure?</strong> Binary, in production: could a unit in quality-hold still be promised? It could not. Sync and latency against the published triggers through the weekend. Customer-facing incidents: zero. MCS off.</p>
+<p><strong>How did you know the in-transit rule was wrong?</strong> Sellable units by channel fell while units in transit by lane rose. Two lines diverging is the signal. Fix: a per-lane in-transit window from measured lane transit — the same idea as the 200-lane work, applied to promising instead of planning.</p>
+<p><strong>Differently?</strong> Set the in-transit window from lane data on day one instead of starting from "never." And sample the OMS-to-WMS handshake daily in hypercare from day one, not after the first discrepancy.</p>
+<p><strong>Data pull?</strong> Stock by state by plant by day; promise log joined to stock state at promise time; sellable units by channel against in-transit units by lane; interface sync rate and p95 latency by hour through cutover.</p>
+<p><strong>If they ask how it maps to capacity:</strong> "Returns are inbound volume the plan did not forecast. Quality-hold is storage you cannot sell. If the capacity plan counts them as available, it is overstating usable capacity and the promise is lying. Giving each state a definition and an owner is the same move as giving each building type its own ceiling."</p>
 </div>
 </div>
 
@@ -325,19 +333,19 @@
   <thead><tr><th style="width:21%">LP</th><th style="width:14%">Lead / backup</th><th>The hook sentence</th></tr></thead>
   <tbody>
     <tr><td>Customer Obsession</td><td>S3 / S1</td><td>"I treated the brochure as a lie the customer was paying for in inventory." / "I will not ship a customer-facing miss to protect a robotics narrative."</td></tr>
-    <tr><td>Ownership</td><td>S3 / S9</td><td>"Nobody owned the seam between brochure lead times and the plan. I took the seam, not the ticket." / "Training slipped 1.5 weeks — my miss."</td></tr>
-    <tr><td>Invent and Simplify</td><td>S8 / S4</td><td>"New metrics without killing old ones is complexity wearing a badge. I froze seven definitions and killed the spreadsheet."</td></tr>
-    <tr><td>Are Right, A Lot</td><td>S2 / S10</td><td>"70% is enough when waiting is a customer miss." / "I forbade promising against in-transit units. I was wrong, and the data said so."</td></tr>
+    <tr><td>Ownership</td><td>S3 / S10</td><td>"Nobody owned the seam between brochure lead times and the plan. I took the seam, not the ticket." / "Nobody owned what 'available' meant. I wrote the definitions, took them to steering with the failure mode attached, and owned the cutover."</td></tr>
+    <tr><td>Invent and Simplify</td><td>S8 / S10</td><td>"New metrics without killing old ones is complexity wearing a badge. I froze seven definitions and killed the spreadsheet." / "Most oversell bugs are vocabulary bugs. One definition, one owner, one rule per stock state — then the design arguments got small."</td></tr>
+    <tr><td>Are Right, A Lot</td><td>S2 / S10</td><td>"70% is enough when waiting is a customer miss." / "I forbade promising against in-transit units. I was wrong, the data said so, and the fix went through the same signed policy."</td></tr>
     <tr><td>Learn and Be Curious</td><td>S9 / S14</td><td>"I had never run a WMS migration. I did not fake it. I built the gate and used the specialists."</td></tr>
     <tr><td>Hire and Develop the Best</td><td>S12</td><td>"I gave the skeptic the gate. Development that depends on me staying is not development."</td></tr>
     <tr><td>Insist on the Highest Standards</td><td>S6 / S1</td><td>"I held wave three in front of everyone. Standards without a stop-the-line are posters."</td></tr>
     <tr><td>Think Big</td><td>S3 / S7</td><td>"The ask was a report. The product was lane-level planning as a system." / "Think Big without sequencing is a slogan."</td></tr>
-    <tr><td>Bias for Action</td><td>S2 / S1</td><td>"Timestamped decision, then a post-mortem that makes silence an alarm." / "Throttling the robots was a two-way door we had built. I turned it the same day."</td></tr>
+    <tr><td>Bias for Action</td><td>S2 / S1</td><td>"Timestamped decision, then a post-mortem that makes silence an alarm." / "Throttling the robots was a two-way door we had built. I turned it the same day." <em>One-way doors (S/4HANA cutover, JDA cutover) get rehearsals and a numeric rollback instead.</em></td></tr>
     <tr><td>Frugality</td><td>S6 / S7</td><td>"Cost-to-serve down 95% while the book grew ten times. Headcount would have scaled the waste."</td></tr>
-    <tr><td>Earn Trust</td><td>S11 / S9</td><td>"Silent corrections are loans against trust." / "Mock one at 7% went up with my name on it."</td></tr>
+    <tr><td>Earn Trust</td><td>S11 / S10</td><td>"Silent corrections are loans against trust." / "Sixty stakeholders, one weekly pack, metrics frozen so nobody could re-litigate a red by changing the chart."</td></tr>
     <tr><td>Dive Deep</td><td>S5 / S8</td><td>"I pull until the unit is a shipment, an order, a lane or a building — not a national average."</td></tr>
     <tr><td>Have Backbone; Disagree and Commit</td><td>S7</td><td>"Backbone is the private table. Theater is the public ambush."</td></tr>
-    <tr><td>Deliver Results</td><td>S9 / S6</td><td>"Results with a rollback are not results. The gates are why it counted."</td></tr>
+    <tr><td>Deliver Results</td><td>S9 / S10</td><td>"Results with a rollback are not results. The gates are why it counted." / "343-task runbook, rollback as a number, never fired, legacy system off, zero customer incidents."</td></tr>
     <tr><td>Strive to be Earth's Best Employer</td><td>S13 / S12</td><td>"Heroics are a process miss."</td></tr>
     <tr><td>Success and Scale Bring Broad Responsibility</td><td>S6</td><td>"We scaled ten times and ticket response improved. The cost of scale was paid in gates, not in someone else's backlog."</td></tr>
   </tbody>
@@ -476,6 +484,8 @@ Plan                 named owner per lever, trigger that fires it, review cadenc
     <tr><td>4 → 1, 60% → 90%, &gt;$100K/yr, 1% parallel run, 4% first catch</td><td>Snowflake WBR pipeline</td></tr>
     <tr><td>8 months, 7% → 1.8% → 0.3% vs 0.5%, ~3% under $1.8M, $20M</td><td>Dual-DC JDA migration; mocks; pipeline unblocked</td></tr>
     <tr><td>15+ tracks, 60+ stakeholders, 836 rows, Nov 22 / Dec 20 / Jan 30</td><td>UDC omni DC program; test gates; Oct–Dec freeze</td></tr>
+    <tr><td>343 tasks; sync &lt; 99% × 4 h or p95 &gt; 2× × 1 h; never fired; MCS off; 0 incidents</td><td>S/4HANA ↔ ISM cutover runbook and rollback triggers; legacy inventory system retired</td></tr>
+    <tr><td>Returns plant; RTV STOs as pick-reserve; receive → grade → restock / scrap / RTV</td><td>S/4HANA stock-state model: nothing promiseable until disposition; credit never ahead of the physical unit</td></tr>
     <tr><td>94% vs 98%, ~30%, week 3, +15%, zero incidents</td><td>Locus robots throttled; processing efficiency</td></tr>
     <tr><td>6-week → 4-week in 6 weeks, defects −50%</td><td>Agile conversion; QA owned the gate</td></tr>
     <tr><td>~$2.5M, a couple hundred orders</td><td>OMS–WMS discrepancy disclosed, not hidden</td></tr>
@@ -491,7 +501,7 @@ Plan                 named owner per lever, trigger that fires it, review cadenc
 <p class="trap"><strong>Do not say "we" for a decision.</strong> "I published the gate. I made the throttle call. I wrote the tolerance."</p>
 <p class="trap"><strong>Do not stack stories.</strong> One question, one story, one number. Offer depth; do not volunteer it.</p>
 <p class="trap"><strong>Do not let Situation eat the clock.</strong> Fifteen seconds of context. Seventy percent of the story is what you did and what it measured.</p>
-<p class="trap"><strong>Do not open with SAP governance.</strong> This room is network and capacity. S/4HANA is a strong answer to inventory-truth and being-wrong questions, and a diluted answer to "tell me about yourself."</p>
+<p class="trap"><strong>Do not open with SAP governance.</strong> This room is network and capacity. S/4HANA (S10) is a strong answer to inventory-flow, returns, cutover, and being-wrong questions, and a diluted answer to "tell me about yourself." Use it when they ask about inventory; do not lead with it when they ask about capacity.</p>
 <p class="trap"><strong>Do not invent a headcount.</strong> Matrix leadership, said plainly, is fine at L6. A fake org chart is not.</p>
 <p class="trap"><strong>Do not solve the case before clarifying.</strong> Sixty seconds of questions out loud is scored, not tolerated.</p>
 <p class="trap"><strong>"What would you do differently" needs a real answer.</strong> You have five: shadow one zone first; scheduler heartbeat; measurement audit in week one; dual-path devices; security lead time on the kickoff checklist.</p>
