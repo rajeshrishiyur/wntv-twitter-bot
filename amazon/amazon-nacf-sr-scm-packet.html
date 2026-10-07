@@ -48,7 +48,7 @@
   <div><strong>Format.</strong> One hour. Expect two to four Leadership Principle stories with hard follow-ups, and one functional block on capacity planning. If this is the hiring manager, the functional block gets longer.</div>
   <div><strong>Your position.</strong> You have designed and consolidated DC capacity, allocated demand across a 3-DC / 100-store network through peak, and turned measured lane data into planning parameters. You have not built an Amazon FC capacity plan. Say so once, early, then show the mechanism.</div>
 </div>
-<p class="note">Read sections 2, 3, and 4 out loud once — section 3 has "tell me about yourself" in the Amazon shape and "why Amazon / why this team / why now." Section 5 is the story bank — know which four you are leading with. Section 7 is the functional block; walk Case A on paper once before Friday.</p>
+<p class="note">Read sections 2, 3, and 4 out loud once — section 3 has "tell me about yourself" in the Amazon shape and "why Amazon / why this team / why now." Section 5 is the story bank — know which four you are leading with. Section 7A is the deep model — how a unit flows, what it costs, and the WBR this role would run; read it once, slowly. Section 7 is the functional block; walk Case A on paper once before Friday.</p>
 
 <h2>1. What they are actually scoring</h2>
 
@@ -144,7 +144,7 @@
     <tr><td>0–3</td><td>Intros. They describe the team.</td><td>Listen for the word they use for their pain: "peak," "utilization," "launch," "forecast," "cost per unit." That word picks your lead story.</td></tr>
     <tr><td>3–7</td><td>"Tell me about yourself." Often followed by "why Amazon."</td><td>Section 3, Amazon format. Land the gap sentence. Keep "why Amazon" under 45 seconds.</td></tr>
     <tr><td>6–40</td><td>Two to four LP questions. Each gets four or five follow-ups.</td><td>One story per question, 90 seconds, then stop and let them drill. Answer follow-ups in one or two sentences. Say "I" for decisions. Name the data pull.</td></tr>
-    <tr><td>40–52</td><td>Functional block: build a plan, handle a gap, define metrics.</td><td>Section 7. Clarify out loud for 60 seconds before you solve. Say both constraints. Do a math checkpoint. End with owners and triggers.</td></tr>
+    <tr><td>40–52</td><td>Functional block: build a plan, handle a gap, define metrics.</td><td>Sections 7A and 7. Clarify out loud for 60 seconds before you solve. Say both currencies — cube and hours. Do a math checkpoint. End with owners and triggers.</td></tr>
     <tr><td>52–58</td><td>Your questions.</td><td>Two from section 9. Not four.</td></tr>
     <tr><td>58–60</td><td>Close.</td><td>Section 10.</td></tr>
   </tbody>
@@ -360,6 +360,216 @@
   <li><strong>"Walk me through the data pull."</strong> Tables joined, grain, filters. If you did not pull it yourself, say who did and what you checked.</li>
 </ul>
 
+<h2 class="break">7A. How Amazon manages capacity — the unit, the flow, the money, the review</h2>
+<p>This is the depth section. You will not recite it. It exists so that when the interviewer says "walk me through how you would think about capacity in a region," every step, metric and dollar you name is attached to a unit moving through a building. <strong>Three kinds of statements appear here.</strong> (1) Structure that Amazon has described publicly — FC types, inbound and outbound process paths, sort centers and delivery stations, CPT. Use freely. (2) Standard capacity-planning economics — utilization ceilings, fixed-cost dilution, peak factors, labor math. Use freely; this is the job. (3) Numbers. Every number below is <strong>ILLUSTRATIVE</strong>, chosen so the arithmetic can be checked on paper. Say so if you use one, and say what replaces it on day one: the S&amp;OP demand file, Ops Engineering design rates, Finance's cost-per-unit ledger.</p>
+
+<h3>7A.1 The network one unit travels</h3>
+<pre>Vendor / FBA seller
+   │  (inbound freight: vendor-paid, Amazon-paid collect, or FBA seller ships in)
+   ▼
+IXD — inbound cross-dock            FC — fulfillment center (sortable / non-sort / AR)
+  receives in bulk, splits, forwards  ─────────────────────────────────────────────
+  to FCs by placement plan            INBOUND:  dock → receive → (decant) → stow
+   │                                  STORAGE:  bins / pods / pallet / shelf, by cube class
+   └──────────► transfer ───────────► OUTBOUND: pick → (rebin / sort) → pack → SLAM → ship-sort → dock
+                                                     │
+                                                     ▼  (CPT — critical pull time — the truck leaves at a time, not when you are ready)
+                                      Sort center — sorts packages by destination zip / delivery station
+                                                     │
+                                                     ▼
+                                      Delivery station — sorts to routes; last mile (DSP vans, Flex)
+                                                     │
+                                                     ▼
+                                      Customer door (the promise was made here before any of this happened)
+
+Also moving: FC ↔ FC transfers (rebalancing), returns (reverse inbound), removals, liquidations.</pre>
+<p><strong>The sentence that organizes everything below:</strong> capacity is planned in two currencies — <strong>cube</strong> (can the unit be stored) and <strong>hours</strong> (can the unit be moved through each step before its truck leaves) — and the plan is honest only if both are checked at the step where each binds. A building can have empty shelves and still miss CPT because pack is short of hours. A building can have hours and still refuse inbound because it is 97% full.</p>
+
+<h3>7A.2 Inbound — step by step, what the unit does, how it is measured, what it costs</h3>
+<table>
+  <thead><tr><th style="width:11%">Step</th><th style="width:24%">What happens to the unit</th><th style="width:22%">How flow is measured</th><th style="width:19%">What binds</th><th>Cost attributes</th></tr></thead>
+  <tbody>
+    <tr><td>Inbound transportation</td><td>Trailer or container travels vendor → IXD/FC. Appointment booked; trailer arrives at a dock door.</td><td>Trailers/day vs appointments; on-time arrival; units per trailer (cube fill); dwell in yard (hours).</td><td>Dock doors × turns/day; yard spots; appointment slots.</td><td><strong>Variable:</strong> linehaul $/mile or $/trailer, drayage, fuel; <strong>semi-fixed:</strong> yard jockeys, gate staff. Paid by Amazon on collect freight; embedded in cost of goods on prepaid.</td></tr>
+    <tr><td>Dock / unload</td><td>Pallets or fluid-loaded cartons come off. Cartons scanned to a receive queue.</td><td>Cartons unloaded/hour; door dwell (hours door is occupied per trailer); unload backlog (trailers waiting).</td><td>Doors; unload labor hours; forklift/equipment.</td><td><strong>Variable labor:</strong> unload hours × rate. <strong>Fixed:</strong> doors, levelers, forklifts (capex / lease).</td></tr>
+    <tr><td>Receive</td><td>Carton opened, ASIN identified, quantity counted, condition checked, unit now exists in inventory as "received, not yet stowed."</td><td>Units received/hour per associate (receive rate); receive backlog (units or hours of work waiting); vendor compliance defects (mislabeled, wrong qty) per 1,000 cartons.</td><td>Receive hours; problem-solve queue for exceptions.</td><td><strong>Variable labor:</strong> receive hours. Exceptions cost 5–10× a clean carton (illustrative) — the compliance metric is a cost metric.</td></tr>
+    <tr><td>Decant / prep</td><td>Units pulled from vendor cartons into totes or prepped (poly-bag, label) so they can be stowed.</td><td>Units/hour; prep required %; tote fill.</td><td>Prep hours; consumables.</td><td><strong>Variable:</strong> labor + packaging consumables.</td></tr>
+    <tr><td>Stow</td><td>Unit placed into a bin (shelf, pod in AR, pallet location). Inventory becomes <strong>available to promise</strong> at this scan.</td><td>Units stowed/hour (stow rate); <strong>dock-to-stow hours</strong> (the headline inbound flow metric: carton arrival to unit available); stow backlog; bin-fullness at stow.</td><td>Stow hours; <strong>empty cube</strong> — if bins are full, stow slows or stops; in AR, pod availability and robot drive-unit count.</td><td><strong>Variable labor:</strong> stow hours. Stow rate falls as the building fills (walk time, hunting for empty bins) — this is the first place the utilization curve costs money.</td></tr>
+  </tbody>
+</table>
+<p><strong>Why dock-to-stow is the inbound metric that matters.</strong> Until the unit is stowed, the customer cannot buy it against this building's promise, the vendor's trailer is still at your door or in your yard, and the carton is occupying floor space that is not a bin. A dock-to-stow target (say ≤ 24 hours, illustrative) converts inbound capacity into a flow commitment. Miss it and you have an inbound backlog, which shows up as refused appointments, which shows up as inventory stuck upstream, which shows up as a speed miss three weeks later.</p>
+
+<h3>7A.3 Storage — the cube currency</h3>
+<table>
+  <thead><tr><th style="width:26%">Quantity</th><th style="width:40%">How to compute it (illustrative)</th><th>What it tells you</th></tr></thead>
+  <tbody>
+    <tr><td>Gross storage cube</td><td>Bins × cubic feet per bin, by bin type (shelf, pod, pallet, bulk floor).</td><td>The building's theoretical ceiling. Never plan to it.</td></tr>
+    <tr><td>Usable cube</td><td>Gross × bin-fill efficiency (air inside a bin because units are odd shapes; ~60–75% illustrative) × operating ceiling (85–90%).</td><td>The number you actually plan storage to.</td></tr>
+    <tr><td>Units on hand</td><td>Daily outbound units × days of cover (inventory policy, by ASIN velocity class).</td><td>Required storage. Slow movers are the cube problem; fast movers are the hours problem.</td></tr>
+    <tr><td>Storage utilization</td><td>Cube occupied ÷ usable cube, weekly.</td><td>Above the ceiling: stow rate falls, inbound gets refused, pick paths lengthen. This is the capacity-plan red light.</td></tr>
+    <tr><td>Inventory health</td><td>% of cube held by units with &gt; N weeks of cover; aged inventory; unsellable (damaged, quality hold).</td><td>Cube you are paying for that cannot ship. Your S/4HANA story: quality-hold counted as available overstates capacity.</td></tr>
+  </tbody>
+</table>
+<p><strong>Illustrative storage math.</strong> A building with 2.0M usable cubic feet at a 90% ceiling has 1.8M plannable. If its mix averages 0.25 cu ft per unit and the inventory policy is 21 days of cover on 120K daily outbound units, it needs 2.52M units × 0.25 = 630K cu ft — 35% utilized, lots of room. Push the same building to 20 days of cover on a 300K/day peak outbound and it needs 1.5M cu ft — 83%, at the edge. The same shelves went from comfortable to critical because <em>days of cover</em> and <em>daily outbound</em> moved, not the building. That is why capacity planning owns the inventory policy conversation, not just the real-estate one.</p>
+
+<h3>7A.4 Outbound — step by step</h3>
+<table>
+  <thead><tr><th style="width:11%">Step</th><th style="width:24%">What happens to the unit</th><th style="width:22%">How flow is measured</th><th style="width:19%">What binds</th><th>Cost attributes</th></tr></thead>
+  <tbody>
+    <tr><td>Order drop / batching</td><td>Customer order is assigned to this building (placement + promise decision). Units are batched into pick work by CPT.</td><td>Units dropped per hour by CPT window; work-in-queue hours ahead of each CPT.</td><td>Planning logic, not labor. Over-drop and pack drowns; under-drop and pick idles.</td><td>No direct cost; it decides every downstream cost. Wrong-building placement adds transportation and transfer cost.</td></tr>
+    <tr><td>Pick</td><td>Associate (or robot brings pod to associate) retrieves unit into a tote.</td><td>Units picked/hour (pick rate); picks per tote; pick backlog vs CPT; mispicks per 1,000.</td><td>Pick hours; in AR, drive-unit and pod availability; pick-station count.</td><td><strong>Variable labor:</strong> largest single labor line in most buildings. Rate drops as storage fills (path length) and at peak with new hires on a learning curve.</td></tr>
+    <tr><td>Rebin / sort (multi-unit orders)</td><td>Totes from many pickers are consolidated so one order's units land together.</td><td>Units sorted/hour; wall utilization; orders waiting on last unit.</td><td>Sort-wall slots; hours.</td><td><strong>Variable labor</strong>; <strong>fixed</strong> sort walls / sorters.</td></tr>
+    <tr><td>Pack</td><td>Units go into a box or mailer; box size chosen; dunnage added.</td><td>Units or packages packed/hour; packages per hour per station; box-size accuracy (cube out — shipping air is a transportation cost).</td><td>Pack stations and hours. Pack is frequently the outbound bottleneck at peak.</td><td><strong>Variable labor</strong>; <strong>variable packaging</strong> (corrugate, mailers, tape, dunnage — $/package, mix-dependent).</td></tr>
+    <tr><td>SLAM</td><td>Scan, Label, Apply, Manifest — package weighed, label printed and applied, manifested to a carrier and a truck.</td><td>Packages/hour; weight/dimension mismatches; label errors.</td><td>SLAM lines (machines) — a fixed-capacity step.</td><td><strong>Fixed</strong> equipment; small <strong>variable</strong> labor and labels.</td></tr>
+    <tr><td>Ship sort / dock</td><td>Package routed to the right outbound door for its carrier, sort center, and CPT; loaded into a trailer.</td><td>Packages sorted/hour; <strong>CPT attainment</strong> (% of planned packages on the truck before it leaves — the headline outbound flow metric); trailer cube fill; late trailer departures.</td><td>Sorter capacity; outbound doors; trailer availability.</td><td><strong>Fixed</strong> sorter; <strong>variable</strong> load labor; <strong>variable transportation</strong> — a half-full trailer costs the same as a full one.</td></tr>
+  </tbody>
+</table>
+<p><strong>Why CPT attainment is the outbound metric that matters.</strong> A critical pull time is the moment the promise stops being a plan and becomes a truck. A package that misses its CPT either rolls to the next truck (speed downgrade, possibly a missed promise) or goes on a more expensive mode (premium transportation). Every upstream step — pick, pack, SLAM — is measured against hours-ahead-of-CPT, not against the shift. That is what "flow" means inside a building: work arriving at each step early enough that the last step finishes before the door closes.</p>
+
+<h3>7A.5 Downstream — sort center, delivery station, last mile</h3>
+<ul>
+  <li><strong>Sort center.</strong> Receives trailers from many FCs, sorts packages by destination delivery station or carrier injection point. Capacity in packages/hour through the sorter and outbound doors by destination. Metrics: sort rate, missort rate, trailer utilization, sort-center CPT attainment to delivery stations.</li>
+  <li><strong>Delivery station.</strong> Receives sorted packages overnight, sorts to routes, dispatches to delivery partners. Capacity in packages/day by route count × packages/route. Metrics: packages per route, dispatch on time, delivery success rate.</li>
+  <li><strong>Why NACF capacity planning cares.</strong> FC outbound capacity is only useful if there is downstream sort and delivery capacity on the same lanes on the same night. A region can have FC slack and still miss speed because the delivery stations near the demand are full. Say "FC capacity and downstream capacity have to be planned on the same page" — it is the regional version of "storage and throughput both."</li>
+</ul>
+
+<h3>7A.6 A worked example — demand meets capacity in one region (ILLUSTRATIVE)</h3>
+<p>Three FCs serve a region. Numbers invented so you can check them.</p>
+<table>
+  <thead><tr><th>Building</th><th>Type</th><th>Usable storage (M cu ft, at ceiling)</th><th>Outbound design rate (K units/wk)</th><th>Plannable outbound at 90% (K/wk)</th><th>Avg week demand placed (K/wk)</th><th>Peak week (×1.6)</th></tr></thead>
+  <tbody>
+    <tr><td>FC-A</td><td>Sortable AR</td><td>1.8</td><td>1,400</td><td>1,260</td><td>1,000</td><td>1,600</td></tr>
+    <tr><td>FC-B</td><td>Sortable (manual)</td><td>1.2</td><td>900</td><td>810</td><td>700</td><td>1,120</td></tr>
+    <tr><td>FC-C</td><td>Non-sort</td><td>2.5</td><td>500</td><td>450</td><td>300</td><td>480</td></tr>
+    <tr><td><strong>Region</strong></td><td></td><td>5.5</td><td>2,800</td><td><strong>2,520</strong></td><td><strong>2,000</strong></td><td><strong>3,200</strong></td></tr>
+  </tbody>
+</table>
+<p><strong>Read it.</strong> Average week: 2,000 against 2,520 plannable — 79% utilized, fine. Peak week: 3,200 against 2,520 — a <strong>680K-unit gap</strong>, and it is not evenly distributed: FC-A is 340K over, FC-B 310K over, FC-C is 30K over. "The region is 27% short" is the wrong sentence. "Two sortable buildings are each about 35% short in peak week; non-sort is fine" is the right one.</p>
+<p><strong>Check the other currency.</strong> FC-A peak inventory: 1.6M/wk ÷ 7 = 229K units/day × 18 days of cover × 0.25 cu ft = 1.03M cu ft against 1.8M usable — 57%, storage is not the problem. FC-B: 160K/day × 18 × 0.30 = 0.86M against 1.2M — 72%, getting tight but not binding. So this is a <strong>throughput</strong> gap in the two sortable buildings, concentrated in pick and pack hours. The lever stack is a labor and flow conversation first, a steel conversation never (for this peak).</p>
+<p><strong>Lever stack with illustrative costs</strong> for the 650K sortable gap, cheapest and most reversible first:</p>
+<table>
+  <thead><tr><th style="width:24%">Lever</th><th style="width:16%">Capacity it buys</th><th style="width:22%">Illustrative cost</th><th>Trigger and owner</th></tr></thead>
+  <tbody>
+    <tr><td>1. Placement shift — move sortable-eligible demand to FC-C's slack and to the next region's sortable buildings</td><td>~150K</td><td>Extra outbound transportation ~$0.40/unit on shifted volume (longer zone) → ~$60K/wk</td><td>Fires when week-8 forecast still shows &gt;10% gap. Owner: placement / SCOT partner.</td></tr>
+    <tr><td>2. Hours — add a shift, extend to 6 days, overtime</td><td>~250K (FC-A 150K, FC-B 100K)</td><td>Overtime premium 1.5× on ~180K incremental hours-equivalent… illustratively +$1.2M for the peak period</td><td>Labor plan locked at week-10. Owner: FC Ops + regional labor planning.</td></tr>
+    <tr><td>3. Peak hiring with learning-curve haircut</td><td>~200K</td><td>New hires at ~60% rate for 2 weeks; training and attrition cost; ~$2M for the period</td><td>Requisitions open week-12; ramp complete week-2. Owner: FC Ops / HR.</td></tr>
+    <tr><td>4. Inbound shaping — pull fast-mover inbound forward to pre-peak weeks, push slow-mover inbound to post-peak</td><td>Frees pick/stow hours in peak week (~50K equivalent)</td><td>Carrying cost on earlier inventory (small); vendor negotiation effort</td><td>Inbound appointment caps by week published week-10. Owner: inbound planning.</td></tr>
+    <tr><td>5. Overflow site / 3P</td><td>Residual</td><td>$1.50–3.00/unit all-in</td><td>Only for what 1–4 do not cover. Contract trigger at week-8.</td></tr>
+    <tr><td>6. Retrofit / automation</td><td>+15–30% building throughput</td><td>Capex, 2–4 quarters</td><td>Not this peak. Goes into the OP cycle for next year.</td></tr>
+    <tr><td>7. Demand shaping — speed tier, promise</td><td>Last resort</td><td>Conversion cost (unpriced trust)</td><td>Only when a customer-facing miss is the alternative.</td></tr>
+  </tbody>
+</table>
+<p><strong>What you say at the end of the example.</strong> "The plan closes 650K with placement, hours, hiring and inbound shaping, at roughly three to four million dollars of incremental cost for the peak period, and leaves overflow as a priced option with a trigger date. Every lever has an owner and a week it fires. The two things I will not do: spread a pad across all three buildings, which hides that FC-C is fine; and plan either sortable building above 90% of design rate, because congestion arrives before the ceiling does."</p>
+
+<h3>7A.7 The labor model — how hours are computed</h3>
+<pre>Required hours (step, week)  = units through the step ÷ planned rate (units/hour) for that step
+Planned rate                 = engineered standard × building-specific factor × learning-curve factor × congestion factor
+Headcount (step)             = required hours ÷ (hours per shift × shifts per week × attendance %)
+Total direct hours (week)    = Σ over steps (receive, stow, pick, rebin, pack, ship-sort, dock, problem-solve)
+Indirect hours               = supervision, training, quality, ICQA (inventory counts), safety, maintenance labor
+
+ILLUSTRATIVE FC-A peak week: 1.6M units
+  pick    1.6M ÷ 120/hr  = 13,300 hrs        stow    1.5M inbound ÷ 110/hr = 13,600 hrs
+  pack    1.6M ÷ 90/hr   = 17,800 hrs        receive 1.5M ÷ 150/hr         = 10,000 hrs
+  rebin   0.8M ÷ 250/hr  =  3,200 hrs        ship/dock                     ≈  4,000 hrs
+  direct ≈ 62,000 hrs; at 36 productive hrs/associate/week and 92% attendance → ~1,870 associates
+  average week ≈ 1,170 → peak requires ~700 incremental associates, ~2 weeks of ramp</pre>
+<p>Two things the interviewer wants to hear you know: <strong>rates are not constants</strong> — they fall when storage is full, when the building is on new hires, and when flow is uneven (idle pack then flooded pack) — and <strong>pack, not pick, is often the peak bottleneck</strong>, because pack rate per unit is lower and pack stations are fixed.</p>
+
+<h3>7A.8 The cost model — every dollar a unit picks up</h3>
+<p>Think of cost per unit as the sum of what the unit touched, divided by how many units shared the building that week. Fixed costs make the denominator matter; variable costs make the process paths matter; congestion makes both worse at the same time.</p>
+<table>
+  <thead><tr><th style="width:18%">Cost family</th><th style="width:30%">Lines</th><th style="width:14%">Fixed / variable</th><th>How it behaves with volume and utilization</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Facility</strong></td><td>Lease or depreciation on the building; property tax; insurance; base utilities; security</td><td>Fixed</td><td>Per-unit cost falls as volume rises — <em>fixed-cost dilution</em>. This is why under-utilized buildings are expensive per unit and why Finance resists new steel until the existing floor is used.</td></tr>
+    <tr><td><strong>Equipment</strong></td><td>Conveyors, sorters, SLAM lines, AR drive units and pods, racking, forklifts, IT/scanners</td><td>Fixed (capex, depreciated) + maintenance (semi-variable)</td><td>Same dilution. Automation shifts cost from variable labor to fixed equipment — good at high utilization, bad at low.</td></tr>
+    <tr><td><strong>Direct labor</strong></td><td>Receive, stow, pick, rebin, pack, ship-sort, dock, problem-solve</td><td>Variable (hours × wage), with step-ups</td><td>Roughly linear until the building is full or on new hires; then rate falls and cost per unit rises. Overtime at 1.5×; peak new-hire premium; shift differentials.</td></tr>
+    <tr><td><strong>Indirect labor</strong></td><td>Area managers, process assistants, learning, ICQA, safety, HR, facilities</td><td>Semi-fixed (steps with shifts and headcount bands)</td><td>Moves in steps when you add a shift; otherwise flat.</td></tr>
+    <tr><td><strong>Packaging</strong></td><td>Corrugate, mailers, tape, dunnage, labels</td><td>Variable per package</td><td>Mix-driven. Box-size accuracy also drives outbound transportation (dimensional weight).</td></tr>
+    <tr><td><strong>Inbound transportation</strong></td><td>Linehaul vendor → IXD/FC; IXD → FC transfers; drayage</td><td>Variable per trailer / per unit</td><td>Driven by placement: a unit stowed far from its vendor and far from its demand pays twice. Trailer cube fill is the efficiency metric.</td></tr>
+    <tr><td><strong>Outbound transportation</strong></td><td>FC → sort center linehaul; sort center → delivery station; last mile; carrier injection</td><td>Variable per package, zone and weight dependent</td><td>Usually the largest cost family after labor. Driven by placement (distance to customer), speed tier (air vs ground), package cube, and trailer fill. A placement shift to close a capacity gap is paid here.</td></tr>
+    <tr><td><strong>Transfers and rebalancing</strong></td><td>FC ↔ FC moves to fix placement after the fact</td><td>Variable</td><td>A tax on bad placement or bad forecasting. Track it as its own line so it cannot hide in inbound.</td></tr>
+    <tr><td><strong>Inventory carrying</strong></td><td>Cost of capital on units on hand; shrink; damage; obsolescence/markdown</td><td>Variable with inventory level</td><td>Rises with days of cover. Inbound shaping (pull-forward) spends this to save labor in peak week — price the trade.</td></tr>
+    <tr><td><strong>Quality and defects</strong></td><td>Mispicks, mis-ships, damages, concessions, returns processing</td><td>Variable per defect</td><td>Rises when rates are pushed past standard. A building running hot pays here two weeks later.</td></tr>
+    <tr><td><strong>Overflow / 3P</strong></td><td>Short-term space and labor contracts</td><td>Variable (all-in per unit) with minimums</td><td>Expensive per unit but no fixed commitment — the right lever for a short peak, the wrong one for a structural gap.</td></tr>
+  </tbody>
+</table>
+<p><strong>Cost per unit, illustrated at three utilizations (same building, one week, invented numbers):</strong></p>
+<pre>                              60% utilized      85% utilized      97% utilized ("full")
+Units shipped                  840K              1,190K            1,360K
+Fixed (facility+equipment)   $1.70M → $2.02/u   $1.70M → $1.43/u  $1.70M → $1.25/u
+Direct labor                 $2.0M  → $2.38/u   $2.7M  → $2.27/u  $3.6M  → $2.65/u   ← rates fall, OT rises
+Indirect labor               $0.45M → $0.54/u   $0.50M → $0.42/u  $0.55M → $0.40/u
+Packaging                    $0.55/u            $0.55/u           $0.55/u
+Outbound transport           $3.20/u            $3.20/u           $3.45/u            ← CPT misses → premium mode
+Defects / concessions        $0.06/u            $0.08/u           $0.18/u
+Total                        ≈ $8.75/u          ≈ $7.95/u         ≈ $8.48/u</pre>
+<p><strong>Read it.</strong> Cost per unit is U-shaped in utilization. Too empty and fixed cost is undiluted; too full and labor, transport and defects spike. The economic optimum sits near the operating ceiling, not at 100%. That is the whole argument for planning to a ceiling, and it is the argument you make to Finance in their own currency: "the last 7% of utilization costs more per unit than the first 85% saved."</p>
+<p><strong>Inbound vs outbound cost, said plainly.</strong> Inbound cost per unit (freight + receive + stow) is small per unit but front-loaded and placement-sensitive. Outbound cost per unit (pick + pack + packaging + transportation) is larger and speed-sensitive. Placement is the one decision that moves both: put the unit near its demand and you pay more inbound and less outbound; the capacity plan has to know which side of that trade a region is on.</p>
+
+<h3>7A.9 The WBR this role would run</h3>
+<p>Outputs are what the business feels. Inputs are levers a named owner can move this week. Every line has a grain, a target, an owner, and a red that arrives pre-decomposed: which input moved, whose lever, what correction, verified by the same number next week. Illustrative targets.</p>
+<table>
+  <thead><tr><th style="width:5%"></th><th style="width:28%">Metric</th><th style="width:20%">Grain</th><th style="width:17%">Illustrative target</th><th>Owner / why it is on page one</th></tr></thead>
+  <tbody>
+    <tr><td colspan="5"><strong>Outputs</strong></td></tr>
+    <tr><td>O1</td><td>Capacity delivered vs plan (units/week the network could process)</td><td>Region × building type × week</td><td>≥ 100% of committed plan</td><td>You. The headline: did the capacity exist when the plan said it would.</td></tr>
+    <tr><td>O2</td><td>Throughput utilization vs ceiling</td><td>Building × week (peak: × day)</td><td>75–90% band</td><td>You with FC Ops. Below band = cost; above = speed and defects.</td></tr>
+    <tr><td>O3</td><td>Storage utilization vs ceiling</td><td>Building × week</td><td>≤ 90%</td><td>You with inventory planning. The second currency.</td></tr>
+    <tr><td>O4</td><td>Customer speed attainment (promised speed met)</td><td>Region × speed tier × week</td><td>≥ target by tier</td><td>Shared with S&amp;OP / transportation. The customer-facing reason the plan exists.</td></tr>
+    <tr><td>O5</td><td>Cost per unit vs plan (fully loaded, and by family)</td><td>Building × week; region × month</td><td>≤ plan</td><td>Finance partner. The second half of the charter.</td></tr>
+    <tr><td>O6</td><td>CPT attainment</td><td>Building × CPT × day</td><td>≥ 98%</td><td>FC Ops. Outbound flow health; leading indicator of O4.</td></tr>
+    <tr><td>O7</td><td>Dock-to-stow hours</td><td>Building × day</td><td>≤ 24 h</td><td>FC Ops / inbound. Inbound flow health; leading indicator of refused appointments.</td></tr>
+    <tr><td colspan="5"><strong>Inputs</strong></td></tr>
+    <tr><td>I1</td><td>Forecast accuracy at planning grain (and bias)</td><td>Building type × region × week, 4- and 8-week horizons</td><td>MAPE within band; bias ≈ 0</td><td>S&amp;OP / SCOT. A biased forecast is a capacity error wearing a demand costume.</td></tr>
+    <tr><td>I2</td><td>Placement compliance (units landed in the planned building)</td><td>Region × week</td><td>≥ 95%</td><td>Placement partner. Off-plan placement is the silent capacity thief.</td></tr>
+    <tr><td>I3</td><td>Labor plan attainment (hours staffed ÷ hours required, by step)</td><td>Building × step × week</td><td>≥ 97%</td><td>FC Ops / labor planning.</td></tr>
+    <tr><td>I4</td><td>Rate attainment vs planned rate, by step</td><td>Building × step × week</td><td>≥ 95% of plan</td><td>FC Ops. Where congestion and learning curve show up first.</td></tr>
+    <tr><td>I5</td><td>Launch and retrofit milestones on dated gates</td><td>Project × gate</td><td>Green/red vs date</td><td>Launch / Engineering / Real Estate. New capacity that is late is a gap you planned on.</td></tr>
+    <tr><td>I6</td><td>Inbound appointment adherence and vendor compliance defects</td><td>Building × week</td><td>≥ 95%; defects ≤ x per 1,000</td><td>Inbound planning / vendor management.</td></tr>
+    <tr><td>I7</td><td>Inventory health: days of cover by velocity class; % cube in aged / unsellable</td><td>Building × week</td><td>Within policy; aged ≤ x%</td><td>Inventory planning. Cube you cannot sell is capacity you do not have.</td></tr>
+    <tr><td>I8</td><td>Trailer cube fill, inbound and outbound</td><td>Lane × week</td><td>≥ target</td><td>Transportation. The cheapest transportation dollar.</td></tr>
+    <tr><td>I9</td><td>Transfers and rebalancing volume and cost</td><td>Region × week</td><td>Trending down</td><td>You. The tax on bad placement, kept visible.</td></tr>
+    <tr><td>I10</td><td>Lever status: which planned levers have fired, on which trigger, at what cost</td><td>Lever × week</td><td>All triggered levers fired on time</td><td>You. The plan is a list of triggers; this line proves it is alive.</td></tr>
+  </tbody>
+</table>
+<p><strong>Page one vs annex.</strong> Page one: O1–O7, I1–I10, RAG with week-over-week deltas, five callouts, and the action log with owner and date. Annex: forecast histograms, rate curves by building, placement heatmaps, cost bridges, launch Gantts. <strong>Correction of error</strong> is written when O1 misses plan by more than a published threshold, when O2 or O3 exceeds ceiling for two consecutive weeks, or when a lever that should have fired did not. It ends in a mechanism change — a trigger moved earlier, a ceiling re-measured, an owner named — never in "try harder."</p>
+
+<h3>7A.10 How you would model it</h3>
+<p>Four layers, each feeding the next. Build the simplest version of each first; add fidelity where the plan is actually sensitive.</p>
+<pre>LAYER 1 — Demand          units by week × region × building type × speed tier, from S&amp;OP; peak factors by week;
+                          range (P10/P50/P90), not a point — the plan is sized to a quantile you choose on purpose
+
+LAYER 2 — Placement       which building absorbs which demand; an optimization (minimize inbound + outbound
+                          transport + transfer cost subject to each building's storage and throughput ceilings);
+                          outputs units/week per building. This is where the network LP lives (SCOT partner owns
+                          the engine; you own the constraints and whether the answer is plannable)
+
+LAYER 3 — Building        per building per week: required hours by step (7A.7), required cube (7A.3), vs available;
+                          gap by currency by step; rate curves as a function of utilization and new-hire share;
+                          CPT structure (how many trucks, when) — flow inside the week, not just the weekly total
+
+LAYER 4 — Cost            per building per week: fixed + labor + packaging + transport + carrying + defects (7A.8);
+                          cost per unit; incremental cost of each lever; the U-curve
+
+OUTPUTS                   gap by week by building by currency; ranked lever stack with cost and lead time; triggers;
+                          sensitivity (what forecast error, rate miss, or launch slip breaks the plan)
+
+VALIDATION                backtest on last year's weeks: did the model's "available" match what the buildings actually
+                          shipped? Where it missed, which layer was wrong — demand, placement, rate, or ceiling?</pre>
+<p><strong>Three modeling judgments to say out loud.</strong> (1) Plan to a quantile, not a point: if you size to P50 you will be short half the time. Decide with Finance which quantile the cost of shortage justifies. (2) Rates are curves, not constants: a model with fixed rates will tell you a 97%-utilized building is fine. It is not. (3) Weekly totals hide CPT misses: a building can hit its weekly number and miss every 6 PM truck. Model at least the daily CPT structure for peak weeks.</p>
+<p><strong>What you would ask on day one.</strong> What is the current ceiling by building type, who set it, and when was it last re-measured against actuals? Does placement see the throughput ceiling or only storage? Which lever fired last peak that was not in the plan? Where does forecast bias live by region? And: which of these numbers does Finance accept, and which does it dispute?</p>
+
+<h3>7A.11 Lines for this section</h3>
+<ul>
+  <li>"Capacity is two currencies — cube and hours — and the plan is honest only if both are checked at the step where each binds."</li>
+  <li>"Dock-to-stow is inbound flow. CPT attainment is outbound flow. Everything else is a component."</li>
+  <li>"Cost per unit is U-shaped in utilization. The optimum is near the ceiling, not at a hundred percent."</li>
+  <li>"Placement is the one decision that moves inbound and outbound cost at the same time."</li>
+  <li>"A biased forecast is a capacity error wearing a demand costume."</li>
+  <li>"Inbound shaping spends carrying cost to buy peak-week labor. Price the trade; don't just do it."</li>
+  <li>"Pack, not pick, is usually where peak breaks."</li>
+</ul>
+
 <h2>7. The functional block — capacity planning</h2>
 <p>You will get at least one of these. Format they expect: clarify out loud (60–90 seconds) → structure (60 seconds) → a math checkpoint → recommendation with owners, triggers and risks. Say "both constraints — storage and throughput" early in every answer. Label every number you make up as illustrative, and say what you would replace it with on day one.</p>
 
@@ -511,7 +721,7 @@ Plan                 named owner per lever, trigger that fires it, review cadenc
 <ol>
   <li>Read "tell me about yourself" and "why Amazon" (section 3) out loud once. End on the gap sentence.</li>
   <li>Tell S1 and S2 to a wall, with numbers, in under two minutes each.</li>
-  <li>Walk Case A on paper: demand → two constraints → gap by week → lever stack → owners and triggers.</li>
+  <li>Walk Case A on paper: demand → two currencies (cube, hours) → gap by week by building → lever stack with cost → owners and triggers. Re-read the 7A.6 worked example and the 7A.8 U-curve.</li>
   <li>Say the five judgment lines in section 7 once.</li>
   <li>Pick your two questions. Pick your Bellevue sentence.</li>
 </ol>
