@@ -453,7 +453,7 @@ Fix scope     = the defect CLASS (handshake mapping), verified by zero recurrenc
 <div class="qa">
 <p class="q"><strong>CO-2.</strong> Went above and beyond for a customer. Why? Response? Outcome?</p>
 <p><strong>S3.</strong> <em>Situation.</em> An Elementum planner asked for a lead-time variability report. Safety stock on two hundred lanes was sized against carrier-brochure transit times plus a pad "about a week." <em>Task.</em> Deliver the report — and, I decided, fix the number the report was about. <em>Action.</em> I built per-lane empirical distributions from shipment scans, replaced the planning lead time with the measured p99, and released safety stock only where the measured spread was tighter than the pad implied; where it was wider I <em>added</em> stock first, so planners saw the system give before it took. I added a drift flag so the parameter stayed true. I pitched leadership with mockups before building and delivered the report on time as good faith. <em>Result.</em> Planned lead time held 99% of the time; 580K units and ~$1.5M of safety stock released; the drift flag still fires. The planner got a parameter, not a PDF.</p>
-<p class="mth"><strong>Math.</strong> SS = d × (LT_plan − LT_mean) + z × σ_d × √LT ; LT_plan = empirical p99 per lane (normal fit understated the tail by ~4 days) ; release only where σ_measured &lt; σ_assumed ; Σ(SS_before − SS_after) = 580K units × [$2.59] ≈ $1.5M.</p>
+<p class="mth"><strong>Math.</strong> Per lane, sort n transit times; LT_plan = empirical p99 = t(⌈0.99n⌉). Lane A: n 400, mean 21 d, σ 4 d, p99 34 d; a normal fit gives 21 + 2.33×4 = 30.3 d and would have held only 96.5% (14 of 400 arrivals beyond it); brochure 18 d + pad ≈ 25 d held 93%. Safety stock = d × (LT_plan − LT_mean) + z × σ_d × √LT_mean: Lane A (d 500/day, σ_d 150) = 500 × 13 + 2.33 × 150 × √21 = 6,500 + 1,601 ≈ 8,100 units, vs ≈ 12,900 before (ERP z-formula with an assumed σ_LT of 8 d, plus a 7-day manual pad) → 4,800 units released. Release only where σ_LT measured &lt; σ_LT assumed; lanes where it was wider (Lane B: σ 11 d) took stock in. Net over 200 lanes: ~675K out, ~95K in = 580K units × [$2.59] ≈ $1.5M working capital (~$300K/yr carrying cost at 20%). Full derivation: S3 block under Think Big.</p>
 <p class="probe"><strong>Probe</strong> "Who authorized the bigger scope?" — I pitched leadership with mockups before building; the ask was mine to make. <strong>Probe</strong> "What did it cost?" — My time, and engineering time to productize the drift flag.</p>
 <p class="wbr"><strong>WBR / design:</strong> lane LT distribution pipeline → planning parameter → drift flag → S&amp;OP review line.</p>
 </div>
@@ -1357,29 +1357,72 @@ GATES: Nov 22 / Dec 20 / Jan 30 test gates · Oct–Dec change freeze
 <div class="sdc"><strong>Supply · Demand · Capacity.</strong> <strong>Supply:</strong> inbound lead time per lane — the variable I measured. <strong>Demand:</strong> replenishment requirements by SKU-location, unchanged. <strong>Capacity:</strong> safety stock is storage capacity and working capital consumed by supply uncertainty. <strong>What bound:</strong> a bad supply parameter was consuming cube and cash. Fixing the parameter released both without touching a building. This is the cheapest capacity there is: capacity hidden inside a wrong assumption.</div>
 <p><strong>What was innovative.</strong> The standard answer is a variability report and a safety-stock formula with a normal z-score. I planned to the empirical tail per lane, wrote a release rule that required the measurement to be <em>better</em> than the assumption before money moved, and built a drift detector so the plan re-opened itself. The system replaced the report.</p>
 <h4>The math</h4>
-<pre class="math">Per lane: sort n transit times t(1) ≤ … ≤ t(n);  empirical p99 = t(⌈0.99 n⌉)
-   lane example: n = 400, mean 21 d, σ 4 d, right-skewed
-   normal p99  = 21 + 2.33 × 4 = 30.3 d      empirical p99 = 34 d   → normal understates the tail
-                 by ~4 days
-   brochure     = 18 d  (+ planner pad "about a week") → planned ≈ 25 d, held 93% of the time,
-                  not 99%
+<pre class="math">STEP 0 — TERMS  (one lane = one origin → one destination; every number below is per lane)
+   d        = average daily demand at the receiving location, units/day
+   σ_d      = standard deviation of daily demand
+   LT_mean  = measured mean transit time, days          σ_LT = measured std dev of transit time
+   LT_plan  = the lead time the plan protects to        z    = service factor: 99% → 2.33
+   n        = shipments in the history window           t(k) = k-th smallest transit time
 
-Why the mean is a coin flip:  in a right-skewed lane the median &lt; mean, and P(t &gt; mean) ≈
-                              0.40 → 2 in 5 late
+STEP 1 — MEASURE THE LANE  (this is the "pull it yourself" step)
+   sort n transit times  t(1) ≤ … ≤ t(n) ;  empirical p99 = t(⌈0.99 n⌉)
+   Lane A:  n = 400 → p99 = t(396) = 34 d ;  LT_mean = 21 d ; σ_LT = 4 d ; right-skewed
+   brochure said 18 d.  Count arrivals &gt; 18 d: 240 of 400 = 60% "late" vs the brochure.
 
-Safety stock per lane  SS = d × (planned LT − mean LT) + z × σ_d × √(mean LT)     (d = units/day)
-   before (brochure + pad):  planned 25 d, but variability unknown → planners held extra "just in
-                             case" stock
-   after (p99 = 34 d measured):  on most lanes the measured spread was tighter than the pad
-                implied → SS fell
-   net across 200 lanes:  Σ (SS_before − SS_after) = 580K units ;  × avg standard cost [$2.59] ≈
-                          $1.5M
+STEP 2 — WHY NOT THE MEAN, WHY NOT A NORMAL FIT
+   mean as plan:   right-skewed lane → median &lt; mean → P(t &gt; 21) ≈ 0.40 → 2 in 5 shipments late
+   normal p99:     21 + 2.33 × 4 = 30.3 d ;  but actual arrivals &gt; 30.3 d = 14 of 400 = 3.5%
+                   → a "99%" normal plan would have held 96.5% ; tail understated by ~4 days
+   brochure + pad: 18 d + "about a week" = 25 d ; arrivals &gt; 25 d = 28 of 400 = 7% late → 93% held
+   empirical p99:  34 d ;  arrivals &gt; 34 d = 4 of 400 = 1% → 99% held, by construction
 
-Release rule (finance-signed):  release only where  σ_measured &lt; σ_assumed   (lane-level,
-                                auditable)
-Drift flag:  fire when rolling-90-day p99 &gt; planned LT + [2 days]  or  σ_90 &gt; 1.25 ×
-             σ_baseline
-LT accuracy = arrivals within planned LT ÷ arrivals, by lane, by week  → 99%</pre>
+STEP 3 — SAFETY STOCK, TWO TERMS
+   SS = d × (LT_plan − LT_mean)   +   z × σ_d × √LT_mean
+        └─ lead-time cover: units ─┘    └─ demand cover during the mean lead time ─┘
+        consumed if transit runs to      (normal z is fine here: daily demand IS roughly
+        the p99 instead of the mean      symmetric; it was lead time that was not)
+   The old ERP formula put lead-time risk inside a z-score with an ASSUMED σ_LT (system default,
+   never measured) :  SS_old = z × √( LT × σ_d²  +  d² × σ_LT_assumed² )  — and planners added a
+   manual pad on top because the brochure was late 60% of the time.
+
+STEP 4 — LANE A, BEFORE AND AFTER  (d = 500/day, σ_d = 150, σ_LT_assumed = [8 d])
+   before:  ERP  = 2.33 × √( 18 × 150²  +  500² × 8² )
+                 = 2.33 × √( 405,000  +  16,000,000 )  = 2.33 × 4,050  = 9,437 units
+            pad  = [7 d] × 500                                          = 3,500 units
+            SS_before                                                   ≈ 12,900 units
+   after:   LT cover      = 500 × (34 − 21)                             = 6,500 units
+            demand cover  = 2.33 × 150 × √21 = 2.33 × 150 × 4.58          = 1,601 units
+            pad           = 0  (plan now holds 99%; the reason for the pad is gone)
+            SS_after                                                    ≈ 8,100 units
+   released on Lane A     = 12,900 − 8,100 = 4,800 units × [$2.59]        ≈ $12.4K
+   release rule check:    σ_LT measured 4 d  &lt;  σ_LT assumed 8 d  → release allowed
+
+STEP 5 — LANE B, WHERE STOCK WENT IN  (d = 200/day, σ_d = 80, LT_mean 30, σ_LT 11, p99 58)
+   before:  2.33 × √( 24 × 80²  +  200² × 8² ) = 2.33 × √2,713,600 = 3,838 ; + pad 1,400 ≈ 5,240
+   after:   200 × (58 − 30) + 2.33 × 80 × √30 = 5,600 + 1,021                        ≈ 6,620
+   change:  +1,380 units — stock ADDED, deliberately ;  σ measured 11 &gt; assumed 8 → no release
+   This lane is why the number is credible: the method is allowed to say "hold more."
+
+STEP 6 — ADD IT UP ACROSS 200 LANES
+   ~[150] lanes released, average [4,500] units      = 675K units out
+   ~[50]  lanes took stock in, average [1,900] units  =  95K units in
+   net  Σ (SS_before − SS_after)                      = 580K units
+   × weighted average standard cost of the SKUs on those lanes [$2.59]  ≈ $1.50M working capital
+   (P&amp;L view, if asked: carrying cost [20%] × $1.5M ≈ $300K/yr ; cube freed ≈ 580K ÷ [60/case]
+    ≈ 9,700 cases of storage)
+
+STEP 7 — PROVE IT HELD
+   LT accuracy = arrivals within planned LT ÷ arrivals, by lane, by week → 99%
+   on Lane A that is ≤ 4 late arrivals per 400 ; a lane with &gt; 8 late in a rolling 90 d is a red
+   validation before go-live: held-out quarter — 99.1% of arrivals ≤ p99_lane set on prior quarter
+
+RULES THAT MADE IT PERMANENT
+   release rule (finance-signed):  release only where σ_LT measured &lt; σ_LT assumed, lane by lane,
+                                   written to a release ledger with the $ and the signer
+   drift flag:  fire when rolling-90-day p99 &gt; LT_plan + [2 d]  OR  σ_90 &gt; 1.25 × σ_baseline
+                → planner review, not a silent re-plan
+   sensitivity: 1 day of planned LT on Lane A = d = 500 units ≈ $1,300 — so the 4 days the normal
+                fit missed were 2,000 units of exposure on one lane</pre>
 <h4>Solution design / flow</h4>
 <pre class="math">shipment events (ship scan, arrival scan, carrier, lane key, transit source)
    └─► lane history store ─► per-lane distribution (mean, σ, p50, p90, p99, n)
