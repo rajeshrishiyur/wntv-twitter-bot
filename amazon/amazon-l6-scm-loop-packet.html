@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Amazon loop packet — Supply Chain Manager III (L6) — five interviewers</title>
+<style>
+  @page { size: letter; margin: 0.62in 0.68in 0.68in 0.68in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", "Inter", Arial, sans-serif; font-size: 10.3pt; line-height: 1.38; color: #1c1c1c; }
+  h1 { font-size: 18pt; line-height: 1.15; margin: 0 0 4px; letter-spacing: -0.02em; }
+  h2 { font-size: 13pt; margin: 16px 0 6px; padding-top: 8px; border-top: 2px solid #1a2744; page-break-after: avoid; }
+  h2.break { page-break-before: always; }
+  h3 { font-size: 11.3pt; margin: 12px 0 4px; page-break-after: avoid; color: #1a2744; }
+  h4 { font-size: 10.3pt; margin: 9px 0 3px; page-break-after: avoid; color: #8a1c2b; }
+  p { margin: 0 0 7px; }
+  ul, ol { margin: 2px 0 8px; padding-left: 18px; }
+  li { margin: 0 0 3px; }
+  .kicker { font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .meta { background: #f4f1ea; border-left: 4px solid #1a2744; padding: 8px 12px; margin: 8px 0 10px; font-size: 10pt; }
+  .meta div { margin: 1px 0; }
+  .say { background: #f7f4ee; border: 1px solid #d9d0c1; border-left: 4px solid #8a1c2b; padding: 8px 12px 4px; margin: 6px 0 10px; page-break-inside: avoid; }
+  .say .label { page-break-after: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, serif; font-size: 10.4pt; line-height: 1.42; }
+  .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .drill { background: #eef1f6; border-left: 4px solid #1a2744; padding: 7px 12px 3px; margin: 4px 0 10px; font-size: 9.6pt; }
+  .drill h4 { margin: 6px 0 3px; font-size: 9.4pt; letter-spacing: 0.04em; text-transform: uppercase; color: #1a2744; }
+  .drill p { margin: 0 0 4px; }
+  .qa { border-left: 3px solid #d9d0c1; padding: 2px 0 2px 10px; margin: 0 0 9px; font-size: 9.5pt; }
+  .qa p { margin: 0 0 3px; }
+  .qa p.q { color: #1a2744; }
+  h3.st { font-size: 11.5pt; color: #1c1c1c; border-left: 4px solid #1a2744; padding-left: 8px; margin-top: 16px; page-break-before: always; }
+  h3.st.first { page-break-before: auto; }
+  p.use { font-size: 9.4pt; color: #555; margin: 0 0 6px; }
+  p.use strong { color: #7a5a00; }
+  .sdc { font-size: 9.4pt; background: #fbf7ec; border-left: 4px solid #b8860b; padding: 5px 10px; margin: 4px 0 8px; }
+  .sdc strong { color: #7a5a00; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 9.4pt; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #ddd; padding: 4px 6px 4px 0; }
+  th { font-size: 8.4pt; letter-spacing: 0.04em; text-transform: uppercase; color: #555; border-bottom: 1.5px solid #1a2744; }
+  .note { font-size: 10pt; color: #333; }
+  code { font-family: "Liberation Mono", monospace; font-size: 9.3pt; background: #f1efe9; padding: 0 3px; }
+  pre { font-family: "Liberation Mono", monospace; font-size: 9pt; background: #f1efe9; padding: 8px 10px; margin: 4px 0 10px; white-space: pre-wrap; page-break-inside: avoid; }
+  pre.math { font-size: 8.6pt; line-height: 1.32; }
+</style>
+</head>
+<body>
+
+<p class="kicker">Full loop packet · five interviewers · video · print and mark up</p>
+<h1>Amazon — Supply Chain Manager III (L6) — the loop</h1>
+
+<div class="meta">
+  <div><strong>You.</strong> Rajesh Rishiyur Chandrasekaran</div>
+  <div><strong>Format.</strong> Five interviews, about 55 minutes each, all on video. Each interviewer is assigned two or three Leadership Principles and asks two or three behavioral questions against them, plus program-management and stakeholder-management competency questions. One interviewer is a Bar Raiser from outside the team. Interviewers write up and vote independently — they compare notes afterward, so a story repeated to two people reads as one data point, not two.</div>
+  <div><strong>Writing exercise.</strong> Submitted about two days before the loop. Everyone may have read it. Your essay is the Flexport automation-rate story — Section 8 is the defense.</div>
+  <div><strong>The rule of the loop.</strong> One question, one story, and never the same story twice across the five interviews. You have seventeen; you will need maybe twelve. The tracker in Section 3 is how you keep count between calls.</div>
+  <div><strong>Your position, said once per interview, early.</strong> You have designed lead times, buffers, promises and one inventory definition across four companies. You have not run an Amazon network region. Say that plainly, then show the mechanism.</div>
+</div>
+
+<p class="note">How to use this: read Sections 2–4 out loud twice. Then read each story in Section 5 out loud once — every story is written to be spoken in about 90 seconds, then stop and let them probe. Section 6 is the one-page cheat sheet to keep next to the camera. Section 7 is the functional block — walk the math once on paper. Sections 8–12 are defense: the writing exercise, the hard questions, the numbers, the traps, and what to ask them.</p>
+
+<h2>1. What the five people are scoring</h2>
+
+<p>Amazon's own prep page for this loop says it directly: five 55-minute interviews, each interviewer evaluating assigned Leadership Principles through two or three behavioral questions, STAR format, no brain teasers — the "what" and "how" of your experience and the "why" of your decisions. The competencies named for the loop are <strong>program management</strong>, <strong>stakeholder management</strong>, and the <strong>writing exercise</strong>. Results get scored against a legend: dollars, volume, percent change, time saved, customer impact, quality. Every story in this packet ends on at least two of those.</p>
+
+<h3>The L6 Supply Chain Manager III bar, mapped to your evidence</h3>
+<table>
+  <thead><tr><th style="width:27%">The role guideline says</th><th style="width:36%">What they listen for</th><th>Your proof</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Ambiguity.</strong> Strategy may not be defined. You pick the stakeholders, set the goals, design long-term solutions.</td><td>Did you start from a vague ask and define the problem yourself?</td><td>Elementum: asked for a report, built lane-level lead-time planning. Flexport: asked for "a weekly review," defined the seven metrics and the honest denominator.</td></tr>
+    <tr><td><strong>Scope and influence.</strong> Influences 1–2 levels above own level, across functions.</td><td>Did you move a decision above your level with evidence, not seniority?</td><td>EDI story: Global Head of Supply Chain, two levels above your sponsor, accepted 597 lanes instead of 1,000 because you brought the spend curve. Roadmap flip ratified by leadership.</td></tr>
+    <tr><td><strong>Execution.</strong> Tactical and strategic. Simplify or extend. Mitigate long-term risk. Trade short vs long term.</td><td>Can you name the trade-off and the number that decided it?</td><td>Robots throttled to 30% for a week — labor premium priced against mis-slot cost. Mock-migration tolerance 0.5% published before mock one.</td></tr>
+    <tr><td><strong>"Complex."</strong> Visible risks, roadblocks, constraints — and an appropriately simple solution.</td><td>Was the solution simpler than the problem? Did the gate exist before the crisis?</td><td>One lane master and a &lt;5% back-test gate replaced six weeks of reconciliation. A ≥95% ASN gate published to carriers before cohort one.</td></tr>
+    <tr><td><strong>Designing or modeling the supply chain, not working in it.</strong></td><td>Are your stories about the network's parameters, or about running a shift?</td><td>200 lanes measured into planning parameters. Promise dates set from p99. One definition of "available." Allocation across 3 DCs and 100 stores.</td></tr>
+    <tr><td><strong>Forecasting and data.</strong> Accurate forecasting; analyze large complex data sets; decompose complex network problems.</td><td>Do you measure forecast health and cut problems down with data?</td><td>Forecast accuracy 70→85 on class-A SKUs; drift flags on 200 lanes; 1,000 lanes decomposed by spend Pareto into 597-first.</td></tr>
+    <tr><td><strong>Competitive sourcing environment.</strong> Continuous improvement in quality, cost, service, technology.</td><td>Have you actually run sourcing mechanics?</td><td>Semi-annual carrier bid rebuilt: constraint rules, lane master, cycle 6 weeks → ~3. Freight −10% ≈ $2M via routing-guide and mode discipline.</td></tr>
+  </tbody>
+</table>
+
+<h3>How every interviewer probes</h3>
+<p>Same worksheet for all five: establish the story in STAR, probe the assigned Leadership Principle, then challenge. The challenge questions are predictable — <em>why this story? what would you do differently? how did the result compare to the goal? how would you do this at Amazon?</em> Every story below carries a "differently" and an "at Amazon" line so the challenge lands on prepared ground. Keep the opening of every story to fifteen seconds of situation, then actions that start with "I," then the result as metric → baseline → actual → what it stuck to.</p>
+
+<h2 class="break">2. Tell me about yourself and Why Amazon</h2>
+
+<h3>Tell me about yourself — newest to oldest, about 75 seconds</h3>
+<div class="say"><div class="label">Say it like this</div>
+<p>"I've spent twelve years on one problem — making sure inventory is where the demand is. Four companies, most recent first.</p>
+<p><strong>Sephora, today.</strong> I own how inventory is defined, placed and promised across stores, the warehouse and dotcom on S/4HANA. Five teams had five definitions of 'available'; I got it to one, reconciled nightly against the warehouse, and we stopped overselling.</p>
+<p><strong>Flexport, before that.</strong> Leadership asked for a weekly review of shipment tracking and nobody owned it. I built it, ran it with the VP every week for a year, then automated the data under it. Cost per container went from sixty-six cents to three while we grew from seven customers to sixty-eight.</p>
+<p><strong>Elementum.</strong> Supply-chain planning software. I replaced carrier brochure lead times with measured ones on two hundred shipping lanes — planning to the slow day, not the average — which released about a million and a half dollars of safety stock at 99% service. I also built shortage alerts that went from 70 to 85 percent accurate, the first ones planners trusted enough to act on in their weekly planning meeting.</p>
+<p><strong>Manhattan Associates, where I started.</strong> Allocation and order promising for a retailer with three mega-DCs and a hundred stores. Through Cyber Monday we held 99% fill and protected about eight million dollars of orders.</p>
+<p>I haven't run an Amazon network region. What I have done four times is design the supply chain — the lead times, the buffers, the one definition of inventory — and keep it honest in a weekly review. I want to do that at network scale."</p>
+</div>
+<p class="note"><strong>30-second version</strong> (for interviewers two through five, who may ask again): Sephora — one definition of inventory across every channel on S/4HANA. Flexport — built and ran the weekly review, 66¢ to 3¢ a container. Elementum — measured lead times, $1.5M of stock out at 99% service. Manhattan — 99% fill through peak. Then the last two sentences.</p>
+
+<h3>Why Amazon — about 60 seconds, usually only the hiring manager asks</h3>
+<div class="say"><div class="label">Say it like this</div>
+<p>"Three reasons.</p>
+<p><strong>First, the forecast.</strong> At Elementum, two hundred shipping lanes were planned on the carrier's promised transit time. I replaced that with what actually happened on each lane. That freed up about a million and a half dollars of inventory, and the shortage alerts built on it were the first ones planners actually acted on. Amazon plans the whole network off a forecast. I've done the work of making people trust one.</p>
+<p><strong>Second, the weekly review.</strong> At Flexport, leadership asked for a weekly review of shipment tracking and nobody owned it. I built it and ran it with the VP every week for a year; cost per container went from sixty-six cents to three. That weekly review is how Amazon runs. I've already lived that way.</p>
+<p><strong>Third, one version of the truth.</strong> At Sephora I own how inventory is counted and promised across stores, the warehouse and the website. Five teams had five definitions of 'available.' I got it to one, checked every night, and we stopped overselling. Amazon's promise to the customer rests on that same one number, at a thousand times the scale.</p>
+<p><strong>Why now:</strong> the work at Sephora is live. This is the biggest version of the same problem."</p>
+</div>
+
+<h2 class="break">3. The loop plan — who gets which stories</h2>
+
+<p>You will not know which interviewer owns which Leadership Principles until the questions start. So the plan is not "interviewer 2 gets story X" — it is: <strong>recognize the LP behind the question, pull that LP's primary story, and cross it off.</strong> The split below is the typical shape of a five-person SCM loop; use it to rehearse in sets, not to predict.</p>
+
+<table>
+  <thead><tr><th style="width:17%">Interview</th><th style="width:33%">Usual focus</th><th>Stories most likely to come out here</th></tr></thead>
+  <tbody>
+    <tr><td><strong>1 — Hiring manager</strong></td><td>Tell me about yourself, Why Amazon, role fit, Deliver Results, Ownership, plus the longest functional block.</td><td>MAIN (Flexport visibility program), S2 (S/4HANA one number). Functional: Section 7 promise and buffer math.</td></tr>
+    <tr><td><strong>2 — Functional / program management</strong></td><td>Dive Deep, Invent and Simplify; how you build mechanisms; a modeling question.</td><td>S3 (200 lanes), S8 (carrier bid). Functional: safety stock before/after, decomposition method.</td></tr>
+    <tr><td><strong>3 — Bar Raiser</strong></td><td>Earn Trust, Are Right A Lot, Learn and Be Curious; the failure question; challenges hardest, from outside the team.</td><td>S5 (one supply view, $2M release), S9 (apples to apples), S6 (contract-manufacturer BOM), S16 (UAT failure).</td></tr>
+    <tr><td><strong>4 — Stakeholder management</strong></td><td>Have Backbone / Disagree and Commit, Insist on the Highest Standards, Think Big; influencing without authority.</td><td>S7 (597 of 1,000 lanes), S11 (robots at 94 vs 98), S12 (roadmap flip).</td></tr>
+    <tr><td><strong>5 — Execution and judgment</strong></td><td>Customer Obsession, Bias for Action, Frugality; may open the writing exercise.</td><td>S4 (promise dates and buffers), S14 (Cyber Monday), S13 (LLM agent). Writing defense: Section 8.</td></tr>
+  </tbody>
+</table>
+
+<h3>The usage tracker — keep this page beside the camera</h3>
+<p class="note">Write the interviewer's name in the box the moment you use the story. If a question maps to a story already used, take the backup from the cheat sheet in Section 6.</p>
+<table>
+  <thead><tr><th style="width:6%">#</th><th style="width:44%">Story</th><th style="width:25%">Primary for</th><th>Used with</th></tr></thead>
+  <tbody>
+    <tr><td>MAIN</td><td>Flexport shipment visibility — WBR, automation 60→97%, 7→68 customers</td><td>Deliver Results</td><td>&nbsp;</td></tr>
+    <tr><td>S2</td><td>Sephora S/4HANA — one definition of "available," zero oversell</td><td>Ownership</td><td>&nbsp;</td></tr>
+    <tr><td>S3</td><td>Elementum — 200 lanes, brochure 18 vs measured p99 34</td><td>Dive Deep</td><td>&nbsp;</td></tr>
+    <tr><td>S4</td><td>Elementum — promise dates and risk-proportional buffers</td><td>Customer Obsession</td><td>&nbsp;</td></tr>
+    <tr><td>S5</td><td>Elementum — eight SAP domains, one supply view, $2M released</td><td>Earn Trust</td><td>&nbsp;</td></tr>
+    <tr><td>S6</td><td>Elementum — contract-manufacturer BOM, phantoms, six sites</td><td>Learn and Be Curious</td><td>&nbsp;</td></tr>
+    <tr><td>S7</td><td>Elementum — 1,000 lanes asked, 597 built first, ASN gate</td><td>Have Backbone</td><td>&nbsp;</td></tr>
+    <tr><td>S8</td><td>Elementum — carrier bid, six weeks to three</td><td>Invent and Simplify</td><td>&nbsp;</td></tr>
+    <tr><td>S9</td><td>Flexport — apples to apples, 63% collapsed to 27%</td><td>Are Right, A Lot</td><td>&nbsp;</td></tr>
+    <tr><td>S10</td><td>Flexport — 79 customers, every one a destination and a date</td><td>Broad Responsibility</td><td>&nbsp;</td></tr>
+    <tr><td>S11</td><td>Sephora — robots throttled at 94 vs the 98 gate</td><td>Highest Standards</td><td>&nbsp;</td></tr>
+    <tr><td>S12</td><td>Sephora — roadmap flipped, $5M avoided, value in 6 months</td><td>Think Big</td><td>&nbsp;</td></tr>
+    <tr><td>S13</td><td>Sephora — LLM agent, $25 to $0.40 a task</td><td>Frugality</td><td>&nbsp;</td></tr>
+    <tr><td>S14</td><td>Manhattan — Cyber Monday, 99% fill, ~$8M protected</td><td>Bias for Action</td><td>&nbsp;</td></tr>
+    <tr><td>S15</td><td>Sephora — WMS migration, 8 months, mocks 7→1.8→0.3%</td><td>Risk / deadline questions</td><td>&nbsp;</td></tr>
+    <tr><td>S16</td><td>Elementum — UAT crash, no performance entrance criteria</td><td>The failure question</td><td>&nbsp;</td></tr>
+    <tr><td>S17</td><td>People — super-users and analysts; rote work to judgment work</td><td>Hire &amp; Develop / Best Employer</td><td>&nbsp;</td></tr>
+  </tbody>
+</table>
+<p class="sdc"><strong>S9 and S10 are two halves of the same Flexport program.</strong> Never give both to the same interviewer. Same family warning: MAIN and S17's Flexport half share a program — if one interviewer has heard MAIN, tell S17 with the Elementum half leading.</p>
+
+<h2 class="break">4. The role, in your words</h2>
+<p>The JD says the work is <em>designing or modeling the supply chain, as opposed to working in it</em> — forecasting, modeling, decomposing complex network problems, competitive sourcing, trade-offs presented to leadership. When they ask "what do you think this job is," say this:</p>
+<div class="say"><div class="label">Say it like this</div>
+<p>"The way I read it: the business brings demand, and this role owns the honest version of how the network meets it — the lead times, the buffers, the promises, the sourcing — as numbers people can argue with, not opinions. Tactically that's models and weekly reviews; strategically that's deciding where the network should be different a year from now, and getting teams I don't manage to agree using the data. That's the job I've been doing: I measured 200 lanes and reset the planning parameters; I rebuilt how a carrier bid runs; I set one definition of available-to-sell and made every channel use it. The difference here is scale, and that the forecast and the promise sit at the center of everything Amazon does."</p>
+</div>
+
+<h2>5. The story bank — seventeen stories, each unique, each 90 seconds</h2>
+<p class="note">Every story: speak the box, stop, let them probe. Probes and answers follow each box. Results framed as record vs model exactly as in Section 10 — if the number is your model, say "my model" out loud.</p>
+
+<h3 class="st first">MAIN — Flexport: the visibility program nobody owned</h3>
+<p class="use"><strong>Primary:</strong> Deliver Results. <strong>Backup:</strong> Ownership, "most impactful program." This is also the writing-exercise story — expect them to connect it.</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"At Flexport I was the TPM for shipment visibility. Leadership wanted a weekly review of container tracking; nobody owned the number. The tracking itself was about 60% automated — the rest was people updating containers by hand, at sixty-six cents a container, and we were about to grow the customer count tenfold. I owned the program end to end. I defined the seven metrics with an honest denominator — a container stayed in the count until fifteen days after it left the terminal, so nobody could flatter the number by dropping slow containers. I ran the review with the VP every Monday for a year, by hand at first, on purpose — you can't automate a metric you haven't survived defining. Then I wrote the requirements doc that turned four systems into one Snowflake pipeline, and priced doing nothing at over $100K a year so the infrastructure team funded it themselves. Automation went from 60 to 97 percent. Cost per container went from sixty-six cents to three. We grew from seven customers to sixty-eight — five times the container volume — and the tracking team didn't grow with it; the people moved from typing updates to handling exceptions. System accuracy went from 60 to 90 percent because everyone finally stared at the same number every Monday."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>Automation 60% → 97% (record). Cost to serve $0.66 → $0.03 per container (dollarized with Finance's loaded rates, not mine). Customers 7 → 68; volume 5× (2,000 → 10,000 containers/week). Accuracy 60% → 90%. Review prep 30 → 6 hours a week, about $103,680 a year (model, from the BRD). One red week kept red — a carrier format change dropped the number to 21.9%; published with cause and a dated fix.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"What did you personally build — the engineers built the pipeline?"</strong></p>
+<p>The definitions, the denominator, the BRD, the parallel-run cutover gate — old versus new within one percent for consecutive weeks. I didn't lay pipe; I made the pipe buildable, and the cutover call was mine. Most mismatches in the parallel run were the manual side being wrong.</p>
+<p class="q"><strong>"What went wrong?"</strong></p>
+<p>The security review. Ticket data carries customer content and I under-planned the access review by two weeks. The parallel run absorbed it so the review never skipped a week — but security lead time is now a line on my checklist, planned, not discovered.</p>
+<p class="q"><strong>"How would you do this at Amazon?"</strong></p>
+<p>Same order: definitions first, hand-run the metric until it survives argument, then automate, then gate the cutover on agreement. The honest denominator matters more at Amazon's scale, not less.</p>
+</div>
+
+<h3 class="st">S2 — Sephora: one definition of "available"</h3>
+<p class="use"><strong>Primary:</strong> Ownership. <strong>Backup:</strong> Insist on the Highest Standards (held the spec), "influence without authority."</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"Sephora moved its inventory book of record to S/4HANA while a real-time inventory ledger ran beside it. The real problem was vocabulary: stores, the warehouse and dotcom each calculated 'available to sell' differently — five definitions across five teams. Most overselling is a vocabulary defect, not a systems defect. No engineer reported to me. I took ownership of the definition itself: I mapped every inventory bucket to a named owner, wrote one definition of available-to-sell as a lower-of-two equation, and got Planning, Finance and Operations to sign it before any configuration started. When teams pushed to start building before the spec was locked, I refused — a definition change after code is a defect; before code it's a sentence. We reconciled the two systems every night and treated every mismatch as a defect to root-cause, not a quirk. Result: zero customer-facing oversell incidents across two high-volume go-lives, the legacy inventory system fully retired, about a million dollars a year of support cost gone. And the definition outlived the project — new channels onboard against it instead of inventing their own."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>5 definitions → 1 (record). Oversell incidents: zero across two go-lives (record). Legacy system retired; ≈$1M/yr support cost (model, Finance's rates). Nightly reconciliation with drift treated as defect.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"How did you get five teams to give up their definition?"</strong></p>
+<p>I didn't argue definitions in the abstract. I showed each team the oversell incidents their definition had caused, priced them, and proposed the lower-of-two rule as the version that could never promise a unit twice. People give up a definition faster than they give up being blamed for oversells.</p>
+<p class="q"><strong>"What was the trade-off?"</strong></p>
+<p>Lower-of-two is conservative — it understates availability slightly and costs some sales at the margin. We priced that against oversell cost and customer trust, and Finance signed the conservative side. I'd make the same call at Amazon scale: a broken promise costs more than a hidden unit.</p>
+</div>
+
+<h3 class="st">S3 — Elementum: 200 lanes, the brochure said 18 days</h3>
+<p class="use"><strong>Primary:</strong> Dive Deep. <strong>Backup:</strong> Are Right A Lot, "data over opinion."</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"A manufacturing customer planned 200 shipping lanes on the carrier's quoted transit times. Inventory buffers kept growing anyway, and nobody could say why. I didn't ask anyone's opinion — I pulled about a year of actual shipment history per lane and fit the real distribution: mean, spread, and the tail. On one busy lane the brochure said 18 days. The actual average was 21, and the day that 99% of shipments beat was 34. Planning was quoting a number that real shipments missed most of the time, and planners were quietly padding everywhere to survive it. I rebuilt the planning parameters on measured numbers — plan to the slow day you can actually promise, and because the padding came off everywhere else, safety stock on my example lane went from about 12,900 units to 8,100 at better service, not worse. Across the program that released about 580,000 units, roughly a million and a half dollars. Then I made it stay true: every lane got a drift flag — if the rolling 90-day tail got two days worse than plan, or the spread grew by a quarter, the lane came up for re-measurement before it hurt anyone. What I'd do differently: run the alerts in shadow mode against history before the first one fired."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>Example lane: n≈400 shipments ≈ one year of history; brochure 18d, measured mean 21d, σ 4d, p99 = 34d. Safety stock 12,900 → 8,100 units on that lane (record). Program: ≈580K units ≈ $1.5M released (record). Drift flag: rolling-90d p99 &gt; plan + 2d, OR 90-day σ &gt; 1.25× baseline — either trips a re-measure. Keep this $1.5M separate from the $2M release in S5 — different program, never added.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"Why p99 and not the mean?"</strong></p>
+<p>A promise built on the mean breaks half the time by construction. p99 is the day 99 of 100 shipments actually beat — you can promise it out loud. And lead-time tails aren't bell-shaped; a normal-curve estimate understated the real p99 by about three days on my lanes, which is why I rank the history instead of assuming a curve.</p>
+<p class="q"><strong>"How is safety stock lower if you plan to a slower day?"</strong></p>
+<p>Because the old plan paid twice: the brochure number was wrong, so planners padded informally on top — the worst of both. One honest number replaced wrong-number-plus-panic-padding. Less total buffer, better service.</p>
+</div>
+
+<h3 class="st">S4 — Elementum: promise dates customers could trust — and buffers sized to risk</h3>
+<p class="use"><strong>Primary:</strong> Customer Obsession. <strong>Backup:</strong> Invent and Simplify (if S8 is used), functional lead-in to Section 7. This is the marketplace-style promise problem, told from the Elementum lane program.</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"Once the 200 lanes were measured, the next fight was the promise. The customer quoted delivery dates to its own customers with one uniform pad on every lane — same cushion whether the lane was steady or wild. That's the worst of both worlds: on steady lanes the date is padded days longer than it needs to be, so you look slow and lose orders; on volatile lanes the pad isn't enough, so you still break promises. I reframed it around what the end customer actually experiences: the promise should be the measured 99th-percentile day per lane, and the cushion should be proportional to each lane's measured volatility — a steady lane earns a short promise, a wild lane pays for its own risk. I modeled both designs on our lane data. Same overall reliability — about 95 percent of orders arriving by the promised date — but the share of orders that could carry a fast promise went from under 10 percent with the uniform pad to roughly 40 percent with risk-proportional cushions. Nothing physically moved faster; we just stopped making steady lanes subsidize wild ones. The planners kept one dial — the service target — and the math set every lane's cushion from its own history. Customer-facing dates got shorter where it was safe and honest where it wasn't."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>Buffer rule: cushion per lane = k × that lane's measured σ; one k for the whole network, solved to the service target. My model on the lane data: uniform pad → under 10% of orders on a fast promise at ~96% reliability; risk-proportional → ~40% fast at ~95%. Say "my model" — the mechanics are exact, the proportions are modeled. Promise = measured p99 + the cushion rule + the S3 drift flags so it stays true.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"Isn't a 1-point reliability drop a real cost?"</strong></p>
+<p>Yes, and it was priced: the question for the business is whether 5× more fast promises is worth one point of reliability. That's a leadership trade-off to present, not to bury — I brought both designs with the numbers and let the owner of the customer experience choose. That's also how I'd present it at Amazon: promise speed and promise reliability on the same page, with the dial visible.</p>
+<p class="q"><strong>"How do you keep it honest over time?"</strong></p>
+<p>The same drift flags as the lane program: when a lane's tail or spread degrades past threshold, its promise reverts to the conservative date until it's re-measured. The promise follows the data, not the other way around.</p>
+</div>
+
+<h3 class="st">S5 — Elementum: eight SAP domains, one supply view, and the $2M that was earned, not grabbed</h3>
+<p class="use"><strong>Primary:</strong> Earn Trust. <strong>Backup:</strong> Invent and Simplify, "ambiguous problem with no defined strategy."</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"A six-site manufacturer learned about component shortages when the line stopped. Supplier, material, BOM, inventory, production, transportation, sales-order and planning data all lived in SAP — eight domains that never met — so leadership's question, 'which customer orders are at risk this quarter,' had no data path. Nobody owned the seam; I took the definitions, the data-quality program and the delivery. The trust move came first: before any screen was built, I got planners to sign what 'supply' means — on-hand, plus the production plan, plus released planned orders only. Planning wanted to count unfirmed MRP orders because the number looked better; I refused — unfirmed orders change every run, and a leaner number planners trust beats a fatter one they don't. We onboarded the believable domains first, reconciled daily against the SAP screens planners already lived in, and worked every false alarm as a defect. The shortage alert went live in three months, and forecast accuracy on the A items went from 70 to 85 percent. Then the part I'm proudest of: we only released safety stock where both forecast error and lead-time error had improved — a two-signal rule signed with Planning and Finance. That released about two million dollars of stock, and nobody above us ever had to walk it back."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>Forecast accuracy 70% → 85% on scoped class-A SKUs (record). $2M safety stock released under the two-signal rule (record, one-time working capital); ≈$0.8M/yr modeled around it. Alert live in 3 months. Daily reconciliation to MD04 / COOIS / VA05 / MB52. Planner effort −50%. Never add this $2M to S3's $1.5M — different program.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"Why did planners trust this alert when they ignored every other one?"</strong></p>
+<p>Three reasons: they signed the supply definition before the first screen existed; the view reconciled daily against the SAP screens they already believed; and false alarms were worked as defects in a weekly loop, so the alert got quieter and righter every week. Trust was the designed outcome, not a hope.</p>
+<p class="q"><strong>"Two million released — what if demand had spiked?"</strong></p>
+<p>That's exactly why the rule needed two signals. Stock was cut only where the forecast had gotten more accurate AND the lead time more reliable — both error bars shrinking. And Finance co-signed the rule, so the release was a policy, not a hero call.</p>
+</div>
+
+<h3 class="st">S6 — Elementum: making a contract manufacturer's BOM safe to plan on</h3>
+<p class="use"><strong>Primary:</strong> Learn and Be Curious. <strong>Backup:</strong> Dive Deep, external-supplier management (the JD's supplier/compliance paragraph).</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"Same manufacturer — their contract manufacturer supplied the bill of materials our component visibility depended on, and BOMs from outside carry two traps the documentation never confesses. Phantom assemblies — logical groupings that pass demand through without being stocked — double-count component timing if you load them as real. And overlapping revisions — two versions of a BOM both partly true for weeks — rewrite history if you auto-load one. I didn't know contract-manufacturing data when I started; I learned it by math, not by meetings. I sampled finished goods, exploded the BOMs in our model, and compared component counts against the manufacturer's own MRP — the mismatches were the phantom signature, and their engineers confirmed what the numbers had already proven. Then I made the rules: phantoms get flattened with an explicit marker; any overlapping revision goes to a quarantine queue for a human decision, never auto-loaded; and each site goes live only when a reconciliation report matches their system within tolerance. Six sites, three waves, five months. The ugliest site had a legacy ERP with flat files and no change tracking — we invented snapshot-diffing, comparing full daily extracts, and absorbed it in six weeks against a three-week average, in plan. Zero auto-loaded revision overlaps, ever. Lesson that stuck: reconcile to the source's math, not its documentation."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>0 → 6 contract-manufacturer sites with planning-grade BOM/supply visibility, 3 waves, 5 months (record). Zero auto-loaded revision overlaps (record). Hostile-ERP site: 6 weeks vs 3-week average, solved with snapshot-diffing. ≈$0.3M/yr modeled (reconciliation labor + expedites avoided). Say "six sites," never "six NA sites"; don't quote a tolerance value — it isn't in the record.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"What did you personally learn here?"</strong></p>
+<p>What a phantom looks like in the deltas, how revision effectivity actually behaves, and that a supplier's documentation describes intent while their MRP describes truth. I now start every external-data integration by reconciling against the source's own math before believing a single field description.</p>
+<p class="q"><strong>"How does this apply to Amazon?"</strong></p>
+<p>Any vendor or carrier feed at Amazon has the same shape: the data is generated by someone else's process with someone else's semantics. The pattern — sample, reconcile to their math, gate go-live on the reconciliation, quarantine ambiguity for a human — ports directly.</p>
+</div>
+
+<h3 class="st">S7 — Elementum: 1,000 lanes asked, 597 built first</h3>
+<p class="use"><strong>Primary:</strong> Have Backbone, Disagree and Commit. <strong>Backup:</strong> Insist on the Highest Standards (the held cohort), influence two levels up — the L6 scope question.</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"The customer's Global Head of Supply Chain — two levels above my sponsor — wanted inbound visibility on all 1,000 supplier and carrier lanes in two months. Shipment data was 60% complete and the highest-value lanes were effectively blind. Saying yes would have produced a thousand lanes of garbage on time. I disagreed with the scope, not the goal — and I disagreed with data, not opinion. I built a spend Pareto and scored every lane: 597 lanes carried 80% of freight spend. I pre-validated that cut with Transportation and Procurement before the executive meeting, so when I proposed 597 first, then 200, then the rest, nobody in the room could contradict it — and the executive accepted the plan measured in spend share, not lane count. Then I protected quality with a published gate: a carrier cohort activates only at 95% valid shipment notices, and the standard was the data, not the transport — carriers without EDI got portal templates instead of exclusion. One cohort failed twice on a timestamp format; I held it twice, because the gate was a published rule, not my mood. Data completeness went from 60 to 95 percent; freight spend dropped about 10 percent — about two million dollars in six months — and the hardest part was committing fully to the two-month urgency while refusing the thousand-lane scope."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>Completeness 60% → 95% (record). 597 lanes = 80% of spend, live in month one. Freight −10% ≈ $2M in six months (record; the split into routing-guide compliance, mode discipline, expedites is my model). Gate: ≥95% valid ASN per cohort before the next activates; one cohort held twice. X12 850/855/856/940/945/214/997 with an XML/portal floor. Don't quote cohort sizes — not in the record.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"The executive wanted 1,000 — you delivered 597. Isn't that failing the ask?"</strong></p>
+<p>The ask was visibility, measured in spend covered, not lane count. 597 lanes was 80% of spend in month one — the executive got the business outcome earlier than the original plan would have gotten it. The remaining lanes followed behind the same gate. Disagree on the scope, commit to the goal.</p>
+<p class="q"><strong>"What if he'd insisted on all 1,000 anyway?"</strong></p>
+<p>Then I'd have committed, out loud, and asked for one condition: the quality gate stays. The gate is what keeps the data worth collecting at any scope. You can flex scope and schedule; automating dirty data just manufactures confident wrong answers.</p>
+</div>
+
+<h3 class="st">S8 — Elementum: the carrier bid — six weeks to three</h3>
+<p class="use"><strong>Primary:</strong> Invent and Simplify. <strong>Backup:</strong> the JD's "competitive sourcing environment" question, process improvement. Owns its own failure beat (procurement joined late).</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"The customer ran a carrier bid twice a year: hundreds of lanes, dozens of carrier rate files, six weeks per cycle. Everyone assumed it was an optimization problem and wanted a fancier solver. Before building anything, I sat through one full bid cycle and logged where the hours actually went. The answer: reconciliation, not analysis — every carrier named lanes and modes differently, and the team spent the six weeks translating. Wrong problem class, so a solver would have optimized garbage. The simple fix: a lane master — one normalized table of origin, destination and mode — and every constraint the leads carried in their heads written down as an explicit rule: volume commitments, incumbency floors, mode rules. I rejected a black-box optimizer in writing; the output had to be scenario comparisons a human could defend to an incumbent carrier. And the gate came before the tool: the model had to reproduce the last two real awards within 5 percent before it was allowed to run on a live bid. We parallel-ran one region's actual bid — tool versus manual — and the pilot region finished three weeks early. The cycle went from six weeks to about three, and other regions adopted it without a mandate, which is the only adoption that lasts. My miss: Procurement joined late — I treated it as Transportation's problem and it wasn't. They were in discovery from day one of the next cycle."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>Cycle 6 weeks → ~3 (record); pilot region 3 weeks early. Validation gate: &lt;5% mismatch vs the last two award cycles, published before any optimizer run. Weekly rate-file refresh; stale banner past 10 days. ≈$190K/yr modeled analyst time returned. <strong>No dollar claim on the award itself</strong> — Transportation and Procurement ran the award.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"How do you decide to simplify instead of extend?"</strong></p>
+<p>Diagnose the problem class from a time audit before building anything. If the hours go to reconciliation, the answer is a data model; if they go to analysis, the answer might be a solver. The fanciest tool pointed at the wrong problem class is pure waste — that's the sentence I'd bring to any Amazon mechanism review.</p>
+<p class="q"><strong>"Why not a proper optimizer once the data was clean?"</strong></p>
+<p>Because the award has to survive a meeting with a losing incumbent carrier. Scenarios with explicit constraint rules are defensible; a black box is not. Where a solver genuinely helps, it sits behind the rules, never instead of them.</p>
+</div>
+
+<h3 class="st">S9 — Flexport: apples to apples — the comparison that almost killed the product</h3>
+<p class="use"><strong>Primary:</strong> Are Right, A Lot. <strong>Backup:</strong> Dive Deep. <strong>Never with the same interviewer as S10.</strong></p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"The biggest risk on the visibility program was retiring the legacy tracking product — still billing 79 customers — while leadership stared at our 25 percent schedule reliability against a competitor's 63. That comparison was about to get the new product written off. My instinct said measurement gap, but instinct isn't an argument, so I rebuilt the comparison instead of debating it: normalized both numbers to the same data sources, same definitions, same week. Their 63 collapsed to about 27 against our 25 — a measurement artifact, not a product gap. And the honest version cut both ways, which is what made it credible: on the same basis we still trailed on variance, sixteen days against their eight. I named our gap myself and handed it to the source-addition backlog as the real work. Then I closed the root cause with a one-canonical-source rule — one definition of reliability, one scoreboard — because parallel dashboards had let every team pick its flattering number. The team whose dashboard lost got a dignified retirement: cited as the prompt for the source work, never mocked. Reliability climbed from the mid-twenties to 90 against an 80 percent north star as sources were added — real work, not normalization math — and the norm survived me: two numbers that disagree get reconciled before they get compared."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>Comparison: 25% vs "63%" → normalized 25% vs ~27% (record). Residual honest gap: variance 16 days vs their 8 — named by me. Reliability mid-20s → 90% vs an 80% north star. Rule that stuck: one canonical source; reconcile before you compare.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"Isn't normalization just making your number look better?"</strong></p>
+<p>A normalization that only flatters is spin; one that also exposes is analysis. Mine capped our own claim — it surfaced the variance gap against us and I said so in the same readout. That's why it held.</p>
+</div>
+
+<h3 class="st">S10 — Flexport: 79 customers, each with a destination and a date</h3>
+<p class="use"><strong>Primary:</strong> Success and Scale Bring Broad Responsibility. <strong>Backup:</strong> Think Big (portfolio decision), "a decision where you balanced business and customer." <strong>Never with the same interviewer as S9.</strong></p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"Retiring the legacy tracking product was the right business call — but 79 paying customers ran on it, about 295,000 containers a year. The irresponsible version of that decision is an end-of-life email. I owned the transition plan, and the rule was: every customer gets a destination and a date — nobody gets stranded. I segmented all 79 by what they actually were: enterprise and mid-market shippers moved to the new product, where they'd genuinely be better off; carriers and brokers, who used us as infrastructure, got a white-label path; and a handful who were effectively competitors using the product as their own SaaS got a clean, honest cancellation with notice. The revenue was small — about fifteen thousand a month — but that was never the point. Every week both products ran, operations and engineering paid for two versions of the truth, and prospects compared us against ourselves. The transition went through on evidence, per segment, with dates. What I took from it: retiring something small deliberately is harder than growing something big, and scale means the shutdown plan deserves the same rigor as the launch plan — the people on the old thing are still your customers until the last day."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>79 customers, ≈294,581 containers/yr, ≈$15,491 MRR / ≈$185,892 ARR (record). Segments: grow / white-label / cancel — every customer a path and a date. Weekly cost of keeping both products visible to leadership until retirement.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"Why not just keep both running — the revenue was positive?"</strong></p>
+<p>Because the drag wasn't in the revenue line: two products meant two truths, double maintenance, and self-competition in deals. I priced the weekly cost of parallel operation so "keep both" stopped being free, and the decision made itself.</p>
+</div>
+
+<h3 class="st">S11 — Sephora: robots at 94 against a 98 gate</h3>
+<p class="use"><strong>Primary:</strong> Insist on the Highest Standards. <strong>Backup:</strong> Have Backbone (if S7 used), Earth's Best Employer angle (protecting the floor team from chaos).</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"We merged Sephora's retail and e-commerce distribution into one comingled building — fifteen workstreams, sixty stakeholders, one 836-row issues log, robotics going in at the same time. Before the robots arrived, I published the gate: 98 percent pick accuracy before full volume. In week two of go-live they were at 94, and the floor was swamped — Operations wanted full volume anyway, and 94 sounds close to 98 if you say it fast. Four points on that volume is thousands of mis-slots a week, every one a mispick someone pays for later. I didn't argue feelings; I put a number between us — the daily cost of mis-slots at full volume against the labor premium of running manual — and I dialed the robots back to 30 percent for a week and owned the labor variance in my budget, so the standard wasn't free for me either. The team fixed the zone-slotting logic, the robots passed 98, we went to full volume in week three. The launch delivered a 15 percent processing-efficiency gain with zero customer disruption, and the gate kept its meaning — the next time that building saw a published threshold, everyone knew it was real. A standard you'll waive under pressure is a suggestion, and everybody can smell the difference."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>Gate: 98% pick accuracy, published before the robots arrived. Week two: 94% → throttled to 30% volume for one week; labor variance owned by me. Week three: gate passed, full volume. +15% warehouse processing efficiency (record); zero customer disruption; 836-row log, 15 tracks, 60 stakeholders, two go-lives, one defect class each.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"Operations outranked you. How did you hold it?"</strong></p>
+<p>The gate was published before the pressure existed — that's most of the answer. The rest was making the trade visible in dollars and owning the cost of my side. I wasn't asking Operations to eat the delay; I ate the labor variance. Standards hold when the person insisting pays something too.</p>
+</div>
+
+<h3 class="st">S12 — Sephora: flipping an 18-month roadmap</h3>
+<p class="use"><strong>Primary:</strong> Think Big. <strong>Backup:</strong> Frugality (if S13 used), "influenced a decision above your level."</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"I inherited a committed 18-month roadmap: build the heavy platform integration first, customer-facing value at the end. The plan was approved, funded, and socialized — and I thought the sequence was backwards. Instead of announcing that, I re-costed the whole sequence quietly with my manager: effort, dependency risk, and when value actually lands. Flipping the order — value-bearing work first, platform build behind it — cut the build effort by about two-thirds, avoided roughly five million dollars of platform work that the early value made unnecessary, and moved first business value from month eighteen to month six. Then I brought it to leadership as a comparison, not a complaint: two sequences, same goal, side by side — effort, risk, time-to-value. The flip was ratified above my level because the math did the arguing. The thinking-big part wasn't the size of the build — it was being willing to re-open a committed plan because the goal mattered more than the plan. And the frugality part came free: the cheapest engineering is the engineering the sequence makes unnecessary."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>Build effort −66% (model, from the re-costing). ≈$5M of build avoided. First value: month 6 instead of month 18. Decision ratified above my level off the two-column comparison.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"Re-opening a committed plan has political cost. How did you manage it?"</strong></p>
+<p>Privately first — my manager pressure-tested the math before anyone's plan was publicly questioned. And the readout compared sequences, not people: nobody had to have been wrong for the flip to be right, because the information was new. That's what let the original plan's authors vote for the flip.</p>
+</div>
+
+<h3 class="st">S13 — Sephora: the $25 task that now costs 40 cents</h3>
+<p class="use"><strong>Primary:</strong> Frugality. <strong>Backup:</strong> Learn and Be Curious (if S6 used), Invent and Simplify.</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"A class of routine support-and-triage tasks was costing about 25 dollars a task in people time — not big individually, but constant. When LLM agents became practical I didn't commission a project; I learned the tooling myself first — built the prototype on my own time, because I wanted to know where it breaks before I asked anyone to fund it. The design is deliberately boring: the agent does the rote retrieval and drafting, and every output lands behind a human check — same human-in-the-loop pattern I'd used at Flexport, because automation you can't audit is just risk at lower cost. Cost per task went from about 25 dollars to about 40 cents. The frugality point isn't the AI — it's the order of operations: learn it yourself, prototype cheap, prove the unit economics, then scale with controls. Constraints breed resourcefulness; a prototype that costs a weekend buys you the right to be believed about the business case."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>≈$25 → ≈$0.40 per task (model, loaded rates). Human-in-the-loop on every output. Prototype before funding ask.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"How do you trust an LLM in a production workflow?"</strong></p>
+<p>You don't — you trust the control around it. The agent proposes, a human disposes, and the audit trail records both. Same pattern as every automation I've shipped: the rote work moves to the machine, the judgment stays with a person, and the error rate is measured, not assumed.</p>
+</div>
+
+<h3 class="st">S14 — Manhattan: Cyber Monday, and the half-hour rule</h3>
+<p class="use"><strong>Primary:</strong> Bias for Action. <strong>Backup:</strong> Customer Obsession (if S4 used), "calculated risk under time pressure."</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"At Manhattan Associates I ran order promising and allocation for a retailer with three mega-DCs and about a hundred stores, through Cyber Monday. Peak doesn't give you time to convene a committee — orders age against shipping cutoffs in hours. So we built the triage to make decisions fast and reversible: every at-risk order got scored by dollars times urgency — one over the hours remaining to its cutoff, floored at half an hour so the formula couldn't divide by zero and panic. That put the next-most-expensive-to-lose order at the top of the queue automatically; reallocation to a different DC or a store was a two-minute decision with a known cost, and if the move was wrong you could move it back — reversible, so speed was cheap. Through the peak we held 99 percent fill and protected about eight million dollars of orders. The bias-for-action lesson I've carried since: build the decision rule before the crunch, so that when the crunch comes, acting fast is the default and deliberating is reserved for the genuinely irreversible calls."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>Promise-at-risk score = order $ × 1 / max(hours to cutoff, 0.5). 99% fill through Cyber Monday (record); ≈$8M of peak orders protected (model on protected order value). 3 DCs + ~100 stores as flexible capacity.</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"When is fast wrong?"</strong></p>
+<p>When the decision is one-way. Reallocating an order is two-way — move it back if wrong. Changing the promise logic itself mid-peak is one-way-ish — that one I'd slow down, test, and stage. The skill isn't speed; it's sorting decisions by reversibility first.</p>
+</div>
+
+<h3 class="st">S15 — Sephora: the migration where the fallback never fired</h3>
+<p class="use"><strong>Backup story:</strong> Deliver Results (if MAIN used), "tight deadline," "managing a high-stakes risk," Highest Standards (the 0.5% gate).</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"I was handed a legacy warehouse-management migration across two distribution hubs: eight months, fixed, with a twenty-million-dollar product release pipeline landing right behind the go-live date — miss the window and the launch misses the market. The discipline was rehearsal with a published bar. Three full mock migrations on production-scale data, each one treated as a real cutover, with a financial reconciliation tolerance of half a percent published before mock one. The mocks came in at 7 percent variance, then 1.8, then 0.3 — and every drop was root-caused fixes, not luck: each mismatch worked as an engineering defect, never written off as a system quirk. We also rehearsed the fallback itself — a full dress rehearsal of going backwards — because an untested rollback plan is a wish, not a plan. Go-live cleared the gate on schedule; the fallback never fired, which is exactly what a rehearsed fallback is for. Eight months, both hubs, the release pipeline shipped on time. The transferable rule: the gate is published before the first rehearsal, the trend across rehearsals is the real status report, and you rehearse the retreat as seriously as the advance."</p>
+</div>
+<div class="drill">
+<h4>Numbers</h4>
+<p>8 months, ~$800K budget, $20M release pipeline protected. Mocks: 7% → 1.8% → 0.3% vs a 0.5% sign-off gate published up front. Fallback rehearsed, never fired.</p>
+</div>
+
+<h3 class="st">S16 — Elementum: the UAT that crashed — the failure story</h3>
+<p class="use"><strong>Primary:</strong> "Tell me about a time you failed." Also: Earn Trust (owning it with the sponsor), "what would you do differently."</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"Early at Elementum I ran a customer acceptance test and I owned the entrance criteria. My checklist was functional — did the features work, was the data mapped, were the test scripts signed. It said nothing about performance. UAT opened, dozens of the customer's users logged in at once, and the system fell over under concurrent load — in front of the exact audience whose confidence we needed. The sponsor escalated, and they were right to. The failure was mine specifically: not the code, the gate. I had defined what 'ready for UAT' meant and defined it incompletely — we had tested that it worked, never that it worked with everyone on it at once. I owned it with the sponsor without an excuse in the sentence, we load-tested, fixed, and re-ran UAT — and it passed. But the fix that matters is the permanent one: from that day, every UAT entrance gate I've written has performance criteria in it — concurrent load at realistic numbers, tested before a single customer logs in. That rule has followed me through every program since, including two go-lives at Sephora where load testing before the customer sees the system is simply non-negotiable. The lesson in one line: a gate only protects you from the failure modes you wrote down."</p>
+</div>
+<div class="qa">
+<p class="q"><strong>"Why didn't you think of performance the first time?"</strong></p>
+<p>Because every demo had been one user at a time, and nothing in my experience to that point had made concurrency fail loudly. That's the honest answer — gates encode scars, and I didn't have that scar yet. What changed permanently is that I now ask "what haven't I written down" about every gate, and I steal failure modes from other people's postmortems instead of waiting for my own.</p>
+</div>
+
+<h3 class="st">S17 — People: the super-user model, and what automation did to the team</h3>
+<p class="use"><strong>Primary:</strong> Hire and Develop the Best; Strive to be Earth's Best Employer. Rarely asked — keep it short. If the interviewer has already heard MAIN, lead with the Elementum half.</p>
+<div class="say"><div class="label">60–75 seconds — Hire and Develop</div>
+<p>"I usually lead through people who don't report to me, so developing them is the delivery mechanism, not a side activity. At Elementum, every data-domain wave got one analyst who owned it end to end — I set the bar and reviewed the work, but the domain was theirs, and by the third wave they were running their waves without me. Every mapping table went to a named site super-user, deliberately — I wanted the customer's own people to be the experts when we left, and the weekly root-cause loop was where they learned to work a false alarm like a defect instead of escalating it. The test of whether you developed anyone is what runs after you leave: the recon loops and the super-user model were still running when I moved on."</p>
+</div>
+<div class="say"><div class="label">60 seconds — Earth's Best Employer angle</div>
+<p>"At Flexport, the automation story was also a people story. The honest version of 'automation went from 60 to 97 percent' is that a team of people had been typing container updates by hand — rote, error-prone, nobody's best work. We automated the rote part and moved the people to exceptions — the judgment calls the machine can't make — and the weekly review's prep went from thirty hours a week to six, which is a day and a half of someone's week handed back. Volume grew five-fold and the team didn't burn down absorbing it. I think that's the standard: automation should take the work people hate and leave the work that needs a person."</p>
+</div>
+
+<h2 class="break">6. The cheat sheet — every Leadership Principle, primary and backup</h2>
+<table>
+  <thead><tr><th style="width:24%">Leadership Principle</th><th style="width:40%">Primary story</th><th>Backup</th></tr></thead>
+  <tbody>
+    <tr><td>Customer Obsession</td><td><strong>S4</strong> — promise dates from p99, buffers sized to risk</td><td>S14 Cyber Monday; S2 zero oversell</td></tr>
+    <tr><td>Ownership</td><td><strong>S2</strong> — one definition of "available," nobody reporting to me</td><td>MAIN; S16 owning the gate failure</td></tr>
+    <tr><td>Invent and Simplify</td><td><strong>S8</strong> — lane master beats a solver; 6 weeks → 3</td><td>S13 LLM agent; S5 one supply view</td></tr>
+    <tr><td>Are Right, A Lot</td><td><strong>S9</strong> — apples to apples; named my own gap</td><td>S3 measured vs brochure</td></tr>
+    <tr><td>Learn and Be Curious</td><td><strong>S6</strong> — learned CM data by math; snapshot-diffing</td><td>S13 learned LLM tooling solo</td></tr>
+    <tr><td>Hire and Develop the Best</td><td><strong>S17a</strong> — analyst waves, named super-users</td><td>Root-cause loop as a teaching forum</td></tr>
+    <tr><td>Insist on the Highest Standards</td><td><strong>S11</strong> — robots held at 94 vs 98; owned the labor cost</td><td>S7 cohort held twice; S15 0.5% gate</td></tr>
+    <tr><td>Think Big</td><td><strong>S12</strong> — flipped a committed 18-month roadmap</td><td>S10 deliberate retirement</td></tr>
+    <tr><td>Bias for Action</td><td><strong>S14</strong> — promise-at-risk triage through peak</td><td>S15 rehearsed fallback enabling speed</td></tr>
+    <tr><td>Frugality</td><td><strong>S13</strong> — $25 → $0.40 a task; weekend prototype</td><td>S12 $5M avoided by sequencing</td></tr>
+    <tr><td>Earn Trust</td><td><strong>S5</strong> — signed supply definition; two-signal release</td><td>S16 owning the failure; S9 dignified retirement</td></tr>
+    <tr><td>Dive Deep</td><td><strong>S3</strong> — 400 shipments ranked; p99 34 vs brochure 18</td><td>S6 phantom found by math; MAIN honest denominator</td></tr>
+    <tr><td>Have Backbone; Disagree &amp; Commit</td><td><strong>S7</strong> — 597 vs 1,000, two levels up, data not opinion</td><td>S11 held the gate; S2 refused early build</td></tr>
+    <tr><td>Deliver Results</td><td><strong>MAIN</strong> — 60→97%, $0.66→$0.03, 7→68 customers</td><td>S15 eight months, gate cleared</td></tr>
+    <tr><td>Strive to be Earth's Best Employer</td><td><strong>S17b</strong> — rote work to judgment work; 30→6 hours</td><td>S11 protecting the floor from chaos</td></tr>
+    <tr><td>Success &amp; Scale Bring Broad Responsibility</td><td><strong>S10</strong> — 79 customers, a destination and a date each</td><td>S7 portal floor so small carriers weren't excluded</td></tr>
+  </tbody>
+</table>
+
+<h2 class="break">7. The functional block — the math they may hand you</h2>
+<p class="note">The JD says forecasting, modeling, decomposing complex network problems. Expect at least one interviewer to go functional. Each block below is a two-minute whiteboard answer; speak the logic, write only the one formula.</p>
+
+<h3>F1 — "How would you set a delivery promise?"</h3>
+<div class="say"><div class="label">Say it like this</div>
+<p>"Never on the average — a promise built on the mean breaks half the time by construction. I take the actual delivery history per lane, rank it, and read the day that 99 percent of shipments beat. And I rank rather than assume a bell curve, because delivery tails are long: on my data a normal-curve estimate understated the true p99 by about three days — a promise that breaks three days' worth of the time you claimed it wouldn't. Then two guards: a drift flag per lane so the promise re-opens when the lane degrades, and a cushion sized to each lane's own volatility rather than one pad for everyone."</p>
+</div>
+<pre class="math">Worked example (say it, don't write it all):
+20 shipments, mean 12.5 d, sigma 2.64 d.
+Normal-curve p99 = 12.5 + 2.33 x 2.64 = 18.6 d.
+Actual ranked 99th percentile of the same data = 22 d.
+The curve understates the honest promise by ~3.4 days.</pre>
+
+<h3>F2 — "One buffer for the network, or per lane?"</h3>
+<div class="say"><div class="label">Say it like this</div>
+<p>"Per lane, proportional to risk. A uniform pad makes steady lanes subsidize wild ones — you look slow where you're reliable and you still break promises where you're not. Set each lane's cushion as one global multiplier times that lane's measured volatility, and solve the single multiplier to the service target. On my Elementum lane data the two designs hit the same roughly-95-percent reliability, but the share of orders eligible for a fast promise went from under ten percent to about forty. Nothing shipped faster — the math just stopped charging every lane for the worst lane's sins. One dial for leadership, per-lane honesty underneath."</p>
+</div>
+
+<h3>F3 — "Walk me through safety stock" — the one-lane before/after</h3>
+<pre class="math">One lane, real numbers:
+BEFORE  plan on brochure 18 d; actual mean 21, sigma 4 -> late all the time,
+        so planners pad informally on top -> ~12,900 units held, service still shaky.
+AFTER   plan on measured p99 = 34 d promise, buffers from measured sigma only
+        -> ~8,100 units, ~99% service.
+Less stock AND better service, because one honest number replaced
+a wrong number plus panic padding. Program-wide: ~580K units, ~$1.5M.</pre>
+
+<h3>F4 — "You have a fixed budget — where does it go?"</h3>
+<div class="say"><div class="label">Say it like this</div>
+<p>"Two rules. First, improvements have diminishing returns — the first week of effort on an initiative buys more than the tenth — so I model each candidate as a saturating curve and spread a fixed budget by marginal return: fund every initiative up to the point where its next unit of effort earns the same as every other's. Second, compare lever classes honestly: in my promise work, re-allocating effort across the right initiatives moved the customer-experienced time by whole days, while tuning buffer sizes moved it by tenths. Structural levers beat parameter levers; spend on parameters only after the structure is right. And re-solve when the world changes — peak-season volatility isn't a footnote; when sigma scales up for Q4, the whole allocation shifts and you re-run it, not hand-adjust it."</p>
+</div>
+
+<h3>F5 — "Decompose a complex network problem"</h3>
+<div class="say"><div class="label">Say it like this</div>
+<p>"Same four moves every time. One: define the output metric and its grain before touching anything — most 'complex' problems are two teams using one word for two numbers. Two: Pareto the volume or spend — complexity is rarely uniform; at Elementum, 597 of 1,000 lanes carried 80 percent of freight spend, so the thousand-lane problem was really a six-hundred-lane problem with a long tail behind a gate. Three: sequence by trust — onboard the data or the sites people already believe first, so early wins fund the hard ones. Four: publish the quality gate before the first wave, so scaling is mechanical — the same gate absorbs lane two and lane nine hundred. Decomposition isn't cutting the problem into pieces; it's finding the 20 percent that is the problem and putting a gate behind it for the rest."</p>
+</div>
+
+<h3>F6 — "How do you measure forecast health?"</h3>
+<div class="say"><div class="label">Say it like this</div>
+<p>"Accuracy and bias, separately — MAPE tells you the error size, bias tells you whether it leans, and a forecast can score well on one while rotting on the other. Then drift detection on the inputs, not just the outputs: my lanes carried a standing flag — if the rolling 90-day tail ran two days past plan, or the spread grew past 1.25 times baseline, the lane came up for re-measurement automatically. And one rule I'd defend anywhere: parameters only relax on two signals. We released two million dollars of safety stock only where forecast error and lead-time error had both improved — one signal is noise, two signals is evidence."</p>
+</div>
+
+<h2 class="break">8. The writing exercise — defending your essay</h2>
+<p>Submitted: <em>"What is the most inventive or innovative thing you have done?"</em> — the Flexport story: making automation measurable (the automation rate with the honest denominator), running the WBR by hand for a year, then the BRD that turned four systems into a Snowflake pipeline. Any of the five may have read it. If an interviewer opens it, that interview's Flexport budget is spent — do not also tell MAIN there; use S15 for Deliver Results instead.</p>
+<div class="qa">
+<p class="q"><strong>"Why is this innovative? It sounds like reporting."</strong></p>
+<p>The invention is the measurement design, not the dashboard. Before it, "how automated are we" had no answer — the number didn't exist. The honest denominator (a container counts until 15 days after it leaves the terminal) is what made the number impossible to game, and that's what let a VP steer on it. Inventive doesn't have to mean novel technology; it means the thing didn't exist, and afterwards the company ran on it.</p>
+<p class="q"><strong>"Your essay says you ran it by hand for a year. Why so slow to automate?"</strong></p>
+<p>Deliberate. You can't automate a metric you haven't survived defining — every definition fight I lost and re-fought in those months went into the BRD, which is why engineering's build matched the review on the first parallel run. Hand-running was the cheapest possible prototype.</p>
+<p class="q"><strong>"The results in the essay — which are measured and which are modeled?"</strong></p>
+<p>Automation 60 to 97, customers 7 to 68, volume five-fold, accuracy 60 to 90 — measured. The dollar figures — 66 cents to 3 cents per container, and the hundred-thousand-a-year cost of doing nothing — were built with Finance's loaded rates, not mine, and survived their review. I keep the two categories separate on purpose.</p>
+</div>
+
+<h2 class="break">9. Hard questions that cut across the loop</h2>
+<div class="qa">
+<p class="q"><strong>"Why leave Sephora now?"</strong></p>
+<p>"The S/4 work I own is live and stable — the definition holds, the reconciliation runs, new channels onboard against it. The next version of this problem at Sephora is maintenance; the next version at Amazon is design, at a scale where the forecast and the promise are the business. I'd rather do the next design."</p>
+<p class="q"><strong>"You've never operated at Amazon's scale."</strong></p>
+<p>"True, and I won't pretend 200 lanes is an Amazon network. What transfers isn't the size — it's the mechanisms that survive size: honest denominators, published gates, one canonical definition, drift flags, Pareto-first decomposition. Every one of those exists because something was too big to eyeball. The scale changes the numbers; it doesn't change where the truth has to live."</p>
+<p class="q"><strong>"You read as a program manager. This is a supply chain design role."</strong></p>
+<p>"Look at what the stories actually change: lead-time parameters, buffer equations, promise dates, one availability definition, a bid's constraint rules. Those are the supply chain's design variables — I change the parameters, and program discipline is just how I get the changes adopted. The JD itself says this role sits between program and product-tech; that seam is where I've lived."</p>
+<p class="q"><strong>"Your Elementum stories are seven years old."</strong></p>
+<p>"The domain evidence is older; the method is current — the same measurement-first pattern shows up in my Sephora work today, and the S/4 availability definition is live right now. I lead with Elementum when the question is lane design because that's where I did lane design; recency of judgment is in the Sephora and Flexport stories."</p>
+<p class="q"><strong>"What's your biggest weakness?"</strong></p>
+<p>"My instinct under pressure is to open the math box — lead with the derivation when the room needs the headline. I've trained the 30-second rule: conclusion, number, ask — then derivation only if someone pulls. My WBR packs are built that way now, outputs on top, inputs underneath. People who've seen me present recently would say the discipline holds; people from five years ago would laugh and agree it was needed."</p>
+<p class="q"><strong>"Where will you struggle in your first 90 days?"</strong></p>
+<p>"Vocabulary and mechanisms — Amazon has a name and a cadence for everything, and guessing is worse than asking. My plan is the same one I give customers: first weeks, sit in the existing reviews and learn the metrics tree before touching it; find the one number people argue about most; make that number trustworthy first. Trust transfers from one fixed number faster than from any introduction deck."</p>
+</div>
+
+<h2 class="break">10. The numbers table — record vs model</h2>
+<p class="note">If the number is a record, say it flat. If it's a model, say "my model" in the sentence. Never let a modeled dollar sound audited — interviewers are trained to pull this thread.</p>
+<table>
+  <thead><tr><th style="width:34%">Claim</th><th style="width:12%">Type</th><th>Framing to say out loud</th></tr></thead>
+  <tbody>
+    <tr><td>Automation 60% → 97% (Flexport)</td><td>Record</td><td>Measured weekly by the WBR's own formulas.</td></tr>
+    <tr><td>CTS $0.66 → $0.03 per container</td><td>Model</td><td>"Dollarized with Finance's loaded rates, not mine."</td></tr>
+    <tr><td>Customers 7 → 68; volume 5×</td><td>Record</td><td>Say both numbers. <strong>Never say "50×."</strong></td></tr>
+    <tr><td>Accuracy 60% → 90% (Flexport)</td><td>Record</td><td>System accuracy on the shared scoreboard.</td></tr>
+    <tr><td>WBR prep 30 → 6 h/wk ≈ $103,680/yr</td><td>Model</td><td>"From the BRD, with the infra team's rates."</td></tr>
+    <tr><td>Lane p99 34d vs brochure 18d; SS 12,900 → 8,100</td><td>Record</td><td>One example lane, n≈400 shipments ≈ one year.</td></tr>
+    <tr><td>≈580K units ≈ $1.5M released (lanes)</td><td>Record</td><td>Lane program only. Never added to the $2M.</td></tr>
+    <tr><td>Forecast accuracy 70% → 85%; $2M released</td><td>Record</td><td>Class-A SKUs; two-signal rule signed with Finance.</td></tr>
+    <tr><td>Fast-promise share ~8% → ~40% at ~95%</td><td>Model</td><td>"My model on the lane data — mechanics exact, proportions modeled."</td></tr>
+    <tr><td>Completeness 60% → 95%; freight −10% ≈ $2M</td><td>Record</td><td>The −10% is record; the split into causes is my model.</td></tr>
+    <tr><td>Carrier-bid cycle 6 wks → ~3</td><td>Record</td><td><strong>No dollar on the award</strong> — Transportation ran it.</td></tr>
+    <tr><td>6 CM sites, 3 waves, 5 months; zero overlaps</td><td>Record</td><td>"Six sites." No tolerance value — not in the record.</td></tr>
+    <tr><td>79 customers; ≈294,581 containers/yr; $15,491 MRR</td><td>Record</td><td>From the transition doc, per segment.</td></tr>
+    <tr><td>Reliability mid-20s → 90% vs 80% north star</td><td>Record</td><td>After source additions — "real work, not normalization math."</td></tr>
+    <tr><td>+15% processing efficiency (comingled DC)</td><td>Record</td><td>Zero customer disruption across two go-lives.</td></tr>
+    <tr><td>Mocks 7% → 1.8% → 0.3% vs 0.5% gate</td><td>Record</td><td>Gate published before mock one.</td></tr>
+    <tr><td>Roadmap flip: −66%, ≈$5M, month 6 vs 18</td><td>Model</td><td>"From the re-costing we took to leadership."</td></tr>
+    <tr><td>LLM agent $25 → $0.40 per task</td><td>Model</td><td>Loaded rates; human-in-the-loop on every output.</td></tr>
+    <tr><td>99% fill; ≈$8M protected (Cyber Monday)</td><td>Record / model</td><td>Fill is record; $8M is modeled protected value.</td></tr>
+    <tr><td>≈$1M/yr support cost retired (S/4)</td><td>Model</td><td>Finance's rates on the retired system.</td></tr>
+  </tbody>
+</table>
+
+<h2 class="break">11. Traps — the sentences that cost you the loop</h2>
+<ul>
+  <li class="trap"><strong>Never "50×."</strong> Customers 7 → 68. Volume 5× — two thousand to ten thousand containers a week. Say the real numbers.</li>
+  <li class="trap"><strong>Never add the $1.5M (lane program) to the $2M (safety-stock release).</strong> Two programs. One interviewer will test whether your dollars reconcile across stories.</li>
+  <li class="trap"><strong>Never repeat a story across interviewers.</strong> They compare notes. The tracker in Section 3 exists for exactly this; S9/S10 and MAIN/S17b are the dangerous pairs.</li>
+  <li class="trap"><strong>Never present a modeled dollar as an audited one.</strong> The phrase "my model, Finance's rates" costs nothing and buys credibility on every other number.</li>
+  <li class="trap"><strong>"Six sites," never "six NA sites."</strong> No cohort sizes on the EDI story. No tolerance value on the BOM reconciliation. No dollars on the carrier-bid award. If it isn't in the record, don't invent it under pressure.</li>
+  <li class="trap"><strong>Don't lead planning questions with the omni DC.</strong> It's an execution story (S11); the planning stories are Elementum and S/4. Use each where it's strong.</li>
+  <li class="trap"><strong>"We" hides you.</strong> Every action sentence starts with "I" and names an artifact — the gate, the rule, the table, the memo. Credit the team in the result, not in the actions.</li>
+  <li class="trap"><strong>Stop at 90 seconds.</strong> The interviewer's probes are how they fill their worksheet; a five-minute monologue reads as unstructured, not thorough.</li>
+  <li class="trap"><strong>Don't guess Amazon vocabulary.</strong> If they say a mechanism you don't know, ask what it owns. Asking reads as curiosity; guessing reads as bluffing.</li>
+</ul>
+
+<h2>12. Video execution + what to ask each interviewer</h2>
+<h3>Video, specifically</h3>
+<ul>
+  <li>Camera at eye level, light in front of you, interviewer's window directly under the camera so eye contact is real. Test Chime/the link the day before; phone number as audio backup written on paper.</li>
+  <li>Print Section 6 and the Section 3 tracker; tape them beside the screen. Glancing at a one-page map reads fine on video; visibly reading paragraphs does not.</li>
+  <li>Video eats silence — but keep the pause anyway. Finish the 90 seconds, then stop. Two seconds of quiet while they write is them filling the worksheet in your favor.</li>
+  <li>Say numbers slowly and repeat the units: "sixty-six cents — to three cents — per container." On compressed audio, numbers are the first thing lost.</li>
+  <li>Five interviews is a stamina problem. Between calls: stand up, water, mark the tracker, read the next likely story's numbers box. Nothing else.</li>
+  <li>If the connection drops mid-story, rejoin and restart the story from the top in one line: "Short version of where I was: …" — don't resume mid-sentence.</li>
+</ul>
+<h3>Two questions per interviewer — pick from these</h3>
+<ul>
+  <li><strong>Hiring manager:</strong> "What's the one number this team is trying to move this year, and what's in its way?" · "What would the person in this seat have delivered by month six for you to call it a great hire?"</li>
+  <li><strong>Functional:</strong> "Where does the forecast this team consumes come from, and who argues with it when it's wrong?" · "What's the most load-bearing model the team owns, and who can explain it end to end?"</li>
+  <li><strong>Bar Raiser:</strong> "What separates the L6s who grow here from the ones who stall?" · "What's something the org believed a year ago that data has since overturned?"</li>
+  <li><strong>Stakeholder-focused:</strong> "Which partner team is hardest to align with today, and why?" · "When this team disagrees with Science or Product on a parameter, where does the decision actually get made?"</li>
+  <li><strong>Execution-focused:</strong> "What broke last peak, and what mechanism came out of it?" · "What does the weekly review look like here — who reads it, and what got stopped because of it recently?"</li>
+</ul>
+
+</body>
+</html>
