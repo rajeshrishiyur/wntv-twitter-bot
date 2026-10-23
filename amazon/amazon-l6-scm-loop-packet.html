@@ -31,6 +31,9 @@
   .drill p { margin: 0 0 4px; }
   .toff { background: #fbf7ec; border-left: 4px solid #b8860b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.5pt; }
   .toff strong { color: #7a5a00; }
+  .mth { background: #eef5f0; border-left: 4px solid #2e6b4f; padding: 6px 12px 5px; margin: 4px 0 10px; page-break-inside: avoid; }
+  .mth h4 { margin: 2px 0 4px; font-size: 9.4pt; letter-spacing: 0.04em; text-transform: uppercase; color: #2e6b4f; }
+  .mth pre.math { margin: 2px 0 4px; }
   .qa { border-left: 3px solid #d9d0c1; padding: 2px 0 2px 10px; margin: 0 0 9px; font-size: 9.5pt; }
   .qa p { margin: 0 0 3px; }
   .qa p.q { color: #1a2744; }
@@ -64,7 +67,7 @@
   <div><strong>You.</strong> Rajesh Rishiyur Chandrasekaran</div>
   <div><strong>Format.</strong> Five interviews, about 55 minutes each, all on video. Each interviewer is assigned two or three Leadership Principles and asks two or three behavioral questions against them, plus program-management and stakeholder-management competency questions. One is a Bar Raiser from outside the team. They write up and vote independently, then compare notes — a story repeated to two people counts once, not twice.</div>
   <div><strong>Writing exercise.</strong> Submitted about two days before the loop — the Flexport automation-rate essay. Everyone may have read it. Section 11 is the defense.</div>
-  <div><strong>What is in this packet.</strong> §5 — twenty-three unique stories, each with a 90-second spoken version and a full STAR worksheet. §6 — the one-page cheat sheet. §7 — the detailed math, step by step in tables. §8 — the trade-off and decision log, fourteen decisions with the numbers on both sides. §9–10 — every question in Amazon's AIQB question bank (all 16 LPs, 128 questions) answered in STAR format with a story pointer. §11–15 — writing defense, hard questions, the numbers table, traps, video execution.</div>
+  <div><strong>What is in this packet.</strong> §5 — twenty-six unique stories, each with a 90-second spoken version, a full STAR worksheet, and a whiteboard-ready math block under it. §6 — the one-page cheat sheet. §7 — the detailed math, step by step in tables. §8 — the trade-off and decision log, fourteen decisions with the numbers on both sides. §9–10 — every question in Amazon's AIQB question bank (all 16 LPs, 128 questions) answered in STAR format with a story pointer. §11–15 — writing defense, hard questions, the numbers table, traps, video execution.</div>
   <div><strong>The rule of the loop.</strong> One question, one story, never the same story twice across the five interviews. The tracker in §3 is how you keep count between calls.</div>
   <div><strong>Your position, said once per interview, early.</strong> You have designed lead times, buffers, promises, sourcing mechanics and one inventory definition across four companies. You have not run an Amazon network region. Say it plainly, then show the mechanism.</div>
 </div>
@@ -117,9 +120,9 @@
 <table>
   <thead><tr><th style="width:17%">Interview</th><th style="width:33%">Usual focus</th><th>Stories most likely to come out here</th></tr></thead>
   <tbody>
-    <tr><td><strong>1 — Hiring manager</strong></td><td>TMAY, Why Amazon, role fit, Deliver Results, Ownership, longest functional block.</td><td>MAIN, S2. Functional: §7 M1–M4 (promise and buffer math).</td></tr>
-    <tr><td><strong>2 — Functional / program management</strong></td><td>Dive Deep, Invent and Simplify; mechanisms; a modeling question.</td><td>S3, S8; S19 or S23 as backup. Functional: §7 M2 (safety stock), M5 (allocation), M10 (decomposition).</td></tr>
-    <tr><td><strong>3 — Bar Raiser</strong></td><td>Earn Trust, Are Right A Lot, Learn and Be Curious; the failure question; hardest challenges.</td><td>S5, S9, S6, S16. Backup: S22.</td></tr>
+    <tr><td><strong>1 — Hiring manager</strong></td><td>TMAY, Why Amazon, role fit, Deliver Results, Ownership, longest functional block.</td><td>MAIN, S2; S24 as the launch-execution backup. Functional: §7 M1–M4 (promise and buffer math).</td></tr>
+    <tr><td><strong>2 — Functional / program management</strong></td><td>Dive Deep, Invent and Simplify; mechanisms; a modeling question.</td><td>S3, S8; S19 or S23 as backup; S26 if the question is metric design. Functional: §7 M2 (safety stock), M5 (allocation), M10 (decomposition).</td></tr>
+    <tr><td><strong>3 — Bar Raiser</strong></td><td>Earn Trust, Are Right A Lot, Learn and Be Curious; the failure question; hardest challenges.</td><td>S5, S9, S6, S16. Backup: S22, S25 (refused → studied → reversed).</td></tr>
     <tr><td><strong>4 — Stakeholder management</strong></td><td>Have Backbone / Disagree &amp; Commit, Insist on the Highest Standards, Think Big; influence without authority.</td><td>S7, S11, S12. Backup: S22, S20.</td></tr>
     <tr><td><strong>5 — Execution and judgment</strong></td><td>Customer Obsession, Bias for Action, Frugality; may open the writing exercise.</td><td>S4, S14 or S21, S13. Writing defense: §11. Backup: S18.</td></tr>
   </tbody>
@@ -153,9 +156,12 @@
     <tr><td>S21</td><td>Flexport — the production test: 300 containers, kill switches</td><td>Bias for Action backup / calculated risk</td><td>&nbsp;</td></tr>
     <tr><td>S22</td><td>Flexport — Customs vs FFA: 15 work items, one owner each</td><td>Stakeholder / misaligned teams</td><td>&nbsp;</td></tr>
     <tr><td>S23</td><td>Flexport — the 100-container test and the testing pyramid</td><td>Dive Deep backup / validation</td><td>&nbsp;</td></tr>
+    <tr><td>S24</td><td>Sephora — Utah DC merge: 15 tracks, 836-row log, two go-lives</td><td>Complex launch / Deliver Results backup</td><td>&nbsp;</td></tr>
+    <tr><td>S25</td><td>Sephora — 17 interfaces, the $42K refused then funded on evidence</td><td>Are Right A Lot backup / changed mind</td><td>&nbsp;</td></tr>
+    <tr><td>S26</td><td>Flexport — the lever map: input vs output metrics, roll-ups, ±5% rule</td><td>Metric design / "build a WBR"</td><td>&nbsp;</td></tr>
   </tbody>
 </table>
-<p class="sdc"><strong>Same-program pairs — never give both to the same interviewer:</strong> S9 and S10 (one Flexport retirement program). MAIN and S18/S19/S20/S21/S23 (all live inside the Flexport visibility program — each is a different sub-program with different numbers, so they are safe across different interviewers, but two of them to one person reads as one story stretched). S3 and S4 (lane measurement feeds the promise design — fine across interviewers, never back-to-back with one).</p>
+<p class="sdc"><strong>Same-program pairs — never give both to the same interviewer:</strong> S9 and S10 (one Flexport retirement program). MAIN and S18/S19/S20/S21/S23/S26 (all live inside the Flexport visibility program — each is a different sub-program with different numbers, so they are safe across different interviewers, but two of them to one person reads as one story stretched; S26 is MAIN's own anatomy, the most dangerous pairing of all). S3 and S4 (lane measurement feeds the promise design — fine across interviewers, never back-to-back with one). S11 and S24 (one Utah DC program — the robots beat belongs to S11, the 836-row log and unit pacing to S24).</p>
 
 <h2 class="break">4. The role, read closely — and in your words</h2>
 <p>The JD, sentence by sentence, says: partner with business leaders to define and execute processes across <em>Plan, Source, Manufacture, Deliver, Return</em>; lead supply chain <em>modeling, planning and design</em> from concept through scaling; build <em>models, tools and processes</em> for reliability, responsiveness, cost and asset utilization; use strong <em>quantitative skills on large complex data sets</em>; deliver <em>accurate forecasting</em>; <em>decompose significantly complex network problems</em> into straightforward solutions; ensure a <em>competitive sourcing environment</em>; influence <em>1–2 levels up</em>; the role sits <em>between program and product-tech</em>; at L6, <em>designing or modeling the supply chain as opposed to working in it</em>.</p>
@@ -174,7 +180,7 @@
     <tr><td>"Influence 1–2 levels up"; "may require approval on strategic decisions from senior leadership"</td><td>"My pattern: pre-validate with the lane owners, bring the curve not the complaint, let the executive accept a plan nobody in the room can contradict."</td></tr>
   </tbody>
 </table>
-<h2 class="break">5. The story bank — twenty-three unique stories, each with a full STAR worksheet</h2>
+<h2 class="break">5. The story bank — twenty-six unique stories: STAR worksheet and the math under each</h2>
 <p class="note">Every story has three layers. The <strong>say box</strong> is the 90-second spoken answer — deliver it, then stop and let them probe. The <strong>STAR worksheet</strong> is the full version in Amazon's own S/T/A/R structure, for when they walk it step by step — every Action line starts with "I" and names an artifact. The <strong>trade-off box</strong> is the answer to "what did you trade?" — they are trained to ask it. Results are framed record vs model exactly as §13; if a number is a model, say "my model" out loud.</p>
 
 <h3 class="st first">MAIN — Flexport: the visibility program nobody owned (the WBR and the automation rate)</h3>
@@ -190,6 +196,18 @@
 </div>
 <div class="drill"><h4>Numbers</h4><p>Automation 60→97% (record). CTS $0.66→$0.03 (model, Finance's rates; platform priced one eliminated interaction at $0.18 — $0.66 ≈ 3.7 residual touches/container, $0.03 ≈ 0.17). Customers 7→68; volume 5×. Accuracy 60→90%. WBR 30→6 h/wk ≈ $103,680/yr (model, from the BRD). Red week 21.9% published; truncated 99.4% week discarded. Parallel-run gate |manual−pipeline| ≤ 1%.</p></div>
 <div class="toff"><strong>The trade-off:</strong> scope for fundability. The BRD froze the seven existing metrics and named new metrics out of scope — a narrower pipeline this quarter beat a perfect one someday. The other side: cutover waited on consecutive matching weeks, not on my confidence. What I gave up: ~4 hours/week of manual stitching continued until the gate passed.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Cost to serve, interaction grain: $0.66 / $0.18 per touch ≈ 3.7 touches per container
+  (before)
+$0.03 / $0.18 ≈ 0.17 touches (after) — model, Finance's rates
+Manual load: 40% × 2,000/wk = 800 hand-updated containers → 3% × 10,000 = 300 — volume 5×,
+  touches down
+WBR prep: (30 − 6) h/wk × 48 wk × $90/h loaded ≈ $103,680/yr (model, BRD rates)
+Honest denominator: a container counts until terminal-exit + 15 days — slow ones can't be
+  dropped
+Parallel-run gate before cutover: |manual − pipeline| ≤ 1% for the agreed run — then and
+  only then switch</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"The engineers built the pipeline — what did you build?"</strong></p>
 <p>The definitions, the denominator, the BRD, the parallel-run gate, and the cutover call. I didn't lay pipe; I made the pipe buildable — and afterward nobody could argue about the numbers. Programs like this die as complaints and ship as documents; the document was the work.</p>
@@ -212,6 +230,16 @@
 </div>
 <div class="drill"><h4>Numbers</h4><p>5 → 1 definitions (record). Zero oversell across two go-lives (record). ≈$1M/yr support retired (model). Nightly reconciliation; drift = defect.</p></div>
 <div class="toff"><strong>The trade-off:</strong> lower-of-two is conservative — it hides some sellable units at the margin and costs sales. We priced lost-margin against oversell cost plus customer-trust damage, and Finance signed the conservative side. A broken promise costs more than a hidden unit.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Signed definition:  ATS = min(S/4 book, live ledger) − reservations − quality hold
+Why lower-of-two: oversell requires promise &gt; true stock; promising the min caps oversell
+  risk
+  at the two systems' reconciliation error — which the nightly check drives toward zero
+Asymmetry priced: definition change before code = a sentence; after code = re-test +
+  oversell incident
+Record: zero customer-facing oversell across two go-lives. Model: ≈$1M/yr retired support
+  (Finance's rates)</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"How did you get five teams to give up their definitions?"</strong></p>
 <p>I didn't argue in the abstract — I showed each team the oversell incidents its definition had caused, with dollars attached, and offered the rule that could never double-promise. The signature meeting was about blame-removal, not vocabulary.</p>
@@ -232,6 +260,18 @@
 </div>
 <div class="drill"><h4>Numbers</h4><p>Example lane: n≈400 (~8/wk ≈ 1 yr); brochure 18d, mean 21d, σ 4d, ranked p99 = t(396) = 34d. Normal-fit p99 30.3d — 14 of 400 beyond it (a "99%" plan holding 96.5%). SS 12,900 → 8,100. Program: ~150 lanes released / ~50 added; net 580K units ≈ $1.5M. <strong>Never add this $1.5M to S5's $2M — different program.</strong></p></div>
 <div class="toff"><strong>The trade-off:</strong> planning to p99 means quoting slower dates on volatile lanes — commercial teams hated 34 vs 18. The number that decided it: a "fast" promise missed 60% of the time costs expedites and trust; the honest date costs nothing but optics. Where speed genuinely mattered we fixed the lane, not the number.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Ranked p99 on n = 400 transits: position ⌈0.99 × 400⌉ = 396 → t(396) = 34 d (brochure 18,
+  mean 21, σ 4)
+Normal-fit p99 = 21 + 2.33×4 = 30.3 d → 14 of 400 beyond it: a "99%" plan that actually
+  holds 96.5%
+SS before = 9,437 + 3,500 manual pad ≈ 12,900; after = 6,500 + 2.33 × 150 × √21 = 6,500 +
+  1,601 ≈ 8,100
+Program roll-up: ~150 lanes release / ~50 take stock IN → net 580K units × $2.59 ≈ $1.5M
+  (full table §7 M2)
+Drift flag per lane: rolling-90d p99 &gt; plan + 2d OR σ &gt; 1.25 × base OR ≥4 late per 100 →
+  review</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"Why p99 and not the mean?"</strong></p>
 <p>A promise built on the mean breaks half the time by construction. And I rank instead of fitting a curve because lead-time tails are long — the bell-curve p99 was 30.3 days but 14 of 400 real shipments were slower; the real p99 was 34. The four days the curve missed are 2,000 units of exposure on one lane (§7 M1).</p>
@@ -252,6 +292,17 @@
 </div>
 <div class="drill"><h4>Numbers</h4><p>Buffer rule b<sub>lane</sub> = k × σ<sub>lane</sub>; hit rate per lane ≈ Φ(b/σ) — uniform pad gives steady lanes 99%+ and volatile lanes ~70%; one k gives every lane the target (worked example §7 M3). Model on lane data: uniform 7.6% fast at 95.8%; risk-proportional 39.6% fast at 95.0%. Promise yield (fast <em>and</em> kept) 7.3% → 37.6% (§7 M4).</p></div>
 <div class="toff"><strong>The trade-off:</strong> one point of reliability (≈96 → ≈95) for roughly five times the fast-promise share. I priced both and put the dial in the business owner's hand — the k is theirs to turn. The refusal inside the trade: I would not buy fast promises with a hidden service cut; the point had to be chosen, on the record.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Hit rate per lane ≈ Φ(b/σ): uniform b = 1.10d → σ=0.4 lane 99.7% (wasted speed), σ=2.0 lane
+  71% (broken)
+One dial: b = k·σ with k = 1.645 → every lane ≈ 95%  (worked table §7 M3)
+Accuracy decomposition: promise kept ≈ P(ships in window) × P(carrier hits transit) × Φ(b/σ)
+  —
+  three factors, three owners; a red week names its lever by whichever factor moved
+Model on the lane data: fast share 7.6% → 39.6%; promise yield (fast AND kept) 7.3% → 37.6%
+Breach economics: EV(fast) = ΔCVR × margin − P(breach) × breach cost — the dial is a priced
+  position</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"Isn't a reliability drop a real customer cost?"</strong></p>
 <p>Yes — which is why it was a presented choice, not a side effect. The honest comparison is: 5× more customers get a fast promise, 1 in 100 more gets a miss. The owner of the customer experience chose, with both numbers on the page. That's exactly how I'd present promise speed vs promise reliability at Amazon.</p>
@@ -272,6 +323,17 @@
 </div>
 <div class="drill"><h4>Numbers</h4><p>70→85% class-A accuracy (record). $2M released, two-signal rule (record). 3 months to alert. Recon daily vs MD04/COOIS/VA05/MB52. Planner effort −50%. The six-site CM ingest (S6) is a separate 5-month program — never merge the timelines; never add the $2M to S3's $1.5M.</p></div>
 <div class="toff"><strong>The trade-off:</strong> a leaner supply number vs a flattering one. Counting unfirmed MRP orders would have made supply look healthier and made the demo easier to sell; it would also have broken the first time a planner compared the screen to MD04. I traded short-term applause for a number that survived audit — that's the whole trust mechanism.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Supply definition (signed): released + firmed orders only — planned MRP orders excluded
+  (they
+  re-breathe on every run; a number that changes nightly can never be a commitment)
+Alert rule: fire when days-of-cover &lt; p90(measured replenishment lead time) — time to act
+  inside SAP
+Two-signal release: a SKU's buffer is cut only if forecast error ↓ AND lead-time error ↓ vs
+  baseline
+Forecast accuracy 70% → 85% = error 30 → 15, halved (record); $2M released only where both
+  signals held</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"Why did planners trust this alert when they ignore every other one?"</strong></p>
 <p>Three designed reasons: they signed the supply definition before the first screen existed; the view reconciled daily against SAP screens they already believed; false alarms were worked as defects weekly, so the alert got quieter and righter. Trust was the engineered outcome, not a hope.</p>
@@ -292,6 +354,18 @@
 </div>
 <div class="drill"><h4>Numbers</h4><p>Six sites (never "six NA sites"), 3 waves, 5 months. Wave 3 = hostile ERP, snapshot-diffing, 6 wks vs 3-wk average. Zero auto-loaded overlaps. Don't quote a tolerance value — not in the record.</p></div>
 <div class="toff"><strong>The trade-off:</strong> speed vs auto-loading. Auto-loading revisions would have cut weeks from every wave; one wrong auto-load rewrites demand history silently. I paid a human-disposition queue on every overlap to make corruption impossible rather than merely unlikely — on plan data, a slow truth beats a fast maybe.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Phantom test: explode sampled FG BOMs in our model → expected component counts; compare with
+  the
+CM's own MRP counts — double-counted components at phantom levels are the signature (proof,
+    not accusation)
+Quarantine rule: overlapping revision effectivity → human disposition, never auto-load (0
+  auto-loads, record)
+Hostile flat-file site: snapshot-diff consecutive daily full extracts + checksums;
+  completeness flag per file
+Absorbed in 6 weeks vs the 3-week average site — in plan. Gate: site live only when
+  reconciliation matches</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"What did you personally learn?"</strong></p>
 <p>What a phantom looks like in the deltas, how revision effectivity actually behaves, and that a supplier's documentation describes intent while its MRP describes truth. Every external integration I've run since starts by reconciling against the source's own math.</p>
@@ -312,6 +386,16 @@
 </div>
 <div class="drill"><h4>Numbers</h4><p>597/1,000 = 80% of spend. Gate ≥95% valid ASN per cohort; one cohort held twice. 60→95% completeness. −10% freight ≈ $2M/6 months. Don't quote cohort sizes — not in the record.</p></div>
 <div class="toff"><strong>The trade-off:</strong> lane count for data quality, sequenced by spend. The number that decided it: 597 lanes bought 80% of the value with a gate intact; the other 403 lanes bought 20% at the cost of the gate. Disagree on scope, commit on goal — and if he'd insisted on 1,000, I'd have committed with one condition: the gate stays.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Pareto first: score = spend × criticality × mode × volume → top 597 of 1,000 lanes = 80% of
+  freight spend
+Published gate: a cohort activates the next only at ≥95% valid ASN — held twice on one
+  carrier (timestamp)
+Completeness 60% → 95% (record). Freight −10% ≈ $2M (record; the split into causes is my
+  model)
+Portal floor: template/portal path for small carriers — same data standard, no EDI project
+  required</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"You delivered 597 of 1,000 — isn't that failure?"</strong></p>
 <p>The ask was visibility, measured honestly in spend covered. 80% of spend in month one, the rest behind the same gate. Automating dirty data manufactures confident wrong answers — the gate is the product.</p>
@@ -332,6 +416,14 @@
 </div>
 <div class="drill"><h4>Numbers</h4><p>6 wks → ~3 (record). Gate &lt;5% vs last two awards, published first. Stale banner at 10 days. ≈$190K/yr model (≈2,200 analyst hours on illustrative team counts). The sourcing-cycle logic: twice the cadence capability = a structurally more competitive sourcing environment.</p></div>
 <div class="toff"><strong>The trade-off:</strong> explainability over optimality. A true optimizer might squeeze another point off the award; an award nobody can defend to an incumbent costs a quarter of relitigation and carrier trust. I chose rule-constrained scenarios a human signs, and put any solver behind the rules, never instead of them.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Time audit: ~6 weeks per cycle, the bulk reconciling lane names and mode codes — not
+  analysis
+Back-test gate, published first: model must reproduce the last two real awards &lt; 5% mismatch
+Cycle 6 weeks → ~3 (record); analyst time returned ≈ 2,200 h/yr → ≈$190K/yr (model,
+  illustrative counts)
+No dollar claimed on the award itself — Transportation and Procurement ran the award</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"How do you decide simplify vs extend?"</strong></p>
 <p>Time-audit first, always. If the hours go to reconciliation, the answer is a data model; if to analysis, maybe a solver. Diagnose the problem class before building — the fanciest tool pointed at the wrong class is pure waste.</p>
@@ -351,6 +443,15 @@
 </div>
 <div class="drill"><h4>Numbers</h4><p>25% vs "63%" → normalized ~27% vs 25% (record). Residual honest gap: variance 16d vs 8d — named by me. Reliability → 90% vs 80% north star.</p></div>
 <div class="toff"><strong>The trade-off:</strong> sequence. Adding data sources takes quarters; a write-off takes one meeting. I spent credibility normalizing first — knowing it could look like spin — to buy the quarters the real work needed. The protection against the spin charge: the normalization also exposed our own variance gap, and I led with it.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Naive compare: ours 25% vs their published 63% — different sources, definitions, and weeks
+Normalized (same sources, same definitions, same week): their 63% → ~27% vs our 25% —
+  artifact, not gap
+Residual named against ourselves: variance 16d vs 8d → sent to the source-addition backlog
+  as real work
+After real additions: reliability mid-20s → 90% vs the 80% north star (record)
+Rule left behind: two numbers that disagree get reconciled before they get compared</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"Isn't normalization just making your number look better?"</strong></p>
 <p>A normalization that only flatters is spin; one that also exposes is analysis. Mine capped our claim — it surfaced the 16-vs-8 variance gap against us, and I said so in the same readout. That's why it held the room.</p>
@@ -368,6 +469,14 @@
 <p><span class="stag">R —</span> <strong>#:</strong> 79 customers, ~294,581 containers/yr, each with a destination and a date — nobody stranded. <strong>$:</strong> ~$15,491 MRR retired deliberately; double-run drag ended. <strong>Quality:</strong> retirement went through on evidence, planned, not drifted into. Vs goal: the goal was retirement without damage; the measure is that it was boring.</p>
 </div>
 <div class="toff"><strong>The trade-off:</strong> real revenue surrendered for one version of the truth. The deciding numbers: $15K/month of MRR against two engineering and ops stacks and prospects comparing us against ourselves in deals. Small deliberate retirement beat slow expensive ambiguity.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Book: 79 customers · $15,491 MRR ≈ $186K ARR · ~294,581 containers/yr ≈ 5,700/wk
+Priced comparison: MRR retained vs weekly double-run cost (two stacks, duplicated ops) —
+  drag beat revenue
+Segmentation by measured usage: migrate (high) / white-label (mid) / cancel with real notice
+  (low)
+Every customer got a destination and a date; zero stranded, no segment escalated (record)</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"Why not keep both — the revenue was positive?"</strong></p>
 <p>The drag wasn't on the revenue line: two products meant two truths, double maintenance, self-competition. Priced weekly, "keep both" lost to "retire deliberately" on its own numbers.</p>
@@ -387,6 +496,17 @@
 <p><span class="stag">R —</span> <strong>%:</strong> +15% warehouse processing efficiency. <strong>Quality:</strong> zero customer disruption across two go-lives; gate passed in week three at full volume. <strong>Team:</strong> the next published threshold in that building was believed without a test. Vs goal: zero-customer-impact mandate met, with a one-week ramp cost consciously paid.</p>
 </div>
 <div class="toff"><strong>The trade-off:</strong> one week of labor premium against thousands of weekly mis-slots. I bought the week and owned the variance. Standards hold when the person insisting pays part of the price — otherwise it's just someone else's delay.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Published gate: 98% pick accuracy, set before the robots arrived. Week-2 actual: 94%
+Exposure compare: ~6 mis-slots per 100 robot picks × full-volume daily picks × cost per
+  mis-slot
+vs the labor premium of a 30% throttle for ~1 week — mis-slot side larger (illustrative
+    inputs, my model)
+Throttle to 30% = error exposure −70% while zone-slotting logic was fixed; gate cleared week
+  3
+Record: +15% processing efficiency, zero customer incidents; variance owned on my program
+  budget</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"Operations outranked you — how did you hold it?"</strong></p>
 <p>The gate predated the pressure; holding it was enforcement, not escalation. And the trade was visible in dollars with my budget eating the labor side — I wasn't asking Operations to pay for my standard.</p>
@@ -404,6 +524,15 @@
 <p><span class="stag">R —</span> <strong>$:</strong> ≈$5M of build avoided (model, from the re-costing). <strong>%:</strong> build effort −66%. <strong>Time:</strong> first business value month 6 instead of month 18. <strong>Team:</strong> ratified above my level; the original plan's authors voted for it. Vs goal: same goal, one-third the effort, value a year earlier.</p>
 </div>
 <div class="toff"><strong>The trade-off:</strong> re-opening a committed plan (political cost, re-planning churn) against executing a known-worse sequence. Deciding number: $5M and twelve months of dead time. The mitigation for the political cost was the private math review and the sequences-not-people framing.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Two-column re-costing, same goal: platform-first 18 months vs value-first with platform
+  behind it
+Effort −66%; ≈$5M of platform work avoided — made unnecessary, not deferred (model, from the
+  re-costing)
+Value timing: first business value month 6 vs month 18 — twelve months pulled forward
+Decision rule: present sequences, not people — the new information meant nobody had to have
+  been wrong</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"What if leadership had said no?"</strong></p>
 <p>Then we'd have executed the original plan with eyes open and a marker on the record — disagree and commit, literally. The comparison doc would still have been worth it: it priced the decision either way.</p>
@@ -421,6 +550,14 @@
 <p><span class="stag">R —</span> <strong>$:</strong> ≈$25 → ≈$0.40 per task (model, loaded rates). <strong>Quality:</strong> every output human-checked; auditable. <strong>Time:</strong> the funding conversation took one meeting because the prototype already answered the hard questions.</p>
 </div>
 <div class="toff"><strong>The trade-off:</strong> my own unbudgeted hours against asking for headcount on a hypothesis. Constraints breed resourcefulness — the weekend prototype converted an opinion fight into a unit-economics readout.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Unit cost: ≈$25/task analyst time (loaded) → ≈$0.40/task with the agent + human review ≈ ÷60
+  (model)
+At N tasks/week the ledger reads: savings ≈ N × $24.60/wk — the prototype carried its own
+  business case
+Build cost: a weekend of my own time → the funding conversation took one meeting
+Guardrail priced in: low-confidence outputs route to human review — the $0.40 stays honest</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"How do you trust an LLM in production workflow?"</strong></p>
 <p>I don't — I trust the control around it. Rote work to the machine, judgment with the person, both on the record. Same pattern as every automation I've shipped.</p>
@@ -438,23 +575,42 @@
 <p><span class="stag">R —</span> <strong>%:</strong> 99% fill held through Cyber Monday (record). <strong>$:</strong> ≈$8M of peak orders protected (model on protected order value). <strong>Time:</strong> at-risk order decisions in ~2 minutes. Vs goal: the fill-rate goal held through the worst week of the year.</p>
 </div>
 <div class="toff"><strong>The trade-off:</strong> some individually suboptimal reallocations in exchange for queue speed. A formula triages thousands; a committee triages dozens. The floor (0.5h) itself was a trade — slightly blunt urgency near the cutoff in exchange for a formula that never panics.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Triage score: order $ × 1 / max(hours-to-cutoff, 0.5) — the floor stops division panic at
+  the deadline
+Worked (§7 M9): $9,000 @ 6h → 1,500 · $2,400 @ 0.8h → 3,000 ← acts first · $20,000 @ 24h →
+  833
+Without the floor a $50 order at 3 minutes outranks everything; with it, urgency saturates,
+  dollars decide
+Record: 99% fill through Cyber Monday. Model: ≈$8M of order value protected</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"When is fast wrong?"</strong></p>
 <p>When the door is one-way. Moving an order is two-way. Changing the promise logic mid-peak is one-way-ish — that one gets staged and tested. Sort decisions by reversibility before sorting them by urgency.</p>
 </div>
 
-<h3 class="st">S15 — Sephora: the migration where the fallback never fired</h3>
+<h3 class="st">S15 — Sephora: the migration where the rollback never fired — and the contingency that did</h3>
 <p class="use"><strong>Backup story:</strong> Deliver Results (if MAIN used), "tight deadline," "high-stakes risk," Highest Standards (the 0.5% gate).</p>
 <div class="say"><div class="label">90 seconds</div>
-<p>"I was handed a legacy warehouse-management migration across two distribution hubs: eight months, fixed, with a twenty-million-dollar product release pipeline landing right behind the go-live date — miss the window and the launch misses its market. The discipline was rehearsal against a published bar. Three full mock migrations on production-scale data, each treated as a real cutover, with a financial reconciliation tolerance of half a percent published before mock one. The mocks came in at 7 percent variance, then 1.8, then 0.3 — and every drop was root-caused fixes, not luck: each mismatch worked as an engineering defect, never a system quirk. We also rehearsed the fallback itself — a full dress rehearsal of going backwards — because an untested rollback plan is a wish. Go-live cleared the gate on schedule; the fallback never fired, which is exactly what a rehearsed fallback is for. Eight months, both hubs, the release pipeline shipped on time. The transferable rule: publish the gate before the first rehearsal, read status from the trend across rehearsals, and rehearse the retreat as seriously as the advance."</p>
+<p>"I was handed a legacy warehouse-management migration across two distribution hubs: eight months, fixed, with a twenty-million-dollar product release pipeline landing right behind the go-live date — miss the window and the launch misses its market. The discipline was rehearsal against a published bar. Three full mock migrations on production-scale data, each treated as a real cutover, with a financial reconciliation tolerance of half a percent published before mock one. The mocks came in at 7 percent variance, then 1.8, then 0.3 — and every drop was root-caused fixes, not luck: each mismatch worked as an engineering defect, never a system quirk. We also rehearsed going backwards — the rollback end to end, and the degraded modes, because an untested contingency is a wish. That paid for itself on cutover morning: about a quarter of the RF scanning guns failed the automated deployment script. No panic, no rollback — we invoked the paper-picking contingency we had rehearsed in the mocks, held the date, and I walked the hardware miss upstairs that afternoon with the cost impact already mapped. Go-live cleared the gate on schedule, about fifty-four thousand dollars under budget; the rollback itself never fired, which is exactly what a rehearsed retreat is for. The transferable rule: publish the gate before the first rehearsal, read status from the trend across rehearsals, and rehearse the retreat as seriously as the advance."</p>
 </div>
 <div class="star">
 <p><span class="stag">S —</span> Legacy WMS migration across two hubs; 8 months fixed, ~$800K budget, $20M release pipeline immediately behind go-live.</p>
 <p><span class="stag">T —</span> I owned the migration program: the mock sequence, the tolerance gate, the fallback rehearsal, the go-live call.</p>
-<p><span class="stag">A —</span> 1. I published the financial reconciliation tolerance — 0.5% — before mock one. 2. I ran three full mocks on production-scale data, each as a real cutover. 3. I treated every mismatch as an engineering defect with a root cause, never a quirk — that's what moved 7% → 1.8% → 0.3%. 4. I rehearsed the rollback end to end, as seriously as the forward path. 5. I read go/no-go from the mock trend against the published gate, not from confidence in the room.</p>
-<p><span class="stag">R —</span> <strong>%:</strong> mock variance 7 → 1.8 → 0.3 vs the 0.5% gate. <strong>$:</strong> $20M pipeline shipped on time; ~$800K budget held. <strong>Time:</strong> 8 months, both hubs, on schedule. <strong>Quality:</strong> fallback rehearsed, never fired. Vs goal: date met without the gate bending.</p>
+<p><span class="stag">A —</span> 1. I published the financial reconciliation tolerance — 0.5% — before mock one. 2. I ran three full mocks on production-scale data, each as a real cutover. 3. I treated every mismatch as an engineering defect with a root cause, never a quirk — that's what moved 7% → 1.8% → 0.3%. 4. I rehearsed the retreat as seriously as the advance: the rollback end to end, and the degraded modes — including paper picking. 5. When ~25% of RF guns failed the deploy script on cutover morning, I invoked the rehearsed paper-pick contingency instead of rolling back, and took the miss to leadership the same afternoon with the cost mapped. 6. I read go/no-go from the mock trend against the published gate, not from confidence in the room.</p>
+<p><span class="stag">R —</span> <strong>%:</strong> mock variance 7 → 1.8 → 0.3 vs the 0.5% gate. <strong>$:</strong> $20M pipeline shipped on time; ~$800K budget, delivered ≈$54K under. <strong>Time:</strong> 8 months, both hubs, on schedule — cutover-morning hardware failure absorbed without slipping. <strong>Quality:</strong> rollback rehearsed, never fired; contingency rehearsed, fired, worked. Vs goal: date met without the gate bending.</p>
 </div>
 <div class="toff"><strong>The trade-off:</strong> three full mocks cost real weeks that a thinner plan would have banked as float. The deciding number: a failed cutover against a $20M pipeline costs the market window; three rehearsals cost schedule contingency. I bought certainty with float.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Gate, published before mock one: |financial reconciliation variance| ≤ 0.5%
+Mock trend: 7% → 1.8% → 0.3% — each drop root-caused defects, not luck; go/no-go read the
+  trend
+Stakes: $20M release pipeline behind go-live ≈ $2.5M/week of delay exposure (my model, $20M
+  ÷ 8 wks)
+Budget ~$800K, delivered ≈$54K under (record). Cutover morning: ~25% of RF guns failed the
+  deploy
+  script → rehearsed paper-pick contingency ran, date held; the rollback itself never fired</pre></div>
+
+
 
 <h3 class="st">S16 — Elementum: the UAT that crashed — the failure story</h3>
 <p class="use"><strong>Primary:</strong> "Tell me about a time you failed." Also: bad decision / error in judgment, Earn Trust (owning it with the sponsor).</p>
@@ -467,6 +623,12 @@
 <p><span class="stag">A —</span> 1. I owned it to the sponsor the same day, no excuse clause in the sentence. 2. I scoped the real failure: concurrency, never tested. 3. I load-tested at realistic concurrent numbers, fixed, re-ran UAT — passed. 4. I changed the permanent artifact: performance criteria in every UAT entrance gate since, verified before any customer logs in.</p>
 <p><span class="stag">R —</span> <strong>Quality:</strong> the re-run passed; the relationship survived on the ownership, not the fix. <strong>Transfer:</strong> the Flexport SV launch ran a 500-containers-in-20-minutes performance test at 99.6% connectivity before business UAT — that gate is this scar, institutionalized. Lesson line: a gate only protects against the failure modes you wrote down — so steal failure modes from other people's postmortems too.</p>
 </div>
+<div class="mth"><h4>The math under it</h4><pre class="math">The missed math: UAT entrance criteria covered function only — concurrency load (dozens of
+simultaneous users) was never tested, so day one WAS the load test, in front of the sponsor
+The repair: load test at expected concurrency became an entrance criterion; re-run passed
+The rule applied since: every gate lists what it does NOT test — at Flexport that instinct
+  became the
+  500-container / 20-minute / 99.6% performance bar cleared before business UAT ever opened</pre></div>
 <div class="qa">
 <p class="q"><strong>"Why didn't you think of performance the first time?"</strong></p>
 <p>Every demo had been one user at a time, and nothing in my experience had made concurrency fail loudly yet. Gates encode scars; I didn't have that one. What changed is that I now interrogate every gate for what it doesn't say, and I import other people's scars on purpose.</p>
@@ -481,6 +643,15 @@
 <p>"At Flexport the automation story was also a people story. The honest version of 'automation went from 60 to 97 percent' is that a team had been typing container updates by hand — rote, error-prone, nobody's best work. We automated the rote part and moved the people to exceptions — the judgment calls a machine can't make — and review prep dropped from thirty hours a week to six, a day and a half of someone's week handed back. Volume grew five-fold and the team didn't burn down absorbing it. That's my standard for automation: it should take the work people hate and leave the work that needs a person."</p>
 </div>
 <div class="toff"><strong>If pressed for a development failure:</strong> an analyst I stretched onto a domain wave too early, without pairing them first — the wave slipped a week and I absorbed it. Since then: stretch assignments come with a named safety net for the first two weeks, visible to them, not secret.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Hours returned: WBR prep 30 → 6 h/wk = 24 h/wk × 48 wk ≈ 1,150 analyst-hours/yr moved from
+copy-paste to root-cause work — ≈$103,680/yr at loaded rates (model; same dollars as MAIN,
+    counted once)
+Super-user economics: a config change via consultant ticket = days of cycle time; via a
+  trained
+  in-house analyst = hours — and the floor knowledge comes free, because she already had it
+Mobility record: operations specialists → configuration analysts; identical bar, new on-ramp</pre></div>
+
+
 <h3 class="st">S18 — Flexport: the SV pilot launch — nine teams, two Go/No-Gos, and waves with graduation criteria</h3>
 <p class="use"><strong>Primary:</strong> launch questions, "a goal you didn't think was achievable," Deliver Results backup. <strong>Backup:</strong> Customer Obsession (wave criteria are customer-experience gates). <em>New story — from the Path to 4PL plan, the pilot roll-out schedule, and the Nov 2021 program status.</em></p>
 <div class="say"><div class="label">90 seconds</div>
@@ -494,6 +665,16 @@
 </div>
 <div class="drill"><h4>Numbers</h4><p>9 teams, ~100 people. Perf test 500 containers / 20 min / 99.6% connectivity. E2E: 100% processed, 86% tracked. Job stories 98.4%. Waves 2 → 4 → 20+ clients; graduation: SLA 90% of the time (auto review ≤24h, manual ≤24h, max 48h in verification), data quality ≥90%, milestone accuracy ≥80%, ≥100 containers engagement, CSAT at par, zero show-stoppers. 45 waitlist.</p></div>
 <div class="toff"><strong>The trade-off:</strong> light-weight onboarding first. We deliberately under-invested in client integrations (APIs, LOAs) in wave one so clients risked little if the product disappointed — and only proposed deeper integration once wave-2 confidence was earned. Slower revenue per client, bought credibility; the 45-name waitlist said the trade worked.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Graduation, written: verification SLA hit 90% of the time (auto ≤24h, manual ≤24h, max 48h);
+data quality ≥90%; milestone accuracy ≥80%; ≥100 containers; CSAT at par; zero show-stoppers
+Performance bar before business UAT: 500 containers / 20 minutes / 99.6% connectivity
+  (record)
+Calibration power: 50 containers/client — a client-specific 5% defect shows up with P = 1 −
+  0.95⁵⁰ ≈ 92%
+Blast radius: waves 2 → 4 → 20+, each expansion earned; demand signal: 45-client waitlist
+  after FORWARD</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"The program was yellow — why did you still launch?"</strong></p>
 <p>Yellow was the schedule, not the evidence. The gate numbers — perf, E2E, job stories, two Go/No-Gos — were green, and the wave structure capped the blast radius at two clients. Launching two clients on passing gates is prudence; launching twenty on confidence would have been the gamble.</p>
@@ -513,6 +694,15 @@
 <p><span class="stag">R —</span> <strong>Time:</strong> mean time to localize blocker bugs cut ~50% (2–4 h → about an hour). <strong>Quality:</strong> the trace ratios became permanent monitors and later the measurement spine of production data-quality testing (S21). <strong>Team:</strong> nine teams aligned on one seam without an escalation.</p>
 </div>
 <div class="toff"><strong>The trade-off:</strong> every team paid a small schedule tax (instrumenting their hop) mid-launch-crunch to kill a recurring tax nobody owned. The sell was arithmetic: one hop's instrumentation cost less than one week of 2–4-hour hunts.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Before: localizing one dead event = 2–4 hours across 6 systems and 9 teams' logs
+Per-hop pass-through: r = events_out / events_in per hop; the first hop with r &lt; 1 names the
+  culprit
+e.g. 1.00 → 1.00 → 0.96 → … : the 4% drop lives at hop 3 — ticket routed same day, no
+    meeting
+Record: MTTR on blocker bugs ≈ −50%. Cost: one ID field per event + ratio arithmetic on a
+  dashboard</pre></div>
+
+
 
 <h3 class="st">S20 — Flexport: monitoring before "customer-ready" — a lesson actually applied</h3>
 <p class="use"><strong>Primary:</strong> Highest Standards backup, "quality improvement on something already working," operational excellence. <em>New story — from the E2E connectivity monitoring doc.</em></p>
@@ -526,6 +716,14 @@
 <p><span class="stag">R —</span> <strong>Quality:</strong> every production connectivity point monitored by the customer-ready date; bug localization became alert-driven. <strong>Time:</strong> the hours-per-bug hunting tax eliminated alongside S19's tracing. <strong>Transfer:</strong> "you can see it break before the customer does" became my standing launch gate — at Sephora it's non-negotiable.</p>
 </div>
 <div class="toff"><strong>The trade-off:</strong> engineer-weeks on plumbing in the exact window when feature pressure was highest. Deciding math: hours-per-bug × bugs-per-week during hypercare dwarfed the instrumentation cost within a month — and the support framework for pilot clients simply didn't work without it.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Detection latency: client-reported failure surfaces in days (their next touchpoint);
+  a seam monitor pages in minutes — the gap between those two is pure trust spent
+Coverage rule: every connectivity point instrumented before "customer-ready" — seams, not
+  just endpoints
+The justifying number: the E2E test ran 100% processed but only 86% tracked end to end —
+that 14-point gap is exactly what silent seam failures look like before a client finds them</pre></div>
+
+
 
 <h3 class="st">S21 — Flexport: the production test — 300 containers, kill switches armed</h3>
 <p class="use"><strong>Primary:</strong> Bias for Action backup (calculated risk), "decide with incomplete information." <strong>Backup:</strong> Frugality (reuse of existing client data), Broad Responsibility (client protection). <em>New story — from the 3PL ingestion one-pager.</em></p>
@@ -539,6 +737,15 @@
 <p><span class="stag">R —</span> <strong>Time:</strong> root-cause discovery pulled forward by months; fixes landed while the pilot was still two-to-six clients. <strong>Quality:</strong> zero client disruption — the fences held. <strong>Customer:</strong> bugs found by us, not by them. Vs goal: the goal was accelerated learning at zero client cost; both halves held.</p>
 </div>
 <div class="toff"><strong>The trade-off:</strong> production risk for learning speed. The deciding asymmetry: a fenced test with tested kill switches risks minutes of a dummy account's data; six organic months risks real customers finding every gap one by one. I took the risk I could reverse over the slow path I couldn't accelerate.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Detection power of 300 containers: a 1% failure mode is seen with P = 1 − 0.99³⁰⁰ ≈ 95%;
+  a 2% mode ≈ 99.8% — big enough to find what matters, small enough to fence
+Marginal cost ≈ $0: existing tracking-client data through a dummy account; staging
+  equivalent = months
+Fences before data: per-system kill switches tested first; goals AND non-goals written;
+  two-way door
+Record: data-quality root causes found months early, zero client impact</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"Testing in production — really?"</strong></p>
 <p>With a dummy account, restricted lanes, tested kill switches, full-hop monitoring, and written non-goals — yes. The dangerous version of this story is the team that tests in production casually; the expensive version is the team that never does and ships bugs to customers for six months. The discipline is the fence, not the abstinence.</p>
@@ -556,6 +763,18 @@
 <p><span class="stag">R —</span> <strong>#:</strong> 15 of 15 work items with a named owner; agreement reached in two meetings. <strong>Quality:</strong> one scoreboard on the seam (shared CTS goal) instead of two orgs measuring each other. <strong>Time:</strong> 2023 planning unblocked for both orgs. Vs goal: no escalation needed — the document was the escalation-prevention.</p>
 </div>
 <div class="toff"><strong>The trade-off:</strong> FFA accepted dependency on Customs' API quality rather than building its own filing path — less control, no duplicated capability. The glue that made dependency acceptable: a shared cost-to-serve goal, so the API owner feels the pain of its own gaps.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Decomposition: 15 work items = 12 export + 3 import; invariant: exactly one accountable
+  owner per item
+The deciding constraint: broker qualification is a legal requirement, not an org preference
+  → ISF
+stays with Customs Platform; FFA takes the other 14 — the one exception is principled, not
+    political
+Seam contract (AMS API): FFA creates/amends/queries; Customs broadcasts status — both sides
+  testable
+Convergence: two meetings (Oct 26 / Nov 3) because the document priced every item before the
+  room met</pre></div>
+
+
 <div class="qa">
 <p class="q"><strong>"What made this converge where others stall?"</strong></p>
 <p>Grain and a test. At the org grain it's politics; at the work-item grain it's fifteen tractable questions, and the domain principle — broker-required vs operational — answered most of them before anyone argued. The two hard ones got API contracts instead of owners-by-force.</p>
@@ -568,6 +787,108 @@
 </div>
 <div class="drill"><h4>Numbers</h4><p>Hop-by-hop sheet: ~474 test rows across sessions; columns per hop (in network / created / subscribed / data back / route / milestone / exception / webhook); defects filed as tickets per hop (eight distinct VIS tickets plus ocean-system tickets in the base sessions). UAT entrance gate: 80% of shipments with minor-to-no issues. Shadow accounts: two named clients side-by-side vs the legacy source.</p></div>
 <div class="toff"><strong>The trade-off:</strong> manual tracing is slow and doesn't scale — that's the point. At the bottom of the pyramid you buy understanding per container, not coverage; the scalable layers above only work because the bottom taught you what "working" looks like per hop.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Ledger: ~474 rows × 7 hop columns ≈ 3,300 hand-verified checks (created → subscribed → data
+  back →
+  route → milestone → exception → webhook) — a column per hop, a row per container
+Routing value: the hop column localizes the failure — 8 tickets filed, each to the right
+  team first time
+UAT entry gate: ≥80% of shipments showing minor-to-no issues before business testers enter
+Pyramid logic: a defect found at the bottom costs a ticket; found by a client, it costs
+  trust</pre></div>
+
+
+
+<h3 class="st">S24 — Sephora: the Utah DC merge — fifteen tracks, one log, and a day-one plan written in units</h3>
+<p class="use"><strong>Primary:</strong> complex-launch / program-execution questions, Deliver Results backup. <strong>Backup:</strong> Dive Deep (the log as the instrument), managing through ambiguity. <em>Same program as S11 (the robots) — never give both to one interviewer; the robots beat belongs to S11, the log and the pacing belong here.</em></p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"Sephora merged two distribution operations — retail and dotcom — into one comingled facility in Utah, on a Blue Yonder WMS upgrade plus Locus robotics, with a zero-customer-impact mandate. Fifteen technical tracks, about sixty stakeholders. My instrument for the whole program was one consolidated issues log — eight hundred thirty-six rows by the end — every issue carrying a severity, an owner, an operation, and a functional area, so triage was a sort, not a meeting. I split the launch into two go-lives on purpose, so each carried exactly one defect class: the dual-inventory conversion first, the comingle second. And go-live week ran on a plan written in units, not adjectives: day one was 280,000 units across forty stores and seven inbound appointments, paced by thresholds, with an end-of-day actuals-versus-plan recap that set the next day's pace. The discovery curve did what discovery curves do — issues identified per week went sixty-eight the week before go-live, one hundred sixty in go-live week, thirty-four the week after — and because every row already had an owner across the fifteen tracks, a hundred-sixty-issue week stayed a process instead of a panic. Both go-lives landed with zero customer disruption. The transferable rule: on a launch that big, the instrument is the management — one log everyone writes to, a plan in units, and an end-of-day read that decides tomorrow."</p>
+</div>
+<div class="star">
+<p><span class="stag">S —</span> Two independent distribution operations (retail + dotcom) merging into one physical comingled pool: BY WMS upgrade + Locus robotics at once, zero-customer-impact mandate, 15 technical tracks, ~60 stakeholders.</p>
+<p><span class="stag">T —</span> I program-managed the merge end to end: the track plan, the consolidated issues log, the two go-lives, the daily go-live cadence.</p>
+<p><span class="stag">A —</span> 1. I ran the program out of one consolidated log — 836 rows by the end — each issue carrying severity (blocker → low), owner, operation, and functional area; triage became a sort. 2. I split the launch into two go-lives so each carried one defect class — dual inventory first, comingle second — so any defect had one cause family, not two. 3. I enforced a zero-then-publish rule at cutover: no item sellable in two places at any instant. 4. I wrote go-live week as a daily plan in units — day one: 280,000 units, 40 stores, 7 appointments — paced by thresholds, with an end-of-day actuals recap deciding the next day's pace. 5. I staffed to the log's own Pareto: Outbound carried 27% of all issues, so Outbound got the senior leads.</p>
+<p><span class="stag">R —</span> <strong>#:</strong> 836 issues logged, 85% closed at my snapshot; blockers + criticals = 53% of the log, every one dispositioned. <strong>Time:</strong> the discovery spike absorbed — 68 → 160 → 34 issues identified per week across go-live. <strong>Quality:</strong> two go-lives, zero customer disruption (record). Vs goal: the mandate was zero customer impact; the instrument is why it held.</p>
+</div>
+<div class="toff"><strong>The trade-off:</strong> two go-lives cost a second cutover weekend and a longer program; one combined launch was faster on paper. The deciding math: a combined launch mixes two defect classes in one log, so every issue triages against two hypotheses instead of one — and in a 160-issue week it is triage time, not fix time, that kills you. I paid a weekend to keep diagnosis univariate.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">The log, as numbers: 836 issues · 164 blockers + 277 criticals = 441 → 53% of the log
+  high-severity
+Closure at snapshot: 714 / 836 = 85% closed; the open tail was owned, aged, and reviewed
+  daily
+Discovery curve (identified/wk): 68 → 160 (go-live wk) → 34 — go-live week ≈ 160/7 ≈ 23 new
+  issues/day,
+each triaged to one of 15 track owners the same day; the week-after drop shows closure kept
+    pace
+Pareto by operation: Outbound 223 (27%) · Retail 168 (20%) · Inbound 113 (14%) — staffing
+  followed it
+Day-one plan in units: 280,000 units / 40 stores / 7 appointments, threshold-paced; EOD
+  actuals vs plan</pre></div>
+
+<div class="qa">
+<p class="q"><strong>"160 issues in one week — isn't that a failed launch?"</strong></p>
+<p>The opposite — it's a launch whose discovery is working. The number to fear is a flat line, which means issues are accumulating on the floor unlogged. What made 160 absorbable: severity discipline (blockers jump the queue), one owner per row, and the end-of-day recap that re-paced the next day. The week after came in at 34 — the curve bent because closure kept pace with discovery.</p>
+<p class="q"><strong>"Why plan the ramp in units instead of orders?"</strong></p>
+<p>Units are what the floor and the robots actually move; orders hide the variance — one order can be one unit or sixty. Thresholds released work so the new system saw a controlled ramp. Same instinct as the robot throttle: blast radius grows only as evidence accumulates.</p>
+</div>
+
+<h3 class="st">S25 — Sephora: seventeen interfaces, two global dashboards, and the $42K I first refused</h3>
+<p class="use"><strong>Primary:</strong> Are Right, A Lot backup — changed position on evidence. <strong>Backup:</strong> Earn Trust (the public reversal), Frugality (fund the study, not the fear), cross-program stakeholder questions.</p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"During the S/4 move in North America, the global reporting program — the layer behind the dashboard worldwide executive leadership reads, and the portal the global brands use — flagged that our migration potentially touched seventeen of its interfaces, and asked for a non-regression testing budget. I said no. 'Potentially impacted' is not a scope, and I don't fund fear. But I didn't leave it at no — I funded a small joint study to turn 'potentially' into a list. The study came back with the honest answer: most of the seventeen didn't matter, but the files feeding the two critical global usages did, and for those a service rupture was not an acceptable outcome. So I reversed myself, on the record, and funded the forty-two-thousand-dollar non-regression option — scoped to exactly the files those usages consume — while holding the second option, twenty-five thousand for mapping-change adaptations, as a contingency we would spend only if a mapping actually changed. The test design was reconciliation, not clicking: for each file, a delta extract from the S/4 environment, validated on count-and-sum invariants — visits per store, turnover and quantities per store, stock quantity and value per storage location — matched store by store against legacy, never just in aggregate. The sequence I'd defend anywhere: refuse the unscoped ask, fund the study, then fund exactly what the study proves — and change your mind in public when the evidence comes back."</p>
+</div>
+<div class="star">
+<p><span class="stag">S —</span> The NORAM S/4 migration potentially impacted 17 interfaces feeding the global reporting layer — two critical usages on top: the worldwide executive dashboard and the global brand portal. The reporting program asked for regression-test budget; the migration program — mine — had initially refused.</p>
+<p><span class="stag">T —</span> I owned the arbitration: the scope, the budget, and a testing strategy both programs would sign.</p>
+<p><span class="stag">A —</span> 1. I refused the unscoped ask — but funded a joint study to convert "potentially impacted" into a named interface list. 2. When the study mapped real risk onto the two critical usages, I reversed the refusal on the record and funded the $42K non-regression option. 3. I held the second option — $25K for mapping-change adaptations — strictly contingent: spent only if S/4 actually changed a mapping, which the strategy assumed it would not. 4. I scoped tests to the MVP file list the critical usages consume and made validation arithmetic: a delta file from S/4 (US + Canada data) per interface, passing on count-and-sum invariants per store or storage location. 5. I sequenced non-regression tests ahead of business UAT, both ahead of the migration's hard dates.</p>
+<p><span class="stag">R —</span> <strong>$:</strong> $42K spent against a risk my first answer would have left naked; the $25K contingency never pre-spent. <strong>Quality:</strong> the two global-critical usages crossed the migration behind named arithmetic gates instead of hope. <strong>Team:</strong> the public reversal bought more credibility with the global program than the original refusal had cost. Vs goal: migration dates held with the global layer protected.</p>
+</div>
+<div class="toff"><strong>The trade-off:</strong> $42K and calendar spent on tests that, if everything went perfectly, would "find nothing" — against the migration's own budget discipline. The deciding asymmetry: a wrong no costs a regression on a global-critical asset; a wrong yes costs $42K. What I refused to pay for was the unscoped version — fear is not a line item; a file list is.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">Exposure scoping: 17 candidate interfaces → the study mapped them to usages; the MVP test
+  list is
+the union of files feeding the two critical usages (6 core files + the supply-chain file
+    family)
+Option pricing: study first (small) → Option 1, $42K non-regression (funded) + Option 2,
+  $25K
+  adaptations (contingent — only if a mapping actually changes; none were expected)
+The compare that decided it: $42K vs a silent regression on the dashboard worldwide
+  leadership
+steers by — that cost isn't dollars, it's every decision made on wrong numbers until noticed
+Reconciliation design per file: row counts catch drops · sums catch double-joins · per-store
+matching catches mapping shifts that cancel in the aggregate — three checks, each owning a
+    failure mode</pre></div>
+
+<div class="qa">
+<p class="q"><strong>"Weren't you simply wrong the first time? Why tell this story?"</strong></p>
+<p>The mechanism is the point. The first no was right on the information available — an unscoped ask with no interface list. What made the sequence work is that the no shipped with a funded study, so being wrong was cheap and fast to discover. I'd rather run that loop — refuse, study, reverse on evidence — than either reflex: funding every fear, or defending a refusal out of pride.</p>
+<p class="q"><strong>"How do count-and-sum checks catch a real regression?"</strong></p>
+<p>A migration regression almost never invents plausible data — it drops rows, doubles rows through a bad join, or shifts a mapping. Counts catch drops, sums catch doubles, and per-store (not aggregate) matching catches shifts that cancel in the total. Three cheap checks per file, and the failure mode each one owns is named before the test runs.</p>
+</div>
+
+<h3 class="st">S26 — Flexport: the lever map — input metrics the team controls, output metrics leadership reads</h3>
+<p class="use"><strong>Primary:</strong> metric-design questions — "design a WBR," "how do you pick metrics," "how do you know a metric is right." <strong>Backup:</strong> Dive Deep third. <em>Same program as MAIN — MAIN tells the WBR's creation, this tells its design rules. Never both to one interviewer.</em></p>
+<div class="say"><div class="label">90 seconds</div>
+<p>"Everyone says they run a weekly business review; the design choices are where they differ, so let me give you mine as rules. Two kinds of metrics, never mixed in one table: output metrics — what leadership and customers care about, the automation rate, accuracy, cost to serve — and input metrics, the things a team can actually move this week: sources onboarded, formats mapped, exception queues drained. Every input line carried a roll-up column naming which output it was supposed to drive, and a single named owner — a name, not a team. The week ran Monday to Sunday, the pack showed six weeks plus a monthly roll-up, and every delta was a relative percentage — B minus A over A — with one coloring rule: favorable beyond five percent green, unfavorable beyond five percent red, hard floors red regardless of trend. Below five percent is noise, and the review refused to discuss noise. The Monday loop: measure, variance, decompose the red output into its factors, root-cause the biggest mover, act with an owner and a date — and the step most reviews skip: verify. If an input moved and its output didn't follow, the lever map itself is wrong, and we re-examined the hypothesis instead of congratulating the input. That discipline is why the week the weekly grain crashed to 21.9 percent, the decomposition named one carrier's format change the same day — every factor already had a line and an owner. A review isn't a report; it's a causal model you test weekly."</p>
+</div>
+<div class="star">
+<p><span class="stag">S —</span> The WBR (MAIN) needed an architecture, not a template: seven output metrics, many contributing teams, a VP reading it weekly — and no agreed rules for what a metric line owed the room.</p>
+<p><span class="stag">T —</span> I owned the design rules: the metric taxonomy, the thresholds, and the weekly loop.</p>
+<p><span class="stag">A —</span> 1. I separated input metrics (team-controllable, leading) from output metrics (business-facing, lagging) — two blocks, never mixed. 2. I gave every input line a roll-up column naming the output(s) it drives and one named owner. 3. I fixed the conventions: Monday–Sunday week, six weekly columns plus monthly roll-up, deltas as relative % = (B−A)/A. 4. I set one coloring rule — ±5% relative is signal, below is noise the review won't discuss; policy floors red regardless of trend. 5. I ran the six-step loop ending in verify: input moved but output didn't ⇒ the roll-up hypothesis is wrong — fix the map, not blame the team. 6. Every tab ended with Call Outs and Definitions, so the pack read correctly without me in the room.</p>
+<p><span class="stag">R —</span> <strong>Time:</strong> red weeks decomposed in minutes — the 21.9% week traced to one carrier format change same-day, because the factor already had a line and an owner. <strong>Quality:</strong> the conventions became the template other teams copied (and after my miss, the integrity rules traveled with it). <strong>#:</strong> the structure was mechanical enough to automate — that is what took prep from 30 to 6 hours a week. Vs goal: a VP steered on the pack weekly for a year.</p>
+</div>
+<div class="toff"><strong>The trade-off:</strong> a small metric set with named owners versus the comprehensive dashboard. A dashboard that shows everything decides nothing. I capped the output block at the seven metrics and priced every addition at a named owner plus a falsifiable roll-up hypothesis — so additions were rare and deliberate. Gave up: coverage breadth. Rule left behind: no line without an owner and a roll-up it can be wrong about.</div>
+<div class="mth"><h4>The math under it</h4><pre class="math">WoW delta, every line: relative % = (B − A) / A · green favorable &gt; +5% · red unfavorable
+  &gt; 5% · policy floors red regardless of trend
+Noise floor: stable-period weekly mix alone swings the grain a few points — the 5% threshold
+  sits above mix noise, below real moves (derivable, not sacred)
+Red-week decomposition: output = product/sum of named factors → compute each factor's WoW →
+  biggest mover names the lever and the owner (40.2% → 21.9% week: one carrier format change)
+Verify rule: Δinput ≠ 0 while Δoutput ≈ 0 past the agreed lag ⇒ the roll-up hypothesis is
+  wrong — re-examine the map, not the team</pre></div>
+<div class="qa">
+<p class="q"><strong>"Why relative percent instead of absolute deltas?"</strong></p>
+<p>The outputs live on different scales — a rate, a dollar figure, an hour count — and relative deltas make one coloring rule possible across all of them. The honest cost: relative % explodes near zero, so near-zero lines carry absolute floors instead. The rule bends where the math says it must, and the bend is written down.</p>
+<p class="q"><strong>"How did you pick five percent?"</strong></p>
+<p>From the metric's own noise — week-over-week swing on a stable period, driven by mix, not performance. Set the threshold below the noise floor and the review drowns in false reds; set it too high and you're blind. Five percent cleared our mix noise with room to spare. I'd rather defend the derivation than the number — it re-derives per metric.</p>
+</div>
 
 <h2 class="break">6. The cheat sheet — every Leadership Principle: primary, backup, third</h2>
 <p class="note">The <strong>primary</strong> is your opener when an interviewer asks the LP's generic version ("tell me about a time that shows X"). The question-by-question bank in §9–10 deliberately spreads across backups and thirds so five interviewers never hear a repeat — so when a specific bank question maps to a backup, that's by design, not an error. If the generic ask comes, lead with the primary here.</p>
@@ -577,17 +898,17 @@
     <tr><td>Customer Obsession</td><td><strong>S4</strong> marketplace promise, risk-sized buffers</td><td>S14 Cyber Monday</td><td>S18 wave criteria; S2 zero oversell</td></tr>
     <tr><td>Ownership</td><td><strong>S2</strong> one definition, nobody reporting to me</td><td>MAIN whole program</td><td>S22 owning the seam; S19 the seam nobody owned</td></tr>
     <tr><td>Invent and Simplify</td><td><strong>S8</strong> lane master beats a solver</td><td>S19 trace ID</td><td>S13 LLM agent; S5 one supply view</td></tr>
-    <tr><td>Are Right, A Lot</td><td><strong>S9</strong> apples to apples</td><td>S3 measured vs brochure</td><td>S21 decision doc in the open</td></tr>
+    <tr><td>Are Right, A Lot</td><td><strong>S9</strong> apples to apples</td><td>S25 refused, studied, reversed on evidence</td><td>S3 measured vs brochure; S21 decision doc in the open</td></tr>
     <tr><td>Learn and Be Curious</td><td><strong>S6</strong> learned CM data by math</td><td>S13 learned LLM tooling solo</td><td>S19 found the seam in the logs myself</td></tr>
     <tr><td>Hire and Develop the Best</td><td><strong>S17a</strong> analyst waves, super-users</td><td>S18 UAT users grown into testers</td><td>—</td></tr>
     <tr><td>Insist on the Highest Standards</td><td><strong>S11</strong> robots held at 94 vs 98</td><td>S20 monitoring = customer-ready</td><td>S7 cohort held twice; S15 0.5% gate</td></tr>
     <tr><td>Think Big</td><td><strong>S12</strong> flipped the 18-month roadmap</td><td>S10 deliberate retirement</td><td>S18 path-to-4PL vision</td></tr>
     <tr><td>Bias for Action</td><td><strong>S14</strong> promise-at-risk triage</td><td>S21 production test, fenced</td><td>S15 rehearsed fallback enables speed</td></tr>
-    <tr><td>Frugality</td><td><strong>S13</strong> $25 → $0.40</td><td>S12 $5M avoided by sequencing</td><td>S21 reused existing client data</td></tr>
+    <tr><td>Frugality</td><td><strong>S13</strong> $25 → $0.40</td><td>S12 $5M avoided by sequencing</td><td>S21 reused existing client data; S25 fund the study, not the fear</td></tr>
     <tr><td>Earn Trust</td><td><strong>S5</strong> signed supply definition, two-signal release</td><td>S22 fifteen items, one owner each</td><td>S16 owning the failure; S9 dignified retirement</td></tr>
-    <tr><td>Dive Deep</td><td><strong>S3</strong> 400 shipments ranked, p99 34 vs 18</td><td>S23 hop-by-hop trace</td><td>S6 phantom by math; MAIN honest denominator</td></tr>
+    <tr><td>Dive Deep</td><td><strong>S3</strong> 400 shipments ranked, p99 34 vs 18</td><td>S23 hop-by-hop trace</td><td>S6 phantom by math; MAIN honest denominator; S24 the 836-row log; S26 the lever map</td></tr>
     <tr><td>Have Backbone; Disagree &amp; Commit</td><td><strong>S7</strong> 597 vs 1,000, two levels up</td><td>S11 held the gate</td><td>S2 refused early build</td></tr>
-    <tr><td>Deliver Results</td><td><strong>MAIN</strong> 60→97%, $0.66→$0.03, 7→68</td><td>S18 the launch itself</td><td>S15 eight months, gate cleared</td></tr>
+    <tr><td>Deliver Results</td><td><strong>MAIN</strong> 60→97%, $0.66→$0.03, 7→68</td><td>S18 the launch itself</td><td>S15 eight months, gate cleared; S24 two go-lives, one log</td></tr>
     <tr><td>Strive to be Earth's Best Employer</td><td><strong>S17b</strong> rote → judgment, 30→6 hours</td><td>S11 throttle protected the floor</td><td>—</td></tr>
     <tr><td>Success &amp; Scale Bring Broad Responsibility</td><td><strong>S10</strong> 79 customers, destination + date</td><td>S7 portal floor for small carriers</td><td>S21 client-protection fences</td></tr>
   </tbody>
@@ -681,6 +1002,19 @@
   </tbody>
 </table>
 <p><strong>Network result, my model on the real lane data:</strong> uniform 1.10-day pad → <strong>7.6%</strong> of orders eligible for a fast promise at <strong>95.8%</strong> overall reliability; risk-proportional k·σ → <strong>39.6%</strong> fast at <strong>95.0%</strong>. Same physics, ~5× the fast-promise share, one point of reliability — a presented leadership choice. One dial (k), re-solvable in a day.</p>
+<p><strong>The full four-policy frontier</strong> (12 illustrative lane cohorts, ~1M orders/wk; profit = margin − breach cost × misses; all model):</p>
+<pre class="math">Policy                                        Accuracy   Avg promise   Fast ≤2d   Weekly profit
+A  naive uniform buffer (1.10d everywhere)      95.8%       3.09 d        7.6%        $5.69M
+B  risk-proportional, one dial (b = 1.645σ)     95.0%       2.75 d       39.6%        $5.94M
+C  min promise-days at A's accuracy (analytic)  95.8%       2.81 d       22.4%        $6.00M
+D  profit optimum (breach ≈ $12, margin $6.50)  97.8%       2.93 d       22.9%        $6.07M
+B vs A: same total protection, reallocated by risk → +32 pts fast share, +$250K/wk — free lunch.
+D vs floor: the profit optimum holds MORE accuracy than the 95% floor — when that happens,
+  either the floor or the breach-cost estimate is wrong; finding out which is a leadership
+  decision, not a data-science one.
+Equimarginal check at any optimum: φ(b/σ)/σ equal across lanes — the last buffer-day on
+  every lane buys the same accuracy. Peak is a different regime: σ inflates ~1.45× in Q4 →
+  re-solve k in October, before Black Friday, not during.</pre>
 
 <h3>M4 — Promise yield: the output metric and its tree</h3>
 <pre class="math">Promise yield  =  share of ALL orders that get a fast promise AND arrive by it
@@ -1253,6 +1587,13 @@ Decomposition is not cutting the problem into pieces; it is finding the
     <tr><td>Reliability mid-20s → 90% vs 80% north star</td><td>Record</td><td>After source additions — "real work, not normalization math."</td></tr>
     <tr><td>+15% processing efficiency (comingled DC)</td><td>Record</td><td>Zero customer disruption across two go-lives.</td></tr>
     <tr><td>Mocks 7% → 1.8% → 0.3% vs 0.5% gate</td><td>Record</td><td>Gate published before mock one.</td></tr>
+    <tr><td>WMS migration: ~$800K budget, ≈$54K under; $20M pipeline behind it</td><td>Record + model</td><td>Budget and under-run are records; "≈$2.5M/week of delay exposure" is my model ($20M over 8 weeks).</td></tr>
+    <tr><td>Cutover morning: ~25% of RF guns failed the deploy script</td><td>Record</td><td>Pair it with the rehearsed paper-pick contingency that held the date (S15).</td></tr>
+    <tr><td>UDC log: 836 issues, 53% blocker/critical, 85% closed; 68 → 160 → 34 per week</td><td>Record</td><td>From the consolidated log. Same program as the robots — never both to one interviewer.</td></tr>
+    <tr><td>Day-one go-live plan: 280,000 units / 40 stores / 7 appointments</td><td>Record</td><td>From the daily plan; actuals recapped end-of-day set the next day's pace.</td></tr>
+    <tr><td>Regression arbitration: 17 interfaces; $42K funded + $25K contingent</td><td>Record</td><td>Say the sequence — refused unscoped, funded the study, reversed on evidence. Never price the avoided regression.</td></tr>
+    <tr><td>WBR conventions: Mon–Sun week, WoW = (B−A)/A, red/green at ±5% relative</td><td>Record</td><td>Design choices of the instrument — quote as rules, with the noise-floor derivation if probed.</td></tr>
+    <tr><td>Four-policy buffer frontier: 7.6% → 39.6% fast; profit $5.69M → $6.07M/wk</td><td>Model</td><td>"Illustrative cohorts — mechanics exact, proportions modeled on the lane data."</td></tr>
     <tr><td>Roadmap flip: −66%, ≈$5M, month 6 vs 18</td><td>Model</td><td>"From the re-costing we took to leadership."</td></tr>
     <tr><td>LLM agent $25 → $0.40 per task</td><td>Model</td><td>Loaded rates; human-in-the-loop on every output.</td></tr>
     <tr><td>99% fill; ≈$8M protected (Cyber Monday)</td><td>Record / model</td><td>Fill is record; $8M is modeled protected value.</td></tr>
@@ -1265,13 +1606,14 @@ Decomposition is not cutting the problem into pieces; it is finding the
 <ul>
   <li class="trap"><strong>Never "50×."</strong> Customers 7 → 68. Volume 5× — two thousand to ten thousand containers a week. Say the real numbers.</li>
   <li class="trap"><strong>Never add the $1.5M (lane program) to the $2M (safety-stock release).</strong> Two programs. One interviewer will test whether your dollars reconcile across stories.</li>
-  <li class="trap"><strong>Never repeat a story across interviewers.</strong> They compare notes. The tracker in §3 exists for exactly this; S9/S10, MAIN/S17b, and S18/S21/S23 (all pilot-era) are the dangerous clusters.</li>
+  <li class="trap"><strong>Never repeat a story across interviewers.</strong> They compare notes. The tracker in §3 exists for exactly this; S9/S10, MAIN/S17b, MAIN/S26 (the WBR and its own anatomy), S11/S24 (one Utah DC program), and S18/S21/S23 (all pilot-era) are the dangerous clusters.</li>
+  <li class="trap"><strong>Never price the avoided regression (S25).</strong> The $42K and $25K are budget records; the value of the executive dashboard <em>not</em> breaking is deliberately unpriced. Inventing a dollar for it under pressure is exactly the modeled-as-audited trap in reverse.</li>
   <li class="trap"><strong>Never present a modeled dollar as an audited one.</strong> The phrase "my model, Finance's rates" costs nothing and buys credibility on every other number.</li>
   <li class="trap"><strong>"Six sites," never "six NA sites."</strong> No cohort sizes on the EDI story. No tolerance value on the BOM reconciliation. No dollars on the carrier-bid award. If it isn't in the record, don't invent it under pressure.</li>
   <li class="trap"><strong>Pilot numbers are pilot numbers.</strong> 500 containers / 99.6% was a perf test; 45 was a waitlist, not revenue; 86% tracked was the <em>gap</em> that justified monitoring. Claiming any of them as steady-state production results is the kind of inflation a Bar Raiser is listening for.</li>
   <li class="trap"><strong>Keep the attribution you've already given.</strong> The hop-by-hop test design credits a test lead (§9 Are Right A Lot Q6, §10 Learn &amp; Be Curious Q6); the trace ID is yours. Swapping those under pressure reads as either theft or inconsistency.</li>
   <li class="trap"><strong>Don't claim a DEI program you didn't run.</strong> The honest claim is mobility equity — the super-user pipeline — with the scope said out loud. The overclaim is worse than the modest truth.</li>
-  <li class="trap"><strong>Don't lead planning questions with the omni DC.</strong> It's an execution story (S11); the planning stories are Elementum and S/4. Use each where it's strong.</li>
+  <li class="trap"><strong>Don't lead planning questions with the omni DC.</strong> It's an execution program (S11 and S24); the planning stories are Elementum and S/4. Use each where it's strong.</li>
   <li class="trap"><strong>"We" hides you.</strong> Every action sentence starts with "I" and names an artifact — the gate, the rule, the table, the memo. Credit the team in the result, not in the actions.</li>
   <li class="trap"><strong>Stop at 90 seconds.</strong> The interviewer's probes are how they fill their worksheet; a five-minute monologue reads as unstructured, not thorough.</li>
   <li class="trap"><strong>Don't guess Amazon vocabulary.</strong> If they say a mechanism you don't know, ask what it owns. Asking reads as curiosity; guessing reads as bluffing.</li>
