@@ -56,6 +56,9 @@
   code { font-family: "Liberation Mono", monospace; font-size: 9.3pt; background: #f1efe9; padding: 0 3px; }
   pre { font-family: "Liberation Mono", monospace; font-size: 9pt; background: #f1efe9; padding: 8px 10px; margin: 4px 0 10px; white-space: pre-wrap; page-break-inside: avoid; }
   pre.math { font-size: 8.6pt; line-height: 1.32; }
+  table.drv { font-size: 8.8pt; }
+  table.drv td, table.drv th { padding: 3px 6px 3px 0; }
+  table.drv td.f { font-family: "Liberation Mono", monospace; font-size: 8.4pt; }
   .phz { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
   .phz li { margin: 0 0 4px; }
   .phz .pb { font-weight: 700; color: #1a2744; }
@@ -68,7 +71,7 @@
 
 <div class="meta">
   <div><strong>You.</strong> Rajesh Rishiyur Chandrasekaran</div>
-  <div><strong>What this document is.</strong> The GFiber MASTER packet v8 (Sep 13, 2026 — 255 pages) transformed for the Amazon L6 SCM loop: the same eighteen stories in the same uniform shape — <strong>60-second pitch → SITUATION / TASK (the full problem space: what and why, when, scope, scale, and the metrics to improve with their baselines) → ACTION (the solution space: five gated phases, each with entry · delivered · exit bar, plus how it was done and who was influenced, in prose) → RESULTS (the Situation metrics, improved: $ · # · % · time · customer · quality, tied back to the stated baselines) → one PROBING section per story (challenge Q&amp;A, the phase deep-probe bank, the business-impact model with KPI tree, numbers table and math, the full step-by-step derivation, the solution flow (the system &amp; data map), sensitivity (low/base/high), the spoken total-impact statement and the full "if challenged" answers)</strong> — mapped to Amazon's sixteen Leadership Principles instead of a JD. §3 converts the twelve system-design prompts into design engagements told from the Elementum years, each keeping its stocks-and-flows map, first-principles invariants, solution design, system map, math and deep-dive probes. §4 is the numbers ledger — one canonical value per metric — and the never-say list. <strong>This document is self-contained: nothing requires going back to the source packet.</strong></div>
+  <div><strong>What this document is.</strong> The GFiber MASTER packet v8 (Sep 13, 2026 — 255 pages) transformed for the Amazon L6 SCM loop: the same eighteen stories in the same uniform shape — <strong>60-second pitch → SITUATION / TASK (the full problem space: what and why, when, scope, scale, and the metrics to improve with their baselines) → ACTION (the solution space: five gated phases, each with entry · delivered · exit bar, plus how it was done and who was influenced, in prose) → RESULTS (the Situation metrics, improved: $ · # · % · time · customer · quality, tied back to the stated baselines) → one PROBING section per story (challenge Q&amp;A, the phase deep-probe bank, the business-impact model with KPI tree and numbers table, the step-by-step derivation tables — how the metric improved, then how the dollars follow — the solution flow (the system &amp; data map), sensitivity (low/base/high), the spoken total-impact statement and the full "if challenged" answers)</strong> — mapped to Amazon's sixteen Leadership Principles instead of a JD. §3 converts the twelve system-design prompts into design engagements told from the Elementum years, each keeping its stocks-and-flows map, first-principles invariants, solution design, system map, math and deep-dive probes. §4 is the numbers ledger — one canonical value per metric — and the never-say list. <strong>This document is self-contained: nothing requires going back to the source packet.</strong></div>
   <div><strong>Relation to the loop packet.</strong> This is the depth book; <em>amazon-l6-scm-loop-packet.pdf</em> is the loop-mechanics book (interviewer tracker, AIQB 128-question bank, writing-exercise defense, video execution). The crosswalk — including the places where the two documents currently disagree — is in §1.3. Resolve those conflicts before the loop; never carry both versions of a number into the same building.</div>
   <div><strong>Voice, held everywhere.</strong> TPM / SAP integration program lead. "I" throughout. SAP teams and configurators built to the signed spec; I owned the data contract, the definitions, the gates, the signatures and the calls. Never claim to configure or deploy SAP. The only platform personally configured: Manhattan DOM. The MIT Supply Chain MicroMasters + Supply Chain Network Design certificate is an acquired toolkit, labeled wherever it appears.</div>
   <div><strong>Basis labels, used on every number.</strong> <em>record</em> — in the program record, say it flat · <em>user anchor</em> — a figure a named stakeholder stated, attributed · <em>industry benchmark</em> — a published rate, named · <em>modeled</em> — computed from stated inputs; say "modeled" in the same breath, never promote it to record.</div>
@@ -163,7 +166,7 @@
 </table>
 <p class="sdc"><strong>Rule:</strong> inside this packet, every number follows the §4 ledger (carried from the GFiber v8 record, kept as-is per the transform instruction). Where §1.3 marks a conflict, do not speak either version until you have decided which document is right — then fix the other one. <strong>Code collision warning:</strong> the two documents number stories independently — "S18" here is the WMS migration, "S18" in the loop packet is the pilot launch; always say which packet's code you mean.</p>
 <h2 class="break">2. The eighteen stories — pitch, gated STAR, phase probes, and the impact math</h2>
-<p class="note">Every story now follows the Amazon worksheet shape: <strong>60-second pitch</strong> (say first, unprompted; ends on the primary metric) → <strong>SITUATION / TASK</strong> as the full problem space — what and why, when, the initial scope, the scale, the challenges, the risks if nothing happened, and the metrics to improve with their baseline values → <strong>ACTION</strong> as the solution space — five gated phases (entry · delivered · exit) plus how it was done and who was influenced, in prose → <strong>RESULTS</strong> — the Situation metrics, improved, quantified as $ · # · % · time · customer · quality and tied back to the stated baselines → one <strong>PROBING</strong> section per story: the challenge and results Q&amp;A, the <strong>PHASE DEEP-PROBE BANK</strong> (answer the phase asked, then stop), the <strong>business-impact model</strong> (KPI tree, numbers table, the math line by line), the full derivation, the solution flow, the sensitivity table, the spoken total-impact statement and the full "if challenged" answers. The GFiber fit line is replaced by the Amazon LP mapping and a "where this lands at Amazon" sentence. Dates and counts inside each story are the program record; anything labeled illustrative exists only to make the math complete.</p>
+<p class="note">Every story now follows the Amazon worksheet shape: <strong>60-second pitch</strong> (say first, unprompted; ends on the primary metric) → <strong>SITUATION / TASK</strong> as the full problem space — what and why, when, the initial scope, the scale, the challenges, the risks if nothing happened, and the metrics to improve with their baseline values → <strong>ACTION</strong> as the solution space — five gated phases (entry · delivered · exit) plus how it was done and who was influenced, in prose → <strong>RESULTS</strong> — the Situation metrics, improved, quantified as $ · # · % · time · customer · quality and tied back to the stated baselines → one <strong>PROBING</strong> section per story: the challenge and results Q&amp;A, the <strong>PHASE DEEP-PROBE BANK</strong> (answer the phase asked, then stop), the <strong>business-impact model</strong> (KPI tree, numbers table), the <strong>step-by-step derivation tables</strong> — how the metric improved, then how the dollars follow — the solution flow, the sensitivity table, the spoken total-impact statement and the full "if challenged" answers. The GFiber fit line is replaced by the Amazon LP mapping and a "where this lands at Amazon" sentence. Dates and counts inside each story are the program record; anything labeled illustrative exists only to make the math complete.</p>
 
 <h3 class="st first">S1 — Sephora S/4HANA ↔ ISM: one signed meaning of "available" across Store, Retail DC and Dotcom DC — policy before configuration</h3>
 <p class="use"><strong>Amazon LPs:</strong> Earn Trust (backup) · Ownership (backup) · Think Big (third — the book-of-record migration) · Broad Responsibility (oversell is a customer harm). <strong>Crosswalk:</strong> loop packet S2 — same program, consistent. <strong>Recency:</strong> current role.</p>
@@ -252,57 +255,39 @@
 <tr><td>Book accuracy → shrink · time-to-market</td><td>—</td><td>—</td><td>≈$0.3M + $0.2M</td><td>modeled upside, not in headline</td></tr>
 </tbody>
 </table>
-<pre class="math">Oversell avoided = 30M orders x 0.10% = 30,000 incidents/yr
-  (benchmark: e-com inventory cancels run 1.5-3%; only 0.05-0.25% attributed to the
-   three-definitions problem)
-Cost/incident = CS contact $6 + refund handling $4 + lost margin ~$19 + goodwill ~$1 = ~$30
-Oversell $ = 30,000 x $30 = $0.9M/yr · Recon labor = (4-1) FTE x $110K = $0.33M/yr
-Change premium = 40 x 60 h x $125 = $0.3M/yr
-Headline (base) = $1.0M + $0.9M + $0.33M + $0.3M = ~$2.5M/yr
-Sensitivity: low ~$1.7M · base ~$2.5M · high ~$5.2M (rate 0.05-0.25%, $25-40, FTE 2-4)</pre>
 <p><strong>If challenged.</strong> <em>"How do you know it was a tenth of a percent?"</em> — "I don't, to the decimal. The record says incidents were recurring and went to zero; the rate is a benchmark set deliberately low — a twentieth of a typical e-commerce inventory-cancel rate. First thing I'd measure: the 'item unavailable after order' cancel-reason code for the twelve months before January." <em>"Does the $1M already include your change premium?"</em> — "It might. If enhancement labor sits inside it, I drop the row and the headline is about $2.2M. I'd split the MCS cost center into run vs change tickets for one fiscal year." <em>"Three FTE sounds like a guess."</em> — "It's a benchmark count. What's in the record is the mechanism: reconciliation moved from argument to a daily drift report with tolerance zero and a named owner. I'd size it with a two-week time study — how I sized the Austria effort at Elementum."</p>
 </div>
 
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Supply basis (asymmetric lower-of-two). For SKU i at node n: OOB_in = S4_Avail_in −
-  WMS_OnHand_in (out-of-balance; + = book above floor, − = floor above book) Basis_in =
-  min(S4_Avail_in, WMS_OnHand_in) — a positive OOB reduces supply; a negative OOB is never
-  promised until S/4 books it.
-Available-for-sale. AFS_in = Basis_in − PickRes_in − EcomPick_in − EcomPack_in − SNB_in , where
-  every subtrahend is a committed-or-sold-not-posted bucket. Merchandise Reserve and Lost/Found
-  are outside S4_Avail by construction, so they never appear in the subtraction — no
-  double-subtract path exists.
-Financial On-Hand (DC). FOH_n = Avail_n + MerchRes_n + LostFound_n (physical truth for Finance;
-  AFS is the promising truth for channels).
-Real-time decrement (the ISM contract). Between two S/4 postings, ISM keeps AFS current from
-  events, never from re-reading the book: AFS_in(t) = AFS_in(t_0) − Σ_{e ∈ (t_0, t]} Δ_e , where
-  each event e (OMS commit / pick / pack / cancel, POS sale line) maps to exactly one bucket
-  delta by the decision-rules table. Every event carries an idempotency key ( source ×
-  OrderLine- or-Txn × line × event type ); a replayed key is a no-op, a reversal must reference
-  its original, so Σ Δ_e is the same whether an event arrives once or five times. Per-key
-  ordering is per SKU × node, so a pick can never be applied before its commit.
-Reconciliation (daily, tolerance 0). Drift_in = ISM.S4_Avail_in − MB52_in per SKU × SLoc at the
-  daily snapshot; Drift ≠ 0 is a Sev, not a planning variance. Month-end: Σ_n FOH_n ties to MB5L
-  quantity and value. SNB is the reconciling bucket between the two books: S4_Avail_in(after
-  posting) = S4_Avail_in(before) − SNB_matched_in , so ISM decrements SNB on the matched
-  aggregate posting only (S3) and SNB can never go negative.
-Worked example (consistent with v105 Part 4 Ex. 1). S/4 Available 1,000 units; WMS on-hand 980 →
-  OOB = +20 → Basis = 980. Picking Reserve 200, Ecom Pick 120, Ecom Pack 60, SNB 40 (Σ = 420) →
-  AFS = 980 − 420 = 560. Flip the floor: WMS 1,020 → OOB = −20 → Basis = min(1,000, 1,020) =
-  1,000 → AFS = 580, not 600 — the 20-unit surplus stays unpromised. Decrement example
-  (illustrative): a store rings 3 units at 10:02 → SNB 40 → 43, AFS 560 → 557 within the 60 s
-  publish budget; the POS feed replays the same transaction at 10:04 → same key, no-op, AFS
-  stays 557; the aggregate posting lands in S/4 overnight for 43 units → SNB 43 → 0, S4_Avail
-  1,000 → 957, and the next-morning drift check reads 957 − MB52 957 = 0 . Sanity: AFS ≤ Basis ≤
-  both books; never a negative published number (Negative AFS is a report, not a value channels
-  read). The store-node walk is the same with Basis = S4_Avail (no WMS floor) and SNB as the
-  only sold-not-posted bucket; the DC walks (Retail DC, Dotcom DC) carry the WMS floor and the
-  OMS buckets. Comingle pool partitioning — the nine-reserve priority walk — is S2&#x27;s math.
-Oversell exposure (why asymmetry). Expected oversell units if surplus were promised: E[oversell]
-  = Σ_i P(WMS surplus is phantom) × surplus_i . With no measured phantom rate at design time,
-  the policy sets that probability to 1 (promise nothing unbooked) and lets the Negative AFS /
-  AFS Correction screens chase the under-sell — a priced choice: under-sell is a planning
-  variance; over-sell is a customer defect.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Oversell incidents (baseline)</td><td class="f">—</td><td>recurring across three node types; three working definitions of “available” (record)</td><td>recurring</td></tr>
+<tr><td>2</td><td>Supply basis per SKU × node</td><td class="f">Basis = min(S4_Avail, WMS_OnHand)</td><td>asymmetric lower-of-two; a positive out-of-balance reduces supply (record design)</td><td>one basis</td></tr>
+<tr><td>3</td><td>Available-for-sale</td><td class="f">AFS = Basis − PickRes − EcomPick − EcomPack − SNB</td><td>every subtrahend committed-or-sold-not-posted; Merch Reserve and Lost/Found outside S4_Avail — no double-subtract path (record design)</td><td>one AFS per node per channel</td></tr>
+<tr><td>4</td><td>Worked walk — book above floor</td><td class="f">OOB = 1,000 − 980 = +20 → Basis = 980</td><td>S/4 Available 1,000; WMS on-hand 980; buckets Σ = 420 (illustrative, v105 Ex. 1)</td><td>AFS = 980 − 420 = 560</td></tr>
+<tr><td>5</td><td>Worked walk — floor above book</td><td class="f">Basis = min(1,000, 1,020) = 1,000</td><td>WMS 1,020 → OOB = −20; the 20-unit surplus stays unpromised (record design)</td><td>AFS = 580, not 600</td></tr>
+<tr><td>6</td><td>Real-time decrement</td><td class="f">AFS(t) = AFS(t₀) − Σ Δe, idempotent keys</td><td>store rings 3 units → SNB 40 → 43 (illustrative); replayed key = no-op</td><td>AFS 560 → 557; replay: stays 557</td></tr>
+<tr><td>7</td><td>Daily reconciliation</td><td class="f">Drift = ISM.S4_Avail − MB52; tolerance 0</td><td>overnight posting: SNB 43 → 0, S4_Avail 1,000 → 957 (illustrative)</td><td>drift 957 − 957 = 0</td></tr>
+<tr><td>8</td><td>Oversell incidents (after)</td><td class="f">—</td><td>one signed AFS; drift = 0 SKUs on consecutive days at hypercare exit (record)</td><td>zero through two go-lives</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>MCS run / support cost retired</td><td class="f">—</td><td>≈$1.0M/yr (user anchor)</td><td>$1.0M/yr</td></tr>
+<tr><td>2</td><td>Oversell incidents avoided</td><td class="f">30M × 0.10% = 30,000/yr</td><td>orders 30M (illustrative); rate 0.10% (benchmark 0.05–0.25%; record movement: → zero)</td><td>30,000 incidents/yr</td></tr>
+<tr><td>3</td><td>Cost per incident</td><td class="f">$6 + $4 + $19 + $1 = $30</td><td>CS contact $6 · refund $4 · lost margin ~$19 · goodwill ~$1 (benchmark)</td><td>≈$30</td></tr>
+<tr><td>4</td><td>Oversell dollars</td><td class="f">30,000 × $30</td><td>rows 2–3 (modeled)</td><td>≈$0.9M/yr</td></tr>
+<tr><td>5</td><td>Dual-book reconciliation labor</td><td class="f">(4 − 1) FTE × $110K</td><td>≈4 FTE → ≈1 FTE reading the drift report (modeled); $110K loaded (benchmark)</td><td>≈$0.33M/yr</td></tr>
+<tr><td>6</td><td>Tech-debt change premium</td><td class="f">40 × 60 h × $125</td><td>≈40 changes/yr × +60 h on MCS × $125/h (modeled)</td><td>≈$0.3M/yr</td></tr>
+<tr><td>7</td><td>Headline</td><td class="f">$1.0M + $0.9M + $0.33M + $0.3M</td><td>rows 1, 4, 5, 6</td><td>≈$2.5M/yr</td></tr>
+<tr><td>8</td><td>Not in headline</td><td class="f">—</td><td>book accuracy → shrink ≈$0.3M + time-to-market ≈$0.2M (modeled upside)</td><td>excluded</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Solution flow — the system &amp; data map</h4>
 <pre class="math"> [Aptos POS]      [OMS Yantriks]      [BlueYonder WMS]     [FRAME planning]
   sale line        commit/pick/pack/   on-hand by item x    channel reserves,
@@ -428,53 +413,39 @@ Oversell exposure (why asymmetry). Expected oversell units if surplus were promi
 <tr><td><strong>Total modeled</strong></td><td>—</td><td>—</td><td><strong>≈$1.6M/yr</strong></td><td>+ $2.2M one-time working capital</td></tr>
 </tbody>
 </table>
-<pre class="math">hours saved = 240,000 - 240,000/1.15 = 31,300 h = 13.0% -> x $28/h = $0.88M/yr
-poolable SS = $50M avg inv x 25% SS share x 60% overlap = $7.5M
-pooling factor (2 equal pools -> 1) = 1 - 1/sqrt(2) = 0.293 -> release $2.2M one-time
-carry = $2.2M x 10% = $0.22M/yr · splits = 45,000 x $10 = $0.45M/yr
-self-transfer = 260K x $0.80 x 50% (rest already in labor row) = $0.1M/yr
-total = 0.88 + 0.22 + 0.45 + 0.10 = ~$1.6M/yr
-Sensitivity: low ~$1.1M · base ~$1.6M · high ~$2.4M (FTE 100-150, $24-32/h, capital 8-12%)</pre>
 <p><strong>If challenged.</strong> <em>"The labor number is the biggest — how firm?"</em> — "The fifteen percent is measured; the headcount and the $28 loaded rate are my assumptions. Pull the DC's actual direct hours for the two quarters before and after and multiply by payroll — that turns the model into a record in one afternoon." <em>"Pooling sounds like a textbook claim."</em> — "It is, and I labeled it. √2 pooling assumes two roughly equal independent pools on the same SKUs. Measure SKU-level on-hand on the last day of 801 vs the first stable month of 901; the release is whatever the difference actually is." <em>"Split shipments — evidence?"</em> — "The softest row. Parcels per dotcom order from the ship system before and after May, times the carrier's per-parcel cost. If the point didn't move, I drop the row and the total is about $1.1M."</p>
 </div>
 
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Throughput gate. T = pick-accurate completed tasks / tasks attempted per week. Gate published
-  before ramp: T ≥ 0.98 (stretch 0.99). Week 2 observed 0.94 → gate failed by 4 pts.
-Throttle rule. Bot share of volume s drops from 100% to s_throttle until root cause is cleared:
-  s_throttle = 30% (dial built in advance). Manual capacity must cover (1 − s) × V_week ; with
-  V_week = weekly units, manual load = 0.70 × V. Illustrative: V = 100,000 units/week → bots
-  30,000, manual 70,000 — the floor staffing check is 70,000 / (units per labor-hour × hours
-  available) ≤ 1 .
-Incident budget. Zero customer-facing incidents allowed
-any defect that could reach a customer must be caught at a gate: P(customer incident) ≈ Σ_gates
-  (1 − catch_rate_g) × P(defect_g) . Staging two go-lives halves the defect classes live at
-  once, so the joint probability of two interacting classes in one week is removed by
-  construction.
-Interim monitor. |AFS_900 − AFS_801| &gt; 0 on any SKU after the copy  Sev. Tolerance is 0 units,
-  not a percentage, because 900 is defined as a copy of 801.
-Rollback triggers. sync_rate = synced records / expected records ; fire if sync_rate &lt; 0.99 for
-  4 consecutive hours, or order-flow p95 latency &gt; 2 × budget for 1 hour. Illustrative: budget
-  p95 = 30 s  trigger at &gt; 60 s sustained 60 min. Comingle reserve partition (nine reserve
-  types, strict priority — replicated 100% from Canada). The single physical pool P on 901 is
-  partitioned for both channels by a priority walk over reserve types r_k , k = 1..9 (Held
-  first, then the DOT and Retail hard reserves, then the softer channel and launch reserves,
-  then Uncommitted as the remainder): alloc_k = min(r_k, P − Σ_{j&lt;k} alloc_j) , Uncommitted = P
-  − Σ_k alloc_k . The walk stops when the pool is exhausted, so the lowest tier is truncated
-  first and no channel can starve another out of order. Worked example (v105 figures, split
-  illustrative): pool 4,900 − Held 50 − DOT hard 1,550 − Retail hard 2,700 = Uncommitted 600.
-  Sanity: Σ alloc_k ≤ P , Uncommitted ≥ 0 . Why not tune it for the US: the Canada engine was
-  already proven; a second engine is a second defect class in the same release — the fence in
-  the council pack (S5). The comingle-reserve improvements were the scope I traded for zero
-  incidents. S1 reads these reserves as a subtrahend input to AFS; the walk itself lives here.
-Cutover invariants (six-step May choreography). Σ AFS_801 (before) = Σ Uncommitted_901 (after)
-  per SKU; negatives on 801 cleared first ( AFS_801 &lt; 0 ⇒ set 0 with audit ) because a
-  transferred negative is invented inventory; Yantriks zero-then- publish: AFS_pub(800) := 0
-  before AFS_pub(900) := AFS_901 , so at no instant is a SKU sellable on both.
-Result metric. Processing efficiency +15% (canonical; definition per program = units processed
-  per labor-hour vs pre-UDC baseline).
-Issues log: 836 rows, 85.4% closed; post-go-live spike 271 → 65 → 21 → 14 → 4 (weekly open
-  counts) — a geometric burn-down with ratio ≈ 0.3–0.7 per week.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Processing efficiency (baseline)</td><td class="f">—</td><td>index 100, units per labor-hour, pre-UDC (record)</td><td>100</td></tr>
+<tr><td>2</td><td>Mechanism</td><td class="f">one pick pool; self-transfers removed</td><td>900/901 model — three planning identities over one physical location (record design)</td><td>—</td></tr>
+<tr><td>3</td><td>Efficiency (after)</td><td class="f">index 100 → 115</td><td>+15% (record, Sephora signed, post-stabilization)</td><td>115</td></tr>
+<tr><td>4</td><td>Direct hours (before)</td><td class="f">120 FTE × 2,000 h</td><td>modeled staffing on an illustrative 100K-units/week DC</td><td>240,000 h/yr</td></tr>
+<tr><td>5</td><td>Hours for the same volume (after)</td><td class="f">240,000 / 1.15</td><td>from rows 3–4</td><td>≈208,700 h/yr</td></tr>
+<tr><td>6</td><td>Hours saved</td><td class="f">240,000 − 208,700 = 31,300</td><td>= 13.0% of baseline hours</td><td>31,300 h/yr</td></tr>
+<tr><td>7</td><td>Robotics gate (guardrail)</td><td class="f">T ≥ 98%; week 2 = 94 → throttle 30%</td><td>gate published before the ramp; dial built in advance (record)</td><td>full volume week 3</td></tr>
+<tr><td>8</td><td>Customer incidents (constraint)</td><td class="f">—</td><td>zero allowed; two staged go-lives — one defect class each (record)</td><td>0 through both go-lives</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Labor at +15%</td><td class="f">31,300 h × $28/h</td><td>hours from Table A row 6; $28 loaded (modeled)</td><td>≈$0.88M/yr</td></tr>
+<tr><td>2</td><td>Poolable safety stock</td><td class="f">$50M × 25% × 60%</td><td>avg inventory (illustrative) × SS share × SKU overlap</td><td>$7.5M</td></tr>
+<tr><td>3</td><td>Pooling release (2 pools → 1)</td><td class="f">$7.5M × (1 − 1/√2) = $7.5M × 0.293</td><td>√2 pooling (toolkit label)</td><td>≈$2.2M one-time</td></tr>
+<tr><td>4</td><td>Carry on the release</td><td class="f">$2.2M × 10%</td><td>cost of capital (benchmark 8–12%)</td><td>≈$0.22M/yr</td></tr>
+<tr><td>5</td><td>Split shipments</td><td class="f">45,000 × $10</td><td>−1 pt split rate on ~4.5M orders/yr (modeled)</td><td>≈$0.45M/yr</td></tr>
+<tr><td>6</td><td>Self-transfer handling</td><td class="f">260K × $0.80 × 50%</td><td>50% — the rest already sits in the labor row (modeled)</td><td>≈$0.10M/yr</td></tr>
+<tr><td>7</td><td>Total recurring</td><td class="f">0.88 + 0.22 + 0.45 + 0.10</td><td>rows 1, 4, 5, 6</td><td>≈$1.6M/yr</td></tr>
+<tr><td>8</td><td>One-time working capital</td><td class="f">—</td><td>row 3 — safety-stock release</td><td>≈$2.2M</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Solution flow — the system &amp; data map</h4>
 <pre class="math"> [MCS / FRAME planning]      [BlueYonder WMS 8.2 -&gt; 2023.1]  [Locus robotics]
   AFS_801, demand, on-order,  item x location x status;       task completion,
@@ -599,33 +570,34 @@ Issues log: 836 rows, 85.4% closed; post-go-live spike 271 → 65 → 21 → 14 
 <tr><td><strong>Total modeled</strong></td><td>—</td><td>—</td><td><strong>≈$0.6M/yr</strong></td><td>match rate ≥99.5% in 24h = design KPI</td></tr>
 </tbody>
 </table>
-<pre class="math">cancels avoided = 30M x 0.10% x $15 (CS $5-8 + refund + margin share; all-in $10-20) = $0.45M
-recon labor = 32 h/wk x 52 x $85/h = $0.14M · close = 6 people x 8 h x $85 x 12 = $0.05M
-total = ~$0.6M/yr — one FOH is record; every dollar is modeled and labeled</pre>
 <p><strong>If challenged.</strong> <em>"The cancel rate is borrowed from S1 — double-counted?"</em> — "Different window: S1's rate is the vocabulary problem across node types; this is the posting-lag window inside one node. If the room wants one number, I keep S1's and drop this row — the mechanism still stands on the record." <em>"32 hours of Finance time — source?"</em> — "Benchmark, not record. The record is the mechanism: the bridge spreadsheet died when its owner owned the real report. A two-week time study on Inventory Accounting prices it properly."</p>
 </div>
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Shipped-Not-Billed ledger. For SKU i at node n: SNB_in(t) = Σ sold-or-shipped-not-posted units −
-  Σ matched-posting units . Increment on POS flash sale, OMS omni pending sale, WMS ship
-  confirm; decrement only on a matched S/4 aggregate posting. De-aggregation (pro-rata COGS).
-  Aggregate posting P with total qty q_P and total COGS C_P ; line i with q_i : COGS_i = C_P ×
-  q_i / q_P , with Σ_i q_i = q_P and Σ_i COGS_i = C_P (allocation is exact; last line absorbs
-  rounding so the sum ties to the cent).
-Phantom-availability window. W_i = t_post − t_sale ; exposure per SKU ≈ sales rate × W units.
-  The design makes the exposure zero by decrementing AFS at t_sale via SNB instead of at t_post
-  .
-Safe failure direction. If a posting never matches: SNB stays high  AFS = Basis − … − SNB is
-  lower than truth  under-sell (visible over-ordering by Replenishment), never over-sell.
-  Formally: AFS_reported ≤ AFS_true for all unmatched states.
-Worked example (illustrative — no canonical drift $ exists; &quot;illustrative, not program
-    data&quot;).
-  Aggregate posting P: 5 lines, q_P = 12 , C_P = $300.00 . Lines q = 3, 2, 4, 1, 2 → COGS =
-  75.00, 50.00, 100.00, 25.00, 50.00 (Σ = 300.00 ). SNB before match = 12 (from POS events);
-  after match SNB = 0. Suppose one line (q = 2) arrives late: SNB = 2 after matching 10; AFS
-  under-states by 2 units until the line lands; the unmatched-aging report shows it at 24h.
-  Sanity: SNB ≥ 0 always; a decrement beyond the matched quantity is rejected.
-Reconciliation KPI. match_rate = matched postings / postings received per day (target ≥ 99.5%
-  within 24h); SNB_aging_p95 in hours; FOH_ISM − FOH_S4 = 0 at month-end per SKU × node.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Financial On-Hand truths (baseline)</td><td class="f">—</td><td>Finance vs Ops, reconciled by argument (record)</td><td>2</td></tr>
+<tr><td>2</td><td>SNB ledger rule</td><td class="f">SNB += sale/ship event; SNB −= matched posting only</td><td>increments on POS / OMS / WMS events; decrement needs the Aggregation# match (record design)</td><td>—</td></tr>
+<tr><td>3</td><td>Decrement point moved</td><td class="f">t_post → t_sale</td><td>window exposure ≈ sales rate × W → 0 (record design)</td><td>phantom window closed</td></tr>
+<tr><td>4</td><td>De-aggregation</td><td class="f">COGS_i = C_P × q_i / q_P</td><td>posting q_P = 12, C_P = $300.00; lines 3/2/4/1/2 (illustrative); last line absorbs rounding</td><td>75/50/100/25/50 — Σ = $300.00 to the cent</td></tr>
+<tr><td>5</td><td>Worked match</td><td class="f">12 units posted → SNB 12 → 0</td><td>one line (q = 2) arrives late → SNB = 2 (illustrative)</td><td>aged row visible at 24h</td></tr>
+<tr><td>6</td><td>Failure direction</td><td class="f">AFS_reported ≤ AFS_true</td><td>unmatched posting ⇒ under-sell, never over-sell (record design)</td><td>over-sell = 0 by construction</td></tr>
+<tr><td>7</td><td>Match-rate KPI</td><td class="f">matched postings / received per day</td><td>design target (record)</td><td>≥99.5% within 24h</td></tr>
+<tr><td>8</td><td>Financial On-Hand truths (after)</td><td class="f">—</td><td>signed inside the FSD 6/5/25 (record)</td><td>1</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Phantom cancels avoided</td><td class="f">30M × 0.10% × $15</td><td>orders illustrative; $15 all-in, range $10–20 (modeled)</td><td>≈$0.45M/yr</td></tr>
+<tr><td>2</td><td>Finance reconciliation labor</td><td class="f">32 h/wk × 52 × $85/h</td><td>bridge spreadsheet retired (modeled)</td><td>≈$0.14M/yr</td></tr>
+<tr><td>3</td><td>Month-end close</td><td class="f">6 × 8 h × $85 × 12</td><td>people × hours × rate × months (modeled)</td><td>≈$0.05M/yr</td></tr>
+<tr><td>4</td><td>Total</td><td class="f">0.45 + 0.14 + 0.05</td><td>all modeled; the record has no pre-state drift dollar</td><td>≈$0.6M/yr</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Solution flow — the system &amp; data map</h4>
 <pre class="math"> [Aptos POS]             [OMS Yantriks]          [WMS -&gt; Kafka -&gt; ESB]
   RetailSaleTransactions  DotCom.OMS.Tlog         DotCom.OMS.
@@ -757,34 +729,34 @@ Reconciliation KPI. match_rate = matched postings / postings received per day (t
 <tr><td>Under-sell cost while the v1 rule stood</td><td>unknown</td><td>—</td><td>—</td><td>record: no $ in the record; <strong>not claimed</strong></td></tr>
 </tbody>
 </table>
-<pre class="math">recovered = 300 starved units/day x 60% conversion x 40% lost-sale share x $20 margin
-          = $1,440/day -> ~$0.5M/yr (every input illustrative; the mechanism is record)</pre>
 <p><strong>If challenged.</strong> <em>"What did the error cost?"</em> — "The record has no dollar for it and I won't invent one. What the record has: fast movers starved one day from the building, for weeks, by my rule. The $0.5M/yr is the recovery run-rate, modeled, labeled." <em>"Why believe the window is safe?"</em> — "Because the back-test ran before release — the step v1 skipped — and the kill switch plus on-time floor make the failure direction per-lane and reversible. Zero oversell traced to the window is record."</p>
 </div>
 
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Promise rule. Promisable_in = InTransit_in × 1[ETA_lane ≤ promise_window_lane] × 1[OTR_lane ≥
-  floor] , where OTR_lane = on-time rate over the trailing receiving history and floor is the
-  per-lane admission threshold. Window from lane variability (MIT toolkit label: normal
-  approximation on lane transit). For lane transit time L ~ (μ_L, σ_L) , a window that covers a
-  fraction α of arrivals beyond the ETA is w = z_α × σ_L . Canonical: measured lane σ ≈ 0.3 day;
-  z_0.95 = 1.645 → w = 1.645 × 0.3 ≈ 0.49 day  ~95% coverage on qualifying lanes. Check: P(L ≤
-  ETA + 0.49) = Φ(0.49/0.3) = Φ(1.63) ≈ 0.95 . Units: days. What &quot;unpromisable&quot; claims.
-    Setting
-  Promisable = 0 for all in-transit is the limit σ_L → ∞ (or OTR → 0 ) — a claim of infinite
-  variability. Measured σ contradicts it. Both errors priced (the lesson). Under-sell cost per
-  lane-day ≈ starved units × conversion loss × margin ; over-sell cost ≈ late units × P(late) ×
-  (cancel/expedite cost) . Illustrative (&quot;not program data&quot;): a SKU with 100 units one
-    day out,
-  60% would convert at $20 margin → $1,200/day of under-sell; with OTR 97% the over-sell
-  exposure is 100 × 0.03 × $15 expedite = $45/day. The asymmetry is what the &quot;safe&quot; rule
-  ignored.
-Kill switch. Aging_lane = units in transit longer than k × p90_lane ; lane drops out of
-  promisability if Aging_lane &gt; threshold (e.g., any unit &gt; 2 × p90 or OTR falls below
-    floor for
-  the trailing window). Sample-size sanity for OTR (toolkit). To estimate OTR ≈ 0.95 within ±5%
-  at 95% CI: n = z² p(1−p)/e² = 3.84 × 0.0475 / 0.0025 ≈ 73 receipts per lane before the lane
-  qualifies — illustrative.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Fast movers in transit (baseline)</td><td class="f">Promisable = 0 (v1 rule)</td><td>starved reliably one day from the building, with conversion loss (record)</td><td>starved</td></tr>
+<tr><td>2</td><td>Lane variability measured</td><td class="f">σ_L ≈ 0.3 day</td><td>trailing receiving history (record)</td><td>σ = 0.3 d</td></tr>
+<tr><td>3</td><td>Promise window</td><td class="f">w = z × σ = 1.645 × 0.3</td><td>z at 95% (toolkit label)</td><td>≈0.49 day</td></tr>
+<tr><td>4</td><td>Coverage check</td><td class="f">Φ(0.49 / 0.3) = Φ(1.63)</td><td>normal approximation on lane transit</td><td>≈95%</td></tr>
+<tr><td>5</td><td>Corrected rule</td><td class="f">Promisable = InTransit × 1[ETA ≤ w] × 1[OTR ≥ floor]</td><td>per-lane on-time floor; lane by lane, not all-or-nothing (record)</td><td>lanes below the floor stay out</td></tr>
+<tr><td>6</td><td>Kill switch</td><td class="f">aging &gt; k × p90 → lane drops out</td><td>armed, reviewed weekly by Inventory Control (record)</td><td>never fired</td></tr>
+<tr><td>7</td><td>Sample-size sanity</td><td class="f">n = z²p(1−p)/e² ≈ 73 receipts/lane</td><td>OTR ±5% at 95% CI (illustrative)</td><td>lane qualifies after ~73 receipts</td></tr>
+<tr><td>8</td><td>Metric (after)</td><td class="f">—</td><td>back-tested against receiving history; 4 regression cells (record)</td><td>sellable in window; oversell increase 0</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Recovered sales per day</td><td class="f">300 × 60% × 40% × $20</td><td>starved units × conversion × lost-sale share × margin (every input illustrative)</td><td>≈$1,440/day</td></tr>
+<tr><td>2</td><td>Annualized</td><td class="f">$1,440 × 365</td><td>from row 1 (modeled; the mechanism is record)</td><td>≈$0.5M/yr</td></tr>
+<tr><td>3</td><td>Cost while v1 stood</td><td class="f">—</td><td>no dollar in the record; not claimed (record)</td><td>—</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Solution flow — the system &amp; data map</h4>
 <pre class="math"> +----------------------------+    STO EKKO/EKPO (type UB), EKET-EINDT,
  | SAP S/4HANA [BoR]          |    LIKP-WADAT_IST (GI), LIPS qty
@@ -911,26 +883,29 @@ Kill switch. Aging_lane = units in transit longer than k × p90_lane ; lane drop
 <p><strong>If challenged.</strong> <em>"You're pricing escalations that never happened."</em> — "Correct, and labeled: the ~3 is a benchmark for designs this size, the 960 hours per escalation is illustrative. The record is zero escalations against a norm everyone in that building recognized, and a gate chain that held to the day. If the room won't price prevention, keep the record and drop the dollars — the mechanism is the point."</p>
 </div>
 
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Decision decomposition. A council &quot;review&quot; is one binary outcome on a bundle; three
-    separable
-  decisions D = {architecture, timeline, peak boundary} give 2³ = 8 outcomes, of which any
-  partial approval preserves progress. Expected recoverable progress: with independent approval
-  probabilities p_a, p_t, p_b , E[decisions approved] = p_a + p_t + p_b vs a bundle&#x27;s p_a ×
-    p_t
-  × p_b . Illustrative: 0.9 each → 2.7 of 3 expected vs 0.73 chance of the whole bundle.
-Pre-wiring coverage. coverage = rows with signed LOE before council / total impacted rows ;
-  target 100% (LOE signed 7/2 ahead of 7/31 sign-off). Surprise escalations = rows whose owner
-  first learned cost in the room ; result 0.
-Gate chain. Kickoff 3/29 → business sessions 4/30 → council challenge 5/15 → LOE 7/2 → sign-off
-  7/31 → FSD 8/14: 138 days discovery-to-spec; council-to-sign-off 77 days with zero
-  re-litigation.
-Impact table size. ~80 named participants across ~15 functions, a dozen core systems (20+
-  touched)  impacted-row grain = system × process step; LOE per row in person-days, summed per
-  system owner for the council pack. Two-truths risk (design, not argument). During the interim,
-  two live books create disagreement probability per SKU per day; the shadow-900 copy set with
-  |AFS_900 − AFS_801| = 0 monitor makes disagreement a detectable Sev rather than a latent truth
-  conflict.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Surprise escalations (baseline norm)</td><td class="f">—</td><td>~3 per design this size (industry benchmark 2–4)</td><td>~3</td></tr>
+<tr><td>2</td><td>Pre-wire coverage</td><td class="f">rows with signed LOE / impacted rows</td><td>one template, one deadline, one private conversation per owner (record)</td><td>100% by 7/2</td></tr>
+<tr><td>3</td><td>Decision structure</td><td class="f">E[approved] = p_a + p_t + p_b vs bundle p_a × p_t × p_b</td><td>three separable decisions; p = 0.9 each (illustrative)</td><td>2.7 of 3 vs 0.73</td></tr>
+<tr><td>4</td><td>Gate chain</td><td class="f">3/29 → 4/30 → 5/15 → 7/2 → 7/31 → 8/14</td><td>held to the day (record)</td><td>77 days council→sign-off, 0 re-litigation</td></tr>
+<tr><td>5</td><td>Escalations (after)</td><td class="f">rows whose owner first learned cost in the room = 0</td><td>record; fence breaches in the log: 0</td><td>0 for the program's life</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Avoided rework</td><td class="f">3 × 960 h × $110</td><td>~3 escalations (benchmark) × rework hours × rate (modeled)</td><td>≈$0.3M</td></tr>
+<tr><td>2</td><td>Slip weeks avoided</td><td class="f">6/52 × ≈$0.9M</td><td>six weeks of S2's labor value not deferred (modeled)</td><td>≈$0.1M</td></tr>
+<tr><td>3</td><td>Fenced engine not built</td><td class="f">2 × 12 wk × 40 h × $110</td><td>second reserve engine (modeled)</td><td>≈$0.1M</td></tr>
+<tr><td>4</td><td>Total one-time</td><td class="f">0.3 + 0.1 + 0.1</td><td>all modeled — the dollars are what did not happen</td><td>≈$0.5M</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Solution flow — the system &amp; data map</h4>
 <pre class="math"> [MCS / FRAME book]        [BlueYonder book]       [Architecture standards]
   SKU list, on-hand,        SKU list, on-hand       ESB schema rules,
@@ -1062,41 +1037,34 @@ Impact table size. ~80 named participants across ~15 functions, a dozen core sys
 <tr><td><strong>Total modeled recurring</strong></td><td>—</td><td>—</td><td><strong>≈$0.8M</strong></td><td>around the $2M one-time record; never added to S8's $1.5M</td></tr>
 </tbody>
 </table>
-<pre class="math">carry = $2M x 10% = $0.2M/yr · expedites = 150 events x 40% caught early x $5K = $0.3M/yr
-planner capacity = 12 planners x 40% recon share x -50% = 2.4 FTE x $120K = $0.3M/yr
-  (capacity redeployed to root cause, not headcount removed)
-total modeled recurring = ~$0.8M/yr; range $0.5-1.2M (WACC 8-12%, premium $3-8K)</pre>
 <p><strong>If challenged.</strong> <em>"The $2M — measured how?"</em> — "It's the record: the release Finance signed, applied only on SKU families where forecast error and lead-time error had both demonstrably improved. That rule is why the release survived audit — capital came out on evidence, not on a better-looking average." <em>"150 shortage events?"</em> — "Illustrative volume — six sites at roughly 25 escalations a year. The record is the mechanism: the alert fires at days-of-cover ≤ lane p90, which is the last moment a re-plan is cheaper than a flight."</p>
 </div>
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Supply and demand at grain SKU × location × date. supply(t) = on_hand + Σ in-transit arriving ≤
-  t + Σ production finishing ≤ t + Σ PO lines landing ≤ t + Σ RELEASED planned orders finishing
-  ≤ t (unfirmed MRP planned orders excluded). demand(t) = Σ sales-order schedule lines due ≤ t +
-  Σ DC replenishment due ≤ t + forecast net of orders (outside the frozen horizon only) . PAB(t)
-  = supply(t) − demand(t) ; a negative PAB is a dated shortage.
-Multi-level BOM explosion. demand(c) = Σ_p demand(p) × qty_per(p,c) / (1 − scrap_pc) , recursed
-  by low-level code; where-used is the inverse map c → {p} .
-Shortage alert (rule, not report). DoC_c = PAB-positive horizon in days (days until PAB(c) &lt;
-    0);
-  alert if DoC_c ≤ LT_p90(lane_c) — a lead-time early. Illustrative: component with on-hand
-  1,200, consumption 100/day → DoC = 12 days; lane p90 = 14 days  alert now (fix window 12 − 14
-  &lt; 0: expedite or re-promise); with p90 = 9 days  no alert (3-day slack).
-Forecast accuracy. MAPE = (1/n) Σ |A_t − F_t| / A_t over periods with A_t &gt; 0 ; WMAPE = Σ|A−F|
-    /
-  ΣA ; bias = Σ(F − A) / ΣA . Canonical: accuracy (1 − MAPE) 70% → 85% on scoped class-A SKUs
-  (error 30% → 15%, halved). Illustrative check: 4 weeks A = 100, 120, 80, 100; F = 130, 110,
-  100, 90 → |e| = 30, 10, 20, 10 → MAPE = (0.30 + 0.083 + 0.25 + 0.10)/4 = 18.3%; WMAPE = 70/400
-  = 17.5%; bias = (430 − 400)/400 = +7.5% (over-forecasting).
-Release rule (safety stock). Release buffer for SKU i only if MAPE_i(after) &lt; MAPE_i(before)
-    and
-  LTacc_i(after) &gt; LTacc_i(before) ; released amount from SS = z·σ_d·√L (demand-driven) or
-  z·d·σ_L (lead-time-driven), toolkit form. Illustrative: d = 100/day, σ_L 4 → 2 days, z = 2.33
-  (99%)  SS 932 → 466 units released 466. Canonical program total: $2M released under the rule
-  (never added to S8&#x27;s $1.5M).
-Worked peg (v105 §5.12, illustrative). ROUTER-100 at DC-East: on-hand 400; in-transit 600 lands
-  day 5; production 800 day 9. Demand 500 day 3, 700 day 7, 400 day 10. PAB(3) = 400 − 500 =
-  −100; PAB(7) = 1,000 − 1,200 = −200 (day-9 supply is too late; fix window 2 days); PAB(10) =
-  1,800 − 1,600 = +200 .</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Forecast accuracy (baseline)</td><td class="f">accuracy = 1 − MAPE</td><td>70% on scoped class-A SKUs (record)</td><td>70%</td></tr>
+<tr><td>2</td><td>Error definitions</td><td class="f">MAPE = (1/n)Σ|A−F|/A; bias = Σ(F−A)/ΣA</td><td>measured at the decision grain</td><td>—</td></tr>
+<tr><td>3</td><td>Illustrative check</td><td class="f">A = 100,120,80,100; F = 130,110,100,90</td><td>four weeks (illustrative)</td><td>MAPE 18.3%; WMAPE 17.5%; bias +7.5%</td></tr>
+<tr><td>4</td><td>Supply (honest definition)</td><td class="f">on-hand + production + RELEASED planned orders</td><td>unfirmed MRP planned orders excluded — they change every run (record rule)</td><td>—</td></tr>
+<tr><td>5</td><td>Finished-goods netting walk</td><td class="f">PAB(t) = supply(t) − demand(t)</td><td>FG SKU ROUTER-100 at DC-East: on-hand 400; in-transit 600 lands day 5; production 800 day 9; demand 500 d3 / 700 d7 / 400 d10 (illustrative)</td><td>PAB(3) = −100; PAB(7) = −200; PAB(10) = +200</td></tr>
+<tr><td>6</td><td>Shortage alert</td><td class="f">fire when DoC ≤ lane LT p90</td><td>FG SKU with on-hand 1,200 at 100/day → DoC 12 vs p90 14 (illustrative)</td><td>alert a lead-time early, not at line-down</td></tr>
+<tr><td>7</td><td>Accuracy (after)</td><td class="f">error 30% → 15%, halved</td><td>gated waves; false alarms worked as defects (record)</td><td>85%</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Carry on released stock</td><td class="f">$2M × 10%</td><td>$2M release (record, one-time) × WACC (benchmark 8–12%)</td><td>≈$0.2M/yr</td></tr>
+<tr><td>2</td><td>Expedites pre-empted</td><td class="f">150 × 40% × $5K</td><td>events/yr × caught early × premium (benchmark $3–8K)</td><td>≈$0.3M/yr</td></tr>
+<tr><td>3</td><td>Planner capacity</td><td class="f">12 × 40% × 50% = 2.4 FTE × $120K</td><td>recon share halved (−50% is record); capacity redeployed, not headcount removed</td><td>≈$0.3M/yr</td></tr>
+<tr><td>4</td><td>Total recurring</td><td class="f">0.2 + 0.3 + 0.3</td><td>modeled; never added to S8's $1.5M</td><td>≈$0.8M/yr</td></tr>
+<tr><td>5</td><td>One-time</td><td class="f">—</td><td>$2M safety stock released under the signed two-signal rule (record)</td><td>$2M</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Solution flow — the system &amp; data map</h4>
 <pre class="math"> client SAP [BoR] (6 plants)                  Elementum platform
  +----------------------+                     +--------------------------+
@@ -1223,45 +1191,37 @@ Worked peg (v105 §5.12, illustrative). ROUTER-100 at DC-East: on-hand 400; in-t
 <tr><td><strong>Total modeled</strong></td><td>—</td><td>—</td><td><strong>≈$0.3M</strong></td><td>record has no $ for S7; $1.5M is S8's</td></tr>
 </tbody>
 </table>
-<pre class="math">recon labor = 6 sites x (6 - 1.5) h/wk x 48 wk = ~1,300 h x $60 = $0.08M/yr
-false shortages = 6 sites x ~5/month x 12 = 360/yr; acted on before recheck 20% = 72
-expedites = 72 x $3K = $0.2M/yr (premium benchmark $2-5K)
-overlap rework = 24 x 16 h x $60 = $0.02M/yr (quarantine makes the error 0 by construction)</pre>
 <p><strong>If challenged.</strong> <em>"360 false shortages — source?"</em> — "Illustrative volume at the 'phantom shows a shortage of 100' pattern, scaled. The record is the mechanism and the zero: phantom double-timing eliminated at source, zero auto-loaded overlaps ever. The dollars are deliberately small because the big dollar — the $1.5M release — belongs to the program this backbone enabled, and I won't double-count it."</p>
 </div>
 
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Phantom double-timing. For finished good FG with lead time LT_FG and phantom sub-assembly SA
-  (special procurement 50, never stocked) with nominal LT_SA : correct component need-date =
-  due_FG − LT_FG (pass-through). Naive ingest (SA as stocked) yields due_FG − LT_FG − LT_SA and
-  a second requirement at the SA level
-demand offset twice and counted twice. Detection: count_model(c | FG) ≠ count_MRP(c | FG)
-  systematically for components under SA.
-Worked example (Rune §7 tree, illustrative quantities). FG-1000 → SA-200 (phantom) → COMP-A ×2,
-  COMP-B ×1; FG-1000 → COMP-C ×4. Order: 100 FG due day 20; LT_FG = 5, nominal LT_SA = 3.
-  Correct: COMP-A 200 due day 15; COMP-B 100 due day 15; COMP-C 400 due day 15. Naive: COMP-A
-  200 due day 12 plus an SA-200 requirement of 100 at day 15 that MRP tries to &quot;stock&quot; —
-  components appear 3 days early and SA shows a phantom shortage of 100. Flattened with marker:
-  qty-per(FG, COMP-A) = 1 × 2 = 2, need-date offset = LT_FG only .
-Revision overlap. Revisions R1 (valid-to d1 ) and R2 (valid-from d0 &lt; d1 ): for t ∈ [d0, d1]
-  both are partially true. Auto-load rule pick(R2) rewrites demand for orders released under R1
-  history error = Σ_orders∈[d0,d1] |qty_per_R2 − qty_per_R1| × qty . Quarantine: hold both;
-  human dispositions per order/effectivity; error = 0 by construction. Yield gross vs net
-  (wave-2 gap). yield_site = good / started_net where started_net excludes engineering-sample
-  pulls; yield_model = good / started_gross . Gap = yield_site − yield_model = good ×
-  (1/started_net − 1/started_gross) — &quot;several points&quot;; fixed in the mapping row
-    (define started
-  = net of sample pulls), model untouched. Snapshot-diffing (no CDC). Δ_t = extract_t −
-  extract_{t−1} (row-level by key); accept only if checksum_t valid and completeness_flag_t =
-  rows_t / expected_t ≥ 1 − ε . A partial file with 40% of rows looks like 60% deletions — the
-  flag prevents consumption.
-Wave economics. Waves W1 = 2 sites, W2 = 3, W3 = 1 hostile; average 3 weeks/site, hostile 6
-  weeks  2×3 + 3×3 + 6 = 21 weeks ≈ 5 months  (sequential upper bound; parallelism inside waves
-  absorbed the hostile site &quot;in plan&quot;). Failure in W1 costs 2 sites of credibility, not
-    6.
-Reconciliation gate. Per site: |component_count_model − component_count_MRP| / count_MRP ≤ τ on
-  the sampled FG set, and yield/LT vs the site&#x27;s own reports within tolerance — the report is
-  the gate.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Planning-grade CM sites (baseline)</td><td class="f">—</td><td>manual BOM-vs-MRP reconciliation per site (record)</td><td>0 of 6</td></tr>
+<tr><td>2</td><td>MRP netting at finished-goods grain</td><td class="f">NetReq(FG, t) = GrossReq − OnHand − SchedReceipts</td><td>finished-goods grain only (illustrative walk)</td><td>—</td></tr>
+<tr><td>3</td><td>Clean row</td><td class="f">500 − 150 − 200</td><td>Gross 500; on-hand 150; receipts 200 (illustrative)</td><td>NetReq = 150; need-date = due − LT_FG</td></tr>
+<tr><td>4</td><td>Distorted row — phantom FG record</td><td class="f">600 − 150 − 200</td><td>a phantom/stale finished-goods record inflates gross requirements by 100 (illustrative)</td><td>NetReq = 250 — a false shortage of 100; an expedite gets fired</td></tr>
+<tr><td>5</td><td>The same record rewrites timing</td><td class="f">need-date pulled a lead-time early</td><td>stale records rewrite demand history (record mechanism)</td><td>planners chase demand that was never real</td></tr>
+<tr><td>6</td><td>Reconciled row</td><td class="f">500 − 150 − 200</td><td>the phantom record carries an explicit marker; the quarantine holds it for human disposition (record mechanism)</td><td>NetReq = 150 — matches the site's own MRP</td></tr>
+<tr><td>7</td><td>Per-site gate</td><td class="f">count_model vs count_MRP on sampled finished goods</td><td>the reconciliation report is the go-live gate, not a date on a slide (record)</td><td>site opens on a matched report</td></tr>
+<tr><td>8</td><td>Revision overlaps</td><td class="f">two revisions partially true in [d0, d1] → quarantine + disposition</td><td>auto-loading would rewrite demand for orders released under the prior revision (record rule)</td><td>auto-loaded overlaps 0 — ever</td></tr>
+<tr><td>9</td><td>Wave economics</td><td class="f">2×3 + 3×3 + 6 = 21 weeks</td><td>W1 two cleanest sites, W2 three, W3 the hostile flat-file site at 6 wks vs the 3-wk average — snapshot-diffing, priced up front (record)</td><td>≈5 months</td></tr>
+<tr><td>10</td><td>Metric (after)</td><td class="f">—</td><td>record</td><td>6 of 6 sites, 3 waves</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Reconciliation labor</td><td class="f">6 × (6 − 1.5) h/wk × 48 ≈ 1,300 h × $60</td><td>hours per site per week, before vs after (modeled)</td><td>≈$0.08M/yr</td></tr>
+<tr><td>2</td><td>False-shortage expedites</td><td class="f">6 × ~5/mo × 12 = 360/yr; × 20% acted on = 72; × $3K</td><td>premium benchmark $2–5K (modeled)</td><td>≈$0.2M/yr</td></tr>
+<tr><td>3</td><td>Overlap rework avoided</td><td class="f">24 × 16 h × $60</td><td>the quarantine makes the error 0 by construction (modeled)</td><td>≈$0.02M/yr</td></tr>
+<tr><td>4</td><td>Total</td><td class="f">0.08 + 0.2 + 0.02</td><td>the record has no dollar for S7; the $1.5M belongs to S8</td><td>≈$0.3M/yr</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Solution flow — the system &amp; data map</h4>
 <pre class="math"> Flextronics MRP [BoR: BOM]        Elementum ingest + normalization
  +-----------------------+         +---------------------------------+
@@ -1389,44 +1349,34 @@ Reconciliation gate. Per site: |component_count_model − component_count_MRP| /
 <tr><td><strong>Total modeled recurring</strong></td><td>—</td><td>—</td><td><strong>≈$0.6M</strong></td><td>around the ~$1.5M record; never added to S6's $2M</td></tr>
 </tbody>
 </table>
-<pre class="math">released = 580K units x ~$2.59/unit = ~$1.5M (record pair; low-value components)
-carry = $1.5M x 20% all-in (capital ~10% + storage + insurance + obsolescence) = $0.3M/yr
-shipments = 200 lanes x ~50/yr = ~10,000 (illustrative)
-late before = 10,000 x 10% = ~1,000; late after = 10,000 x 1% = ~100 (99% is record)
-expedites avoided = 900 x 10% share x $3K = $0.27M ~ $0.3M/yr
-Sensitivity: carry 15-25% -> $0.23-0.38M; late share 5-15%; premium $2-5K</pre>
 <p><strong>If challenged.</strong> <em>"Is the $1.5M measured?"</em> — "The release is record: 580K units out, no stockout in the watch window, Finance signed each lane. The ~$2.59/unit is the derived average on low-value components. What's modeled is the recurring value around it — carry and expedites — and each input is labeled." <em>"Why did you own the percentile choice?"</em> — "I didn't — I owned the frame. I showed each lane's asymmetry, line-down cost against carrying cost, and planning chose p99. Their choice surviving an audit is worth more than my choice winning a meeting."</p>
 </div>
 
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">(Toolkit label: MIT Supply Chain MicroMasters inventory theory — how I explain the requirement
-  now; the data team built the distributions, planners sized buffers, Finance signed the
-  release.)
-Measured lane distribution. For lane l, actual transit L_l from shipment history (production
-  cycle + inbound transit vs predicted).
-Statistics: μ_L, σ_L, p50, p90, p99 . p99 defined cumulatively. p99_l = min{ d : P(L_l ≤ d) ≥
-  0.99 } — the smallest d with 99% of shipments arriving by d. Not μ + 2.33σ unless the lane is
-  normal; a right-skewed lane&#x27;s normal shortcut understates the tail (illustrative from the
-  record: by 3.4 days).
-Lead-time accuracy. LTacc_l = 1 − |actual − promised| / promised per shipment, aggregated per
-  lane; gate 99% on the 200-lane set before endorsing any cut.
-Safety stock (toolkit forms). Demand-driven: SS = z × σ_d × √L . Lead-time-driven: SS = z × d ×
-  σ_L . Combined: SS = z × √(L σ_d² + d² σ_L²) . z = 2.33 at 99% service, 1.65 at 95%.
-  Illustrative worked example (&quot;illustrative, not program data&quot;). Lane with d = 500
-    units/day,
-  brochure σ_L assumed 5 days (folklore), measured σ_L = 1.2 days; z = 2.33. Brochure SS = 2.33
-  × 500 × 5 = 5,825 units; measured SS = 2.33 × 500 × 1.2 = 1,398 units  release 4,427 units on
-  this lane if forecast error also improved (release rule). Fat-tail lane: measured σ_L = 6.5
-  days (worse than brochure)  SS rises to 7,573 — buffer kept until the source process moves.
-  Sanity: units = units/day × days ; SS decreases with σ_L, never with wishful averaging.
-Canonical program result. 580K units / ~$1.5M released across 200 lanes at 99% lead-time
-  accuracy, service held (implied ≈ $2.59/unit — derived; low-value components). Different
-  program from S6&#x27;s $2M — never add.
-Drift flag. Recompute p99 per lane on a refresh cadence; flag if |p99_new − p99_old| &gt; τ or if
-  LTacc falls below floor  buffer decision re-opened; the promise stays measured, never decays
-  into a new brochure.
-Cost asymmetry (why p99). Cost_line_down × P(L &gt; promise) vs holding cost × extra days × d ; on
-  fat-tail lanes the first term dominates  planners pick p99 per lane after seeing both numbers.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Lead-time parameters (baseline)</td><td class="f">—</td><td>carrier-brochure values; variability unmeasured (record)</td><td>brochure folklore</td></tr>
+<tr><td>2</td><td>Measured distribution</td><td class="f">μ, σ, p50, p90, p99 per lane</td><td>200 lanes by site, lane and mode; production cycle + inbound transit vs actual (record)</td><td>measured</td></tr>
+<tr><td>3</td><td>p99 definition</td><td class="f">p99 = min{d : P(L ≤ d) ≥ 0.99}</td><td>cumulative, not μ + 2.33σ — a right-skewed lane's normal shortcut understates the tail by 3.4 days (illustrative from the record)</td><td>the tail promise</td></tr>
+<tr><td>4</td><td>Accuracy gate</td><td class="f">LTacc = 1 − |actual − promised| / promised</td><td>the bar before endorsing any cut (record)</td><td>99% on the 200-lane set</td></tr>
+<tr><td>5</td><td>SS walk — reliable lane</td><td class="f">SS = z × d × σ_L: 2.33 × 500 × 5 vs 2.33 × 500 × 1.2</td><td>brochure σ 5 d vs measured 1.2 d; d = 500 units/day; z = 2.33 at 99% (illustrative, toolkit forms)</td><td>5,825 → 1,398 units; release 4,427</td></tr>
+<tr><td>6</td><td>SS walk — fat-tail lane</td><td class="f">measured σ_L = 6.5 &gt; brochure 5</td><td>SS rises to 7,573 units (illustrative)</td><td>buffer KEPT until the source process moves</td></tr>
+<tr><td>7</td><td>Program release (after)</td><td class="f">—</td><td>record pair; service held</td><td>580K units; 0 stockouts in the watch</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Released value</td><td class="f">580K units × ≈$2.59/unit</td><td>unit value derived from the record pair; low-value components</td><td>≈$1.5M one-time (record)</td></tr>
+<tr><td>2</td><td>Carry on the release</td><td class="f">$1.5M × 20%</td><td>all-in carry (benchmark 15–25%)</td><td>≈$0.3M/yr</td></tr>
+<tr><td>3</td><td>Expedites avoided</td><td class="f">(1,000 − 100) late × 10% × $3K</td><td>10,000 shipments/yr (illustrative); late 10% → 1% at the 99% bar (record)</td><td>≈$0.3M/yr</td></tr>
+<tr><td>4</td><td>Total recurring</td><td class="f">0.3 + 0.3</td><td>modeled; never added to S6's $2M</td><td>≈$0.6M/yr</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Solution flow — the system &amp; data map</h4>
 <pre class="math"> client SAP [BoR: PO, GR, orders]            Elementum lane measurement
  +-------------------------+                 +----------------------------+
@@ -1557,33 +1507,33 @@ Cost asymmetry (why p99). Cost_line_down × P(L &gt; promise) vs holding cost ×
 <tr><td>Manual document handling</td><td>~90K docs/yr keyed</td><td>X12/XML validated</td><td>$0.4M/yr</td><td>modeled (90K × 6 min × $45/hr)</td></tr>
 </tbody>
 </table>
-<pre class="math">The three slices (0.8 + 0.6 + 0.6) SUM TO the record $2M -- they decompose it, never add to it
-docs = 597 lanes x ~50 shipments x 3 documents = ~90,000/yr (illustrative)
-doc labor = 90,000 x 6 min / 60 x $45/hr = ~$0.4M/yr modeled add-on</pre>
 <p><strong>If challenged.</strong> <em>"Is the $2M annualized?"</em> — "No — it's the record as measured: minus ten percent on the onboarded lanes' spend in six months. I keep it as stated rather than doubling it into a run-rate." <em>"How do you know the split?"</em> — "I don't, to the dollar — the split is my model of where the ten percent came from, and the three slices sum to the record, never on top of it."</p>
 </div>
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Spend Pareto. Sort lanes by annual freight spend s_l descending; cumulative share S(k) = Σ_{l≤k}
-  s_l / Σ_all s_l .
-Canonical: 597 of 1,000 lanes  S(597) = 80% of spend. Priority score per lane (spreadsheet):
-  score_l = f(forwarder) × spend_l × criticality_l × mode_weight × volume_l — a weighted
-  ranking, not an optimizer.
-Cohort gate. validASN_rate = ASNs passing all validation rules / ASNs received over the test
-  window; activate the next cohort only if validASN_rate ≥ 0.95 . One cohort failed twice on a
-  carrier timestamp format (invalid  excluded from valid count, so the rate fell below 0.95) —
-  held.
-Completeness. completeness_l = events received / events expected per lane (expected = shipments
-  × milestones per mode). Canonical: 60% → 95%. Illustrative: 200 shipments × 4 milestones = 800
-  expected; 480 received  60%; 760  95%. 997 acknowledgment rate. ack_rate = 997s received /
-  documents sent per partner (pipe-alive proof; target ~100%; a drop is a transport failure, not
-  a data failure).
-Joinability. join_rate = 856/214 events with a matching PO#/tracking# in our data / events
-  received ; unjoinable events are received but useless.
-Freight result. Spend −10% ≈ $2M in 6 months  implied addressable base ≈ $20M/yr on the
-  onboarded lanes (derived from the canonical pair, stated as such). Adoption 8×; high-value
-  lanes 100% visible.
-Sanity: S(k) is monotone non-decreasing; a gate on rate (not count) prevents a large cohort from
-  hiding bad partners; completeness ≤ 100% (over-reporting = duplicate events  dedupe rule).</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Completeness (baseline)</td><td class="f">events received / events expected</td><td>expected = shipments × milestones: 200 × 4 = 800; 480 received (illustrative)</td><td>60%</td></tr>
+<tr><td>2</td><td>Spend Pareto</td><td class="f">S(k) = Σ_{l≤k} s_l / Σ s_l</td><td>lanes sorted by annual freight spend (record)</td><td>S(597) = 80% of spend</td></tr>
+<tr><td>3</td><td>Cohort gate</td><td class="f">validASN rate ≥ 95% in test before activation</td><td>published to carriers before cohort one; one cohort failed twice on a timestamp format (record)</td><td>held both times</td></tr>
+<tr><td>4</td><td>Floor for the long tail</td><td class="f">XML / portal when EDI is absent</td><td>“the standard was the data, not the transport” (record)</td><td>small carriers kept inside the standard</td></tr>
+<tr><td>5</td><td>Completeness (after)</td><td class="f">760 of 800 received (illustrative)</td><td>record; 997 ack rate and joinability on the per-lane scorecard</td><td>95%; high-value lanes 100%</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Freight result</td><td class="f">spend −10% on onboarded lanes</td><td>record; implied addressable base ≈$20M/yr (derived, stated as such)</td><td>≈$2M in 6 months</td></tr>
+<tr><td>2</td><td>— routing-guide compliance</td><td class="f">off-guide spend caught by 856/214</td><td>modeled split of the record</td><td>~$0.8M</td></tr>
+<tr><td>3</td><td>— mode discipline</td><td class="f">premium modes → ocean/ground when ETA is trusted</td><td>modeled split</td><td>~$0.6M</td></tr>
+<tr><td>4</td><td>— expedites + detention</td><td class="f">events replace chase calls</td><td>modeled split</td><td>~$0.6M</td></tr>
+<tr><td>5</td><td>Split check</td><td class="f">0.8 + 0.6 + 0.6 = $2M</td><td>the slices decompose the record — they never add to it</td><td>= the record $2M</td></tr>
+<tr><td>6</td><td>Document handling</td><td class="f">597 × ~50 × 3 ≈ 90K docs × 6 min/60 × $45/h</td><td>illustrative volumes (modeled add-on)</td><td>≈$0.4M/yr</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Solution flow — the system &amp; data map</h4>
 <pre class="math"> buyer ERP: SAP [BoR: PO, delivery]          EDI VAN / AS2 (X12 + XML floor)
  +---------------------------+   850 ORDERS05   +--------------------------+
@@ -1710,38 +1660,32 @@ Sanity: S(k) is monotone non-decreasing; a gate on rate (not count) prevents a l
 <tr><td>Manual reconciliation, 25 sites</td><td>8–10 hrs/wk each</td><td>1–2 hrs/wk</td><td>≈$0.5M</td><td>modeled (~9,400 hrs × $55; per-site $20K)</td></tr>
 </tbody>
 </table>
-<pre class="math">austria = ~$5M x 10% = $500K/yr (record; Finance-signed, executed-only)
-network = ~$8M (record; say $8M, never $1M) -> avg $320K/site; implied base ~$80M at 10%
-recon capacity = 25 sites x ~7.5 h/wk x 50 wk x $55/h = ~$0.5M/yr modeled add-on</pre>
 <p><strong>If challenged.</strong> <em>"How is the $8M real?"</em> — "Because the method was signed before the number existed: contracted guide rate minus paid rate, per shipment, executed only. Negotiated-but-not-executed never counted. The $500K Austria pilot is the method's proof; the $8M is the same ledger across 25 sites."</p>
 </div>
 
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Data quality (true vs reported). DQ = shipments with a valid promised date AND a valid actual
-  date AND a resolvable
-lane / all shipments . Reported 40% (a field-populated proxy); SQL-measured ~55% (populated and
-  valid). Defect classes: missing rate, wrong-grain lane, carrier name variant (five spellings),
-  brochure transit time posing as a promise. Target ~99% in 3 months.
-On-time delivery. OTD = deliveries with actual ≤ promised / deliveries with a valid promise ;
-  only valid-promise rows count — measuring OTD on brochure promises penalizes carriers for our
-  error. OTD accuracy ~97% post-fix (automated vs manual sample agreement per lane cohort).
-Promised-date rule. promised = ship_date + transit(lane_key) with lane_key = (ship-from,
-  ship-to, mode, volume band, Incoterm, SLA) . Incoterm changes who owns the clock: DDP promise
-  runs to the consignee&#x27;s door; EXW to the carrier pickup — ~8% of lanes needed Incoterm in
-    the
-  key. No-hit  page a human, never a default.
-Savings method (Finance-signed). Per shipment saving_s = (contracted guide rate_s −
-  counterfactual paid rate_s) for executed shipments only (never &quot;negotiated&quot;); annual
-    = Σ_s
-  saving_s . Pilot: freight base ≈ $5M/yr × 10% = $500K/yr; network: 25 EU sites / 400+ lanes ≈
-  $8M (say $8M, never $1M).
-Manual effort. 8–10 hrs/wk → 1–2 hrs/wk (−80%); across a team of illustrative 4 people  ~32
-  hrs/wk recovered (&quot;illustrative, not program data&quot;).
-Sanity. 55% true &lt; 40% reported? No — 55% &gt; 40%: the report under-counted usable rows
-    because it
-  keyed on a single field; the
-SQL measure was both broader and stricter. DQ ≤ 100%; OTD computed only on the valid-promise
-  denominator; savings only on executed rows.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Data quality (reported baseline)</td><td class="f">field-populated proxy</td><td>reports said 40% (record)</td><td>40%</td></tr>
+<tr><td>2</td><td>Data quality (true baseline)</td><td class="f">valid promised date ∧ valid actual ∧ resolvable lane / all shipments</td><td>three years of shipment history pulled in SQL (record)</td><td>~55%</td></tr>
+<tr><td>3</td><td>Promised-date rule</td><td class="f">promised = ship_date + transit(lane_key)</td><td>lane_key = (from, to, mode, volume band, Incoterm, SLA); Incoterm on ~8% of lanes; a no-hit pages a human, never a default carrier (record)</td><td>—</td></tr>
+<tr><td>4</td><td>OTD definition</td><td class="f">actual ≤ promised / valid promises only</td><td>brochure promises excluded — measuring OTD on them penalizes carriers for our error (record)</td><td>~97% agreement vs the manual sample</td></tr>
+<tr><td>5</td><td>Data quality (after)</td><td class="f">defect classes burned down weekly</td><td>manual-sample gate per lane cohort before release (record)</td><td>~99% in 3 months</td></tr>
+<tr><td>6</td><td>Manual reconciliation</td><td class="f">8–10 → 1–2 hrs/wk per site</td><td>record</td><td>−80%</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Austria savings</td><td class="f">~$5M base × 10%</td><td>Finance-signed method: (contracted guide rate − paid rate) per shipment, executed only (record)</td><td>$500K/yr</td></tr>
+<tr><td>2</td><td>Network roll-up</td><td class="f">25 EU sites / 400+ lanes, same rules file + one DQ cycle each</td><td>record; avg ~$320K/site and implied base ~$80M at 10% (derived)</td><td>~$8M</td></tr>
+<tr><td>3</td><td>Analyst capacity returned</td><td class="f">25 × ~7.5 h/wk × 50 × $55/h</td><td>modeled add-on</td><td>≈$0.5M/yr</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Solution flow — the system &amp; data map</h4>
 <pre class="math"> customer SAP [BoR: shipments]               Elementum shipment fact (SQL)
  +---------------------------+  shipment x leg +----------------------------+
@@ -1859,50 +1803,35 @@ SQL measure was both broader and stricter. DQ ≤ 100%; OTD computed only on the
 |    +- W3 held publicly on ETA accuracy -> cleanest wave
 +- Time-to-value: rollout unlocked 2 months early off the WBR (record)
 +- Pre-prod measurement path ~$1.5M saved (record, SEPARATE canonical)</pre>
-<pre class="math">Wave-machine math: entry bar ~50 containers calibration per client (not a wave gate)
-Six graduation criteria (ALL must pass): DQ >= 90% vs source of truth ·
-  ETA/milestone accuracy >= 80% · verification SLA 90% (review &lt;24h, max 48h) ·
-  engagement >= 100 containers + 5 key features · stability · CSAT >= consignee average
-Launch gate before first paying customer: 100 real containers x 7 checks;
-  load proof 500 containers / 20 min / 99.6%
-CTS cross-walk: $0.66/$0.18 ~ 3.7 residual interactions -> $0.03/$0.18 ~ 0.17
-Pre-prod: n = 300 containers, expected accuracy 98% -> +/-1.6% at 95% CI;
-  E2E accuracy 85% -> ~98%; rollout 1.5 months vs 6; ~$1.5M saved (separate canonical)
-WBR instrument: 10,289 events; event-level human 19.4%; WoW = (B-A)/A; +/-5% red/green
-At the 32K-shipment target: -95.5% CTS ~ $50K/yr modeled direct (volume illustrative) --
-  the value is scale without headcount, not the direct dollars</pre>
 <p><strong>If challenged.</strong> <em>"The CTS saving is only $50K?"</em> — "Directly, yes — and I say that out loud. The point of −95.5% was never the direct dollars; it's that 7 customers became 68 with zero added ops headcount. The modeled figure is honest because the volume is; the scaling is the record." <em>"Why ±1.6%?"</em> — "n = 300 at an expected 98% accuracy gives a 95% confidence interval of about ±1.6 points — big enough to certify the gate, small enough to afford. That measurement path cut rollout from 6 months to 1.5 and carries the separate ~$1.5M record."</p>
 </div>
 
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">WBR arithmetic (copied from the LSA WBR pattern, not invented). Week = Mon–Sun; show the most
-  recent 5 weeks plus monthly roll-ups. Week-over-week WoW = (B − A) / A where A = prior week, B
-  = current; green/red at ±5% relative; every input metric tagged to the output line it may move
-  (&quot;RollUp&quot;).
-Seven frozen metrics. coverage_auto = containers tracked with no human touch / active
-  containers; coverage_with_human = tracked incl. human review / active; tickets = support
-  tickets; tickets_per_active_container = tickets / active containers; 4PL_SLA% and 3PL_SLA% =
-  milestones within SLA / milestones due; delta = 4PL − 3PL.
-Honest denominators. Active container = touched within 15 days (the inactive rule) — a container
-  that stops moving stops inflating coverage.
-Cost-to-serve per container. CTS = (human interactions per container × loaded $/interaction) ;
-  canonical $0.66 → $0.03  (0.03 − 0.66)/0.66 = −95.5% . Cross-walk to the platform&#x27;s $0.18
-    per
-  eliminated interaction: $0.66/$0.18 ≈ 3.7 residual human interactions per container before;
-  $0.03/$0.18 ≈ 0.17 after.
-Automation grains (all real, different instruments). Event grain: 1,991/10,288 = 19.4% human;
-  weekly stock automation 40.2% (13 Dec) · 40.0% (17 Jan) · 21.9% (31 Jan red week) · 69.2% (21
-  Feb, active 287 → 546); ticket grain 538 auto / 456 human = 54.1%. Headline: automation 40% →
-  90%; accuracy 60% → 90%. Why 99.4% was discarded. Three touches in a week  automation = 1 −
-  h/N with N tiny; a 95% CI on N = 3 is wider than the metric (&quot;Wilson interval ≈ [0.44,
-    1.0]&quot; —
-  illustrative math on the real decision). A number that cannot survive the next Monday teaches
-  the VP the wrong thing. Illustrative WoW (&quot;not program data&quot; for these two values). A
-    = 40.0%,
-  B = 21.9%  WoW = −45%  red; root cause a carrier format change (measurement), not operators.
-Sanity. Rates ≤ 100%; WoW undefined if A = 0 (rule: show &quot;n/a&quot;); CTS reduction and
-    automation
-  rise move together.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Cost-to-serve (baseline)</td><td class="f">—</td><td>$0.66 per container off seven pilots (record)</td><td>$0.66</td></tr>
+<tr><td>2</td><td>Residual interactions (before)</td><td class="f">$0.66 / $0.18 ≈ 3.7</td><td>$0.18 per eliminated interaction (record cross-walk)</td><td>≈3.7 per container</td></tr>
+<tr><td>3</td><td>Graduation gate (all six must pass)</td><td class="f">DQ ≥90% · ETA ≥80% · SLA 90% review &lt;24h · ≥100 containers + 5 features · stability · CSAT ≥ consignee avg</td><td>published to Sales before wave 1; entry bar ~50 containers calibration (record)</td><td>wave 3 held in public, became the cleanest wave</td></tr>
+<tr><td>4</td><td>Launch gate</td><td class="f">100 real containers × 7 checks; load proof 500 / 20 min / 99.6%</td><td>before the first paying customer (record)</td><td>passed</td></tr>
+<tr><td>5</td><td>Honest denominator</td><td class="f">active = touched within 15 days</td><td>a truncated 99.4% week (3 touches) discarded — Wilson CI wider than the metric (record decision)</td><td>printed as a data miss</td></tr>
+<tr><td>6</td><td>Automation / accuracy</td><td class="f">40% → 90% · 60% → 90%</td><td>every input tagged to the output it moves; WoW = (B−A)/A at ±5% red/green (record)</td><td>the mechanism</td></tr>
+<tr><td>7</td><td>Residual interactions (after)</td><td class="f">$0.03 / $0.18 ≈ 0.17</td><td>record</td><td>≈0.17 per container</td></tr>
+<tr><td>8</td><td>Cost-to-serve (after)</td><td class="f">($0.03 − $0.66) / $0.66</td><td>record</td><td>$0.03 = −95.5%</td></tr>
+<tr><td>9</td><td>Scale (after)</td><td class="f">customers 7 → 68 = 9.7×</td><td>zero rollbacks; no added ops headcount; both public targets 2 months early (record)</td><td>68 customers</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Direct CTS dollars</td><td class="f">($0.66 − $0.03) × containers</td><td>containers = 32K shipments × 1.5–4 per shipment (illustrative) = 48–128K</td><td>$30–80K/yr → ≈$50K stated</td></tr>
+<tr><td>2</td><td>Pre-production measurement saving</td><td class="f">n = 300 containers → ±1.6% at 95% CI; rollout 1.5 vs 6 months</td><td>separate record figure — never merged with CTS</td><td>~$1.5M</td></tr>
+<tr><td>3</td><td>The value</td><td class="f">scale without headcount</td><td>7 → 68 on the same ops team (record)</td><td>not the direct dollars</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Sensitivity — low / base / high</h4>
 <table>
 <thead><tr><th>Input</th><th>Low</th><th>Base</th><th>High</th></tr></thead>
@@ -2009,37 +1938,36 @@ Sanity. Rates ≤ 100%; WoW undefined if A = 0 (rule: show &quot;n/a&quot;); CTS
 <tr><td>Partners migrated in a month</td><td>0</td><td>48 of 53 (90.5%)</td><td>—</td><td>record</td></tr>
 </tbody>
 </table>
-<pre class="math">model check: $2.9M eng avoided + $1.5M pulled forward = $4.4M -- within ~12% of the
-  record's ~$5M avoidance; the record number is the headline, the decomposition is mine
-CTS derived: 339.5 min x ~$0.45/min blended loaded rate ~= $153/shipment
-run-rate = $76 saved x 20K export shipments = ~$1.5M/yr (volume illustrative)</pre>
 <p><strong>If challenged.</strong> <em>"Is the $5M savings or avoidance?"</em> — "Avoidance — engineering never spent and value pulled forward — and I say it once. The recurring run-rate is a separate, smaller modeled number; I never present the avoidance as an annual reduction." <em>"Your manager's plan — why not escalate?"</em> — "Because the fastest path to a better decision was making it his decision. Private first, two days for engineering to break it, then the room ratifies. I've never won a disagreement by seniority."</p>
 </div>
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Baselines. Time-to-serve 339.5 min/shipment; 2,200 operator interactions per departed shipment;
-  loaded per-minute cost by pool FCL $0.56 · Network $0.61 · Data Services $0.24 (weighted ≈
-  $0.45/min). Cost-to-serve per shipment CTS = Σ_pool minutes_pool × rate_pool ; illustrative on
-  the canonical inputs: 339.5 min × ~$0.45 ≈ $153/shipment (derived, labeled).
-Two paths. Operator-first: 9 months to a state where operators still spend 20% of time in the
-  old app  CTS_op = −25% . Partner- first: 6 months to partners completing end-to-end in the new
-  app, and the partner backend is the chassis operators later ride CTS_partner = −50% .
-  Time-to-value 18 → 6 months.
-Illustrative dollarization (&quot;not program data&quot; beyond the canonical ~$5M). At CTS ≈
-    $153 and
-  −50% vs −25%: partner-first removes ≈ $76/shipment vs ≈ $38 — double the unit saving, reached
-  a year earlier. The program&#x27;s canonical figure: ~$5M cost avoidance (say once); 66% less
-  engineering effort. Rebuild-vs-reuse rule (per module). if dev_weeks &gt; 8: reuse else rebuild
-    ;
-  rank by BBI = benefit × impact / dev_weeks . The 8-week rule was the engineering median.
-Confidence-weighted estimates. est_adj = est × CL with CL ∈ {×1.0, ×1.4} by confidence, plus 15%
-  testing buffer: plan = Σ est_adj × 1.15 . Illustrative: two modules at 10 wks (high
-  confidence) and 10 wks (low)  (10 + 14) × 1.15 = 27.6 wks planned vs 20 naive.
-Burn-up tripwire. completed/pointed : 55.8% (Q3 8/30) → 63.3 → 66.0 → 69.3 → 76.0 → 83.2% (Q4
-  11/15); new scope estimated and swapped, never absorbed.
-Result. MVP: 11 partners / 10 countries; 48 of 53 import partners (90.5%) migrated within a
-  month.
-Sanity. −50% ⊃ −25% because the partner backend is shared; the operator path&#x27;s residual 20%
-  legacy time caps its saving; buffers only inflate low-confidence items.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Time-to-value (inherited plan)</td><td class="f">—</td><td>operator-first, 18 months, socialized (record)</td><td>month 18</td></tr>
+<tr><td>2</td><td>Unit baselines</td><td class="f">339.5 min/shipment; 2,200 operator interactions/departed shipment</td><td>record</td><td>—</td></tr>
+<tr><td>3</td><td>Path comparison (work-item grain)</td><td class="f">operator-first −25% in 9 mo vs partner-first −50% in 6</td><td>engineering re-estimates with confidence levels (record)</td><td>−50% beats −25%, a year earlier</td></tr>
+<tr><td>4</td><td>Effort to first value</td><td class="f">−66%</td><td>record</td><td>34% of the inherited path</td></tr>
+<tr><td>5</td><td>Confidence rule</td><td class="f">est × {1.0, 1.4} + 15% buffer: (10 + 14) × 1.15</td><td>two modules at 10 wks, high and low confidence (illustrative)</td><td>27.6 wks planned vs 20 naive</td></tr>
+<tr><td>6</td><td>Rebuild-vs-reuse rule</td><td class="f">&gt;8 dev-weeks → reuse; rank by benefit × impact / dev-weeks</td><td>the 8-week rule was the engineering median (record rule)</td><td>—</td></tr>
+<tr><td>7</td><td>Scope tripwire</td><td class="f">new work estimated and swapped, never absorbed</td><td>burn-up across two quarters (record)</td><td>55.8% → 83.2%</td></tr>
+<tr><td>8</td><td>Result</td><td class="f">—</td><td>record</td><td>value in month 6; 48 of 53 partners migrated in a month</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>CTS per shipment (derived)</td><td class="f">339.5 min × ~$0.45/min</td><td>blended loaded rate: FCL $0.56 · Network $0.61 · Data $0.24 (record inputs; derived, labeled)</td><td>≈$153</td></tr>
+<tr><td>2</td><td>Unit saving at −50%</td><td class="f">$153 × 50%</td><td>from Table A row 3</td><td>≈$76/shipment</td></tr>
+<tr><td>3</td><td>Run-rate</td><td class="f">$76 × 20K export shipments</td><td>volume illustrative (my model)</td><td>≈$1.5M/yr</td></tr>
+<tr><td>4</td><td>Engineering avoided</td><td class="f">12 eng × 18 mo × 66% × $20K/eng-mo</td><td>counts and rate mine (benchmark $15–25K/eng-mo)</td><td>≈$2.9M one-time</td></tr>
+<tr><td>5</td><td>Value pulled forward</td><td class="f">12 mo × $1.5M/yr</td><td>from row 3 (modeled)</td><td>≈$1.5M one-time</td></tr>
+<tr><td>6</td><td>Decomposition check</td><td class="f">2.9 + 1.5 = $4.4M</td><td>within ~12% of the record's ~$5M avoidance (said once); the record number is the headline, the decomposition is mine</td><td>$4.4M</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Sensitivity — low / base / high</h4>
 <table>
 <thead><tr><th>Input</th><th>Low</th><th>Base</th><th>High</th></tr></thead>
@@ -2146,36 +2074,34 @@ Sanity. −50% ⊃ −25% because the partner backend is shared; the operator pa
 <tr><td>Structural stockouts</td><td>—</td><td>−20%</td><td>≈$1.3M/yr</td><td>modeled margin run-rate, illustrative $400M retailer</td></tr>
 </tbody>
 </table>
-<pre class="math">margin protected = $8M x 40% = $3.2M one-time (benchmark margin 35-45%)
-orders at risk = $6M / $150 AOV = ~40K -> CS avoided = 40K x $6.5 = $0.26M
-node math: near 0.85 d vs far 4.60 d = -3.75 days of promise per re-pointed order</pre>
 <p><strong>If challenged.</strong> <em>"The $8M — protected how?"</em> — "It's the record pair: ~$6M at risk at 4 AM, ~$8M of peak sales through the event at 99% fill. The margin translation is my model at a benchmark 40%. I never count the $8M as savings — it's sales that didn't die."</p>
 </div>
 
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Fill rate. FR = units (or lines) shipped complete by promise / units ordered ; goal 95%,
-  achieved 99%. Dollars: ~$6M at risk (backorder lines × value) → ~$8M protected (orders that
-  shipped on promise through the event, canonical pair). Promise-at-risk ranking (instead of
-  FIFO). For order o: risk_o = value_o × 1[promise_o − now ≤ processing_time_node] ×
-  urgency(promise_o − now) ; clear in descending risk_o . FIFO processes by arrival — cheap,
-  distant-promise orders first while at- risk promises age.
-Node choice = promise. Ship time from node n to customer c: T_nc = handling_n + transit_nc ;
-  canonical warbook illustration: near node 0.85 days vs far node 4.60 days. Assign n* =
-  argmin_n T_nc s.t. ATP_n ≥ qty and node load below capacity; rebalance when any node&#x27;s
-    queue
-  exceeds its daily capacity while others idle: load_n = queue_n / capacity_n , target max_n
-  load_n − min_n load_n ≤ ε . Illustrative worked example (&quot;not program data&quot;). 3 DCs
-    with daily
-  capacity 10k / 8k / 6k orders; backlog 30k orders after the scheduler stall. Naive allocation
-  had DC1 at 22k (2.2 days), DC3 at 2k (0.33 days). Rebalance to loads 12.5k / 10k / 7.5k  each
-  ≈ 1.25 days  worst-case promise slip falls from 2.2 to 1.25 days; orders with promise ≤ 1.25
-  days cleared first by risk_o. Three-standard-deviation page rule (post-mortem). For a metric
-  with mean μ and σ over a trailing window (e.g., allocations/hour), page if x &lt; μ − 3σ (or
-    &gt; μ
-  + 3σ). Illustrative: μ = 1,200/hr, σ = 150  page below 750/hr. A dead scheduler yields 0/hr
-  pages within one interval instead of at 4 AM by a VP.
-Sanity. FR ≤ 100%; protected $ ≥ at-risk $ is plausible because the clear covered orders beyond
-  the initial at-risk set through the event; loads sum to backlog after rebalance.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Fill-rate goal (baseline)</td><td class="f">—</td><td>95% goal; ~$6M of sales at risk at 4 AM (record)</td><td>95%</td></tr>
+<tr><td>2</td><td>Clearing rule</td><td class="f">risk_o = value_o × urgency(promise − now); clear descending</td><td>promise-at-risk, not FIFO — FIFO processes cheap orders while at-risk promises age (record rule)</td><td>on the bridge log in hour one</td></tr>
+<tr><td>3</td><td>Node choice = the promise</td><td class="f">T_nc = handling_n + transit_nc</td><td>near node ~0.85 days vs far ~4.60 (record)</td><td>−3.75 days per re-pointed order</td></tr>
+<tr><td>4</td><td>Load levelling</td><td class="f">load_n = queue_n / capacity_n</td><td>30K backlog; capacities 10/8/6K/day; naive left DC1 at 22K = 2.2 days (illustrative)</td><td>rebalanced 12.5/10/7.5K → worst slip 2.2 → 1.25 days</td></tr>
+<tr><td>5</td><td>Detection (post-mortem)</td><td class="f">page if x &lt; μ − 3σ</td><td>μ = 1,200/hr, σ = 150 → page below 750/hr; a dead scheduler reads 0/hr (illustrative)</td><td>one interval, not a VP at 4 AM</td></tr>
+<tr><td>6</td><td>Fill (after)</td><td class="f">—</td><td>record; structural stockouts −20% over the engagement</td><td>99% vs the 95% goal</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Sales protected</td><td class="f">~$8M vs ~$6M at risk</td><td>record pair — one-time event, never a saving</td><td>~$8M</td></tr>
+<tr><td>2</td><td>Margin protected</td><td class="f">$8M × 40%</td><td>benchmark margin 35–45% (modeled)</td><td>≈$3.2M one-time</td></tr>
+<tr><td>3</td><td>Cancels / CS avoided</td><td class="f">$6M / $150 AOV ≈ 40K orders × $6.5</td><td>AOV and CS cost benchmarks (modeled)</td><td>≈$0.26M</td></tr>
+<tr><td>4</td><td>Expedite premium avoided</td><td class="f">re-pointed share of the 40K × $5–12</td><td>benchmark premium (modeled)</td><td>≈$0.13M</td></tr>
+<tr><td>5</td><td>Structural-stockout run-rate</td><td class="f">$400M × 4% × 20% × 40%</td><td>illustrative retailer × lost-sales benchmark (2–6%) × −20% record × margin</td><td>≈$1.3M/yr modeled</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Sensitivity — low / base / high</h4>
 <table>
 <thead><tr><th>Input</th><th>Low</th><th>Base</th><th>High</th></tr></thead>
@@ -2283,27 +2209,29 @@ Sanity. FR ≤ 100%; protected $ ≥ at-risk $ is plausible because the clear co
 <p><strong>If challenged.</strong> <em>"You're claiming the $10M?"</em> — "No — the initiative was won in the review the facts survived; I claim the control and the posture, not the contract value. The only recurring dollar I model is the ≈$0.1M/yr the standing reconciliation saves, and it's labeled."</p>
 </div>
 
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Discrepancy. Δ = {orders whose OMS status ≠ mapped WMS status} ; canonical ~200 orders / $2.5M
-  average ≈ $12.5K per order (derived). Stakes: $10M initiative riding on the executive review
-  two days out.
-Risk comparison (the argument I made). Quiet back-end correction: E[loss] = P(script error) ×
-  blast radius across related tables + P(audit discovery) × reputation cost ; with a multi-table
-  script written in under two days, P(script error) is high and P(audit discovery) ≈ 1 over an
-  IT-audit horizon. Transparent path: E[loss] = P(customer displeasure now) × delay cost —
-  bounded, one-time, and the customer controls it. Illustrative (not program data): if P(script
-  error) = 0.3 and a bad script corrupts 2× the affected orders, expected corrupted value ≈ 0.3
-  × $5M = $1.5M plus a near-certain audit finding on a $10M relationship — versus a few days&#x27;
-  delay on a subset of $2.5M.
-Reconciliation KPI going forward. match_rate = orders with OMS status == map(WMS status) /
-  orders in flight ; mismatch aging report with reason codes ∈ {status mapping, timing, failed
-  message, manual edit}. Σ reason classes = |Δ| — a row with no class is an investigation, not a
-  bucket.
-Bulk patch scoping. Customer-prioritized set S_p ⊆ Δ ; patch applied to S_p first with
-  before/after evidence per order (count of evidence rows = |S_p|); remainder fixed cleanly
-  through the root cause; then assert |Δ_new| = 0 daily.
-Sanity. Δ$ = Σ order values ≈ $2.5M over ~200 orders; the quiet fix has a tail the transparent
-  path does not; trust cost compounds.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Discrepancy (baseline)</td><td class="f">—</td><td>~200 orders / $2.5M ≈ $12.5K avg per order (derived) (record)</td><td>~200 orders / $2.5M</td></tr>
+<tr><td>2</td><td>Census by cause</td><td class="f">Δ grouped by handshake step × order state</td><td>built on a sample of the ~200 before proposing any path (record)</td><td>facts before path</td></tr>
+<tr><td>3</td><td>Risk comparison</td><td class="f">E[loss] = P(script error) × blast + P(audit) × reputation</td><td>quiet multi-table script vs a bounded, customer-controlled delay (record argument)</td><td>the honest path chosen</td></tr>
+<tr><td>4</td><td>Patch walk</td><td class="f">customer-prioritized set S_p first; per-line, reversible</td><td>before/after evidence rows = |S_p| (record)</td><td>zero on the set before the review</td></tr>
+<tr><td>5</td><td>Standing control</td><td class="f">match_rate = OMS == map(WMS) / orders in flight; Σ reason classes = |Δ|</td><td>reason codes: status mapping · timing · failed message · manual edit (record design)</td><td>new discrepancies = 0 daily</td></tr>
+<tr><td>6</td><td>Discrepancy (after)</td><td class="f">—</td><td>record; the review held with the facts on the table</td><td>0, with evidence per order</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Expected corruption avoided</td><td class="f">0.3 × (2 × $2.5M)</td><td>P(script error) 0.3 × blast radius 2× the affected orders (illustrative)</td><td>≈$1.5M avoided risk — not a saving</td></tr>
+<tr><td>2</td><td>Standing reconciliation value</td><td class="f">manual fixes + stuck cash + war rooms avoided</td><td>modeled; range $55–160K</td><td>≈$0.1M/yr</td></tr>
+<tr><td>3</td><td>$10M initiative</td><td class="f">won in the review the facts survived</td><td>record fact about the relationship</td><td>never counted as savings</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Sensitivity — low / base / high</h4>
 <table>
 <thead><tr><th>Input</th><th>Low</th><th>Base</th><th>High</th></tr></thead>
@@ -2414,24 +2342,29 @@ Sanity. Δ$ = Σ order values ≈ $2.5M over ~200 orders; the quiet fix has a ta
 </table>
 <p><strong>If challenged.</strong> <em>"Faster cadence usually means more escapes — why did yours fall?"</em> — "Because the gate got stronger as the window got shorter: entry criteria authored by the person with the most to lose, and a drop date that converted silent late lands into visible re-scopes. The −50% is the record; the defect counts behind the dollars are illustrative and labeled."</p>
 </div>
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Cadence change. Cycle length 6 weeks → 4 weeks  releases/year 8.7 → 13 (+50% release
-  opportunities); test window per cycle shrinks proportionally unless the definition-of-done
-  moves test left. QA&#x27;s fear was arithmetic: if test needs T_test days fixed, then dev days
-    per
-  cycle fall from 30 − T_test to 20 − T_test (working days) — a real compression, which is why
-  the DoD and drop date exist.
-QA drop date. Stories not QA-ready by day d_drop of the sprint are dropped with a reason code;
-  dropped-story share = dropped / committed trended per sprint. Critical defects −50% after the
-  drop-date rule (canonical). Sev-1 attribution. Sev1_story_accuracy / Sev1_total — the share
-  caused by wrong stories, not wrong tests; putting QA on product-business calls with
-  pre-approved scenarios drove the trend reversal. Illustrative capacity check (&quot;not program
-  data&quot;). 20 people, 4-week sprint, 15 eng × 18 working days = 270 eng-days; QA 4 × 18 = 72
-  QA-days; if a story needs 3 eng-days + 1 QA-day, QA caps throughput at 72 stories and eng at
-  90  QA is the constraint — the drop date protects the constraint (theory-of-constraints
-  framing from the MIT toolkit, labeled).
-Conversion time. 6 weeks to convert; QA lead defending the gate by cycle 2 (≈ 8 weeks after
-  start).</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Cadence (baseline)</td><td class="f">52 / 6 wks</td><td>six-week hybrid (record)</td><td>8.7 releases/yr</td></tr>
+<tr><td>2</td><td>Criticals (baseline)</td><td class="f">4 per release × 8.7</td><td>count illustrative; the record is the −50%</td><td>≈35/yr</td></tr>
+<tr><td>3</td><td>Constraint math</td><td class="f">15 eng × 18 d = 270 eng-days; 4 QA × 18 = 72 QA-days</td><td>story ≈ 3 eng-days + 1 QA-day (illustrative; theory-of-constraints, toolkit label)</td><td>QA caps throughput at 72 stories</td></tr>
+<tr><td>4</td><td>Mechanism</td><td class="f">QA-authored DoD; entry criteria at Ready-for-QA; drop date + reason code</td><td>the skeptic owns the gate; Sev-1s classified by cause, not blame (record)</td><td>silent late lands → visible re-scopes</td></tr>
+<tr><td>5</td><td>Cadence (after)</td><td class="f">52 / 4 wks</td><td>converted in six weeks (record)</td><td>13 releases/yr (+50%)</td></tr>
+<tr><td>6</td><td>Criticals (after)</td><td class="f">2 per release × 13</td><td>−50% per release (record)</td><td>≈26/yr while shipping 50% more</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Escaped-critical cost avoided</td><td class="f">(35 − 26) × $10K</td><td>per-critical cost benchmark $8–15K (modeled)</td><td>≈$90K/yr</td></tr>
+<tr><td>2</td><td>Late-land rework removed</td><td class="f">6 person-days × $800 × 8.7</td><td>≈$4.8K per release → ~0 under the drop rule (modeled)</td><td>≈$40K/yr</td></tr>
+<tr><td>3</td><td>Total</td><td class="f">90 + 40</td><td>range $80–270K; no headcount invented</td><td>≈$130K/yr</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Sensitivity — low / base / high</h4>
 <table>
 <thead><tr><th>Input</th><th>Low</th><th>Base</th><th>High</th></tr></thead>
@@ -2542,30 +2475,30 @@ Conversion time. 6 weeks to convert; QA lead defending the gate by cycle 2 (≈ 
 <p><strong>If challenged.</strong> <em>"You're claiming $100K of savings?"</em> — "No — pricing, not claiming. The number existed to make the infra team prioritize the build off their own rates, and it worked. The claimed record is the accuracy move and the first automated catch; the decomposition of the price is my model."</p>
 </div>
 
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Status-quo cost (priced with the infra team&#x27;s own rates). C_manual = hours/week × loaded
-    rate ×
-  52 + decision-risk term ; canonical: &gt; $100K/yr including VP decision risk, not just hours
-  (1.5–2 hrs per snapshot, rising to ~4 hrs/wk).
-Parity gate. For each frozen metric m and week w: |pipeline_mw − manual_mw| / manual_mw ≤ 1% for
-  consecutive weeks before cutover. Mismatches were mostly the manual side being wrong —
-  late-arriving tickets.
-Join problem. Tickets carried no container ID  join_rate = tickets with a resolvable container /
-  tickets ; interim cross- reference table (documented), then a real key pushed upstream so
-  join_rate → ~100% .
-Bus factor. bus_factor = 1 (one person could break the VP&#x27;s number); target ≥ 2 by moving
-  definitions into code with owners.
-First automated catch. A 4% ticket-sync drop invisible in the manual era: sync_rate = tickets
-  landed in Snowflake / tickets in Zendesk ; alert on 1 − sync_rate &gt; 1% (illustrative
-  threshold).
-Schedule impact of the miss. Security review = 2 weeks unplanned  re-sequenced; WBR deliveries
-  skipped = 0 because the parallel run kept the manual path alive. Illustrative parity check
-  (&quot;not program data&quot;). coverage_auto manual 71.2% vs pipeline 70.9%  0.42% gap ;
-    tickets 456 vs
-  461  1.1% gap  → investigate: 5 late-arriving tickets missing from the manual pull  manual
-  corrected; pipeline right.
-Sanity. Parity measured per metric, not aggregate; two consecutive weeks minimum; a gap is not
-  &quot;pipeline wrong&quot; until the root cause says which side.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>WBR accuracy (baseline)</td><td class="f">—</td><td>60%; bus factor 1; 1.5–2 h per snapshot (record)</td><td>60%</td></tr>
+<tr><td>2</td><td>Parity gate</td><td class="f">|pipeline − manual| / manual ≤ 1% per frozen metric, consecutive weeks</td><td>the BRD's acceptance gate (record)</td><td>cutover unarguable</td></tr>
+<tr><td>3</td><td>Worked parity check</td><td class="f">71.2% vs 70.9% → 0.42% gap; tickets 456 vs 461 → 1.1%</td><td>illustrative; the 1.1% gap investigated</td><td>5 late tickets — the manual side wrong, pipeline right</td></tr>
+<tr><td>4</td><td>Join fix</td><td class="f">tickets → containers via documented cross-reference; real key pushed upstream</td><td>tickets carried no container ID (record)</td><td>join rate → ~100%</td></tr>
+<tr><td>5</td><td>Silence alert</td><td class="f">alert if 1 − sync_rate &gt; 1%</td><td>threshold illustrative; silence never mistaken for health</td><td>first catch: a 4% ticket-sync drop</td></tr>
+<tr><td>6</td><td>WBR accuracy (after)</td><td class="f">—</td><td>seven definitions moved into code — no drift (record)</td><td>90%; bus factor ≥2</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Hours term</td><td class="f">~4 h/wk × 52 × infra loaded rate</td><td>priced in the infra team's own rates (record of the pricing)</td><td>≈$30K/yr</td></tr>
+<tr><td>2</td><td>Decision-risk term</td><td class="f">P(wrong number) × cost of a wrong steer</td><td>≈1 in 10 × a squad-week; range $12–117K (modeled)</td><td>≈$70K/yr</td></tr>
+<tr><td>3</td><td>Priced baseline</td><td class="f">30 + 70</td><td>priced — NOT claimed as savings</td><td>&gt;$100K/yr</td></tr>
+<tr><td>4</td><td>Bus factor / alerts</td><td class="f">—</td><td>modeled</td><td>≈$15K/yr</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Sensitivity — low / base / high</h4>
 <table>
 <thead><tr><th>Input</th><th>Low</th><th>Base</th><th>High</th></tr></thead>
@@ -2672,31 +2605,29 @@ Sanity. Parity measured per metric, not aggregate; two consecutive weeks minimum
 <p><strong>If challenged.</strong> <em>"Surely the better tool saved freight dollars?"</em> — "Possibly — and that claim belongs to the people who ran the award. What I can defend is the cycle halving, the &lt;5% back-test, and the analyst hours returned, modeled and labeled. Refusing the dollar I can't defend is what makes the ones I do defend credible."</p>
 </div>
 
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Bid model (constraint-aware; engineering built it to the rules). Decision variable x_{l,c} ∈
-  [0,1] = share of lane l awarded to carrier c. min Σ_l Σ_c rate_{l,c} × volume_l × x_{l,c}
-  subject to: Σ_c x_{l,c} = 1 ∀ l (every lane covered); volume commitments Σ_l volume_l ×
-  x_{l,c} ≥ V_min,c for committed carriers; incumbency floors x_{l,inc(l)} ≥ f_l where the rule
-  applies; mode rules x_{l,c} = 0 if carrier c not eligible for mode(l). Scenario output: Δcost
-  = cost(all-cheapest) − cost(constrained) = the price of service/relationship risk, shown as a
-  number.
-Historical mismatch gate. mismatch = lanes where the model&#x27;s award ≠ the actual award in the
-  last two cycles / lanes evaluated ; the optimizer runs only if mismatch &lt; 5% . The gate
-  validates the rules (constraints) against defensible past decisions, not the prices.
-Time audit. Cycle = 6 weeks; measured composition (my hour log): reconciliation of carrier files
-  (naming, mode codes) dominated; analysis was the minority. Post: ~3 weeks (~50%); pilot region
-  3 weeks early. Illustrative worked example (&quot;not program data&quot;). Three lanes, two
-    carriers.
-  Lane volumes 100/200/300 loads; rates (A,B): L1 (900, 950), L2 (1,100, 1,000), L3 (800, 850).
-  All-cheapest: L1→A, L2→B, L3→A  90,000 + 200,000 + 240,000 = $530,000.
-Constraint: B has a volume commitment ≥ 250 loads  must also take ≥ 50 loads of L1 or L3;
-  cheapest way: 50 loads of L3 to B at +$50 each = +$2,500  $532,500. Scenario line:
-    &quot;honoring
-  B&#x27;s commitment costs $2,500 (0.47%).&quot; The award survives the room because the delta is
-  explicit.
-Stale-data banner. age = today − rate_file_date ; banner if age &gt; 10 days ; weekly refresh.
-Sanity. Σ shares = 1 per lane; constrained cost ≥ unconstrained cost always; mismatch gate on
-  rules never admits an unexplainable award.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Bid cycle (baseline)</td><td class="f">6 weeks, twice a year</td><td>mostly reconciliation of lane names and mode codes — the hour log's finding (record)</td><td>6 wks</td></tr>
+<tr><td>2</td><td>Lane master + explicit rules</td><td class="f">constraints one per rule: coverage · volume commitments · incumbency floors · mode eligibility</td><td>reconciliation turned into configuration (record)</td><td>—</td></tr>
+<tr><td>3</td><td>Back-test gate</td><td class="f">mismatched lanes / lanes evaluated &lt;5% vs the last two awards</td><td>published before any optimizer run; validates rules, not prices (record)</td><td>gate held</td></tr>
+<tr><td>4</td><td>Scenario delta (worked)</td><td class="f">all-cheapest $530,000; B's commitment ≥250 loads → +$2,500</td><td>3 lanes / 2 carriers (illustrative, not program data)</td><td>$532,500 — the 0.47% delta shown explicitly</td></tr>
+<tr><td>5</td><td>Freshness</td><td class="f">banner if rate-file age &gt; 10 days</td><td>weekly refresh (record)</td><td>stale data never hides</td></tr>
+<tr><td>6</td><td>Bid cycle (after)</td><td class="f">—</td><td>pilot region 3 weeks early; adopted without mandate (record)</td><td>~3 wks (−50%)</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Hours returned</td><td class="f">2 cycles × 3 wks saved × 40 h × 3 analysts × 3 regions</td><td>team and region counts illustrative</td><td>≈2,200 h/yr</td></tr>
+<tr><td>2</td><td>Analyst value</td><td class="f">≈2,200 h × ~$85/h</td><td>loaded analyst rate (benchmark)</td><td>≈$190K/yr (range $35–420K)</td></tr>
+<tr><td>3</td><td>Award dollars</td><td class="f">—</td><td>Transportation and Procurement ran the award (record)</td><td>none claimed</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Sensitivity — low / base / high</h4>
 <table>
 <thead><tr><th>Input</th><th>Low</th><th>Base</th><th>High</th></tr></thead>
@@ -2804,34 +2735,33 @@ Sanity. Σ shares = 1 per lane; constrained cost ≥ unconstrained cost always; 
 <tr><td>Paper-pick fallback cost</td><td>—</td><td>paid to hold the date</td><td>≈$45K</td><td>modeled</td></tr>
 </tbody>
 </table>
-<pre class="math">slip price = $2.5M/month / 30 ~ $83K/day -> every escalation decided same day
-dispute delta = (0.5% - 0.3%) x $50M illustrative on-hand = ~$0.1M less in dispute
-fallback = ~$45K paid deliberately: ~20x cheaper than the ~$875K critical-path slip it
-  protected (and ~55x cheaper than a full month of slip)</pre>
 <p><strong>If challenged.</strong> <em>"Why not roll back when the RF devices failed?"</em> — "Because the fallback was rehearsed and the rollback wasn't needed: inventory was inside tolerance; the failure was device conversion, not data. I paid ~$45K of paper-picking to protect ~$2.5M a month of pipeline — and took the miss upstairs the same afternoon with my name on the cause."</p>
 </div>
-<div class="mth"><h4>The math — full derivation, step by step</h4>
-<pre class="math">Reconciliation tolerance. Per SKU-location j: Δ_j = WMS_onhand_j − ERP_onhand_j . Aggregate
-  mismatch M = Σ_j |Δ_j| / Σ_j ERP_onhand_j ; gate M ≤ 0.5% plus a per-SKU band ( |Δ_j| / ERP_j
-  ≤ b or |Δ_j| ≤ k units for low-count SKUs). Canonical trajectory: mock 1 = 7% → mock 2 = 1.8%
-  → mock 3 = 0.3% vs 0.5%.
-Worked example (illustrative units on canonical percentages). Total ERP on-hand across two DCs =
-  2,000,000 units. Mock 1: Σ|
-Δ| = 140,000 → 7.0% (UoM mappings: a case-vs-each factor of 12 on 1% of SKUs alone creates 11 ×
-  those units of error). Mock 2: 36,000 → 1.8% (in-transit snapshot timing). Mock 3: 6,000 →
-  0.3% ≤ 0.5%  go-live recommendation. Sanity: each fix class must remove a category of Δ; if Δ
-  shrinks without a named root cause, the mock is not evidence.
-In-transit freeze logic. Transfers in flight at snapshot time t_s are counted at neither end or
-  both unless frozen: freeze window F = 72 h ≥ max lane transit  in-transit set is static;
-  converted as its own batch with Σ in-transit_legacy = Σ in-transit_JDA .
-Slip economics. Pipeline $20M gated  ~$2.5M/month of slip  ~$83K/day; a 1.5-week training slip
-  that does not move go-live costs 0 pipeline dollars; the same slip on the critical path would
-  have cost ≈ $875K. Budget: ~$1.8M, ~3% under ≈ $54K.
-Hypercare exit. blockers/day &lt; 2 sustained  exit; exited week 3 of 4.
-RF-device miss. Failure rate on newer hardware ≈ 100/400 = 25%; effort-scored &quot;3–4
-    days&quot; vs
-  impact = a go-live exit criterion (training sign-off). Rule left behind: any single-point
-  dependency in front of an exit criterion gets a what-if plan regardless of estimated effort.</pre></div>
+<div class="mth"><h4>The math — step-by-step derivation</h4>
+<p><strong>Table A — how the metric improved.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Mock 1 variance (baseline)</td><td class="f">M = Σ|Δ| / Σ ERP on-hand</td><td>140,000 of 2,000,000 units (illustrative units on record percentages)</td><td>7.0%</td></tr>
+<tr><td>2</td><td>Cause class removed — UoM</td><td class="f">case-vs-each factor 12 on 1% of SKUs → 11× those units of error</td><td>mapping tables as data, not code (record mechanism)</td><td>mock 2: 36,000 → 1.8%</td></tr>
+<tr><td>3</td><td>Cause class removed — in-transit timing</td><td class="f">72-h freeze ≥ max lane transit; own batch: Σ legacy = Σ JDA</td><td>in-transit counted at neither end or both unless frozen (record rule)</td><td>mock 3: 6,000 → 0.3%</td></tr>
+<tr><td>4</td><td>Gate</td><td class="f">0.3% ≤ 0.5% tolerance</td><td>signed with Finance before mock 1; never renegotiated (record)</td><td>go — as a written recommendation</td></tr>
+<tr><td>5</td><td>RF fallback</td><td class="f">~100 of ~400 devices failed the conversion script</td><td>rehearsed paper-pick fallback, not a rollback; training +1.5 wk, date held (record)</td><td>go-live on the date</td></tr>
+<tr><td>6</td><td>Hypercare exit</td><td class="f">blockers/day &lt; 2 sustained</td><td>the charter's own number (record)</td><td>exited week 3 of 4</td></tr>
+</tbody>
+</table>
+<p><strong>Table B — how the dollars follow.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula / rule</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Budget result</td><td class="f">~$1.8M × ~3%</td><td>record</td><td>≈$54K under budget</td></tr>
+<tr><td>2</td><td>Slip price</td><td class="f">$2.5M / 30</td><td>$20M pipeline gated → ~$2.5M/month of slip (record math)</td><td>≈$83K/day</td></tr>
+<tr><td>3</td><td>Critical-path slip avoided</td><td class="f">1.5 wk × 7 × $83K</td><td>the training slip kept OFF the critical path (record math)</td><td>≈$875K — avoided, not banked</td></tr>
+<tr><td>4</td><td>Fallback cost paid</td><td class="f">≈$45K deliberately</td><td>~20× cheaper than the ≈$875K it protected (modeled)</td><td>≈$45K</td></tr>
+<tr><td>5</td><td>Dispute delta</td><td class="f">(0.5% − 0.3%) × $50M</td><td>illustrative on-hand (modeled)</td><td>≈$0.1M one-time less in dispute</td></tr>
+</tbody>
+</table>
+</div>
 <div class="mth"><h4>Sensitivity — low / base / high</h4>
 <table>
 <thead><tr><th>Input</th><th>Low</th><th>Base</th><th>High</th></tr></thead>
