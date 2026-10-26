@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>NACF Inbound booklet — how capacity and inventory are managed — Amazon Sr SCM loop Oct 29–30</title>
+<style>
+  @page { size: letter; margin: 0.62in 0.68in 0.68in 0.68in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", "Inter", Arial, sans-serif; font-size: 10.3pt; line-height: 1.38; color: #1c1c1c; }
+  h1 { font-size: 20pt; line-height: 1.15; margin: 0 0 6px; letter-spacing: -0.02em; }
+  h2 { font-size: 13pt; margin: 16px 0 6px; padding-top: 8px; border-top: 2px solid #1a2744; page-break-after: avoid; }
+  h2.break { page-break-before: always; }
+  h2.emp { background: #1a2744; color: #ffffff; padding: 10px 12px; border-top: none; letter-spacing: 0.04em; }
+  h2.emp .sub { display: block; font-size: 9pt; font-weight: 400; color: #e6ddcb; margin-top: 4px; letter-spacing: 0.02em; text-transform: none; }
+  h3 { font-size: 11.3pt; margin: 12px 0 4px; page-break-after: avoid; color: #1a2744; }
+  h3.st { font-size: 11.5pt; color: #1c1c1c; border-left: 4px solid #1a2744; padding-left: 8px; margin-top: 14px; page-break-before: always; }
+  h3.st.first { page-break-before: auto; }
+  h4 { font-size: 10.3pt; margin: 9px 0 3px; page-break-after: avoid; color: #8a1c2b; }
+  p { margin: 0 0 7px; }
+  ul, ol { margin: 2px 0 8px; padding-left: 18px; }
+  li { margin: 0 0 3px; }
+  .kicker { font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .cover { min-height: 8.6in; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 0.9in; page-break-after: always; }
+  .cover .role { font-size: 12.5pt; color: #1a2744; margin: 0 0 18px; }
+  .cover .who { background: #1a2744; color: #fff; padding: 16px 20px; margin: 10px 0 16px; }
+  .cover .who .nm { font-size: 15pt; font-weight: 700; letter-spacing: -0.01em; }
+  .cover .who .tt { font-size: 10.5pt; color: #e6ddcb; margin-top: 3px; }
+  .cover .strat { background: #f7f4ee; border-left: 4px solid #8a1c2b; padding: 10px 14px; margin: 8px 0; font-size: 10.6pt; }
+  .cover .strat strong { color: #8a1c2b; }
+  .cover .lpg { font-size: 9.6pt; color: #333; margin-top: 10px; }
+  .cover .lpg em { color: #7a5a00; font-style: normal; font-weight: 700; }
+  .cover .src { font-size: 8.8pt; color: #666; margin-top: auto; padding-top: 24px; }
+  .meta { background: #f4f1ea; border-left: 4px solid #1a2744; padding: 8px 12px; margin: 8px 0 10px; font-size: 10pt; }
+  .meta div { margin: 1px 0; }
+  .say { background: #f7f4ee; border: 1px solid #d9d0c1; border-left: 4px solid #8a1c2b; padding: 8px 12px 4px; margin: 6px 0 10px; page-break-inside: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, serif; font-size: 10.4pt; line-height: 1.42; }
+  .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .hon { background: #f3f0fa; border-left: 4px solid #5b4a8a; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.3pt; color: #333; }
+  .hon strong { color: #5b4a8a; }
+  .inf { background: #fbf7ec; border-left: 4px solid #b8860b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.4pt; }
+  .inf strong { color: #7a5a00; }
+  .rules { background: #fdf0f0; border: 1px solid #e3b7b7; border-left: 4px solid #8a1c2b; padding: 7px 12px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .rules strong { color: #8a1c2b; }
+  .weave { font-size: 9.5pt; background: #f6f8fc; border-left: 4px solid #1a2744; padding: 5px 10px; margin: 2px 0 8px; }
+  .weave strong { color: #1a2744; }
+  .qa { border-left: 3px solid #d9d0c1; padding: 2px 0 2px 10px; margin: 0 0 9px; font-size: 9.5pt; page-break-inside: avoid; }
+  .qa p { margin: 0 0 3px; }
+  .qa p.q { color: #1a2744; font-weight: 700; }
+  .sh { font-size: 8.8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin: 10px 0 4px; border-bottom: 1px solid #d9d0c1; padding-bottom: 2px; page-break-after: avoid; }
+  .lab { font-size: 7.8pt; letter-spacing: 0.05em; color: #7a5a00; font-weight: 700; }
+  .mth { background: #eef5f0; border-left: 4px solid #2e6b4f; padding: 6px 12px 5px; margin: 4px 0 10px; page-break-inside: avoid; }
+  .mth h4 { margin: 2px 0 4px; font-size: 9.4pt; letter-spacing: 0.04em; text-transform: uppercase; color: #2e6b4f; }
+  .mth p { font-size: 9.4pt; margin: 0 0 5px; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 9.4pt; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #ddd; padding: 4px 6px 4px 0; }
+  th { font-size: 8.4pt; letter-spacing: 0.04em; text-transform: uppercase; color: #555; border-bottom: 1.5px solid #1a2744; }
+  table.drv { font-size: 8.8pt; }
+  table.drv td, table.drv th { padding: 3px 6px 3px 0; }
+  table.drv td.f { font-family: "Liberation Mono", monospace; font-size: 8.3pt; }
+  table.tw td:first-child { width: 30%; font-weight: 700; color: #1a2744; }
+  table.qb td:first-child { width: 3%; color: #555; }
+  table.qb td:nth-child(2) { width: 38%; font-weight: 700; color: #1a2744; }
+  code { font-family: "Liberation Mono", monospace; font-size: 9.1pt; background: #f1efe9; padding: 0 3px; }
+  pre { font-family: "Liberation Mono", monospace; font-size: 9pt; background: #f1efe9; padding: 8px 10px; margin: 4px 0 10px; white-space: pre-wrap; page-break-inside: avoid; }
+  pre.math { font-size: 8.6pt; line-height: 1.32; }
+  .note { font-size: 9.6pt; color: #333; }
+  .small { font-size: 9pt; color: #555; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="kicker">Interview-prep booklet · NACF inbound fluency · business-first, systems as enablers</div>
+  <h1>NACF Inbound — how capacity and inventory are managed</h1>
+  <div class="role">Amazon — Senior Supply Chain Manager, NACF Supply Chain (L6) · interview loop October 29–30, 2026</div>
+  <div class="who">
+    <div class="nm">The panel this booklet serves</div>
+    <div class="tt">1 · Snigdha Tripathy — Sr Manager, Supply Chain — NACF · <strong>HIRING MANAGER</strong> · ex-EU IXD / placement leader ($80MM savings 2021; built the IXD team ground-up, +$50MM 2020; 50+ FC launches Amazon.in; Kaizen/Lean trainer; 11+ yrs Amazon)</div>
+    <div class="tt">2 · Ryan Hoerger — Manager, Placement / Transfer Analytics · ex-Sr BIE · Chicago Booth MBA, Siebel Scholar · Nike analytics · statistical rigor</div>
+    <div class="tt">3 · Rocky Goforth — Sr Manager, Infrastructure</div>
+    <div class="tt">4 · Zhaowen Lan — Sr Manager, Supply Chain — peer</div>
+    <div class="tt">5 · Venkata Josyula — Principal PM, FBA · bar raiser</div>
+  </div>
+  <div class="strat"><strong>Strategy in one line.</strong> Sound like someone who has run inbound — not someone who memorized a glossary. Every mechanism below is spoken as a business process with a constraint, a metric and a lever; every number is worked end-to-end so the arithmetic can be done out loud in the room. Inbound in one breath: <em>the right inventory, reserved into the right node, received and stowed inside capacity, made available where the demand is — with the plans traveling ahead of the freight and the variance closing the loop.</em></div>
+  <div class="lpg"><em>Honesty labels, on every mechanism:</em> <span class="lab">[well-known public Amazon practice]</span> — published, talkable-in-public Amazon mechanisms (AWD, IXD, appointment scheduling, random stow, IPI components, WBR) · <span class="lab">[industry standard]</span> — textbook supply chain (UPH labor planning, z·σ·√LT safety stock, S&amp;OP, queueing approximations) · <span class="lab">[illustrative]</span> — numbers invented to make the math legible. No confidential Amazon internals are asserted anywhere; no number is claimed as Amazon's own.</div>
+  <div class="lpg"><em>How to use.</em> §1–§4 are the fluency: read the diagrams until you can redraw them, then recompute every green math block until the substitutions feel like your own. §5 maps your master-packet stories onto inbound concepts. §6 is per-interviewer: what each of the five will likely ask, and the questions to ask them. §7 is the math appendix — every formula symbolic → substituted → computed, for the night before.</div>
+  <div class="src">Canon: amazon/amazon-l6-scm-master-packet.html (stories S2, S6, S8, S9, S11, S12, S13, S18, S19 with their basis labels) · panel packets 1–5 (per-interviewer lenses). Sibling booklet file; the five panel packets are untouched by this document.</div>
+</div>
+
+<h2>The 60-second answer — "what is NACF inbound?"</h2>
+<div class="say"><div class="label">Say this version out loud, then stop</div>
+<p>"Inbound is everything from the vendor or seller's dock to the moment an item is pickable in front of a customer promise — and it is managed as two coupled problems. <strong>Capacity</strong>: three physical currencies — dock-appointment slots, labor hours, and cubic storage — planned from the demand forecast through a receive plan and a UPH-based labor plan, with peak buffers sized off the forecast distribution, not the average. <strong>Inventory</strong>: where the units land and how long they last — placement by distance-to-customer against cost, weeks of cover by SKU, safety stock positioned where the variability actually is, and a transfer loop that rebalances what placement got wrong. The information flow travels ahead of the freight: forecast → inbound plan → placement decision → capacity reservation, and the actuals come back through the WBR as variance. My job in a seat like this is to keep that loop honest — measured lead times, not brochure ones; buffers released on evidence; capacity added against the constraint that actually binds."</p></div>
+<p class="note">Everything after this page unpacks that paragraph. The discipline that makes it credible: every mechanism carries its label, and every quantity in the worked examples can be recomputed from the row above it — do the arithmetic out loud in the interview and the fluency reads as experience.</p>
+<div class="inf"><strong>The one mental model to keep on top.</strong> Inbound is a <em>reservation system</em> feeding a <em>positioning system</em>: you reserve capacity (slots, hours, cube) against a plan, and you position inventory (placement, cover, buffers) against demand. Most inbound failures are one system lying to the other — freight arrives that capacity never reserved, or inventory sits where demand isn't. The metrics in §2–§3 exist to catch exactly those two lies early.</div>
+
+<h2 class="break">1 · The inbound machine, end-to-end</h2>
+<p class="note">The physical flow first — what the freight does. Each node is labeled with the constraint that binds it; the three capacity gates are the whole of §2. <span class="lab">[well-known public Amazon practice]</span> for the node names (AWD, IXD, appointment scheduling, random-stow-style bin visibility); the diagram itself is <span class="lab">[illustrative]</span>.</p>
+<pre class="math"> NACF INBOUND -- PHYSICAL FLOW (what the freight does)      [well-known public Amazon practice]
+
+ 1P vendors (Amazon PO)      3P sellers (FBA shipments)
+        |                           |
+        v                           v
+ +------------------------------------------------------+
+ | AWD / upstream bulk storage (optional upstream pool) |---&gt; drip-feeds FCs against
+ +------------------------------------------------------+     the forecast, cheap cube
+        |
+        v
+ +------------------------------------------------------+
+ | Inbound cross-dock (IXD) or direct-to-FC routing     |---&gt; re-consolidate freight
+ +------------------------------------------------------+     toward destination FCs
+        |
+        v
+ +------------------------------------------------------+
+ | Appointment & dock scheduling   == CAPACITY GATE 1   |  dock slots reserved
+ +------------------------------------------------------+  ahead of the freight
+        |
+        v
+ +------------------------------------------------------+
+ | RECEIVE (unload -&gt; count -&gt; sort) == CAPACITY GATE 2 |  labor hours via UPH
+ +------------------------------------------------------+
+        |
+        v
+ +------------------------------------------------------+
+ | STOW into bins                == CAPACITY GATE 3     |  cubic bin space; the item
+ +------------------------------------------------------+  becomes visible here
+        |
+        v
+ +------------------------------------------------------+
+ | PICKABLE / AVAILABLE ---&gt; customer sees the item;    |  promise engine dates it
+ +------------------------------------------------------+
+        |
+   +----+----------------------------------------------+
+   |                                                   |
+   v                                                   v
+ +------------------------------+   +----------------------------------------+
+ | OUTBOUND pick / pack / ship  |   | TRANSFERS / rebalancing (FC &lt;-&gt; FC):   |
+ | toward the customer          |   | the placement-fix loop; costs $/unit,  |
+ +------------------------------+   | buys in-stock where demand actually is |
+                                    +----------------------------------------+</pre>
+<table>
+<thead><tr><th style="width:17%">Node</th><th>What it is (business language)</th><th style="width:24%">What constrains it</th><th style="width:22%">The metric that watches it</th><th style="width:13%">Label</th></tr></thead>
+<tbody>
+<tr><td><strong>Vendor / seller ship</strong></td><td>1P purchase orders and 3P FBA shipments; the plan's first promise is the ship date and the ASN (advance shipment notice).</td><td>Vendor lead time and OTIF (on-time-in-full); ASN data quality.</td><td>OTIF %, fill rate, ASN accuracy.</td><td class="lab">[industry standard]</td></tr>
+<tr><td><strong>AWD / upstream</strong></td><td>Low-cost bulk storage upstream of the FC network; holds inventory cheap and replenishes the network as the forecast firms.</td><td>Upstream cube; replenishment lead time into FCs.</td><td>Upstream weeks of cover; replenishment dwell.</td><td class="lab">[well-known public Amazon practice]</td></tr>
+<tr><td><strong>IXD / direct FC</strong></td><td>Inbound cross-dock sorts and re-consolidates inbound freight toward destination FCs; some freight books direct.</td><td>Cross-dock throughput; linehaul schedule.</td><td>IXD dwell time; trailer utilization.</td><td class="lab">[well-known public Amazon practice]</td></tr>
+<tr><td><strong>Appointment / dock</strong></td><td>Carriers book delivery appointments; the dock door is the first scarce, schedulable resource in the building.</td><td>Dock doors × receiving hours × unload rate.</td><td>Dock utilization %, trailer dwell, missed-appointment count.</td><td class="lab">[well-known public Amazon practice]</td></tr>
+<tr><td><strong>Receive</strong></td><td>Unload, count, inspect, sort to stowable state; where physical freight becomes system inventory.</td><td>Labor hours (units per hour, UPH) and conveyor/sort rates.</td><td>Receive UPH, backlog in trailers/cartons, receive accuracy.</td><td class="lab">[industry standard]</td></tr>
+<tr><td><strong>Stow</strong></td><td>Items into bins; the item becomes findable and sellable — availability starts here, not at the dock.</td><td>Cubic bin space and stow labor.</td><td>Stow UPH, bin utilization %, time-to-available.</td><td class="lab">[well-known public Amazon practice]</td></tr>
+<tr><td><strong>Pickable / available</strong></td><td>Inventory the promise engine can sell against; the boundary between inbound and outbound.</td><td>Nothing inbound — this is the finish line.</td><td>In-stock rate; time from dock to available.</td><td class="lab">[industry standard]</td></tr>
+<tr><td><strong>Transfers / rebalancing</strong></td><td>FC-to-FC moves that fix placement error after the fact; the network's insurance policy, priced per unit.</td><td>Transfer cost vs stockout cost (the breakeven in §3).</td><td>Transfer units/wk, transfer cost/unit, avoided stockouts.</td><td class="lab">[well-known public Amazon practice]</td></tr>
+</tbody>
+</table>
+<h3>The information flow — plans travel ahead of the freight</h3>
+<p class="note">Every physical move above is preceded by an information move; when the two drift apart, the WBR is where it gets caught. <span class="lab">[industry standard]</span> structure; Amazon vocabulary (WBR, promise engine) <span class="lab">[well-known public Amazon practice]</span>.</p>
+<pre class="math"> INFORMATION FLOW -- plans travel ahead of the freight     [industry standard]
+
+ demand forecast (SKU x region x week)
+        |
+        v
+ inbound plan: what to buy / book, and when it must land  &lt;---&gt; vendor &amp; seller
+        |                                                     lead times, OTIF
+        v
+ placement decision: WHICH node receives it --
+   distance-to-customer vs cost vs node capacity      &lt;--- the hiring manager's
+        |                                                home turf (EU IXD placement)
+        v
+ capacity reservation: dock slots + labor plan (UPH -&gt; hours) + cube
+        |
+        v
+ receive schedule -&gt; stow plan -&gt; availability signal
+        |
+        v
+ promise engine / search in-stock ---&gt; the customer sees a delivery date
+        |
+        v
+ actuals vs plan --&gt; variance --&gt; next WBR input (the loop that keeps it honest)</pre>
+<div class="weave"><strong>How to sound like you've run it.</strong> Name the seam, not the node. "The dock" is trivia; "the seam where the inbound plan meets the appointment calendar — and what happens when a vendor ships three days early into a full dock" is experience. Each worked example in §2–§3 is one of those seams, with the arithmetic attached.</div>
+
+<h2 class="break">2 · Capacity management — the three currencies and the planning loop</h2>
+<p class="note">Inbound capacity is three currencies that convert into each other only through the plan. <span class="lab">[industry standard]</span> framework; all numbers <span class="lab">[illustrative]</span>.</p>
+<table>
+<thead><tr><th style="width:16%">Capacity type</th><th>Unit of account</th><th>What drives consumption</th><th>How you plan it</th><th style="width:20%">When it binds</th></tr></thead>
+<tbody>
+<tr><td><strong>Dock / appointment slots</strong></td><td>Trailer-unloads per day = doors × hours × unload rate</td><td>Truckload arrivals; vendor/carrier appointment discipline; trailer mix (floor-loaded vs palletized).</td><td>Receive plan → trailers/day → doors at an unload rate, capped at ~85% utilization (worked in CAP-A, CAP-D).</td><td>First, at peak — it is the least elastic currency (you cannot stack trailers at a door).</td></tr>
+<tr><td><strong>Labor hours</strong></td><td>Hours = units ÷ UPH, grossed up for indirect work and learning curves</td><td>Units received/stowed; associate proficiency; process (conveyable vs hand-stack).</td><td>UPH standards → direct hours → paid hours → headcount by shift (CAP-B).</td><td>Second — elastic but slow: hiring and the learning curve lag the plan by weeks.</td></tr>
+<tr><td><strong>Cubic storage</strong></td><td>Cubic feet = on-hand units × cube per unit</td><td>Inventory target (days of cover), unit cube, bin geometry / honeycomb loss.</td><td>Inventory plan → cube needed vs effective bin capacity (CAP-C).</td><td>Last, then suddenly — it looks fine at 49% and is a wall at 90%; the least flexible currency mid-peak.</td></tr>
+</tbody>
+</table>
+<h3>The planning loop — forecast to floor</h3>
+<pre class="math"> CAPACITY PLANNING LOOP                                        [industry standard]
+
+ demand forecast (units/day, with a distribution -- p50 ... p90)
+        |
+        v
+ receive plan: units/day -&gt; cartons -&gt; pallets -&gt; trailers/day (CAP-A)
+        |
+        +---------------&gt; dock reservation: trailers/hour vs doors at ~85% ceiling
+        |
+        v
+ labor plan: units / UPH = direct hours -&gt; +indirect % -&gt; /shift-hours = heads (CAP-B)
+        |
+        v
+ cube check: on-hand units x cube/unit vs effective bin capacity (CAP-C)
+        |
+        v
+ peak buffer: fixed capacity to ~p50-p70, flex (temp labor, OT, appointment
+ smoothing) for the tail (CAP-E) -- then WBR reads actuals vs all of it</pre>
+<h3>The metrics that watch capacity</h3>
+<table class="drv">
+<thead><tr><th>Metric</th><th>Definition / formula</th><th>Red flag</th><th>Label</th></tr></thead>
+<tbody>
+<tr><td><strong>Dock utilization %</strong></td><td class="f">utilization = scheduled unloads ÷ (doors × hours × unload rate)</td><td>Sustained &gt; ~85% — dwell goes nonlinear (CAP-D).</td><td class="lab">[industry standard]</td></tr>
+<tr><td><strong>Dwell time</strong></td><td class="f">dwell = trailer arrival → door departure (hours)</td><td>Rising dwell with flat volume = variability, not volume, is the problem.</td><td class="lab">[industry standard]</td></tr>
+<tr><td><strong>Receive backlog</strong></td><td class="f">backlog_days = unreceived units ÷ receive capacity (units/day)</td><td>&gt; 0.5 day carried into the next shift; it compounds.</td><td class="lab">[industry standard]</td></tr>
+<tr><td><strong>Forecast variance</strong></td><td class="f">variance = (actual − plan) ÷ plan, by week and by node</td><td>Same-sign variance three weeks running = a bias, not noise; fix the plan, not the floor.</td><td class="lab">[industry standard]</td></tr>
+</tbody>
+</table>
+
+<div class="mth"><h4>CAP-A · required receive capacity — units/day → trailers → dock doors</h4>
+<p>One illustrative FC receiving 120,000 units/day. Every row recomputes from the rows above; say the chain out loud and you sound like the floor.</p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Inbound volume</td><td class="f">V = 120,000 units/day</td><td>illustrative receive plan</td><td>120,000 units/day</td></tr>
+<tr><td>2</td><td>Cartons per day</td><td class="f">120,000 ÷ 6 = 20,000</td><td>6 units/carton (illustrative)</td><td>20,000 cartons/day</td></tr>
+<tr><td>3</td><td>Pallets per day</td><td class="f">20,000 ÷ 40 = 500</td><td>40 cartons/pallet (illustrative)</td><td>500 pallets/day</td></tr>
+<tr><td>4</td><td>Truckloads per day</td><td class="f">500 ÷ 26 = 19.2</td><td>26 pallets per 53-ft trailer [industry standard]</td><td>19.2 trailers/day</td></tr>
+<tr><td>5</td><td>Trailer arrival rate</td><td class="f">19.2 ÷ 10 = 1.92</td><td>10 receiving hours/day (illustrative)</td><td>1.92 trailers/hour</td></tr>
+<tr><td>6</td><td>Raw doors required</td><td class="f">1.92 ÷ 0.5 = 3.84</td><td>unload rate 0.5 trailer/door-hour = 2 h/trailer (illustrative)</td><td>3.84 doors</td></tr>
+<tr><td>7</td><td>Doors at the 85% ceiling</td><td class="f">3.84 ÷ 0.85 = 4.5 → round up</td><td>utilization ceiling ~85% [industry standard]</td><td><strong>5 dock doors planned</strong></td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "Twelve trailers an hour isn't the plan — the plan is five doors, because at 85% utilization the doors stop being fungible and dwell starts compounding."</p>
+</div>
+
+<div class="mth"><h4>CAP-B · labor hours from UPH — with the learning curve priced in</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Direct receive hours</td><td class="f">120,000 ÷ 300 = 400</td><td>mature-associate 300 UPH (illustrative)</td><td>400 direct hours/day</td></tr>
+<tr><td>2</td><td>Paid hours (indirect gross-up)</td><td class="f">400 × 1.15 = 460</td><td>15% indirect allowance (illustrative)</td><td>460 paid hours/day</td></tr>
+<tr><td>3</td><td>Headcount</td><td class="f">460 ÷ 10 = 46</td><td>10-hour shifts (illustrative)</td><td>46 associates/day</td></tr>
+<tr><td>4</td><td>Learning curve, week 1</td><td class="f">300 × 0.60 = 180 UPH</td><td>new associate at 60% of standard (illustrative)</td><td>180 UPH effective</td></tr>
+<tr><td>5</td><td>Blended UPH at 30% new</td><td class="f">0.7×300 + 0.3×180 = 210 + 54 = 264</td><td>Q4 ramp: 30% of staff in week 1–2 (illustrative)</td><td>264 UPH blended</td></tr>
+<tr><td>6</td><td>Direct hours at blended UPH</td><td class="f">120,000 ÷ 264 = 454.5</td><td>same volume as step 1</td><td>454.5 h = <strong>+54.5 h (+13.6%)</strong></td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "The hiring plan isn't the headcount math — it's the learning-curve math. Thirty percent new hires isn't a 30% problem, it's a 13.6% tax on every received unit for two weeks, and the peak plan has to pay it before the first trailer arrives."</p>
+</div>
+
+<div class="mth"><h4>CAP-C · cubic capacity — units → cube → % of the building</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>On-hand target</td><td class="f">I = 2,000,000 units</td><td>illustrative network-position target for this FC</td><td>2.0M units</td></tr>
+<tr><td>2</td><td>Cube required</td><td class="f">2,000,000 × 0.25 = 500,000</td><td>0.25 ft³/unit average (illustrative)</td><td>500,000 ft³</td></tr>
+<tr><td>3</td><td>Nominal utilization</td><td class="f">500,000 ÷ 1,200,000 = 41.7%</td><td>1.2M ft³ usable bin capacity (illustrative)</td><td>41.7% of nominal</td></tr>
+<tr><td>4</td><td>Effective capacity (honeycomb)</td><td class="f">1,200,000 × 0.85 = 1,020,000</td><td>15% partial-bin loss [industry standard]</td><td>1,020,000 ft³ effective</td></tr>
+<tr><td>5</td><td>True utilization</td><td class="f">500,000 ÷ 1,020,000 = 49.0%</td><td>against effective, not nominal</td><td><strong>49.0% — plan against this</strong></td></tr>
+<tr><td>6</td><td>Days of cover check</td><td class="f">2,000,000 ÷ 120,000 = 16.7 days</td><td>same 120K units/day flow as CAP-A</td><td>16.7 days</td></tr>
+<tr><td>7</td><td>Surge consumption</td><td class="f">3 × 120,000 × 0.25 = 90,000 ft³; 90,000 ÷ 1,020,000 = 8.8%</td><td>a 3-day inbound surge ahead of forecast</td><td>8.8% of effective cube in 3 days</td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "Cube is the currency that lies — 42% nominal is 49% effective, and a three-day vendor early-ship surge eats nine points of the building before the WBR sees it."</p>
+</div>
+
+<div class="mth"><h4>CAP-D · why dwell explodes above ~85% dock utilization</h4>
+<p>Queueing approximation: with variability in arrivals and unload times, expected wait scales with ρ/(1−ρ) and total dwell with service ÷ (1−ρ), where ρ = utilization <span class="lab">[industry standard — Kingman-style approximation, qualitative use]</span>.</p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Utilization ρ</th><th>Queue factor ρ/(1−ρ)</th><th>Dwell at 2.0 h service: 2 ÷ (1−ρ)</th><th>Reading</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>70%</td><td class="f">0.70 ÷ 0.30 = 2.33</td><td class="f">2.0 ÷ 0.30 = 6.7 h</td><td>comfortable</td></tr>
+<tr><td>2</td><td>85%</td><td class="f">0.85 ÷ 0.15 = 5.67</td><td class="f">2.0 ÷ 0.15 = 13.3 h</td><td>the knee — the ceiling in CAP-A</td></tr>
+<tr><td>3</td><td>95%</td><td class="f">0.95 ÷ 0.05 = 19.0</td><td class="f">2.0 ÷ 0.05 = 40.0 h</td><td>a 2-hour unload becomes a 40-hour trailer stay</td></tr>
+<tr><td>4</td><td>85% → 95%</td><td class="f">19.0 ÷ 5.67 = 3.4×</td><td class="f">40.0 ÷ 13.3 = 3.0×</td><td><strong>+10 points of utilization ≈ 3× the dwell</strong></td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "Above about 85% the building stops failing linearly — the last ten points of utilization triple your dwell. So the plan holds dock slack the way inventory holds safety stock: you don't apologize for either until the week you needed it."</p>
+</div>
+
+<div class="mth"><h4>CAP-E · peak buffer sizing — p50 vs p90</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Peak-week distribution</td><td class="f">p50 = 120,000; p90 = 156,000</td><td>illustrative; p90/p50 = 1.30</td><td>+36,000 units/day at p90</td></tr>
+<tr><td>2</td><td>Build to p50 — one p90 day</td><td class="f">36,000 ÷ 120,000 = 0.30 day</td><td>shortfall carried as backlog</td><td>0.30 day of backlog</td></tr>
+<tr><td>3</td><td>Build to p50 — three p90 days</td><td class="f">3 × 36,000 = 108,000; ÷ 120,000 = 0.9</td><td>backlog compounds across the shift handoffs</td><td>~1 full day of backlog</td></tr>
+<tr><td>4</td><td>Build to p90 — a p50 day</td><td class="f">36,000 ÷ 156,000 = 23%</td><td>idle capacity on the median day</td><td>23% idle</td></tr>
+<tr><td>5</td><td>Labor to flex the tail</td><td class="f">156,000 ÷ 264 = 591 h; 591 − 454.5 = 136 h; ÷ 10 ≈ 14</td><td>blended 264 UPH from CAP-B; 10-h shifts</td><td><strong>≈14 flex associates</strong></td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "Fixed capacity to the median, flex the tail. Building the building to p90 means paying 23% idle on the average day; building to p50 means a three-day p90 run is a full day of backlog — so the answer is temp labor, overtime and appointment smoothing, sized at about fourteen heads on this volume."</p>
+</div>
+
+<h2 class="break">3 · Inventory management, inbound lens — where the units land and how long they last</h2>
+<p class="note">Capacity decides how fast freight moves; inventory decisions decide whether the right units are in the right building. This is the hiring manager's home turf — placement was her EU IXD charter — so the placement math (INV-C) gets said slowly, with the constraint and the shadow price named.</p>
+<h3>Placement strategy — distance-to-customer vs cost</h3>
+<p><strong>The mechanism.</strong> Amazon positions inventory close to forecasted demand so that the outbound leg — the expensive, promise-bound leg — is short <span class="lab">[well-known public Amazon practice]</span>. Inbound placement is the upstream half of that decision: which node receives the units, given regional demand, node capacity and inbound cost. The trade is never "cheapest inbound" — it is distance-weighted delivered cost under a capacity constraint, with the customer promise as the boundary condition. Speed and cost are one table, not two arguments.</p>
+<p><strong>Network safety-stock positioning.</strong> Because pooling variability upstream beats duplicating buffers everywhere <span class="lab">[industry standard]</span>, the cheap place to hold uncertainty is upstream (AWD-style bulk) and the fast place is forward (FC pickface); the worked question is how much buffer each layer carries (INV-B) and when a transfer beats a stockout (INV-D).</p>
+<h3>Weeks of cover, health, and the FBA seller view</h3>
+<table>
+<thead><tr><th style="width:20%">Concept</th><th>Definition</th><th>Operator's action rule</th><th>Label</th></tr></thead>
+<tbody>
+<tr><td><strong>Weeks of cover (WOC)</strong></td><td class="f">WOC = on-hand ÷ weekly forecast</td><td>&lt; 2 → replenish / expedite · 2–4 → healthy · 4–6 → watch · &gt; 6 → excess action (worked in INV-A).</td><td class="lab">[industry standard]</td></tr>
+<tr><td><strong>Excess / aged</strong></td><td>Units above the cover ceiling, and units aging against storage-fee cliffs.</td><td>Price, transfer, or remove — in that order of preference.</td><td class="lab">[industry standard]</td></tr>
+<tr><td><strong>Stranded</strong></td><td>Physically present, not sellable (listing, hold, or data break) — inbound's silent inventory.</td><td>Fix the listing/hold at the source; a stow without a sellable record is not availability.</td><td class="lab">[well-known public Amazon practice]</td></tr>
+<tr><td><strong>In-stock rate</strong></td><td>Share of demand-facing selection available to promise.</td><td>The north-star inventory output; every inbound metric is an input to it.</td><td class="lab">[industry standard]</td></tr>
+<tr><td><strong>IPI (FBA seller view)</strong></td><td>Inventory Performance Index components: excess inventory %, sell-through, stranded inventory, in-stock rate.</td><td>Sellers manage to the same four levers; restock limits make network capacity legible to sellers <span class="lab">[well-known public Amazon practice]</span>.</td><td class="lab">[well-known public Amazon practice]</td></tr>
+<tr><td><strong>Transfers / rebalancing</strong></td><td>FC↔FC moves that correct placement error.</td><td>Run them against the breakeven (INV-D), never as a reflex.</td><td class="lab">[well-known public Amazon practice]</td></tr>
+</tbody>
+</table>
+
+<div class="mth"><h4>INV-A · weeks of cover — three SKUs, three actions</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>SKU</th><th>Formula → substitution</th><th>WOC</th><th>Action (rule from the table above)</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>A</td><td class="f">4,200 ÷ 600/wk = 7.0</td><td>7.0</td><td>&gt; 6 → excess action: to reach 4.0 WOC move 4,200 − 4.0×600 = <strong>1,800 units</strong> (transfer feeds INV-D)</td></tr>
+<tr><td>2</td><td>B</td><td class="f">1,350 ÷ 450/wk = 3.0</td><td>3.0</td><td>2–4 → healthy; no action, watch variance</td></tr>
+<tr><td>3</td><td>C</td><td class="f">500 ÷ 500/wk = 1.0</td><td>1.0</td><td>&lt; 2 → expedite: stockout in 500 ÷ (500÷7) = <strong>7.0 days</strong> absent receipt; pull the inbound appointment forward or re-source</td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "WOC turns a warehouse full of units into three sentences: A is seven weeks of stock and I'm moving 1,800 units; B is fine; C is a stockout next Friday unless the appointment moves."</p>
+</div>
+
+<div class="mth"><h4>INV-B · safety stock — z·σ·√LT, substituted, and the two levers</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Demand and variability</td><td class="f">d = 500/day; σ_d = 120/day</td><td>illustrative SKU at one FC</td><td>—</td></tr>
+<tr><td>2</td><td>Demand over lead time</td><td class="f">500 × 7 = 3,500</td><td>lead time LT = 7 days (illustrative)</td><td>3,500 units cycle exposure</td></tr>
+<tr><td>3</td><td>σ over lead time</td><td class="f">σ_LT = 120 × √7 = 120 × 2.6458 = 317.5</td><td>independent daily demand [industry standard]</td><td>317.5 units</td></tr>
+<tr><td>4</td><td>Safety stock at 95%</td><td class="f">SS = 1.645 × 317.5 = 522</td><td>z(95%) = 1.645 [industry standard]</td><td><strong>522 units = 522 ÷ 500 = 1.04 days</strong></td></tr>
+<tr><td>5</td><td>Service lever: 99%</td><td class="f">SS = 2.326 × 317.5 = 739; 739 − 522 = +217</td><td>z(99%) = 2.326</td><td>+217 units = <strong>+41.6% buffer for +4 pts</strong></td></tr>
+<tr><td>6</td><td>Lead-time lever: 7 → 5 days</td><td class="f">SS = 1.645 × 120 × √5 = 1.645 × 268.3 = 441; 522 − 441 = −81</td><td>√5 = 2.2361; 120 × 2.2361 = 268.3</td><td>−81 units = <strong>−15.5% buffer, free</strong></td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "Service points are bought at an accelerating price — 95 to 99 costs forty percent more buffer — but lead time is the free lever: two days off the lane releases fifteen percent of the buffer with the service level untouched. That's why measured lead times, not brochure ones, are an inventory program" (this is exactly the S8 story — §5).</p>
+</div>
+
+<div class="mth"><h4>INV-C · placement mini-model — 2 FCs × 3 demand regions, capacity-constrained</h4>
+<p>Distance-weighted delivered cost per unit <span class="lab">[illustrative]</span>. Demand: R1 = 2,000/wk, R2 = 3,000/wk, R3 = 1,000/wk (6,000 total). FC-West capacity 2,500 units/wk; FC-East 4,000.</p>
+<table class="drv">
+<thead><tr><th>Cost $/unit</th><th>R1 (2,000)</th><th>R2 (3,000)</th><th>R3 (1,000)</th></tr></thead>
+<tbody>
+<tr><td><strong>FC-East</strong></td><td class="f">$1.20</td><td class="f">$2.40</td><td class="f">$3.60</td></tr>
+<tr><td><strong>FC-West</strong></td><td class="f">$3.40</td><td class="f">$2.10</td><td class="f">$1.30</td></tr>
+</tbody>
+</table>
+<table class="drv">
+<thead><tr><th>Step</th><th>Decision</th><th>Formula → substitution</th><th>Weekly cost</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Unconstrained optimum: R1→East, R2→West, R3→West</td><td class="f">2,000×1.20 + 3,000×2.10 + 1,000×1.30 = 2,400 + 6,300 + 1,300</td><td>$10,000</td></tr>
+<tr><td>2</td><td>West capacity binds at 2,500: give West its cheapest regions first — R3 (1,000), then R2 partial (1,500)</td><td class="f">1,000×1.30 + 1,500×2.10 = 1,300 + 3,150</td><td>West serves 2,500</td></tr>
+<tr><td>3</td><td>East takes R1 + residual R2 (1,500); load check 2,000 + 1,500 = 3,500 ≤ 4,000</td><td class="f">2,000×1.20 + 1,500×2.40 = 2,400 + 3,600</td><td>East serves 3,500 ✓</td></tr>
+<tr><td>4</td><td>Constrained total</td><td class="f">2,400 + 1,300 + 3,150 + 3,600</td><td><strong>$10,450</strong></td></tr>
+<tr><td>5</td><td>Capacity premium</td><td class="f">10,450 − 10,000 = 450; 450 ÷ 10,000 = 4.5%</td><td><strong>$450/wk (+4.5%)</strong></td></tr>
+<tr><td>6</td><td>Shadow price check</td><td class="f">(2.40 − 2.10) × 1,500 = 0.30 × 1,500 = 450</td><td>each added West slot is worth $0.30 on R2 — the model agrees with itself</td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "Placement is a constrained assignment, not a map. Here the constraint costs four and a half points, and the shadow price — thirty cents a unit — is the number I'd take to the capacity team to argue for one more West slot, and to the finance review to explain the premium."</p>
+</div>
+
+<div class="mth"><h4>INV-D · transfer breakeven — when rebalancing beats a stockout</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Transfer cost per unit</td><td class="f">$1.10 handling + $1.90 freight = $3.00</td><td>illustrative FC↔FC economics</td><td>$3.00/unit</td></tr>
+<tr><td>2</td><td>Expected stockout cost per unit</td><td class="f">$12 × 0.40 = $4.80</td><td>lost margin $12/unit; P(stockout before inbound lands) = 40% (illustrative)</td><td>$4.80/unit</td></tr>
+<tr><td>3</td><td>Decision rule</td><td class="f">3.00 &lt; 4.80 → transfer</td><td>transfer when cost &lt; expected loss</td><td><strong>transfer wins by $1.80/unit</strong></td></tr>
+<tr><td>4</td><td>Breakeven probability</td><td class="f">p* = 3.00 ÷ 12 = 0.25</td><td>transfer when stockout probability &gt; 25%</td><td>p* = 25%</td></tr>
+<tr><td>5</td><td>At scale (SKU A's 1,800 units)</td><td class="f">spend 1,800 × 3.00 = 5,400; expected loss 1,800 × 4.80 = 8,640; net 8,640 − 5,400 = 3,240</td><td>the 1,800 units from INV-A</td><td><strong>+$3,240 net — and the premium is priced, not argued</strong></td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "Transfers are insurance with a deductible. At a twelve-dollar margin the breakeven is a twenty-five percent stockout probability — below that I let it ride, above it I move the freight, and either way the decision is arithmetic, not adrenaline."</p>
+</div>
+
+<div class="mth"><h4>INV-E · vendor OTIF / fill-rate → the in-stock chain</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Link</th><th>Formula → substitution</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Planned PO volume</td><td class="f">10,000 units/wk = 1,429/day demand</td><td>10,000 units (illustrative)</td></tr>
+<tr><td>2</td><td>× fill rate</td><td class="f">10,000 × 0.92 = 9,200</td><td>9,200 shipped (800 short)</td></tr>
+<tr><td>3</td><td>× on-time</td><td class="f">9,200 × 0.88 = 8,096</td><td>8,096 OTIF units = <strong>81.0% of plan</strong></td></tr>
+<tr><td>4</td><td>Weekly deficit</td><td class="f">10,000 − 8,096 = 1,904</td><td>1,904 units (19.0% of plan)</td></tr>
+<tr><td>5</td><td>Safety-stock absorption</td><td class="f">522 ÷ 1,429 = 0.37 days; residual 1,904 − 522 = 1,382</td><td>the INV-B buffer covers about a third of a day — it was sized for demand noise, not vendor failure</td></tr>
+<tr><td>6</td><td>In-stock proxy for the week</td><td class="f">(10,000 − 1,382) ÷ 10,000 = 86.2%</td><td><strong>~86% in-stock absent recovery — a 14-point hit from one vendor's 92/88 week</strong></td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "OTIF isn't a vendor scorecard, it's the first link of the in-stock chain: fill times on-time is eighty-one percent of plan, and a cycle buffer sized for demand noise absorbs a third of a day of it. So vendor management is inventory management — measured lead times, escalation thresholds, and a recovery path that starts at the ASN, not at the stockout."</p>
+</div>
+
+<h2 class="break">4 · Operating cadence — one drumbeat, three tempos</h2>
+<pre class="math"> OPERATING CADENCE                                     [well-known public Amazon practice + industry standard]
+
+ MONTHLY (S&amp;OP)                WEEKLY (WBR)                      DAILY (flow)
+ --------------------------    ------------------------------    ------------------------------
+ demand plan vs capacity,      input metrics vs plan:            today: arrivals vs
+ by node, months out;          dwell, dock utilization,          appointments, backlog by
+ peak buffers locked;          backlog, forecast variance,       shift, labor re-plan, dock
+ capex and big-bet             WOC, in-stock rate, excess,       re-slotting, aged-freight
+ decisions                     transfer units                    triage
+        |                            |                                 |
+        v                            v                                 v
+ decides: node openings,       decides: re-plans,                decides: expedite a lane,
+ peak hiring envelopes,        transfers, vendor                 divert a trailer, re-slot
+ inventory targets             escalations, flex labor calls     the dock, call the vendor
+        |                            |                                 |
+        +---- every week the WBR reads the dailies; every month S&amp;OP reads the WBRs ----+</pre>
+<h3>Peak (Q4) planning rhythm <span class="lab">[industry standard]</span></h3>
+<table class="drv">
+<thead><tr><th>When</th><th>What gets decided</th><th>The inbound-specific work</th></tr></thead>
+<tbody>
+<tr><td><strong>Q2–early Q3</strong></td><td>Network peak plan: capacity envelopes by node, hiring envelopes, inventory targets.</td><td>p50/p90 forecast distribution locked (CAP-E); cube plan vs effective capacity (CAP-C); vendor appointment and freight-plan commitments.</td></tr>
+<tr><td><strong>Late Q3</strong></td><td>Readiness: flex labor pipelines, overflow/storage contingency, freeze windows.</td><td>Learning-curve staffing math paid early (CAP-B step 5–6); appointment smoothing rules published to vendors/carriers.</td></tr>
+<tr><td><strong>Q4 in-peak</strong></td><td>Execution: daily flow cadence dominates; WBR shifts to peak inputs.</td><td>Dwell and backlog watched hourly (CAP-D); transfers only against the breakeven (INV-D); escalations on same-sign forecast variance.</td></tr>
+<tr><td><strong>January</strong></td><td>Debrief: what the plan got wrong, written down while it's fresh.</td><td>Variance autopsy by node; buffers released on evidence, not relief (the S6/S8 release rule, §5).</td></tr>
+</tbody>
+</table>
+<p class="note"><strong>Escalation norms.</strong> Escalate with the arithmetic attached: the metric, its frozen definition, the variance, the root cause so far, and the decision you need <span class="lab">[industry standard]</span>. Same-sign variance three periods running is a plan problem and goes up as a re-plan request, not a floor problem and goes down as pressure. A miss you report with a recovery path is a WBR input; a miss discovered by someone else is a trust problem — the S11 discipline (§5).</p>
+
+<h2 class="break">5 · Tie-to-your-stories — the master packet, spoken in inbound</h2>
+<p class="note">Each story maps to one inbound concept; the third column is the sentence that makes the mapping out loud. Canon numbers carry their basis labels; stories stay allocated to their panel owners — here they are <em>vocabulary</em>, not re-told STARs.</p>
+<table>
+<thead><tr><th style="width:24%">Story (canon)</th><th style="width:22%">Inbound concept</th><th>The sentence that ties them</th></tr></thead>
+<tbody>
+<tr><td><strong>S8 — Elementum measured lanes</strong> (200 lanes; promise at p99; 99% lead-time accuracy; 580K units / ~$1.5M buffer released, record, one-time)</td><td>Inbound lead-time reliability</td><td>"Every inbound plan and every safety-stock formula is only as honest as its lead times — I replaced brochure lead times with measured distributions and released buffer on evidence; INV-B's free lever is that story."</td></tr>
+<tr><td><strong>S6 — Elementum supply/demand view</strong> (forecast accuracy 70% → 85%; $2M safety stock released under the both-errors rule, record, one-time)</td><td>Network safety-stock positioning</td><td>"Buffer gets released where forecast error AND lead-time error both improved — a signed release rule, not a victory lap; that's how I'd run NACF's inventory health reviews."</td></tr>
+<tr><td><strong>S2 — Sephora UDC comingle</strong> (two warehouses → one pool; +15% efficiency, signed; robotics behind a published 98% gate)</td><td>Capacity pooling</td><td>"Pooling variance beats adding capacity: one pool removed duplicate handling before anyone asked for a bigger building — the same logic as holding cube slack upstream instead of over-building the FC."</td></tr>
+<tr><td><strong>S13 — Manhattan Cyber Monday</strong> (3 DCs / 100 stores; 99% vs 95% fill; ~$8M protected vs ~$6M at risk, record pair)</td><td>Peak capacity under failure</td><td>"Peak is when the CAP-D nonlinearity stops being theory — I rebalanced by promise-at-risk at 4 AM, and the post-mortem shipped the heartbeat and the playbook so the next peak ran boring."</td></tr>
+<tr><td><strong>S18 — Sephora dual-DC WMS migration</strong> (0.5% tolerance published with Finance; mocks 7% → 1.8% → 0.3%; rehearsed fallback for ~100 of ~400 RF devices)</td><td>Launch / cutover readiness</td><td>"New capacity or a new process goes live behind a published tolerance and a rehearsed fallback — exactly how I'd bring a new IXD lane or a peak process into the network."</td></tr>
+<tr><td><strong>S19 — Elementum promise dial</strong> (k = 1.645σ one governed dial; fast-promise share 7.6% → 39.6% at a held 95% floor — all model, labeled)</td><td>Promise from inventory position</td><td>"The date the customer sees is priced from inventory position and lane variability — placement (INV-C) sets the position, the dial prices the promise."</td></tr>
+<tr><td><strong>S11 / S12 — Flexport visibility &amp; roadmap</strong> (boarding behind published gates; CTS $0.66 → $0.03 across 7 → 68 customers; month-18 plan → value in month 6)</td><td>Upstream visibility into inbound</td><td>"Inbound starts before the truck: ASN-grade visibility and graduation gates upstream are what let a dock plan survive contact with real vendors — and re-sequencing on cost-to-serve is how I'd order the roadmap to get there."</td></tr>
+<tr><td><strong>S9 — Elementum lane onboarding</strong> (597 lanes = 80% of spend live in month one; ≥95% valid-ASN gate held twice; completeness 60% → 95%)</td><td>ASN / inbound data quality</td><td>"Bad ASNs manufacture surprise at the dock — a gate on data quality upstream is capacity protection downstream."</td></tr>
+</tbody>
+</table>
+<div class="rules"><strong>Discipline in the room.</strong> These are one-sentence bridges, not re-tellings — the full STARs belong to their allocated interviewers per the panel packets. Never mix the loop packet's conflicting numbers into these bridges; never present any modeled dollar as record.</div>
+
+<h2 class="break">6 · Per-interviewer questions — what they'll ask, and what to ask them</h2>
+<p class="note">For each interviewer: six likely NACF-inbound domain questions with a one-line answer strategy (pointing at a booklet section or a canon story), then four questions for you to ask them. Answer strategies are one breath long — the booklet section carries the depth.</p>
+
+<h3 class="st first">Snigdha Tripathy — Sr Manager, Supply Chain · HIRING MANAGER</h3>
+<div class="meta"><div><strong>Lens.</strong> Placement and IXD are her home turf (EU IXD leader; built the team ground-up; 50+ FC launches). She judges fit for the actual work: network process design, value made legible, and judgment under unit economics. Talk placement slowly and precisely.</div></div>
+<table class="qb">
+<thead><tr><th>#</th><th>Likely NACF-inbound question</th><th>One-line answer strategy → pointer</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Walk me through how you'd decide where inbound inventory lands across our network.</td><td>Constrained assignment on distance-weighted cost, capacity binds, shadow price names the ask — INV-C, said slowly; bridge to S8 measured lanes.</td></tr>
+<tr><td>2</td><td>How do you know the network has enough inbound capacity for Q4?</td><td>Forecast → receive plan → doors at the 85% ceiling → UPH labor → p50/p90 flex — CAP-A/B/E as one spoken chain; S13 for in-peak failure.</td></tr>
+<tr><td>3</td><td>Tell me about a time you built a process or capability from nothing.</td><td>S11: boarding process behind published gates + weekly input/output review — mirrors her ground-up IXD build; gates published before wave 1.</td></tr>
+<tr><td>4</td><td>A strategic vendor misses OTIF three weeks running into peak. What do you do?</td><td>Quantify the in-stock chain first (INV-E), then escalate with the arithmetic — measured lead times, recovery path, and a re-plan, not blame (S8).</td></tr>
+<tr><td>5</td><td>How do you run your weekly business review — inputs, outputs, decisions?</td><td>§4 cadence + S11 mechanics: frozen definitions signed by owners, inputs tagged to outputs, reds pre-decomposed with dated fixes.</td></tr>
+<tr><td>6</td><td>How do you trade speed against cost in placement without losing the customer promise?</td><td>Promise as the boundary condition, then one priced table — INV-C premium (+4.5%) and INV-D breakeven; S19's governed dial as the promise-side analogue.</td></tr>
+</tbody>
+</table>
+<h4>Questions to ask her</h4>
+<ul>
+<li>"What's the charter for this role in its first year — which inbound outcomes does it own end-to-end, and which does it influence?"</li>
+<li>"Where does inbound hurt most in NACF right now — dock capacity, labor, cube, or placement accuracy — and what would you want moved first?"</li>
+<li>"How is this seat measured at your WBR — which two or three input metrics would tell you, six months in, that you hired right?"</li>
+<li>"You built placement and IXD capability ground-up in EU — what did that teach you about sequencing people, process and mechanisms that I should know walking in?"</li>
+</ul>
+
+<h3 class="st">Ryan Hoerger — Manager, Placement / Transfer Analytics</h3>
+<div class="meta"><div><strong>Lens.</strong> Ex-Sr BIE, Booth MBA, Siebel Scholar, Nike analytics — statistical rigor is the love language. Show the distribution behind the number, name your assumptions, and let the math be audited.</div></div>
+<table class="qb">
+<thead><tr><th>#</th><th>Likely NACF-inbound question</th><th>One-line answer strategy → pointer</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>How would you model optimal inventory placement across FCs?</td><td>INV-C cost matrix → capacity-constrained assignment → shadow price; then validate against actuals and re-solve on a cadence.</td></tr>
+<tr><td>2</td><td>When is a transfer worth doing?</td><td>INV-D: transfer cost vs lost margin × stockout probability; breakeven p* = 25% on illustrative economics — a rule, not a reflex.</td></tr>
+<tr><td>3</td><td>How do you size and position safety stock across a network?</td><td>INV-B z·σ·√LT with both levers (service points cost +41.6%, lead time frees −15.5%); pool upstream, release on evidence (S6 both-errors rule).</td></tr>
+<tr><td>4</td><td>How do you measure forecast quality, and what do you do with the variance?</td><td>§2 metrics: same-sign variance three weeks running is bias — re-plan; S6 70 → 85% accuracy program as the earned credential.</td></tr>
+<tr><td>5</td><td>Do you size buffers to p50 or p90?</td><td>CAP-E: fixed to ~p50–p70, flex the tail — show the 23%-idle vs 1-day-backlog arithmetic, then the ≈14-head flex answer.</td></tr>
+<tr><td>6</td><td>How do you keep a model from going stale or getting gamed?</td><td>Drift flags + refresh cadence (S8), frozen definitions signed by owners (S11), honest denominators — a truncated week is a data miss, not a result.</td></tr>
+</tbody>
+</table>
+<h4>Questions to ask him</h4>
+<ul>
+<li>"How are the placement and transfer models measured — what's the scoreboard, and how often do operators override the recommendation?"</li>
+<li>"Where does the model disagree with operators most often, and who's usually right?"</li>
+<li>"How fresh is the demand and lead-time signal the placement model sees — and what would you measure if you could see it fresher?"</li>
+<li>"What analysis does your team wish it had that doesn't exist today — and what's kept it from existing?"</li>
+</ul>
+
+<h3 class="st">Rocky Goforth — Sr Manager, Infrastructure</h3>
+<div class="meta"><div><strong>Lens.</strong> Infrastructure owns the physical envelope — buildings, docks, automation, peak readiness. Speak capacity as physics: constraints, nonlinearities, launch discipline.</div></div>
+<table class="qb">
+<thead><tr><th>#</th><th>Likely NACF-inbound question</th><th>One-line answer strategy → pointer</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>What actually constrains an FC's inbound throughput — and which one binds first at peak?</td><td>§2 three currencies; dock slots bind first (least elastic), labor second (slow to hire), cube last-then-suddenly — CAP-A/C framing.</td></tr>
+<tr><td>2</td><td>Why does dwell blow up when docks run hot?</td><td>CAP-D: ρ/(1−ρ) nonlinearity — +10 points of utilization ≈ 3× dwell; that's why the plan holds dock slack like safety stock.</td></tr>
+<tr><td>3</td><td>How should we be planning infrastructure for Q4?</td><td>§4 peak rhythm + CAP-E p50/p90; in-peak failure leadership from S13 (promise-ranked rebalancing, post-mortem that shipped mechanisms).</td></tr>
+<tr><td>4</td><td>Tell me about bringing automation into a live building.</td><td>S2: Locus robotics behind a published 98% gate with a pre-built throttle — week two hit 94, throttled to ~30%, root-caused, full volume week three.</td></tr>
+<tr><td>5</td><td>How do you launch new capacity or process without wobbling the network?</td><td>S18: published 0.5% tolerance with Finance, three mocks 7 → 1.8 → 0.3%, rehearsed fallback when ~100 of ~400 RF devices failed.</td></tr>
+<tr><td>6</td><td>When capacity and cost fight, how do you decide?</td><td>Price the constraint — INV-C shadow price ($0.30/unit) turns "we need more doors" into a dollarized ask; fixed-to-p50 / flex-the-tail (CAP-E).</td></tr>
+</tbody>
+</table>
+<h4>Questions to ask him</h4>
+<ul>
+<li>"Which capacity constraint is binding hardest in NACF going into this peak — dock, labor, or cube?"</li>
+<li>"How far ahead are capacity decisions locked, and what's the escalation path when demand beats the envelope?"</li>
+<li>"What should Supply Chain bring to Infrastructure earlier than it does today?"</li>
+<li>"Where has a new building or an automation ramp surprised you recently — and what did the surprise teach the planning process?"</li>
+</ul>
+
+<h3 class="st">Zhaowen Lan — Sr Manager, Supply Chain · peer</h3>
+<div class="meta"><div><strong>Lens.</strong> A peer who shares the cadence. He is listening for how you run mechanisms other people own — the WBR, the handoffs, the disagreement that stays professional.</div></div>
+<table class="qb">
+<thead><tr><th>#</th><th>Likely NACF-inbound question</th><th>One-line answer strategy → pointer</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>How do you run a WBR that people actually trust?</td><td>S11 mechanics: 5–7 frozen input metrics, each signed by its owner, tagged to the output it moves, reds pre-decomposed with dated fixes.</td></tr>
+<tr><td>2</td><td>An input metric owned by another team is red every week. What do you do?</td><td>Pre-decompose with the owner, bring the dated fix; if the definition is wrong, fix the definition in public — never the number in private (S11's discarded 99.4% week).</td></tr>
+<tr><td>3</td><td>How do you manage the S&amp;OP-to-WBR-to-daily handoff?</td><td>§4 cadence diagram: S&amp;OP locks envelopes, WBR reads variance, daily flow re-plans; same-sign variance three weeks running escalates as a re-plan request.</td></tr>
+<tr><td>4</td><td>Tell me about a disagreement with a partner team and how it resolved.</td><td>S12: privately first with the numbers, reversal trigger written before the swing, the plan's owner ratifying the flip in the room.</td></tr>
+<tr><td>5</td><td>How do you keep inventory healthy across the network — excess vs in-stock?</td><td>INV-A WOC action rules + §3 health definitions (excess/aged/stranded); in-stock as the north-star output, everything else an input.</td></tr>
+<tr><td>6</td><td>What would your first 90 days look like in this seat?</td><td>Book of record and primary metric first → stocks-and-flows map → the broken invariant → one input/output review running by week 6 — §4 plus master-packet §3.0 discipline.</td></tr>
+</tbody>
+</table>
+<h4>Questions to ask him</h4>
+<ul>
+<li>"What does your team own end-to-end, and where are the seams with this role — the places two people could both think the other has it?"</li>
+<li>"What does a great week look like at your WBR — and which input is the last to turn green?"</li>
+<li>"How do the placement, capacity, and inventory-health reviews nest into each other here?"</li>
+<li>"What's the most common way a new Senior SCM gets surprised in their first quarter?"</li>
+</ul>
+
+<h3 class="st">Venkata Josyula — Principal PM, FBA · bar raiser</h3>
+<div class="meta"><div><strong>Lens.</strong> Principal PM for FBA plus bar-raiser duties: the seller is a customer, LP answers must be clean STARs with honest numbers, and every mechanism should end at a customer outcome.</div></div>
+<table class="qb">
+<thead><tr><th>#</th><th>Likely NACF-inbound question</th><th>One-line answer strategy → pointer</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>How does inbound look from the seller's side of FBA?</td><td>§3 seller view: ship-to-Amazon → appointment → check-in → available; IPI's four components (excess, sell-through, stranded, in-stock) and restock limits as network capacity made legible <span class="lab">[well-known public Amazon practice]</span>.</td></tr>
+<tr><td>2</td><td>Why Amazon — and why this role?</td><td>The master's three reasons — the forecast (Elementum), the weekly review (Flexport), one version of the truth (Sephora) — landing on inbound as the seam where all three meet.</td></tr>
+<tr><td>3</td><td>Tell me about a time you failed.</td><td>S18's RF miss: scored the task by effort when impact was what mattered; ~100 of ~400 devices, rehearsed fallback fired, lesson — single-point dependencies get a what-if plan regardless of size.</td></tr>
+<tr><td>4</td><td>Seller experience and network cost pull apart — how do you trade them?</td><td>Price the trade, publish it, govern it: INV-D breakeven as priced risk; S19's one-dial discipline — the no goes in the comparison table as a priced row, not a meeting minute.</td></tr>
+<tr><td>5</td><td>How would you improve FBA inbound?</td><td>Upstream first: visibility before the truck (S11/S9 ASN quality), appointment reliability, check-in-to-available time (§1 time-to-available); AWD as the cheap-cube shock absorber <span class="lab">[well-known public Amazon practice]</span>.</td></tr>
+<tr><td>6</td><td>Tell me about a time you chose long-term over short-term pressure.</td><td>S12: an 18-month committed roadmap re-sequenced to value in month 6 at 66% less effort — with the reversal trigger written before the swing and operators' delay priced and published.</td></tr>
+</tbody>
+</table>
+<h4>Questions to ask him</h4>
+<ul>
+<li>"Where does the FBA inbound experience break seller trust most — appointments, check-in-to-available time, or restock limits?"</li>
+<li>"How is AWD changing the conversation with sellers about holding inventory upstream?"</li>
+<li>"What makes a Supply Chain Manager a great partner to a Principal PM — and what makes one hard to work with?"</li>
+<li>"Which seller-facing inbound metric would you most want this team to move this year?"</li>
+</ul>
+
+<h2 class="break">7 · Math appendix — every formula, symbolic → substituted → computed</h2>
+<p class="note">The night-before page. Each row: the formula in symbols, the substitution from the booklet's worked example, the computed result, and where it lives. All inputs <span class="lab">[illustrative]</span> unless labeled otherwise; recompute each row from the row above it.</p>
+<table class="drv">
+<thead><tr><th>#</th><th>Formula (symbolic)</th><th>Substitution</th><th>Computed</th><th>Section</th></tr></thead>
+<tbody>
+<tr><td>A1</td><td class="f">trailers/day = V ÷ u_c ÷ c_p ÷ p_t</td><td class="f">120,000 ÷ 6 ÷ 40 ÷ 26</td><td class="f">= 19.2 trailers/day</td><td>CAP-A</td></tr>
+<tr><td>A2</td><td class="f">doors = (trailers/day ÷ hours) ÷ unload_rate ÷ ρ_max</td><td class="f">(19.2 ÷ 10) ÷ 0.5 ÷ 0.85</td><td class="f">= 4.5 → 5 doors</td><td>CAP-A</td></tr>
+<tr><td>A3</td><td class="f">direct hours = V ÷ UPH; paid = ×(1+indirect)</td><td class="f">120,000 ÷ 300 = 400; ×1.15</td><td class="f">= 460 paid h; ÷10 = 46 heads</td><td>CAP-B</td></tr>
+<tr><td>A4</td><td class="f">blended UPH = (1−n)·UPH + n·UPH·LC</td><td class="f">0.7×300 + 0.3×300×0.6 = 264</td><td class="f">120,000 ÷ 264 = 454.5 h (+13.6%)</td><td>CAP-B</td></tr>
+<tr><td>A5</td><td class="f">util_true = I·cube ÷ (C × 0.85)</td><td class="f">2.0M×0.25 ÷ (1.2M×0.85)</td><td class="f">= 500,000 ÷ 1,020,000 = 49.0%</td><td>CAP-C</td></tr>
+<tr><td>A6</td><td class="f">queue factor = ρ ÷ (1−ρ); dwell ≈ service ÷ (1−ρ)</td><td class="f">ρ=0.95: 19.0; 2.0 ÷ 0.05</td><td class="f">= 40 h dwell (vs 13.3 h at 85%)</td><td>CAP-D</td></tr>
+<tr><td>A7</td><td class="f">flex heads = (p90 − p50) ÷ UPH_blend ÷ shift</td><td class="f">36,000 ÷ 264 ÷ 10</td><td class="f">= 13.6 ≈ 14 flex associates</td><td>CAP-E</td></tr>
+<tr><td>B1</td><td class="f">WOC = on-hand ÷ weekly forecast</td><td class="f">A: 4,200÷600; B: 1,350÷450; C: 500÷500</td><td class="f">= 7.0 / 3.0 / 1.0 weeks</td><td>INV-A</td></tr>
+<tr><td>B2</td><td class="f">excess units = on-hand − WOC_target × forecast</td><td class="f">4,200 − 4.0×600</td><td class="f">= 1,800 units to move</td><td>INV-A</td></tr>
+<tr><td>B3</td><td class="f">SS = z × σ_d × √LT</td><td class="f">1.645 × 120 × √7 = 1.645 × 317.5</td><td class="f">= 522 units = 1.04 days</td><td>INV-B</td></tr>
+<tr><td>B4</td><td class="f">SS(99) − SS(95) = (z99 − z95)·σ_LT</td><td class="f">(2.326 − 1.645) × 317.5</td><td class="f">= +217 units (+41.6%)</td><td>INV-B</td></tr>
+<tr><td>B5</td><td class="f">SS(LT=5) = z × σ_d × √5</td><td class="f">1.645 × 120 × 2.2361</td><td class="f">= 441 units (−81; −15.5%)</td><td>INV-B</td></tr>
+<tr><td>B6</td><td class="f">cost = Σ d_r × c_{r,f} s.t. node capacity</td><td class="f">2,000×1.20 + 1,000×1.30 + 1,500×2.10 + 1,500×2.40</td><td class="f">= $10,450/wk (vs $10,000 unconstrained)</td><td>INV-C</td></tr>
+<tr><td>B7</td><td class="f">shadow price = (c_far − c_near) × units_displaced</td><td class="f">(2.40 − 2.10) × 1,500</td><td class="f">= $450/wk = the capacity premium</td><td>INV-C</td></tr>
+<tr><td>B8</td><td class="f">transfer if cost_t &lt; margin × P(stockout); p* = cost_t ÷ margin</td><td class="f">3.00 &lt; 12 × 0.40 = 4.80; p* = 3.00 ÷ 12</td><td class="f">= transfer; p* = 25%; net +$3,240 on 1,800 units</td><td>INV-D</td></tr>
+<tr><td>B9</td><td class="f">OTIF_units = PO × fill × on_time</td><td class="f">10,000 × 0.92 × 0.88</td><td class="f">= 8,096 units = 81.0% of plan</td><td>INV-E</td></tr>
+<tr><td>B10</td><td class="f">in-stock proxy = 1 − (deficit − SS) ÷ PO</td><td class="f">1 − (1,904 − 522) ÷ 10,000</td><td class="f">= 86.2% weekly in-stock proxy</td><td>INV-E</td></tr>
+</tbody>
+</table>
+<p class="small">Recompute discipline: A1→A2 share 19.2; A3→A4 share the 120,000 and 300 UPH; B3→B4→B5 share σ_d = 120 and z values; B2's 1,800 feeds B8's scale row; B9's deficit feeds B10. If any row doesn't reproduce from its own substitution, the row is wrong — say the formula, not the memory.</p>
+
+</body>
+</html>
