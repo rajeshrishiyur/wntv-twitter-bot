@@ -240,6 +240,56 @@
 <ul class="cstar"><li><span class="stag">S —</span> v1 of my own ISM ruleset: no channel could promise in-transit units — safe-feeling, and starving dotcom of fast movers reliably one day from the building.</li><li><span class="stag">T —</span> Fix my own signed policy without weakening oversell protection; take the miss back through the same three signatories.</li><li><span class="stag">A —</span> Evidence pack from Aging In-Transit and Replenishment; reframed as promise math (σ ≈ 0.3 d → ~0.49-d window ≈ 95%); rule with on-time floor and kill switch; back-test against receiving history; four regression cells; released lane by lane on the monthly cadence as an FSD change.</li><li><span class="stag">R —</span> Starved lanes restored inside the window; oversell increase = 0; kill switch never fired; re-signed by the same three signatories; lesson institutionalized — the Locus 98% gate (S2) and the 0.5% tolerance (S18) were set from data before the event.</li></ul>
 <div class="sh">Results line</div>
 <p class="note">Sellable units on qualifying in-transit lanes starved → restored inside a back-tested ~0.49-day window (record) · oversell increase = 0; kill switch armed, never fired (record) · four regression cells added (record) · released as a signed FSD change on the normal cadence, no hotfix (record) · ≈$0.5M/yr modeled margin recovered (inputs illustrative).</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>The v1 rule</td><td class="f">Promisable = 0 for ALL in-transit inventory</td><td>equivalent to claiming σ → ∞ or on-time rate → 0 — infinite variability (record)</td><td>everything in transit hidden</td></tr>
+<tr><td>2</td><td>One concrete lane</td><td class="f">Promisable = 120 × 0 = 0</td><td>lane with InTransit = 120 units, ETA 0.4 day away (illustrative)</td><td>120 sellable units hidden</td></tr>
+<tr><td>3</td><td>Across qualifying lanes</td><td class="f">≈300 fast-mover units/day × 0 promisable</td><td>illustrative volume</td><td>≈300 units/day sat unsellable one day from the building</td></tr>
+<tr><td>4</td><td>What starving costs (one SKU)</td><td class="f">100 × 60% × $20 = $1,200/day</td><td>100 units one day out; 60% would convert; $20 margin (illustrative, not program data)</td><td>$1,200/day under-sell</td></tr>
+<tr><td>5</td><td>The ignored other side</td><td class="f">100 × (1 − 0.97) = 3 late units; 3 × $15 = $45/day</td><td>on-time rate 97%; $15 expedite (illustrative)</td><td>$45/day over-sell exposure — vs $1,200: the “safe” rule priced one side only</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Measure lane variability</td><td class="f">σ = 0.3 day</td><td>trailing receiving history (record)</td><td>σ = 0.3 day</td></tr>
+<tr><td>2</td><td>Choose coverage</td><td class="f">z at 95% = 1.645</td><td>normal approximation on lane transit (toolkit label)</td><td>z = 1.645</td></tr>
+<tr><td>3</td><td>Promise window</td><td class="f">w = z × σ = 1.645 × 0.3 = 0.4935</td><td>rows 1–2</td><td>w ≈ 0.49 day</td></tr>
+<tr><td>4</td><td>Coverage check</td><td class="f">Φ(w / σ) = Φ(0.49 / 0.3) = Φ(1.63) ≈ 0.95</td><td>share of arrivals inside the window</td><td>≈95% covered</td></tr>
+<tr><td>5</td><td>Corrected rule</td><td class="f">Promisable = InTransit × 1[ETA ≤ w] × 1[OTR ≥ floor]</td><td>OTR = on-time rate over trailing receipts; floor = per-lane admission threshold, 95% here (floor illustrative)</td><td>lane by lane, not all-or-nothing</td></tr>
+<tr><td>6</td><td>Lane that qualifies</td><td class="f">ETA 0.4 ≤ 0.49 → 1; OTR 97% ≥ 95% → 1; Promisable = 120 × 1 × 1 = 120</td><td>the Table 1 lane, re-evaluated (ETA and OTR illustrative)</td><td>its 120 units become promisable</td></tr>
+<tr><td>7</td><td>Lane that fails</td><td class="f">ETA 1.2 &gt; 0.49 → 0; Promisable = 80 × 0 = 0</td><td>a slower lane with 80 units in transit (illustrative)</td><td>stays at 0 — correctly out</td></tr>
+<tr><td>8</td><td>Sample-size gate</td><td class="f">n = z²p(1−p)/e² = 3.84 × 0.95 × 0.05 / 0.05² = 3.84 × 0.0475 / 0.0025 ≈ 73</td><td>OTR estimated within ±5% at 95% CI (illustrative)</td><td>a lane qualifies after ~73 receipts</td></tr>
+<tr><td>9</td><td>Kill switch, values in</td><td class="f">trigger = 2 × p90 = 2 × 2.0 = 4.0 days; any unit in transit &gt; 4.0 days → lane out</td><td>lane p90 = 2.0 days (illustrative); armed, reviewed weekly by Inventory Control (record)</td><td>never fired (record)</td></tr>
+<tr><td>10</td><td>Back-test</td><td class="f">rule replayed against receiving history; 4 regression cells</td><td>before release (record)</td><td>no oversell in the back-test</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Sellable units on qualifying in-transit lanes</td><td>0</td><td>≈300 units/day restored inside the window</td><td>record mechanism; volume illustrative</td></tr>
+<tr><td>2</td><td>Promise window</td><td>none — blanket exclusion</td><td>w ≈ 0.49 day at ~95% cover</td><td>record (promise math)</td></tr>
+<tr><td>3</td><td>Oversell increase from the window</td><td>—</td><td>0</td><td>record</td></tr>
+<tr><td>4</td><td>Kill switch</td><td>not armed</td><td>armed, never fired</td><td>record</td></tr>
+<tr><td>5</td><td>Rule changes after</td><td>ad hoc</td><td>same 3 signatories, back-test + matrix regression</td><td>record — both sides priced from then on</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Would-be sales</td><td class="f">300 × 60% = 180 sales/day</td><td>units restored (illustrative) × conversion (illustrative)</td><td>180 sales/day</td></tr>
+<tr><td>2</td><td>Truly lost without the fix</td><td class="f">180 × 40% = 72 sales/day</td><td>40% lost-sale share — the rest would have waited (illustrative)</td><td>72 lost sales/day</td></tr>
+<tr><td>3</td><td>Margin recovered</td><td class="f">72 × $20 = $1,440/day</td><td>$20 unit margin (illustrative)</td><td>≈$1,440/day</td></tr>
+<tr><td>4</td><td>Annualized</td><td class="f">$1,440 × 365 = $525,600</td><td>modeled; the mechanism is record</td><td>≈$0.5M/yr</td></tr>
+<tr><td>5</td><td>Cost while v1 stood</td><td class="f">no dollar in the record — not claimed</td><td>record</td><td>not claimed</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">Why not just hotfix it — you knew it was wrong?</p><p>Because the error was in the policy, so the fix had to be too — in the governed artifact, with regression, through the same signatures. A side configuration would have fixed the symptom and left the policy lying about what it allowed.</p></div><div class="qa"><p class="q">What did the miss cost?</p><p>The record carries no dollar for the conversion lost while v1 stood, and I will not invent one. What I can say is the mechanism: fast movers reliably one day from the building were unsellable on dotcom until the window existed; the ≈$0.5M/yr recovered is my model on illustrative inputs, labeled.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> Lane σ ≈ 0.3 d; ~0.49-d window ≈ 95% coverage (record promise math) · oversell increase = 0 (record) · 4 regression cells (record) · kill switch never fired (record) · same three signatories re-signed (record) · ≈$0.5M/yr (modeled). Never a lane count; never a dollar for the loss while wrong.</div>
@@ -254,6 +304,49 @@
 <ul class="cstar"><li><span class="stag">S —</span> 1,000 global lanes asked in two months — scope, schedule and quality all fixed; completeness 60%; lanes differed by orders of magnitude in spend and carriers differed in EDI capability.</li><li><span class="stag">T —</span> Own the scope analysis and the onboarding standard; take the re-scope two levels up with the evidence attached.</li><li><span class="stag">A —</span> Spend Pareto (597 = 80% of spend) pre-validated so no lane owner could contradict it in the room; standard + ≥95% valid-ASN gate published to carriers before cohort one; harness so later cohorts were mostly configuration; held a failing cohort twice; ~400 lanes carrying ~20% of spend deferred — priced in spend share, not lane count.</li><li><span class="stag">R —</span> Completeness 60 → 95%; 100% visibility on high-value lanes; 597 lanes live month one; freight −10% ≈ $2M in six months (record); method written up as the sourcing SOP.</li></ul>
 <div class="sh">Results line</div>
 <p class="note">Completeness 60% → 95% (record) · 597 of 1,000 lanes = 80% of freight spend live in month one (record) · freight spend −10% ≈ $2M in six months (record — kept as measured, never annualized) · adoption 8× (record) · ≈$0.4M/yr document-handling labor (modeled add-on).</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Completeness</td><td class="f">480 / 800 = 60%</td><td>expected = 200 shipments × 4 milestones = 800; received 480 (illustrative volumes; 60% record)</td><td>60% — 2 of 5 events missing</td></tr>
+<tr><td>2</td><td>What blindness costs</td><td class="f">off-guide spend unseen · premium modes by habit · chase calls per late shipment</td><td>record problem</td><td>no instrument, no lever</td></tr>
+<tr><td>3</td><td>Manual documents</td><td class="f">597 lanes × ~50 shipments × 3 docs ≈ 90,000 docs/yr keyed by hand</td><td>illustrative volumes</td><td>~90K docs/yr</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Spend Pareto</td><td class="f">S(k) = cumulative spend share; S(597) = 80%</td><td>lanes sorted by annual freight spend (record)</td><td>597 of 1,000 lanes carry 80% of spend — do them first</td></tr>
+<tr><td>2</td><td>Cohort gate</td><td class="f">validASN rate ≥ 95% in test before activation</td><td>published to carriers before cohort one (record)</td><td>one cohort failed twice on a timestamp format — held both times</td></tr>
+<tr><td>3</td><td>Long-tail floor</td><td class="f">XML / portal when EDI is absent</td><td>“the standard was the data, not the transport” (record)</td><td>small carriers kept inside the standard</td></tr>
+<tr><td>4</td><td>Completeness after</td><td class="f">760 / 800 = 95%</td><td>illustrative volumes; 95% record</td><td>95%; high-value lanes 100%</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Shipment-data completeness</td><td>60%</td><td>95%; high-value lanes 100%</td><td>record</td></tr>
+<tr><td>2</td><td>Lanes live month one</td><td>0</td><td>597 = 80% of spend</td><td>record</td></tr>
+<tr><td>3</td><td>Freight spend on onboarded lanes</td><td>base</td><td>−10% ≈ $2M in 6 months</td><td>record</td></tr>
+<tr><td>4</td><td>Document handling</td><td>~90K docs/yr keyed</td><td>X12/XML validated</td><td>modeled</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Implied addressable base</td><td class="f">$2,000,000 / 10% = $20,000,000/yr</td><td>derived from the record pair, stated as such</td><td>≈$20M/yr</td></tr>
+<tr><td>2</td><td>The record result</td><td class="f">$20M × 10% = $2M in 6 months</td><td>record</td><td>≈$2M</td></tr>
+<tr><td>3</td><td>Slice — routing-guide compliance</td><td class="f">~$0.8M of the $2M</td><td>off-guide spend caught by 856/214 (modeled split)</td><td>~$0.8M</td></tr>
+<tr><td>4</td><td>Slice — mode discipline</td><td class="f">~$0.6M of the $2M</td><td>premium modes → ocean/ground when ETA is trusted (modeled split)</td><td>~$0.6M</td></tr>
+<tr><td>5</td><td>Slice — expedites + detention</td><td class="f">~$0.6M of the $2M</td><td>events replace chase calls (modeled split)</td><td>~$0.6M</td></tr>
+<tr><td>6</td><td>Split check</td><td class="f">0.8 + 0.6 + 0.6 = $2.0M</td><td>the slices decompose the record — they never add to it</td><td>= the record $2M</td></tr>
+<tr><td>7</td><td>Document labor</td><td class="f">90,000 × 6 min = 540,000 min; / 60 = 9,000 h; × $45 = $405,000</td><td>illustrative volumes (modeled add-on)</td><td>≈$0.4M/yr</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">You defied a Global Head of Supply Chain's number. How?</p><p>With the spend curve and the lane owners' validation attached — 597 lanes carried 80% of the spend, so the phased plan was argued in spend share, not lane count. He accepted the phasing off the curve; I then committed to the remainder behind the same gate and delivered it.</p></div><div class="qa"><p class="q">Is the $2M annualized?</p><p>No — it is the record as measured: minus ten percent on the onboarded lanes' spend in six months. My three-way split (routing-guide compliance ~$0.8M, mode discipline ~$0.6M, expedites and detention ~$0.6M) decomposes the record; it never adds to it.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> 60% → 95% completeness (record) · 597 / 1,000 lanes = 80% of spend (record) · −10% ≈ $2M in 6 months (record) · ≥95% valid-ASN gate, held twice (record) · 8× adoption (record) · ≈$0.4M/yr labor (modeled). Never: cohort counts or sizes; never double the $2M into a run-rate.</div>
@@ -268,6 +361,53 @@
 <ul class="cstar"><li><span class="stag">S —</span> A contract manufacturer's planning feed with two silent traps; six sites, six definitions; one hostile legacy ERP (flat files, no change-data-capture); no commercial leverage.</li><li><span class="stag">T —</span> Own ingest requirements, the reconciliation gate, the 2/3/1 wave plan, and chair the weekly Flextronics call.</li><li><span class="stag">A —</span> Found the traps by sampling finished goods against the CM's own MRP; designed the two mechanisms that made the traps impossible rather than policed (explicit marker; effective-date quarantine, human disposition); reconciliation report as the per-site gate, not a date on a slide; wave 3's six weeks priced to leadership as the plan, not a slip; made the weekly call the CM's own protection against blame for misses its feed didn't cause.</li><li><span class="stag">R —</span> Planning-grade sites 0 → 6 in 3 waves / 5 months; zero auto-loaded overlaps ever; phantom double-timing eliminated at source; backbone handed to the 200-lane program (S8).</li></ul>
 <div class="sh">Results line</div>
 <p class="note">CM sites with planning-grade data 0 → 6 in three waves / five months (record) · auto-loaded revision overlaps = 0, ever (record) · hardest site 6 weeks vs the 3-week average, priced up front and absorbed in plan (record) · ≈$0.3M/yr (modeled — reconciliation labor, expedites fired at false shortages, overlap rework); the record has no dollar for this story; the $1.5M belongs to S8.</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Planning-grade CM sites</td><td class="f">0 of 6; manual BOM-vs-MRP reconciliation at every site</td><td>record</td><td>0 of 6</td></tr>
+<tr><td>2</td><td>Manual recon burn</td><td class="f">6 h/wk × 6 sites = 36 h/wk</td><td>modeled</td><td>36 h/wk of reconciliation</td></tr>
+<tr><td>3</td><td>What MRP computes (finished-goods grain)</td><td class="f">NetReq(FG, t) = GrossReq − OnHand − SchedReceipts</td><td>the netting identity; walk below at FG grain only (illustrative)</td><td>substituted in rows 4–5</td></tr>
+<tr><td>4</td><td>Clean row</td><td class="f">NetReq = 500 − 150 − 200 = 150</td><td>Gross 500; on-hand 150; receipts 200 (illustrative)</td><td>NetReq = 150; need-date = due − LT_FG</td></tr>
+<tr><td>5</td><td>Distorted row — phantom FG record</td><td class="f">NetReq = 600 − 150 − 200 = 250; false shortage = 250 − 150 = 100</td><td>a phantom/stale finished-goods record inflates gross requirements by 100 (illustrative)</td><td>an expedite fires on 100 units never needed</td></tr>
+<tr><td>6</td><td>How often</td><td class="f">~5/site/mo × 6 sites × 12 mo = 360 false shortages/yr</td><td>modeled count</td><td>360/yr</td></tr>
+<tr><td>7</td><td>Timing corruption</td><td class="f">the same stale record pulls the need-date a lead-time early</td><td>record mechanism</td><td>planners chase demand that was never real</td></tr>
+<tr><td>8</td><td>Revision overlaps</td><td class="f">two revisions both partially true in [d0, d1]; ~24/yr</td><td>auto-loading would rewrite demand for orders released under the prior revision (record rule; count modeled)</td><td>~24 history-rewrite risks/yr</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Explicit marker</td><td class="f">distorted row reconciled: NetReq = 500 − 150 − 200 = 150</td><td>the phantom record carries an explicit marker; it no longer inflates gross (record mechanism)</td><td>NetReq = 150 — matches the site's own MRP</td></tr>
+<tr><td>2</td><td>Per-site gate</td><td class="f">count_model vs count_MRP on sampled finished goods must match</td><td>the reconciliation report is the go-live gate, not a date on a slide (record)</td><td>a site opens on a matched report</td></tr>
+<tr><td>3</td><td>Quarantine</td><td class="f">overlaps held for human disposition per order/effectivity</td><td>record rule</td><td>auto-loaded overlaps = 0 — ever</td></tr>
+<tr><td>4</td><td>Hostile flat-file site</td><td class="f">completeness = rows received / expected; a 40%-rows file would read as 60% deletions → blocked</td><td>snapshot-diffing with a completeness flag (record mechanism)</td><td>partial files never consumed</td></tr>
+<tr><td>5</td><td>Wave plan</td><td class="f">W1: 2 × 3 = 6 wk; W2: 3 × 3 = 9 wk; W3: 6 wk; 6 + 9 + 6 = 21 weeks</td><td>hostile site at 6 wks vs the 3-wk average, priced up front (record)</td><td>≈5 months for six sites</td></tr>
+<tr><td>6</td><td>Recon labor after</td><td class="f">6 → 1.5 h/wk per site — disposition queue only</td><td>modeled</td><td>−4.5 h/wk per site</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Planning-grade CM sites</td><td>0 of 6</td><td>6 of 6, in 3 waves ≈ 5 months</td><td>record</td></tr>
+<tr><td>2</td><td>Manual reconciliation</td><td>6 h/wk × 6 sites</td><td>1.5 h/wk × 6</td><td>modeled</td></tr>
+<tr><td>3</td><td>Expedites on false shortages</td><td>~72/yr acted on</td><td>~0 — the marker removes the distortion</td><td>modeled</td></tr>
+<tr><td>4</td><td>Auto-loaded revision overlaps</td><td>uncontrolled</td><td>0 — ever</td><td>record</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Reconciliation labor</td><td class="f">(6 − 1.5) = 4.5 h/wk; × 6 sites = 27 h/wk; × 48 wk = 1,296 ≈ 1,300 h; × $60 = $77,760</td><td>modeled</td><td>≈$0.08M/yr</td></tr>
+<tr><td>2</td><td>False-shortage expedites</td><td class="f">360 × 20% = 72 acted on; 72 × $3,000 = $216,000</td><td>count from Table 1 row 6; premium benchmark $2–5K (modeled)</td><td>≈$0.2M/yr</td></tr>
+<tr><td>3</td><td>Overlap rework avoided</td><td class="f">24 × 16 h = 384 h; 384 × $60 = $23,040</td><td>the quarantine makes the error 0 by construction (modeled)</td><td>≈$0.02M/yr</td></tr>
+<tr><td>4</td><td>Total</td><td class="f">0.08 + 0.2 + 0.02 = $0.3M</td><td>the record has no dollar for S7; the $1.5M belongs to S8</td><td>≈$0.3M/yr</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">How did you get an external supplier with no obligation to care?</p><p>By making the weekly call theirs: it protected Flextronics from blame for misses their feed didn't cause. Procurement held the commercial relationship; my lever was the evidence in the discovery memo, confirmed by their own engineering.</p></div><div class="qa"><p class="q">Why three waves instead of one?</p><p>So one surprise could not spend six sites of credibility — the two cleanest high-volume sites first, three on parameterized maps second, the hostile ERP last with its six weeks priced up front. Speed was traded, never quality: a site went live off its matched reconciliation report, not a date.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> 0 → 6 sites, 3 waves, 5 months (record) · zero auto-loaded overlaps (record) · 6 weeks vs 3-week average (record) · ≈$0.3M/yr (modeled). Never "six NA sites"; never "500+ product families"; 60 → 95% belongs to S9; the $1.5M / 580K belong to S8; no tolerance value.</div>
@@ -282,6 +422,53 @@
 <ul class="cstar"><li><span class="stag">S —</span> Post-MVP, the MBR surfaced Asia P95 page load at 21.19s vs 3.3s in the US (17-day measurement window); 48 of 53 import partners (90.5%) already migrated — the app had to hold where the partners were.</li><li><span class="stag">T —</span> Isolate the layer causing Asia latency and sequence the fix set without destabilizing a live partner-facing launch.</li><li><span class="stag">A —</span> Split static from dynamic: static JS ~5s P95 in China vs ~500ms US; found no geo-based DNS / reverse proxy on the domain (public-internet routing) and a double CDN on static assets; sequenced WAF enablement → double-CDN removal (direct to S3) → regional CDN proposal → China tuning → Asia tuning, each gated by a smoke-test protocol with a named date and owner.</li><li><span class="stag">R —</span> Root cause isolated to routing; WAF and double-CDN fixes shipped inside the window; CDN / China / Asia work scheduled with owners; the investigation became the template for launch-geography checks.</li></ul>
 <div class="sh">Results line</div>
 <p class="note">P95 page load 21.19s Asia vs 3.3s US (record-from-docs) · static ~5s China vs ~500ms US (record-from-docs) · 48 of 53 partners migrated = 90.5% (record-from-docs; canon's "48 of 53 within a month" — consistent) · two fixes shipped, three sequenced with dates (record-from-docs) · no post-fix latency figure exists in the record — never invent one.</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Page-load P95 by region</td><td class="f">Asia = 21.19s; US = 3.3s; Others = 4.45s</td><td>Datadog @view.loading_time, 04/24–05/10 window (record-from-docs)</td><td>Asia is the outlier</td></tr>
+<tr><td>2</td><td>The gap factor</td><td class="f">21.19 ÷ 3.3 = 6.42</td><td>row 1 (record-from-docs)</td><td>6.42× slower than the US</td></tr>
+<tr><td>3</td><td>Traffic behind the number</td><td class="f">6.31 ÷ 2.19 = 2.88</td><td>Asia 6.31k vs US 2.19k page views, same window (record-from-docs)</td><td>≈2.9× the US traffic riding the worst latency</td></tr>
+<tr><td>4</td><td>Static-asset leg</td><td class="f">JS P95 = 5s China vs 500ms US; 5 ÷ 0.5 = 10</td><td>static.flexport.com CDN behavior (record-from-docs)</td><td>10× gap on the static leg</td></tr>
+<tr><td>5</td><td>Dynamic leg</td><td class="f">no geo-DNS / reverse proxy for trade.flexport.com → Asia GraphQL hairpins over the public internet</td><td>infra review (record-from-docs)</td><td>routing penalty on every data call</td></tr>
+<tr><td>6</td><td>Known defect on the static path</td><td class="f">double CDN in China — Cloudflare stacked in front of Tencent</td><td>infra review (record-from-docs)</td><td>one avoidable hop</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Decompose before touching</td><td class="f">page load = static resources + GraphQL requests + JS rendering</td><td>the metric's own definition (record-from-docs)</td><td>three legs, measured and owned separately</td></tr>
+<tr><td>2</td><td>Step 1 — security gate first</td><td class="f">enable WAF for trade.flexport.com: China, then global</td><td>incident-207 follow-up; done 2022/06/30 (record-from-docs)</td><td>shipped — fix 1 of 2</td></tr>
+<tr><td>3</td><td>Step 2 — remove the double CDN</td><td class="f">Tencent CDN → direct to the S3 bucket; Cloudflare hop removed for China</td><td>done 2022/06/24 (record-from-docs)</td><td>shipped — fix 2 of 2</td></tr>
+<tr><td>4</td><td>Step 3 — static proposal, CN/Asia</td><td class="f">alternatives written, reviewed, signed off</td><td>ETA 2022/07/15 (record-from-docs)</td><td>sequenced with a date</td></tr>
+<tr><td>5</td><td>Step 4 — China tuning</td><td class="f">e.g. replicate static assets in-region</td><td>ETA 2022/07/30; depends on step 4 (record-from-docs)</td><td>sequenced with a date</td></tr>
+<tr><td>6</td><td>Step 5 — Asia tuning</td><td class="f">the same playbook beyond China</td><td>ETA 2022/08/15 (record-from-docs)</td><td>sequenced with a date</td></tr>
+<tr><td>7</td><td>Held in reserve</td><td class="f">global CDN for trade.flexport.com — built only if the metrics still demand it</td><td>2022 Q3 or later, metrics-gated (record-from-docs)</td><td>no speculative spend</td></tr>
+<tr><td>8</td><td>Verification per change</td><td class="f">2 user types × 2 instances = 4 smoke passes before + 4 after = 8</td><td>login → workview → logout → re-login; internal SSO + partner users; US + China hosts (record-from-docs; the multiplication counts the checklist)</td><td>8 workflow passes around every change</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Root cause</td><td>one number — "Asia is slow"</td><td>static leg (10×) and dynamic routing isolated, each with an owner and a sequence</td><td>record-from-docs</td></tr>
+<tr><td>2</td><td>Fixes</td><td>none</td><td>2 shipped (WAF; double-CDN removal); 3 sequenced with dates (07/15, 07/30, 08/15)</td><td>record-from-docs</td></tr>
+<tr><td>3</td><td>Post-fix P95</td><td>21.19s</td><td>no post-fix figure exists in the record — never claimed</td><td>record-from-docs</td></tr>
+<tr><td>4</td><td>Spend discipline</td><td>—</td><td>global CDN gated on metrics, not built on speculation</td><td>record-from-docs</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Partner base exposed</td><td class="f">48 ÷ 53 = 0.9057 ≈ 90.5% of import partners already migrated when the gap surfaced</td><td>migration tracker (record-from-docs)</td><td>90.5% of partners on the affected app</td></tr>
+<tr><td>2</td><td>Excess wait served per window</td><td class="f">gap vs US = 21.19 − 3.3 = 17.89s; 6,310 × 17.89 = 112,886 partner-seconds; ÷ 3,600 ≈ 31.4 hours</td><td>6.31k Asia page views in the 17-day window (record-from-docs); gap arithmetic illustrative</td><td>≈31.4 partner-hours of excess wait every 17 days</td></tr>
+<tr><td>3</td><td>Dollar value of the wait</td><td class="f">no dollar in the record — not claimed</td><td>record-from-docs</td><td>not claimed</td></tr>
+<tr><td>4</td><td>Post-fix saving</td><td class="f">no post-fix latency figure exists → no savings chain exists</td><td>record-from-docs</td><td>never invent one</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">How did you know it was routing and not the application?</p><p>By decomposition before remediation: the static/dynamic split put ~5s of the China time on assets the app server never touched, and the same assets served in ~500ms from the US — the code was constant, the path was not. The domain's missing geo-DNS / reverse proxy and the double CDN explained both halves of the gap without a single application change.</p></div><div class="qa"><p class="q">Why not just stand up a China region?</p><p>A region is a re-architecture with a compliance tail; the evidence said the bottleneck was routing and CDN topology, which fixes in weeks. The sequenced plan — WAF, double-CDN removal, regional CDN, tuning — bought most of the win at a fraction of the risk, and the smoke-test protocol meant each step was reversible.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> 21.19s vs 3.3s P95 (record-from-docs) · ~5s vs ~500ms static (record-from-docs) · 48/53 = 90.5% migrated (record-from-docs) · 11 partners / 10 countries MVP (record — matches S12 canon) · fix sequence WAF → double-CDN → regional CDN → China → Asia with smoke tests (record-from-docs). Never: a post-fix latency number (none in the record); never present scheduled items as delivered.</div>

@@ -325,6 +325,58 @@
 <ul class="cstar"><li><span class="stag">S —</span> A flat 1.10-day buffer on every lane: 95.8% headline accuracy hiding over-insurance on tight lanes and under-insurance on loose ones; fast-promise share 7.6% (model).</li><li><span class="stag">T —</span> Lead the promise-policy workstream: decompose the waste, put priced alternatives on one table, design the gates, leave a governance instrument — not a tuning habit.</li><li><span class="stag">A —</span> Promise identity and accuracy factorization; buffer-waste audit; four policies on one table; proofs (Φ(1.645) = 0.95 per cohort, equimarginal check, Q4 drill at ~1.45× σ); shadow mode for four weeks; the dial k owned by a business owner and printed every Monday.</li><li><span class="stag">R —</span> Fast-promise share 7.6 → 39.6% (+32 pts) at exactly the 95% floor; average promised day 3.09 → 2.75; +$255K/wk ≈ $13.3M/yr — model, labeled; the widest cohorts got honestly slower promises (1.10 → 2.63 days) on purpose.</li></ul>
 <div class="sh">Results line</div>
 <p class="note">Fast-promise share 7.6% → 39.6% (+32.0 points) at a held 95.0% floor (model) · average promised day 3.09 → 2.75 (model) · +$255K/wk ≈ $13.3M/yr vs uniform (modeled on the illustrative ~1M-order book) · the profit-optimal frontier (97.8% accuracy, ≈ +$20M/yr) handed to Finance as a priced decision — shown, never claimed, never merged with the $13.3M.</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>The promise identity</td><td class="f">EDD = t_order + handling + transit_pred + b; kept ⇔ (handling_err + transit_err) ≤ b</td><td>per order; b = buffer in days (record-from-docs identity)</td><td>the buffer is the only policy term</td></tr>
+<tr><td>2</td><td>Kept-promise probability per lane</td><td class="f">P(kept) = Φ(b / σ)</td><td>ε ~ N(0, σ²) per cohort — whiteboard version; production uses the empirical quantile (record-from-docs)</td><td>accuracy is a function of b and σ only</td></tr>
+<tr><td>3</td><td>Incumbent buffer</td><td class="f">b = 1.10 days on every lane</td><td>uniform policy A (illustrative model)</td><td>1.10 d everywhere</td></tr>
+<tr><td>4</td><td>Tightest cohort, z-score</td><td class="f">z = b / σ = 1.10 / 0.22 = 5.0; Φ(5.0) ≈ 0.9999997</td><td>metro cohort σ = 0.22 d (illustrative model)</td><td>near-certainty bought — promise needlessly slow</td></tr>
+<tr><td>5</td><td>Widest cohort, z-score</td><td class="f">z = 1.10 / 1.60 = 0.6875; Φ(0.69) ≈ 0.754</td><td>mountain-rural cohort σ = 1.60 d (illustrative model)</td><td>≈75.4% kept — a known-loss book</td></tr>
+<tr><td>6</td><td>Portfolio print</td><td class="f">accuracy 95.8% · fast share 7.6% · avg promised day 3.09 · profit $5.69M/wk</td><td>order-weighted across 12 cohorts, ~1M orders/wk (illustrative model)</td><td>a green headline hiding both failures</td></tr>
+<tr><td>7</td><td>The asymmetry</td><td class="f">padding fails silently (lost conversion files no ticket); cutting fails loudly (breaches do)</td><td>record-from-docs — why the system drifted slow</td><td>bias toward slow, unowned</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>One governed dial</td><td class="f">b_lane = k × σ_lane; Φ(k) = floor ⇒ k = 1.645 for 95%</td><td>Φ(1.645) = 0.95 under normal errors (record-from-docs design)</td><td>k = 1.645, one number for the book</td></tr>
+<tr><td>2</td><td>Tightest cohort re-buffered</td><td class="f">b = 1.645 × 0.22 = 0.36 days</td><td>σ = 0.22 d (illustrative)</td><td>buffer 1.10 → 0.36 d; 0.74 d of speed harvested</td></tr>
+<tr><td>3</td><td>Widest cohort re-buffered</td><td class="f">b = 1.645 × 1.60 = 2.63 days</td><td>σ = 1.60 d (illustrative)</td><td>buffer 1.10 → 2.63 d — slower on purpose, kept honest</td></tr>
+<tr><td>4</td><td>Every cohort at the floor</td><td class="f">P(kept) = Φ(1.645 × σ / σ) = Φ(1.645) = 0.95 on each cohort</td><td>by construction (design)</td><td>95.0% everywhere; no cohort subsidizes another</td></tr>
+<tr><td>5</td><td>Portfolio after</td><td class="f">accuracy 95.0% · fast share 39.6% · avg day 2.75 · profit $5.94M/wk</td><td>illustrative model output, policy B</td><td>+32 pts fast share at the floor</td></tr>
+<tr><td>6</td><td>Equimarginal proof (policy C)</td><td class="f">φ(b/σ)/σ equal across all 12 cohorts (spread &lt; 1e-15)</td><td>solver optimality condition (record-from-docs)</td><td>the last buffer-day buys the same accuracy everywhere</td></tr>
+<tr><td>7</td><td>Peak regime rule</td><td class="f">σ_Q4 ≈ 1.45 × σ; frozen k ⇒ z = 1.645/1.45 = 1.13; Φ(1.13) ≈ 0.87 per fully-inflated lane; portfolio prints 91.9% &lt; 95%</td><td>Q4 drill (illustrative model)</td><td>k re-solved and published in October, never frozen</td></tr>
+<tr><td>8</td><td>Shadow gate</td><td class="f">4 consecutive weeks logged ≥ floor, contacts flat → promote; else hold</td><td>promotion bar (design)</td><td>rehearse against reality before any displayed date</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Fast-promise share (≤2-day)</td><td>7.6%</td><td>39.6% (+32 pts)</td><td>illustrative model</td></tr>
+<tr><td>2</td><td>Portfolio promise accuracy</td><td>95.8% (split: ~100% / 75.4%)</td><td>95.0% — the floor, held on every cohort</td><td>illustrative model</td></tr>
+<tr><td>3</td><td>Average promised day</td><td>3.09</td><td>2.75 (−0.34)</td><td>illustrative model</td></tr>
+<tr><td>4</td><td>Weekly modeled profit</td><td>$5.69M</td><td>$5.94M (+$255K)</td><td>illustrative model</td></tr>
+<tr><td>5</td><td>Owner of the speed-accuracy trade</td><td>implicit, in the last model tune</td><td>one governed dial, published weekly, re-solved per regime</td><td>engagement design record</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Weekly profit, policy A</td><td class="f">$5,690,000 / wk, taken from the model</td><td>illustrative model output</td><td>$5.69M/wk</td></tr>
+<tr><td>2</td><td>Weekly profit, policy B</td><td class="f">$5,940,000 / wk, taken from the model</td><td>illustrative model output</td><td>$5.94M/wk</td></tr>
+<tr><td>3</td><td>Weekly delta</td><td class="f">$5,940,000 − $5,690,000 = $250,000 (the model's precise print: +$255K)</td><td>rows 1, 2 (illustrative)</td><td>≈ +$255K/wk</td></tr>
+<tr><td>4</td><td>Annualized</td><td class="f">$255,000 × 52 = $13,260,000</td><td>row 3 × 52 weeks (modeled)</td><td>≈ $13.3M/yr — "the model," said in the same breath</td></tr>
+<tr><td>5</td><td>Frontier: policy D delta</td><td class="f">$6,070,000 − $5,690,000 = $380,000/wk; $380,000 × 52 = $19,760,000</td><td>illustrative model output; ×52 modeled</td><td>≈ $20M/yr — handed to Finance, never claimed</td></tr>
+<tr><td>6</td><td>Why D holds 97.8%</td><td class="f">breach EV $12 &gt; margin-per-promise-day trade at $6.50 ⇒ optimum above the 95% floor</td><td>$12 and $6.50 are the model's stated assumptions</td><td>the floor and the economics disagree — a governance finding</td></tr>
+<tr><td>7</td><td>Headline</td><td class="f">≈ $13.3M/yr modeled; record dollars: none</td><td>rows 3–4</td><td>≈ $13.3M/yr, always labeled</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">The whole story rests on an illustrative cohort set.</p><p>It does, deliberately — the model exists so the argument happens in numbers instead of adjectives. If the real σ looks nothing like the model's, k changes and the lane ranking changes; what survives any parameter set is the structure: buffers risk-proportional, the last buffer-day buying the same accuracy everywhere, and a floor that disagrees with the breach economics treated as a governance finding.</p></div><div class="qa"><p class="q">Why one dial instead of per-lane learned buffers?</p><p>Data science wanted per-lane learned buffers — more model, more value, invisible governance. I priced the difference and recommended the one-dial policy first: it captures most of the value, it is auditable, and σ improvements flow into speed automatically and visibly. The no went into the comparison table as a priced row, not a meeting minute.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> 7.6% → 39.6% fast-promise share (+32 pts, model) · 95.8% → 95.0% accuracy held at the floor (model) · 3.09 → 2.75 promised days (model) · +$255K/wk ≈ $13.3M/yr (modeled) · 12 cohorts, ~1M orders/wk, σ 0.22–1.60 days, k = 1.645 (illustrative model) · breach ≈$12 vs margin ≈$6.50 (model assumptions). Never a production dollar.</div>
@@ -339,6 +391,56 @@
 <ul class="cstar"><li><span class="stag">S —</span> Output metric owned by a committee; 30-day rolling windows smearing step changes into drift; three teams keeping three clocks; a red week discovered live and negotiated.</li><li><span class="stag">T —</span> Design the WBR for the pre-purchase delivery experience and lead the program that stood it up — then hand it to owners and leave.</li><li><span class="stag">A —</span> One glossary and denominator audit; 7 outputs over 10 input levers with roll-ups and named owners; the factor identity as the decomposition; ±5% WoW red/green with hard reds on floors; Monday freeze → Tuesday review, reds pre-wired; mix-adjusted twins; a cell-grain Andon (7-day EWMA/CUSUM, 2× baseline breach, n ≥ 30, act in 24 h, false-trip bar < 5%).</li><li><span class="stag">R —</span> Attribution days → minutes; detection-to-action ~30 days → < 24 h (designed); Promise Yield 43.6% × 95.2% ≈ 41.5% baseline on the docs' sample, four-quarter design target 50%; ≈$0.58M per caught episode (modeled).</li></ul>
 <div class="sh">Results line</div>
 <p class="note">Red-week attribution: a cross-team negotiation → minutes by factor math (proven on the sample-data drill) · detection-to-action ~30 days → under 24 hours by design (the Andon) · 7 outputs / 10 inputs / 1 joint headline / 6 sample weeks (engagement design record) · ≈$0.58M per caught degradation episode (modeled; no annual figure — episode frequency is the client's data and I won't invent it).</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>The accuracy identity</td><td class="f">O1 ≈ I3 × I4 × Φ(b/σ) — seller ships in window × carrier meets transit × buffer absorbs the residual</td><td>record-from-docs factorization; three factors, three owners</td><td>every breach belongs to exactly one factor</td></tr>
+<tr><td>2</td><td>Healthy sample week</td><td class="f">O1 = 0.97 × 0.985 × 0.996 = 0.9516 ≈ 95.2%</td><td>I3 = 0.97, I4 = 0.985, Φ = 0.996 (docs' illustrative sample)</td><td>95.2% — matches the sample print</td></tr>
+<tr><td>3</td><td>The aggregate trap</td><td class="f">carrier prints 97% nationally while one region runs 82%</td><td>Southeast after a hub consolidation (record-from-docs example)</td><td>the average hides the cell</td></tr>
+<tr><td>4</td><td>The rolling-window lag</td><td class="f">a step change entering a 30-day window moves the average ≈1/30 per day</td><td>30-day scorecard mechanics (record-from-docs issue)</td><td>weeks before a floor bites — enforcement lag</td></tr>
+<tr><td>5</td><td>The gameable pair</td><td class="f">fast share 43.6% and accuracy 95.2% on separate lines, separate owners</td><td>docs' sample; either can be juiced by bleeding the other</td><td>no joint headline</td></tr>
+<tr><td>6</td><td>Baseline joint number</td><td class="f">Promise Yield = 0.436 × 0.952 = 0.415</td><td>rows 2, 5 (docs' sample)</td><td>≈ 41.5%</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted (the red-week drill).</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>The episode</td><td class="f">Southeast cell: carrier adherence 0.985 → 0.82 on w = 10% of volume</td><td>82% is the docs' example; the 10% weight is illustrative</td><td>one regional carrier miss</td></tr>
+<tr><td>2</td><td>New carrier factor</td><td class="f">I4′ = 0.90 × 0.985 + 0.10 × 0.82 = 0.8865 + 0.082 = 0.9685</td><td>volume-weighted blend (illustrative)</td><td>I4: 0.985 → 0.9685 (−1.7%)</td></tr>
+<tr><td>3</td><td>New accuracy</td><td class="f">O1′ = 0.97 × 0.9685 × 0.996 = 0.9357 ≈ 93.6%</td><td>rows 1–2; other factors unchanged</td><td>95.2% → 93.6% — a red week</td></tr>
+<tr><td>4</td><td>The attribution read</td><td class="f">WoW deltas: I3 0.0% · I4 −1.7% · Φ 0.0%</td><td>computed per factor (the decomposition)</td><td>the red names I4 and the carrier PM — in minutes</td></tr>
+<tr><td>5</td><td>Segmentation</td><td class="f">factor red isolated to one region ⇒ C-family cause, not model or seller</td><td>lane/cohort cut of I4 (design)</td><td>cause class identified before the meeting</td></tr>
+<tr><td>6</td><td>The Andon trigger</td><td class="f">cell 7-day breach rate sustained ≥ 2 × baseline, n ≥ 30 ⇒ act &lt; 24 h</td><td>EWMA/CUSUM parameters (record-from-docs design)</td><td>buffer widened or badge pulled on the cell, same day</td></tr>
+<tr><td>7</td><td>Auto-restore</td><td class="f">control chart recovers ⇒ badge/buffer restored, no meeting needed</td><td>design</td><td>surgical, reversible, seller-fair</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Red-week attribution time</td><td>days (blame negotiation)</td><td>minutes (factor math)</td><td>engagement design record, proven on the drill</td></tr>
+<tr><td>2</td><td>Detection-to-action, degrading cell</td><td>up to ~30 days</td><td>&lt; 24 h from sustained signal</td><td>designed (Andon)</td></tr>
+<tr><td>3</td><td>Output ownership</td><td>committee</td><td>one named owner of the output block + log</td><td>engagement design record</td></tr>
+<tr><td>4</td><td>Joint headline</td><td>none</td><td>Promise Yield, 41.5% sample baseline → 50% 4-qtr target</td><td>docs' sample; design target</td></tr>
+<tr><td>5</td><td>Mix honesty</td><td>raw outputs only</td><td>mix-adjusted twin + mix line per output</td><td>engagement design record</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Episode accuracy loss</td><td class="f">95.2% − 93.6% = 1.6 points</td><td>Table 2 rows 2–3 (illustrative episode)</td><td>1.6 pts of excess breaches</td></tr>
+<tr><td>2</td><td>Excess breaches per week</td><td class="f">1,000,000 × 1.6% = 16,000</td><td>~1M orders/wk illustrative book</td><td>≈16,000 breaches/wk</td></tr>
+<tr><td>3</td><td>Cost per breach</td><td class="f">$12, taken as stated</td><td>the model's assumption: contact + refund risk + trust decay (record-from-docs)</td><td>$12 each</td></tr>
+<tr><td>4</td><td>Excess cost per week</td><td class="f">16,000 × $12 = $192,000</td><td>rows 2 × 3 (modeled)</td><td>≈$192K/wk</td></tr>
+<tr><td>5</td><td>Detection advantage</td><td class="f">~4 weeks (rolling-window era) − 1 week (Andon era) = 3 weeks</td><td>row 4 of Table 1; Andon design</td><td>3 weeks earlier action</td></tr>
+<tr><td>6</td><td>Avoided per episode</td><td class="f">$192,000 × 3 = $576,000</td><td>rows 4 × 5 (modeled)</td><td>≈$0.58M per caught episode</td></tr>
+<tr><td>7</td><td>Annual total</td><td class="f">not computed — $576,000 × (episodes/yr) requires a frequency I don't have</td><td>deliberately uninvented</td><td>per-episode only, labeled modeled</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">Your baseline Promise Yield is sample data.</p><p>Correct, and I say so: 43.6% × 95.2% ≈ 41.5% is the engagement docs' own illustrative six-week set, used to prove the mechanics before live lines existed. The 50% target is a target on the real book, and the first live job is re-baselining it.</p></div><div class="qa"><p class="q">How is this different from the Flexport review (S11)?</p><p>S11 is the production record — a review I ran by hand every Monday for over a year with record numbers (automation 40 → 90%, accuracy 60 → 90%). This engagement is where the review's mathematics — the factor decomposition and the control loop — was carried furthest as a design for a client. I keep the two separate and never borrow a number across them.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> 7 outputs / 10 input levers / 1 joint headline (design record) · 0.97 × 0.985 × 0.996 ≈ 95.2% (sample-week proof) · 97% national vs 82% Southeast (engagement's worked example) · 30 days → < 24 h (designed) · Promise Yield 41.5% baseline, 50% target (docs' sample) · ≈$0.58M per caught episode (modeled: ≈$192K/wk × 3 weeks). Never a production output claim.</div>
@@ -353,6 +455,49 @@
 <ul class="cstar"><li><span class="stag">S —</span> 4 AM Cyber Monday: backorder lines piling with inventory present; promises aging; ~$6M at risk against a 95% fill goal; nobody had written a clearing rule for failure.</li><li><span class="stag">T —</span> Own the response before the cause was known, without making it worse.</li><li><span class="stag">A —</span> Declared the incident on the contradiction; clearing rule — promise-at-risk, not FIFO — written on the bridge log in the first hour so nobody re-argued it at noon; rebalanced across three DCs; two-hourly status; isolated the DST scheduler death through my own reason-coded alerts; blameless post-mortem → heartbeat, DST checklist, 3σ page rule, rehearsed playbook.</li><li><span class="stag">R —</span> Fill 99% vs the 95% goal; ~$8M protected vs ~$6M at risk (record pair); structural stockouts −20% over the engagement; the next peak ran boring.</li></ul>
 <div class="sh">Results line</div>
 <p class="note">Peak fill 99% vs the 95% goal (record) · ~$8M of peak sales protected vs ~$6M at risk (record pair — one-time sales that didn't die, never a saving) · ≈$3.2M gross margin at a 40% benchmark (modeled) · structural stockouts −20% over the engagement (record) · detection moved from a VP phone call to one heartbeat interval.</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>4 AM state</td><td class="f">scheduler dead; backlog = 30,000 orders; ~$6M of sales at risk vs the 95% fill goal</td><td>record risk pair; backlog illustrative</td><td>the bridge call</td></tr>
+<tr><td>2</td><td>FIFO failure</td><td class="f">FIFO clears by arrival — cheap, distant-promise orders first while at-risk promises age</td><td>record rule problem</td><td>value-blind clearing</td></tr>
+<tr><td>3</td><td>Naive node loads</td><td class="f">DC1: 22,000 / 10,000 = 2.2 days; DC3: 2,000 / 6,000 = 0.33 days</td><td>capacities 10K / 8K / 6K orders/day (illustrative)</td><td>worst node 2.2 days behind while another idles</td></tr>
+<tr><td>4</td><td>No liveness detection</td><td class="f">a dead scheduler was found by a VP at 4 AM, not by a page</td><td>record problem</td><td>detection by seniority</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Promise-at-risk ranking</td><td class="f">risk = value × urgency(promise − now); clear descending</td><td>on the bridge log in hour 1 (record rule)</td><td>at-risk promises first, not first-in</td></tr>
+<tr><td>2</td><td>Node choice = the promise</td><td class="f">T = handling + transit: near 0.85 d vs far 4.60 d; 4.60 − 0.85 = 3.75 d</td><td>record pair</td><td>−3.75 days per re-pointed order</td></tr>
+<tr><td>3</td><td>Load levelling</td><td class="f">rebalance 30,000 → 12,500 / 10,000 / 7,500: 12,500/10,000 = 1.25; 10,000/8,000 = 1.25; 7,500/6,000 = 1.25 days</td><td>load = queue / capacity (illustrative)</td><td>worst slip 2.2 → 1.25 days</td></tr>
+<tr><td>4</td><td>Liveness page (post-mortem)</td><td class="f">page if x &lt; μ − 3σ = 1,200 − 3 × 150 = 1,200 − 450 = 750/hr</td><td>μ = 1,200 allocations/hr, σ = 150 (illustrative); a dead scheduler reads 0/hr</td><td>caught in one interval, not by a VP</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Peak fill rate</td><td>95% goal</td><td>99% delivered</td><td>record</td></tr>
+<tr><td>2</td><td>Peak sales</td><td>~$6M at risk</td><td>~$8M protected</td><td>record pair — one-time event</td></tr>
+<tr><td>3</td><td>Worst-case promise slip</td><td>2.2 days</td><td>1.25 days</td><td>illustrative walk</td></tr>
+<tr><td>4</td><td>Detection</td><td>a VP at 4 AM</td><td>one interval via the 3σ page</td><td>post-mortem design</td></tr>
+<tr><td>5</td><td>Structural stockouts</td><td>—</td><td>−20% over the engagement</td><td>record</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Margin protected</td><td class="f">$8,000,000 × 40% = $3,200,000</td><td>benchmark margin 35–45% (modeled)</td><td>≈$3.2M one-time</td></tr>
+<tr><td>2</td><td>Orders at risk</td><td class="f">$6,000,000 / $150 = 40,000 orders</td><td>AOV benchmark</td><td>40,000 orders</td></tr>
+<tr><td>3</td><td>Cancels / CS avoided</td><td class="f">40,000 × $6.50 = $260,000</td><td>CS contact $5–8 (benchmark; modeled)</td><td>≈$0.26M</td></tr>
+<tr><td>4</td><td>Expedite premium avoided</td><td class="f">40,000 × 40% = 16,000 re-pointed; 16,000 × $8 = $128,000</td><td>re-pointed share and premium midpoint of the $5–12 benchmark (both illustrative)</td><td>≈$0.13M</td></tr>
+<tr><td>5</td><td>Structural-stockout run-rate</td><td class="f">$400M × 4% = $16M lost sales; × 20% = $3.2M recovered; × 40% = $1,280,000</td><td>illustrative retailer × lost-sales benchmark (2–6%) × −20% record × margin</td><td>≈$1.3M/yr modeled</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">Why act before you knew the cause?</p><p>Because waiting had an hourly price — the queue was aging while inventory sat idle — and a reversible, logged intervention did not. I checked with engineering first that manual clears could not corrupt allocation, timestamped every rebalance, and hunted the cause in parallel with alerts I had already built.</p></div><div class="qa"><p class="q">Isn't this a hero story?</p><p>The event is; the post-mortem is the point. Carrying the first stretch solo is one of my do-differentlys. What I would present as the result is the mechanism set — heartbeat, DST checklist, 3σ page rule, rehearsed playbook — and that the next peak ran boring.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> 99% fill vs 95% goal (record) · ~$8M protected vs ~$6M at risk (record) · 3 DCs / 100 stores (record) · near 0.85 d vs far 4.60 d (record) · −20% structural stockouts (record) · ≈$3.2M margin at 40% (modeled). Never "$2MM baseline"; never present $8M as a saving.</div>
@@ -367,6 +512,49 @@
 <ul class="cstar"><li><span class="stag">S —</span> 1,000 global lanes asked in two months — scope, schedule and quality all fixed; completeness 60%; lanes differed by orders of magnitude in spend and carriers differed in EDI capability.</li><li><span class="stag">T —</span> Own the scope analysis and the onboarding standard; take the re-scope two levels up with the evidence attached.</li><li><span class="stag">A —</span> Spend Pareto (597 = 80% of spend) pre-validated so no lane owner could contradict it in the room; standard + ≥95% valid-ASN gate published to carriers before cohort one; harness so later cohorts were mostly configuration; held a failing cohort twice; ~400 lanes carrying ~20% of spend deferred — priced in spend share, not lane count.</li><li><span class="stag">R —</span> Completeness 60 → 95%; 100% visibility on high-value lanes; 597 lanes live month one; freight −10% ≈ $2M in six months (record); method written up as the sourcing SOP.</li></ul>
 <div class="sh">Results line</div>
 <p class="note">Completeness 60% → 95% (record) · 597 of 1,000 lanes = 80% of freight spend live in month one (record) · freight spend −10% ≈ $2M in six months (record — kept as measured, never annualized) · adoption 8× (record) · ≈$0.4M/yr document-handling labor (modeled add-on).</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Completeness</td><td class="f">480 / 800 = 60%</td><td>expected = 200 shipments × 4 milestones = 800; received 480 (illustrative volumes; 60% record)</td><td>60% — 2 of 5 events missing</td></tr>
+<tr><td>2</td><td>What blindness costs</td><td class="f">off-guide spend unseen · premium modes by habit · chase calls per late shipment</td><td>record problem</td><td>no instrument, no lever</td></tr>
+<tr><td>3</td><td>Manual documents</td><td class="f">597 lanes × ~50 shipments × 3 docs ≈ 90,000 docs/yr keyed by hand</td><td>illustrative volumes</td><td>~90K docs/yr</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Spend Pareto</td><td class="f">S(k) = cumulative spend share; S(597) = 80%</td><td>lanes sorted by annual freight spend (record)</td><td>597 of 1,000 lanes carry 80% of spend — do them first</td></tr>
+<tr><td>2</td><td>Cohort gate</td><td class="f">validASN rate ≥ 95% in test before activation</td><td>published to carriers before cohort one (record)</td><td>one cohort failed twice on a timestamp format — held both times</td></tr>
+<tr><td>3</td><td>Long-tail floor</td><td class="f">XML / portal when EDI is absent</td><td>“the standard was the data, not the transport” (record)</td><td>small carriers kept inside the standard</td></tr>
+<tr><td>4</td><td>Completeness after</td><td class="f">760 / 800 = 95%</td><td>illustrative volumes; 95% record</td><td>95%; high-value lanes 100%</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Shipment-data completeness</td><td>60%</td><td>95%; high-value lanes 100%</td><td>record</td></tr>
+<tr><td>2</td><td>Lanes live month one</td><td>0</td><td>597 = 80% of spend</td><td>record</td></tr>
+<tr><td>3</td><td>Freight spend on onboarded lanes</td><td>base</td><td>−10% ≈ $2M in 6 months</td><td>record</td></tr>
+<tr><td>4</td><td>Document handling</td><td>~90K docs/yr keyed</td><td>X12/XML validated</td><td>modeled</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Implied addressable base</td><td class="f">$2,000,000 / 10% = $20,000,000/yr</td><td>derived from the record pair, stated as such</td><td>≈$20M/yr</td></tr>
+<tr><td>2</td><td>The record result</td><td class="f">$20M × 10% = $2M in 6 months</td><td>record</td><td>≈$2M</td></tr>
+<tr><td>3</td><td>Slice — routing-guide compliance</td><td class="f">~$0.8M of the $2M</td><td>off-guide spend caught by 856/214 (modeled split)</td><td>~$0.8M</td></tr>
+<tr><td>4</td><td>Slice — mode discipline</td><td class="f">~$0.6M of the $2M</td><td>premium modes → ocean/ground when ETA is trusted (modeled split)</td><td>~$0.6M</td></tr>
+<tr><td>5</td><td>Slice — expedites + detention</td><td class="f">~$0.6M of the $2M</td><td>events replace chase calls (modeled split)</td><td>~$0.6M</td></tr>
+<tr><td>6</td><td>Split check</td><td class="f">0.8 + 0.6 + 0.6 = $2.0M</td><td>the slices decompose the record — they never add to it</td><td>= the record $2M</td></tr>
+<tr><td>7</td><td>Document labor</td><td class="f">90,000 × 6 min = 540,000 min; / 60 = 9,000 h; × $45 = $405,000</td><td>illustrative volumes (modeled add-on)</td><td>≈$0.4M/yr</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">You defied a Global Head of Supply Chain's number. How?</p><p>With the spend curve and the lane owners' validation attached — 597 lanes carried 80% of the spend, so the phased plan was argued in spend share, not lane count. He accepted the phasing off the curve; I then committed to the remainder behind the same gate and delivered it.</p></div><div class="qa"><p class="q">Is the $2M annualized?</p><p>No — it is the record as measured: minus ten percent on the onboarded lanes' spend in six months. My three-way split (routing-guide compliance ~$0.8M, mode discipline ~$0.6M, expedites and detention ~$0.6M) decomposes the record; it never adds to it.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> 60% → 95% completeness (record) · 597 / 1,000 lanes = 80% of spend (record) · −10% ≈ $2M in 6 months (record) · ≥95% valid-ASN gate, held twice (record) · 8× adoption (record) · ≈$0.4M/yr labor (modeled). Never: cohort counts or sizes; never double the $2M into a run-rate.</div>
@@ -381,6 +569,54 @@
 <ul class="cstar"><li><span class="stag">S —</span> 79 acquired-product customers ($185,892 ARR; 294,581 containers) across eight segments, on a product being retired by end 2022; the replacement did not fit every segment.</li><li><span class="stag">T —</span> Own the transition design: decision rules per segment, dates per account, and the handling of internal dissent.</li><li><span class="stag">A —</span> A segment table with a transition-or-cancel rule per segment; a white-label partner product for truck brokers; the SV API for forwarders/brokers/3PLs; competitor SaaS accounts canceled on published dates; per-customer calls for the two largest-volume accounts; pushback on KTLO cost, feature parity and consignee timing priced into the decision document.</li><li><span class="stag">R —</span> 79 of 79 customers decided and dated (record-from-docs). The record carries no preserved-ARR figure, and none is claimed.</li></ul>
 <div class="sh">Results line</div>
 <p class="note">79 customers · $185,892 ARR · 294,581 containers (record-from-docs) · eight segments with a rule each (record-from-docs) · two competitor SaaS accounts canceled on published dates (record-from-docs) · two largest accounts handled per-customer (record-from-docs) · no preserved-ARR or churn dollar in the record — never invent one.</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Customers on the retiring product</td><td class="f">79 across the printed segment table</td><td>RAPID doc, customer-by-type table (record-from-docs)</td><td>79 accounts to decide</td></tr>
+<tr><td>2</td><td>Revenue carried</td><td class="f">$15,491 MRR × 12 = $185,892 ARR</td><td>printed totals (record-from-docs)</td><td>$185,892 ARR</td></tr>
+<tr><td>3</td><td>Volume carried</td><td class="f">294,581 containers tracked (2021)</td><td>printed total (record-from-docs)</td><td>294,581 containers/yr</td></tr>
+<tr><td>4</td><td>The fit problem</td><td class="f">SV fits shippers and consignees; carriers, brokers, forwarders, 3PLs and competitor SaaS are not consignees</td><td>RAPID opportunity section (record-from-docs)</td><td>one product cannot absorb all 79</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Segment count check</td><td class="f">2 + 14 + 39 + 9 + 3 + 5 + 1 + 4 + 2 = 79</td><td>GKA · Enterprise · SMB · Motor Carrier · Truck Broker · Freight Forwarder · Customs Broker · 3PL · SCM SaaS rows (record-from-docs)</td><td>rows reconcile to the printed total</td></tr>
+<tr><td>2</td><td>Container check</td><td class="f">17,061 + 17,983 + 4,153 + 12,359 + 221,044 + 11,871 + 432 + 4,218 + 5,460 = 294,581</td><td>segment rows (record-from-docs)</td><td>reconciles exactly</td></tr>
+<tr><td>3</td><td>Concentration</td><td class="f">221,044 ÷ 294,581 = 0.7504 ≈ 75% of volume on 3 truck-broker accounts</td><td>segment rows (record-from-docs)</td><td>the decision's center of gravity</td></tr>
+<tr><td>4</td><td>Rule — green segments</td><td class="f">2 + 14 + 39 = 55 customers → transition to Shipment Visibility</td><td>RAPID opportunity section (record-from-docs)</td><td>55 transitioned</td></tr>
+<tr><td>5</td><td>Rule — carriers &amp; brokers</td><td class="f">9 + 3 = 12 → white-label through Transmission, else cancel at wind-down</td><td>RAPID decision section (record-from-docs)</td><td>12 decided</td></tr>
+<tr><td>6</td><td>Rule — forwarders, customs brokers, 3PLs</td><td class="f">5 + 1 + 4 = 10 → SV API, else cancel at wind-down</td><td>RAPID decision section (record-from-docs)</td><td>10 decided</td></tr>
+<tr><td>7</td><td>Rule — competitor SaaS</td><td class="f">2 → cancel: Shippabo 2022/08/01; Shipwell 2022/10/24</td><td>RAPID appendix (record-from-docs)</td><td>2 canceled on published dates</td></tr>
+<tr><td>8</td><td>Closure check</td><td class="f">55 + 12 + 10 + 2 = 79</td><td>rows 4–7 (record-from-docs)</td><td>every customer under a rule — eight segments carry a designed forward rule; the ninth printed row (SCM SaaS) was immediate cancel, already executed on the dates in row 7</td></tr>
+<tr><td>9</td><td>Two largest accounts</td><td class="f">per-customer handling, not a segment rule — AV Logistics and ITS Logistics, the volume leaders</td><td>RAPID sections 3 and 7 (record-from-docs)</td><td>Transmission partnership modeled on ITS's existing usage</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Customers decided</td><td>0 of 79</td><td>79 of 79, each with a dated path</td><td>record-from-docs</td></tr>
+<tr><td>2</td><td>Paths</td><td>one undifferentiated book</td><td>55 → SV · 12 → Transmission-or-cancel · 10 → SV-API-or-cancel · 2 → canceled</td><td>record-from-docs</td></tr>
+<tr><td>3</td><td>Largest accounts</td><td>segment averages</td><td>per-customer calls for the two biggest-volume accounts</td><td>record-from-docs</td></tr>
+<tr><td>4</td><td>Internal dissent</td><td>—</td><td>KTLO cost, feature parity and consignee-timing objections priced inside the decision document — answered, not overridden</td><td>record-from-docs</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>ARR identity check</td><td class="f">$15,491 × 12 = $185,892</td><td>printed MRR and ARR totals (record-from-docs)</td><td>totals internally consistent</td></tr>
+<tr><td>2</td><td>ARR on the committed SV path</td><td class="f">$16,500 + $22,560 + $30,000 = $69,060</td><td>GKA + Enterprise + SMB rows (record-from-docs)</td><td>$69,060 ARR transitioning to SV</td></tr>
+<tr><td>3</td><td>ARR under transition-or-cancel decision</td><td class="f">$17,760 + $139,512 + $14,820 + $600 + $2,400 + $10,800 = $185,892</td><td>the six non-green rows (record-from-docs)</td><td>equals the printed ARR total exactly</td></tr>
+<tr><td>4</td><td>Concentration of the decision</td><td class="f">$139,512 ÷ $185,892 = 0.7505 ≈ 75% of decided ARR in 3 truck-broker accounts</td><td>segment rows (record-from-docs)</td><td>why the two largest got per-customer calls</td></tr>
+<tr><td>5</td><td>Average account</td><td class="f">$185,892 ÷ 79 = $2,353 ARR; 294,581 ÷ 79 = 3,729 containers</td><td>printed totals (record-from-docs)</td><td>the typical account was small — rules, not 79 one-offs</td></tr>
+<tr><td>6</td><td>Preserved-ARR claim</td><td class="f">no preserved-ARR or churn dollar in the record — not claimed</td><td>record-from-docs</td><td>never invent one</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">How do you justify canceling a paying customer?</p><p>By pricing the alternative honestly: force-fitting a segment the product doesn't serve converts this year's revenue into next year's churn plus support cost, and it burns the reference. A clean cancel with notice and a path — a white-label partner product, or the API if they fit it — kept the relationship honest; two of the 79 were competitor SaaS accounts where canceling was the only truthful option.</p></div><div class="qa"><p class="q">How did you handle the internal pushback?</p><p>As inputs to price, not objections to defeat: migration KTLO cost, feature parity and consignee-acquisition timing each got an option with a cost in the decision document, and the decider chose with the prices on the table. Pushback that is priced becomes design input; pushback that is overridden becomes a later surprise.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> 79 customers · $185,892 ARR · 294,581 containers (record-from-docs) · segment table incl. Enterprise 14 · SMB 39 · Motor Carrier 9 (record-from-docs) · two SaaS cancels dated Aug 1 / Oct 24, 2022 (record-from-docs) · transition deadline end 2022 (record-from-docs). Never: a saved-ARR percentage; never merge with S11's 7 → 68 customer canon.</div>
@@ -395,6 +631,53 @@
 <ul class="cstar"><li><span class="stag">S —</span> Post-MVP, the MBR surfaced Asia P95 page load at 21.19s vs 3.3s in the US (17-day measurement window); 48 of 53 import partners (90.5%) already migrated — the app had to hold where the partners were.</li><li><span class="stag">T —</span> Isolate the layer causing Asia latency and sequence the fix set without destabilizing a live partner-facing launch.</li><li><span class="stag">A —</span> Split static from dynamic: static JS ~5s P95 in China vs ~500ms US; found no geo-based DNS / reverse proxy on the domain (public-internet routing) and a double CDN on static assets; sequenced WAF enablement → double-CDN removal (direct to S3) → regional CDN proposal → China tuning → Asia tuning, each gated by a smoke-test protocol with a named date and owner.</li><li><span class="stag">R —</span> Root cause isolated to routing; WAF and double-CDN fixes shipped inside the window; CDN / China / Asia work scheduled with owners; the investigation became the template for launch-geography checks.</li></ul>
 <div class="sh">Results line</div>
 <p class="note">P95 page load 21.19s Asia vs 3.3s US (record-from-docs) · static ~5s China vs ~500ms US (record-from-docs) · 48 of 53 partners migrated = 90.5% (record-from-docs; canon's "48 of 53 within a month" — consistent) · two fixes shipped, three sequenced with dates (record-from-docs) · no post-fix latency figure exists in the record — never invent one.</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Page-load P95 by region</td><td class="f">Asia = 21.19s; US = 3.3s; Others = 4.45s</td><td>Datadog @view.loading_time, 04/24–05/10 window (record-from-docs)</td><td>Asia is the outlier</td></tr>
+<tr><td>2</td><td>The gap factor</td><td class="f">21.19 ÷ 3.3 = 6.42</td><td>row 1 (record-from-docs)</td><td>6.42× slower than the US</td></tr>
+<tr><td>3</td><td>Traffic behind the number</td><td class="f">6.31 ÷ 2.19 = 2.88</td><td>Asia 6.31k vs US 2.19k page views, same window (record-from-docs)</td><td>≈2.9× the US traffic riding the worst latency</td></tr>
+<tr><td>4</td><td>Static-asset leg</td><td class="f">JS P95 = 5s China vs 500ms US; 5 ÷ 0.5 = 10</td><td>static.flexport.com CDN behavior (record-from-docs)</td><td>10× gap on the static leg</td></tr>
+<tr><td>5</td><td>Dynamic leg</td><td class="f">no geo-DNS / reverse proxy for trade.flexport.com → Asia GraphQL hairpins over the public internet</td><td>infra review (record-from-docs)</td><td>routing penalty on every data call</td></tr>
+<tr><td>6</td><td>Known defect on the static path</td><td class="f">double CDN in China — Cloudflare stacked in front of Tencent</td><td>infra review (record-from-docs)</td><td>one avoidable hop</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Decompose before touching</td><td class="f">page load = static resources + GraphQL requests + JS rendering</td><td>the metric's own definition (record-from-docs)</td><td>three legs, measured and owned separately</td></tr>
+<tr><td>2</td><td>Step 1 — security gate first</td><td class="f">enable WAF for trade.flexport.com: China, then global</td><td>incident-207 follow-up; done 2022/06/30 (record-from-docs)</td><td>shipped — fix 1 of 2</td></tr>
+<tr><td>3</td><td>Step 2 — remove the double CDN</td><td class="f">Tencent CDN → direct to the S3 bucket; Cloudflare hop removed for China</td><td>done 2022/06/24 (record-from-docs)</td><td>shipped — fix 2 of 2</td></tr>
+<tr><td>4</td><td>Step 3 — static proposal, CN/Asia</td><td class="f">alternatives written, reviewed, signed off</td><td>ETA 2022/07/15 (record-from-docs)</td><td>sequenced with a date</td></tr>
+<tr><td>5</td><td>Step 4 — China tuning</td><td class="f">e.g. replicate static assets in-region</td><td>ETA 2022/07/30; depends on step 4 (record-from-docs)</td><td>sequenced with a date</td></tr>
+<tr><td>6</td><td>Step 5 — Asia tuning</td><td class="f">the same playbook beyond China</td><td>ETA 2022/08/15 (record-from-docs)</td><td>sequenced with a date</td></tr>
+<tr><td>7</td><td>Held in reserve</td><td class="f">global CDN for trade.flexport.com — built only if the metrics still demand it</td><td>2022 Q3 or later, metrics-gated (record-from-docs)</td><td>no speculative spend</td></tr>
+<tr><td>8</td><td>Verification per change</td><td class="f">2 user types × 2 instances = 4 smoke passes before + 4 after = 8</td><td>login → workview → logout → re-login; internal SSO + partner users; US + China hosts (record-from-docs; the multiplication counts the checklist)</td><td>8 workflow passes around every change</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Root cause</td><td>one number — "Asia is slow"</td><td>static leg (10×) and dynamic routing isolated, each with an owner and a sequence</td><td>record-from-docs</td></tr>
+<tr><td>2</td><td>Fixes</td><td>none</td><td>2 shipped (WAF; double-CDN removal); 3 sequenced with dates (07/15, 07/30, 08/15)</td><td>record-from-docs</td></tr>
+<tr><td>3</td><td>Post-fix P95</td><td>21.19s</td><td>no post-fix figure exists in the record — never claimed</td><td>record-from-docs</td></tr>
+<tr><td>4</td><td>Spend discipline</td><td>—</td><td>global CDN gated on metrics, not built on speculation</td><td>record-from-docs</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Partner base exposed</td><td class="f">48 ÷ 53 = 0.9057 ≈ 90.5% of import partners already migrated when the gap surfaced</td><td>migration tracker (record-from-docs)</td><td>90.5% of partners on the affected app</td></tr>
+<tr><td>2</td><td>Excess wait served per window</td><td class="f">gap vs US = 21.19 − 3.3 = 17.89s; 6,310 × 17.89 = 112,886 partner-seconds; ÷ 3,600 ≈ 31.4 hours</td><td>6.31k Asia page views in the 17-day window (record-from-docs); gap arithmetic illustrative</td><td>≈31.4 partner-hours of excess wait every 17 days</td></tr>
+<tr><td>3</td><td>Dollar value of the wait</td><td class="f">no dollar in the record — not claimed</td><td>record-from-docs</td><td>not claimed</td></tr>
+<tr><td>4</td><td>Post-fix saving</td><td class="f">no post-fix latency figure exists → no savings chain exists</td><td>record-from-docs</td><td>never invent one</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">How did you know it was routing and not the application?</p><p>By decomposition before remediation: the static/dynamic split put ~5s of the China time on assets the app server never touched, and the same assets served in ~500ms from the US — the code was constant, the path was not. The domain's missing geo-DNS / reverse proxy and the double CDN explained both halves of the gap without a single application change.</p></div><div class="qa"><p class="q">Why not just stand up a China region?</p><p>A region is a re-architecture with a compliance tail; the evidence said the bottleneck was routing and CDN topology, which fixes in weeks. The sequenced plan — WAF, double-CDN removal, regional CDN, tuning — bought most of the win at a fraction of the risk, and the smoke-test protocol meant each step was reversible.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> 21.19s vs 3.3s P95 (record-from-docs) · ~5s vs ~500ms static (record-from-docs) · 48/53 = 90.5% migrated (record-from-docs) · 11 partners / 10 countries MVP (record — matches S12 canon) · fix sequence WAF → double-CDN → regional CDN → China → Asia with smoke tests (record-from-docs). Never: a post-fix latency number (none in the record); never present scheduled items as delivered.</div>

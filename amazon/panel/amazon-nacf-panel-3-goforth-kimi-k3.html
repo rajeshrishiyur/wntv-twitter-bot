@@ -236,6 +236,49 @@
 <ul class="cstar"><li><span class="stag">S —</span> 4 AM Cyber Monday: backorder lines piling with inventory present; promises aging; ~$6M at risk against a 95% fill goal; nobody had written a clearing rule for failure.</li><li><span class="stag">T —</span> Own the response before the cause was known, without making it worse.</li><li><span class="stag">A —</span> Declared the incident on the contradiction; clearing rule — promise-at-risk, not FIFO — written on the bridge log in the first hour so nobody re-argued it at noon; rebalanced across three DCs; two-hourly status; isolated the DST scheduler death through my own reason-coded alerts; blameless post-mortem → heartbeat, DST checklist, 3σ page rule, rehearsed playbook.</li><li><span class="stag">R —</span> Fill 99% vs the 95% goal; ~$8M protected vs ~$6M at risk (record pair); structural stockouts −20% over the engagement; the next peak ran boring.</li></ul>
 <div class="sh">Results line</div>
 <p class="note">Peak fill 99% vs the 95% goal (record) · ~$8M of peak sales protected vs ~$6M at risk (record pair — one-time sales that didn't die, never a saving) · ≈$3.2M gross margin at a 40% benchmark (modeled) · structural stockouts −20% over the engagement (record) · detection moved from a VP phone call to one heartbeat interval.</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>4 AM state</td><td class="f">scheduler dead; backlog = 30,000 orders; ~$6M of sales at risk vs the 95% fill goal</td><td>record risk pair; backlog illustrative</td><td>the bridge call</td></tr>
+<tr><td>2</td><td>FIFO failure</td><td class="f">FIFO clears by arrival — cheap, distant-promise orders first while at-risk promises age</td><td>record rule problem</td><td>value-blind clearing</td></tr>
+<tr><td>3</td><td>Naive node loads</td><td class="f">DC1: 22,000 / 10,000 = 2.2 days; DC3: 2,000 / 6,000 = 0.33 days</td><td>capacities 10K / 8K / 6K orders/day (illustrative)</td><td>worst node 2.2 days behind while another idles</td></tr>
+<tr><td>4</td><td>No liveness detection</td><td class="f">a dead scheduler was found by a VP at 4 AM, not by a page</td><td>record problem</td><td>detection by seniority</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Promise-at-risk ranking</td><td class="f">risk = value × urgency(promise − now); clear descending</td><td>on the bridge log in hour 1 (record rule)</td><td>at-risk promises first, not first-in</td></tr>
+<tr><td>2</td><td>Node choice = the promise</td><td class="f">T = handling + transit: near 0.85 d vs far 4.60 d; 4.60 − 0.85 = 3.75 d</td><td>record pair</td><td>−3.75 days per re-pointed order</td></tr>
+<tr><td>3</td><td>Load levelling</td><td class="f">rebalance 30,000 → 12,500 / 10,000 / 7,500: 12,500/10,000 = 1.25; 10,000/8,000 = 1.25; 7,500/6,000 = 1.25 days</td><td>load = queue / capacity (illustrative)</td><td>worst slip 2.2 → 1.25 days</td></tr>
+<tr><td>4</td><td>Liveness page (post-mortem)</td><td class="f">page if x &lt; μ − 3σ = 1,200 − 3 × 150 = 1,200 − 450 = 750/hr</td><td>μ = 1,200 allocations/hr, σ = 150 (illustrative); a dead scheduler reads 0/hr</td><td>caught in one interval, not by a VP</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Peak fill rate</td><td>95% goal</td><td>99% delivered</td><td>record</td></tr>
+<tr><td>2</td><td>Peak sales</td><td>~$6M at risk</td><td>~$8M protected</td><td>record pair — one-time event</td></tr>
+<tr><td>3</td><td>Worst-case promise slip</td><td>2.2 days</td><td>1.25 days</td><td>illustrative walk</td></tr>
+<tr><td>4</td><td>Detection</td><td>a VP at 4 AM</td><td>one interval via the 3σ page</td><td>post-mortem design</td></tr>
+<tr><td>5</td><td>Structural stockouts</td><td>—</td><td>−20% over the engagement</td><td>record</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Margin protected</td><td class="f">$8,000,000 × 40% = $3,200,000</td><td>benchmark margin 35–45% (modeled)</td><td>≈$3.2M one-time</td></tr>
+<tr><td>2</td><td>Orders at risk</td><td class="f">$6,000,000 / $150 = 40,000 orders</td><td>AOV benchmark</td><td>40,000 orders</td></tr>
+<tr><td>3</td><td>Cancels / CS avoided</td><td class="f">40,000 × $6.50 = $260,000</td><td>CS contact $5–8 (benchmark; modeled)</td><td>≈$0.26M</td></tr>
+<tr><td>4</td><td>Expedite premium avoided</td><td class="f">40,000 × 40% = 16,000 re-pointed; 16,000 × $8 = $128,000</td><td>re-pointed share and premium midpoint of the $5–12 benchmark (both illustrative)</td><td>≈$0.13M</td></tr>
+<tr><td>5</td><td>Structural-stockout run-rate</td><td class="f">$400M × 4% = $16M lost sales; × 20% = $3.2M recovered; × 40% = $1,280,000</td><td>illustrative retailer × lost-sales benchmark (2–6%) × −20% record × margin</td><td>≈$1.3M/yr modeled</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">Why act before you knew the cause?</p><p>Because waiting had an hourly price — the queue was aging while inventory sat idle — and a reversible, logged intervention did not. I checked with engineering first that manual clears could not corrupt allocation, timestamped every rebalance, and hunted the cause in parallel with alerts I had already built.</p></div><div class="qa"><p class="q">Isn't this a hero story?</p><p>The event is; the post-mortem is the point. Carrying the first stretch solo is one of my do-differentlys. What I would present as the result is the mechanism set — heartbeat, DST checklist, 3σ page rule, rehearsed playbook — and that the next peak ran boring.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> 99% fill vs 95% goal (record) · ~$8M protected vs ~$6M at risk (record) · 3 DCs / 100 stores (record) · near 0.85 d vs far 4.60 d (record) · −20% structural stockouts (record) · ≈$3.2M margin at 40% (modeled). Never "$2MM baseline"; never present $8M as a saving.</div>
@@ -250,6 +293,47 @@
 <ul class="cstar"><li><span class="stag">S —</span> A dozen core systems (20+ touched), ~80 participants across ~15 functions, a council that re-litigates designs this size — and I owned none of the systems.</li><li><span class="stag">T —</span> Discovery (kickoff 3/29, sessions 4/30) → council 5/15 → sign-off 7/31 → FSD 8/14, without a surprise escalation.</li><li><span class="stag">A —</span> Profiled both books first — their numbers, not my opinion; systems-impacted table with an owner on every row; one LOE template, one deadline (7/2), one private conversation per owner before the room; three separable decisions plus the fence; the second-truth objection converted into a monitored shadow copy.</li><li><span class="stag">R —</span> Surprise escalations → 0 for the program's life; 100% pre-wire coverage by 7/2; gate chain held to the day with zero re-litigation; fence breaches 0; handed clean into the build (S2).</li></ul>
 <div class="sh">Results line</div>
 <p class="note">Surprise escalations → 0 for the program's life (record) · gate chain 3/29 → 4/30 → 5/15 → 7/2 → 7/31 → 8/14 held to the day (record) · pre-wire coverage 100% — every impacted row with a signed LOE by 7/2 (record) · both scope refusals held in writing; fence breaches 0 (record) · ≈$0.5M one-time (modeled — what did not happen).</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Design size</td><td class="f">~80 named participants × ~15 functions; 20+ systems touched</td><td>record</td><td>the blast radius</td></tr>
+<tr><td>2</td><td>Norm for this size</td><td class="f">~3 surprise escalations per design</td><td>industry benchmark 2–4</td><td>~3 expected</td></tr>
+<tr><td>3</td><td>Price of one escalation</td><td class="f">960 rework hours × $110/h = $105,600</td><td>modeled</td><td>≈$0.1M each</td></tr>
+<tr><td>4</td><td>Bundle decision risk</td><td class="f">P(all pass) = 0.9 × 0.9 × 0.9 = 0.73</td><td>one up/down vote on the whole design; p = 0.9 per decision (illustrative)</td><td>27% chance one objection unwinds everything</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Three separable decisions</td><td class="f">architecture · timeline · peak boundary → 2³ = 8 outcomes</td><td>any partial approval preserves progress (record design)</td><td>a no on one cannot unwind all</td></tr>
+<tr><td>2</td><td>Expected approvals</td><td class="f">E = 0.9 + 0.9 + 0.9 = 2.7 of 3</td><td>vs the bundle's 0.73 chance of everything (illustrative p)</td><td>2.7 vs 0.73</td></tr>
+<tr><td>3</td><td>Pre-wire coverage</td><td class="f">rows with signed LOE / impacted rows = 100% by 7/2</td><td>one template, one deadline, one private conversation per owner (record)</td><td>100% before the room</td></tr>
+<tr><td>4</td><td>Gate chain held</td><td class="f">3/29 → 4/30 → 5/15 → 7/2 → 7/31 → 8/14 = 77 days council→sign-off</td><td>held to the day (record)</td><td>0 re-litigation</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Surprise escalations</td><td>~3 (the norm)</td><td>0 for the program's life</td><td>record; norm is benchmark</td></tr>
+<tr><td>2</td><td>Pre-wire coverage before council</td><td>partial</td><td>100% by 7/2</td><td>record</td></tr>
+<tr><td>3</td><td>Fence breaches in the log</td><td>—</td><td>0</td><td>record</td></tr>
+<tr><td>4</td><td>Re-litigation after sign-off</td><td>—</td><td>0 across 77 days</td><td>record</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Avoided rework</td><td class="f">3 × 960 h = 2,880 h; 2,880 × $110 = $316,800</td><td>~3 escalations (benchmark) × rework hours × rate (modeled)</td><td>≈$0.3M</td></tr>
+<tr><td>2</td><td>Slip weeks avoided</td><td class="f">6 / 52 = 0.115 yr; 0.115 × $900,000 = $103,800</td><td>six weeks of S2's ≈$0.9M/yr labor value not deferred (modeled)</td><td>≈$0.1M</td></tr>
+<tr><td>3</td><td>Fenced engine not built</td><td class="f">2 eng × 12 wk × 40 h = 960 h; 960 × $110 = $105,600</td><td>second reserve engine (modeled)</td><td>≈$0.1M</td></tr>
+<tr><td>4</td><td>Total one-time</td><td class="f">0.3 + 0.1 + 0.1 = $0.5M</td><td>all modeled — the dollars are what did not happen</td><td>≈$0.5M</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">How do you get sixty people to sign LOE you don't control?</p><p>A template, a deadline and a private conversation each — so nobody learned their cost in the room. The council was then asked for three separable decisions it could take one at a time; separability was the design.</p></div><div class="qa"><p class="q">What did you refuse, and did it hold?</p><p>Retuning the reserve math and folding in the MCS decommission — both written, signed and held; later scope requests were answered from the pack in writing. The legitimate concern (a second live warehouse becoming a second truth) was converted into the design as a monitored shadow copy, because converting a concern costs less than winning it.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> ~80 participants / ~15 functions; a dozen core systems, 20+ touched (record) · 5/15 → 7/31 → 8/14; LOE 7/2 (record dates) · escalations 0; fence breaches 0 (record) · ≈$0.5M one-time (modeled). Never a dollar as record; never pair with S1 or S2 for the same interviewer.</div>
@@ -264,6 +348,47 @@
 <ul class="cstar"><li><span class="stag">S —</span> Six-week hybrid cadence; QA (a contracting firm) and engineering (in-house) heading for a standoff; QA's fear of compressed test windows was correct arithmetic, not resistance.</li><li><span class="stag">T —</span> Convert to four weeks in weeks, with VP air cover and no line authority.</li><li><span class="stag">A —</span> Heard every real objection privately; the QA lead wrote the DoD content and entry criteria that can say no; drop date with reason codes; Jira fields; Sev-1 cause classification; rollback to six weeks named as a two-way door at kickoff and never used; facilitated the retro once and stepped back.</li><li><span class="stag">R —</span> Converted in six weeks; critical defects per release −50% while shipping 50% more releases (8.7 → 13/yr modeled from the cadence); the gate survived my leaving; neighbouring teams copied the ceremony from the user guide.</li></ul>
 <div class="sh">Results line</div>
 <p class="note">Critical defects per release −50% (record) · six-week → four-week cadence, converted in six weeks (record) · 20-person team (record); releases/yr 8.7 → 13 (modeled from the cadence) · ≈$130K/yr (modeled; range $80–270K; no headcount invented) · the QA lead defending the gate by cycle 2 (record).</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Cadence</td><td class="f">releases/yr = 52 / 6 = 8.67 ≈ 8.7</td><td>six-week hybrid cycle (record)</td><td>8.7 releases/yr</td></tr>
+<tr><td>2</td><td>Criticals</td><td class="f">4 per release × 8.7 = 34.8 ≈ 35/yr</td><td>count illustrative; the record is the −50%</td><td>≈35/yr</td></tr>
+<tr><td>3</td><td>The real constraint</td><td class="f">15 eng × 18 d = 270 eng-days → 270/3 = 90 stories; 4 QA × 18 d = 72 QA-days → 72/1 = 72 stories</td><td>story ≈ 3 eng-days + 1 QA-day (illustrative; theory-of-constraints, toolkit label)</td><td>QA caps throughput at 72 — QA is the constraint</td></tr>
+<tr><td>4</td><td>Late-land rework</td><td class="f">6 person-days × $800 = $4,800 per release</td><td>re-test + hotfix after last-2-day lands (modeled)</td><td>≈$4.8K per release</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>QA-authored DoD</td><td class="f">entry criteria at Ready-for-QA — stories arrive ready</td><td>the skeptic owns the gate (record)</td><td>the gate has an owner</td></tr>
+<tr><td>2</td><td>Drop date</td><td class="f">not QA-ready by the drop date → dropped with a reason code</td><td>silent late lands become visible re-scopes (record)</td><td>no last-2-day lands</td></tr>
+<tr><td>3</td><td>Sev-1 attribution</td><td class="f">share caused by wrong stories vs wrong tests, classified by cause not blame</td><td>QA put on product calls with pre-approved scenarios (record)</td><td>the trend reverser</td></tr>
+<tr><td>4</td><td>Cadence converted</td><td class="f">releases/yr = 52 / 4 = 13; 13 / 8.7 = +50%</td><td>converted in six weeks (record)</td><td>13 releases/yr</td></tr>
+<tr><td>5</td><td>Criticals per release</td><td class="f">4 → 2 = −50%</td><td>record</td><td>2 per release</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Cycle / releases per year</td><td>6 wks / 8.7</td><td>4 wks / 13 (+50%)</td><td>record</td></tr>
+<tr><td>2</td><td>Critical defects</td><td>≈35/yr (4 × 8.7)</td><td>2 × 13 = 26/yr — while shipping 50% more</td><td>record −50%; counts illustrative</td></tr>
+<tr><td>3</td><td>Late-land rework</td><td>≈$4.8K per release</td><td>~0 under the drop rule</td><td>modeled</td></tr>
+<tr><td>4</td><td>The gate itself</td><td>mine to defend</td><td>QA lead defending it by cycle 2</td><td>record — survives my leaving</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Escaped criticals avoided</td><td class="f">35 − 26 = 9/yr; 9 × $10,000 = $90,000</td><td>per-critical cost benchmark $8–15K (modeled)</td><td>≈$90K/yr</td></tr>
+<tr><td>2</td><td>Late-land rework removed</td><td class="f">$4,800 × 8.7 releases = $41,760</td><td>→ ~0 under the drop rule (modeled)</td><td>≈$40K/yr</td></tr>
+<tr><td>3</td><td>Total</td><td class="f">90 + 40 = $130K</td><td>range $80–270K; no headcount invented</td><td>≈$130K/yr</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">Who did you develop, concretely?</p><p>The QA lead — she authored the definition-of-done and its entry criteria, and by cycle two she was defending the gate on product-business calls without me. The test of development is that it survived my leaving; it did.</p></div><div class="qa"><p class="q">What did engineering give up?</p><p>Low-impact stories they had to drop at the QA drop date — I covered those with the business. Their objection became co-ownership through review, not a veto over the gate.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> −50% critical defects per release (record) · 6 weeks to convert; 6-week → 4-week cadence (record) · 20 people (record) · 8.7 → 13 releases/yr (modeled) · ≈$130K/yr (modeled). Never a direct-report headcount.</div>
@@ -278,6 +403,52 @@
 <ul class="cstar"><li><span class="stag">S —</span> A free pilot under public commitments, with an acquired product (Crux) whose customers would transition mid-roll-out — sequencing and quality bars were the whole game.</li><li><span class="stag">T —</span> Own the roll-out design: wave structure, graduation criteria, testing gates and the GO/NO-GO cadence.</li><li><span class="stag">A —</span> Published six graduation criteria before wave 1; a ~50-container calibration per client as the entry bar; four testing gates including shadow accounts with real Crux data and a UAT data-quality bar (80% minor-to-no-issues) before any client UAT started; monthly GO/NO-GO from November; wave sizes 2 → 4-of-7 → 20+ → full H2 2022.</li><li><span class="stag">R —</span> A roll-out with zero rollbacks (S11 canon); every gate that fired was a rule firing, not a favor refused — the held wave became the cleanest wave.</li></ul>
 <div class="sh">Results line</div>
 <p class="note">Waves 2 → 4-of-7 → 20+ → full H2 2022 (record-from-docs; matches S11 canon) · six graduation criteria published before wave 1 (canon) · ~50-container calibration entry bar (canon) · four testing gates with UAT gated at 80% minor-to-no-issues (record-from-docs) · monthly GO/NO-GO cadence (record-from-docs) · zero rollbacks (canon).</p>
+<div class="sh">The math — step-by-step derivation</div>
+<p><strong>Table 1 — before: the problem in numbers.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Client base waiting on the replacement</td><td class="f">79 Crux customers to migrate by end 2022</td><td>Crux transition record (record-from-docs)</td><td>79 accounts exposed to a failed launch</td></tr>
+<tr><td>2</td><td>Product state</td><td class="f">0 production clients; data quality unmeasured against the incumbent</td><td>pre-pilot (record-from-docs)</td><td>unproven at any scale</td></tr>
+<tr><td>3</td><td>The naive alternative</td><td class="f">big-bang = 79 clients × first contact with an unproven product</td><td>the rejected option (record-from-docs)</td><td>one bad week burns every reference</td></tr>
+<tr><td>4</td><td>Entry bar per client</td><td class="f">≥50 containers of client data required for calibration before onboarding</td><td>graduation criterion 2a (record-from-docs)</td><td>every onboarding has a data gate</td></tr>
+</tbody>
+</table>
+<p><strong>Table 2 — the fix: step by step, values substituted.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Wave 1 cohort</td><td class="f">2 clients = Ta Chen + FAM Brands</td><td>roll-out schedule (record-from-docs)</td><td>2 live, Dec 2021</td></tr>
+<tr><td>2</td><td>Wave 2 cohort</td><td class="f">4 chosen from a named pool of 7</td><td>roll-out schedule (record-from-docs)</td><td>4-of-7, Feb 2022</td></tr>
+<tr><td>3</td><td>Wave 3 cohort</td><td class="f">20+ clients, Crux + non-Crux</td><td>roll-out schedule (record-from-docs)</td><td>gradual expansion, Q2 2022</td></tr>
+<tr><td>4</td><td>Full roll-out</td><td class="f">remaining Crux + net-new + existing 3PL clients</td><td>H2 2022 (record-from-docs)</td><td>only after Wave 3 clears the gates</td></tr>
+<tr><td>5</td><td>Calibration arithmetic — Wave 1</td><td class="f">2 × 50 = 100 containers before Wave 1 onboarding</td><td>entry bar from Table 1 row 4 (record-from-docs; multiplication illustrative)</td><td>100 calibration containers</td></tr>
+<tr><td>6</td><td>Calibration arithmetic — through Wave 2</td><td class="f">(2 + 4) × 50 = 6 × 50 = 300 containers</td><td>same bar (record-from-docs; multiplication illustrative)</td><td>300 before any scale-up</td></tr>
+<tr><td>7</td><td>Graduation gate</td><td class="f">6 of 6 criteria green before a wave advances — verification SLA 90%, data quality 90%+, milestone accuracy 80%+, production stability, ≥100 containers uploaded per client, zero show-stoppers</td><td>the six published criteria (record-from-docs)</td><td>no wave skips the gate</td></tr>
+<tr><td>8</td><td>Testing stack behind the gate</td><td class="f">4 tests sequenced: 100-container test → bug bashes every other week → shadow client accounts (Marc Fisher, Michelin) → UAT, starting only when 80% of shipments show minor-to-no issues</td><td>testing-approach doc (record-from-docs)</td><td>UAT gated at 80%</td></tr>
+<tr><td>9</td><td>Decision cadence</td><td class="f">2 GO/NO-GO meetings before Wave 1 — business (John, Eric) + tech (product &amp; eng leadership)</td><td>roll-out schedule, November (record-from-docs)</td><td>every wave is a decision, not a date</td></tr>
+</tbody>
+</table>
+<p><strong>Table 3 — after: the metric, before → after.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Metric</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Wave progression</td><td>plan only</td><td>W1 Dec 2021 → W2 Feb 2022 → W3 Q2 2022 → full H2 2022</td><td>record-from-docs</td></tr>
+<tr><td>2</td><td>Clients live on the product</td><td>0</td><td>2 → 6 → 20+</td><td>record-from-docs</td></tr>
+<tr><td>3</td><td>Rollbacks</td><td>—</td><td>0 — no wave ever reversed</td><td>canon</td></tr>
+<tr><td>4</td><td>Speed control</td><td>fixed launch date</td><td>accelerate / slow down on client feedback, per the published plan</td><td>record-from-docs</td></tr>
+</tbody>
+</table>
+<p><strong>Table 4 — the dollars, every multiplication shown.</strong></p>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Pilot revenue, by design</td><td class="f">clients × $0 × ~6 months = $0 — free for the full duration of the pilot</td><td>roll-out schedule: "no charge for the full duration of the pilot"; ~6-month estimate (record-from-docs)</td><td>$0 forgone deliberately — the gate is the product</td></tr>
+<tr><td>2</td><td>Big-bang exposure avoided</td><td class="f">79 × 50 = 3,950 containers of one-shot onboarding risk</td><td>client count and entry bar (record-from-docs; multiplication illustrative)</td><td>never spent — waves capped the blast radius at 2, then 6, then 20+</td></tr>
+<tr><td>3</td><td>Cost of a failed Wave 1</td><td class="f">2 × 50 = 100 calibration containers + one feedback cycle — the maximum the plan allowed to fail at once</td><td>record-from-docs; arithmetic illustrative</td><td>failure priced small by design</td></tr>
+<tr><td>4</td><td>Dollar result claimed</td><td class="f">no revenue or saving dollar in the record — not claimed</td><td>record-from-docs</td><td>not claimed</td></tr>
+</tbody>
+</table>
 <div class="sh">Two probes</div>
 <div class="qa"><p class="q">Why gate UAT on data quality instead of a date?</p><p>Because a client UAT against dirty data manufactures false confidence — the client signs off on a product the data then betrays. The 80% minor-to-no-issues bar meant UAT started when the product could survive a skeptical user's first week; the date followed the data, never the reverse. Shadow accounts with real Crux data let us find the defects before the client did.</p></div><div class="qa"><p class="q">What did the calibration actually buy?</p><p>A verified baseline per client before scale: ~50 containers through verification with the SLA clock running, so the data-quality and estimation criteria were measured on the client's own freight, not on our best lanes. It converted "ready" from a feeling into a measurement — and it made the wave-2 selection from the seven-client pool defensible to the clients not picked.</p></div>
 <div class="canon"><strong>Canon numbers (basis labels):</strong> waves 2 → 4-of-7 → 20+ → full H2 2022 (record-from-docs, matches S11 canon) · six criteria incl. DQ ≥90% · ETA ≥80% · SLA 90% within 24h · ≥100 containers + features · stability · CSAT ≥ consignee average (canon; the pilot schedule phrases the SLA as 24–48h — canon wins, footnoted in Tripathy's packet) · ~50-container calibration (canon) · 100-container test · bug bashes · shadow accounts · UAT 80% bar (record-from-docs). Never: a client-revenue claim (the pilot was free); never merge with Crux-transition ARR.</div>
