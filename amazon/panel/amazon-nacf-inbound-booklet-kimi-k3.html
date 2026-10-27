@@ -86,7 +86,7 @@
   </div>
   <div class="strat"><strong>Strategy in one line.</strong> Sound like someone who has run inbound — not someone who memorized a glossary. Every mechanism below is spoken as a business process with a constraint, a metric and a lever; every number is worked end-to-end so the arithmetic can be done out loud in the room. Inbound in one breath: <em>the right inventory, reserved into the right node, received and stowed inside capacity, made available where the demand is — with the plans traveling ahead of the freight and the variance closing the loop.</em></div>
   <div class="lpg"><em>Honesty labels, on every mechanism:</em> <span class="lab">[well-known public Amazon practice]</span> — published, talkable-in-public Amazon mechanisms (AWD, IXD, appointment scheduling, random stow, IPI components, WBR) · <span class="lab">[industry standard]</span> — textbook supply chain (UPH labor planning, z·σ·√LT safety stock, S&amp;OP, queueing approximations) · <span class="lab">[illustrative]</span> — numbers invented to make the math legible. No confidential Amazon internals are asserted anywhere; no number is claimed as Amazon's own.</div>
-  <div class="lpg"><em>How to use.</em> §1–§4 are the fluency: read the diagrams until you can redraw them, then recompute every green math block until the substitutions feel like your own. §5 maps your master-packet stories onto inbound concepts. §6 is per-interviewer: what each of the five will likely ask, and the questions to ask them. §7 is the math appendix — every formula symbolic → substituted → computed, for the night before.</div>
+  <div class="lpg"><em>How to use.</em> §1–§4 are the fluency: read the diagrams until you can redraw them, then recompute every green math block until the substitutions feel like your own. §5 maps your master-packet stories onto inbound concepts. §6 is per-interviewer: ten questions each of the five will likely ask, with a one-to-two sentence answer pointer, then three questions to ask them. §7 is the math appendix — every formula symbolic → substituted → computed, for the night before. §8 is one week at one FC — the same 12,000 units walked from the forecast through the close, for the whiteboard.</div>
   <div class="src">Canon: amazon/amazon-l6-scm-master-packet.html (stories S2, S6, S8, S9, S11, S12, S13, S18, S19 with their basis labels) · panel packets 1–5 (per-interviewer lenses). Sibling booklet file; the five panel packets are untouched by this document.</div>
 </div>
 
@@ -245,7 +245,7 @@
 <tr><td>3</td><td>Headcount</td><td class="f">460 ÷ 10 = 46</td><td>10-hour shifts (illustrative)</td><td>46 associates/day</td></tr>
 <tr><td>4</td><td>Learning curve, week 1</td><td class="f">300 × 0.60 = 180 UPH</td><td>new associate at 60% of standard (illustrative)</td><td>180 UPH effective</td></tr>
 <tr><td>5</td><td>Blended UPH at 30% new</td><td class="f">0.7×300 + 0.3×180 = 210 + 54 = 264</td><td>Q4 ramp: 30% of staff in week 1–2 (illustrative)</td><td>264 UPH blended</td></tr>
-<tr><td>6</td><td>Direct hours at blended UPH</td><td class="f">120,000 ÷ 264 = 454.5</td><td>same volume as step 1</td><td>454.5 h = <strong>+54.5 h (+13.6%)</strong></td></tr>
+<tr><td>6</td><td>Direct hours at blended UPH</td><td class="f">120,000 ÷ 264 = 454.5; 454.5 − 400 = 54.5; 54.5 ÷ 400 = 13.6%</td><td>same volume as step 1</td><td>454.5 h = <strong>+54.5 h (+13.6%)</strong></td></tr>
 </tbody>
 </table>
 <p><strong>The sentence to say:</strong> "The hiring plan isn't the headcount math — it's the learning-curve math. Thirty percent new hires isn't a 30% problem, it's a 13.6% tax on every received unit for two weeks, and the peak plan has to pay it before the first trailer arrives."</p>
@@ -285,11 +285,11 @@
 <table class="drv">
 <thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Peak-week distribution</td><td class="f">p50 = 120,000; p90 = 156,000</td><td>illustrative; p90/p50 = 1.30</td><td>+36,000 units/day at p90</td></tr>
+<tr><td>1</td><td>Peak-week distribution</td><td class="f">p50 = 120,000; p90 = 156,000; 156,000 − 120,000 = 36,000</td><td>illustrative; p90/p50 = 1.30</td><td>+36,000 units/day at p90</td></tr>
 <tr><td>2</td><td>Build to p50 — one p90 day</td><td class="f">36,000 ÷ 120,000 = 0.30 day</td><td>shortfall carried as backlog</td><td>0.30 day of backlog</td></tr>
 <tr><td>3</td><td>Build to p50 — three p90 days</td><td class="f">3 × 36,000 = 108,000; ÷ 120,000 = 0.9</td><td>backlog compounds across the shift handoffs</td><td>~1 full day of backlog</td></tr>
 <tr><td>4</td><td>Build to p90 — a p50 day</td><td class="f">36,000 ÷ 156,000 = 23%</td><td>idle capacity on the median day</td><td>23% idle</td></tr>
-<tr><td>5</td><td>Labor to flex the tail</td><td class="f">156,000 ÷ 264 = 591 h; 591 − 454.5 = 136 h; ÷ 10 ≈ 14</td><td>blended 264 UPH from CAP-B; 10-h shifts</td><td><strong>≈14 flex associates</strong></td></tr>
+<tr><td>5</td><td>Labor to flex the tail</td><td class="f">156,000 ÷ 264 = 591 h; 591 − 454.5 = 136 h; 136 ÷ 10 = 13.6 ≈ 14</td><td>blended 264 UPH from CAP-B; 10-h shifts</td><td><strong>≈14 flex associates</strong></td></tr>
 </tbody>
 </table>
 <p><strong>The sentence to say:</strong> "Fixed capacity to the median, flex the tail. Building the building to p90 means paying 23% idle on the average day; building to p50 means a three-day p90 run is a full day of backlog — so the answer is temp labor, overtime and appointment smoothing, sized at about fourteen heads on this volume."</p>
@@ -317,9 +317,9 @@
 <table class="drv">
 <thead><tr><th>Step</th><th>SKU</th><th>Formula → substitution</th><th>WOC</th><th>Action (rule from the table above)</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>A</td><td class="f">4,200 ÷ 600/wk = 7.0</td><td>7.0</td><td>&gt; 6 → excess action: to reach 4.0 WOC move 4,200 − 4.0×600 = <strong>1,800 units</strong> (transfer feeds INV-D)</td></tr>
+<tr><td>1</td><td>A</td><td class="f">4,200 ÷ 600/wk = 7.0</td><td>7.0</td><td>&gt; 6 → excess action: to reach 4.0 WOC move 4,200 − 4.0×600 = 4,200 − 2,400 = <strong>1,800 units</strong> (transfer feeds INV-D)</td></tr>
 <tr><td>2</td><td>B</td><td class="f">1,350 ÷ 450/wk = 3.0</td><td>3.0</td><td>2–4 → healthy; no action, watch variance</td></tr>
-<tr><td>3</td><td>C</td><td class="f">500 ÷ 500/wk = 1.0</td><td>1.0</td><td>&lt; 2 → expedite: stockout in 500 ÷ (500÷7) = <strong>7.0 days</strong> absent receipt; pull the inbound appointment forward or re-source</td></tr>
+<tr><td>3</td><td>C</td><td class="f">500 ÷ 500/wk = 1.0</td><td>1.0</td><td>&lt; 2 → expedite: stockout in 500 ÷ 7 = 71.43/day; 500 ÷ 71.43 = <strong>7.0 days</strong> absent receipt; pull the inbound appointment forward or re-source</td></tr>
 </tbody>
 </table>
 <p><strong>The sentence to say:</strong> "WOC turns a warehouse full of units into three sentences: A is seven weeks of stock and I'm moving 1,800 units; B is fine; C is a stockout next Friday unless the appointment moves."</p>
@@ -332,9 +332,9 @@
 <tr><td>1</td><td>Demand and variability</td><td class="f">d = 500/day; σ_d = 120/day</td><td>illustrative SKU at one FC</td><td>—</td></tr>
 <tr><td>2</td><td>Demand over lead time</td><td class="f">500 × 7 = 3,500</td><td>lead time LT = 7 days (illustrative)</td><td>3,500 units cycle exposure</td></tr>
 <tr><td>3</td><td>σ over lead time</td><td class="f">σ_LT = 120 × √7 = 120 × 2.6458 = 317.5</td><td>independent daily demand [industry standard]</td><td>317.5 units</td></tr>
-<tr><td>4</td><td>Safety stock at 95%</td><td class="f">SS = 1.645 × 317.5 = 522</td><td>z(95%) = 1.645 [industry standard]</td><td><strong>522 units = 522 ÷ 500 = 1.04 days</strong></td></tr>
-<tr><td>5</td><td>Service lever: 99%</td><td class="f">SS = 2.326 × 317.5 = 739; 739 − 522 = +217</td><td>z(99%) = 2.326</td><td>+217 units = <strong>+41.6% buffer for +4 pts</strong></td></tr>
-<tr><td>6</td><td>Lead-time lever: 7 → 5 days</td><td class="f">SS = 1.645 × 120 × √5 = 1.645 × 268.3 = 441; 522 − 441 = −81</td><td>√5 = 2.2361; 120 × 2.2361 = 268.3</td><td>−81 units = <strong>−15.5% buffer, free</strong></td></tr>
+<tr><td>4</td><td>Safety stock at 95%</td><td class="f">SS = 1.645 × 317.5 = 522; 522 ÷ 500 = 1.044 ≈ 1.04 days</td><td>z(95%) = 1.645 [industry standard]</td><td><strong>522 units = 522 ÷ 500 = 1.04 days</strong></td></tr>
+<tr><td>5</td><td>Service lever: 99%</td><td class="f">SS = 2.326 × 317.5 = 739; 739 − 522 = +217; 217 ÷ 522 = 41.6%</td><td>z(99%) = 2.326</td><td>+217 units = <strong>+41.6% buffer for +4 pts</strong></td></tr>
+<tr><td>6</td><td>Lead-time lever: 7 → 5 days</td><td class="f">SS = 1.645 × 120 × √5 = 1.645 × 268.3 = 441; 522 − 441 = −81; 81 ÷ 522 = 15.5%</td><td>√5 = 2.2361; 120 × 2.2361 = 268.3</td><td>−81 units = <strong>−15.5% buffer, free</strong></td></tr>
 </tbody>
 </table>
 <p><strong>The sentence to say:</strong> "Service points are bought at an accelerating price — 95 to 99 costs forty percent more buffer — but lead time is the free lever: two days off the lane releases fifteen percent of the buffer with the service level untouched. That's why measured lead times, not brochure ones, are an inventory program" (this is exactly the S8 story — §5).</p>
@@ -355,7 +355,7 @@
 <tr><td>1</td><td>Unconstrained optimum: R1→East, R2→West, R3→West</td><td class="f">2,000×1.20 + 3,000×2.10 + 1,000×1.30 = 2,400 + 6,300 + 1,300</td><td>$10,000</td></tr>
 <tr><td>2</td><td>West capacity binds at 2,500: give West its cheapest regions first — R3 (1,000), then R2 partial (1,500)</td><td class="f">1,000×1.30 + 1,500×2.10 = 1,300 + 3,150</td><td>West serves 2,500</td></tr>
 <tr><td>3</td><td>East takes R1 + residual R2 (1,500); load check 2,000 + 1,500 = 3,500 ≤ 4,000</td><td class="f">2,000×1.20 + 1,500×2.40 = 2,400 + 3,600</td><td>East serves 3,500 ✓</td></tr>
-<tr><td>4</td><td>Constrained total</td><td class="f">2,400 + 1,300 + 3,150 + 3,600</td><td><strong>$10,450</strong></td></tr>
+<tr><td>4</td><td>Constrained total</td><td class="f">2,400 + 1,300 = 3,700; 3,700 + 3,150 = 6,850; 6,850 + 3,600 = 10,450</td><td><strong>$10,450</strong></td></tr>
 <tr><td>5</td><td>Capacity premium</td><td class="f">10,450 − 10,000 = 450; 450 ÷ 10,000 = 4.5%</td><td><strong>$450/wk (+4.5%)</strong></td></tr>
 <tr><td>6</td><td>Shadow price check</td><td class="f">(2.40 − 2.10) × 1,500 = 0.30 × 1,500 = 450</td><td>each added West slot is worth $0.30 on R2 — the model agrees with itself</td></tr>
 </tbody>
@@ -381,12 +381,12 @@
 <table class="drv">
 <thead><tr><th>Step</th><th>Link</th><th>Formula → substitution</th><th>Value</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Planned PO volume</td><td class="f">10,000 units/wk = 1,429/day demand</td><td>10,000 units (illustrative)</td></tr>
+<tr><td>1</td><td>Planned PO volume</td><td class="f">10,000 ÷ 7 = 1,428.6 ≈ 1,429/day</td><td>10,000 units (illustrative)</td></tr>
 <tr><td>2</td><td>× fill rate</td><td class="f">10,000 × 0.92 = 9,200</td><td>9,200 shipped (800 short)</td></tr>
 <tr><td>3</td><td>× on-time</td><td class="f">9,200 × 0.88 = 8,096</td><td>8,096 OTIF units = <strong>81.0% of plan</strong></td></tr>
 <tr><td>4</td><td>Weekly deficit</td><td class="f">10,000 − 8,096 = 1,904</td><td>1,904 units (19.0% of plan)</td></tr>
 <tr><td>5</td><td>Safety-stock absorption</td><td class="f">522 ÷ 1,429 = 0.37 days; residual 1,904 − 522 = 1,382</td><td>the INV-B buffer covers about a third of a day — it was sized for demand noise, not vendor failure</td></tr>
-<tr><td>6</td><td>In-stock proxy for the week</td><td class="f">(10,000 − 1,382) ÷ 10,000 = 86.2%</td><td><strong>~86% in-stock absent recovery — a 14-point hit from one vendor's 92/88 week</strong></td></tr>
+<tr><td>6</td><td>In-stock proxy for the week</td><td class="f">10,000 − 1,382 = 8,618; 8,618 ÷ 10,000 = 86.2%; 100 − 86.2 = 13.8 ≈ 14 pts</td><td><strong>~86% in-stock absent recovery — a 14-point hit from one vendor's 92/88 week</strong></td></tr>
 </tbody>
 </table>
 <p><strong>The sentence to say:</strong> "OTIF isn't a vendor scorecard, it's the first link of the in-stock chain: fill times on-time is eighty-one percent of plan, and a cycle buffer sized for demand noise absorbs a third of a day of it. So vendor management is inventory management — measured lead times, escalation thresholds, and a recovery path that starts at the ASN, not at the stockout."</p>
@@ -439,111 +439,126 @@
 <div class="rules"><strong>Discipline in the room.</strong> These are one-sentence bridges, not re-tellings — the full STARs belong to their allocated interviewers per the panel packets. Never mix the loop packet's conflicting numbers into these bridges; never present any modeled dollar as record.</div>
 
 <h2 class="break">6 · Per-interviewer questions — what they'll ask, and what to ask them</h2>
-<p class="note">For each interviewer: six likely NACF-inbound domain questions with a one-line answer strategy (pointing at a booklet section or a canon story), then four questions for you to ask them. Answer strategies are one breath long — the booklet section carries the depth.</p>
+<p class="note">For each interviewer: ten likely NACF-inbound questions with a one-to-two sentence answer pointer (the booklet section carries the depth), then three questions to ask them. The first six in each list are the questions to expect from that seat's lens; the last four press the part of the job that person actually owns — placement, the distribution, the building, the peer handoff, or the seller.</p>
 
 <h3 class="st first">Snigdha Tripathy — Sr Manager, Supply Chain · HIRING MANAGER</h3>
 <div class="meta"><div><strong>Lens.</strong> Placement and IXD are her home turf (EU IXD leader; built the team ground-up; 50+ FC launches). She judges fit for the actual work: network process design, value made legible, and judgment under unit economics. Talk placement slowly and precisely.</div></div>
 <table class="qb">
-<thead><tr><th>#</th><th>Likely NACF-inbound question</th><th>One-line answer strategy → pointer</th></tr></thead>
+<thead><tr><th>#</th><th>Likely question they will ask</th><th>How to answer</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Walk me through how you'd decide where inbound inventory lands across our network.</td><td>Constrained assignment on distance-weighted cost, capacity binds, shadow price names the ask — INV-C, said slowly; bridge to S8 measured lanes.</td></tr>
-<tr><td>2</td><td>How do you know the network has enough inbound capacity for Q4?</td><td>Forecast → receive plan → doors at the 85% ceiling → UPH labor → p50/p90 flex — CAP-A/B/E as one spoken chain; S13 for in-peak failure.</td></tr>
-<tr><td>3</td><td>Tell me about a time you built a process or capability from nothing.</td><td>S11: boarding process behind published gates + weekly input/output review — mirrors her ground-up IXD build; gates published before wave 1.</td></tr>
-<tr><td>4</td><td>A strategic vendor misses OTIF three weeks running into peak. What do you do?</td><td>Quantify the in-stock chain first (INV-E), then escalate with the arithmetic — measured lead times, recovery path, and a re-plan, not blame (S8).</td></tr>
-<tr><td>5</td><td>How do you run your weekly business review — inputs, outputs, decisions?</td><td>§4 cadence + S11 mechanics: frozen definitions signed by owners, inputs tagged to outputs, reds pre-decomposed with dated fixes.</td></tr>
-<tr><td>6</td><td>How do you trade speed against cost in placement without losing the customer promise?</td><td>Promise as the boundary condition, then one priced table — INV-C premium (+4.5%) and INV-D breakeven; S19's governed dial as the promise-side analogue.</td></tr>
+<tr><td>1</td><td>Walk me through how you'd decide where inbound inventory lands across our network.</td><td>Walk INV-C slowly: a cost matrix, the capacity that binds, and a shadow price that reproduces the premium — $450 either way in that example. §8 stage 6 is the same move on one week, where splitting 2,350 units saves $5,640 and the shadow-price check prints that same $5,640; then bridge to S8, because those lane costs are only honest if the lead times were measured.</td></tr>
+<tr><td>2</td><td>How do you know the network has enough inbound capacity for Q4?</td><td>Say CAP-A, CAP-B, and CAP-E as one chain: units to trailers to doors held at the 85% ceiling, UPH to heads, fixed capacity near the median and flex on the tail. §8 runs it on 12,000 units — the dense equivalent is 1.92 trailers, the tender is 6, and a 7th arrival on a 6-slot block is what actually breaks the day.</td></tr>
+<tr><td>3</td><td>Tell me about a time you built a process or capability from nothing.</td><td>Use S11: a boarding process stood up behind gates that were published before wave 1, with a weekly input/output review. That is the same shape as a ground-up IXD build, mechanism first and volume second, and S18 is the launch version of it if she pulls on the fifty-plus FC openings.</td></tr>
+<tr><td>4</td><td>A strategic vendor misses OTIF three weeks running into peak. What do you do?</td><td>Price the miss before the conversation. INV-E turns 92% fill times 88% on-time into 8,096 units, 81% of plan, and about a 14-point in-stock hit a 522-unit cycle buffer was never sized to absorb — §8's 120-unit shortage is the small version of that pass-through — and the escalation carries the recovery path and a re-plan, the way S8 replaced brochure lead times with measured ones.</td></tr>
+<tr><td>5</td><td>How do you run your weekly business review — inputs, outputs, decisions?</td><td>Use §4's three tempos and S11's mechanics: a short list of frozen inputs, each signed by its owner and tagged to the output it moves, reds already decomposed with a date. Three weeks of same-sign variance comes up as a re-plan request, which is how §8's 1,650-unit slow-mover over-order would be handled the week it repeats.</td></tr>
+<tr><td>6</td><td>How do you trade speed against cost in placement without losing the customer promise?</td><td>Put the promise in as the boundary condition, then show one priced table. INV-C's constrained premium was 4.5% with a $0.30 shadow price on the displaced unit, INV-D transfers only when cost sits below margin times probability (breakeven 25% on the $3 and $12 example), and S19 is the promise-side version: one governed dial, with the option you decline kept in the table as a priced row.</td></tr>
+<tr><td>7</td><td>Where would you run a Kaizen on the dock-to-available path, and what stays frozen through peak?</td><td>Start on the wait that adds no units — §8 stage 2, where 6 doors × 2.0 h × 0.5 rate = 6 slots and the 7th trailer dwells 4.0 h. Through peak, CAP-E keeps the flex on labor, overtime, and appointment smoothing, and the placement objective and the safety-stock z stay frozen until the January debrief writes down what the plan got wrong.</td></tr>
+<tr><td>8</td><td>IXD dwell and an FC dock are both red the same week. Which do you pull, and how do you make the cost of waiting visible?</td><td>Pull the pool whose units are already inside a customer promise, and price the hours on the other one. §8's marginal trailer is 4.0 h of dwell, and under a FIFO yard that delay lands on an expected 1,714 units — that slide is the escalation, the same habit as making an IXD saving legible in dollars rather than as a red cell.</td></tr>
+<tr><td>9</td><td>How do you ramp inbound at a new FC — doors, the labor curve, and the first units you place there?</td><td>Doors from CAP-A off the launch forecast, labor from CAP-B with the learning curve paid before trailer one (30% of the crew at 60% UPH blends to 264 and costs 13.6% more hours), and the first inventory as an INV-C assignment into a building CAP-C still shows as empty. S18 is the gate around the ramp: a published tolerance, mocks, and a fallback already rehearsed.</td></tr>
+<tr><td>10</td><td>Infrastructure wants the dock held near 70% and Finance wants the cube earning. How do you settle it?</td><td>Put both constraints on one page with a price. CAP-D is why dock slack is insurance — from 85% to 95%, dwell goes from 13.3 h to 40 h, about 3× — CAP-C is why cube is read on effective capacity, 49.0% in that example against 41.7% nominal, and the settlement is INV-C's shadow price, what the next slot is worth per unit, taken to both teams as the same number.</td></tr>
 </tbody>
 </table>
-<h4>Questions to ask her</h4>
+<h4>Questions to ask them</h4>
 <ul>
-<li>"What's the charter for this role in its first year — which inbound outcomes does it own end-to-end, and which does it influence?"</li>
-<li>"Where does inbound hurt most in NACF right now — dock capacity, labor, cube, or placement accuracy — and what would you want moved first?"</li>
-<li>"How is this seat measured at your WBR — which two or three input metrics would tell you, six months in, that you hired right?"</li>
-<li>"You built placement and IXD capability ground-up in EU — what did that teach you about sequencing people, process and mechanisms that I should know walking in?"</li>
+<li>"Which inbound outcome does this seat own end-to-end in the first year — placement, the capacity envelope, or inventory health — and which two or three WBR inputs would tell you, six months in, that the hire was right?"</li>
+<li>"Where does NACF inbound hurt most going into this peak — dock slots, the labor curve, cube, or placement accuracy — and what would you want moved first?"</li>
+<li>"You built EU IXD and placement from the ground up. What did that teach you about the order of people, process, and mechanisms that I should copy walking in?"</li>
 </ul>
 
 <h3 class="st">Ryan Hoerger — Manager, Placement / Transfer Analytics</h3>
 <div class="meta"><div><strong>Lens.</strong> Ex-Sr BIE, Booth MBA, Siebel Scholar, Nike analytics — statistical rigor is the love language. Show the distribution behind the number, name your assumptions, and let the math be audited.</div></div>
 <table class="qb">
-<thead><tr><th>#</th><th>Likely NACF-inbound question</th><th>One-line answer strategy → pointer</th></tr></thead>
+<thead><tr><th>#</th><th>Likely question they will ask</th><th>How to answer</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>How would you model optimal inventory placement across FCs?</td><td>INV-C cost matrix → capacity-constrained assignment → shadow price; then validate against actuals and re-solve on a cadence.</td></tr>
-<tr><td>2</td><td>When is a transfer worth doing?</td><td>INV-D: transfer cost vs lost margin × stockout probability; breakeven p* = 25% on illustrative economics — a rule, not a reflex.</td></tr>
-<tr><td>3</td><td>How do you size and position safety stock across a network?</td><td>INV-B z·σ·√LT with both levers (service points cost +41.6%, lead time frees −15.5%); pool upstream, release on evidence (S6 both-errors rule).</td></tr>
-<tr><td>4</td><td>How do you measure forecast quality, and what do you do with the variance?</td><td>§2 metrics: same-sign variance three weeks running is bias — re-plan; S6 70 → 85% accuracy program as the earned credential.</td></tr>
-<tr><td>5</td><td>Do you size buffers to p50 or p90?</td><td>CAP-E: fixed to ~p50–p70, flex the tail — show the 23%-idle vs 1-day-backlog arithmetic, then the ≈14-head flex answer.</td></tr>
-<tr><td>6</td><td>How do you keep a model from going stale or getting gamed?</td><td>Drift flags + refresh cadence (S8), frozen definitions signed by owners (S11), honest denominators — a truncated week is a data miss, not a result.</td></tr>
+<tr><td>1</td><td>How would you model optimal inventory placement across FCs?</td><td>Start from the cost matrix, let capacity bind, then check that the shadow price reproduces the premium. INV-C does it in six steps and the $450 appears twice, which is the audit; §8 stage 6 is the two-node case, where the $5,640 of savings also equals transfer cost avoided minus the $0.60 of extra inbound, so the model agrees with itself before anyone is asked to believe it.</td></tr>
+<tr><td>2</td><td>When is a transfer worth doing?</td><td>Transfer when its cost is below margin times the probability of stocking out before the next inbound lands. On INV-D's economics that is $3.00 against $12 × 0.40 = $4.80, and the breakeven probability is 3.00 ÷ 12 = 25%; §8 applies the same rule once the trailers are already at ONT9-style, and the fast mover fails it while the medium and slow movers pass.</td></tr>
+<tr><td>3</td><td>How do you size and position safety stock across a network?</td><td>Size it with INV-B, SS = z × σ × √LT, and name the lever you pulled. Moving z from 1.645 to 2.326 added 217 units (+41.6%), while cutting lead time from 7 days to 5 released 81 units (−15.5%) with the service level held; pool the rest upstream and release it only under S6's both-errors rule, because §8's fast mover is a buy with the z term left out — cover lands on the 7-day lead time and a 120-unit shortage passes straight through.</td></tr>
+<tr><td>4</td><td>How do you measure forecast quality, and what do you do with the variance?</td><td>Use the §2 definition, (actual − plan) ÷ plan, by week and by node. Three weeks of the same sign is bias, so the action is a re-plan; S6 is the program behind that sentence, forecast accuracy from 70% to 85%, with buffer released only where both error terms had actually moved.</td></tr>
+<tr><td>5</td><td>Do you size buffers to p50 or p90?</td><td>Fix the building near the center of the distribution and flex the tail. CAP-E is the arithmetic: a p50 plan carries 0.30 day of backlog on one p90 day and about a full day across three, a p90 building sits 23% idle on the median day, and the flex on these numbers is 36,000 ÷ 264 ÷ 10 ≈ 14 heads.</td></tr>
+<tr><td>6</td><td>How do you keep a model from going stale or getting gamed?</td><td>Put a drift flag and a refresh cadence on the distributions, which is what S8 did for lanes, and freeze the metric definitions under the owner's signature the way S11 did. A truncated week stays a data miss: show the hole in the denominator before you show a ratio that has been cleaned up.</td></tr>
+<tr><td>7</td><td>The placement residual looks biased on slow movers. What do you inspect before you change the model?</td><td>Separate bias from noise on the velocity slice before you touch the objective. §8's slow mover is the picture: sell-through 350 ÷ 3,400 = 10.3%, 8.71 weeks of cover against a 4.0 target, an over-order of 1,650 units that a WOC residual would have flagged — and only then do you decide whether the feature, the capacity constraint, or the loss is the thing to change.</td></tr>
+<tr><td>8</td><td>How would you test, out of sample, that a transfer policy beats its breakeven?</td><td>Freeze the rule on a prior window — here p* = 3.00 ÷ 12 = 25% — and score the stockouts you actually saw against the transfers the rule would have fired. INV-D step 5 is the in-sample version, +$3,240 on 1,800 units at an assumed 40% probability; the out-of-sample question is whether that net survives when the probability is estimated from history rather than typed in.</td></tr>
+<tr><td>9</td><td>Two planners hand you two different sigmas for the same SKU. What has to be true before safety stock moves?</td><td>Same series, same lead-time window, and a stated assumption about independent days, because INV-B's √LT is exactly that assumption. §8's sigmas — 80, 40, and 15 units a day — stay labeled inputs until the window and the autocorrelation are in the room; resizing safety stock off an unstated σ is how the fast mover's 348-unit buffer quietly disappears from the buy.</td></tr>
+<tr><td>10</td><td>The capacity team wants average dwell as the WBR headline. What do you put next to it, and when do you refuse the formula?</td><td>Put the marginal trailer next to the mean, because CAP-D's queue factor moves from 5.67 at 85% to 19 at 95% while an average can still look calm. §8 reports both from the same yard — expected dwell (6 × 2.0 + 4.0) ÷ 7 = 2.29 h, and 4.0 h on the trailer that waits — and once ρ = 7/6 the Kingman form is undefined, so the residual count replaces it.</td></tr>
 </tbody>
 </table>
-<h4>Questions to ask him</h4>
+<h4>Questions to ask them</h4>
 <ul>
-<li>"How are the placement and transfer models measured — what's the scoreboard, and how often do operators override the recommendation?"</li>
-<li>"Where does the model disagree with operators most often, and who's usually right?"</li>
-<li>"How fresh is the demand and lead-time signal the placement model sees — and what would you measure if you could see it fresher?"</li>
-<li>"What analysis does your team wish it had that doesn't exist today — and what's kept it from existing?"</li>
+<li>"When operators override the placement or transfer recommendation, do you score the override against the model's counterfactual — and who is usually right?"</li>
+<li>"What is the refresh cadence and the drift test on the demand and lead-time distributions the placement model actually sees?"</li>
+<li>"Which input do you trust least today — σ, the stockout probability, or the transfer cost per unit — and what observation would change it?"</li>
 </ul>
 
 <h3 class="st">Rocky Goforth — Sr Manager, Infrastructure</h3>
 <div class="meta"><div><strong>Lens.</strong> Infrastructure owns the physical envelope — buildings, docks, automation, peak readiness. Speak capacity as physics: constraints, nonlinearities, launch discipline.</div></div>
 <table class="qb">
-<thead><tr><th>#</th><th>Likely NACF-inbound question</th><th>One-line answer strategy → pointer</th></tr></thead>
+<thead><tr><th>#</th><th>Likely question they will ask</th><th>How to answer</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>What actually constrains an FC's inbound throughput — and which one binds first at peak?</td><td>§2 three currencies; dock slots bind first (least elastic), labor second (slow to hire), cube last-then-suddenly — CAP-A/C framing.</td></tr>
-<tr><td>2</td><td>Why does dwell blow up when docks run hot?</td><td>CAP-D: ρ/(1−ρ) nonlinearity — +10 points of utilization ≈ 3× dwell; that's why the plan holds dock slack like safety stock.</td></tr>
-<tr><td>3</td><td>How should we be planning infrastructure for Q4?</td><td>§4 peak rhythm + CAP-E p50/p90; in-peak failure leadership from S13 (promise-ranked rebalancing, post-mortem that shipped mechanisms).</td></tr>
-<tr><td>4</td><td>Tell me about bringing automation into a live building.</td><td>S2: Locus robotics behind a published 98% gate with a pre-built throttle — week two hit 94, throttled to ~30%, root-caused, full volume week three.</td></tr>
-<tr><td>5</td><td>How do you launch new capacity or process without wobbling the network?</td><td>S18: published 0.5% tolerance with Finance, three mocks 7 → 1.8 → 0.3%, rehearsed fallback when ~100 of ~400 RF devices failed.</td></tr>
-<tr><td>6</td><td>When capacity and cost fight, how do you decide?</td><td>Price the constraint — INV-C shadow price ($0.30/unit) turns "we need more doors" into a dollarized ask; fixed-to-p50 / flex-the-tail (CAP-E).</td></tr>
+<tr><td>1</td><td>What actually constrains an FC's inbound throughput — and which one binds first at peak?</td><td>Three currencies, in a fixed order: dock slots first, because a door takes one trailer; labor second, because hiring lags the plan by weeks; cube last, and then as a wall. CAP-A and CAP-C are the two ends of that, and §8 is a week where the Wednesday block fails at 7 trailers on 6 slots while the mod is still at 25.7% effective before the receipt even lands.</td></tr>
+<tr><td>2</td><td>Why does dwell blow up when docks run hot?</td><td>The wait scales like ρ ÷ (1 − ρ), and CAP-D runs it: at 85% the factor is 5.67 and a 2.0 h unload dwells about 13.3 h; at 95% the factor is 19 and dwell is 40 h, roughly 3× for ten more points of utilization. §8 is the region past that formula — ρ = 7/6 makes (1 − ρ) negative — so the residual trailer replaces the approximation.</td></tr>
+<tr><td>3</td><td>How should we be planning infrastructure for Q4?</td><td>Follow §4's peak rhythm with CAP-E underneath: lock the p50/p90 distribution and the effective-cube plan in Q2 and early Q3, pay the learning-curve hours in late Q3, and in peak watch dwell and backlog on the daily tempo. S13 is the in-peak posture I want Infrastructure beside me on — rebalance by promise at risk, then leave the heartbeat and the playbook so the next peak is dull.</td></tr>
+<tr><td>4</td><td>Tell me about bringing automation into a live building.</td><td>S2. Robotics came in behind a published 98% gate and a throttle that existed before go-live; week two printed 94%, the fleet was held near 30% of volume, the cause was found, and full volume was back in week three. The gate is what made the install an infrastructure change with a stop condition.</td></tr>
+<tr><td>5</td><td>How do you launch new capacity or process without wobbling the network?</td><td>S18: a 0.5% tolerance published with Finance, three mocks that moved discrepancies from 7% to 1.8% to 0.3%, and a fallback already rehearsed when about 100 of about 400 RF devices failed. A new door bank or a new inbound lane gets those same three things — a published tolerance, mocks against it, and a fallback someone has already run.</td></tr>
+<tr><td>6</td><td>When capacity and cost fight, how do you decide?</td><td>Price the constraint and take that price to both sides. INV-C turned one more West slot into $0.30 a unit and $450 a week, because (2.40 − 2.10) × 1,500 = 450 and that matched the premium; §8 turns "send 2,350 units direct to the sister node" into $5,640 versus transferring them after all six trailers have arrived here, and CAP-E is the building-sized version of the same choice, idle percent versus backlog days, already computed.</td></tr>
+<tr><td>7</td><td>Six doors, and a carrier puts seven trailers on one block. What do you change — the building, the appointment grid, or the carrier?</td><td>Change the grid and the tender. §8's full receiving day is 6 × 10 × 0.5 = 30 trailer-slots and this vendor's six trailers are 6 ÷ 150 = 4% of the week, so the 2.0 h block is what failed — 6 × 2.0 × 0.5 = 6 slots and the seventh trailer dwells 4.0 h — and the operating rule is that ASN trailers take those six doors while the unscheduled yard-drop holds the 4.0 h.</td></tr>
+<tr><td>8</td><td>Cube reads fine, then one bulky receipt puts a mod near 80%. How early do you want that signal, and in what unit?</td><td>On the ASN, in cubic feet against effective capacity, before the door is reserved. CAP-C is the warning that nominal utilization understates the building — 41.7% nominal was 49.0% effective — and §8's slow mover is 16.8% of the units and 43.5% of the receipt cube, taking the mod from 25.7% to 79.9% effective in one drop, with another 860 units of that SKU (688 ft³) touching the 90% line.</td></tr>
+<tr><td>9</td><td>Where should Supply Chain stop asking Infrastructure for peak space and change the flow instead?</td><td>When the cube is a placement error the flow can still decline. §8's 1,650 excess slow-mover units are 1,650 × 0.80 = 1,320 ft³, 19.4% of that mod's effective capacity, so moving them is a flow decision, while a new rack is the ask when CAP-A says the doors are the currency that binds — bring the shadow price of the space and the WOC of the units in the same sentence as the square footage.</td></tr>
+<tr><td>10</td><td>We staffed mature UPH, the crew is full of new hires, and the unload rate misses. Who owns that, and why was it a surprise?</td><td>The rate standard belongs to the building, the share of new heads belongs to the plan, and the miss belongs on the readiness page either way. CAP-B prices it ahead of the trailer: 0.7 × 300 + 0.3 × 180 = 264 blended UPH, and 120,000 ÷ 264 = 454.5 h against 400 h, a 13.6% tax for the first two weeks — that line sits next to the door plan at the late-Q3 review.</td></tr>
 </tbody>
 </table>
-<h4>Questions to ask him</h4>
+<h4>Questions to ask them</h4>
 <ul>
-<li>"Which capacity constraint is binding hardest in NACF going into this peak — dock, labor, or cube?"</li>
-<li>"How far ahead are capacity decisions locked, and what's the escalation path when demand beats the envelope?"</li>
-<li>"What should Supply Chain bring to Infrastructure earlier than it does today?"</li>
-<li>"Where has a new building or an automation ramp surprised you recently — and what did the surprise teach the planning process?"</li>
+<li>"Which physical constraint is actually binding NACF inbound right now — a door bank, a sort or conveyor rate, or a mod that is fuller on effective cube than the nominal number says — and how do you want that called at the WBR?"</li>
+<li>"How far ahead are door counts and appointment blocks locked, and what is the path on a morning when a carrier's tender overruns the block the way seven trailers on six slots does?"</li>
+<li>"What should Supply Chain put on the ASN or the capacity reservation — cube by SKU, trailer count, or the learning-curve headcount — that Infrastructure still receives too late?"</li>
 </ul>
 
 <h3 class="st">Zhaowen Lan — Sr Manager, Supply Chain · peer</h3>
 <div class="meta"><div><strong>Lens.</strong> A peer who shares the cadence. He is listening for how you run mechanisms other people own — the WBR, the handoffs, the disagreement that stays professional.</div></div>
 <table class="qb">
-<thead><tr><th>#</th><th>Likely NACF-inbound question</th><th>One-line answer strategy → pointer</th></tr></thead>
+<thead><tr><th>#</th><th>Likely question they will ask</th><th>How to answer</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>How do you run a WBR that people actually trust?</td><td>S11 mechanics: 5–7 frozen input metrics, each signed by its owner, tagged to the output it moves, reds pre-decomposed with dated fixes.</td></tr>
-<tr><td>2</td><td>An input metric owned by another team is red every week. What do you do?</td><td>Pre-decompose with the owner, bring the dated fix; if the definition is wrong, fix the definition in public — never the number in private (S11's discarded 99.4% week).</td></tr>
-<tr><td>3</td><td>How do you manage the S&amp;OP-to-WBR-to-daily handoff?</td><td>§4 cadence diagram: S&amp;OP locks envelopes, WBR reads variance, daily flow re-plans; same-sign variance three weeks running escalates as a re-plan request.</td></tr>
-<tr><td>4</td><td>Tell me about a disagreement with a partner team and how it resolved.</td><td>S12: privately first with the numbers, reversal trigger written before the swing, the plan's owner ratifying the flip in the room.</td></tr>
-<tr><td>5</td><td>How do you keep inventory healthy across the network — excess vs in-stock?</td><td>INV-A WOC action rules + §3 health definitions (excess/aged/stranded); in-stock as the north-star output, everything else an input.</td></tr>
-<tr><td>6</td><td>What would your first 90 days look like in this seat?</td><td>Book of record and primary metric first → stocks-and-flows map → the broken invariant → one input/output review running by week 6 — §4 plus master-packet §3.0 discipline.</td></tr>
+<tr><td>1</td><td>How do you run a WBR that people actually trust?</td><td>Keep the list short and the definitions frozen. S11 ran five to seven input metrics, each signed by the person who owns it, each tagged to the output it is supposed to move, and a red arrived already decomposed with a date on the fix — the trust is in that pre-read.</td></tr>
+<tr><td>2</td><td>An input metric owned by another team is red every week. What do you do?</td><td>Decompose it with the owner before the meeting and bring the dated fix. When the definition itself is wrong, correct it in the room: S11 discarded a 99.4% week rather than defend a denominator that had been cut short, and the number stays the owner's while the escalation carries the variance and the date.</td></tr>
+<tr><td>3</td><td>How do you manage the S&amp;OP-to-WBR-to-daily handoff?</td><td>§4 assigns each tempo a decision: S&amp;OP locks the envelope, the WBR reads variance against that envelope, and the day re-slots the dock and calls the vendor. §8's Wednesday seven-on-six is a daily decision; the 1,650-unit over-order on the slow mover, once it is the same sign across weeks, is the re-plan the two of us would take back to S&amp;OP.</td></tr>
+<tr><td>4</td><td>Tell me about a disagreement with a partner team and how it resolved.</td><td>S12. The numbers went to the partner privately first, the reversal trigger was written before the plan moved, and the plan's owner ratified the change in the room. The disagreement stayed on the sequence and the cost, and both were still visible after the meeting.</td></tr>
+<tr><td>5</td><td>How do you keep inventory healthy across the network — excess vs in-stock?</td><td>Apply INV-A per SKU and keep in-stock as the output. Under two weeks you expedite, two to four you watch, over six you move units; §8's close is that policy on one receiving week — fast mover 0.966 WOC, medium 3.00, slow mover 8.71 — and a stranded unit is not available just because it is inside the building.</td></tr>
+<tr><td>6</td><td>What would your first 90 days look like in this seat?</td><td>Book of record and the primary metric first, then a stocks-and-flows map of inbound, then the invariant that is already broken, and one input/output review actually running by week six. I would rather walk into your WBR at week six with §4's short list alive than with a ninety-day plan that has not yet met a red metric.</td></tr>
+<tr><td>7</td><td>I call a SKU excess and you call it strategic cover. How do we leave the room with one number?</td><td>Compute the band and the safety stock, and let the adjective catch up to the arithmetic. On §8's slow mover, safety stock is 65 units and the close is 3,050, so the word "strategic" has to explain 2,985 units above the safety stock, 1,650 of them past a 4.0-week target; if there is a real spike, it goes into the forecast and the WOC moves with it.</td></tr>
+<tr><td>8</td><td>Walk me through the handoff you don't want reopened: placement's recommendation versus the trailers the FC actually receives.</td><td>That handoff gets signed at reservation, while the information is still ahead of the freight. §8 stage 6 values the split at $5,640 before the six trailers are tendered entirely to ONT9-style; once they are in the yard the inbound cost is sunk and the only open decision is the INV-D test on what to transfer, so Wednesday is an unload of a node that was already chosen.</td></tr>
+<tr><td>9</td><td>A metric we both touch goes red. Who speaks first, and what would you hear as me stepping on your team?</td><td>The owner of the input speaks first, with the decomposition already written — that is the S11 rule I want between peers. A new number you have not seen, or a redefinition of dwell or WOC in the meeting, is me stepping on your team; three weeks of same-sign variance is the escalation §4 already gives both of us.</td></tr>
+<tr><td>10</td><td>What do you want me to just fix, and what do you want me to bring to you?</td><td>Fix what sits inside the envelope and is reversible today: a door re-slot, a vendor call, a 120-unit discrepancy claim. Bring the plan-level breaks — three weeks of same-sign forecast variance, a SKU that will cross its lead time with no safety stock the way §8's fast mover does at 6.76 days against 7.00, or a transfer that spends past the breakeven — and bring them before the WBR does.</td></tr>
 </tbody>
 </table>
-<h4>Questions to ask him</h4>
+<h4>Questions to ask them</h4>
 <ul>
-<li>"What does your team own end-to-end, and where are the seams with this role — the places two people could both think the other has it?"</li>
-<li>"What does a great week look like at your WBR — and which input is the last to turn green?"</li>
-<li>"How do the placement, capacity, and inventory-health reviews nest into each other here?"</li>
-<li>"What's the most common way a new Senior SCM gets surprised in their first quarter?"</li>
+<li>"Where are the seams between your team and this seat — especially who decides where a unit is placed, versus what this building actually receives?"</li>
+<li>"Which shared input is the last to turn green at your WBR, and what do you want a peer to do about it before they put it on your agenda?"</li>
+<li>"When you and a peer have split on excess versus in-stock, what made the call feel fair once the meeting was over?"</li>
 </ul>
 
 <h3 class="st">Venkata Josyula — Principal PM, FBA · bar raiser</h3>
 <div class="meta"><div><strong>Lens.</strong> Principal PM for FBA plus bar-raiser duties: the seller is a customer, LP answers must be clean STARs with honest numbers, and every mechanism should end at a customer outcome.</div></div>
 <table class="qb">
-<thead><tr><th>#</th><th>Likely NACF-inbound question</th><th>One-line answer strategy → pointer</th></tr></thead>
+<thead><tr><th>#</th><th>Likely question they will ask</th><th>How to answer</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>How does inbound look from the seller's side of FBA?</td><td>§3 seller view: ship-to-Amazon → appointment → check-in → available; IPI's four components (excess, sell-through, stranded, in-stock) and restock limits as network capacity made legible <span class="lab">[well-known public Amazon practice]</span>.</td></tr>
-<tr><td>2</td><td>Why Amazon — and why this role?</td><td>The master's three reasons — the forecast (Elementum), the weekly review (Flexport), one version of the truth (Sephora) — landing on inbound as the seam where all three meet.</td></tr>
-<tr><td>3</td><td>Tell me about a time you failed.</td><td>S18's RF miss: scored the task by effort when impact was what mattered; ~100 of ~400 devices, rehearsed fallback fired, lesson — single-point dependencies get a what-if plan regardless of size.</td></tr>
-<tr><td>4</td><td>Seller experience and network cost pull apart — how do you trade them?</td><td>Price the trade, publish it, govern it: INV-D breakeven as priced risk; S19's one-dial discipline — the no goes in the comparison table as a priced row, not a meeting minute.</td></tr>
-<tr><td>5</td><td>How would you improve FBA inbound?</td><td>Upstream first: visibility before the truck (S11/S9 ASN quality), appointment reliability, check-in-to-available time (§1 time-to-available); AWD as the cheap-cube shock absorber <span class="lab">[well-known public Amazon practice]</span>.</td></tr>
-<tr><td>6</td><td>Tell me about a time you chose long-term over short-term pressure.</td><td>S12: an 18-month committed roadmap re-sequenced to value in month 6 at 66% less effort — with the reversal trigger written before the swing and operators' delay priced and published.</td></tr>
+<tr><td>1</td><td>How does inbound look from the seller's side of FBA?</td><td>From the seller's dock it is still a promise: ship, appointment, check-in, available. IPI's four components — excess, sell-through, stranded, in-stock — are the §3 health math made visible to the seller, and restock limits are network capacity translated into a constraint they can see; §8's three SKUs are that scoreboard with the arithmetic showing, sell-through 50.9%, 25.0%, and 10.3%, one SKU you replenish and one you stop sending.</td></tr>
+<tr><td>2</td><td>Why Amazon — and why this role?</td><td>The three reasons in the master packet land on the same seam. Elementum was the forecast made honest, Flexport was the weekly review with frozen inputs, Sephora was one version of the truth across buildings — and this seat is where the forecast becomes a reservation, the review closes the variance, and two nodes have to share one set of numbers.</td></tr>
+<tr><td>3</td><td>Tell me about a time you failed.</td><td>S18's RF miss: I had scored the risk by how small the task looked, and the right scale was impact — about 100 of about 400 devices failed at cutover. The rehearsed fallback fired, so the customer outcome held, and the lesson I kept is that a single point of failure gets a what-if plan on the page before the weekend, whatever its size on the punch list.</td></tr>
+<tr><td>4</td><td>Seller experience and network cost pull apart — how do you trade them?</td><td>Price the trade, publish the price, and keep the rejected option in the table. INV-D is that page for a unit already in the network — $3.00 against a $12 margin, breakeven probability 25% — S19 is the same discipline on the promise, one dial, with the decline written as a priced row, and a seller's in-stock and our transfer bill belong on that page together.</td></tr>
+<tr><td>5</td><td>How would you improve FBA inbound?</td><td>Start upstream of the door, where a surprise is still cheap. S9 and S11 are ASN quality and visibility before the truck, the appointment and the check-in-to-available clock are the seller-visible half of the §1 flow, AWD is the cheap cube that keeps a slow bulky unit out of an FC pick mod, and §8's slow mover — 0.80 ft³ and 10.3% sell-through — is the unit that pool is for.</td></tr>
+<tr><td>6</td><td>Tell me about a time you chose long-term over short-term pressure.</td><td>S12. A committed 18-month roadmap was re-sequenced so the value landed in month 6, at about 66% less effort. The reversal trigger was written down before the plan swung, and the cost of delaying the operators was priced and published, so the long-term choice was a document the room could audit.</td></tr>
+<tr><td>7</td><td>A restock limit just cut a seller whose selection was in stock. Was that capacity working, or a defect?</td><td>Check which currency was scarce, and on which SKU. If the FC was already at a CAP-D dwell and the limit stopped a trailer the block could not take, the limit was doing the job of the 85% ceiling; if the cut SKU looks like §8's fast mover — 50.9% sell-through, cover inside one lead time — while a 10.3% sell-through unit still flowed, the limit used an average and constrained the healthy unit, so I would want velocity and cube in the rule, the split stage 5 already shows inside one receipt.</td></tr>
+<tr><td>8</td><td>Tell me about a time the data changed your mind.</td><td>S6. I was ready to release safety stock on a better forecast alone, and the rule we wrote required forecast error and lead-time error both to have moved, so the buffer stayed where only one error had improved. INV-C's shadow-price check is the same habit on a placement number: the premium and the shadow price have to print the same dollar, $450 in that example and $5,640 in §8, before I will defend it.</td></tr>
+<tr><td>9</td><td>When is holding a seller's inventory upstream, AWD-style, the wrong answer for that seller?</td><td>When the unit is fast, the demand is local, and the replenishment lead time into the FC consumes the promise. INV-B puts lead time under the square root, so days there are the expensive term, and §8's fast mover burned a 1,000-unit opening in 2.00 days and then sat at 6.76 days against a 7-day bridge with no safety stock under it — the upstream pool is the right home for the slow bulky unit (0.80 ft³, 8.71 weeks of cover) and the wrong home for the unit a customer will miss this week.</td></tr>
+<tr><td>10</td><td>What does raising the bar look like on an inbound mechanism — a higher target, or something else?</td><td>A frozen definition, a figure the room can recompute from the row above it, and a recommendation you will walk back when the arithmetic flips. S11's discarded 99.4% week, INV-D's 25% breakeven, and §8's choice to keep the fast mover in place once a transfer would only relocate a $6,000 stockout and add $1,500 of cost — that is the bar I would want a candidate to clear in the room.</td></tr>
 </tbody>
 </table>
-<h4>Questions to ask him</h4>
+<h4>Questions to ask them</h4>
 <ul>
-<li>"Where does the FBA inbound experience break seller trust most — appointments, check-in-to-available time, or restock limits?"</li>
-<li>"How is AWD changing the conversation with sellers about holding inventory upstream?"</li>
-<li>"What makes a Supply Chain Manager a great partner to a Principal PM — and what makes one hard to work with?"</li>
-<li>"Which seller-facing inbound metric would you most want this team to move this year?"</li>
+<li>"Where does FBA inbound lose seller trust most sharply right now — the appointment, the check-in-to-available clock, or restock limits — and which of those can this Supply Chain seat actually move?"</li>
+<li>"How has AWD changed the conversation with sellers about who holds the slow, bulky units, and where does that conversation still stall?"</li>
+<li>"In the first month, what does a Supply Chain Manager do that makes a Principal PM's mechanism easier to run — and what do they do that you end up routing around?"</li>
 </ul>
 
 <h2 class="break">7 · Math appendix — every formula, symbolic → substituted → computed</h2>
@@ -571,6 +586,283 @@
 </tbody>
 </table>
 <p class="small">Recompute discipline: A1→A2 share 19.2; A3→A4 share the 120,000 and 300 UPH; B3→B4→B5 share σ_d = 120 and z values; B2's 1,800 feeds B8's scale row; B9's deficit feeds B10. If any row doesn't reproduce from its own substitution, the row is wrong — say the formula, not the memory.</p>
+
+<h2 class="break">§8 · One week at one FC — the complete worked example</h2>
+<p class="note">One building, one week, one vendor, three SKUs, and the same figures carried from the forecast through the close. Every stage below is symbolic formula, then the substitution, then the result — the same shape as the CAP and INV blocks. If a later row quotes a number you cannot find above it, the row is wrong. All inputs are <span class="lab">[illustrative]</span>; the rates, the z, and the transfer economics are the ones already used in §2–§3 so the arithmetic is familiar out loud. ONT9-style and PHX7-style are labels for the whiteboard, not claims about any real building.</p>
+<div class="inf"><strong>Assumptions to say before the first number.</strong> Demand is flat across seven days. The Wednesday receipt is stowed the same day, so a 2.0 h unload slips the promise and does not lose Wednesday's sales. PHX7-style opening on-hand for this vendor is zero. In the stress block, service is deterministic and all seven trailers are in the yard at block open. √7 = 2.6458 and z = 1.645, as in INV-B. Transfer cost is $3.00/unit and lost margin is $12/unit, as in INV-D. Placement is decided on the planned PO; the 2% shortage is discovered at receive, so health at the close uses actuals.</div>
+
+<h3>The scenario card — week 44, reused everywhere below</h3>
+<table class="drv">
+<thead><tr><th>Constant</th><th>Value</th><th>Where it is reused</th></tr></thead>
+<tbody>
+<tr><td>Building, week</td><td>ONT9-style FC, week 44</td><td>Every stage. Illustrative; not a real site's data.</td></tr>
+<tr><td>The shipment</td><td>One vendor, 3 SKUs, 12,000 units, 6 trailers</td><td>Stages 1–7. 12,000 ÷ 6 = 2,000 units/trailer.</td></tr>
+<tr><td>Doors, day, block</td><td>6 doors; 10 h receiving day; stress block is 2.0 h</td><td>Stage 2. The block is one service deep.</td></tr>
+<tr><td>Unload rate</td><td>0.5 trailer/door-hour, so service = 1 ÷ 0.5 = 2.0 h</td><td>Stage 2. Same rate as CAP-A.</td></tr>
+<tr><td>Pack factors</td><td>6 units/carton, 40 cartons/pallet, 26 pallets per dense trailer</td><td>Stage 1. Same factors as CAP-A.</td></tr>
+<tr><td>Labor standards</td><td>Receive 300 UPH, stow 240 UPH, indirect 15%, shift 10 h</td><td>Stages 3 and 5. Receive UPH matches CAP-B.</td></tr>
+<tr><td>The mod</td><td>4,000 bins × 2.0 ft³ = 8,000 ft³ nominal; × 0.85 = 6,800 ft³ effective</td><td>Stage 5. The 15% honeycomb matches CAP-C.</td></tr>
+<tr><td>Service and lead time</td><td>z = 1.645; LT = 7 days; √7 = 2.6458</td><td>Stage 7. Same constants as INV-B.</td></tr>
+<tr><td>Money</td><td>Inbound ONT9-style $0.80/unit; PHX7-style $1.40/unit; transfer $3.00; margin $12</td><td>Stage 6. Transfer and margin match INV-D.</td></tr>
+<tr><td>Sister node</td><td>PHX7-style demand: F 500, M 700, S 1,050 per week; opening 0</td><td>Stage 6 only. This vendor's first units there.</td></tr>
+</tbody>
+</table>
+<table class="drv">
+<thead><tr><th>SKU</th><th>Role</th><th>Units on the PO</th><th>Weekly forecast</th><th>Per day</th><th>Opening on-hand</th><th>σ / day</th><th>ft³ / unit</th></tr></thead>
+<tbody>
+<tr><td><strong>F</strong></td><td>Fast</td><td class="f">6,000</td><td class="f">3,500</td><td class="f">500</td><td class="f">1,000</td><td class="f">80</td><td class="f">0.15</td></tr>
+<tr><td><strong>M</strong></td><td>Medium</td><td class="f">4,000</td><td class="f">1,400</td><td class="f">200</td><td class="f">1,600</td><td class="f">40</td><td class="f">0.30</td></tr>
+<tr><td><strong>S</strong></td><td>Slow</td><td class="f">2,000</td><td class="f">350</td><td class="f">50</td><td class="f">1,400</td><td class="f">15</td><td class="f">0.80</td></tr>
+<tr><td><strong>Total</strong></td><td></td><td class="f">12,000</td><td class="f">5,250</td><td></td><td class="f">4,000</td><td></td><td></td></tr>
+</tbody>
+</table>
+<p class="note">Buy targets that produced the PO, proved in stage 1: F back to 1.0 week of cover, M to 3.0 weeks, S would have needed 350 units to stay at 4.0 weeks and was ordered to a 2,000-unit multiple instead. The 1,650-unit gap on S is the number stage 6 and stage 7 both spend.</p>
+
+<h3>Stage 1 · Inbound forecast → units per week → trailer equivalents</h3>
+<div class="mth"><h4>1a · The buy that equals 12,000 — receipt = target on-hand − opening + forecast sales</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Opening cover, F</td><td class="f">1,000 ÷ 500 = 2.00 days; 1,000 ÷ 3,500 = 0.286 wk</td><td>scenario card</td><td>2.00 days — gone by Tuesday close</td></tr>
+<tr><td>2</td><td>Opening cover, M</td><td class="f">1,600 ÷ 1,400 = 1.143 wk</td><td>scenario card</td><td>1.14 weeks</td></tr>
+<tr><td>3</td><td>Opening cover, S</td><td class="f">1,400 ÷ 350 = 4.00 wk</td><td>scenario card</td><td>4.00 weeks — already the healthy center</td></tr>
+<tr><td>4</td><td>F receipt</td><td class="f">target OH = 1.0 × 3,500 = 3,500; 3,500 − 1,000 + 3,500 = 6,000</td><td>target 1.0 WOC; sales = forecast</td><td><strong>6,000 units</strong></td></tr>
+<tr><td>5</td><td>M receipt</td><td class="f">target OH = 3.0 × 1,400 = 4,200; 4,200 − 1,600 + 1,400 = 4,000</td><td>target 3.0 WOC</td><td><strong>4,000 units</strong></td></tr>
+<tr><td>6</td><td>S receipt the band wants</td><td class="f">target OH = 4.0 × 350 = 1,400; 1,400 − 1,400 + 350 = 350</td><td>target 4.0 WOC, the INV-A center</td><td>350 units</td></tr>
+<tr><td>7</td><td>S over-order</td><td class="f">2,000 − 350 = 1,650</td><td>vendor order multiple is 2,000</td><td><strong>1,650 units — remembered at stages 6 and 7</strong></td></tr>
+<tr><td>8</td><td>Week inbound</td><td class="f">6,000 + 4,000 + 2,000 = 12,000</td><td>F + M + the multiple on S</td><td><strong>12,000 units</strong></td></tr>
+</tbody>
+</table>
+<p>F's target close equals one lead time of demand and contains no safety stock. That choice is quiet here and loud in stage 4.</p>
+</div>
+<div class="mth"><h4>1b · Units → cartons → pallets → trailers — the tender is not the dense equivalent</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Cartons</td><td class="f">12,000 ÷ 6 = 2,000</td><td>6 units/carton, as CAP-A</td><td>2,000 cartons</td></tr>
+<tr><td>2</td><td>Pallets</td><td class="f">2,000 ÷ 40 = 50</td><td>40 cartons/pallet, as CAP-A</td><td>50 pallets</td></tr>
+<tr><td>3</td><td>Dense trailer-equivalents</td><td class="f">50 ÷ 26 = 1.923</td><td>26 pallets per 53-ft trailer</td><td><strong>1.92 trailers</strong></td></tr>
+<tr><td>4</td><td>What the vendor tendered</td><td class="f">6 trailers; 12,000 ÷ 6 = 2,000 units each</td><td>the ASN</td><td>6 trailers</td></tr>
+<tr><td>5</td><td>How full each trailer is</td><td class="f">50 ÷ 6 = 8.333 pallets; 8.333 ÷ 26 = 0.321</td><td>50 pallets across 6 trailers</td><td><strong>32.1% of a dense trailer</strong></td></tr>
+<tr><td>6</td><td>Door currency vs cube currency</td><td class="f">6 ÷ 1.923 = 3.12</td><td>tendered ÷ dense</td><td><strong>3.12× — plan doors off 6, cube off 50 pallets</strong></td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "Twelve thousand is a cover equation plus an order multiple — six thousand, four thousand, two thousand — and the two thousand includes sixteen hundred fifty the band did not ask for. Dense, that is one-point-nine trailers; the tender is six, a third full, so the dock feels six arrivals and the building feels fifty pallets."</p>
+</div>
+
+<h3>Stage 2 · Dock-door capacity — 7 trailers against 6 slots, and the dwell that forms</h3>
+<p class="note">The week was reserved as six trailers spread across five days. Wednesday morning the yard has all six ASN trailers (the 12,000 units) plus one unscheduled yard-drop that is not on this PO. The block they have fallen into is sized at six door-slots. Carried in from stage 1: 6 trailers, 2,000 units each, service rate 0.5.</p>
+<div class="mth"><h4>2a · Does the block have the slots? — doors × hours × unload rate</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Slots in the block</td><td class="f">S = 6 × 2.0 × 0.5 = 6.0</td><td>doors × hours × unload rate</td><td><strong>6 door-slots</strong></td></tr>
+<tr><td>2</td><td>Arrivals</td><td class="f">6 ASN + 1 unscheduled = 7</td><td>the week's 6 trailers, bunched, plus a yard-drop with none of the 12,000</td><td><strong>7 trailers</strong></td></tr>
+<tr><td>3</td><td>Utilization</td><td class="f">ρ = 7 ÷ 6 = 1.1667</td><td>arrivals ÷ slots</td><td><strong>116.7%</strong></td></tr>
+<tr><td>4</td><td>The 85% ceiling</td><td class="f">0.85 × 6 = 5.1</td><td>same ceiling as CAP-A</td><td>even 6 scheduled trailers were over the ceiling</td></tr>
+<tr><td>5</td><td>Why Kingman stops here</td><td class="f">1 − ρ = 1 − 7/6 = −0.167</td><td>dwell ≈ service ÷ (1 − ρ) needs ρ below 1</td><td>the form is undefined — count the residual instead</td></tr>
+<tr><td>6</td><td>The building's week, for scale</td><td class="f">6 × 10 × 0.5 = 30/day; 30 × 5 = 150; 6 ÷ 150 = 0.040</td><td>full receiving day, five days</td><td>30 slots/day, 150/week; this vendor is <strong>4.0% of the week</strong></td></tr>
+</tbody>
+</table>
+<p>The week had the doors. The two-hour block did not. That is a bunching failure, and it is the one to say out loud before anyone proposes a seventh door.</p>
+</div>
+<div class="mth"><h4>2b · Expected dwell once ρ is above 1 — deterministic, all seven present at block open</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Service time</td><td class="f">1 ÷ 0.5 = 2.0 h</td><td>the unload rate on the card</td><td>2.0 h on a free door</td></tr>
+<tr><td>2</td><td>Who starts at once</td><td class="f">min(7, 6) = 6 trailers start; 7 − 6 = 1 waits</td><td>6 doors, simultaneous arrival</td><td>1 trailer in queue</td></tr>
+<tr><td>3</td><td>Dwell of a trailer that starts</td><td class="f">wait 0 + service 2.0 = 2.0</td><td>door free at t = 0</td><td>2.0 h</td></tr>
+<tr><td>4</td><td>Dwell of the marginal trailer</td><td class="f">wait = 2.0; dwell = 2.0 + 2.0 = 4.0</td><td>first door frees at the end of one service</td><td><strong>4.0 h</strong></td></tr>
+<tr><td>5</td><td>Expected dwell</td><td class="f">(6 × 2.0 + 1 × 4.0) ÷ 7 = 16 ÷ 7 = 2.286</td><td>FIFO: each of the 7 equally likely to be last</td><td><strong>2.29 h</strong></td></tr>
+<tr><td>6</td><td>Expected wait</td><td class="f">(6 × 0 + 1 × 2.0) ÷ 7 = 2 ÷ 7 = 0.286</td><td>same weights</td><td>0.29 h</td></tr>
+<tr><td>7</td><td>Spill into the next block</td><td class="f">7 × 2.0 − 6 × 2.0 = 14 − 12 = 2.0 door-hours</td><td>work demanded minus work the block can do</td><td><strong>1 trailer, and 1 of the next block's 6 slots</strong></td></tr>
+<tr><td>8</td><td>FIFO hit on this PO</td><td class="f">6 × (1/7) × 2,000 = 12,000 ÷ 7 = 1,714 units</td><td>P(a given ASN trailer waits) = 1/7; 2,000 units on it</td><td><strong>1,714 units delayed 2.0 h</strong></td></tr>
+<tr><td>9</td><td>ASN-priority alternative</td><td class="f">delayed PO units = 0; unscheduled dwell = 4.0 h</td><td>the 6 ASN trailers take the 6 doors</td><td>the 12,000 stay on a 2.0 h clock; the yard-drop holds the 4.0 h</td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "Seven over six is past the formula — one minus rho is negative — so the number is the residual trailer. Six start and dwell two hours; the seventh dwells four; the average is sixteen over seven, two-point-two-nine hours. Give the ASN the doors and the twelve thousand stay on a two-hour clock. Leave it FIFO and about seventeen hundred units slip two hours, and the next block opens already down one slot."</p>
+</div>
+
+<h3>Stage 3 · Labor plan — UPH to hours to heads on the shift</h3>
+<p class="note">Labor is reserved on the plan, 12,000 units, before the shortage in stage 4 is known. The plan spread those units across five days; the yard in stage 2 put them on one shift. Both rosters are below, because the average is what gets staffed and the bunch is what shows up. Carried in: 12,000 units, 300 UPH, 15% indirect, 10 h shifts.</p>
+<div class="mth"><h4>3 · Receive labor — the bunch is the shift that has to be rostered</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Direct hours, the plan</td><td class="f">12,000 ÷ 300 = 40.0</td><td>mature receive UPH, as CAP-B</td><td>40.0 direct hours</td></tr>
+<tr><td>2</td><td>Paid hours</td><td class="f">40.0 × 1.15 = 46.0</td><td>15% indirect</td><td>46.0 paid hours</td></tr>
+<tr><td>3</td><td>Heads if the week arrives on one shift</td><td class="f">46.0 ÷ 10 = 4.6 → round up to 5</td><td>10 h shift; a partial head is not a person you can roster</td><td><strong>5 receivers</strong></td></tr>
+<tr><td>4</td><td>Slack on that crew</td><td class="f">5 × 10 − 46.0 = 4.0; 4.0 ÷ 50 = 0.080</td><td>paid hours the roster actually contains</td><td>4.0 h slack, 8.0% idle</td></tr>
+<tr><td>5</td><td>The spread the average suggests</td><td class="f">12,000 ÷ 5 = 2,400/day; 2,400 ÷ 300 = 8.0; 8.0 × 1.15 = 9.2; 9.2 ÷ 10 = 0.92</td><td>five even days</td><td>0.92 → <strong>1 receiver looks like enough</strong></td></tr>
+<tr><td>6</td><td>What 1 receiver does with the bunch</td><td class="f">40.0 ÷ 1 = 40.0 direct hours of work on a 10 h shift</td><td>stage 2 put the week on one morning</td><td>about 4 shifts of backlog from one rostering choice</td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "Forty direct hours, times one-fifteen, is forty-six paid hours, divided by a ten-hour shift is four-point-six, so five people. The daily average says one person and point-nine of a head. Staff the bunch. The one hundred twenty units we find short in the next stage free four-tenths of an hour — you do not re-roster a shift for that."</p>
+</div>
+
+<h3>Stage 4 · Receive accuracy — a 2% shortage on the fast mover, and what it does to AFS</h3>
+<p class="note">AFS here means units the promise can see: opening on-hand, which was already sellable, plus units that clear receive and will clear stow. The shortage never reaches stow, so it never becomes AFS. Carried in: PO of 6,000 / 4,000 / 2,000, opening 1,000 / 1,600 / 1,400, daily demand 500 / 200 / 50.</p>
+<div class="mth"><h4>4a · The count — 2% of F, and why 99% overall is the wrong headline</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Shortage</td><td class="f">0.02 × 6,000 = 120</td><td>2% short on F only; M and S count clean</td><td><strong>120 units, all SKU-F</strong></td></tr>
+<tr><td>2</td><td>Received, F</td><td class="f">6,000 − 120 = 5,880</td><td>step 1</td><td>5,880 units</td></tr>
+<tr><td>3</td><td>Received, the PO</td><td class="f">5,880 + 4,000 + 2,000 = 11,880</td><td>M and S at plan</td><td>11,880 units</td></tr>
+<tr><td>4</td><td>Accuracy</td><td class="f">11,880 ÷ 12,000 = 0.990; 5,880 ÷ 6,000 = 0.980</td><td>actual ÷ PO</td><td><strong>99.0% overall, 98.0% on F, 100% on M and S</strong></td></tr>
+<tr><td>5</td><td>F AFS at the moment of receipt</td><td class="f">planned 1,000 + 6,000 = 7,000; actual 1,000 + 5,880 = 6,880; 7,000 − 6,880 = 120</td><td>opening was already AFS</td><td><strong>AFS lower by 120</strong></td></tr>
+<tr><td>6</td><td>Those 120 as demand</td><td class="f">120 ÷ 500 = 0.24 days; 120 ÷ 3,500 = 0.0343</td><td>F demand from the card</td><td>0.24 days, 3.43% of the week</td></tr>
+</tbody>
+</table>
+</div>
+<div class="mth"><h4>4b · Does the shortage miss this week's promise, or the bridge to the next receipt?</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Mon–Tue sales, F</td><td class="f">2 × 500 = 1,000</td><td>opening cover was 2.00 days (stage 1)</td><td>opening is consumed exactly; AFS hits zero at Tuesday close</td></tr>
+<tr><td>2</td><td>Wed–Sun sales, F</td><td class="f">5 × 500 = 2,500; 5,880 − 2,500 = 3,380 left</td><td>assumption: stow finishes Wednesday, so the day is slipped by 2.0 h and not lost</td><td>2,500 sold; the receipt covers them</td></tr>
+<tr><td>3</td><td>Week sales, all three</td><td class="f">F 3,500; M 1,400; S 350</td><td>each week's forecast, fully served under the assumption</td><td>this week's in-stock holds</td></tr>
+<tr><td>4</td><td>Close, F, if the count had been clean</td><td class="f">1,000 + 6,000 − 3,500 = 3,500; 3,500 ÷ 500 = 7.00 days</td><td>the stage-1 buy, which targeted 1.0 WOC and no safety stock</td><td>7.00 days — exactly the lead time</td></tr>
+<tr><td>5</td><td>Close, F, actual</td><td class="f">1,000 + 5,880 − 3,500 = 3,380; 3,380 ÷ 500 = 6.76 days</td><td>the 120 removed</td><td><strong>3,380 units, 6.76 days</strong></td></tr>
+<tr><td>6</td><td>The pass-through</td><td class="f">7.00 − 6.76 = 0.24 days; 0.24 × 500 = 120</td><td>steps 4 and 5</td><td><strong>the shortage equals the entire lead-time miss</strong></td></tr>
+<tr><td>7</td><td>Close, M</td><td class="f">1,600 + 4,000 − 1,400 = 4,200</td><td>M counted clean</td><td>4,200 units — used again in stages 5–7</td></tr>
+<tr><td>8</td><td>Close, S</td><td class="f">1,400 + 2,000 − 350 = 3,050</td><td>S counted clean</td><td>3,050 units — used again in stages 5–7</td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "Two percent of the fast mover is one hundred twenty units. The building's accuracy reads ninety-nine percent, and that average is hiding the only SKU that was bought to land exactly on its lead time. This week's sales still clear. The one hundred twenty comes off the bridge: seven-point-zero-zero days becomes six-point-seven-six, and there was no safety stock underneath it."</p>
+</div>
+
+<h3>Stage 5 · Stow and cubic fill — the mod before, at the peak, and at the close</h3>
+<p class="note">This vendor's three SKUs live in one illustrative pick mod, so the fill move is visible. A whole FC would swallow 12,000 units; the mod is the grain a stow lead actually manages. Carried in: cube per unit from the card, received units from stage 4 (5,880 / 4,000 / 2,000), closes 3,380 / 4,200 / 3,050.</p>
+<div class="mth"><h4>5a · Bin capacity, then fill before and after the receipt</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Nominal capacity</td><td class="f">4,000 × 2.0 = 8,000 ft³</td><td>bins × cube per bin</td><td>8,000 ft³</td></tr>
+<tr><td>2</td><td>Effective capacity</td><td class="f">8,000 × 0.85 = 6,800; per bin 2.0 × 0.85 = 1.70</td><td>15% honeycomb, as CAP-C</td><td><strong>6,800 ft³ effective</strong></td></tr>
+<tr><td>3</td><td>Opening cube</td><td class="f">1,000×0.15 + 1,600×0.30 + 1,400×0.80 = 150 + 480 + 1,120 = 1,750</td><td>opening units × cube</td><td>1,750 ft³</td></tr>
+<tr><td>4</td><td>Opening fill</td><td class="f">1,750 ÷ 8,000 = 0.21875 = 21.9% nominal; 1,750 ÷ 6,800 = 0.2574 = 25.7% effective</td><td>against both denominators</td><td><strong>25.7% effective — plan against this</strong></td></tr>
+<tr><td>5</td><td>Receipt cube, actual</td><td class="f">5,880×0.15 + 4,000×0.30 + 2,000×0.80 = 882 + 1,200 + 1,600 = 3,682</td><td>stage-4 received units</td><td>3,682 ft³</td></tr>
+<tr><td>6</td><td>Who ate the cube</td><td class="f">units: 2,000 ÷ 11,880 = 0.168 = 16.8%; cube: 1,600 ÷ 3,682 = 0.435 = 43.5%</td><td>S versus the receipt</td><td><strong>S is 16.8% of units and 43.5% of cube</strong></td></tr>
+<tr><td>7</td><td>Peak, before the week's sales</td><td class="f">1,750 + 3,682 = 5,432; 5,432 ÷ 6,800 = 0.7988 = 79.9%; 5,432 ÷ 8,000 = 0.679 = 67.9% nominal</td><td>opening + receipt</td><td><strong>79.9% effective (67.9% if you trust nominal)</strong></td></tr>
+<tr><td>8</td><td>Headroom to the 90% wall</td><td class="f">0.90 × 6,800 = 6,120; 6,120 − 5,432 = 688; 688 ÷ 0.80 = 860</td><td>CAP-C's "wall at 90%"</td><td><strong>688 ft³, or 860 more units of S</strong></td></tr>
+<tr><td>9</td><td>Bins the receipt touches</td><td class="f">3,682 ÷ 1.70 = 2,165.9 → 2,166; 2,166 ÷ 4,000 = 0.5415 = 54.2%</td><td>receipt cube ÷ effective cube per bin</td><td>2,166 bins, 54.2% of the mod</td></tr>
+</tbody>
+</table>
+</div>
+<div class="mth"><h4>5b · Stow labor, and the cube that is still there at the close</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Stow hours on the plan</td><td class="f">12,000 ÷ 240 = 50.0 direct; 50.0 × 1.15 = 57.5 paid</td><td>stow 240 UPH; same 15% indirect</td><td>57.5 paid hours</td></tr>
+<tr><td>2</td><td>Stow heads on the bunched shift</td><td class="f">57.5 ÷ 10 = 5.75 → round up to 6; slack = 6 × 10 − 57.5 = 2.5 h</td><td>same rounding as the receivers</td><td><strong>6 stowers, 2.5 h slack</strong></td></tr>
+<tr><td>3</td><td>What the shortage saves</td><td class="f">120 ÷ 240 = 0.5 direct hour; 11,880 ÷ 240 = 49.5</td><td>the 120 units from stage 4</td><td>half an hour — hold the roster of 6</td></tr>
+<tr><td>4</td><td>Close cube</td><td class="f">3,380×0.15 + 4,200×0.30 + 3,050×0.80 = 507 + 1,260 + 2,440 = 4,207</td><td>closes from stage 4</td><td>4,207 ft³</td></tr>
+<tr><td>5</td><td>Close fill</td><td class="f">4,207 ÷ 6,800 = 0.6187 = 61.9%; S share 2,440 ÷ 4,207 = 0.580 = 58.0%</td><td>effective denominator</td><td><strong>61.9% effective; S is 58% of what is left</strong></td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "The mod opens at twenty-five-point-seven percent effective, not the twenty-two percent nominal. The receipt takes it to seventy-nine-point-nine, and the slow mover is sixteen-point-eight percent of the units and forty-three-point-five percent of the cube. Eight hundred sixty more of those units would put the mod on the ninety-percent wall. Stow is six people on the shift that the freight actually arrived."</p>
+</div>
+
+<h3>Stage 6 · Placement — two nodes, put the units where the demand is, pick the cheaper plan</h3>
+<p class="note">This decision belongs with the information flow, before the tender. It is worked here, after the freight is in the building, so both numbers can be said: what the split was worth on Tuesday, and what is still worth doing once the six trailers are in the ONT9-style yard. Planned units, from stage 1: F 6,000, M 4,000, S 2,000. PHX7-style weekly demand, from the card: F 500, M 700, S 1,050, opening zero.</p>
+<table class="drv">
+<thead><tr><th>Cost to have the unit there, $/unit</th><th>Serve ONT9-style demand</th><th>Serve PHX7-style demand</th></tr></thead>
+<tbody>
+<tr><td><strong>Inbound to ONT9-style, then transfer if needed</strong></td><td class="f">$0.80</td><td class="f">$0.80 + $3.00 = $3.80</td></tr>
+<tr><td><strong>Inbound to PHX7-style, then transfer if needed</strong></td><td class="f">$1.40 + $3.00 = $4.40</td><td class="f">$1.40</td></tr>
+</tbody>
+</table>
+<div class="mth"><h4>6a · Where each SKU goes — demand first, leftover only where cover can take it</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Decision</th><th>Formula → substitution</th><th>Weekly result</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>F stays entirely at ONT9-style. Even the whole 6,000 leaves that node at one week.</td><td class="f">close = 1,000 + 6,000 − 3,500 = 3,500; WOC = 3,500 ÷ 3,500 = 1.00</td><td>ONT 6,000 / PHX 0. PHX's 500 is a separate buy, not a slice of this PO.</td></tr>
+<tr><td>2</td><td>M: give PHX its week, keep the rest at ONT. ONT's band survives the cut.</td><td class="f">ONT keeps 4,000 − 700 = 3,300</td><td>ONT 3,300 / PHX 700</td></tr>
+<tr><td>3</td><td>S: ONT keeps the 350 the 4.0 WOC band asked for in stage 1. The over-order goes where the demand is.</td><td class="f">PHX gets 2,000 − 350 = 1,650</td><td>ONT 350 / PHX 1,650 — the same 1,650</td></tr>
+<tr><td>4</td><td>Totals</td><td class="f">ONT 6,000 + 3,300 + 350 = 9,650; PHX 0 + 700 + 1,650 = 2,350; 9,650 + 2,350 = 12,000</td><td><strong>9,650 / 2,350</strong></td></tr>
+<tr><td>5</td><td>Trailer-equivalents at this vendor's 2,000 units per trailer</td><td class="f">9,650 ÷ 2,000 = 4.825; 2,350 ÷ 2,000 = 1.175</td><td>about 5 trailers and about 1, not 6 and 0</td></tr>
+</tbody>
+</table>
+</div>
+<div class="mth"><h4>6b · Cost of the split versus cost of six trailers here, then a transfer to repair it</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Plan</th><th>Formula → substitution</th><th>Cost</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Split, direct inbound, no transfer</td><td class="f">9,650 × 0.80 = 7,720; 2,350 × 1.40 = 3,290; 7,720 + 3,290 = 11,010</td><td><strong>$11,010</strong></td></tr>
+<tr><td>2</td><td>All 12,000 inbound to ONT9-style</td><td class="f">12,000 × 0.80 = 9,600</td><td>$9,600 sunk once the trailers are here</td></tr>
+<tr><td>3</td><td>Then transfer the 2,350 the split would have sent direct</td><td class="f">2,350 × 3.00 = 7,050; 9,600 + 7,050 = 16,650</td><td>$16,650</td></tr>
+<tr><td>4</td><td>Premium for deciding late</td><td class="f">16,650 − 11,010 = 5,640</td><td><strong>$5,640</strong></td></tr>
+<tr><td>5</td><td>Shadow-price check — the model has to agree with itself</td><td class="f">extra inbound = 2,350 × (1.40 − 0.80) = 2,350 × 0.60 = 1,410; transfer avoided = 7,050; 7,050 − 1,410 = 5,640</td><td>$5,640 again</td></tr>
+<tr><td>6</td><td>The same check by SKU</td><td class="f">M: 700 × (3.00 − 0.60) = 700 × 2.40 = 1,680; S: 1,650 × 2.40 = 3,960; 1,680 + 3,960 = 5,640</td><td>F contributes $0 — it was not split</td></tr>
+</tbody>
+</table>
+<p>Optimum on Tuesday: <strong>split, 9,650 here and 2,350 direct to PHX7-style.</strong> The booking that was actually made — six trailers, all to ONT9-style — leaves $5,640 on the table. After the yard, the $9,600 inbound is sunk, and the open question is the INV-D test on each SKU, not a wish to rerun Tuesday.</p>
+</div>
+<div class="mth"><h4>6c · After the trailers are here — transfer only what passes the breakeven, on actual closes</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>SKU</th><th>Formula → substitution</th><th>Decision</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>F, the test</td><td class="f">transfer 500 × $3.00 = $1,500; PHX loss avoided = 500 × $12 = $6,000; ONT then shorts the same 500 × $12 = $6,000</td><td>net +$1,500 worse. <strong>Keep F. Expedite, do not transfer.</strong></td></tr>
+<tr><td>2</td><td>M, the test</td><td class="f">cost 700 × 3.00 = 2,100; PHX loss if you do not = 700 × 12 = 8,400; 2,100 &lt; 8,400</td><td><strong>Transfer 700. Wins by $6,300.</strong></td></tr>
+<tr><td>3</td><td>M, ONT after the move</td><td class="f">(4,200 − 700) ÷ 1,400 = 3,500 ÷ 1,400 = 2.50 WOC</td><td>still inside the 2–4 band (actual close from stage 4)</td></tr>
+<tr><td>4</td><td>S, three quantities you might move</td><td class="f">to the 6.0 ceiling: 3,050 − 6×350 = 3,050 − 2,100 = 950; to cover PHX's week: 1,050; to the 4.0 center: 3,050 − 4×350 = 3,050 − 1,400 = 1,650</td><td>950 leaves PHX short 100; 1,050 leaves ONT at 5.71 WOC, still in the watch band</td></tr>
+<tr><td>5</td><td>S, the quantity chosen</td><td class="f">1,650 × 3.00 = 4,950; PHX week loss avoided ≥ 1,050 × 12 = 12,600; ONT left at 1,400 ÷ 350 = 4.00 WOC</td><td><strong>Transfer 1,650. It is the stage-1 over-order, and it is the INV-A move down to 4.0 WOC.</strong></td></tr>
+<tr><td>6</td><td>Cash still to spend, forward-looking</td><td class="f">2,100 + 4,950 = 7,050 on M and S; $0 on F</td><td>$7,050. The $5,640 from Tuesday is no longer available to save; this $7,050 is the repair.</td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "Tuesday's optimum was ninety-six fifty here and twenty-three fifty direct to the sister node, eleven thousand ten dollars against sixteen thousand six fifty if I haul them later — a fifty-six forty gap, and the shadow price prints the same fifty-six forty, so I trust it. The trailers came here anyway. Forward from the yard I keep the fast mover, because moving it spends fifteen hundred dollars to relocate a stockout, and I transfer seven hundred of the medium and the sixteen fifty of the slow. That sixteen fifty is the same over-order the buy created in stage one."</p>
+</div>
+
+<h3>Stage 7 · Inventory health at the close — who is thin, who is fine, who gets moved</h3>
+<p class="note">Closes are the stage-4 actuals: F 3,380, M 4,200, S 3,050. Sales this week equaled forecast, so sell-through uses units sold ÷ (opening + received). Safety stock uses the card: z = 1.645, √7 = 2.6458, σ of 80 / 40 / 15. The action rule is INV-A's: under 2 weeks expedite, 2–4 watch, over 6 move.</p>
+<div class="mth"><h4>7a · WOC, safety stock, and sell-through — three SKUs, three answers</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>Quantity</th><th>Formula → substitution</th><th>Inputs (basis)</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>WOC, F</td><td class="f">3,380 ÷ 3,500 = 0.9657 ≈ 0.966</td><td>close ÷ weekly forecast</td><td><strong>0.966 weeks — under 2, expedite</strong></td></tr>
+<tr><td>2</td><td>SS, F</td><td class="f">σ_LT = 80 × 2.6458 = 211.664; SS = 1.645 × 211.664 = 348.19 ≈ 348; 348 ÷ 500 = 0.696 days</td><td>z × σ × √LT</td><td>348 units, 0.70 days</td></tr>
+<tr><td>3</td><td>F against the bridge</td><td class="f">LT units = 7 × 500 = 3,500; LT+SS = 3,500 + 348 = 3,848; gap = 3,848 − 3,380 = 468; and 120 + 348 = 468</td><td>the shortage plus the safety stock the buy never held</td><td><strong>short 120 vs the lead time, short 468 vs lead time plus safety stock</strong></td></tr>
+<tr><td>4</td><td>Sell-through, F</td><td class="f">3,500 ÷ (1,000 + 5,880) = 3,500 ÷ 6,880 = 0.5087 = 50.9%</td><td>sold ÷ (open + received)</td><td>50.9%</td></tr>
+<tr><td>5</td><td>WOC, M</td><td class="f">4,200 ÷ 1,400 = 3.00</td><td>stage-4 close</td><td><strong>3.00 weeks — healthy</strong></td></tr>
+<tr><td>6</td><td>SS, M</td><td class="f">σ_LT = 40 × 2.6458 = 105.832; SS = 1.645 × 105.832 = 174.09 ≈ 174; cover days = 4,200 ÷ 200 = 21.0; LT+SS days = 7 + 174 ÷ 200 = 7.87; 21.0 ÷ 7.87 = 2.67×</td><td>same z and √LT</td><td>174 units of safety stock; position is 2.67× the floor</td></tr>
+<tr><td>7</td><td>Sell-through, M</td><td class="f">1,400 ÷ (1,600 + 4,000) = 1,400 ÷ 5,600 = 0.250 = 25.0%</td><td>sold ÷ (open + received)</td><td>25.0%</td></tr>
+<tr><td>8</td><td>WOC, S</td><td class="f">3,050 ÷ 350 = 8.714 ≈ 8.71; days = 3,050 ÷ 50 = 61.0</td><td>stage-4 close</td><td><strong>8.71 weeks, 61 days — over 6, move it</strong></td></tr>
+<tr><td>9</td><td>SS, S</td><td class="f">σ_LT = 15 × 2.6458 = 39.687; SS = 1.645 × 39.687 = 65.29 ≈ 65; 3,050 − 65 = 2,985 above the safety-stock floor</td><td>same z and √LT</td><td>65 units. "Strategic cover" would have to explain the other 2,985.</td></tr>
+<tr><td>10</td><td>Sell-through, S</td><td class="f">350 ÷ (1,400 + 2,000) = 350 ÷ 3,400 = 0.1029 = 10.3%</td><td>sold ÷ (open + received)</td><td>10.3% — the excess showing up as a rate</td></tr>
+</tbody>
+</table>
+</div>
+<div class="mth"><h4>7b · The corrective action — one per SKU, each one a number already on this page</h4>
+<table class="drv">
+<thead><tr><th>Step</th><th>SKU</th><th>Formula → substitution</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>F — at risk of stockout</td><td class="f">expedite 468 = 120 shortage + 348 safety stock; 468 ÷ 500 = 0.94 days of demand; 3,380 + 468 = 3,848 = the LT+SS target</td><td><strong>Pull the next ASN forward by 468 units. Do not fund it by transferring F out — stage 6c already priced that as a loss.</strong></td></tr>
+<tr><td>2</td><td>M — healthy</td><td class="f">WOC 3.00 is the center of the 2–4 band. After the stage-6 transfer of 700: 2.50 WOC, still inside the band.</td><td><strong>No inventory action. The 700-unit move is a placement repair, and the band still holds.</strong></td></tr>
+<tr><td>3</td><td>S — overstocked</td><td class="f">move 1,650; 3,050 − 1,650 = 1,400; 1,400 ÷ 350 = 4.00 WOC; cost 1,650 × 3.00 = 4,950</td><td><strong>Transfer 1,650 to PHX7-style. Same 1,650 as the stage-1 over-order.</strong></td></tr>
+<tr><td>4</td><td>Cube the S move gives back</td><td class="f">1,650 × 0.80 = 1,320 ft³; 1,320 ÷ 6,800 = 0.194 = 19.4% of the mod</td><td>19.4 points of effective fill, freed without a rack</td></tr>
+</tbody>
+</table>
+<p><strong>The sentence to say:</strong> "Three SKUs, three sentences. Fast mover, zero-point-nine-seven weeks, six-point-seven-six days against a seven-day lead time — expedite four hundred sixty-eight, which is the one hundred twenty we never received plus the three hundred forty-eight of safety stock we never bought, and keep every unit of it here. Medium, three-point-zero-zero weeks, healthy, and it can still spare seven hundred for the sister node and land at two-and-a-half. Slow mover, eight-point-seven weeks and ten percent sell-through — transfer the sixteen fifty, four thousand nine hundred fifty dollars, back to four weeks, and that sixteen fifty is the order multiple from the first page of the week."</p>
+</div>
+
+<h3 class="st">The one-page close — stage, metric, value, what breaks</h3>
+<table class="drv">
+<thead><tr><th style="width:12%">Stage</th><th style="width:16%">Metric</th><th style="width:36%">Value</th><th>What breaks if it is mismanaged</th></tr></thead>
+<tbody>
+<tr><td><strong>1 · Forecast</strong></td><td>Units and trailer-equivalents</td><td>12,000 = 6,000 + 4,000 + 2,000. 50 pallets = 1.92 dense trailers. Tendered 6, at 32.1% full.</td><td>Ordering S to the 2,000-unit multiple overstocks by 1,650. Buying F to 1.0 WOC with no safety stock leaves a 7-day bridge and nothing under it.</td></tr>
+<tr><td><strong>2 · Dock</strong></td><td>Slots, ρ, dwell</td><td>6 × 2.0 × 0.5 = 6 slots against 7 arrivals. ρ = 116.7%. Marginal dwell 4.0 h. E[dwell] = 2.29 h. The week was 4.0% full.</td><td>FIFO delays an expected 1,714 units by 2.0 h and spills one slot into the next block. Quoting Kingman past ρ = 1 hides the residual trailer. A seventh door was never the constraint.</td></tr>
+<tr><td><strong>3 · Labor</strong></td><td>Hours and heads</td><td>12,000 ÷ 300 = 40 h × 1.15 = 46 h ÷ 10 = 4.6 → 5 receivers on the bunched shift. The spread averages 0.92 → 1.</td><td>Rostering the average leaves ~40 direct hours with one person, and the backlog carries into Thursday. The 120-unit shortage frees 0.4 h — hold the crew.</td></tr>
+<tr><td><strong>4 · Accuracy</strong></td><td>Shortage and AFS</td><td>0.02 × 6,000 = 120 of F. Received 11,880 (99.0% overall, 98.0% on F). F AFS 6,880 vs 7,000. Cover 6.76 days vs 7.00.</td><td>A 99% headline hides the only SKU sitting on its lead time. This week's sales still clear; the 120 is the entire miss versus the next receipt.</td></tr>
+<tr><td><strong>5 · Stow / cube</strong></td><td>Fill and stow heads</td><td>Effective mod 6,800 ft³. Fill 25.7% → 79.9% peak → 61.9% at close. Nominal at the peak would have said 67.9%. S is 43.5% of receipt cube. 6 stowers.</td><td>Another 860 units of S, 688 ft³, hits the 90% wall. Reading nominal fill understates the peak by 12 points. The slow mover is the cube problem.</td></tr>
+<tr><td><strong>6 · Placement</strong></td><td>Split vs all six trailers here</td><td>Optimum 9,650 / 2,350. Cost $11,010 vs $16,650. Savings $5,640, matched by the shadow-price check. After arrival: keep F, transfer M 700 and S 1,650, spend $7,050.</td><td>Six trailers into ONT9-style leave PHX's medium and slow demand unfilled and leave 8.71 weeks of S in this mod. Deciding after the yard turns a $1,410 inbound premium into a $7,050 transfer.</td></tr>
+<tr><td><strong>7 · Health</strong></td><td>WOC and the action</td><td>F 0.966 WOC, expedite 468. M 3.00 WOC, hold (2.50 after the 700). S 8.71 WOC, transfer 1,650 for $4,950, back to 4.00, freeing 1,320 ft³.</td><td>F stocks out inside the next lead time. S sits until the storage cost and the wasted cube. M is the control: inside the band, and still able to fund the sister node.</td></tr>
+</tbody>
+</table>
+<div class="say"><div class="label">Say this version out loud — about sixty seconds, then stop</div>
+<p>"Week 44, an ONT9-style building: one vendor, three SKUs, twelve thousand units on six trailers. Cover targets rebuild that — fast mover to one week, medium to three — except the slow mover arrives as a two-thousand-unit multiple against a three-fifty need, sixteen fifty too many. Dense, one-point-nine trailers; tendered, six, so the dock feels six arrivals. Wednesday, seven trailers hit a six-slot block: the queueing formula does not apply, the seventh dwells four hours, the average is two-point-two-nine. Staff the bunch, five receivers and six stowers. Receive is short one hundred twenty of the fast mover — the whole gap from a seven-day lead time to six-point-seven-six days, because safety stock was never bought. The mod goes from twenty-five-point-seven percent full to seventy-nine-point-nine. Splitting twenty-three fifty units to the sister node was worth five thousand six hundred forty dollars. At the close: expedite four sixty-eight of the fast mover and keep it, leave the medium at three weeks, transfer the same sixteen fifty of the slow mover. Same twelve thousand, three actions."</p>
+</div>
 
 </body>
 </html>
