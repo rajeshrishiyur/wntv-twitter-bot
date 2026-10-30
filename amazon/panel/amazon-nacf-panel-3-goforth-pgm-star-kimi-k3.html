@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Part 3 — Rocky Goforth — Infrastructure Program Management</title>
+<style>
+@page{size:letter;margin:.52in .58in .56in}.page{page-break-after:always;min-height:9.65in}.page:last-child{page-break-after:auto}
+*{box-sizing:border-box}body{margin:0;color:#1c1c1c;font-family:"Liberation Sans",Arial,sans-serif;font-size:9.1pt;line-height:1.3}
+h1{font-size:18pt;line-height:1.1;margin:0 0 4px}h2{font-size:13.5pt;color:#1a2744;border-top:2px solid #1a2744;padding-top:6px;margin:8px 0 5px}h3{font-size:11pt;color:#1a2744;margin:8px 0 3px}h4{font-size:9.4pt;color:#8a1c2b;margin:6px 0 2px}p{margin:0 0 5px}ul,ol{margin:2px 0 6px;padding-left:17px}li{margin-bottom:2px}
+.title{border-left:5px solid #8a1c2b;padding:8px 12px;background:#f7f4ee;margin-bottom:7px}.title .part{font-size:16pt;font-weight:700}.title .line{font-size:10.5pt;color:#1a2744;margin-top:2px}
+.kicker,.label,.sh{font-size:7.5pt;letter-spacing:.11em;text-transform:uppercase;color:#8a1c2b;font-weight:700}.sh{border-bottom:1px solid #d9d0c1;padding-bottom:2px;margin:7px 0 3px}
+.say{background:#f7f4ee;border:1px solid #d9d0c1;border-left:4px solid #8a1c2b;padding:6px 9px;margin:4px 0 7px;page-break-inside:avoid}.say p{font-family:"Liberation Serif",Georgia,serif;font-size:9.6pt;line-height:1.34}
+.star{background:#fcfbf8;border:1px solid #d9d0c1;padding:5px 9px 2px;margin:3px 0 6px;page-break-inside:avoid}.star p{margin-bottom:3px}.stag{font-weight:700;color:#8a1c2b}
+.meta{background:#f4f1ea;border-left:4px solid #1a2744;padding:5px 9px;margin:4px 0 6px}.safe{background:#f3f0fa;border-left:4px solid #5b4a8a;padding:5px 9px;margin:4px 0 6px}.safe b{color:#5b4a8a}
+.trade{background:#eef4f6;border-left:4px solid #1f6f7a;padding:5px 9px;margin:4px 0 6px}.learn{background:#fdf0f0;border-left:4px solid #8a1c2b;padding:4px 9px;margin:4px 0 6px}
+.proof{background:#e8f1ea;border-left:4px solid #2e6b4f;padding:5px 9px;margin:5px 0}.proof b{color:#2e6b4f}
+table{width:100%;border-collapse:collapse;margin:4px 0 7px;font-size:8.25pt;line-height:1.23}thead{display:table-header-group}tr{page-break-inside:avoid}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #ddd;padding:3px 5px 3px 0}th{font-size:7.1pt;text-transform:uppercase;letter-spacing:.035em;color:#555;border-bottom:1.5px solid #1a2744}.tight{font-size:7.65pt}.tight td,.tight th{padding:2.5px 4px 2.5px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}.card{border:1px solid #c9d3e3;background:#f6f8fc;padding:5px 8px;page-break-inside:avoid}.num{color:#8a1c2b;font-weight:700}.cite{color:#1f6f7a;font-size:7.7pt}.tag{display:inline-block;background:#1a2744;color:#fff;padding:1px 4px;border-radius:3px;font-size:6.8pt;text-transform:uppercase;letter-spacing:.04em}
+.qa{border-left:3px solid #d9d0c1;padding:2px 0 2px 8px;margin:3px 0 5px}.qa b{color:#1a2744}.small{font-size:7.8pt;color:#555}.toc{columns:2;column-gap:18px}.toc div{break-inside:avoid;margin-bottom:2px}.opening p{font-family:"Liberation Serif",Georgia,serif;font-size:9.4pt;margin-bottom:4px}
+</style>
+</head>
+<body>
+
+<section class="page">
+<div class="title">
+  <div class="part">Part 3 — Rocky Goforth — Infrastructure Program Management</div>
+  <div class="line">10:00 AM · Senior Manager, Amazon Infrastructure · Bar Raiser</div>
+  <div class="line">Rajesh Rishiyur Chandrasekaran · SDLC, deployment, consensus, cutover, hypercare</div>
+</div>
+<div class="toc small"><div><b>1.</b> Cram sheet</div><div><b>2–3.</b> How I run a program</div><div><b>4.</b> Building consensus</div><div><b>5.</b> Ambiguity</div><div><b>6.</b> Stakeholders &amp; communication</div><div><b>7.</b> Cost versus speed</div><div><b>8.</b> Programs at a glance</div><div><b>9–10.</b> Question router</div><div><b>11.</b> Ask Rocky · verify</div></div>
+<h2>CRAM SHEET — read this immediately before 10:00</h2>
+<div class="meta"><b>Profile hooks.</b> Rocky is an infrastructure/engineering leader and the Bar Raiser. Speak in release trains, architecture decisions, dependency ownership, numeric gates, rollback, incident posture, and mechanisms that survive the launch. Separate my program ownership from engineering’s code ownership. No supply-chain analysis unless it explains a deployment decision.</div>
+<div class="sh">Order I play the stories</div>
+<table class="tight"><thead><tr><th>#</th><th>Pointer</th><th>Why it fits</th><th>Number to land</th></tr></thead><tbody>
+<tr><td>1</td><td><b>UDC pack B1</b></td><td>Dual inventory end to end: discovery → council → build/test → two cutovers → hypercare.</td><td><span class="num">44 requirement rows / 23 systems</span> (record-from-docs); zero customer-facing incidents (record).</td></tr>
+<tr><td>2</td><td><b>UDC pack B2</b></td><td>Canada discovery, phased rollout, bounded scope; outcome is VERIFY.</td><td><span class="num">99 brands in 20 / 40 / 39 waves</span> (plan, record-from-docs).</td></tr>
+<tr><td>3</td><td><b>P2</b></td><td>RP→JDA migration: rehearsals and evidence-based go/no-go.</td><td><span class="num">7.0% → 1.8% → 0.3%</span> against a 0.5% tolerance (record).</td></tr>
+<tr><td>4</td><td><b>P3</b></td><td>Locus: throttle a robotics deployment when quality misses the bar.</td><td><span class="num">98% gate; week two 94%; full volume week three</span> (record / user anchor).</td></tr>
+<tr><td>5</td><td><b>P4</b></td><td>Crux: decommission as a migration program, not a dashboard debate.</td><td><span class="num">79 customers / 294,581 annual containers</span> (record-from-docs).</td></tr>
+<tr><td>6</td><td><b>Failure: UDC B5</b>, then <b>G2</b></td><td>I missed the FSD date; or my RF-device script broke the training gate.</td><td>Planned Jul 26, signed Aug 14 (record); training +1.5 weeks, go-live held (record).</td></tr>
+<tr><td>7</td><td><b>BR bank R1–R9</b></td><td>Use for LP depth; do not force another UDC retelling.</td><td>Choose the number shown in the router.</td></tr>
+</tbody></table>
+<div class="sh">Five numbers never to get wrong</div>
+<ol><li><b>UDC:</b> about 15 months, discovery through hypercare; 44 requirements across 23 named systems; about 30 build tracks are a user anchor.</li><li><b>JDA:</b> two DCs, eight months, about $1.8M budget and roughly 3% under (record).</li><li><b>Locus:</b> 98% gate; 94% in week two; full volume in week three (record / user anchor).</li><li><b>Canada:</b> about 13% of volume; 99 planned brands in 20 / 40 / 39 waves; about 2.5M units front-loaded. These are discovery-plan facts, not outcomes.</li><li><b>RF failure:</b> hundreds of devices; device testing came before training; training moved 1.5 weeks; go-live held.</li></ol>
+<div class="sh">Three opening sentences</div>
+<div class="opening"><p>“I run programs as an evidence chain: discovery earns design, design earns build, testing earns cutover, and measured stability earns close.”</p><p>“My role is to make the decision system and the release safe; engineering owns the code, and I own the cross-system contract, gates, escalation, and go/no-go recommendation.”</p><p>“I will give you the trade-off, the stop line, and what I changed after the miss in every answer.”</p></div>
+</section>
+
+<section class="page">
+<div class="kicker">Program operating system · page 1 of 2</div>
+<h1>HOW I RUN A PROGRAM</h1>
+<div class="say"><div class="label">60-second spoken answer</div><p>“I run five gated phases: Discover, Design, Build and Test, Cutover, then Hypercare and Close. Each phase has an entry bar, an artifact I personally deliver, a graduating bar that says the work is mature enough to review, and an exit bar that can stop the program. I use one requirement table, one RAID log, one decision log, and one counted issues log from discovery through production. Weekly steering has an IT block for architecture, interfaces, quality and release risk, then a business block for process readiness, training and adoption; the join is a decision, never two status reports. Before cutover, every critical path is rehearsed, every rollback trigger is numeric, and go/no-go reads counted rows. Hypercare ends on blockers per day and control ownership, not because the calendar says the launch is old.”</p></div>
+<table><thead><tr><th style="width:12%">Phase</th><th style="width:20%">Entry bar</th><th style="width:25%">What I deliver</th><th style="width:21%">Graduating bar</th><th>Exit bar</th></tr></thead><tbody>
+<tr><td><b>1 · Discover</b></td><td>Named sponsor; problem and customer impact stated; current landscape available or explicitly unknown.</td><td>I map stakeholders and system boundaries; write the problem, baseline, assumptions, constraints, out-of-scope fence, and first RAID; turn interviews into owned requirement rows.</td><td>Every material flow can be said back end to end; assumptions have owners and expiry dates; options are testable.</td><td>Scope, success measures, system owners, and open questions are signed. I do not design against an unnamed dependency.</td></tr>
+<tr><td><b>2 · Design / architecture council</b></td><td>Discovery pack complete; requirements have owners; options include cost, speed, risk and reversibility.</td><td>I pre-wire each row with its owner; run working sessions to one table; write architecture, interfaces, nonfunctional bars, transition states, test skeleton, decision log, and the explicit decision ask.</td><td>LOE exists for each impacted team; objections are converted into requirement or risk rows; rejected options remain visible.</td><td>Council decides architecture, sequence and scope fence; FSD is signed; no open “who owns this?” row. A review without a decision is not an exit.</td></tr>
+<tr><td><b>3 · Build &amp; Test</b></td><td>Signed design; environments, test data and access planned; stories trace to requirements; peak freeze on calendar.</td><td>I run the integrated plan, RAID and decision logs; require a matrix-cell reference for definition of done; sequence SIT → E2E → UAT; publish severity and stop lines before results.</td><td>Contract defects are closed; full flows pass in dated E2E events; business has seen the control screens during build; mocks are trending to tolerance.</td><td>Blocker + Critical open = 0; performance, data and operational readiness bars pass; training/device dependencies pass in the right order.</td></tr>
+</tbody></table>
+<div class="trade"><b>TRADE-OFF I MAKE:</b> I spend time early on ownership and measurable gates, rejecting faster “start coding and reconcile later.” I recover the time by preventing council rework, parallel interpretations, and date-driven go/no-go.</div>
+<div class="learn"><b>Failure / learning:</b> UDC’s late FSD and the RF-device miss taught me that a gate is only real when its predecessor evidence and decision owner are on the integrated plan.</div>
+<div class="safe"><b>SAFE-SAY:</b> “A gate that cannot stop the program is decoration; I publish the stop line before the first test.”<br><b>Ownership sentence:</b> “I wrote the program artifacts and made the recommendation; architects and engineers designed and built their components.”</div>
+</section>
+
+<section class="page">
+<div class="kicker">Program operating system · page 2 of 2</div>
+<h1>CUTOVER, HYPERCARE, AND THE CADENCE THAT CONNECTS THEM</h1>
+<table><thead><tr><th style="width:12%">Phase</th><th style="width:20%">Entry bar</th><th style="width:25%">What I deliver</th><th style="width:21%">Graduating bar</th><th>Exit bar</th></tr></thead><tbody>
+<tr><td><b>4 · Cutover</b></td><td>Exit memo from Build &amp; Test; freeze active; approved runbook; staffed bridge; backups and switches verified.</td><td>I create owner / duration / predecessor rows, control-screen roles, reconciliation checkpoints, business communications, go/no-go read, rollback triggers, and a decision clock. The rejected big-bang option stays in the pack.</td><td>Mocks meet tolerance; all named owners acknowledge; data snapshots and rollback paths are proven; the business understands service impact.</td><td>Steering reads counted rows and says go or hold. Post-switch invariants pass, no duplicate truth is published, and rollback triggers remain clear until stability is proven.</td></tr>
+<tr><td><b>5 · Hypercare / Close</b></td><td>Production live; known issues transferred with severity and owner; monitoring and daily reconciliation running.</td><td>I run daily blocker burn-down, incident and customer-impact review, defect aging, reconciliation, decision log, and an as-built / control-owner handoff.</td><td>Blockers per day stay below the agreed line; no new critical pattern; recurring work is owned by an operating team; release notes match what shipped.</td><td>Exit memo is signed from measured stability, not elapsed days; residual work enters the normal release train; retrospective changes the next template.</td></tr>
+</tbody></table>
+<div class="two">
+<div class="card"><h3>Weekly steering: one meeting, two blocks</h3><p><b>IT block:</b> architecture decisions, interfaces, environment/access, quality trend, critical path, release and rollback risk.</p><p><b>Business block:</b> process readiness, control owners, training, cutover communications, adoption and customer impact.</p><p><b>Join:</b> metric → trend → driver → decision needed. I escalate only a decision, with a recommendation and expiry date.</p></div>
+<div class="card"><h3>Four logs, four jobs</h3><p><b>Requirements:</b> what must be true, owner, acceptance evidence.</p><p><b>RAID:</b> threat or dependency, trigger, mitigation, owner, date.</p><p><b>Decision:</b> options, decider, date, rationale, consequences.</p><p><b>Issues:</b> observed defect, severity, owner, aging, closure evidence. Status never substitutes for one of these.</p></div>
+</div>
+<h3>Go / hold / rollback — the spoken read</h3>
+<div class="star"><p><span class="stag">S</span> The calendar says launch; evidence may disagree.</p><p><span class="stag">T</span> I must make the safest reversible recommendation without hiding business cost.</p><p><span class="stag">A</span> I read the rows in order: open Blocker/Critical count; failed E2E cells; mock variance against the pre-published tolerance; environment and control-owner readiness; then named rollback triggers. I state the cost of hold and the blast radius of go. If a trigger is crossed, I hold or roll back without renegotiating the line in the room.</p><p><span class="stag">R</span> On RP→JDA, mock variance moved from 7.0% to 1.8% to 0.3% against a 0.5% tolerance (record), so the release earned go.</p></div>
+<div class="proof"><b>Proof story + number:</b> UDC B1 — a roughly 15-month program (record), two staged go-lives, zero customer-facing incidents (record), and hypercare burn-down read from counted rows rather than confidence.</div>
+<div class="trade"><b>TRADE-OFF I MADE:</b> I rejected one dramatic launch in favor of staged truth changes. It added an interim operating state, but reduced rollback scope and protected peak.</div>
+<div class="learn"><b>What I changed:</b> after the RF-device script failure, I made device validation an explicit predecessor to training, not a parallel “readiness” line.</div>
+</section>
+
+<section class="page">
+<div class="kicker">Framework card 1 · spoken-ready</div>
+<h1>BUILDING CONSENSUS — MAKE THE COUNCIL A DECISION, NOT A REVIEW</h1>
+<div class="meta"><b>LPs:</b> Earn Trust · Have Backbone; Disagree and Commit · Ownership · Insist on the Highest Standards.</div>
+<div class="say"><div class="label">Spoken framework</div><p>“Consensus is not everyone liking the answer. It is every material objection represented accurately, a named decider choosing with the consequences visible, and the owners committing to execute. Before a council, I pre-wire every requirement row with its owner. Working sessions converge on one table, not competing decks. I convert objections into spec, option, risk, or out-of-scope rows. The council receives the unresolved decisions and my recommendation; it does not discover the program live. After the decision, I record who disagreed, what evidence would reopen it, and what commitment now means.”</p></div>
+<div class="star">
+<p><span class="stag">S — Situation.</span> UDC was one physical building moving from two systemic warehouses to one omni facility while upgrading the WMS, with seven system families and about two dozen named systems on the impact view (record-from-docs).</p>
+<p><span class="stag">T — Task.</span> I had to get architecture, engineering, finance, digital, operations and planning to accept one transition design without turning sign-off into serial vetoes.</p>
+<p><span class="stag">A — Action.</span> I put 44 requirements in one owner-tagged table across 23 named systems; pre-wired each row; ran disagreements in working sessions; turned “this will break my flow” into an interface, acceptance, or risk row; kept current state, target state, interim state and rejected options visible; then asked council for three decisions: architecture, staged sequence, and scope / freeze boundary. Once decided, owners either committed or documented the evidence that could reopen the row.</p>
+<p><span class="stag">R — Result.</span> The sign-off pack created one buildable contract. The planned late-July FSD landed August 14, so I do not claim the gate held to plan; the correction was to expose predecessor evidence earlier.</p>
+</div>
+<h3>Disagree-and-commit mechanics</h3>
+<ol><li><b>Restate:</b> I write the strongest version of the objection and get the owner to confirm it.</li><li><b>Classify:</b> requirement, risk, option, assumption, or preference. Preference does not silently become a blocker.</li><li><b>Price:</b> impact on customer, schedule, cost, reversibility, and the owner’s operating burden.</li><li><b>Decide:</b> named decider, date, rationale, rejected option, and evidence that can reopen it.</li><li><b>Commit:</b> dissent remains in the log; execution follows the chosen row. I follow up privately if the owner cannot commit.</li></ol>
+<div class="trade"><b>TRADE-OFF I MADE:</b> I accepted upstream build at risk from June 9 before July 31 council sign-off, but fenced it to reversible merchandising work. WMS conversion, outbound, finance, and EDW waited for the decision.</div>
+<div class="proof"><b>Proof story + number:</b> UDC council — <span class="num">44 requirement rows / 23 named systems</span> with owner-tagged sign-off (record-from-docs).</div>
+<div class="safe"><b>SAFE-SAY:</b> “The primary deck records 44 requirements and 23 named systems; I use ‘about a dozen domains’ only as a spoken simplification.”<br><b>If asked who built it:</b> “I owned the council mechanism and integrated specification; system architects owned their designs and engineers owned implementation.”</div>
+<div class="learn"><b>Failure / learning:</b> Pre-wiring agreement is not enough; I now pre-wire the evidence required to graduate each row, because UDC’s FSD date still slipped.</div>
+</section>
+
+<section class="page">
+<div class="kicker">Framework card 2 · spoken-ready</div>
+<h1>AMBIGUITY — REDUCE UNCERTAINTY WITHOUT WAITING FOR CERTAINTY</h1>
+<div class="meta"><b>LPs:</b> Bias for Action · Are Right, A Lot · Ownership · Deliver Results.</div>
+<div class="say"><div class="label">Spoken framework</div><p>“I separate unknowns from decisions. Every unknown goes into an assumption log with an owner, expiry date, impact if false, and the cheapest test. Discovery is staged: map the flow, test the highest-consequence seams, then deepen only where the decision depends on it. I decide reversible, bounded choices inside the approved guardrails. I escalate irreversible choices, cross-org priority, policy, customer exposure, or a risk above the agreed tolerance. That lets engineering move while leadership retains the decisions only leadership can make.”</p></div>
+<div class="two">
+<div class="card"><h3>I decide alone</h3><ul><li>Sequence of working sessions and discovery tests.</li><li>Format and operating cadence of logs.</li><li>Reversible work inside signed scope and budget.</li><li>Issue classification against published definitions.</li><li>When evidence is incomplete, a bounded experiment with switches and named blast radius.</li></ul></div>
+<div class="card"><h3>I escalate for a decision</h3><ul><li>Irreversible data or truth migration.</li><li>Scope, architecture, policy, or peak-freeze change.</li><li>Cross-org resource collision I cannot resolve with sequencing.</li><li>Customer exposure above tolerance.</li><li>Go / hold when evidence and business urgency conflict.</li></ul></div>
+</div>
+<h3>The assumption-log sentence</h3>
+<div class="meta">“I do not say ‘we need more information.’ I say: assumption, owner, expiry, cheapest test, consequence if false, and which decision it blocks.”</div>
+<div class="star">
+<p><span class="stag">S — Situation.</span> UDC’s architecture and FSD were not yet signed, but some upstream merchandising work had a long lead time and the integrated schedule could not absorb waiting for every downstream answer.</p>
+<p><span class="stag">T — Task.</span> Preserve speed without letting provisional work harden into an unapproved architecture.</p>
+<p><span class="stag">A — Action.</span> I split the plan by reversibility. MCS / FRAME work began June 9 as a fenced, reversible track. I documented assumptions and prevented the WMS-conversion, outbound, finance, and EDW tracks from opening until the council decision. The July 31 council then decided the target architecture and staged timeline; the FSD closed August 14.</p>
+<p><span class="stag">R — Result.</span> We did not lose the entire lead-time window, and the highest-blast-radius work stayed behind the gate. I also gained a reusable rule: start early only where rollback is cheap and the provisional boundary is explicit.</p>
+</div>
+<div class="trade"><b>TRADE-OFF I MADE:</b> I accepted rework risk on a reversible slice to protect schedule, and rejected at-risk starts for irreversible truth migration.</div>
+<div class="proof"><b>Proof story + number:</b> UDC ambiguity — build began <span class="num">June 9</span> before the <span class="num">July 31</span> sign-off, fenced by reversibility (record-from-docs).</div>
+<div class="safe"><b>SAFE-SAY:</b> “I did not start the whole build early; I allowed a bounded upstream slice while the higher-risk tracks stayed gated.”<br><b>Source sentence:</b> “Those dates and track boundaries are on the council timeline.”</div>
+<div class="learn"><b>Failure / learning:</b> The FSD still landed August 14. I now put assumption expiry and evidence owner directly on the integrated milestone, not only in the RAID log.</div>
+</section>
+
+<section class="page">
+<div class="kicker">Framework card 3 · spoken-ready</div>
+<h1>STAKEHOLDER MANAGEMENT &amp; COMMUNICATION — DIFFERENT VIEWS, ONE DECISION SYSTEM</h1>
+<div class="meta"><b>LPs:</b> Earn Trust · Ownership · Success and Scale Bring Broad Responsibility · Deliver Results.</div>
+<div class="say"><div class="label">Spoken framework</div><p>“I map stakeholders by what I need from them, what they need to trust, and how they consume evidence. Engineers get interface contracts, owners, test failures and decision deadlines. Operators get process changes, control screens, training prerequisites and fallback. Executives get metric, trend, driver and ask. I use the same underlying rows so those are views, not different truths. I escalate only when I need a decision, with options, recommendation, cost of delay and the date the decision expires.”</p></div>
+<table><thead><tr><th>Who I needed</th><th>What I needed</th><th>How I got it</th><th>Communication contract</th></tr></thead><tbody>
+<tr><td><b>Architecture / engineering</b></td><td>System owner per row; interface and nonfunctional acceptance; LOE; rollback path.</td><td>Owner-tagged requirement table, working sessions, design review, E2E matrix.</td><td>Weekly IT block; async decision pre-read; red = cause, owner, date.</td></tr>
+<tr><td><b>Operations / business owners</b></td><td>Real process, test actors, control ownership, training and cutover readiness.</td><td>Flow walk-throughs, demos during build, dated E2E days, role-based runbook.</td><td>Weekly business block; readiness scorecard; cutover notices in operator language.</td></tr>
+<tr><td><b>Finance / risk / security</b></td><td>Cost basis, policy constraints, access lead time, audit and reconciliation.</td><td>Early approver map, explicit review milestone, signed decision or exception.</td><td>Decision log and evidence appendix; no surprise at go/no-go.</td></tr>
+<tr><td><b>Executive steering</b></td><td>Cross-org decisions, scope / date / risk trade-offs, go / hold.</td><td>One-page options and recommendation; rejected option remains visible.</td><td>Metric → trend → driver → ask; answer in the room, audit in appendix.</td></tr>
+</tbody></table>
+<h3>Escalation test</h3>
+<div class="meta">I escalate when: the decider is outside the team; the decision changes scope, policy, architecture, customer exposure, or shared priority; and the delay has a date. I do not escalate status, interpersonal discomfort, or a problem without a recommendation.</div>
+<div class="star">
+<p><span class="stag">S — Situation.</span> UDC crossed merchandising, WMS, digital, finance, reporting, HR, robotics, and distribution operations, each with a valid local optimization.</p>
+<p><span class="stag">T — Task.</span> Keep approximately two dozen named systems aligned without forcing every stakeholder into every meeting.</p>
+<p><span class="stag">A — Action.</span> I used a stakeholder map by decision and phase; separated the steering agenda into IT and business blocks; kept one RAID, requirement, decision, and issue grammar; pre-wired owners; and escalated the peak-freeze boundary as a decision with options rather than as a red status.</p>
+<p><span class="stag">R — Result.</span> The council received decision-ready material, E2E dates became shared commitments, and the staged go-lives completed with zero customer-facing incidents (record).</p>
+</div>
+<div class="trade"><b>TRADE-OFF I MADE:</b> I rejected one giant weekly meeting. Separate blocks reduced attendance cost, while the shared rows and join decisions prevented business / IT drift.</div>
+<div class="proof"><b>Proof story + number:</b> UDC stakeholder system — <span class="num">seven system families and about two dozen named systems</span> on one impact view (record-from-docs).</div>
+<div class="learn"><b>Failure / learning:</b> A late FSD proved that communication frequency is not decision closure; I now end every forum with decision, owner, evidence, and expiry.</div>
+</section>
+
+<section class="page">
+<div class="kicker">Framework card 4 · spoken-ready</div>
+<h1>COST VS SPEED — PRICE THE OPTIONS, THEN BUY REVERSIBILITY</h1>
+<div class="meta"><b>LPs:</b> Frugality · Bias for Action · Insist on the Highest Standards · Deliver Results.</div>
+<div class="say"><div class="label">Spoken framework</div><p>“I do not frame cost versus speed as cheap versus fast. My options page carries delivery speed, direct cost, operational risk, reversibility, cost of delay, and what evidence unlocks the next stage. The rejected option stays visible so leadership knows what we declined and can reopen it if conditions change. I prefer the fastest option whose failure is bounded and recoverable. Stage gates let us buy information before buying full scale.”</p></div>
+<table><thead><tr><th>Decision</th><th>Option chosen</th><th>Option rejected — remains visible</th><th>How I priced it</th><th>Gate</th></tr></thead><tbody>
+<tr><td><b>UDC launch shape</b></td><td>Two waves: upstream PO creation, then combined inventory / WMS release.</td><td>One big-bang truth and WMS change.</td><td>Chosen path carried interim-state operating cost; rejected path carried larger rollback radius and peak exposure.</td><td>Each wave had its own E2E and go/no-go evidence.</td></tr>
+<tr><td><b>Inventory capacity</b></td><td>One comingle pool with channel reserves and a new selling identity.</td><td>Keep separate pools and add capacity around them.</td><td>Architecture / change cost versus ongoing space, transfer, and duplicate-truth burden; no invented dollar.</td><td>Council signs identity, reserve, and transition requirements.</td></tr>
+<tr><td><b>JDA date</b></td><td>Hold the date only after three mocks earn tolerance.</td><td>Reduce rehearsal cadence to protect schedule optics.</td><td>Mock effort is visible; production recovery and customer exposure dominate the alternative.</td><td>Published 0.5% tolerance; mock three reached 0.3% (record).</td></tr>
+<tr><td><b>Ambiguous build</b></td><td>Start a reversible upstream slice at risk.</td><td>Start every track, or wait for every signature.</td><td>Bounded rework versus total schedule delay; irreversible tracks stay gated.</td><td>Architecture council before high-blast-radius tracks open.</td></tr>
+</tbody></table>
+<h3>My five-column decision read</h3>
+<ol><li><b>Cost:</b> direct spend plus operating burden and rework.</li><li><b>Speed:</b> earliest useful capability, not merely code complete.</li><li><b>Risk:</b> probability × customer / operational blast radius, expressed plainly.</li><li><b>Reversibility:</b> switch, rollback time, data restoration, and who can invoke it.</li><li><b>Cost of delay:</b> customer, revenue, peak, or resource consequence by the next real decision date. If not sourced, I describe it without inventing dollars.</li></ol>
+<div class="star"><p><span class="stag">S</span> UDC combined an inventory truth change with a WMS upgrade in a live building. <span class="stag">T</span> Protect peak and customer continuity without turning safety into indefinite delay. <span class="stag">A</span> I kept big bang on the options page, recommended two waves, preserved rollback boundaries, and required E2E evidence before each step. <span class="stag">R</span> Both go-lives completed with zero customer-facing incidents (record), and DC Ops measured +15% processing efficiency after stabilization (record).</p></div>
+<div class="trade"><b>TRADE-OFF I MADE:</b> I bought safety with an interim state and its support burden; I rejected one faster date with a much larger recovery domain.</div>
+<div class="proof"><b>Proof story + number:</b> RP→JDA — three mocks moved variance <span class="num">7.0% → 1.8% → 0.3%</span> against a pre-published 0.5% tolerance (record).</div>
+<div class="learn"><b>Failure / learning:</b> A date is not a benefit if readiness was silently removed to reach it; after G2, prerequisite tests are never traded away without naming the new risk.</div>
+</section>
+
+<section class="page">
+<div class="kicker">Portfolio view · one page</div>
+<h1>MY PROGRAMS AT A GLANCE</h1>
+<table><thead><tr><th style="width:18%">Program</th><th style="width:17%">Scale</th><th style="width:23%">Gates</th><th style="width:20%">What went wrong</th><th>What I changed</th></tr></thead><tbody>
+<tr><td><b>UDC dual inventory + WMS</b><br>Sephora · UDC B1</td><td>About 15 months; 44 requirements / 23 named systems; about 30 build tracks is a user anchor.</td><td>Discovery ownership; council decision; signed FSD; dated Inbound / Dotcom / Retail E2E; Blocker + Critical zero; cutover invariants; blockers/day for hypercare.</td><td>FSD planned Jul 26, signed Aug 14. Retail E2E planned Jan 15 and completed at end of January after Locus re-slot.</td><td>Put evidence owners and predecessor tests on milestones; staged two go-lives; read go/no-go and hypercare from counted rows.</td></tr>
+<tr><td><b>RP→JDA migration</b><br>Sephora · P2</td><td>Two DCs; eight months; about $1.8M budget, roughly 3% under (record).</td><td>Written phase entrance / exit; three mock cutovers; 0.5% tolerance; Blocker + Critical zero; rollback per interface.</td><td>I lacked a WMS-experience shortcut; the first mock was 7.0%, far outside tolerance.</td><td>Used gates instead of confidence; rehearsed to 1.8%, then 0.3%; made tolerance predate results.</td></tr>
+<tr><td><b>Locus robotics</b><br>Sephora · P3</td><td>Live UDC robotics transition; physical and system dependencies; full volume in week three.</td><td>98% quality gate; volume throttle; weekly read; retail retest after re-slot.</td><td>Week two reached 94%, below the 98% bar; retail testing slipped about three weeks.</td><td>Held volume rather than redefining quality; re-slotted transparently; increased only after evidence crossed the gate.</td></tr>
+<tr><td><b>Crux transition</b><br>Flexport · P4</td><td>79 customers; $185,892 ARR base; 294,581 annual containers (record-from-docs).</td><td>Apples-to-apples reliability baseline; destination owner and date per customer; residual backlog before decommission.</td><td>Raw 25% versus 63% comparison mixed different populations; normalization exposed a remaining variance problem.</td><td>Normalized first, then improved the residual; kept migration ownership separate from metric advocacy.</td></tr>
+<tr><td><b>Canada managed bulk ship</b><br>Sephora · UDC B2</td><td>About 13% volume; 99 planned brands in 20 / 40 / 39 waves; about 2.5M units front-load (plan, record-from-docs).</td><td>Discovery sign-off; business datasets; pilot / wave readiness; inventory transfer before sourcing flip; nightly-batch sequencing.</td><td>Post-launch outcome is absent from sources; I will not turn the plan into a result.</td><td>Speak to discovery deliverables and launch plan only; VERIFY how many brands moved and the operational outcome.</td></tr>
+<tr><td><b>S/4HANA / ISM</b><br>Bench only</td><td>One-line bridge; already told earlier in the loop.</td><td>Signed inventory policy, reconciliation, publish-only truth, governed overrides.</td><td>My first in-transit rule was too conservative.</td><td>Changed the policy through evidence and the same signatories; do not lead with this story today.</td></tr>
+</tbody></table>
+<div class="safe"><b>Portfolio close:</b> “Across these programs, the technology differs; the mechanism is consistent: one owned specification, evidence before each irreversible step, a rehearsed recovery path, and a close based on stability.”</div>
+<div class="small"><b>Basis:</b> record = Apple workbook / reconciled candidate record; record-from-docs = primary program artifact; user anchor = GFiber v8 only and should be qualified if probed.</div>
+</section>
+
+<section class="page">
+<div class="kicker">Question → story router · page 1 of 2</div>
+<h1>ALL 16 LEADERSHIP PRINCIPLES</h1>
+<p class="small">Use the exact story pointer; the Bar Raiser bank contains the full STAR answer and probing depth. AIQB citations refer to the Amazon Interview Question Bank.</p>
+<table class="tight"><thead><tr><th>LP / AIQB prompt</th><th>Exact pointer</th><th>STAR landing line</th><th>Number</th></tr></thead><tbody>
+<tr><td><b>Customer Obsession</b><br><span class="cite">AIQB: Customer Obsession Q6</span> — customer asked for something that would not address the need.</td><td><b>R1</b> routing guide; backup <b>G1/F1</b> UAT crash.</td><td>S: carrier blame on weak data. T: find real need. A: measurement gate first. R: enforceable service.</td><td>~55% true → 99% DQ (record).</td></tr>
+<tr><td><b>Ownership</b><br><span class="cite">AIQB: Ownership Q1</span> — significant work outside responsibility.</td><td><b>R5</b> trace ID; backup <b>G3/F2</b> security review.</td><td>S: six-system seam lacked tracing. T: own delivery seam. A: propose cross-team contract. R: faster recovery.</td><td>Blocker MTTR −50% (record-from-docs).</td></tr>
+<tr><td><b>Invent &amp; Simplify</b><br><span class="cite">AIQB: Invent and Simplify Q5</span> — usual approach would not work.</td><td><b>R2</b> carrier bid; backup <b>R7</b>.</td><td>S: “optimizer” problem was reconciliation. T: simplify. A: one lane master and rules. R: shorter cycle.</td><td>About 6 weeks → about 3 (user anchor).</td></tr>
+<tr><td><b>Are Right, A Lot</b><br><span class="cite">AIQB: Are Right, A Lot Q7</span>.</td><td><b>R5</b>; backup <b>F3</b> in-transit reversal.</td><td>S: bug location took hours. T: test my system hypothesis. A: per-hop evidence. R: time fell; or own reversal.</td><td>2–4 hours to locate; MTTR −50%.</td></tr>
+<tr><td><b>Learn &amp; Be Curious</b><br><span class="cite">AIQB: Learn and Be Curious Q2</span>.</td><td><b>R7</b> LLM agent; backup <b>P3</b> Locus.</td><td>S: working demo was too costly. T: learn evaluation and routing. A: eval set, model tiers, citation rule. R: viable operation.</td><td>$25 → $0.40 / incident (record).</td></tr>
+<tr><td><b>Hire &amp; Develop</b><br><span class="cite">AIQB: Hire and Develop the Best Q4</span>.</td><td><b>R9</b> QA lead; backup <b>R3</b> site super-users.</td><td>S: cadence lacked ownership. T: create leader, not compliance. A: QA owns gate. R: mechanism copied.</td><td>Four-week cadence in six weeks; critical defects −50% (record).</td></tr>
+<tr><td><b>Highest Standards</b><br><span class="cite">AIQB: Insist on the Highest Standards Q6</span>.</td><td><b>R8</b> issues log; backup <b>P3</b>.</td><td>S: many defects could become status noise. T: make closure auditable. A: severity, owner, evidence. R: safe release.</td><td>836 rows; 85.4% closed; zero customer incidents.</td></tr>
+<tr><td><b>Think Big</b><br><span class="cite">AIQB: Think Big Q1</span>.</td><td><b>R1</b>; backup <b>R9</b>.</td><td>S: Austria pilot. T: make reusable control. A: common data and Finance gate. R: scaled to 25 locations.</td><td>About $8M validated across 25 locations (record).</td></tr>
+<tr><td><b>Bias for Action</b><br><span class="cite">AIQB: Bias for Action Q8</span>.</td><td><b>R6</b> two programs; backup <b>P6</b>.</td><td>S: date pulled forward. T: preserve both. A: one ruler, two-pass handoff. R: both dates held.</td><td>Compressed launch inside four weeks (record).</td></tr>
+<tr><td><b>Frugality</b><br><span class="cite">AIQB: Frugality Q4</span>.</td><td><b>R7</b>; backup <b>R3</b>.</td><td>S: agent cost blocked scale. T: keep quality, cut unit cost. A: route easy work cheaply. R: viable cost.</td><td>98% cost reduction per incident (record).</td></tr>
+<tr><td><b>Earn Trust</b><br><span class="cite">AIQB: Earn Trust Q5</span>.</td><td><b>R4</b> ownership split; backup <b>G2</b>.</td><td>S: two orgs overlapped. T: resolve without turf win. A: one row per work item. R: written boundary.</td><td>15 items: 12 export / 3 import (record-from-docs).</td></tr>
+<tr><td><b>Dive Deep</b><br><span class="cite">AIQB: Dive Deep Q6</span>.</td><td><b>R5</b>; backup <b>R1</b>.</td><td>S: aggregate “system issue.” T: find seam. A: events-in / events-out per hop. R: defect isolated faster.</td><td>2–4 hours before; MTTR −50%.</td></tr>
+<tr><td><b>Have Backbone</b><br><span class="cite">AIQB: Have Backbone; Disagree and Commit Q3</span>.</td><td><b>R6</b>; backup <b>R2</b>.</td><td>S: competing priorities. T: challenge false blockers. A: classify on one ruler. R: commit after decision.</td><td>Inside four weeks; original date held.</td></tr>
+<tr><td><b>Deliver Results</b><br><span class="cite">AIQB: Deliver Results Q1</span>.</td><td><b>UDC B1</b>; backup <b>P2</b>.</td><td>S: coupled live-building change. T: stage safely. A: gates and two waves. R: stable launch.</td><td>+15% efficiency; zero customer-facing incidents (record).</td></tr>
+<tr><td><b>Earth’s Best Employer</b><br><span class="cite">AIQB: Strive to be Earth’s Best Employer Q5</span>.</td><td><b>R6</b>; backup <b>R9</b>.</td><td>S: pulled-forward work risked burnout. T: protect people and dates. A: two-pass handoff, 45-minute forum. R: no 24-hour heroics.</td><td>45-minute forum (record).</td></tr>
+<tr><td><b>Broad Responsibility</b><br><span class="cite">AIQB: Success and Scale Bring Broad Responsibility Q1</span>.</td><td><b>R4</b>; backup <b>F3</b>.</td><td>S: local choice affected customer / partner system. T: own second-order effect. A: shared goals or governed reversal. R: safer whole.</td><td>15 work items; or oversell increase zero (user anchor).</td></tr>
+</tbody></table>
+</section>
+
+<section class="page">
+<div class="kicker">Question → story router · page 2 of 2</div>
+<h1>INFRASTRUCTURE / PROGRAM PROMPTS</h1>
+<table><thead><tr><th style="width:24%">Prompt</th><th style="width:18%">Lead pointer</th><th>STAR spine</th><th style="width:19%">Probe / number</th></tr></thead><tbody>
+<tr><td><b>Largest program you ran</b></td><td><b>UDC pack B1</b></td><td>S coupled truth + WMS change in live DC. T own end-to-end operating system. A five gates, council, E2E, staged cutover, hypercare. R stable release.</td><td>About 15 months; 44 rows / 23 systems; zero customer incidents.</td></tr>
+<tr><td><b>Deploy at scale</b></td><td><b>P2 RP→JDA</b><br>backup R3</td><td>S two DCs. T migrate without experience shortcut. A written gates and three mocks. R both DCs migrated inside budget.</td><td>Eight months; about $1.8M; ~3% under; 0.3% final mock.</td></tr>
+<tr><td><b>Trade off cost vs speed</b></td><td><b>Framework 4 + UDC B1</b></td><td>S big-bang was faster on paper. T protect peak and recoverability. A price two waves vs one. R zero customer-facing incidents.</td><td>Say interim-state cost; do not invent dollars.</td></tr>
+<tr><td><b>Handle ambiguity</b></td><td><b>Framework 2 + UDC B1</b></td><td>S sign-off pending. T preserve lead time. A start only reversible upstream slice, fence high-risk tracks. R moved with bounded rework.</td><td>June 9 start; July 31 council; Aug 14 FSD.</td></tr>
+<tr><td><b>Stakeholder conflict</b></td><td><b>Framework 1 / UDC council</b><br>backup R4</td><td>S local optimizations conflicted. T one decision. A strongest objection into a row, price, named decider, commit. R buildable contract.</td><td>44 requirement rows / 23 systems.</td></tr>
+<tr><td><b>Hold a go-live</b></td><td><b>P3 Locus</b><br>backup G2</td><td>S quality below line. T protect operation despite schedule pressure. A throttle, do not redefine bar, retest. R full volume only after recovery.</td><td>98% bar; 94% week two; full volume week three.</td></tr>
+<tr><td><b>Incident / hypercare</b></td><td><b>UDC B1</b><br>backup P6 / R5</td><td>S production transition. T stabilize and close on evidence. A daily blocker burn-down, customer impact, reconciliation, control owner. R exit by blockers/day.</td><td>UDC issue burn-down and under-two/day bar are user-anchor detail; qualify.</td></tr>
+<tr><td><b>Failure / missed deadline</b></td><td><b>UDC B5</b><br>backup G2</td><td>S FSD date was mine. T recover without hiding slip. A expose cause, re-sequence, protect downstream gates. R signed Aug 14; mechanism changed.</td><td>Planned Jul 26; signed Aug 14 (record resolution).</td></tr>
+<tr><td><b>Communicate to executives and engineers</b></td><td><b>Framework 3</b></td><td>S same program needs different depth. T preserve one truth. A one row set, role-based views; executive metric/trend/driver/ask. R faster decisions.</td><td>Seven families / about two dozen named systems.</td></tr>
+<tr><td><b>Cutover mechanics</b></td><td><b>P2</b><br>then UDC B1</td><td>S irreversible switch. T make live event routine. A owner-duration-predecessor runbook, mocks, checkpoints, trigger-based rollback. R earned go.</td><td>Three mocks; 0.5% tolerance.</td></tr>
+</tbody></table>
+<h3>Fast Bar Raiser backups</h3>
+<div class="two">
+<div class="card"><p><b>Disagreed with manager:</b> R6 — one ruler, then commit.</p><p><b>Influenced without authority:</b> R4 — one owner per work item.</p><p><b>Simplified a process:</b> R2 — lane master before solver.</p><p><b>Developed someone:</b> R9 — QA owns the gate.</p></div>
+<div class="card"><p><b>Changed mind with data:</b> F3 — in-transit policy reversal.</p><p><b>Tight timeline:</b> R6 — pulled forward one month.</p><p><b>Learned a new domain:</b> R7 or P2.</p><p><b>Quality conflict:</b> P3 — 94% did not become “close enough.”</p></div>
+</div>
+<div class="safe"><b>Router rule:</b> Start with the direct answer, then S/T/A/R. Land one number and stop. If Rocky asks for depth, add the decision mechanism or failure—never another list of project facts.</div>
+</section>
+
+<section class="page">
+<div class="kicker">Close · questions · integrity</div>
+<h1>QUESTIONS TO ASK ROCKY</h1>
+<ol>
+<li><b>Infrastructure deployment cadence:</b> “How does your organization balance a fixed infrastructure release cadence with application teams that have different readiness and rollback constraints?”</li>
+<li><b>Shared launch / peak-freeze calendar:</b> “Where do Infrastructure and Supply Chain jointly own the launch calendar and peak-freeze boundaries, and where do you see handoff friction today?”</li>
+<li><b>Design review:</b> “When a program manager comes into one of your design reviews, what do you most want them to bring beyond schedule—options, operational readiness, dependency evidence, or something else?”</li>
+<li><b>Holding go-live:</b> “When business urgency and an engineering readiness signal conflict, what evidence most often causes you to hold a go-live?”</li>
+</ol>
+<h2>VERIFY — safe sentences</h2>
+<table><thead><tr><th>Item</th><th>What is verified</th><th>Safe sentence to use</th></tr></thead><tbody>
+<tr><td><b>Canada outcome</b></td><td>Discovery scope, planned dates, 99-brand waves, about 2.5M-unit front-load, and Rajesh named as PM are in the deck. Post-launch outcome is absent.</td><td>“At discovery exit, we had a signed plan for 99 brands in three waves. I would verify how many brands actually moved and the operational result before claiming it.”</td></tr>
+<tr><td><b>UDC systems count</b></td><td>Primary deck: seven families, about two dozen named systems; requirements table: 44 rows across 23 named systems. Earlier spoken shorthand says about a dozen domains.</td><td>“The council deck names about two dozen systems in seven families; when I say about a dozen, I mean operating domains, not a literal system count.”</td></tr>
+<tr><td><b>UDC build tracks</b></td><td>About 30 tracks is a candidate / GFiber user anchor, not directly counted in the council deck.</td><td>“My working plan had about 30 tracks; the primary deck independently supports 44 requirements across 23 named systems.”</td></tr>
+<tr><td><b>UDC hypercare bar</b></td><td>Issue burn-down is record-from-docs. Under two blockers per day and exit week three of four are user anchors.</td><td>“I used a sustained blockers-per-day exit bar; the exact under-two threshold is from my program record and I would confirm it if exactness matters.”</td></tr>
+<tr><td><b>Locus 94% / week three</b></td><td>Gate shape is reconciled; part of the detail is candidate record / user anchor.</td><td>“The rule was a 98% gate; at 94% I throttled rather than redefining the bar, and full volume followed after recovery.”</td></tr>
+<tr><td><b>Crux result boundary</b></td><td>79 customers, $185,892 ARR base, and 294,581 annual containers are transition-document facts. ARR is the legacy base, not a one-period loss.</td><td>“The transition document records 79 customers and $185,892 of annual recurring revenue in the legacy base; I do not claim that entire amount was lost.”</td></tr>
+</tbody></table>
+<h2>SAFE-SAY BANK</h2>
+<div class="two">
+<div class="card"><h3>Ownership</h3><p>“I built the operating system—requirements, gates, cadence, decision path and go/no-go recommendation. Architects owned component design; engineers built and tested the code.”</p><h3>Numbers</h3><p>“I will distinguish primary-document facts, my reconciled program record, and user anchors. If the source only proves a plan, I will call it a plan.”</p></div>
+<div class="card"><h3>Failure</h3><p>“The planned date was mine. I will not blame the approver; I failed to put the predecessor evidence and owner on the milestone early enough.”</p><h3>Close</h3><p>“The common thread is not supply-chain analysis. It is governing coupled engineering change so every irreversible step is earned by evidence and every release has a recovery path.”</p></div>
+</div>
+<h2>20-SECOND VERSION</h2>
+<div class="say"><p>“I am a program leader who turns cross-system ambiguity into an owned specification, gates build with end-to-end evidence, and runs cutover and hypercare from counted rows. UDC is the proof: 44 requirements across 23 named systems, staged go-lives, and zero customer-facing incidents. My misses—late FSD and the RF-device dependency—are why predecessor evidence and rollback are now explicit on every plan.”</p></div>
+<p class="small"><b>Primary companions:</b> UDC/Canada story pack B1/B2/B5; Rocky program stories P2–P4; Rocky Bar Raiser bank R1–R9 and F1–F4; Apple delta G1–G3. Basis vocabulary: record · record-from-docs · user anchor.</p>
+</section>
+
+</body>
+</html>

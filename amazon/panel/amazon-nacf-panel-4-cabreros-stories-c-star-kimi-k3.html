@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Part 4C — James Cabreros — governance, migration, AI tooling, router</title>
+<style>
+  @page { size: letter; margin: 0.62in 0.68in 0.68in 0.68in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", "Inter", Arial, sans-serif; font-size: 10.3pt; line-height: 1.38; color: #1c1c1c; }
+  h1 { font-size: 18pt; line-height: 1.15; margin: 0 0 6px; letter-spacing: -0.02em; }
+  h2 { font-size: 13pt; margin: 16px 0 6px; padding-top: 8px; border-top: 2px solid #1a2744; page-break-after: avoid; }
+  h2.break { page-break-before: always; }
+  h3 { font-size: 11.3pt; margin: 12px 0 4px; page-break-after: avoid; color: #1a2744; }
+  h3.st { font-size: 12pt; color: #1c1c1c; border-left: 4px solid #1a2744; padding-left: 8px; margin-top: 4px; page-break-before: always; }
+  h4 { font-size: 10.3pt; margin: 9px 0 3px; page-break-after: avoid; color: #8a1c2b; }
+  p { margin: 0 0 7px; }
+  ul, ol { margin: 2px 0 8px; padding-left: 18px; }
+  li { margin: 0 0 3px; }
+  .kicker { font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .tblock { background: #1a2744; color: #fff; padding: 12px 18px; margin: 0 0 10px; }
+  .tblock .l1 { font-size: 15pt; font-weight: 700; letter-spacing: -0.01em; }
+  .tblock .l2 { font-size: 10.5pt; color: #e6ddcb; margin-top: 3px; }
+  .tblock .l3 { font-size: 9.5pt; color: #e6ddcb; margin-top: 3px; }
+  .meta { background: #f4f1ea; border-left: 4px solid #1a2744; padding: 8px 12px; margin: 8px 0 10px; font-size: 10pt; }
+  .meta div { margin: 1px 0; }
+  .say { background: #f7f4ee; border: 1px solid #d9d0c1; border-left: 4px solid #8a1c2b; padding: 8px 12px 4px; margin: 6px 0 10px; page-break-inside: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, serif; font-size: 10.4pt; line-height: 1.42; }
+  .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .star { background: #fcfbf8; border: 1px solid #d9d0c1; padding: 7px 12px 3px; margin: 4px 0 10px; font-size: 9.7pt; }
+  .star p { margin: 0 0 5px; }
+  .stag { font-weight: 700; color: #8a1c2b; }
+  .hon { background: #f3f0fa; border-left: 4px solid #5b4a8a; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.3pt; color: #333; }
+  .hon strong { color: #5b4a8a; }
+  .design { background: #fff4e0; border: 1.5px solid #b8860b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.3pt; }
+  .design strong { color: #7a5a00; letter-spacing: 0.06em; }
+  .doc { background: #eef4f6; border: 1px solid #c3d5da; border-left: 4px solid #1f6f7a; padding: 7px 12px 4px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .doc p { margin: 0 0 5px; }
+  .doc .label { color: #1f6f7a; }
+  .kc { background: #fdf8ef; border: 1px solid #e4d2ac; border-left: 4px solid #b8860b; padding: 6px 12px 4px; margin: 6px 0 10px; font-size: 9.4pt; }
+  .kc ul { margin: 2px 0 6px; padding-left: 16px; }
+  .inf { background: #fbf7ec; border-left: 4px solid #b8860b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.4pt; }
+  .inf strong { color: #7a5a00; }
+  .rules { background: #fdf0f0; border: 1px solid #e3b7b7; border-left: 4px solid #8a1c2b; padding: 7px 12px; margin: 6px 0 10px; font-size: 9.5pt; page-break-inside: avoid; }
+  .rules strong { color: #8a1c2b; }
+  .qa { border-left: 3px solid #d9d0c1; padding: 2px 0 2px 10px; margin: 0 0 7px; font-size: 9.4pt; page-break-inside: avoid; }
+  .qa p { margin: 0 0 3px; }
+  .qa p.q { color: #1a2744; font-weight: 700; }
+  .sh { font-size: 8.8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin: 10px 0 4px; border-bottom: 1px solid #d9d0c1; padding-bottom: 2px; page-break-after: avoid; }
+  ul.res { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
+  ul.res li { margin: 0 0 3px; }
+  ul.phz { margin: 2px 0 8px; padding-left: 16px; font-size: 9.6pt; }
+  ul.phz li { margin: 0 0 3px; }
+  .pb { font-weight: 700; color: #1a2744; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 9.1pt; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #ddd; padding: 4px 6px 4px 0; }
+  th { font-size: 8.2pt; letter-spacing: 0.04em; text-transform: uppercase; color: #555; border-bottom: 1.5px solid #1a2744; }
+  table.sm { font-size: 8.4pt; }
+  table.sm th, table.sm td { padding: 3px 5px 3px 0; }
+  td.c { color: #8a1c2b; font-weight: 700; }
+  span.new { display: inline-block; background: #8a1c2b; color: #fff; font-size: 7.4pt; letter-spacing: 0.08em; padding: 1px 5px; border-radius: 3px; vertical-align: middle; margin-left: 4px; text-transform: uppercase; }
+  span.dc { display: inline-block; background: #b8860b; color: #fff; font-size: 7.4pt; letter-spacing: 0.08em; padding: 1px 5px; border-radius: 3px; vertical-align: middle; margin-left: 4px; text-transform: uppercase; }
+  span.b { display: inline-block; background: #e8eef6; color: #1a2744; font-size: 7.6pt; padding: 0 4px; border-radius: 3px; margin-left: 2px; }
+  .toc div { margin: 2px 0; font-size: 9.8pt; }
+  .toc .grp { font-weight: 700; color: #8a1c2b; margin-top: 6px; }
+  .cite { color: #1f6f7a; font-size: 8.6pt; }
+  .two { columns: 2; column-gap: 22px; }
+  .lps { font-size: 9.3pt; margin: 4px 0 8px; }
+  .lps div { margin: 0 0 2px; }
+  .onep { font-size: 9pt; line-height: 1.3; }
+  .onep .say p { font-size: 9.5pt; line-height: 1.33; }
+  .onep .star, .onep .inf, .onep .rules, .onep .qa, .onep .hon, .onep .lps, .onep .design { font-size: 8.7pt; margin-bottom: 5px; }
+  .onep .rules { page-break-inside: auto; }
+  .onep table.sm { font-size: 8pt; margin: 3px 0 5px; line-height: 1.25; }
+  .onep table.sm td, .onep table.sm th { padding: 2px 5px 2px 0; }
+  .onep .star p { margin: 0 0 3px; }
+</style>
+</head>
+<body>
+
+<div class="tblock">
+  <div class="l1">Part 4C — James Cabreros (11:00 slot; schedule listed Zhaowen Lan) — Stories C</div>
+  <div class="l2">Scope: release governance and legacy-engine migration (design cases on lived record), AI-assisted configuration tooling, policy-platform sequencing, LP router, questions to ask</div>
+  <div class="l3">Friday, October 30, 2026 · Amazon L6 Senior Supply Chain Manager, NACF Supply Chain · Rajesh Rishiyur Chandrasekaran</div>
+</div>
+
+<div class="toc">
+  <div class="grp">Contents</div>
+  <div>1. J5 · E8 — Monthly release / regression governance (DESIGN CASE) on the lived S15 four-week cadence <span class="dc">design case</span></div>
+  <div>2. J7 · E9 — Migrating a legacy rules engine without unintended deployments (DESIGN CASE) on the lived S18 RP→JDA cutover <span class="dc">design case</span></div>
+  <div>3. AI-assisted configuration tooling — one page (I1: guardrails and operator self-service angle) <span class="new">new</span></div>
+  <div>4. Legacy rules engine → policy platform: how I would sequence it — one page <span class="dc">design</span></div>
+  <div>5. Router for James — 16 LPs and process prompts → exact story pointers (real AIQB wordings)</div>
+  <div>6. Questions to ask James · source trace · VERIFY list with safe sentences</div>
+</div>
+
+<div class="rules"><strong>Rules for this part.</strong> E8 and E9 are <b>DESIGN CASES</b> from my interview-prep design engagement — I say “I designed / here is how I would run it,” never “I delivered.” Every design case is paired with a lived program I can be probed on (S15, S18, UDC B3, A4, I1). Basis labels: <b>record</b> (resume / Apple v11 / master canon) · <b>record-from-docs</b> (a page of a source document) · <b>design</b> (my proposed mechanism) · <b>illustrative</b>. Angle rule: Rocky hears the S18 and UDC programs as program/cutover; James hears them as process, configuration governance and validation. Already told Thursday (never primary here): S/4HANA / ISM, Flexport estimation, Shipment Visibility, safety stock, the 200-lane program.</div>
+
+<!-- ============ J5 ============ -->
+<h3 class="st" style="page-break-before:auto; margin-top:12px">1. J5 · E8 — Release and regression governance: how a change earns its way to production <span class="dc">design case</span></h3>
+<div class="design"><strong>DESIGN CASE + LIVED RECORD.</strong> The monthly SAP + integrations release train (E8) is a design I wrote in an interview-prep engagement; volumes illustrative. The record under it is lived: <b>S15</b> — the Sephora 20-person Product/Engineering/QA team moved from a six-week hybrid cadence to four weeks in six weeks, QA authored the release gate, critical defects −50% (record: resume; master S15). Sephora UDC facts used here are record: hard peak change-freeze October–December; anything touching the frozen spec went through the gate with an estimate; hypercare exited into the monthly release train (record: Apple v11 B1 p. 21–22; GFiber v8 S2).</div>
+<div class="meta">
+  <div><b>His bullet it answers:</b> “configuration governance — pre-deployment validation, change-management SOPs, post-incident corrective actions; fewer unintended deployments; auditability across hundreds of weekly changes.”</div>
+  <div><b>LPs:</b> Insist on the Highest Standards · Hire and Develop the Best · Earn Trust · Invent and Simplify &nbsp;|&nbsp; <b>Headline:</b> four-week cadence in six weeks; critical defects per release −50% (record).</div>
+</div>
+
+<div class="say"><div class="label">60-second pitch</div>
+<p>“At Sephora the VP asked me to move a 20-person Product, Engineering and QA team from a six-week hybrid cadence to four weeks. QA feared compressed test windows, and they were right. I had no line authority, so I made the skeptic the owner: the QA lead wrote the definition of done, I coached the frame, and we added a QA drop date with reason codes so late, heavy stories were dropped on the record instead of squeezing the test window. Four-week cadence live in six weeks; critical defects per release down 50%; neighbouring teams copied the model. Later I designed the same mechanism as a monthly release train for SAP plus integrations: scope frozen at T-minus-15, regression cells owned at the true grain, a go/no-go the QA lead owns with blocker-plus-critical at zero, rollback per transport group, and hypercare that exits on a number. The principle for your world is the same: a change rides the gate or it does not ship, and every emergency change is counted.”</p></div>
+
+<div class="star">
+<p><span class="stag">S — Situation.</span> <i>Lived (S15, record).</i> Newly joined at Sephora, the VP of Supply Chain asked me to convert a 20-person Product/Engineering/QA team from a six-week hybrid cadence to four-week agile. QA (a contracting firm) and in-house engineering were heading for a standoff: QA feared compressed test windows, and the Sev-1 trend was partly from story-accuracy defects. <i>Design case (E8, design).</i> The prompt: SAP configuration, custom objects, integration maps, the CRM, the 3PL interface and the field app all change; last month a release broke MRP. Design a train so changes ship monthly with no surprise on the floor.</p>
+<p><span class="stag">T — Task.</span> Convert the cadence in weeks, not quarters, with VP air cover and no line authority over anyone in the room — and keep escaped criticals from rising. In the design: one book of record for change (the transport/change log and the release manifest) and one primary metric — release-caused Sev 1–2 incidents per release driven to zero with the cadence held.</p>
+<p><span class="stag">A — Action.</span> What I did (lived), then what I designed on top of it.</p>
+<ul class="phz">
+<li><span class="pb">Discovery (lived).</span> One-on-ones with every person; an influencer per function; the problem statement written as “QA’s fear of compressed windows is correct.” Exit: every real objection heard privately; the QA lead agreed to author the gate.</li>
+<li><span class="pb">Gate ownership (lived).</span> The QA lead wrote the definition of done — entry criteria per story type at the Ready-for-QA transition. Engineering got review, not veto, and shaped the entry criteria. I wrote the success criteria with the VP: four-week cadence, no rise in escaped criticals, QA window protected by rule.</li>
+<li><span class="pb">Risk-scoped intake (lived).</span> Jira fields for benefit ranking and review status; a QA drop date with reason codes so a late heavy story was re-scoped on the record; QA seated on product-business calls with pre-approved scenarios; Sev-1 causes classified.</li>
+<li><span class="pb">Freeze and change control (lived, Sephora UDC).</span> Hard peak change-freeze October–December; anything touching the frozen spec went through the gate with an estimate, never absorbed quietly; after hypercare the design was handed into the monthly release train.</li>
+<li><span class="pb">The train (design, E8).</span> Commit and freeze at T−15 (definition of ready cites a regression cell) → promote to integrated QA at T−10, imported in production sequence → regression matrix plus end-to-end chain at T−5 → go/no-go at T−2, QA lead owns it: Blocker + Critical open = 0, rollback plan per transport group, freeze check → deploy → hypercare with a numeric exit. Release notes and the go/no-go record are the audit artifacts.</li>
+<li><span class="pb">Regression scope by risk (design).</span> Cells at the true grain (order type × fulfillment path × node × stock-state transition; interface round-trips per partner); an MRP-protection cell that diffs exception counts and planned-order totals by plant before vs. after the transport — an unexplained delta fails the build. Build the manual matrix first; automate the cells that fail most.</li>
+<li><span class="pb">Corrective action (design).</span> Emergency changes are allowed, counted in the postmortem and 100% retrofitted into the train; configuration and code ride separate transports so a config rollback never drags code.</li>
+</ul>
+<p><span class="stag">R — Result.</span></p>
+<ul class="res">
+<li>Four-week cadence live in six weeks for a 20-person Product/Engineering/QA team <span class="b">record</span>.</li>
+<li>Critical defects per release −50% under the drop-date rule <span class="b">record</span>; the QA lead defended the gate to engineering without me; neighbouring teams copied the ceremony from the user guide <span class="b">record</span>.</li>
+<li>Rollback (revert to six weeks) named at kickoff as a two-way door; never used <span class="b">record</span>.</li>
+<li>E8 target design metric: release-caused Sev 1–2 per release → 0, twelve trains a year with no skipped month, emergency changes ≤ 1 per release and 100% retrofitted <span class="b">design</span> — a target, not a result.</li>
+</ul>
+</div>
+
+<div class="inf"><strong>TRADE-OFF I MADE.</strong> Options: keep six weeks; go to four weeks and absorb late stories; or go to four weeks with a drop-date rule. I chose the rule and dropped low-impact stories on the record — engineering’s date protected, QA’s window protected — and covered some of the drops myself. Cost: visible scope loss each cycle. In the design, a four-week train delays small fixes; I accept that and keep a counted emergency path rather than let urgency become a side door.</div>
+<div class="inf"><strong>FAILURE / LEARNING.</strong> Development that depends on me staying is not development: the gate became durable only when its owner, not I, defended it. Hard feedback that I routed sideways through issues-log rows turned out partly to be genuine overload, and the evidence got those people help — I now check load before I treat pushback as resistance <span class="b">record: master S15 probes</span>.</div>
+<div class="lps">
+<div><b>Insist on the Highest Standards</b> — the gate could say no and survive a release-day argument; criticals −50%.</div>
+<div><b>Hire and Develop the Best</b> — I handed the load-bearing artifact to the skeptic and coached her to own it.</div>
+<div><b>Earn Trust</b> — I said publicly that QA’s fear was correct before asking for a faster cadence.</div>
+<div><b>Invent and Simplify</b> — a drop date with reason codes replaced a last-two-days bug bash.</div>
+</div>
+<div class="rules"><strong>SAFE-SAY.</strong> “The six-week conversion and the 50% cut in critical defects are my record at Sephora; the dated monthly train with T-minus-15 and the MRP diff cell is a design I wrote from that experience, not something I claim to have run at that scale.” <strong>If asked for source:</strong> “My resume line on the VP-sponsored conversion, and the master story record S15; the train is design case E8.”</div>
+<div class="say"><div class="label">20-second version</div><p>“I moved a 20-person Product, Engineering and QA team to a four-week cadence in six weeks by making the QA lead the owner of the release gate and adding a drop date with reason codes. Critical defects fell 50%. I later designed the same gate as a monthly SAP release train: frozen scope, risk-scoped regression cells, a numeric go/no-go and counted emergency changes.”</p></div>
+<div class="sh">Probes James is likely to ask</div>
+<div class="qa"><p class="q">1. You run hundreds of configuration changes a week, not a monthly train. What carries over?</p><p>The gate, not the calendar. I would classify changes by blast radius: low-risk rows go self-serve with automated validation and an audit row; high-risk rows (new node types, escape routes, capacity signals) ride a scheduled window with a go/no-go and a named rollback. The invariant is the same as at Sephora: nothing deploys that is not on the manifest, and every exception is counted. <span class="b">design</span></p></div>
+<div class="qa"><p class="q">2. How did you scope regression by risk rather than testing everything?</p><p>Lived: stories were benefit-ranked in Jira and the QA lead’s entry criteria differed by story type; heavy late stories got a drop date. Design: the matrix is at the grain the failure happens — node × channel × transition — and the cells that failed most get automated first.</p></div>
+<div class="qa"><p class="q">3. What happens when a release still breaks production?</p><p>Roll back the transport group, not the whole release; open a corrective action with a root-cause class; add the missing regression cell so the same class cannot pass again. In the design, the MRP diff cell exists because a release broke MRP. The cell, not the apology, is the corrective action.</p></div>
+<div class="qa"><p class="q">4. How did you get engineering to accept a gate written by QA?</p><p>Review, not veto: engineering shaped the entry criteria, and I covered some of the low-impact stories they had to drop. Objection became co-ownership. Two cycles on four weeks, and the QA lead was defending the gate herself.</p></div>
+
+<!-- ============ J7 ============ -->
+<h3 class="st">2. J7 · E9 — Migrating a legacy rules engine without unintended deployments: tolerance first, mocks by cause, one publisher <span class="dc">design case</span></h3>
+<div class="design"><strong>DESIGN CASE + LIVED RECORD.</strong> E9 (the ERP cutover from a legacy WMS) is a design I wrote in an interview-prep engagement; volumes illustrative. The record under it is lived: <b>S18</b> — Sephora RP → JDA WMS migration across two DCs in eight months: a 0.5% reconciliation tolerance published with Finance before mock 1; three mocks at 7% → 1.8% → 0.3%; a 72-hour in-transit freeze; legacy read-only as failback; a $20M ROI pipeline of four programs unblocked (record: resume; master S18). The “one publisher” rule is lived on Sephora UDC: no SKU with two published availability values (user anchor: GFiber v8 S2). <b>Angle for James:</b> the governance mechanics — parity, mapping as data, validation before volume, one source of truth per node. Rocky hears S18 as a program and cutover story; do not retell the budget or the team here.</div>
+<div class="meta">
+  <div><b>His bullet it answers:</b> “leads migration of a legacy placement rules engine to a next-generation centralized policy platform … architecture decisions, stakeholder alignment, sequencing, training delivery” and “fewer unintended deployments.”</div>
+  <div><b>LPs:</b> Insist on the Highest Standards · Dive Deep · Learn and Be Curious · Bias for Action &nbsp;|&nbsp; <b>Headline:</b> 7% → 1.8% → 0.3% against a 0.5% tolerance published before the first mock (record).</div>
+</div>
+
+<div class="say"><div class="label">60-second pitch</div>
+<p>“The closest thing I have run to your rules-engine migration is a WMS migration at Sephora: two DCs on a legacy system with no documentation and an eight-month deadline, and I had never run a WMS migration. The risk was the same as yours — the new platform behaves differently from the old one in a way nobody notices until it ships. So I made ‘good enough’ arithmetic before anyone tested: a 0.5% reconciliation tolerance published with Finance before the first mock. I treated mappings — units of measure, location names, status vocabularies — as data in governed tables, not code. Each mock was read by cause class, never by the headline: 7% was mapping, 1.8% was in-transit timing, 0.3% passed. At cutover a 72-hour freeze, the legacy system read-only as failback, and one rule that I designed from it: zero the old publisher before the new one publishes, so consumers read one source at a time. When hundreds of RF devices failed the conversion script, the rehearsed paper-pick fallback fired instead of a rollback; training moved 1.5 weeks and the date held.”</p></div>
+
+<div class="star">
+<p><span class="stag">S — Situation.</span> <i>Lived (S18, record).</i> Two Sephora DCs ran a legacy WMS with zero inherited documentation; a hard eight-month deadline gated a $20M ROI pipeline of four programs; inventory accuracy across two DCs could not wobble at cutover. I had never run a WMS migration. <i>Design case (E9, design).</i> A site runs a legacy system with its own book; the business wants the new platform to become the book of record with no double-promising during the switch and a Finance-grade reconciliation at go-live.</p>
+<p><span class="stag">T — Task.</span> Own the lifecycle — charter, design sign-off, interface inventory, UAT, cutover, hypercare — accountable to the sponsor and Finance, with one test of success that nobody could negotiate after the fact. Translated to a rules-engine migration: prove the new platform produces the same decisions as the old one, within a published tolerance, before it decides anything live.</p>
+<p><span class="stag">A — Action.</span> Five gates; each step is lived unless marked design.</p>
+<ul class="phz">
+<li><span class="pb">Discovery — inventory before opinions.</span> Charter written in week one with the success criteria (on the date, inside a published tolerance, zero accuracy incidents, hypercare exit under two blockers a day). Interface inventory v0 built from message logs; every interface got a named owner and a test cell. I learned the floor in month one until I could walk receive → put-away → pick → ship unaided.</li>
+<li><span class="pb">Design — tolerance and mapping as data.</span> The 0.5% tolerance published with Finance before mock 1. Conversion order fixed: masters → open orders → on-hand → in-transit as its own batch. A mapping-table standard: units of measure, locations and status vocabularies as governed data, not code. Stories slotted by business criticality × effort.</li>
+<li><span class="pb">Build &amp; Test — mocks read by cause.</span> Three mocks on production data with written root causes. Mock 1 at 7%: units of measure, location names that mapped to nothing, order-status vocabulary. Fixed in the mapping set → 1.8%. In-transit timing → the 72-hour freeze and a separate batch → 0.3%. A total that shrank without a named cause was not evidence.</li>
+<li><span class="pb">Cutover — one door, one publisher, rehearsed fallbacks.</span> Written go recommendation off mock 3; the 72-hour in-transit freeze; the legacy system read-only as failback; rollback triggers per interface written in advance (mismatch above 0.5% for two days, or ship-confirm posting failing beyond two hours) — rehearsed, never used. Hundreds of RF devices failed the conversion script; I invoked the rehearsed paper-pick fallback rather than roll back and told leadership training would slip 1.5 weeks. <i>Design (E9):</i> zero the legacy availability first, then publish the new — never the reverse.</li>
+<li><span class="pb">Hypercare — numeric exit.</span> Blockers per day read daily; exit at under two a day sustained, in week 3 of 4; the exit memo carried the single-point-dependency lesson.</li>
+</ul>
+<p><span class="stag">R — Result.</span></p>
+<ul class="res">
+<li>Reconciliation variance 7% → 1.8% → 0.3% against the 0.5% tolerance published before mock 1 <span class="b">record</span>.</li>
+<li>Two DCs live on JDA in eight months, on time; the $20M ROI pipeline of four programs unblocked the next month — slip avoided, not banked <span class="b">record</span>.</li>
+<li>Per-interface rollback rehearsed and never needed; the paper-pick fallback fired for the RF miss; training moved 1.5 weeks and the go-live date held <span class="b">record</span>.</li>
+<li>Hypercare exited in week 3 at under two blockers a day <span class="b">record</span>. E9 target metric: cutover variance inside the published tolerance with zero double-promises <span class="b">design</span>.</li>
+</ul>
+</div>
+
+<div class="inf"><strong>TRADE-OFF I MADE.</strong> Options: one mock and a long hypercare, or three full mocks. I chose three — they cost weeks that would otherwise have been spent live. I also chose the 72-hour freeze, which delayed receipts, priced with operations and scheduled off-peak. At the RF failure I chose fallback over rollback: a rollback would have reopened every converted interface to save one floor task.</div>
+<div class="inf"><strong>FAILURE / LEARNING.</strong> The RF miss was mine: RF conversion sat on the log as a task, not a risk, because I scored it by effort when impact mattered. Device testing now precedes training, and every single-point dependency gets a what-if plan regardless of size <span class="b">record</span>.</div>
+<div class="lps">
+<div><b>Insist on the Highest Standards</b> — the tolerance was published before I knew I could hit it.</div>
+<div><b>Dive Deep</b> — every mock delta carried a root-cause class and an owner.</div>
+<div><b>Learn and Be Curious</b> — I had never run a WMS migration; I learned the floor in month one.</div>
+<div><b>Bias for Action</b> — the rehearsed fallback fired in minutes instead of a rollback debate.</div>
+</div>
+<div class="rules"><strong>SAFE-SAY.</strong> “Hundreds of RF devices failed the conversion script; we ran the rehearsed paper fallback, training moved a week and a half, and the go-live date held.” Never state a device count. <strong>If asked for source:</strong> “My resume line on the dual-DC migration — three mocks to a published 0.5% tolerance — and the master record S18; the rules-engine framing is design case E9.”</div>
+<div class="say"><div class="label">20-second version</div><p>“I migrated two DCs off a legacy WMS in eight months by publishing a 0.5% reconciliation tolerance with Finance before the first mock, treating mappings as governed data, and reading every mock by cause: 7%, 1.8%, then 0.3%. At cutover one source published at a time and the fallbacks were rehearsed — one fired, and the date held.”</p></div>
+<div class="sh">Probes James is likely to ask</div>
+<div class="qa"><p class="q">1. How would that translate to a placement rules engine with no inventory to reconcile?</p><p>The “variance” becomes decision parity: replay a frozen set of real placement requests through both engines and diff the decisions by cause class — rule missing, rule translated differently, data mapping, intended change. The tolerance is published before the first replay; intended changes are listed in advance so they are not counted as defects. <span class="b">design</span></p></div>
+<div class="qa"><p class="q">2. How do you avoid two engines deciding at once?</p><p>One publisher per node at a time: the legacy engine stops deciding for a node before the platform starts, never the reverse, with the switch logged. On UDC the rule was no SKU with two published availability values; here it would be no node with two active rule sources.</p></div>
+<div class="qa"><p class="q">3. What were your rollback triggers?</p><p>Written in the charter before go-live: mismatch above tolerance for two days, or posting failing beyond two hours, with rollback per interface and the legacy system read-only as the failback. Rehearsed; never used. Per-interface rollback is why one bad interface never forced a full rollback.</p></div>
+<div class="qa"><p class="q">4. What would you do differently?</p><p>Score dependencies by impact, not effort. The RF conversion looked small, so it was a task rather than a risk. Now any dependency that can stop the floor gets a rehearsed fallback and a test before training.</p></div>
+
+<!-- ============ AI TOOLING ============ -->
+<div class="onep">
+<h3 class="st">3. AI-assisted configuration tooling — operator self-service with guardrails <span class="new">one page</span></h3>
+<div class="hon"><strong>Lived analog and angle.</strong> I1 / Apple A01 — an LLM incident-triage agent I built independently (Python/FastAPI), <b>not an employer production deployment</b> (record: Apple v11 I1, pp. 41–42). Venkata may hear I1 as a product story; James hears only the <b>guardrails, validation and operator self-service</b> angle.</div>
+<div class="say"><div class="label">The answer (about 60 seconds)</div>
+<p>“I built an independent LLM triage agent as an operations product, not a demo. Three guardrails made it safe. First, the eval set came before any prompt or model change: I graded historical incidents with known-correct outcomes, and every change had to keep the past passing — a pre-deployment validation gate. Second, ‘no citation, no proposal’: every recommendation had to cite the ticket evidence and the runbook line. Third, tiered routing: easy, well-understood classes went to small models; the expensive path was reserved for the hard tail. Cost went from $25 to $0.40 per incident, a 98% cut, with accuracy held on the eval set and 100% citation coverage. For configuration tooling I would keep those three and add one: the tool proposes, a validator decides, and the operator approves a readable diff before anything deploys.”</p></div>
+<div class="star">
+<p><span class="stag">S —</span> The naive agent cost $25 per incident and could answer without checkable evidence, so the human repeated the work. <span class="stag">T —</span> Quality held on known cases, every proposal checkable, unit cost below a dollar. <span class="b">record</span></p>
+<p><span class="stag">A —</span> Eval set graded first and made the release gate; “no citation, no proposal”; cost measured per class and routine classes routed to smaller models; accuracy, citation coverage and unit cost reviewed together. <span class="b">record</span></p>
+<p><span class="stag">R —</span> $25 → $0.40 per triaged incident (98% reduction); accuracy held on the eval set; 100% citation coverage. <span class="b">record</span></p>
+</div>
+<table class="sm">
+<thead><tr><th style="width:27%">Guardrail I built (I1, record)</th><th style="width:38%">Configuration-tooling equivalent (design)</th><th>Lived evidence that the pattern works at network scale</th></tr></thead>
+<tbody>
+<tr><td>Eval set of graded historical cases; every change must keep the past passing</td><td>A regression pack of past network changes and known-good outcomes; a proposed change is replayed against it before deploy</td><td>S18 mocks read by cause against a published tolerance; E8 MRP diff cell <span class="b">record / design</span></td></tr>
+<tr><td>No citation, no proposal</td><td>Every generated change cites the rule, SOP step and data row it relies on; uncited changes cannot be submitted</td><td>UDC 44-row register: one change, one system, one owner per row <span class="b">record-from-docs</span></td></tr>
+<tr><td>Tiered routing — easy classes to small models, hard tail reserved</td><td>Low-blast-radius change classes self-serve; new node types, escape routes and capacity signals route to a specialist review</td><td>Canada node enablement: six changes, five small, run by a seven-step script before the nightly batch <span class="b">record-from-docs</span></td></tr>
+<tr><td>Accuracy, citations and cost read together</td><td>Weekly metrics: changes self-served, validation-fail rate, rollbacks, unintended deployments, review latency</td><td>S15 drop-date reason codes made late work visible <span class="b">record</span></td></tr>
+<tr><td>Human approval kept until evidence beats the human baseline</td><td>Operator approves a readable before/after diff; auto-approve only for classes with a clean record</td><td>A5 launch gate: shadow accounts on named customers, 80% minor-to-no-issues bar before customer-facing use <span class="b">record</span></td></tr>
+</tbody></table>
+<div class="inf"><strong>TRADE-OFF I MADE.</strong> One expensive model for every case was simpler; tiered routing added routing logic and eval upkeep but kept quality and made the economics viable. For operators: more change classes to govern, in exchange for self-service that is safe by default.</div>
+<div class="inf"><strong>FAILURE / LEARNING.</strong> My early eval set was still growing while prompts were being judged, so early comparisons were not like-for-like. I would freeze and version the baseline before the first experiment — for configuration tooling, version the regression pack with every rule release. <span class="b">record</span></div>
+<div class="lps" style="margin:2px 0 4px"><b>LPs:</b> Invent and Simplify (self-service with guardrails built in) · Insist on the Highest Standards (no citation, no proposal) · Frugality ($25 → $0.40) · Dive Deep (graded history before changes).</div>
+<div class="rules"><strong>SAFE-SAY.</strong> “This was my independent build, not an employer production program: $25 to $0.40 per triaged incident, quality held on my graded eval set, and every proposal cited.” <strong>Source:</strong> “My build records, captured in Apple workbook I1, pages 41–42.” <strong>20 seconds:</strong> “I built an incident-triage agent with the eval set first and one rule — no citation, no proposal. Cost fell from $25 to $0.40 per incident with quality held. For configuration tooling: the tool proposes, a validator decides, the operator approves the diff.”</div>
+<div class="qa"><p class="q">Probe: what breaks at Amazon scale?</p><p>Access review, data boundaries, regression-pack upkeep and drift become programs of their own; keep human approval until production evidence beats the human baseline. <span class="b">design</span></p></div>
+
+</div>
+
+<!-- ============ SEQUENCING ============ -->
+<div class="onep">
+<h3 class="st">4. Legacy rules engine → policy platform: how I would sequence it <span class="dc">design answer</span></h3>
+<div class="design"><strong>DESIGN ANSWER ON LIVED EVIDENCE.</strong> I have not migrated a placement rules engine. Each step below is my proposed sequence (<b>design</b>), and each is backed by a mechanism I ran (<b>record / record-from-docs</b>). UDC rows: same Sephora UDC umbrella Rocky may have heard; governance facet only.</div>
+<div class="say"><div class="label">The answer (about 45 seconds)</div>
+<p>“I would sequence it in seven steps, and none of them deploys anything until parity is proven. Inventory every legacy rule as a row with an owner and a test cell. Publish the parity tolerance before the first replay, so ‘good enough’ is arithmetic. Run the platform in shadow, deciding alongside the legacy engine but executing nothing, and read every disagreement by cause. Cut over in waves by node type, with one rule source per node at a time. Then every change rides pre-deployment validation, rollback triggers are written in advance, and legacy retires only when every consumer has a destination.”</p></div>
+<table class="sm">
+<thead><tr><th style="width:13%">Step</th><th style="width:34%">What I would do (design)</th><th style="width:14%">Exit gate</th><th>Lived evidence</th></tr></thead>
+<tbody>
+<tr><td><b>1. Parity matrix</b></td><td>Every legacy rule as a row: rule, node types touched, owner, test cell, and an “intended change” flag so planned differences are not counted as defects</td><td>Every rule owned; intended deltas signed</td><td>UDC: 44 numbered rows across 23 systems, one change and one system per row (council deck pp. 13–14) <span class="b">record-from-docs</span>; S18 interface inventory from message logs, owner + test cell each <span class="b">record</span></td></tr>
+<tr><td><b>2. Tolerance, then replay</b></td><td>Publish the decision-parity tolerance with Operations and Finance; replay a frozen set of real placement requests through both engines; diff by cause class</td><td>Replay inside tolerance, every delta classed</td><td>S18: 0.5% published before mock 1; 7% → 1.8% → 0.3%, each mock removing a named cause <span class="b">record</span></td></tr>
+<tr><td><b>3. Shadow mode</b></td><td>Platform decides alongside legacy, logged not executed, on live volume; disagreements triaged daily</td><td>Disagreement rate flat at or below tolerance for an agreed run</td><td>Flexport launch gate: shadow accounts on named customers, 80% minor-to-no-issues bar before customer-facing use (A5) <span class="b">record</span>; UDC interim bridge: planning auto-copied 801 → 900 so it saw one node before the floor did (rows 19, 21) <span class="b">record-from-docs</span></td></tr>
+<tr><td><b>4. Waves by node type</b></td><td>Simplest node type first, then crossdock, then new node types; one rule source per node at a time — legacy stops deciding before the platform starts, switch logged</td><td>Wave exit on numbers, not dates</td><td>Canada: 99 brands in waves of 20 / 40 / 39 (discovery p. 16) <span class="b">record-from-docs</span>; UDC: no SKU with two published availability values <span class="b">user anchor</span></td></tr>
+<tr><td><b>5. Pre-deployment validation</b></td><td>After cutover every change rides a manifest: replay against the regression pack, readable diff, approval by change class, audit row</td><td>Unintended deployments trending to zero</td><td>Canada: five business data sets, seven IT steps before the nightly planning batch (p. 19) <span class="b">record-from-docs</span>; E8 train <span class="b">design</span>; S15 QA-owned gate <span class="b">record</span></td></tr>
+<tr><td><b>6. Rollback</b></td><td>Per node and per rule set, triggers written before go-live; legacy kept read-only through the failback window</td><td>Rehearsed in the last mock</td><td>S18: rollback per interface, triggers written in advance, legacy read-only as failback; rehearsed, never used <span class="b">record</span></td></tr>
+<tr><td><b>7. SOPs, training, decommission</b></td><td>Runbook per change class; train on real changes once tooling is proven; retire legacy only when every consumer has a destination</td><td>Zero orphan consumers</td><td>A4: all 79 legacy Crux customers ($185,892 ARR) given migrate / white-label / cancel paths before retirement <span class="b">record-from-docs</span>; S18 RF lesson — device test before training <span class="b">record</span>; S15 user guide copied by neighbouring teams <span class="b">record</span></td></tr>
+</tbody></table>
+<div class="inf"><strong>Weekly metrics (design):</strong> parity vs tolerance by node type · unintended deployments per hundred changes · validation-fail rate · rollbacks by cause · share self-served · legacy consumers without a destination.<br><strong>TRADE-OFF I WOULD MAKE.</strong> Waves by node type over a big-bang switch: running two engines in parallel costs maintenance and dual-run time, but it bounds the blast radius of any rule I translated wrongly to one node type. <strong>FAILURE / LEARNING (A4, record):</strong> at Flexport I set the canonical-source rule after the first executive comparison; once dashboards have constituencies, a cheap definition becomes an expensive negotiation. Here I would publish the parity metric before anyone sees a shadow-mode number.</div>
+<div class="rules"><strong>SAFE-SAY.</strong> “I haven’t migrated a placement rules engine; this is how I would sequence it, and every step is a mechanism I have run — the 44-row register at Sephora, the three-mock migration and the Flexport decommission.” <strong>Source:</strong> “The UDC architecture-council deck, the Canada discovery deck, my resume line on the dual-DC migration and the Crux transition RAPID.” <strong>LPs:</strong> Think Big · Insist on the Highest Standards · Dive Deep · Ownership.</div>
+</div>
+
+<!-- NEXT -->
+
+</body>
+</html>

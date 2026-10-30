@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Part 5 — Venkata Josyula — product + behavioral (bar-raiser edition, STAR)</title>
+<style>
+  @page { size: letter; margin: 0.62in 0.68in 0.68in 0.68in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", "Inter", Arial, sans-serif; font-size: 10.3pt; line-height: 1.38; color: #1c1c1c; }
+  h1 { font-size: 20pt; line-height: 1.15; margin: 0 0 6px; letter-spacing: -0.02em; }
+  h2 { font-size: 13pt; margin: 16px 0 6px; padding-top: 8px; border-top: 2px solid #1a2744; page-break-after: avoid; }
+  h2.break { page-break-before: always; }
+  h3 { font-size: 11.3pt; margin: 12px 0 4px; page-break-after: avoid; color: #1a2744; }
+  h3.st { font-size: 12pt; color: #1c1c1c; border-left: 4px solid #1a2744; padding-left: 8px; margin-top: 16px; page-break-before: always; }
+  h4 { font-size: 10.3pt; margin: 9px 0 3px; page-break-after: avoid; color: #8a1c2b; }
+  p { margin: 0 0 7px; }
+  ul, ol { margin: 2px 0 8px; padding-left: 18px; }
+  li { margin: 0 0 3px; }
+  .kicker { font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .title { padding: 6px 0 8px; border-bottom: 2px solid #1a2744; margin-bottom: 10px; }
+  .title .role { font-size: 11.5pt; color: #1a2744; margin: 0 0 4px; }
+  .title .who { background: #1a2744; color: #fff; padding: 10px 14px; margin: 8px 0 8px; }
+  .title .who .nm { font-size: 14pt; font-weight: 700; }
+  .title .who .tt { font-size: 10pt; color: #e6ddcb; margin-top: 3px; }
+  .strat { background: #f7f4ee; border-left: 4px solid #8a1c2b; padding: 8px 12px; margin: 8px 0; font-size: 10pt; }
+  .strat strong { color: #8a1c2b; }
+  .meta { background: #f4f1ea; border-left: 4px solid #1a2744; padding: 8px 12px; margin: 8px 0 10px; font-size: 10pt; }
+  .meta div { margin: 1px 0; }
+  .say { background: #f7f4ee; border: 1px solid #d9d0c1; border-left: 4px solid #8a1c2b; padding: 8px 12px 4px; margin: 6px 0 10px; page-break-inside: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, serif; font-size: 10.4pt; line-height: 1.42; }
+  .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .star { background: #fcfbf8; border: 1px solid #d9d0c1; padding: 7px 12px 3px; margin: 4px 0 10px; font-size: 9.7pt; }
+  .star p { margin: 0 0 5px; }
+  .stag { font-weight: 700; color: #8a1c2b; }
+  .hon { background: #f3f0fa; border-left: 4px solid #5b4a8a; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.3pt; color: #333; }
+  .hon strong { color: #5b4a8a; }
+  .kc { background: #fdf8ef; border: 1px solid #e4d2ac; border-left: 4px solid #b8860b; padding: 6px 12px 4px; margin: 6px 0 10px; font-size: 9.4pt; }
+  .inf { background: #fbf7ec; border-left: 4px solid #b8860b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.4pt; }
+  .inf strong { color: #7a5a00; }
+  .rules { background: #fdf0f0; border: 1px solid #e3b7b7; border-left: 4px solid #8a1c2b; padding: 7px 12px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .rules strong { color: #8a1c2b; }
+  .fail { background: #fdf0f0; border: 1px solid #e3b7b7; padding: 7px 12px 3px; margin: 4px 0 10px; font-size: 9.6pt; }
+  .fail p { margin: 0 0 5px; }
+  .qa { border-left: 3px solid #d9d0c1; padding: 2px 0 2px 10px; margin: 0 0 9px; font-size: 9.5pt; page-break-inside: avoid; }
+  .qa p { margin: 0 0 3px; }
+  .qa p.q { color: #1a2744; font-weight: 700; }
+  .sh { font-size: 8.8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin: 10px 0 4px; border-bottom: 1px solid #d9d0c1; padding-bottom: 2px; page-break-after: avoid; }
+  ul.res { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
+  ul.res li { margin: 0 0 3px; }
+  ul.phz { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
+  ul.phz li { margin: 0 0 4px; }
+  .pb { font-weight: 700; color: #1a2744; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 9.1pt; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #ddd; padding: 4px 6px 4px 0; }
+  th { font-size: 8.2pt; letter-spacing: 0.04em; text-transform: uppercase; color: #555; border-bottom: 1.5px solid #1a2744; }
+  table.sm { font-size: 8.5pt; }
+  table.sm th, table.sm td { padding: 3px 5px 3px 0; }
+  td.c { color: #8a1c2b; font-weight: 700; }
+  span.new { display: inline-block; background: #8a1c2b; color: #fff; font-size: 7.4pt; letter-spacing: 0.08em; padding: 1px 5px; border-radius: 3px; vertical-align: middle; margin-left: 4px; text-transform: uppercase; }
+  span.b { display: inline-block; background: #e8eef6; color: #1a2744; font-size: 7.6pt; padding: 0 4px; border-radius: 3px; margin-left: 2px; }
+  .toc div { margin: 2px 0; font-size: 9.8pt; }
+  .toc .grp { font-weight: 700; color: #8a1c2b; margin-top: 8px; }
+  a { color: #1a2744; text-decoration: none; }
+  .cite { color: #1f6f7a; font-size: 8.6pt; }
+  .two { columns: 2; column-gap: 22px; }
+</style>
+</head>
+<body>
+
+<div class="title">
+  <div class="kicker">Part 5 — Venkata Josyula — product + behavioral (bar-raiser style) · 12:00 PM PDT Fri Oct 30, 2026 · the last interview of the loop</div>
+  <div class="role">Amazon — Senior Supply Chain Manager, NACF Supply Chain (L6) · Rajesh Rishiyur Chandrasekaran · Interviewer: Principal PM, FBA</div>
+  <div class="who">
+    <div class="nm">Shipment Visibility as a product story · the Crux transition as a product story · product-sense add-ons · 16-LP self-audit</div>
+    <div class="tt">Everything in STAR, first person. Companion files by other workers: <b>-josyula-extra-stories-star</b> (S14, S16, S9, S13, I1, G1 full STAR) and <b>-josyula-star-bank-star</b> (32-answer LP bank). This file does not repeat them. V3 points to the UDC pack B4 and does not rewrite it.</div>
+  </div>
+</div>
+<div class="toc">
+<div class="grp">Contents</div>
+<div><a href="#cram">0. CRAM SHEET — bar-raiser edition (what he tests · order of stories · 5 numbers · 3 opening sentences · 16-LP self-audit)</a></div>
+<div><a href="#v1">V1 · Shipment Visibility — the PRODUCT story (customer problem → discovery → MVP cuts → graduation gates → adoption 7 → 68 → cost to serve $0.66 → $0.03) · full STAR + compact failure STAR</a></div>
+<div><a href="#v2">V2 · Crux customer transition — the PRODUCT story (what to retire vs keep · segmentation · parity as the contract · shadow accounts · comms · metrics) · full STAR</a></div>
+<div><a href="#v3">V3 · “One promise per customer, in both countries” — pointer to UDC pack B4 (not rewritten)</a></div>
+<div><a href="#ps">P1–P4 · Product-sense add-ons (short STAR): what I did NOT build · adoption vs usage vs outcome · a sunset · customer ask vs roadmap</a></div>
+<div><a href="#verify">VERIFY list and source trace (short)</a></div>
+</div>
+
+<!-- ================= CRAM SHEET ================= -->
+<h2 id="cram">0. CRAM SHEET — bar-raiser edition</h2>
+<div class="meta">
+  <div><b>Who he is:</b> Venkata Josyula, Principal PM, FBA (Fulfillment by Amazon). A product person running the behavioral/LP slot. Earlier plan listed him as bar raiser; today's schedule put the Bar Raiser badge on Rocky — <b>prepare as if Venkata is the bar raiser anyway</b>: he can veto, he will probe depth, and he will cross-check what the hiring manager and Ryan heard yesterday.</div>
+  <div><b>What a bar raiser tests:</b> (1) <b>LP depth</b> — one story, five layers down; (2) <b>“I” vs “we”</b> — what I personally decided, built, wrote, said; (3) <b>data-driven honesty</b> — numbers with a basis, a target called a target, a miss called a miss; (4) <b>long-term thinking</b> — mechanisms that outlived me; (5) <b>raising the bar</b> — would he be happy to have me on his team at L6.</div>
+  <div><b>Already told yesterday (never primary again, except SV by explicit exception as a product story):</b> S/4 HANA / ISM · Flexport estimation / FF App · Shipment Visibility (operating lens) · safety stock · 200-lane lead time. If he asks about SV, say up front: “Snigdha heard the operating side; the product side is a different story.”</div>
+</div>
+
+<p class="sh">Order of stories (12:00 slot, ~45 minutes of questions)</p>
+<table class="sm">
+<thead><tr><th style="width:5%">#</th><th style="width:30%">If he asks…</th><th style="width:30%">Story (file)</th><th>Number it lands (basis)</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>“Tell me about a product you built / took from zero to scale”</td><td><b>V1 Shipment Visibility — product lens</b> (this file)</td><td>7 → 68 customers, 9.7× (record); cost to serve $0.66 → $0.03, about 95% (record)</td></tr>
+<tr><td>2</td><td>“Tell me about a time you had to sunset / migrate customers / say no”</td><td><b>V2 Crux transition — product lens</b> (this file)</td><td>79 customers, $185,892 ARR, 294,581 containers in 2021 (record-from-docs, RAPID e582); 55 to transition, 24 to redirect or cancel</td></tr>
+<tr><td>3</td><td>Customer Obsession / Earn Trust</td><td>S14 trust (extra-stories file)</td><td>about 200 orders, $2.5M of order value (user anchor); $10M initiative won — not savings</td></tr>
+<tr><td>4</td><td>Ownership / Invent and Simplify</td><td>S16 pipeline (extra-stories file)</td><td>four systems → one; accuracy 60% → 90% (record); value priced, not saved</td></tr>
+<tr><td>5</td><td>Think Big / Backbone</td><td>S9 thousand-lane program (extra-stories file)</td><td>597 lanes carrying 80% of spend first (user anchor)</td></tr>
+<tr><td>6</td><td>Bias for Action / Deliver Results</td><td>S13 crisis (extra-stories file)</td><td>99% fill; about $8M of that day's sales protected (record)</td></tr>
+<tr><td>7</td><td>“Tell me about a failure”</td><td>G1 UAT concurrency miss (extra-stories file); short failure inside V1 (monitoring came late)</td><td>five users × ten scenarios passed; all-user concurrency failed two days before sign-off (record)</td></tr>
+<tr><td>8</td><td>Learn and Be Curious / Frugality (AI)</td><td>I1 LLM triage (extra-stories file)</td><td>$25 → $0.40 per incident, 98% cut; 100% citations (record)</td></tr>
+<tr><td>9</td><td>Product-sense probes</td><td>P1–P4 (this file) · UDC pack B4 pointer</td><td>see each</td></tr>
+</tbody>
+</table>
+
+<div class="two">
+<div class="rules"><strong>The 5 numbers never to get wrong.</strong>
+<br>1. <b>7 → 68 customers = 9.7×</b> (record). Never a bigger multiplier; never “ten times.”
+<br>2. <b>$0.66 → $0.03 per container, about 95%</b> (record). The $1.00 hand-carried start only if asked.
+<br>3. <b>170 monthly active users — a public target, landed; 32,000 shipments — a target</b>, never “achieved” (record).
+<br>4. <b>Crux base: 79 customers · $185,892 ARR · 294,581 containers (2021)</b> (record-from-docs). Two truck brokers were most of the volume.
+<br>5. <b>Nine teams, close to 100 people; automation 40% → 90%; ticket response 72% → 90%</b> (record). The $3.22M cost-to-serve figure is the 2021 plan's <i>target</i>, not my result.</div>
+<div class="kc"><b>3 opening sentences (pick by question).</b>
+<br>• “Snigdha heard how I ran Shipment Visibility; let me tell you the product decisions underneath it — what we refused to build so that seven customers could become sixty-eight.”
+<br>• “The hardest product call I was part of was retiring a product seventy-nine customers were paying for — and deciding, segment by segment, who we would carry over and who we would not.”
+<br>• “I measure a product on three different numbers and I will tell you which one I got wrong first: adoption, usage, and the outcome the customer actually paid for.”
+<br><b>If/when he asks ‘what did YOU own?’:</b> “I was the technical program manager; the product DRI was Frank te Pas. I owned the pilot machine — graduation gates, testing approach, go/no-go, monitoring, the 3PL ingestion decision — and I co-owned scope cuts with him. I will say ‘I’ where it was mine and ‘we’ where it wasn't.”</div>
+</div>
+
+<p class="sh">16-LP self-audit — strongest evidence line + number + the soft spot I name first</p>
+<table class="sm">
+<thead><tr><th style="width:15%">LP</th><th style="width:40%">Strongest evidence line (story)</th><th style="width:19%">Number (basis)</th><th>Soft spot to name first</th></tr></thead>
+<tbody>
+<tr><td>Customer Obsession</td><td>Pilot customers used SV free for the whole pilot; light onboarding so their investment stayed small until we earned it (V1). S14: the customer heard it from me first.</td><td>CSAT gate = parity with average consignee CSAT (record-from-docs)</td><td>The analyst / internal customer was under-served in UDC (B4) — I say that before he finds it.</td></tr>
+<tr><td>Ownership</td><td>Monitoring came late and bugs took hours to localise; I owned the miss in the year-end review and made E2E monitoring a launch gate (V1 failure). S16: wrote myself out of the Monday number.</td><td>Hours per bug → “customer-ready 11/19” monitoring list (record-from-docs)</td><td>Program delays in 2021 were real; I do not blame the infrastructure.</td></tr>
+<tr><td>Invent and Simplify</td><td>Graduation by six published criteria instead of a date; shadow accounts fed with the customer's own Crux data (V1, V2). S16 four systems → one.</td><td>6 criteria; 50-container calibration bar (record-from-docs)</td><td>Simplification came after complexity: 6+ system layers was our own design.</td></tr>
+<tr><td>Are Right, A Lot</td><td>Held Wave 3 once on ETA accuracy; zero rollbacks (V1). Crux: segment decisions, not a blanket cancel (V2).</td><td>Wave 3 held once; 0 rollbacks (record)</td><td>Testing effort estimate was overly optimistic — my judgement error (record).</td></tr>
+<tr><td>Learn and Be Curious</td><td>Learned the event flow through six systems well enough to find the missing trace id (V1). I1: built an LLM eval contract.</td><td>2–4 hours per bug before trace ids (record-from-docs)</td><td>I learned it during testing, not during design.</td></tr>
+<tr><td>Hire and Develop the Best</td><td>Expanded testing from engineers to business users (UAT) once data quality hit 80%; the testers became the pilot's feedback owners (V1).</td><td>UAT started at 80% shipments minor-or-no issues (record-from-docs)</td><td>Thin: I led through influence, not as a people manager — say it.</td></tr>
+<tr><td>Insist on the Highest Standards</td><td>A 99.4% week on three touches was discarded rather than reported (V1). Verification SLA ≥ 90%.</td><td>99.4% week discarded (record)</td><td>The standard existed because an earlier week had been reported too kindly.</td></tr>
+<tr><td>Think Big</td><td>SV was positioned as the 4PL control tower and the flywheel to Visibility-as-a-Service (V1). S9: a thousand-lane ask became a standard.</td><td>2021 plan: 18 → 64 automated milestones target (record-from-docs)</td><td>VaaS was unfunded; I describe the flywheel as the plan, not a result.</td></tr>
+<tr><td>Bias for Action</td><td>Chose a production test account for 3PL ingestion rather than wait for 4PL volume to grow (V1 / P1). S13: acted at 4 AM.</td><td>300 containers, Trans-Pacific first (record-from-docs)</td><td>Acting earlier on monitoring would have saved more than acting fast on testing.</td></tr>
+<tr><td>Frugality</td><td>Free pilot; CSV upload before API; “no extra dev effort” path for forwarders in the Crux decision (V1, V2). I1: $25 → $0.40.</td><td>FF/CB/3PL → SV API, no extra dev (record-from-docs)</td><td>Frugality on monitoring cost us hours per bug — false economy, owned.</td></tr>
+<tr><td>Earn Trust</td><td>Told the E-Team that data quality, not the public website, was the priority — and wrote the misses into the year-end review (V1).</td><td>Year-end: 3 wins, 3 misses written (record-from-docs)</td><td>Pilot clients heard “pilot” dates slip in 2021; we told them.</td></tr>
+<tr><td>Dive Deep</td><td>Event-grain automation measured, not estimated: load-event tracing, events in vs out per system (V1).</td><td>Events originating / destination per system (record-from-docs)</td><td>Scraper error rates were ~5% air / ~9% ocean against a 10% bar — close to the line.</td></tr>
+<tr><td>Have Backbone; Disagree and Commit</td><td>Crux: argued not to eject customers without a parity view; committed to the segment decisions once made (V2). S9: 597 first, two levels up.</td><td>55 transition / 24 redirect-or-cancel (record-from-docs)</td><td>I was Input, not Decide, on that RAPID — I say so.</td></tr>
+<tr><td>Deliver Results</td><td>Both public targets — 68 customers and 170 users — landed two months early (V1).</td><td>68 / 170, two months early (record)</td><td>32,000 shipments was a target we managed toward; I cannot tie it to the workbook.</td></tr>
+<tr><td>Strive to be Earth's Best Employer</td><td>Daily stand-ups and scrum-of-scrums kept nine teams from burning out on blame; the retrospective named systems, not people (V1).</td><td>9 teams, ~100 people (record)</td><td>“Long hours” is in the record — the environment build cost people evenings.</td></tr>
+<tr><td>Success and Scale Bring Broad Responsibility</td><td>Crux customers were told, by segment, what would happen to them before wind-down; competitors cut with legal review, not quietly (V2).</td><td>Cancellations dated Aug 1 / Sep 1 / Oct 24, 2022 (record-from-docs)</td><td>“Ejecting customers is never a good experience” — a stakeholder's line I adopted.</td></tr>
+</tbody>
+</table>
+
+<!-- ================= V1 ================= -->
+<h3 class="st" id="v1">V1 · Shipment Visibility — the PRODUCT story: customer problem → discovery → MVP cuts → graduation gates → adoption → cost to serve <span class="new">different angle from the hiring manager</span></h3>
+<div class="meta">
+  <div><b>Angle rule:</b> Snigdha heard the operating/estimation lens (waves, WBR, pre-production measurement). Venkata hears the product lens: who the customer was, what we learned in discovery, what the MVP left out, what the graduation gates were and why, what we said no to, build-vs-buy, how success was measured and how adoption became outcome. Same facts, different story.</div>
+  <div><b>My role, honestly:</b> Technical Program Manager for the Shipment Visibility initiative (Path to 4PL names Thanai Kumar and me as TPMs; DRI Frank te Pas). Product decisions were co-owned with Frank; the pilot machine, gates, testing, monitoring and the 3PL ingestion decision were mine.</div>
+  <div><b>LPs:</b> Customer Obsession · Invent and Simplify · Insist on the Highest Standards · Deliver Results. <b>Headline numbers:</b> 7 → 68 customers, 9.7× (record); cost to serve $0.66 → $0.03 per container, about 95% (record); nine teams, ~100 people (record).</div>
+</div>
+<div class="say">
+<p class="label">60-second pitch</p>
+<p>The customer was an importer who could see their Flexport freight perfectly and everything else — the containers moving with other forwarders — not at all. Flexport's own track-and-trace was human-powered: people in Data Services keying milestones, at about sixty-six cents a container. The product bet was to replace that with an automated visibility service and open it to the customer's whole supply chain — the 4PL “single pane of glass.” I was the TPM across nine teams and close to a hundred people; the product DRI and I co-owned the scope. The product decisions that mattered: we launched to two pilot customers, free, with CSV upload before API; we published six graduation criteria — verification SLA ninety percent of the time, data at least as accurate as the legacy Crux product, milestone accuracy eighty percent, stable production, real engagement of at least a hundred containers, and no show-stoppers — and a wave graduated only when it met them. We held Wave 3 once on ETA accuracy and never rolled anything back. We said no to a public tracking website until data quality and cost to serve were fixed. Result: seven pilot customers to sixty-eight — nine-point-seven times — both public targets two months early, and cost to serve from sixty-six cents to three cents a container, about ninety-five percent. The miss I own: monitoring came late, and for weeks a bug took hours to localise.</p>
+</div>
+<div class="star">
+<p><span class="stag">S — Situation.</span> Flexport's visibility team was created in May 2020 with a mandate to own all track-and-trace milestones; by the start of 2021 only 18 of 99 milestones were actively worked and none were fully automated (2021 Product Development Plan, record-from-docs). Track-and-trace was a cost line — Data Services people keying updates — and the customer could only see Flexport-moved freight. The 2021 plan set two funded initiatives (automate Flexport milestones; build non-Flexport “Shipment Visibility” in the Client App) and one unfunded (Visibility-as-a-Service), with a legacy acquired product, Crux, still serving 79 paying customers.</p>
+<p><span class="stag">T — Task.</span> Launch Shipment Visibility as a 4PL product on new infrastructure, fully integrated into the Flexport platform, to pilot customers by late 2021, and scale it in 2022 while the cost to serve fell — without letting a half-accurate product reach customers. I owned the program and the pilot machine; I co-owned scope with the product DRI.</p>
+<p><span class="stag">A — Action (the product decisions, in order).</span></p>
+</div>
+<ul class="phz">
+<li><span class="pb">1 · Customer problem and persona, written first.</span> Target: importers and exporters, Enterprise and global key accounts first, with a plan to scale to SMB later (E-Team takeaways, Feb 1 2022). Non-target, not anti-persona: drayage operators and forwarding partners. The job story set — “4PL Shipment Visibility Job Stories — MVP” — was the single reference every tester used when unsure of intended behaviour (Product Testing Approach).</li>
+<li><span class="pb">2 · Discovery and the MVP cut.</span> MVP = tracking request by single input, CSV and API; dashboard, shipment list, shipment details, reporting, messaging. Cut from v1: public tracking website (deferred until data quality and cost to serve were fixed — an E-Team decision I supported), source-toggling and usage-audit for future charging (deferred until additional sources arrived, Q2–Q3 2022), paid tiers (free for the whole pilot). Light-weight onboarding by design: API integrations and letters of authority only after Wave 2, once we were confident the product was meeting expectations.</li>
+<li><span class="pb">3 · Build vs buy.</span> We did not buy Project44 data: “invest in making our solution better even if it is with Data Services to start” (E-Team, record-from-docs). The reason was product, not pride — visibility was the competitive advantage and the data flywheel, and P44 served a different segment. We did keep buying raw sources (CargoSmart first) and human-in-the-loop for the automation gaps.</li>
+<li><span class="pb">4 · Graduation gates instead of dates.</span> I wrote the pilot into waves — Wave 1 two customers (~Q4 2021), Wave 2 four, Wave 3 twenty-plus, full roll-out H2 2022 — and six published graduation criteria: verification SLA met 90% of the time (automated review within 24h, manual within 24h, nothing “in progress” beyond 48h); internal data quality ≥ 90% and at least as accurate as Crux; milestone/ETA accuracy ≥ 80%; production stable at Flexport standards; meaningful engagement (≥ 100 containers uploaded, key features tried); customer feedback with no show-stoppers and CSAT at parity with average consignee CSAT. Entry bar: a new customer gives us at least 50 containers so the product is calibrated before they log in (Pilot Roll-out Schedule, record-from-docs).</li>
+<li><span class="pb">5 · Testing as product discovery.</span> Four tests I ran before launch: the “100 container test” (random containers and bills of lading, bugs to Jira, daily stand-up), bi-weekly bug bashes against job-story ranges, <b>shadow customer accounts</b> fed with the customer's own Crux uploads so we compared side by side, and UAT with business users once 80% of shipments had minor or no issues. Go/no-go had two meetings — business and tech — on three criteria: stable production, one pilot customer's data quality ≥ 80%, no show-stoppers.</li>
+<li><span class="pb">6 · Volume as a product input.</span> With 4PL volume growing slowly, I took the decision to create a production test account and ingest 3PL volume — 300 containers, Trans-Pacific lanes first, Crux-only customers as the source — to find inaccuracies faster, with explicit non-goals (not a performance test, not a cost-to-serve comparison) and a switch list so no live customer could be disturbed (3PL ingestion one-pager, record-from-docs).</li>
+<li><span class="pb">7 · Prioritisation of data quality.</span> Carriers, terminals and milestones were prioritised on the Trans-Pacific eastbound and trans-Atlantic westbound lanes, ordered by cost-to-serve reduction and then by ease of getting the data; a weekly visibility review with POD-ETA accuracy and interaction elimination as the first two numbers (E-Team actions).</li>
+<li><span class="pb">8 · How success was measured.</span> Three ladders kept separate: adoption (customers), usage (monthly active users, containers uploaded, features touched) and outcome (cost to serve per container, automation rate, ticket response). The weekly review format was borrowed from the LSA review: input → output, red/green at ±5%.</li>
+</ul>
+<div class="star">
+<p><span class="stag">R — Result.</span></p>
+</div>
+<ul class="res">
+<li><b>Customer / adoption</b> — 7 pilot customers → 68, 9.7× (record); 45 waitlist sign-ups at FORWARD (record-from-docs); both public targets — 68 customers and 170 monthly active users — landed two months early (record). 32,000 shipments was the target we managed toward (record).</li>
+<li><b>$ / outcome</b> — cost to serve $0.66 → $0.03 per container, about 95% (record); the 2021 plan's $3.22M automation target was the plan's number, not my claim.</li>
+<li><b>%</b> — automation 40% → 90% through a 70% no-touch gate (record); ticket response 72% → 90% at five times the volume (record); scraper error rates about 5% air / 9% ocean against a 10% bar (record-from-docs).</li>
+<li><b>Quality</b> — Wave 3 held once on ETA accuracy; zero rollbacks; a 99.4% week built on three manual touches was discarded, not reported (record).</li>
+<li><b>Time</b> — launched December 2021 on new infrastructure, fully integrated, announced at FORWARD, in pilot customers' hands (record-from-docs). The pilot itself slipped several times in 2021 (record-from-docs — owned below).</li>
+</ul>
+<div class="inf"><strong>TRADE-OFF I MADE.</strong> Options: (a) launch broad with the legacy Crux feature set re-built; (b) launch narrow and free to two customers behind published gates; (c) launch a public website for volume first. I chose (b) and argued for deferring (c): fewer features, a free pilot, CSV before API, and graduation by criteria rather than calendar. Rejected (a) because feature parity before data quality would have shipped a confident-looking product with wrong milestones. Cost: slower top-line adoption in H1 2022, a waitlist that waited, and pilot customers who could not yet integrate by API. <b>Failure / learning line:</b> I under-estimated product testing effort and let monitoring come after debugging — a bug could take hours to localise across six-plus system layers; now end-to-end monitoring is a launch gate, not a follow-up.</div>
+<div class="kc"><b>LP proof lines.</b> <b>Customer Obsession</b> — free pilot, light onboarding so the customer's investment stayed small until the product earned it; CSAT parity as a graduation gate. <b>Invent and Simplify</b> — six criteria replaced a date; shadow accounts turned the customer's own data into the test bed. <b>Insist on the Highest Standards</b> — Wave 3 held; the 99.4% week discarded. <b>Deliver Results</b> — 68 and 170 two months early; cost to serve down about 95%.</div>
+<div class="rules"><strong>SAFE-SAY.</strong> Most attackable number: “Nine-point-seven times is seven pilot customers to sixty-eight monthly active customers — the workbook's count, not a revenue multiple; cost to serve is sixty-six cents to three cents per container, about ninety-five percent, and I will not round it further.” Source question: “The pilot roll-out schedule, the product testing approach, the year-end Path-to-4PL review, the E-Team takeaways of February 2022 and the weekly visibility review — I can walk you through any of them.”</div>
+<div class="say"><p class="label">20-second version</p><p>Importers could see their Flexport freight and nothing else; our own tracking was people keying milestones at sixty-six cents a container. We launched Shipment Visibility free to two customers behind six published graduation criteria, said no to a public website until data quality was fixed, and let the customer's own data test the product. Seven customers became sixty-eight, nine-point-seven times; cost to serve fell to three cents, about ninety-five percent.</p></div>
+
+<h4>Compact failure STAR inside V1 — monitoring came late (owned in the year-end review)</h4>
+<div class="fail">
+<p><span class="stag">S.</span> Data travelled through six-plus system layers, many brand new, with limited monitoring in each. <span class="stag">T.</span> Reach the data-quality bar for pilot launch while bugs from the bug bashes were being triaged daily. <span class="stag">A.</span> I noticed while reading application logs that no unique id tied an event from the downstream source to the customer-facing screen, so every blocker took two to four hours just to locate. I proposed a design change — trace the load event end to end, count events in versus events out at every system boundary — and built the “customer-ready by 11/19” monitoring list across Client App, Forwarding, Ocean, Visibility, Data Access and the public API, with Datadog monitors and a consolidated view prioritised for production. <span class="stag">R.</span> Faster localisation of blocker bugs (my note at the time claimed about half the time to resolve — treat as my estimate, not a measured record); monitoring became part of the launch definition and of the later 3PL test. In the year-end review I wrote the miss plainly: “we should have increased focus on implementing robust system monitoring earlier in the lifecycle.” <b>What I do differently:</b> observability is a line in the MVP, with an owner and a date, before the first bug bash.</p>
+</div>
+
+<p class="sh">Probing Q&amp;A</p>
+<div class="qa"><p class="q">You were the TPM. What product decision was actually yours?</p><p>Three I will defend as mine: graduation by six published criteria instead of a date, including the 50-container calibration entry bar; the production 3PL test account to get volume for accuracy work with explicit non-goals and kill switches; and the trace-id design change that made monitoring possible. Scope cuts — public website deferred, free pilot, CSV before API — were co-owned with the product DRI and ratified by the E-Team; I argued for them, I did not decide them alone.</p></div>
+<div class="qa"><p class="q">Why not just buy Project44 data and ship faster?</p><p>Because visibility data was the moat and the flywheel: every tracking request taught us where coverage was weak. The E-Team chose to invest in our own solution, with Data Services covering gaps, and to compare ourselves to P44 explicitly rather than depend on it. Different target segment too — they served global key accounts; we needed Enterprise and later SMB. I would make the same call; I would start the competitive analysis a quarter earlier.</p></div>
+<div class="qa"><p class="q">How did you know the product was working and not just adopted?</p><p>Three ladders, never collapsed into one: adoption — customers on the platform; usage — monthly active users, containers uploaded, features touched, with a hundred-container engagement gate; outcome — cost to serve per container and automation rate. A customer who uploaded ten containers and left counted against us even though they were “adopted.”</p></div>
+<div class="qa"><p class="q">What did you get wrong?</p><p>Testing effort — I estimated it as if the product were one system and it was six. And monitoring came after debugging instead of before. Both are in the year-end review in my words. The fix I carry: observability and test effort are sized per system boundary, not per product.</p></div>
+
+<!-- ================= V2 ================= -->
+<h3 class="st" id="v2">V2 · The Crux customer transition — the PRODUCT story: what to retire vs keep, segmentation, parity as the contract, shadow accounts, comms, success metrics <span class="new">product lens — not the cutover runbook, not the reliability analytics</span></h3>
+<div class="meta">
+  <div><b>Angle rule:</b> Rocky may hear the cutover-runbook lens; James hears the apples-to-apples reliability analytics (A4). Venkata hears the product decision: a legacy acquired product with 79 paying customers, a new product that only some of them fit, and a segment-by-segment answer to “who do we carry over, who do we redirect, who do we cancel — and what is the contract we owe them before we switch anything off.”</div>
+  <div><b>My role, honestly:</b> the RAPID (newest version e582) lists Recommend: Jennifer, Carol · Agree: James · Perform: Jennifer, Emily · Decide: Sanne; Input from product, engineering and trucking leaders. I am not named on it. I owned the <b>migration machinery</b> the decision depended on: the Crux migration plan inside the pilot roll-out schedule, the shadow accounts fed with Crux data, the “at least as accurate as Crux” gate, and the 3PL/Crux-volume test. Say: “I was input and the owner of the transition mechanics, not the decider.” <b>VERIFY:</b> whether I personally authored the written feature-parity list a stakeholder asked for in the RAPID.</div>
+  <div><b>LPs:</b> Customer Obsession · Have Backbone, Disagree and Commit · Success and Scale Bring Broad Responsibility · Earn Trust. <b>Headline numbers (record-from-docs, RAPID e582):</b> 79 customers · $15,491 MRR · $185,892 ARR · 294,581 containers tracked in 2021; 55 in the segments we transitioned (2 GKA, 14 Enterprise, 39 SMB), 24 redirected or cancelled (9 motor carriers, 3 truck brokers, 5 forwarders, 1 customs broker, 4 3PLs, 2 SCM SaaS).</div>
+</div>
+<div class="say">
+<p class="label">60-second pitch</p>
+<p>Crux was a container-tracking product Flexport had acquired; by 2022 it had seventy-nine paying customers, about a hundred-and-eighty-six thousand dollars of annual revenue and nearly three hundred thousand containers a year — and we were building Shipment Visibility to replace it. The product question was not “how do we migrate,” it was “who should we migrate.” Importers and exporters — two global accounts, fourteen enterprise, thirty-nine SMB — were our target customer and moved to Shipment Visibility. The rest were not: motor carriers, truck brokers, forwarders, a customs broker, 3PLs, and two supply-chain-software companies who were effectively competitors. Three-quarters of the container volume sat with two truck brokers. I was input to that decision and I owned the mechanics that made it safe to make: the migration plan tied to the pilot waves, shadow accounts where we ran the customer's own Crux uploads through the new product side by side, and a graduation gate that said the new data had to be at least as accurate as Crux before a customer was moved. The decision, segment by segment: transition the importers; offer the brokers a partner path through our trucking product or cancel at wind-down; offer forwarders the API with no extra development; cancel the two software competitors after legal review. The learning I keep: a stakeholder asked, “is the feature gap between Crux and the new product written down?” — and the honest answer was “not well enough.” Parity has to be a document before it is a promise.</p>
+</div>
+<div class="star">
+<p><span class="stag">S — Situation.</span> The aim was to migrate Crux customers to Shipment Visibility by the end of 2022 (RAPID, Opportunity). Not all 79 were the right fit for a 4PL visibility service built for importers and exporters. The base: 79 customers, $185,892 ARR, 294,581 containers in 2021; the two largest were truck brokers (AV Logistics, ITS Logistics) — the truck-broker segment alone was $139,512 ARR and 221,044 containers, roughly three-quarters of both. Customer acquisition is expensive; ejecting customers is a bad experience; keeping two systems alive has a cost nobody had written down (stakeholder inputs on the RAPID).</p>
+<p><span class="stag">T — Task.</span> For the product team: decide, per segment, retire / redirect / carry over, and the comms. For me: make the carry-over safe — a dated migration plan, a parity contract the customer could hold us to, and a test method that used the customer's own data before they ever logged in.</p>
+<p><span class="stag">A — Action.</span></p>
+</div>
+<ul class="phz">
+<li><span class="pb">1 · Segmentation before scheduling.</span> Nine customer types with count, MRR, ARR and 2021 containers each (RAPID table). Rule we applied: <i>is this a customer of the product we are building, or a customer of the product we are retiring?</i> Importers/exporters (GKA, Enterprise, SMB) = the former; carriers, brokers, forwarders, customs brokers, 3PLs and SCM-SaaS = the latter, each with its own answer rather than a blanket cancel.</li>
+<li><span class="pb">2 · What to retire vs keep.</span> Keep: tracking of the customer's own containers, CSV/API input, milestone display and reporting — in the new product. Retire: Crux as an app, and with it tracking of non-Flexport freight for trucking partners — the decision explicitly said Transmission would <i>not</i> add non-Flexport container tracking “at this time.” Not carried over: customer types whose use of Crux was competitive intelligence on our own customers (the customs broker tracking for a shoe brand; the two SCM-SaaS platforms).</li>
+<li><span class="pb">3 · Parity as the product contract.</span> The graduation gate I wrote into the pilot schedule: internal data quality ≥ 90% <i>and at least as accurate as Crux</i> on the track-and-trace data shown to customers, with engineering dashboards built to measure it; verification SLA ≥ 90%; milestone accuracy ≥ 80%; CSAT at parity with average consignee CSAT. That was the promise to a Crux customer: you move when the new product is provably not worse on your data. A stakeholder's question — “what are the missing features, and is the roadmap to parity written down?” — showed the <i>feature</i> side of parity was weaker than the <i>data</i> side; we owed a written matrix (VERIFY my authorship).</li>
+<li><span class="pb">4 · Shadow accounts.</span> Before any Crux customer was invited, we took their Crux container uploads and ran them in a dedicated shadow account in the new product (“SV Test – &lt;customer&gt;”), starting with two Crux customers, bugs to Jira daily — then expanded once UAT was reached (Product Testing Approach). For 3PL/Crux-only volume we used a production test account with 300 containers, Trans-Pacific first, with a kill-switch list so no live customer was touched (3PL ingestion one-pager).</li>
+<li><span class="pb">5 · Sequencing tied to the pilot waves.</span> Wave 3 (~Q2 2022) was the first wave to mix Crux and non-Crux customers; full roll-out (H2 2022) carried the remaining Crux customers; the Crux migration plan was updated at each wave review (Pilot Roll-out Schedule). Entry bar per customer: 50 containers for calibration before onboarding.</li>
+<li><span class="pb">6 · Comms and the decision record.</span> A RAPID with named roles and written stakeholder input, a decision per segment, an “inform” step and explicit commitments by each impacted party. Cancellations were dated and, for the competitor platforms, run through legal review: one SCM-SaaS customer cancelled August 1, 2022, the customs broker September 1, 2022, the second SCM-SaaS October 24, 2022 (RAPID e582 appendix).</li>
+<li><span class="pb">7 · Success metrics for the transition.</span> Customers migrated by wave against the end-2022 aim; data-quality parity held per migrated customer; verification SLA and CSAT at gate; and — the honest one — churn named in the appendix rather than hidden (several Crux accounts are marked “churned” in the record).</li>
+</ul>
+<div class="star">
+<p><span class="stag">R — Result.</span></p>
+</div>
+<ul class="res">
+<li><b>Decision</b> — segment by segment, written and committed: importers/exporters (55 of 79) transitioned to Shipment Visibility; truck brokers offered a Transmission partner path or cancelled at wind-down; motor carriers cancelled at wind-down; forwarders, customs broker and 3PLs offered the SV API with no extra development or cancelled; both SCM-SaaS customers cancelled (record-from-docs).</li>
+<li><b>#</b> — 79 customers, $185,892 ARR, 294,581 containers triaged; 24 customers in redirect-or-cancel segments, carrying about three-quarters of the containers — the volume we chose not to chase (record-from-docs).</li>
+<li><b>Quality</b> — no Crux customer moved ahead of the “at least as accurate as Crux” gate; the product that received them had held Wave 3 once on ETA accuracy with zero rollbacks (record).</li>
+<li><b>Customer</b> — the parity gate and the shadow accounts meant a migrating customer saw their own containers tracked correctly before they were asked to switch (record-from-docs).</li>
+<li><b>What I cannot claim</b> — the dollar cost of keeping Crux alive and the final count migrated by December 2022 are not in my sources (VERIFY).</li>
+</ul>
+<div class="inf"><strong>TRADE-OFF I MADE (and advocated for).</strong> Options: (a) cancel all non-importer Crux customers now and stop paying to keep the app alive; (b) keep everyone on Crux until the new product reached feature parity; (c) segment — carry over the target customers behind a data-parity gate, redirect those who fit another Flexport product, cancel those we would never serve. I argued for (c) with the gate, against (a) because it ejected customers without a parity view and against (b) because the end-2022 wind-down and the cost of two systems made it a slow version of (a). Cost: we walked away from about three-quarters of the tracked volume and the largest ARR line, and the feature-parity list was asked for before it was fully written. <b>Failure / learning line:</b> I had the data-parity contract written and the feature-parity contract only half written when a stakeholder asked for it; now a parity matrix — data and features — is the first artefact of any migration, before the schedule.</div>
+<div class="kc"><b>LP proof lines.</b> <b>Customer Obsession</b> — the customer moved only when the new product was provably not worse on their own containers. <b>Have Backbone; Disagree and Commit</b> — argued against a blanket cancel; committed to each segment decision and ran the mechanics for all of them. <b>Success and Scale Bring Broad Responsibility</b> — competitors were cut with legal review and dated notice, not quietly; churn written into the record. <b>Earn Trust</b> — “I was input, not the decider; here is what was mine.”</div>
+<div class="rules"><strong>SAFE-SAY.</strong> Most attackable number: “Seventy-nine customers and about a hundred-and-eighty-six thousand dollars of annual revenue is the documented Crux base at the time of the decision — not a claim that we lost all of it, and not a saving.” Source question: “The Crux customer transition RAPID — I have the latest version with the decision per segment and the dated cancellations — plus the pilot roll-out schedule and the product testing approach that carry the parity gate and the shadow accounts.”</div>
+<div class="say"><p class="label">20-second version</p><p>We were retiring an acquired tracking product with seventy-nine paying customers. The product call was who to carry over: importers and exporters moved to the new product behind a gate that said the data had to be at least as accurate as the old one on their own containers; brokers were offered a partner path, forwarders the API, and two competitor platforms were cancelled after legal review. We walked away from three-quarters of the volume on purpose.</p></div>
+<p class="sh">Probing Q&amp;A</p>
+<div class="qa"><p class="q">You walked away from most of the volume. How is that customer-obsessed?</p><p>Because those were customers of the product we were retiring, not of the one we were building: truck brokers tracking non-Flexport containers and software platforms re-selling our data. The customer-obsessed act was offering each a real path — a partner arrangement in our trucking product, the API — and dated notice, rather than a quiet degrade. The importers who were our customers got a parity gate and a shadow account before they were asked to move.</p></div>
+<div class="qa"><p class="q">What was your decision and what was someone else's?</p><p>Someone else's: the segment decisions — Recommend was product, Decide was the executive; I was input. Mine: the migration plan tied to the pilot waves, the “at least as accurate as Crux” gate, the shadow-account method and the production test account with its kill switches. If you ask who could have stopped a migration on data quality, that was me.</p></div>
+<div class="qa"><p class="q">How did you communicate the retirement to a customer being cancelled?</p><p>Through the RAPID's inform-and-commit steps — the account owner carried the message, with a date and, where it applied, an alternative. I will not claim I wrote the customer letters; I can tell you the dates are in the record: August 1, September 1 and October 24, 2022 for the three cancel-now accounts.</p></div>
+<div class="qa"><p class="q">What would you do differently?</p><p>Write the feature-parity matrix first, with a column per segment, and put the cost of keeping Crux alive on the same page. Two stakeholders asked for exactly those two things in the RAPID, and the fact they had to ask is my miss.</p></div>
+
+<!-- ================= V3 pointer ================= -->
+<h2 class="break" id="v3">V3 · “One promise per customer, in both countries” — the UDC / Canada material as a product story (POINTER, not rewritten)</h2>
+<div class="meta">
+  <div><b>Where it lives:</b> /workspace/amazon/panel/amazon-nacf-udc-canada-story-pack-star-kimi-k3.html — section <b>B4 · VENKATA</b> (full STAR, 60-second pitch, who-I-needed table, trade-off, LP proof lines, SAFE-SAY, 20-second version, four probes). Read it from that file; do not retell B1–B3 (Rocky/James variants) to Venkata.</div>
+  <div><b>When to use it:</b> if he asks for a second product story, a “what did you choose not to build” example outside Flexport, or a customer story in a physical operation (closest to FBA). It is also the lived analogue for P1 below.</div>
+</div>
+<div class="say"><p class="label">30-second bridge into B4 (say this, then tell B4)</p><p>“At Sephora the product problem was the same sentence in two countries: the customer was being promised from the wrong place. In Utah a store and a dotcom shopper could want the same unit in the same building and get two different answers; in Canada a store's newness waited on a US warehouse picking it store by store. I treated both as product work — forty-four requirements ranked so the go-live set was the minimum that made one promise true, with history conversion, reserve-math changes and a reporting rebuild explicitly not built; and in Canada an existing cross-dock path reused, twenty small brands first, ten weeks of supply moved ahead so no store went dark.”</p></div>
+<div class="rules"><strong>Facts to keep straight (from the UDC pack; do not improvise):</strong> two go-lives, zero customer-facing incidents (record); +15% processing efficiency is DC Ops' measurement (record); 44 requirement rows, three reserve buckets (Dotcom / Retail / Uncommitted — not nine); seven system families, about two dozen named systems; the FSD was planned Jul 26 and signed Aug 14 — never “held to the day”; Canada: about 13% of volume, pilot of 20 omni brands (about 217,000 units, 671 SKUs), waves 20 / 40 / 39, about 2.5M units front-loaded — <b>the plan at discovery exit; post-launch outcome VERIFY</b>. Failure line for B4: the analyst was a customer I under-served — interim reporting got a workstream in month three instead of day one.</div>
+
+<!-- ================= PRODUCT-SENSE ADD-ONS ================= -->
+<h2 id="ps">P1–P4 · Product-sense add-ons (short STAR-backed answers)</h2>
+<p class="cite">Each is a 45-to-60-second answer with S/T/A/R labels, a trade-off, a failure/learning line and the number it lands. P3 uses the Crux retirement under the “what not to carry over” angle because no source offers a cleaner sunset the other packets have not already claimed (UDC 801/800 decommission belongs to the UDC pack; the manual WBR retirement is S16 in the extra-stories file).</p>
+
+<h3 id="p1">P1 · “Tell me about something you decided NOT to build.” — the public tracking website and the charging plumbing</h3>
+<div class="star">
+<p><span class="stag">S.</span> February 2022, Shipment Visibility was in pilot with a waitlist from FORWARD and an E-Team keen on a public container-tracking website to pull in SMB demand and cut acquisition cost. At the same time there was a request to build source-toggling and usage auditing so visibility could be charged for later. <span class="stag">T.</span> Help the product DRI and the E-Team decide what the small team would and would not build in the next two quarters. <span class="stag">A.</span> I put the goals in order with data from the pilot: Goal 1 was lower cost to serve and data quality — the thing pilot customers were actually complaining about; Goal 2 was a lead funnel. The E-Team wrote it down: “we prioritise (and cannot be distracted from) Goal 1”; the public website would wait for a PR-FAQ and a market where we already had coverage; the charging plumbing was deferred until additional data sources arrived. In parallel I chose not to make the 3PL ingestion test measure performance or cost to serve — two explicit non-goals so the test stayed small. <span class="stag">R.</span> The team's capacity went to POD-ETA accuracy and interaction elimination — the first two numbers on the weekly review — and to the automation that took cost to serve from $0.66 to $0.03 a container (record). The website became a PR-FAQ, not a build. <b>Trade-off:</b> slower SMB funnel against a product that was accurate first. <b>Failure / learning line:</b> the thing I <i>did</i> under-build — monitoring — cost more than the things I correctly declined; “not building” has to include a list of what must still be built.</p>
+</div>
+<div class="qa"><p class="q">Probe: wasn't the public website a cheap way to get the volume you said you needed for data quality?</p><p>Yes — and the E-Team said exactly that, which is why it was a two-way door we kept open with a PR-FAQ rather than a no. My position was sequencing: get the production 3PL test account first — three hundred containers under our control — before inviting the public to judge coverage we knew was uneven.</p></div>
+
+<h3 id="p2">P2 · “How do you tell adoption from usage from outcome?” — three ladders, and the one I got wrong first</h3>
+<div class="star">
+<p><span class="stag">S.</span> Early in the pilot the number everyone quoted was customers on the platform; a customer who had logged in once counted the same as one tracking three hundred containers a week. <span class="stag">T.</span> Define success so that adoption could not masquerade as outcome, and so a weekly review could steer. <span class="stag">A.</span> I separated three ladders and gave each a gate. <b>Adoption:</b> customers onboarded — with a 50-container calibration bar before anyone was counted. <b>Usage:</b> monthly active users, containers uploaded (≥ 100 to graduate), key features tried (dashboard, shipment list, details, reporting, messaging). <b>Outcome:</b> what the customer and Flexport paid for — verification SLA met 90% of the time, data at least as accurate as the legacy product, cost to serve per container, automation rate. Ticket volume and response were tracked as a cost-of-quality line, not as “engagement.” The weekly review was built input-to-output, red/green at ±5%, in the format borrowed from an existing operating review. <span class="stag">R.</span> Adoption 7 → 68 customers, 9.7× (record); usage 170 monthly active users — the public target, landed (record); outcome $0.66 → $0.03 per container, about 95%, automation 40% → 90%, ticket response 72% → 90% at five times the volume (record). <b>Trade-off:</b> three numbers are harder to headline than one; I accepted a slower story for an honest one. <b>Failure / learning line:</b> I conflated adoption with success for the first wave — a customer that uploaded a handful of containers was a “win” on my slide; the 100-container usage gate exists because of that slide.</p>
+</div>
+<div class="qa"><p class="q">Probe: which of the three would you cut if you could keep one?</p><p>Outcome — cost to serve per container with the accuracy gate attached. Adoption without it is a free product; usage without it is a busy one. But I would not report outcome without the other two, because the day a 99.4% week turned out to rest on three manual touches, it was the usage and touch counts that caught it.</p></div>
+
+<h3 id="p3">P3 · “Tell me about a time you sunset something.” — what we refused to carry over from Crux</h3>
+<div class="star">
+<p><span class="stag">S.</span> Crux, the acquired tracking app, had 79 paying customers and features the new product did not: tracking of non-Flexport containers for trucking partners, and an open door for software platforms and brokers to pull our milestones. <span class="stag">T.</span> As owner of the migration mechanics, make sure what we carried over was chosen, and what we did not was said out loud with a date. <span class="stag">A.</span> I framed the sunset as a carry-over list rather than a shutdown list. Carried: container tracking by CSV and API, milestone display, reporting — behind a gate that the data be at least as accurate as Crux on the customer's own containers, proven in shadow accounts first. Not carried: non-Flexport tracking inside the trucking product (“we will not do so at this time” — decision), a standalone service for motor carriers and brokers (strategy doc), data access for the two SCM-SaaS competitors (cancelled after legal review). Cancellations dated: August 1, September 1, October 24, 2022 (record-from-docs). <span class="stag">R.</span> 55 importer/exporter customers in the transition segments; 24 in redirect-or-cancel, carrying about three-quarters of the 294,581 containers — volume we gave up on purpose. <b>Trade-off:</b> revenue and volume against a product with one target customer. <b>Failure / learning line:</b> the feature-parity list was asked for in the decision record before it was fully written; I now treat a sunset as a product launch with a parity matrix as its first artefact.</p>
+</div>
+<div class="qa"><p class="q">Probe: what would you have carried over if you had had another quarter?</p><p>Non-Flexport container tracking for partners who move our freight — the one truck broker already on Transmission is the proof there was a real customer. I would have scoped it as a partner tier of the same visibility service, not as Crux kept alive. It was the right thing to defer and the wrong thing to forget.</p></div>
+
+<h3 id="p4">P4 · “Tell me about a conflict between a customer's ask and the platform roadmap.” — the truck brokers who wanted to keep tracking everything</h3>
+<div class="star">
+<p><span class="stag">S.</span> The two largest Crux customers by far were truck brokers — the segment carried $139,512 of the $185,892 ARR and 221,044 of 294,581 containers (record-from-docs). Their ask was simple: keep letting us track every container, ours and everyone else's, the way Crux did. The roadmap said Shipment Visibility was for importers and exporters, and the trucking product, Transmission, would not add non-Flexport tracking now. <span class="stag">T.</span> Give the decision-makers an honest view of the conflict and a transition path that was not just “no.” <span class="stag">A.</span> I made sure the input on the record included the full picture: one broker was already a Transmission partner and should keep visibility; one was a large destination-management competitor who also sat inside a six-hundred-truck drayage company we wanted a relationship with; one was in the full-truckload space with no partnership. I argued against treating them as one segment and for a path each could actually take: white-label through Transmission like an existing partner, with the limit stated plainly — no non-Flexport containers — and cancellation at wind-down only if they declined. The pilot-schedule gate meant any importer customer they introduced would still go through the same parity bar. <span class="stag">R.</span> Decision: transition the two named brokers to Transmission partners, cancel at wind-down if not interested; motor carriers cancelled at wind-down; the capability to track non-Flexport shipments in Transmission explicitly deferred (record-from-docs). <b>Trade-off:</b> the largest revenue line against roadmap focus; we chose focus and said so with a date. <b>Failure / learning line:</b> I did not have the cost of keeping Crux alive for them on the same page as the decision — a stakeholder had to ask — so the “no” looked more arbitrary than it was.</p>
+</div>
+<div class="qa"><p class="q">Probe: the customer was paying you. Why does the roadmap win?</p><p>Because a product that serves the customer it was not designed for degrades for the customer it was. Our data quality bar was set for importers' containers on specific lanes; a broker tracking everyone's freight would have dragged coverage and cost to serve back toward the human-powered product we were retiring. The right answer to a paying customer outside your segment is a path and a date, not a quiet yes.</p></div>
+
+<!-- ================= VERIFY + TRACE ================= -->
+<h2 class="break" id="verify">VERIFY list and short source trace</h2>
+<p class="sh">VERIFY — facts in no source, each with the safe sentence</p>
+<table class="sm">
+<thead><tr><th style="width:30%">Item</th><th>Safe sentence</th></tr></thead>
+<tbody>
+<tr><td>My authorship of a written Crux-vs-SV feature-parity matrix</td><td>“The data-parity gate is in the pilot schedule in my words; the feature-parity list was asked for in the decision record and I will not claim I authored the final version.”</td></tr>
+<tr><td>Final count of Crux customers migrated by end-2022; cost of keeping Crux alive</td><td>“The decision and the segments are documented; the December 2022 tally and the keep-alive cost are not in my files, so I won't quote them.”</td></tr>
+<tr><td>“50% reduction in time to resolve blocker bugs” after the trace-id change</td><td>“My note at the time said about half; treat it as my estimate — the record says bugs went from hours to locate to traceable per system.”</td></tr>
+<tr><td>Who the first two pilot customers were</td><td>“Two hand-carried customers in Wave 1; the sources differ on names, so I won't name them.”</td></tr>
+<tr><td>UDC/Canada post-launch outcome (V3)</td><td>“That is the plan at discovery exit; I don't have the post-launch numbers in front of me.”</td></tr>
+</tbody>
+</table>
+<p class="sh">Source trace (number → source)</p>
+<table class="sm">
+<thead><tr><th style="width:34%">Number</th><th style="width:12%">Story</th><th>Source (file · location) · basis</th></tr></thead>
+<tbody>
+<tr><td>7 → 68 customers, 9.7×; 170 MAU public target landed; 32,000 shipments a target; two months early</td><td>V1, P2</td><td>Apple v11 A1 pp. 6–7 via NUMBERS-RECON S11.01–.04 · record</td></tr>
+<tr><td>Cost to serve $0.66 → $0.03, about 95%; $1.00 hand-carried start</td><td>V1, P1, P2</td><td>Apple v11 A1 p. 7, A2 pp. 8–9; recon S11.05–.07 · record</td></tr>
+<tr><td>Automation 40% → 90%; ticket response 72% → 90% at 5× volume; Wave 3 held once, 0 rollbacks; 99.4% week discarded</td><td>V1, P2</td><td>Apple v11 A1 p. 7, A2 pp. 8–9; recon S11.08, .10, .16, .26 · record</td></tr>
+<tr><td>Six graduation criteria; 50-container entry bar; waves 2 / 4 / 20+ / full H2 2022; free pilot; API/LOA after Wave 2; Crux migration plan updated per wave</td><td>V1, V2, P2</td><td>SV_-_Pilot_Client_Roll-out_Schedule_6333 pp. 1–5 · record-from-docs</td></tr>
+<tr><td>100-container test; bi-weekly bug bashes; shadow accounts fed from Crux uploads; UAT at 80% minor-or-no issues; go/no-go criteria</td><td>V1, V2</td><td>SV_-_Product_Testing_Approach_11ef pp. 1–4; Pilot schedule p. 3 · record-from-docs</td></tr>
+<tr><td>Nine teams, ~100 people; launched Dec 2021; 45 waitlist at FORWARD; misses: delays, testing-effort estimate, late monitoring (“hours to identify where a bug manifested”); 6+ system layers</td><td>V1</td><td>Path_to_4PL__Visibility__Rajesh_c6f2 pp. 1–2 · record-from-docs</td></tr>
+<tr><td>No unique trace id → 2–4 hours per blocker; 3PL production test account; 300 containers; Trans-Pacific first; non-goals; kill-switch list</td><td>V1, P1</td><td>Shipment_Visibility_3PL_ingestion-_One_Pager_8782 pp. 1–7 · record-from-docs</td></tr>
+<tr><td>“Customer-ready on 11/19” monitoring list across Client App / Forwarding / Ocean / Visibility / DA / Public API</td><td>V1</td><td>State_of_SV_E2E_Connectivity_Monitoring_0f37 pp. 1–8 · record-from-docs</td></tr>
+<tr><td>Target customer ENT/GKA then SMB; drayage non-target; free visibility; Goal 1 over Goal 2; public website → PR-FAQ (ETA 2/25/22); no P44 data purchase; TPEB/TAWB prioritisation; POD-ETA accuracy and interaction elimination first</td><td>V1, P1</td><td>Shipment_Visibility_-_E-Team_Meeting_Takeways_17f0 pp. 1–8 (Feb 1, 2022) · record-from-docs</td></tr>
+<tr><td>18 of 99 milestones worked at start of 2021; 18 → 64 target; ~$3.22M cost-to-serve target; VaaS unfunded, 31 → 100 customers target</td><td>V1</td><td>2021_Product_Development_Plan_-_Visibility_4643 pp. 10–15 · record-from-docs (targets, not results)</td></tr>
+<tr><td>79 customers · $15,491 MRR · $185,892 ARR · 294,581 containers; segment table; truck brokers $139,512 / 221,044; RAPID roles; decisions per segment; cancellations Aug 1 / Sep 1 / Oct 24 2022; “will not do so at this time”</td><td>V2, P3, P4</td><td>RAPID_-_Crux_Customer_Transition_e582 pp. 1–16 (text identical to a66c/dd61 apart from whitespace — the e582 appendix carries the dated cancellations) · record-from-docs</td></tr>
+<tr><td>Scraper error rates ~5% air / ~9% ocean vs 10% bar</td><td>cram</td><td>Technology_Program_Management_Status_Week_of_November_19th_2021 p. 11; recon S11.20 · record-from-docs</td></tr>
+<tr><td>UDC / Canada figures in V3</td><td>V3</td><td>amazon-nacf-udc-canada-story-pack-star-kimi-k3.html B4 and A4 conflicts table · record / record-from-docs / VERIFY</td></tr>
+</tbody>
+</table>
+<p class="cite">Integrity: no inflated customer multiplier (9.7× only), no “$1.00 → $0.03” as a headline, no “achieved 32,000”, no savings claimed from the Crux ARR or the 2021 plan's $3.22M; James's A4 analytics (normalised reliability comparison) and Rocky's cutover runbook are not retold here.</p>
+
+</body>
+</html>
