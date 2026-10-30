@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Amazon NACF panel — Packet 4 (process STAR) — James Cabreros (11:00 slot; schedule listed Zhaowen Lan)</title>
+<style>
+  @page { size: letter; margin: 0.62in 0.68in 0.68in 0.68in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", "Inter", Arial, sans-serif; font-size: 10.3pt; line-height: 1.38; color: #1c1c1c; }
+  h1 { font-size: 20pt; line-height: 1.15; margin: 0 0 6px; letter-spacing: -0.02em; }
+  h2 { font-size: 13pt; margin: 16px 0 6px; padding-top: 8px; border-top: 2px solid #1a2744; page-break-after: avoid; }
+  h2.break { page-break-before: always; }
+  h3 { font-size: 11.3pt; margin: 12px 0 4px; page-break-after: avoid; color: #1a2744; }
+  h3.st.first { page-break-before: auto; }
+  h3.st { font-size: 12pt; color: #1c1c1c; border-left: 4px solid #1a2744; padding-left: 8px; margin-top: 16px; page-break-before: always; }
+  h4 { font-size: 10.3pt; margin: 9px 0 3px; page-break-after: avoid; color: #8a1c2b; }
+  p { margin: 0 0 7px; }
+  ul, ol { margin: 2px 0 8px; padding-left: 18px; }
+  li { margin: 0 0 3px; }
+  .kicker { font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .cover { min-height: 8.6in; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 1.2in; page-break-after: always; }
+  .cover .role { font-size: 12.5pt; color: #1a2744; margin: 0 0 18px; }
+  .cover .who { background: #1a2744; color: #fff; padding: 16px 20px; margin: 10px 0 16px; }
+  .cover .who .nm { font-size: 17pt; font-weight: 700; letter-spacing: -0.01em; }
+  .cover .who .tt { font-size: 11pt; color: #e6ddcb; margin-top: 3px; }
+  .cover .who .dt { font-size: 12pt; margin-top: 10px; font-weight: 700; }
+  .cover .who .sh { font-size: 9.5pt; color: #e6ddcb; margin-top: 4px; }
+  .cover .strat { background: #f7f4ee; border-left: 4px solid #8a1c2b; padding: 10px 14px; margin: 8px 0; font-size: 10.6pt; }
+  .cover .strat strong { color: #8a1c2b; }
+  .cover .lpg { font-size: 9.6pt; color: #333; margin-top: 10px; }
+  .cover .lpg em { color: #7a5a00; font-style: normal; font-weight: 700; }
+  .cover .src { font-size: 8.8pt; color: #666; margin-top: auto; padding-top: 24px; }
+  .meta { background: #f4f1ea; border-left: 4px solid #1a2744; padding: 8px 12px; margin: 8px 0 10px; font-size: 10pt; }
+  .meta div { margin: 1px 0; }
+  .say { background: #f7f4ee; border: 1px solid #d9d0c1; border-left: 4px solid #8a1c2b; padding: 8px 12px 4px; margin: 6px 0 10px; page-break-inside: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, serif; font-size: 10.4pt; line-height: 1.42; }
+  .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .star { background: #fcfbf8; border: 1px solid #d9d0c1; padding: 7px 12px 3px; margin: 4px 0 10px; font-size: 9.7pt; }
+  .star p { margin: 0 0 5px; }
+  .stag { font-weight: 700; color: #8a1c2b; }
+  .hon { background: #f3f0fa; border-left: 4px solid #5b4a8a; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.3pt; color: #333; }
+  .hon strong { color: #5b4a8a; }
+  .doc { background: #eef4f6; border: 1px solid #c3d5da; border-left: 4px solid #1f6f7a; padding: 7px 12px 4px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .doc p { margin: 0 0 5px; }
+  .doc .label { color: #1f6f7a; }
+  .kc { background: #fdf8ef; border: 1px solid #e4d2ac; border-left: 4px solid #b8860b; padding: 6px 12px 4px; margin: 6px 0 10px; font-size: 9.4pt; }
+  .kc ul { margin: 2px 0 6px; padding-left: 16px; }
+  .kc li { margin: 0 0 3px; }
+  .rfd { font-size: 7.7pt; letter-spacing: 0.06em; text-transform: uppercase; color: #1f6f7a; font-weight: 700; white-space: nowrap; }
+  .ftn { font-size: 8.6pt; color: #555; border-top: 1px dotted #b7a88a; margin: 2px 0 8px; padding-top: 3px; }
+  .inf { background: #fbf7ec; border-left: 4px solid #b8860b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.4pt; }
+  .inf strong { color: #7a5a00; }
+  .rules { background: #fdf0f0; border: 1px solid #e3b7b7; border-left: 4px solid #8a1c2b; padding: 7px 12px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .rules strong { color: #8a1c2b; }
+  .qa { border-left: 3px solid #d9d0c1; padding: 2px 0 2px 10px; margin: 0 0 9px; font-size: 9.5pt; page-break-inside: avoid; }
+  .qa p { margin: 0 0 3px; }
+  .qa p.q { color: #1a2744; font-weight: 700; }
+  .sh { font-size: 8.8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin: 10px 0 4px; border-bottom: 1px solid #d9d0c1; padding-bottom: 2px; page-break-after: avoid; }
+  ul.res { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
+  ul.res li { margin: 0 0 3px; }
+  ul.phz { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
+  ul.phz li { margin: 0 0 4px; }
+  .pb { font-weight: 700; color: #1a2744; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 9.4pt; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #ddd; padding: 4px 6px 4px 0; }
+  th { font-size: 8.4pt; letter-spacing: 0.04em; text-transform: uppercase; color: #555; border-bottom: 1.5px solid #1a2744; }
+  table.drv { font-size: 8.8pt; }
+  table.drv td, table.drv th { padding: 3px 6px 3px 0; }
+  table.drv td.f { font-family: "Liberation Mono", monospace; font-size: 8.3pt; }
+  table.tw td:first-child { width: 30%; font-weight: 700; color: #1a2744; }
+  table.tw td:nth-child(2) { width: 13%; }
+  table.tw td.skip { color: #8a1c2b; }
+  table.qb td:first-child { width: 3%; color: #555; }
+  table.qb td:nth-child(2) { width: 33%; font-weight: 700; color: #1a2744; }
+  table.qb td:last-child { width: 12%; }
+  table.ch td:first-child { width: 24%; font-weight: 700; }
+  table.ch td.never { color: #8a1c2b; }
+  table.lpg { table-layout: fixed; width: 100%; font-size: 8.6pt; }
+  table.lpg th { font-size: 7.4pt; padding: 3px 2px; text-align: center; overflow-wrap: anywhere; }
+  table.lpg th:first-child, table.lpg td:first-child { width: 22%; text-align: left; }
+  table.lpg td { text-align: center; padding: 3px 2px; }
+  table.lpg td:first-child { text-align: left; font-weight: 700; }
+  table.lpg td.y { background: #e8f1ea; color: #2e6b4f; font-weight: 700; }
+  table.lpg td.p { background: #fbf7ec; color: #7a5a00; }
+  table.l6 { font-size: 8.7pt; margin: 4px 0 10px; border: 1px solid #c9d3e3; background: #f6f8fc; page-break-inside: avoid; }
+  table.l6 th { font-size: 7.9pt; color: #1a2744; border-bottom: 1.5px solid #1a2744; padding: 3px 6px; }
+  table.l6 td { padding: 2px 6px; border-bottom: 1px solid #dfe5ef; }
+  table.l6 td:first-child { width: 24%; font-weight: 700; color: #1a2744; }
+  .l6h { font-size: 8.8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #1a2744; font-weight: 700; margin: 10px 0 2px; page-break-after: avoid; }
+  .l6h span { color: #555; font-weight: 400; letter-spacing: 0; text-transform: none; font-size: 8.6pt; }
+  .weave { font-size: 9.5pt; background: #f6f8fc; border-left: 4px solid #1a2744; padding: 5px 10px; margin: 2px 0 8px; }
+  .weave strong { color: #1a2744; }
+  h3.bn { font-size: 11.3pt; color: #1c1c1c; border-left: 4px solid #7a5a00; padding-left: 8px; margin-top: 14px; page-break-before: always; }
+  h3.bn.first { page-break-before: auto; }
+  .bk { display: inline-block; font-size: 7.6pt; letter-spacing: 0.1em; text-transform: uppercase; background: #7a5a00; color: #fff; padding: 1px 6px; margin-right: 6px; vertical-align: middle; }
+  .bench .meta { border-left-color: #7a5a00; }
+  .bench .say { border-left-color: #7a5a00; }
+  .bench .label { color: #7a5a00; }
+  .bench .sh { color: #7a5a00; }
+  .bench ul.cstar { margin: 2px 0 8px; padding-left: 16px; font-size: 9.6pt; }
+  .bench ul.cstar li { margin: 0 0 3px; }
+  .bench .own { background: #fdf0f0; border-left: 4px solid #8a1c2b; padding: 4px 10px; margin: 4px 0 8px; font-size: 9.3pt; }
+  .bench .canon { font-size: 9.2pt; background: #f4f1ea; padding: 5px 10px; margin: 4px 0 8px; }
+  code { font-family: "Liberation Mono", monospace; font-size: 9.1pt; background: #f1efe9; padding: 0 3px; }
+  .note { font-size: 9.6pt; color: #333; }
+  .small { font-size: 9pt; color: #555; }
+
+  .new { display: inline-block; font-size: 7pt; letter-spacing: 0.1em; text-transform: uppercase; background: #1f6f7a; color: #fff; padding: 1px 6px; border-radius: 9px; margin-left: 6px; vertical-align: middle; font-weight: 700; }
+  .new.up { background: #7a5a00; }
+  .vf { display: inline-block; font-size: 7pt; background: #fff3cd; color: #7a4b00; border: 1px solid #e0c36a; padding: 0 4px; border-radius: 3px; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap; }
+  .fct { border-left: 4px solid #1f6f7a; background: #f3f8f9; padding: 6px 10px 3px; margin: 6px 0 9px; font-size: 9.4pt; }
+  .fct .fl { font-size: 8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #1f6f7a; font-weight: 700; margin-bottom: 3px; }
+  .fct p { margin: 0 0 4px; }
+  .fct ul { margin: 2px 0 5px; padding-left: 16px; }
+  ul.lpp { list-style: none; padding-left: 0; margin: 3px 0 8px; font-size: 9.3pt; }
+  ul.lpp li { margin: 0 0 3px; padding-left: 8px; border-left: 3px solid #8a1c2b; }
+  ul.lpp b { color: #8a1c2b; }
+  .t20 { display: flex; gap: 8px; margin: 6px 0 10px; page-break-inside: avoid; }
+  .t20 > div { flex: 1; background: #f7f4ee; border: 1px solid #d9d0c1; padding: 6px 10px 3px; font-size: 9.4pt; }
+  .t20 p { margin: 0 0 4px; font-family: "Liberation Serif", Georgia, serif; font-size: 10pt; }
+  .bq { border: 1px solid #d9d0c1; border-left: 4px solid #5b4a8a; padding: 6px 10px 3px; margin: 0 0 9px; font-size: 9.3pt; page-break-inside: avoid; background: #fcfbf8; }
+  .bq .bqq { font-weight: 700; color: #1a2744; margin-bottom: 3px; }
+  .bq .lpt { color: #5b4a8a; font-weight: 700; font-size: 7.8pt; text-transform: uppercase; letter-spacing: 0.06em; margin-right: 6px; }
+  .bq p { margin: 0 0 4px; }
+  .bq p.opn { font-family: "Liberation Serif", Georgia, serif; font-size: 9.9pt; }
+  .bq .m2 { font-size: 8.8pt; color: #333; border-top: 1px dotted #c9bfa9; padding-top: 3px; margin-top: 3px; }
+  .bq .no { color: #8a1c2b; }
+  .angs { display: flex; gap: 6px; margin: 4px 0 10px; }
+  .ang { flex: 1; border: 1px solid #c9d3e3; background: #f6f8fc; padding: 5px 8px 2px; font-size: 8.7pt; page-break-inside: avoid; }
+  .ang h5 { margin: 0 0 3px; font-size: 8.2pt; color: #1a2744; text-transform: uppercase; letter-spacing: 0.06em; }
+  .ang p { margin: 0 0 3px; }
+  .ang .big { font-weight: 700; color: #8a1c2b; }
+  .trap { border: 1px solid #e3b7b7; border-left: 4px solid #8a1c2b; background: #fdf6f6; padding: 5px 10px 2px; margin: 0 0 8px; font-size: 9.2pt; page-break-inside: avoid; }
+  .trap .tq { font-weight: 700; color: #8a1c2b; }
+  .trap p { margin: 0 0 4px; }
+  pre.flow { font-family: "Liberation Mono", monospace; font-size: 6.9pt; line-height: 1.22; background: #f6f6f2; border: 1px solid #ddd; padding: 6px 8px; margin: 4px 0 9px; white-space: pre; overflow: hidden; page-break-inside: avoid; }
+  table.rt { table-layout: fixed; width: 100%; font-size: 7.7pt; }
+  table.rt th { font-size: 6.9pt; padding: 3px 4px 3px 0; }
+  table.rt td { padding: 3px 5px 3px 0; }
+  table.rt td:first-child { font-weight: 700; color: #1a2744; }
+  table.rt td.n { font-weight: 700; color: #8a1c2b; }
+  table.opt td, table.opt th { font-size: 8.7pt; }
+  table.opt td.good { background: #e8f1ea; font-weight: 700; color: #2e6b4f; }
+  table.opt td.bad { color: #8a1c2b; }
+  .toc { columns: 2; column-gap: 24px; font-size: 9.2pt; margin: 6px 0 10px; }
+  .toc div { break-inside: avoid; margin: 0 0 2px; display: flex; }
+  .toc a { color: #1c1c1c; text-decoration: none; flex: 1; }
+  .toc .pg { color: #8a1c2b; font-weight: 700; padding-left: 6px; }
+  .toc .grp { font-weight: 700; color: #1a2744; margin-top: 6px; border-bottom: 1px solid #d9d0c1; }
+  .cram h2 { margin-top: 4px; }
+  .cram table { font-size: 8.8pt; }
+  .num5 { background: #fdf0f0; border: 1px solid #e3b7b7; border-left: 4px solid #8a1c2b; padding: 6px 12px 3px; margin: 6px 0; font-size: 9.4pt; }
+  .num5 ol { margin: 2px 0 4px; padding-left: 18px; }
+  .vfl li { margin-bottom: 4px; }
+
+  .dcb { background: #fff3cd; border: 1px solid #e0c36a; border-left: 4px solid #b8860b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.1pt; color: #5a3b00; }
+  .dcb b { color: #7a4b00; letter-spacing: 0.04em; }
+  .rec { background: #e8f1ea; border: 1px solid #b9d4c1; border-left: 4px solid #2e6b4f; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.1pt; color: #1f4a36; }
+  .rec b { color: #2e6b4f; }
+  .tro { background: #eef4f6; border: 1px solid #c3d5da; border-left: 4px solid #1f6f7a; padding: 6px 10px 3px; margin: 6px 0 8px; font-size: 9.3pt; page-break-inside: avoid; }
+  .tro .label { color: #1f6f7a; }
+  .tro p { margin: 0 0 4px; }
+  .fll { background: #fdf0f0; border-left: 4px solid #8a1c2b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.3pt; page-break-inside: avoid; }
+  .fll b { color: #8a1c2b; }
+  .safe { background: #f3f0fa; border: 1px solid #d6cfe8; border-left: 4px solid #5b4a8a; padding: 5px 10px 2px; margin: 4px 0 8px; font-size: 9.2pt; page-break-inside: avoid; }
+  .safe p { margin: 0 0 3px; }
+  .safe b { color: #5b4a8a; }
+  .hb { font-size: 8.8pt; color: #1a2744; background: #f6f8fc; border-left: 4px solid #1a2744; padding: 4px 10px; margin: 2px 0 8px; }
+  .hb b { color: #1a2744; }
+  pre.map { font-family: "Liberation Mono", monospace; font-size: 7.3pt; line-height: 1.25; background: #f6f6f2; border: 1px solid #ddd; padding: 6px 8px; margin: 4px 0 9px; white-space: pre; overflow: hidden; page-break-inside: avoid; }
+  table.led { font-size: 8.2pt; table-layout: fixed; }
+  table.led th { font-size: 7.3pt; padding: 3px 4px 3px 0; }
+  table.led td { padding: 3px 5px 3px 0; }
+  table.led td:first-child { font-weight: 700; color: #1a2744; }
+  table.kit { font-size: 8.6pt; table-layout: fixed; }
+  table.kit td:first-child { font-weight: 700; color: #8a1c2b; width: 15%; }
+  table.st { font-size: 8.3pt; table-layout: fixed; }
+  table.st td, table.st th { padding: 2px 5px 2px 0; }
+  .onep h2 { margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="kicker">Interview-prep packet 4 · per-interviewer · process-improvement STAR edition</div>
+  <h1>Amazon NACF Supply Chain loop — Packet 4: James Cabreros</h1>
+  <div class="role">Amazon — Senior Supply Chain Manager, NACF Supply Chain (L6)</div>
+  <div class="who">
+    <div class="nm">James Cabreros (11:00 slot; schedule listed Zhaowen Lan)</div>
+    <div class="tt">Senior Manager, Supply Chain — placement / configuration architecture, North America Customer Fulfillment</div>
+    <div class="dt">Friday, October 30, 2026 · 11:00 am PDT</div>
+    <div class="sh">Companion to the existing Lan packet (amazon-nacf-panel-4-lan-kimi-k3), which is unchanged. This packet stands alone.</div>
+  </div>
+  <div class="strat"><strong>Strategy in one line.</strong> He migrates a legacy placement rules engine to a centralized policy platform and governs hundreds of configuration changes a week. Give him process improvements told as STAR: the defect I found, the flow I mapped, the control I set, the SOP I wrote, how I validated before deploying, and how I closed the loop after an incident. Each one carries a priced trade-off and a failure line. Open with J5 (change governance) or J1 (one governed dial), keep J8 (the UAT that crashed) ready for the failure question, and use J4 (the Google Fiber end-to-end flow) when he asks about new node types, escape routing or connectivity.</div>
+  <div class="lpg"><em>Already told on Thu Oct 29 (to Snigdha Tripathy and Ryan Hoerger):</em> S/4HANA / ISM, Flexport estimation (FF App), Shipment Visibility, safety stock, the 200-lane lead-time program. None of these is a primary here. Each appears only as a one-line bench bridge.</div>
+  <div class="lpg"><em>Honesty rules on every page:</em> J1–J3 (Walmart pre-purchase delivery) and J4 / J7 (Google Fiber E-series) are <b>DESIGN CASES</b> from my own interview prep. Say “I designed / in the model / here is how I would run it,” never “delivered.” J5, J6 and J8 are <b>RECORD</b>. Every number carries a basis label: record · record-from-docs · user anchor · modeled · illustrative.</div>
+  <div class="src">Canon: amazon/amazon-l6-scm-master-packet.html (S4, S13, S14, S15, S19–S21, E1–E12, §3.0); Apple PM III workbook v11 (F4, G1, G2, M1, D1–D3, I1); /tmp/sources/NUMBERS-RECON.md (CANON v2); resume (Rajesh_ChandrasekaranApple); ROMA “S!ONE NORAM Testing Strategy Review” (Feb 2026); GFiber MASTER Packet v8 (Part 3 design prompts, Stage 10 release workflow). His profile text: supplied by the user (LinkedIn not fetched).</div>
+</div>
+
+<h2 id="toc">Contents</h2>
+<div class="toc">
+<div class="grp">Front (read in this order)</div>
+<div><a href="#cram">1. Cram sheet: hooks, story order, the number each lands, openers, five numbers</a></div>
+<div><a href="#bullets">2. His bullets → my stories</a></div>
+<div><a href="#ledger">3. Trade-off ledger across all stories</a></div>
+<div><a href="#toolkit">4. Process-improvement toolkit, grounded in my stories</a></div>
+<div class="grp">Primaries (full STAR)</div>
+<div><a href="#j1">J1 Walmart: the governed promise-buffer dial (DESIGN CASE + Apple F4)</a></div>
+<div><a href="#j2">J2 Walmart: WBR + Andon for promise yield (DESIGN CASE)</a></div>
+<div><a href="#j3">J3 Walmart: redesigning the managed-shipping enrolment funnel (DESIGN CASE)</a></div>
+<div><a href="#j4">J4 Google Fiber: end-to-end infrastructure supply chain flow + 3 STARs (DESIGN CASE)</a></div>
+<div><a href="#j5">J5 Change governance: release train, pre-deployment validation (RECORD + design)</a></div>
+<div><a href="#j6">J6 Manhattan: allocation config, Cyber Monday post-mortem, the $2.5M discrepancy (RECORD)</a></div>
+<div><a href="#j7">J7 Legacy cutover: tolerance, mocks, freeze, one promise publisher (DESIGN on RECORD)</a></div>
+<div><a href="#j8">J8 FAILURE: the UAT that crashed (G1) + the in-transit rule I got wrong (S4)</a></div>
+<div class="grp">Back</div>
+<div><a href="#router">Router: 16/16 LPs with AIQB questions + non-LP prompts</a></div>
+<div><a href="#bench">Bench bridges (already-told stories, one line each)</a></div>
+<div><a href="#ask">Questions to ask him</a></div>
+<div><a href="#trace">Source trace</a></div>
+<div><a href="#verify">Verify list with safe sentences</a></div>
+</div>
+
+<div class="onep">
+<h2 class="break cram" id="cram">1. Cram sheet — read this, then walk in</h2>
+<div class="inf"><strong>Profile hooks (from the profile text the user supplied; nothing else asserted).</strong> (1) Migrating a <b>legacy placement rules engine to a centralized policy platform</b>: architecture, alignment, sequencing, training. (2) <b>AI-assisted configuration tooling</b> so non-specialists can self-serve network changes. (3) <b>New node types</b>: inbound/outbound connectivity, crossdock, <b>escape routing</b>, <b>capacity signaling</b>. (4) <b>Configuration governance</b>: pre-deployment validation, change-management SOPs, post-incident corrective actions, fewer unintended deployments, auditability across hundreds of weekly changes. (5) <b>Placement-architecture POC</b> across building types with Transportation, Finance, Network Topology and Operations. <b>What he is listening for:</b> can I turn a rule into a governed instrument, validate a change before it deploys, and leave a control behind after an incident?</div>
+<table class="rt">
+<thead><tr><th style="width:7%">#</th><th style="width:33%">Story (order to tell)</th><th style="width:12%">Basis</th><th style="width:48%">The one number it lands</th></tr></thead>
+<tbody>
+<tr><td>J5</td><td>Change governance: a rule change rides the train or doesn’t ship; the QA lead owns the gate</td><td>RECORD (+E8 design)</td><td class="n">20-person team, 6-week → 4-week cadence in 6 weeks; critical defects per release −50% (record)</td></tr>
+<tr><td>J1</td><td>Walmart: flat promise buffer → one governed dial, b = 1.645σ</td><td>DESIGN CASE</td><td class="n">fast-promise share 7.6% → 39.6% at the same 95% floor, in the model</td></tr>
+<tr><td>J6</td><td>Manhattan: allocation for 3 DCs + 100 stores; Cyber Monday post-mortem; $2.5M discrepancy control</td><td>RECORD / user anchor</td><td class="n">99% fill vs 95% goal; stockouts −20%; 4 standing mechanisms; ~200 orders / $2.5M of order value → 0</td></tr>
+<tr><td>J7</td><td>Legacy cutover: tolerance first, three mocks, one promise publisher</td><td>DESIGN on RECORD</td><td class="n">mocks 7.0% → 1.8% → 0.3% vs a 0.5% tolerance published before mock 1 (record)</td></tr>
+<tr><td>J4</td><td>Google Fiber end-to-end flow: PO → EDI → 3PL → van → install → return</td><td>DESIGN CASE</td><td class="n">5 control points, 1 ledger; e.g. returns dispositioned ≤14 days ≥95% (design target)</td></tr>
+<tr><td>J2</td><td>Walmart WBR + Andon: 7 outputs over 10 inputs, a 24-hour control loop</td><td>DESIGN CASE</td><td class="n">detection-to-action ~30 days → &lt;24 h by design; 0.97 × 0.985 × 0.996 ≈ 95.2%</td></tr>
+<tr><td>J3</td><td>Walmart managed-shipping funnel: an insurance contract + a shadow gate</td><td>DESIGN CASE</td><td class="n">≈$3.7M/yr per +10 pts of enrolled GMV, modeled</td></tr>
+<tr><td>J8</td><td>FAILURE: UAT crashed on concurrent logins (G1); my in-transit rule starved dotcom (S4)</td><td>RECORD</td><td class="n">5 users × 10 scenarios passed; crashed 2 days before sign-off → numeric load criteria ever since</td></tr>
+</tbody></table>
+<div class="num5"><strong>Three sentences to open with.</strong>
+<ol><li>“My process work has one habit: I turn a rule someone tunes by hand into a governed instrument with an owner, a validation gate before it deploys, and a corrective action after it fails.”</li>
+<li>“A change rides the release train or it doesn’t ship, and the regression matrix at the true grain is the gate. That’s how I’d think about hundreds of weekly placement changes.”</li>
+<li>“I’ll tell you which of my numbers are record and which are design-case models. The Walmart and Google Fiber pieces are designs I built; Manhattan, Sephora and Elementum are delivered.”</li></ol></div>
+<div class="num5"><strong>Five numbers never to get wrong.</strong>
+<ol><li>Mocks <b>7.0% → 1.8% → 0.3%</b> against a <b>0.5%</b> tolerance published with Finance <b>before</b> mock 1 (record, Apple D2).</li>
+<li>Critical defects per release <b>−50%</b>; <b>20-person</b> team; <b>6-week → 4-week</b> in <b>6 weeks</b> (record, resume + Apple D3).</li>
+<li>Manhattan: <b>3 DCs + 100 stores</b>, <b>99% fill vs 95%</b> goal, about <b>$6M on the line</b> and about <b>$8M of the day’s sales protected</b>; stockouts <b>−20%</b> (record).</li>
+<li>Walmart design case: <b>7.6% → 39.6%</b> fast-promise share at a held <b>95%</b> floor, always “in the model.” Never a delivered dollar.</li>
+<li>G1: <b>5 users × 10 scenarios</b> passed; concurrent logins crashed it <b>2 days</b> before sign-off. Since then, every gate has a load line, e.g. Flexport <b>500 containers in 20 min at 99.6%</b> (record-from-docs).</li></ol></div>
+</div>
+
+<h2 class="break" id="bullets">2. His bullets → my stories</h2>
+<p class="note">Left column: his profile bullet, as supplied. Right: the story that answers it, and the sentence that bridges it. If he asks a bullet directly, open with the bridge sentence, then go to the STAR.</p>
+<table class="st">
+<thead><tr><th style="width:24%">His bullet</th><th style="width:20%">Primary / backup</th><th style="width:56%">Bridge sentence (say this first)</th></tr></thead>
+<tbody>
+<tr><td><b>Legacy placement rules engine → centralized policy platform</b> (architecture, alignment, sequencing, training)</td><td>J7 (cutover) · J1 (rule → one dial) · J8-B (rule fixed through the signed policy)</td><td>“A rules migration fails the way a WMS cutover fails: two publishers at once. I publish a tolerance before mock 1, read mocks by cause, and switch consumers to one publisher at a time. Zero the old one first, then publish the new one.”</td></tr>
+<tr><td>… <b>training delivery</b></td><td>J5 (S15 user guide; QA owns the gate) · J7 (device readiness moved into training entrance criteria, G2)</td><td>“Training is a gate, not an event. Proven devices and a user guide the skeptic wrote, both before the date.”</td></tr>
+<tr><td><b>AI-assisted configuration tooling</b> so non-specialists self-serve</td><td>J3 (shadow-run before flip) · J1 (a dial a business owner reads on Monday) · bench I1 (LLM triage agent)</td><td>“Self-serve is safe when the tool shows the operator the outcome before the flip. In my design, every seller enrolment is shadow-run on its own history first. In the agent I built, the rule was no citation, no proposal.”</td></tr>
+<tr><td><b>New node types:</b> inbound/outbound connectivity, crossdock, <b>escape routing</b>, <b>capacity signaling</b></td><td>J4 (van as a node; EDI inbound; returns exits) · J6-A (rebalance so no DC drowns) · J2 (Andon as a capacity signal)</td><td>“When I add a node type, it gets four things before it gets volume: a legal inbound flow, a legal outbound flow, a named escape route for every unit that leaves the happy path, and a capacity signal that throttles it automatically.”</td></tr>
+<tr><td><b>Configuration governance:</b> pre-deployment validation, change-management SOPs</td><td>J5 (release train) · J7 (three mocks) · J8-A (numeric UAT entrance criteria)</td><td>“A change rides the train or doesn’t ship; the regression matrix at the true grain is the gate; go/no-go reads counted rows, not confidence.”</td></tr>
+<tr><td>… <b>post-incident corrective actions</b>; fewer unintended deployments</td><td>J6-A (heartbeat, DST checklist, 3σ page rule, rehearsed playbook) · J6-B (standing reconciliation) · J8-B (four regression cells)</td><td>“Every incident has to leave at least one mechanism behind, not a reminder. After Cyber Monday we shipped four, and the next peak ran boring.”</td></tr>
+<tr><td>… <b>auditability across hundreds of weekly changes</b></td><td>J5 (manifest + transport log) · J4 (append-only serial ledger) · J6-B (per-line before/after)</td><td>“Every change has one document, one owner and a reversal that references the original. No manual table edits, ever.”</td></tr>
+<tr><td><b>Placement-architecture POC</b> across building types with Transportation, Finance, Network Topology, Ops</td><td>J1 (four policies on one table; breach priced) · J7 (tolerance signed with Finance) · J4 (direct/indirect boundary table)</td><td>“Partners argue less when the options sit on one table with a price per row. Finance signs the tolerance or the breach cost before anyone tunes anything.”</td></tr>
+</tbody></table>
+<div class="hb"><b>If he asks “what would you do in your first 90 days here?”</b> Map the change flow end to end (who requests, who validates, who deploys, who can roll back). Count unintended deployments by cause class for the last quarter. Pick the top cause and put a gate on it. Then write it down as an SOP the operators own, not me. That is J5’s method applied to his world.</div>
+
+<div class="onep">
+<h2 class="break" id="ledger">3. Trade-off ledger — every story, one row</h2>
+<p class="note">Decision | options | chosen | rejected and why | what it cost | the metric that judged it. Design-case rows are marked (D); every number keeps its basis label.</p>
+<table class="led">
+<thead><tr><th style="width:8%">Story</th><th style="width:14%">Decision</th><th style="width:15%">Options</th><th style="width:13%">Chosen</th><th style="width:19%">Rejected &amp; why</th><th style="width:16%">What it cost</th><th style="width:15%">Metric</th></tr></thead>
+<tbody>
+<tr><td>J1 (D)</td><td>How to set the promise buffer</td><td>Uniform 1.10 d · σ-proportional dial · min-days · profit-optimal · per-lane ML</td><td>One governed dial, b = 1.645σ</td><td>Per-lane learned buffers: more value on paper, but invisible governance. Profit-optimal: handed to Finance, not adopted by default.</td><td>Widest lanes got slower promises: buffer 1.10 → 2.63 d (model)</td><td>Fast share 7.6% → 39.6% at a 95% floor (model)</td></tr>
+<tr><td>J2 (D)</td><td>How many metrics on the WBR</td><td>Every team’s dashboard · 7 outputs over 10 inputs</td><td>7 over 10, each with an owner</td><td>“More metrics”: a metric nobody owns is noise; two dashboards is zero dashboards</td><td>Teams lost favorite metrics; sellers kept the slower, fair 30-day window</td><td>Detection-to-action ~30 d → &lt;24 h (design)</td></tr>
+<tr><td>J3 (D)</td><td>How to restart stalled enrolment</td><td>Market harder · hard cliff on label purchase · tiered insurance contract</td><td>All-or-nothing bundle, protection tiered by depth</td><td>Banners and emails: the stall was an unpriced trade. A hard cliff reads as a tax to sellers with negotiated rates.</td><td>Enforcement deferred; slower adoption curve accepted</td><td>Activations/week + 30-day retention; ≈$3.7M/yr per +10 pts (modeled)</td></tr>
+<tr><td>J4 (D)</td><td>Gate van replenishment</td><td>Replenish on request · count-as-gate</td><td>No new issue without a posted weekly count</td><td>Replenish-on-request: hides the unmeasured stock</td><td>Slower issues in week one</td><td>Unaccounted units/contractor/month → near 0</td></tr>
+<tr><td>J4 (D)</td><td>Untested returns</td><td>Grade on the truck · central test bench</td><td>No test, no grade, no availability</td><td>Truck grading: fast but inconsistent; one bad unit = a truck roll</td><td>A hop and some days; refurb stock lags in a surge</td><td>Dispositioned ≤14 d ≥95%; warranty recovery ≥80%</td></tr>
+<tr><td>J5</td><td>Cadence vs quality</td><td>Keep 6-week · 4-week with a QA gate · continuous</td><td>4-week, QA-authored definition-of-done, drop date with reason codes</td><td>Hotfixes / “just this once” outside the train: untraceable</td><td>Low-impact stories dropped visibly; I covered some</td><td>Critical defects/release −50% (record)</td></tr>
+<tr><td>J6-A</td><td>Clear the Cyber Monday backlog</td><td>FIFO · wait for root cause · promise-at-risk first</td><td>Promise-at-risk, reversible, logged</td><td>FIFO clears cheap orders while at-risk promises age; waiting had an hourly price</td><td>Some early cheap orders waited; manual, throwaway work</td><td>99% fill vs 95% goal (record)</td></tr>
+<tr><td>J6-B</td><td>Fix a $2.5M OMS↔WMS gap</td><td>Quiet cross-table script · tell the customer first</td><td>Transparency + per-line reversible patch</td><td>A two-day script can’t be verified; an audit finding becomes a reputation issue</td><td>My time in a war room; risk of being wrong in front of the customer</td><td>~200 orders → 0; standing daily report (user anchor)</td></tr>
+<tr><td>J7</td><td>Define “good enough” for cutover</td><td>Negotiate at go-live · publish tolerance before mock 1</td><td>0.5% with Finance before mock 1</td><td>Negotiating at go-live turns arithmetic into politics</td><td>Three mocks cost weeks; 72-h freeze delayed receipts</td><td>7.0 → 1.8 → 0.3% (record)</td></tr>
+<tr><td>J8-A</td><td>UAT exit criteria</td><td>Scenario pass only · scenario + numeric load</td><td>Numeric entrance/exit incl. concurrency (after the miss)</td><td>“Works for us” as evidence: it was why I failed</td><td>Lost sign-off date; customer confidence spent</td><td>Load line on every gate since (record)</td></tr>
+<tr><td>J8-B</td><td>Fixing my own rule</td><td>Hotfix / side config · signed FSD change on cadence</td><td>Signed change, back-tested, on the monthly train</td><td>Hotfix makes the fix as untraceable as the error</td><td>Slower than a hotfix; lanes below the floor stayed out</td><td>Oversell increase 0; kill switch never fired (user anchor)</td></tr>
+</tbody></table>
+<div class="tro"><div class="label">The pattern he should hear</div><p>I rarely pick the fastest option. I pick the one that stays <b>governable</b>: one owner, one document, one number decided in advance, and a cheap rollback. Then I say out loud what it cost.</p></div>
+</div>
+
+<div class="onep">
+<h2 class="break" id="toolkit">4. Process-improvement toolkit — how I actually do it (each step proven in a story)</h2>
+<table class="kit">
+<thead><tr><th>Step</th><th style="width:42%">What I do</th><th style="width:43%">Where I did it (basis)</th></tr></thead>
+<tbody>
+<tr><td>1. Find the process defect</td><td>Look for the <b>contradiction</b>, not the complaint: inventory present but backorders rising; accuracy “green” but the tail failing; tests pass but users can’t finish a flow. Then ask whether it’s a <b>policy defect or a data defect</b>.</td><td>J6-A: ATP &gt; 0 with backorders rising was my entry bar to declare an incident (record). J8-B: the lanes were on time, my rule forbade promising them, so it was a policy defect (user anchor). J1: 95.8% portfolio accuracy hid z = 5.0 on one cohort and 0.69 on another (model).</td></tr>
+<tr><td>2. Map the flow</td><td><b>Stocks and flows</b>: every bucket a unit can sit in, every flow between them, one document per flow, one owner per number. If a flow has no document, add the document before adding a report.</td><td>J4: PO → 855 → ASN → 3PL → van → install → return, each hop with its own document (design). J2: seven outputs decomposed into ten owned inputs (design).</td></tr>
+<tr><td>3. Set the control</td><td>A <b>number decided before the event</b>: a tolerance, a gate, a tripwire, plus a <b>kill switch</b> that fails in the safe direction.</td><td>J7: 0.5% tolerance published with Finance before mock 1 (record). J8-B: per-lane window plus the Aging In-Transit kill switch (user anchor). J2: Andon at 2× baseline, n ≥ 30, act &lt;24 h (design).</td></tr>
+<tr><td>4. Write the SOP</td><td>Let the <b>skeptic author the gate</b>, keep it short, publish it in the tool people already use, and put the owner’s name on it, not mine.</td><td>J5: the QA lead wrote the definition-of-done; Jira review-status fields; a user guide that neighbouring teams copied (record). J6-A: the rebalance playbook written down and rehearsed (record).</td></tr>
+<tr><td>5. Validate before deploying</td><td><b>Back-test on history, shadow-run on live inputs, rehearse with full data.</b> Read results by cause class, never by headline. Test at the customer’s shape (load, concurrency).</td><td>J8-B: back-test against receiving history, the step v1 skipped. J1/J3: four shadow weeks / per-seller shadow run (design). J7: three mocks on full production data (record). J8-A: concurrency in entrance criteria (record).</td></tr>
+<tr><td>6. Close the loop after an incident</td><td><b>Blameless post-mortem from the log timeline</b>, at least one mechanism per incident, an owner per action, and a <b>standing report</b> that makes recurrence visible.</td><td>J6-A: heartbeat, DST checklist, 3σ page rule, rehearsed playbook; next peak ran boring (record). J6-B: reason-coded OMS↔WMS reconciliation read before every exec review (user anchor). J8-B: four regression cells added (user anchor).</td></tr>
+</tbody></table>
+<div class="tro"><div class="label">Light math that carries the process point (J5, modeled from the cadence)</div><p>Releases per year go 52 ÷ 6 ≈ 8.7 → 52 ÷ 4 = 13 (+50%). If critical defects <em>per release</em> fall 50%, then escaped criticals per year go 8.7c → 13 × 0.5c = 6.5c, about <b>−25% in absolute escapes even while shipping 50% more often</b>. A faster change cadence is safe only if the gate improves faster than the cadence does. The −50% is record; the per-year figure is my arithmetic on the cadence, with c being whatever the baseline count was.</p></div>
+<div class="hb"><b>For his “hundreds of weekly changes”:</b> the same six steps scale only if steps 3–5 are automated per change class (validation is a test, not a meeting) and step 6 writes a new test whenever something escapes. That is how I’d expect “fewer unintended deployments” to be engineered.</div>
+</div>
+
+<h3 class="st" id="j1">J1 — Walmart pre-purchase delivery: the flat promise buffer rebuilt as one governed dial</h3>
+<div class="dcb"><b>DESIGN CASE</b>: built from my own interview prep for a Walmart Marketplace pre-purchase delivery-experience role (war book + solver model, illustrative data). Not a delivered result. Say “I designed” and “in the model.” <b>Lived record paired with it:</b> Apple F4, the Elementum 200-lane lead-time distributions (already told to Snigdha/Ryan, so one line only).</div>
+<div class="hb"><b>His bullet it answers:</b> legacy rules → a centralized policy instrument; placement POC with Finance and Transportation; AI/self-serve tooling a business owner can read.</div>
+<ul class="lpp">
+<li><b>Dive Deep</b>: the portfolio number (95.8%) was green; the per-cohort z-scores (5.0 vs 0.69) showed over- and under-insurance at the same time.</li>
+<li><b>Invent and Simplify</b>: a hundred hand-tuned buffers became one published dial, b = k·σ, owned by a business owner.</li>
+<li><b>Insist on the Highest Standards</b>: shadow mode with a promotion bar written before week one; a Q4 re-solve rule so peak can’t silently break the floor.</li>
+<li><b>Earn Trust</b>: the cost (slower promises on the widest lanes) put on the table as a priced row, not hidden.</li>
+</ul>
+<div class="say"><div class="label">60-second pitch</div>
+<p>“<b>Situation.</b> In a design case I built for a marketplace delivery-promise role, the promised date was order time plus seller handling plus predicted transit plus a buffer, and the buffer was a flat 1.10 days on every lane. In my model of twelve lane cohorts, about a million orders a week, it printed 95.8% accuracy but only 7.6% of orders got a fast promise. <b>Task.</b> Turn a hand-tuned rule into a governed policy without breaking the 95% accuracy floor. <b>Action.</b> I decomposed accuracy into seller × carrier × Φ(buffer/σ), showed the flat buffer was 5.0 standard deviations on the tightest cohort and 0.69 on the widest, put four policies on one priced table, and recommended one dial, b = 1.645σ, validated in four shadow weeks before any customer saw a date. <b>Result.</b> In the model, fast-promise share goes 7.6% to 39.6% at exactly 95%, and the average promise drops from 3.09 to 2.75 days. The dial is printed in the weekly review header, with a named owner. The lived version of this is my Elementum lead-time work: 200 lanes, promise at the tail, 99% accuracy.”</p></div>
+<div class="star">
+<p><span class="stag">S —</span> A marketplace promises delivery on inventory it never touches: seller picks, a partially controlled carrier carries, and the customer blames the marketplace. Promised date = order time + configured handling + predicted transit + buffer. The incumbent buffer was <b>uniform, about 1.10 days</b>, set once and owned by nobody between reviews. Model scale: <b>12 lane cohorts, ~1M orders/week, σ from 0.22 to 1.60 days</b> (illustrative). Baselines in the model: accuracy <b>95.8%</b> vs a 95% floor, average promised day <b>3.09</b>, fast-promise share (≤2 days) <b>7.6%</b>, weekly modeled profit <b>$5.69M</b>. The real baseline: <b>no governed owner</b> of the speed-vs-accuracy trade.</p>
+<p><span class="stag">T —</span> My role in the case was promise-policy lead: decompose where the buffer was wasted and where it was thin, put priced alternatives on one table, design the validation gates, and leave a governance instrument, not a tuning habit. The constraint: hold 95% accuracy on every cohort. The model’s stated economics: a breach costs about <b>$12</b> against about <b>$6.50</b> of contribution margin (model assumptions, not a measured P&amp;L).</p>
+<p><span class="stag">A —</span> Five gated phases, as I designed them:</p>
+<ul class="phz">
+<li><span class="pb">Discovery: find the defect.</span> Wrote the accuracy factorization (P(seller ships in window) × P(carrier meets transit) × Φ(b/σ)) and the buffer-waste audit. The indictment in two lines: 1.10 ÷ 0.22 = <b>z 5.0</b> (Φ ≈ 99.99997%) on the tightest cohort; 1.10 ÷ 1.60 = <b>z 0.69</b> (Φ ≈ 75.4%) on the widest. <i>Exit:</i> the question changes from “how much buffer” to “where should it sit.”</li>
+<li><span class="pb">Plan &amp; Design: options on one table.</span> A uniform (incumbent) · B σ-proportional, one dial k · C minimum-days at the floor · D profit-optimal on the priced breach. Gates designed up front: shadow mode, a promotion bar, a warm rollback. <i>Exit:</i> the dial k named as a published policy instrument with an owner.</li>
+<li><span class="pb">Build &amp; Test: validate before deploying.</span> Φ(1.645) = 0.95 holds the floor on every cohort by construction; the Q4 drill (σ × ~1.45) shows a frozen summer dial printing <b>91.9%</b>, below the floor, so a re-solve rule is written. <i>Exit:</i> every policy reproducible independently by the engineering/data-science owners.</li>
+<li><span class="pb">Cutover: shadow, then promote.</span> Challenger computed and logged per order for <b>four consecutive weeks</b>, never displayed; promote only if would-be accuracy holds the floor on logged live orders with no rise in contact signals. Rollback = one flag back to the incumbent. <i>Exit:</i> promotion bar published before shadow week 1.</li>
+<li><span class="pb">Hypercare: close the loop.</span> k printed in the Monday review header; p90 error and buffer exceedance next to the mean; k re-solved per regime (October for peak). <i>Exit:</i> a business owner, not data science, owns the dial.</li>
+</ul>
+<p><b>Mine vs theirs (in the case):</b> mine were the factorization, the waste audit, the four-policy table, the proofs and the gates. The engine, the transit models and σ estimates belong to engineering and data science; the breach price belongs to Finance.</p>
+<p><span class="stag">R —</span> What the design produces, all <b>in the model</b>:</p>
+<ul class="res">
+<li><b>%</b> Fast-promise share <b>7.6% → 39.6%</b> (+32 pts) at a held <b>95.0%</b> floor (modeled, recomputed from the solver model).</li>
+<li><b>Time</b> Average promised day <b>3.09 → 2.75</b>; tightest cohort’s buffer 1.10 → 0.36 d; widest 1.10 → 2.63 d, longer on purpose (model).</li>
+<li><b>$</b> +$255K/week vs uniform, ≈ <b>$13.3M/yr</b> annualized (modeled ×52). Policy D (97.8% accuracy, ≈ +$20M/yr) handed to Finance as a governance choice, never merged with the $13.3M.</li>
+<li><b>Process</b> One dial, one owner, one shadow gate, one regime rule, instead of tuning by whoever touched the last model.</li>
+<li><b>Lived record behind it (Apple F4):</b> 200 lanes, measured distributions, promise at the tail, <b>99% lead-time accuracy</b>, <b>580,000 units</b> and about <b>$1.5M of carrying cost released</b> (record).</li>
+</ul>
+</div>
+<div class="tro"><div class="label">Trade-off I made</div><p><b>Options:</b> per-lane ML-learned buffers (data science’s preference) vs one governed dial. <b>Chose:</b> the dial first. <b>Rejected:</b> learned buffers, because they add value on paper but governance is invisible, and nobody can audit a hundred micro-decisions on a Monday. <b>Cost:</b> the widest lanes got honestly slower promises (2.63-day buffer in the model), and the last increment of profit (policy D) was left as a Finance decision. <b>Metric:</b> fast share at the held floor.</p></div>
+<div class="fll"><b>Failure / learning.</b> From the lived F4 record: I shipped the lane distributions before the drift flag, and a lane quietly degraded until a planner caught it by hand. In this design, the regime re-solve and the tail metrics ship <i>with</i> the dial, not after.</div>
+<div class="safe"><p><b>SAFE-SAY (most attackable number):</b> “Seven-point-six to thirty-nine-point-six percent is in my model, a twelve-cohort illustrative book. It’s a design case, not a delivered result.”</p><p><b>“What’s your source?”</b> “My own solver model for a Walmart delivery-promise role, recomputed. The delivered version of this muscle is Elementum: two hundred lanes, ninety-nine percent lead-time accuracy.”</p></div>
+<div class="t20"><div><div class="label">20-second version</div><p>“A flat 1.10-day buffer was over-insuring metro lanes at five sigma and under-insuring rural lanes at 0.69. I designed one governed dial, b = 1.645σ, validated in shadow weeks. In the model, fast promises went 7.6 to 39.6 percent at the same 95% floor, and a business owner now reads the dial every Monday.”</p></div></div>
+<h4>Probing Q&amp;A</h4>
+<div class="qa"><p class="q">Q1. Why not let ML learn per-lane buffers? Isn’t that more accurate?</p><p>Possibly more profit on paper, but it’s ungovernable: a hundred micro-decisions no business owner can audit. The dial captures most of the value, and when σ estimates improve, that flows into speed visibly. I put the ML option on the table as a priced row, so the no was a decision, not an opinion. For a placement rules platform I’d apply the same rule: a parameter a human owns beats a policy nobody can read.</p></div>
+<div class="qa"><p class="q">Q2. How do you validate a policy change before customers see it?</p><p>Shadow mode: the challenger is computed and logged per order for four weeks, never displayed. It’s promoted only if would-be accuracy holds the floor on logged live orders with no rise in contacts. The bar is published before shadow week one, and rollback is one flag.</p></div>
+<div class="qa"><p class="q">Q3. What breaks this at peak?</p><p>Variance regime change. In the model, σ × ~1.45 drops a frozen summer dial to 91.9%. So k is re-solved per regime and published in October. Never frozen through peak.</p></div>
+<div class="qa"><p class="q">Q4. Did you deliver this?</p><p>No. It’s a design case I built for a marketplace delivery-promise role. What I delivered is the same idea at Elementum: measured lead-time distributions on 200 lanes, promise at the 99th percentile, 580,000 units and about $1.5M of carrying cost released.</p></div>
+
+<h3 class="st" id="j2">J2 — Walmart pre-purchase delivery: the weekly business review and an Andon for promise yield (the operating mechanism)</h3>
+<div class="dcb"><b>DESIGN CASE</b>: the WBR design from my Walmart-role prep (Tech Ops WBR deep dive, illustrative sample weeks). Not a delivered result. The WBR <i>format</i> (input levers under output metrics, ±5% relative week-over-week, Monday–Sunday week) is real: I copied it from the Flexport LSA WBR I ran (record; already told, so one line only).</div>
+<div class="hb"><b>His bullet it answers:</b> configuration governance and post-incident corrective action at scale; capacity signaling; auditability (one owner, one definition per metric).</div>
+<ul class="lpp">
+<li><b>Ownership</b>: an output metric owned by a committee is owned by nobody between Tuesdays; I put one name on the output block.</li>
+<li><b>Insist on the Highest Standards</b>: hard reds on policy floors regardless of trend; a red that arrives without cause, owner and date counts as a process miss.</li>
+<li><b>Dive Deep</b>: the factor math names the lever and the owner in minutes; mix-adjusted twins stop Simpson’s paradox from flattering a quarter.</li>
+<li><b>Bias for Action</b>: the Andon acts within 24 hours at the seller-lane cell instead of waiting for a 30-day rolling window.</li>
+</ul>
+<div class="say"><div class="label">60-second pitch</div>
+<p>“<b>Situation.</b> In a design case for a marketplace delivery team, the promise was owned by four teams: data science, engineering, seller ops and carrier programs. The scorecards ran on 30-day rolling windows, so a degrading seller or carrier did weeks of damage before anything fired, and a red week turned into a blame negotiation. <b>Task.</b> Design the weekly business review and a control loop faster than 30 days. <b>Action.</b> One glossary and audited denominators first. Then seven output metrics over ten input levers, each with an owner and a roll-up. The decomposition, accuracy ≈ seller × carrier × Φ(b/σ), answers ‘which lever moved’ in minutes. Reds are pre-wired before the room. And an Andon: a 7-day control chart per seller-lane cell that acts within 24 hours. <b>Result.</b> On the sample data, red-week attribution goes from days of negotiation to minutes; detection-to-action goes from about 30 days to under 24 hours by design; and one joint headline, Promise Yield, sits at a 41.5% sample baseline. The only dollar is modeled: about $580K per caught episode.”</p></div>
+<div class="star">
+<p><span class="stag">S —</span> Three parties make the promise: the seller ships in a window, a carrier meets transit, a buffer absorbs the rest. Measurement was the problem, not effort. Metrics lived on <b>30-day rolling windows</b> that smear a step change into a drift; aggregates hid variance (worked example: a carrier at <b>97% nationally and 82% in the Southeast</b>); three teams kept three clocks (order, ship, promise date). Sample baseline: fast share <b>43.6%</b> × accuracy <b>95.2%</b> ≈ <b>41.5% Promise Yield</b> (docs’ illustrative sample).</p>
+<p><span class="stag">T —</span> Design the WBR for pre-purchase delivery: outputs a customer feels, inputs a named owner can turn this week, the math that connects them, thresholds, and a control loop faster than the scorecard. Then hand it to owners.</p>
+<p><span class="stag">A —</span> Five gated phases, as designed:</p>
+<ul class="phz">
+<li><span class="pb">Discovery: one glossary.</span> Every metric gets one definition, one owner, one grain, one date basis. Denominators audited (cancelled orders quietly leaving the OTD base). <i>Exit:</i> three clocks reconciled to one event source.</li>
+<li><span class="pb">Plan &amp; Design: the architecture.</span> Seven outputs (promise accuracy ≥95%, OTD ≥90% floor, late shipment ≤5%, cancellation ≤2%, fast-promise penetration, WISMO contacts, conversion lift) over ten inputs (managed-shipping share, handling adherence, carrier lane SLA, transit-model error, buffer calibration, feed accuracy, eligibility, engine latency, onboarding, retention). Red/green at <b>±5% relative WoW</b>; hard reds on floors. <i>Exit:</i> every output decomposes into named inputs with owners.</li>
+<li><span class="pb">Build &amp; Test: prove it on sample weeks.</span> 0.97 × 0.985 × 0.996 ≈ <b>95.2%</b>. Drill: drop the Southeast carrier cell to 82% on a tenth of volume; carrier factor 0.90 × 0.985 + 0.10 × 0.82 = 0.9685, so accuracy falls to ≈ <b>93.6%</b>, and the decomposition names carrier programs as the owner. <i>Exit:</i> the six-step loop (measure → variance → decompose → root-cause → act → verify) runs end to end.</li>
+<li><span class="pb">Cutover: the rhythm.</span> Monday data freeze, Tuesday review, reds pre-wired with cause, owner and date. “The meeting decides; it never discovers.” <i>Exit:</i> two pre-wired cycles.</li>
+<li><span class="pb">Hypercare: the control loop.</span> Mix-adjusted twins next to every raw output. Andon: <b>7-day EWMA/CUSUM per seller-lane cell</b>, tripwire at a sustained <b>2× baseline</b> breach rate with <b>n ≥ 30</b>, act <b>&lt;24 h</b> (widen that cell’s buffer or pull its fast badge), auto-restore on recovery, false-trip bar <b>&lt;5%</b>. <i>Exit:</i> the verify step. If an input moved and its output didn’t, the lever map is declared wrong, in writing.</li>
+</ul>
+<p><span class="stag">R —</span> What the design produces (sample data / modeled):</p>
+<ul class="res">
+<li><b>Time</b> Red-week attribution: days → minutes (sample drill); detection-to-action ~30 days → <b>&lt;24 h</b> by design.</li>
+<li><b>#</b> 7 outputs / 10 inputs / 1 joint headline / 1 action log, each with one owner.</li>
+<li><b>%</b> Promise Yield <b>41.5%</b> sample baseline, four-quarter design target 50%.</li>
+<li><b>$</b> ≈ <b>$0.58M per caught episode</b>, modeled: ≈$192K/week of excess breaches × 3 weeks saved ($12 breach cost is the model’s assumption). Not annualized; I don’t know the episode frequency, so I don’t invent one.</li>
+</ul>
+</div>
+<div class="tro"><div class="label">Trade-off I made</div><p><b>Options:</b> act on the 30-day seller scorecard (fair to sellers, slow for customers) vs act on a 7-day cell signal (fast, but noisier). <b>Chose both, split by consequence:</b> the Andon acts on <i>cells and badges</i> within 24 hours; seller <i>scorecards</i> stay on the fair 30-day window. <b>Rejected:</b> punishing sellers on 7-day noise. <b>Cost:</b> a false-trip budget (&lt;5%) and an auto-restore rule to maintain. <b>Metric:</b> detection-to-action time.</p></div>
+<div class="fll"><b>Failure / learning.</b> The program wanted more metrics; my first draft had more than seven. I learned (and wrote into the design) that a metric nobody owns or acts on comes off the board, and that two dashboards means nobody watches either.</div>
+<div class="safe"><p><b>SAFE-SAY:</b> “Ninety-five-point-two is the docs’ illustrative sample week, and the 30-days-to-24-hours is by design. I never claim a production metric moved.”</p><p><b>“Source?”</b> “My Walmart-role WBR deep dive, built on the Flexport LSA WBR format I actually ran.”</p></div>
+<div class="t20"><div><div class="label">20-second version</div><p>“A delivery promise owned by four teams and measured on 30-day windows. I designed a WBR with seven outputs over ten owned inputs, a factor decomposition that names the lever in minutes, and an Andon per seller-lane cell that acts in under 24 hours, while seller scorecards stay on the fair 30-day clock.”</p></div></div>
+<h4>Probing Q&amp;A</h4>
+<div class="qa"><p class="q">Q1. How is this a capacity signal for a network?</p><p>The Andon is a throttle at the grain where variance lives. A cell breaching at 2× baseline gets its fast badge pulled or its buffer widened automatically, so a degrading node or lane stops taking promises it can’t keep. For a new node type I’d wire the same: a sustained signal, a minimum sample, an automatic action, and an auto-restore.</p></div>
+<div class="qa"><p class="q">Q2. How do you stop the WBR from becoming a viewing?</p><p>Pre-wire rule: reds arrive with cause, owner and date or they count as a process miss. The meeting decides; it never discovers.</p></div>
+<div class="qa"><p class="q">Q3. What’s the verify step for?</p><p>To falsify the lever map itself. If an input moved and its output didn’t, the roll-up hypothesis is wrong, and that gets written down. That’s what keeps the instrument honest after I leave.</p></div>
+<div class="qa"><p class="q">Q4. Have you run a WBR for real?</p><p>Yes, at Flexport; you may have heard about it yesterday. This design is where I carried the decomposition math and the control loop furthest, as a design case.</p></div>
+
+<h3 class="st" id="j3">J3 — Walmart: the stalled managed-shipping program, redesigned as an enrolment process with a shadow gate</h3>
+<div class="dcb"><b>DESIGN CASE</b>: from my Walmart-role prep (war book, case materials). Baselines are “in my case materials.” I claim a design, never an adoption curve or a delivered dollar.</div>
+<div class="hb"><b>His bullet it answers:</b> self-serve configuration for non-specialists (sellers flipping their own settings) with guardrails; change-management SOPs; training/enablement at scale.</div>
+<ul class="lpp">
+<li><b>Think Big</b>: stopped marketing a settings toggle; redesigned the offer as an insurance contract that thousands of sellers can self-select into.</li>
+<li><b>Customer Obsession</b>: observed handling replaces declared handling at the source, so the customer’s promise stops depending on a seller’s optimism.</li>
+<li><b>Insist on the Highest Standards</b>: shadow-verify every seller’s settings on their own history before the flip; waves board only on published criteria.</li>
+<li><b>Earn Trust</b>: a kill condition is written before launch: one broken protection promise stops enrolment.</li>
+</ul>
+<div class="say"><div class="label">60-second pitch</div>
+<p>“<b>Situation.</b> In a design case for a marketplace, the managed-shipping program, where the marketplace picks transit settings and absorbs carrier-delay accountability, had stalled at roughly 38 to 42 percent of seller-fulfilled GMV in my case materials. Sellers declared one-day handling to win placement and hit it about 85 percent of the time. <b>Task.</b> Redesign the enrolment process so adopting is the seller’s rational choice, safely. <b>Action.</b> I walked the funnel and designed refusal interviews: the stall was an unpriced trade, not a marketing problem. I rebuilt the offer as an all-or-nothing contract: transit automation, observed handling and a participating label earn scorecard protection, with a per-seller GMV-delta line showing the value in their own dollars. Every enrolment is shadow-run on the seller’s own history before the flip, waves board only on published criteria, and I measured activations together with 30-day retention. <b>Result.</b> A design: the contract, the shadow gate, the wave criteria and a measurement pair that can’t be gamed. Modeled at about $3.7M a year for every ten points of GMV enrolled.”</p></div>
+<div class="star">
+<p><span class="stag">S —</span> The marketplace underwrites the promise, but the inputs (handling time, ship nodes, carriers) are configuration data thousands of sellers set themselves, optimistically and rarely updated. Managed-settings adoption stalled at <b>~38–42% of seller-fulfilled GMV</b>; declared 1-day handling hit <b>~85%</b> (case materials). The offer’s value was unpriced; enrolments were counted, retention was not.</p>
+<p><span class="stag">T —</span> Diagnose the stall, redesign the enrolment process end to end, design rollout gates that protect both customer and seller, and define a measurement that stays honest after handoff.</p>
+<p><span class="stag">A —</span> Five gated phases, as designed:</p>
+<ul class="phz">
+<li><span class="pb">Discovery: find the process defect.</span> Funnel walk plus interviews with enrolled, refused and churned sellers (the refusals teach most). Finding: fear of cost, loss of carrier control, distrust of the scorecard. An incentive-design defect. <i>Exit:</i> the biggest funnel drop-off named in sellers’ own words.</li>
+<li><span class="pb">Plan &amp; Design: rebuild the offer.</span> (a) transit automation, (b) observed handling time computed from scan history (no more declared handling), (c) participating label; full bundle earns carrier-delay excusal and the fast badge where the math clears. A personalized “enrolment would raise your projected GMV by $X/month” line. <i>Exit:</i> contract and protection rules signed by product, seller ops and the scorecard owner.</li>
+<li><span class="pb">Build &amp; Test: validate before the flip.</span> Shadow-run each enrolling seller’s recent orders under managed settings; projected accuracy and badge eligibility on their own history. <i>Exit:</i> shadow results within tolerance of projection on the pilot cohort.</li>
+<li><span class="pb">Cutover: waves behind criteria.</span> Shadow-verified settings, observed-handling coverage, feed accuracy, protection rules armed. A wave that fails a criterion does not board the next cohort, publicly.</li>
+<li><span class="pb">Hypercare: the honest pair.</span> Activations/week <i>and</i> 30-day retention; refusal reason codes feed back into the offer; kill condition: a protection promise the scorecard fails to honor stops enrolment until fixed.</li>
+</ul>
+<p><span class="stag">R —</span> Deliverable and modeled economics:</p>
+<ul class="res">
+<li><b>Process</b> One contract (three components, all-or-nothing), one pricing line per seller, a shadow gate before every flip, published wave criteria, a measurement pair (design).</li>
+<li><b>$</b> ≈ <b>$3.7M/yr per +10 pts</b> of enrolled GMV, modeled: 100K orders/wk × (15% − 3%) handling-miss reduction × 50% breach-through × $12 × 52 = $3,744,000. The 3% and 50% are illustrative; the $12 is the model’s assumption.</li>
+<li><b>Customer</b> The fast badge appears only where the math clears: the promise shown is the promise kept (design).</li>
+</ul>
+</div>
+<div class="tro"><div class="label">Trade-off I made</div><p><b>Options:</b> market harder · make the label purchase a hard cliff · tier the protection with bundle depth. <b>Chose:</b> tiered protection, carrots first. <b>Rejected:</b> the hard cliff, because sellers with negotiated carrier rates read it as a tax and churn, which is a strategic loss in an assortment-growth phase. <b>Cost:</b> a slower adoption curve and enforcement deferred until the marketplace’s own fulfillment alternative scales. <b>Metric:</b> 30-day retention next to activations.</p></div>
+<div class="fll"><b>Failure / learning.</b> The tempting metric was enrolments. Enrolments without retention is churn dressed up as growth, so retention went on the board as an equal. The lived lesson behind that: at Flexport, the customer count only meant something because graduation gates came first.</div>
+<div class="safe"><p><b>SAFE-SAY:</b> “About three-point-seven million a year per ten points is modeled; it’s a design case and I don’t claim an adoption curve.”</p><p><b>“Source?”</b> “My Walmart-role war book: the 38–42% and 85% are in my case materials; the chain is my arithmetic.”</p></div>
+<div class="t20"><div><div class="label">20-second version</div><p>“Managed shipping had stalled near forty percent because sellers were trading control for an unpriced benefit. I redesigned enrolment as an insurance contract with a per-seller dollar line, a shadow run on each seller’s own history before the flip, and waves gated on published criteria. It’s a design case, modeled at about $3.7M a year per ten points enrolled.”</p></div></div>
+<h4>Probing Q&amp;A</h4>
+<div class="qa"><p class="q">Q1. How does this apply to non-specialists self-serving network changes?</p><p>Same three guardrails: show the outcome before the flip (shadow on their own data), make a bad flip reversible, and measure retention of the change, not just the count of changes. An AI-assisted config tool should preview the downstream effect and refuse a change it can’t validate.</p></div>
+<div class="qa"><p class="q">Q2. Why all-or-nothing?</p><p>Partial adoption lets a seller keep the risky declared handling and still claim protection. The all-or-nothing bundle makes the hedge self-selecting: a seller who trusts their own ops keeps control; one who doesn’t converts.</p></div>
+<div class="qa"><p class="q">Q3. What would kill the program?</p><p>One protection promise the scorecard fails to honor. So the kill condition is written before launch: stop enrolment until it’s fixed.</p></div>
+<div class="qa"><p class="q">Q4. What did you actually deliver?</p><p>Nothing in production; this is a design case. The delivered adoption-behind-gates record is Flexport: 7 to 68 customers behind published graduation criteria.</p></div>
+
+</body>
+</html>

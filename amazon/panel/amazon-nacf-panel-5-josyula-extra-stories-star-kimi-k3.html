@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Part 5 — Venkata Josyula — Product + Behavioral STAR Stories</title>
+<style>
+@page{size:Letter;margin:.46in .52in .50in}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;color:#17202a;font-size:9.15pt;line-height:1.28}
+h1{font-size:21pt;line-height:1.08;color:#17365d;margin:0 0 7px}h2{font-size:15pt;color:#17365d;margin:0 0 6px;border-bottom:2px solid #5b9bd5;padding-bottom:4px}
+h3{font-size:11.2pt;color:#1f4e78;margin:8px 0 4px}p{margin:3px 0 5px}ul{margin:3px 0 6px 18px;padding:0}li{margin:1.5px 0}
+.cover{min-height:9.25in;padding:.22in .10in;page-break-after:always}.eyebrow{font-size:10pt;letter-spacing:.08em;text-transform:uppercase;color:#4472c4;font-weight:bold}
+.line2{font-size:13pt;color:#334155;margin:4px 0}.line3{font-size:11pt;color:#64748b;margin:3px 0 15px}
+.hero{border-left:7px solid #4472c4;background:#eef5fb;padding:11px 14px;margin:12px 0}.toc{columns:2;column-gap:24px}.toc div{break-inside:avoid;margin:6px 0}
+.story{page-break-before:always}.probe{page-break-before:always}.meta{font-size:8.2pt;color:#475569;margin:3px 0 6px}.badge{display:inline-block;border-radius:8px;padding:1px 5px;background:#17365d;color:#fff;font-size:7.4pt;font-weight:bold;margin-right:3px}
+.basis{display:inline-block;border:1px solid #7b8794;border-radius:7px;padding:1px 4px;font-size:7.2pt;white-space:nowrap}.record{background:#e2f0d9}.anchor{background:#fce4d6}.docs{background:#ddebf7}
+.say,.star,.safe,.trade,.learn,.influence,.product,.control{padding:6px 9px;margin:5px 0;page-break-inside:avoid;border-radius:3px}
+.say{background:#eaf3e2;border-left:5px solid #70ad47}.star{background:#fbfcfd;border:1px solid #9fbad0}.safe{background:#fff2cc;border-left:5px solid #bf9000}
+.trade{background:#fce4d6;border-left:5px solid #ed7d31}.learn{background:#f4e7f8;border-left:5px solid #8064a2}.influence{background:#eef5fb;border-left:5px solid #5b9bd5}
+.product{background:#eef4f6;border-left:5px solid #1f6f7a}.control{background:#e8f5e9;border:2px solid #4c8c4a}
+.label{font-size:7.8pt;text-transform:uppercase;letter-spacing:.06em;color:#17365d;font-weight:bold}.stag{display:inline-block;background:#17365d;color:#fff;font-weight:bold;border-radius:10px;padding:1px 6px;margin-right:4px}
+.lp{border:1px solid #c8d1da;background:#f6f8fa;padding:6px 8px;margin:5px 0;page-break-inside:avoid}.lp b{color:#17365d}
+.qa{border-left:4px solid #d9d0c1;padding:5px 9px;margin:7px 0;page-break-inside:avoid}.q{font-weight:bold;color:#17365d;margin-bottom:2px}
+.ladder{font-size:8.8pt}.ladder b{color:#8a1c2b}.foot{font-size:7.3pt;color:#667085;border-top:1px solid #ccd4dc;margin-top:8px;padding-top:4px}
+.failure{display:inline-block;background:#a61b1b;color:#fff;padding:2px 7px;border-radius:3px;font-size:8pt;font-weight:bold}.compact p{margin-bottom:4px}
+</style>
+</head>
+<body>
+<section class="cover">
+  <div class="eyebrow">Part 5 — Venkata Josyula — product + behavioral</div>
+  <h1>Venkata Josyula — Principal PM, FBA; Bar-Raiser style</h1>
+  <div class="line3">Friday, October 30, 2026 · 12:00 PM PDT</div>
+  <div class="hero"><b>Use:</b> Six lived STAR stories with a product/customer lens. Answer the LP asked, distinguish what I owned from what engineers or operators owned, land one basis-labeled number, then stop. The failure answer is G1.</div>
+  <h3>Contents</h3>
+  <div class="toc">
+    <div><b>1 · S14 — Tell the customer first</b><br>~200 orders · $2.5M of order value · $10M initiative won</div>
+    <div><b>2 · S16 — Four systems into one pipeline</b><br>Accuracy 60% → 90% · value priced, not realized savings</div>
+    <div><b>3 · S9 — Scale by value</b><br>A thousand-lane program · 25 locations · 597 carrying 80% of spend first</div>
+    <div><b>4 · S13 — Cyber Monday at 4 AM</b><br>99% fill · about $8M of that day’s sales protected</div>
+    <div><b>5 · I1 — LLM triage agent</b><br>$25 → $0.40 per incident · 98% cut · 100% citations</div>
+    <div><b>6 · G1 — The UAT that crashed</b><br>5 users × 10 scenarios passed · all-user concurrency failed two days before sign-off</div>
+  </div>
+  <div class="safe"><b>Number discipline.</b> S14’s dollars describe order value and an initiative won. S16’s annual figure was a BRD price, not a realized saving. S13’s figure is protected sales, not savings. I1 was an independent build, not an employer deployment.</div>
+  <div class="product"><b>Product answer spine.</b> Customer pain → observable metric → decision and rejected option → adoption/control → outcome → scar. For every “we,” be ready to name my artifact, my call, and the team’s work.</div>
+  <p class="foot">Sources: Amazon master S9/S13/S14/S16; Apple PM III workbook v11 F1/M1/I1/G1/A3/G3; NUMBERS-RECON CANON v2; Apple delta add-on. No Shipment Visibility, Crux, or answer bank included.</p>
+</section>
+
+<section class="story" id="s14">
+<h2>1 · S14 — Earn Trust: tell the customer first</h2>
+<div class="meta"><span class="badge">MANHATTAN</span><span class="badge">CUSTOMER TRUST</span> Headline: about 200 orders and $2.5M of <i>order value</i>; the $10M initiative was won, not saved. <span class="basis anchor">user anchor</span></div>
+<div class="lp"><b>LPs:</b> Earn Trust — I disclosed before correcting. · Customer Obsession — the customer set repair priority. · Have Backbone; Disagree and Commit — I challenged the quiet fix, then ran the chosen path. · Ownership — I put my labor behind the transparent option.</div>
+<div class="say"><div class="label">60-second pitch</div><p>“Two days before an executive review at a Manhattan customer, OMS and WMS disagreed on about 200 orders representing $2.5M of order value. A $10M initiative also rode on the review, and my manager favored correcting the data quietly. I built a discrepancy census by cause, explained that an unverified cross-table script could turn a data defect into a trust failure, and offered to run the war room myself. We told the customer first, gave them the affected list, and let them prioritize what mattered to their business. The consultants then used a reversible per-line patch with before-and-after evidence while engineering fixed the handshake. The discrepancy went to zero, the initiative was won, and the reconciliation report became a standing control. The $2.5M was order value and the $10M was initiative value—neither was savings. I learned that courage is not the durable mechanism; early, customer-visible reconciliation is.”</p></div>
+<div class="star compact">
+ <p><span class="stag">S</span> I found an OMS-to-WMS mismatch two days before a customer executive review: about 200 affected orders and $2.5M of order value. The room feared disclosure could jeopardize a $10M initiative.</p>
+ <p><span class="stag">T</span> I had to protect the customer’s order priorities and the relationship while getting the data consistent before the review.</p>
+ <p><span class="stag">A</span> I sampled and reason-coded the affected population before advocating a path. I told my manager privately that a silent script could not be verified in two days and would create audit and reputation risk. I offered to own the war room. After he agreed, I took the list, cause, plan, and timeline to the customer before the review. They ranked the repair order; the consultants traced the handshake and executed reversible, per-line patches with evidence. I instituted a daily reconciliation report while engineering removed the defect class.</p>
+ <p><span class="stag">R</span> I drove the affected set to zero with the team; the customer’s highest-priority orders moved first; the $10M initiative was won; and the standing report showed zero new discrepancies. <span class="basis anchor">user anchor</span></p>
+</div>
+<div class="influence"><b>WHO I INFLUENCED.</b> I influenced my manager by framing the choice as comparative risk and putting the execution cost on myself; I influenced the customer by leading with the complete bad-news list and ceding repair priority to them; I aligned consultants and engineering on evidence per line.</div>
+<div class="trade"><b>TRADE-OFF I MADE.</b> I chose transparent, customer-ranked repair over a faster silent correction. It cost a war room and exposed us before the review, but rejected an unverifiable script and preserved the customer’s right to decide what mattered.</div>
+<div class="learn"><b>Failure / learning.</b> We detected the mismatch too close to the review. I learned to make reconciliation a standing customer control, not an act of last-minute courage.</div>
+<div class="safe"><b>SAFE-SAY:</b> “About 200 orders representing $2.5M of order value were made consistent in the open; the $10M initiative was won at the review and is not a savings claim.”<br><b>If asked for source:</b> “Those are user-anchor figures from my earlier story record; the nouns are order value and initiative value.”</div>
+<div class="say"><div class="label">20-second version</div><p>“When OMS and WMS disagreed on about 200 orders and $2.5M of order value, I rejected a quiet fix, told the customer first, and let them prioritize repairs. The discrepancy went to zero, the $10M initiative was won—not saved—and customer-visible reconciliation became the standing control.”</p></div>
+</section>
+
+<section class="probe">
+<h2>S14 · Four bar-raiser probes</h2>
+<div class="product"><b>Product/customer framing.</b> The “product” was not the patch. It was a trustworthy recovery experience: disclose the affected population, give the customer control over priority, preserve reversibility, and prevent recurrence with a visible metric.</div>
+<div class="qa"><p class="q">1. Why not fix it first and tell the customer after?</p><p>That would optimize our discomfort, not their outcome. We could not know which orders carried the greatest business consequence. Disclosure changed the repair sequence, so it was operationally better as well as more trustworthy.</p></div>
+<div class="qa"><p class="q">2. How did you disagree with your manager without moralizing?</p><p>I acknowledged the legitimate fear of losing the initiative, brought a cause-based census, compared the audit and verification risk of both options, and volunteered to run the more expensive path. I challenged the risk assumption, not his integrity.</p></div>
+<div class="qa"><p class="q">3. What did you personally do versus the team?</p><p>I built the census, made the risk argument, created the customer pack, won the disclosure decision, and ran the war room. Consultants traced and patched order lines; engineering built the permanent handshake fix. I do not claim their code.</p></div>
+<div class="qa"><p class="q">4. What evidence says trust improved?</p><p>I do not claim a satisfaction score. The evidence is behavioral and operational: the customer reprioritized with us, the review proceeded with facts exposed, the initiative was won, and the relationship accepted a standing reconciliation control.</p></div>
+<div class="safe"><b>Bar-raiser close:</b> “The uncomfortable meeting was not the result. The result was that the next discrepancy could not hide.”</div>
+</section>
+
+<section class="story" id="s16">
+<h2>2 · S16 — Four systems into one governed pipeline</h2>
+<div class="meta"><span class="badge">FLEXPORT</span><span class="badge">PRODUCT OPERATING SYSTEM</span> Accuracy 60% → 90%; four systems → one pipeline; annual value priced, not realized savings. <span class="basis record">record</span></div>
+<div class="lp"><b>LPs:</b> Ownership — I removed my own bus-factor risk and owned the security miss. · Invent and Simplify — seven governed metrics replaced four manual pulls. · Dive Deep — I exposed the missing join key and ticket-sync loss. · Frugality — I required unit economics before prioritization.</div>
+<div class="say"><div class="label">60-second pitch</div><p>“At Flexport, the Monday operating review depended on me stitching four systems together manually. Accuracy was 60%, tickets had no container join key, and the product had a bus factor of one. I wrote the BRD, froze seven metric definitions, specified a daily or hourly pipeline with failure alerts, and set cutover at less than 1% variance for consecutive weeks. Engineering built the ETL-to-Snowflake path; I owned requirements, parity, and cutover. The BRD priced the old process at $103,680 annually on its assumptions—30 hours a week across two reviews at an assumed $90 an hour—so I call that priced value, not savings. Mid-build I discovered I had omitted the customer-data security review. I owned the two-week miss the same day and kept every Monday review alive on the manual path. Accuracy rose from 60% to 90%, and the new alerts caught an approximately 4% ticket-sync drop that the old process missed. My permanent kickoff question is: whose approval does this data need, and what is its lead time?”</p></div>
+<div class="star compact">
+ <p><span class="stag">S</span> I was the single point joining four disconnected systems for a VP’s Monday review. Accuracy was 60%, ticket records lacked a container ID, and silent data loss was possible.</p>
+ <p><span class="stag">T</span> I had to turn a manual report into a reliable product without changing definitions during the build or skipping the weekly decision cadence.</p>
+ <p><span class="stag">A</span> I froze seven definitions with owners, documented the missing join, wrote feed and alert requirements, and published a parallel-run gate: each metric within 1% for consecutive weeks. I used a cross-reference table as an interim bridge while pushing a real key upstream. Engineering built ETL → S3 → SQS → Snowflake → Looker. When the security review surfaced, I re-sequenced non-sensitive work, disclosed my planning miss, and retained manual rollback until access and correctness gates both cleared.</p>
+ <p><span class="stag">R</span> I cut the review over from four systems to one pipeline; WBR accuracy moved 60% → 90%; the bus factor expanded beyond one person; no Monday review was skipped; and alerts found an approximately 4% sync drop. The BRD’s $103,680 was priced value on assumptions, not realized savings. <span class="basis record">record</span></p>
+</div>
+<div class="influence"><b>WHO I INFLUENCED.</b> I got metric owners to sign stable definitions, infrastructure to prioritize from a quantified BRD, Support to add a durable join key, Security to define the access gate, and the VP to switch only after parity evidence.</div>
+<div class="trade"><b>TRADE-OFF I MADE.</b> I kept the labor-intensive manual path for two extra weeks and rejected premature cutover. That spent schedule margin but protected both access integrity and the Monday customer decision.</div>
+<div class="learn"><b>Failure / learning.</b> I discovered the security review mid-build. The parallel run saved delivery, but partly by luck; security ownership and lead time now enter every data BRD at kickoff.</div>
+<div class="safe"><b>SAFE-SAY:</b> “Accuracy moved from 60% to 90%; the BRD priced the baseline at $103,680 a year on stated assumptions—priced, not a claimed saving.”<br><b>If asked for source:</b> “Apple A3/G3 and the Zendesk-to-Snowflake BRD; the BRD assumes 30 hours a week at $90 an hour, falling to six.”</div>
+<div class="say"><div class="label">20-second version</div><p>“I replaced a four-system, bus-factor-one review with a governed pipeline and a sub-1% parity gate. Accuracy moved 60% to 90%. I also missed the security review by two weeks, owned it immediately, kept the manual path alive, and made access lead time a permanent kickoff control.”</p></div>
+</section>
+
+<section class="probe">
+<h2>S16 · Four bar-raiser probes</h2>
+<div class="product"><b>Product/customer framing.</b> The user was the VP making rollout decisions; the product contract was stable definitions, timely data, failure visibility, and evidence that the new source matched the old before migration.</div>
+<div class="qa"><p class="q">1. Why is this product work rather than reporting automation?</p><p>I defined the user decision, frozen metric contract, trust gate, failure behavior, rollback, and operating ownership. Automation was the implementation; reliable decision-making without one person was the product outcome.</p></div>
+<div class="qa"><p class="q">2. What exactly was the annual value?</p><p>The BRD priced the baseline at $103,680 annually using 30 hours a week across two WBRs at an assumed $90 an hour, versus six hours after. It was a prioritization model, not a realized or finance-booked saving.</p></div>
+<div class="qa"><p class="q">3. Why accept only 90% accuracy?</p><p>That was system accuracy on the operating measure, not the parity cutover criterion. Cutover required each frozen metric to agree within 1% for consecutive weeks. I kept the distinction between product KPI and migration gate.</p></div>
+<div class="qa"><p class="q">4. What was your hardest ownership moment?</p><p>Telling leadership the security gap was mine, not Security’s delay. I had scoped correctness and omitted approval lead time. I brought the revised date, preserved Monday path, and checklist change in the same conversation.</p></div>
+<div class="safe"><b>Bar-raiser close:</b> “A pipeline is not trusted because it runs; it is trusted because definitions, access, parity, and failure behavior are explicit.”</div>
+</section>
+
+<section class="story" id="s9">
+<h2>3 · S9 — Scale: a thousand-lane program, 597 first</h2>
+<div class="meta"><span class="badge">ELEMENTUM</span><span class="badge">SCALE WITH RESPONSIBILITY</span> A thousand lanes were asked across 25 European locations; 597 carrying 80% of spend went first. <span class="basis anchor">user anchor for 597/80%</span></div>
+<div class="lp"><b>LPs:</b> Think Big — I kept the thousand-lane destination. · Have Backbone; Disagree and Commit — I re-scoped the first release two levels up. · Highest Standards — every cohort faced a 95% completeness toll. · Success and Scale — the long tail stayed inside the standard.</div>
+<div class="say"><div class="label">60-second pitch</div><p>“At Elementum, a strategic customer asked us to onboard a thousand freight lanes across 25 European locations in two months. Baseline completeness was about 60% against a 95% bar, so putting all lanes through at once would create a large, untrusted product. I pulled the routing guide and invoice history, ranked every lane by spend, volume, product criticality, and mode, and proposed that 597 lanes carrying 80% of spend go first. I took that re-scope two levels up with Transportation and Procurement validation. Every cohort faced the same toll: origin, destination, mode, carrier, rate, and transit time complete, followed by first tenders matching the guide. Overrides required reason codes. The first 597 created the business proof while the remainder followed behind the same gate across the thousand-lane program. Completeness moved from about 60% to 95%. I learned that scale is not counting rows launched; it is preserving trust as the long tail arrives. I would instrument tender acceptance from cohort one, not cohort three.”</p></div>
+<div class="star compact">
+ <p><span class="stag">S</span> At Elementum, I led a thousand-lane track-and-trace program requested across 25 European locations on a fixed window; source-data completeness was about 60%.</p>
+ <p><span class="stag">T</span> I had to produce useful scale quickly without allowing dirty lanes to make the routing product confidently wrong.</p>
+ <p><span class="stag">A</span> I ranked all requested lanes by spend, volume, criticality, and mode. I proposed 597 carrying 80% of spend as the first value cohort and took the decision two levels up. I created a lane-quality toll on six engine-read fields, required first tenders to match the guide, and ran one scorecard for completeness, acceptance, and on-time delivery. I preserved planner overrides only with reason codes so exceptions improved the product.</p>
+ <p><span class="stag">R</span> I launched the 597 lanes carrying 80% of spend first within the thousand-lane program across 25 locations; completeness rose about 60% → 95%. The first wave carried the proof while the long tail remained governed. <span class="basis record">record: program/25/60→95</span> <span class="basis anchor">user anchor: 597/80%</span></p>
+</div>
+<div class="influence"><b>WHO I INFLUENCED.</b> I influenced the Global Head two levels up with the spend curve; Transportation and Procurement validated value and contract data; lane owners became cohort champions; resistant planners received an explainable override path instead of a mandate.</div>
+<div class="trade"><b>TRADE-OFF I MADE.</b> I rejected equal-speed onboarding of all lanes and chose value-first waves. The long tail waited, but the customer saw trustworthy coverage where the business impact was concentrated.</div>
+<div class="learn"><b>Failure / learning.</b> Tender acceptance was measured only from cohort three. I would instrument it in cohort one so a carrier-data issue cannot survive two extra waves.</div>
+<div class="safe"><b>SAFE-SAY:</b> “It was a thousand-lane program across 25 European locations; 597 lanes carrying 80% of spend went first, and every wave faced the 95% completeness bar.”<br><b>If asked for source:</b> “The program scale and 60-to-95 result are in Apple F1/resume; 597 and 80% are user-anchor figures from my earlier program record.”</div>
+<div class="say"><div class="label">20-second version</div><p>“A thousand lanes were asked across 25 European locations. At 60% completeness, I took a re-scope two levels up: 597 carrying 80% of spend first, every cohort behind a 95% data toll. We reached the quality bar without teaching users to distrust the product.”</p></div>
+</section>
+
+<section class="probe">
+<h2>S9 · Four bar-raiser probes</h2>
+<div class="product"><b>Product/customer framing.</b> The lane was the unit, but planner trust was the adoption problem. Value phasing supplied early proof; the quality toll protected the experience; reason-coded overrides converted local knowledge into product data.</div>
+<div class="qa"><p class="q">1. Why 597, not 600 or the full thousand?</p><p>I did not choose a round target. I ranked the requested population and the Pareto break landed at 597 lanes carrying 80% of spend. The first-wave number followed value concentration.</p></div>
+<div class="qa"><p class="q">2. Did the thousand lanes all go live?</p><p>The safe statement is that this was a thousand-lane program and 597 went first. Sources differ on the delivered-count wording, so I do not collapse “asked,” “first,” and “eventually onboarded” into one claim.</p></div>
+<div class="qa"><p class="q">3. How did you handle a lane owner who knew the guide was wrong?</p><p>I allowed an override with a reason code. A specific exception could be correct; a silent workaround could not improve the system. We corrected the lane and retained the signal.</p></div>
+<div class="qa"><p class="q">4. What broad responsibility came with scale?</p><p>Small carriers and low-spend lanes still faced the same validity standard. Prioritization changed sequence, not quality. I would not make long-tail users absorb bad data so the headline count looked larger.</p></div>
+<div class="safe"><b>Bar-raiser close:</b> “The re-scope made the first promise smaller so the eventual product could be larger and trusted.”</div>
+</section>
+
+<section class="story" id="s13">
+<h2>4 · S13 — Cyber Monday: protect the promise first</h2>
+<div class="meta"><span class="badge">MANHATTAN</span><span class="badge">INCIDENT PRODUCT</span> 99% fill; about $8M of that day’s sales protected. <span class="basis record">record</span></div>
+<div class="lp"><b>LPs:</b> Customer Obsession — I ranked orders by promise at risk. · Bias for Action — I made a reversible call before the full picture arrived. · Ownership — I signed the incident log and communicated through close. · Deliver Results — fill held at 99%.</div>
+<div class="say"><div class="label">60-second pitch</div><p>“At 4 AM on Cyber Monday, backorder lines were rising even though inventory existed across three DCs serving about 100 stores. About $6M was on the line when the page fired. I ran one bridge, one decision log, and traced the signal beyond the noise. The room assumed capacity; the allocation scheduler had actually stopped silently after a daylight-saving change. I triaged by customer promise at risk, rebalanced allocation across DCs, confirmed the plan with the business team, restarted the scheduler, and sent order-status updates every two hours through 9 PM. Fill held at 99%, and about $8M of that day’s sales was protected. That is protected sales, not savings. The permanent product work mattered more: a scheduler heartbeat made silence the alarm, a daylight-saving checklist was added, and the rebalance playbook was rehearsed. My miss was paging the on-call engineer later than I should have while carrying the first stretch myself. The next peak was boring—and boring was the reliability outcome.”</p></div>
+<div class="star compact">
+ <p><span class="stag">S</span> I owned holiday ecommerce monitoring when an allocation backlog grew at Cyber Monday peak despite sufficient inventory across three DCs. My reason-coded alert fired at 4 AM; about $6M was on the line at that point.</p>
+ <p><span class="stag">T</span> I owned holiday ecommerce monitoring and had to protect customer promises before complete diagnosis arrived.</p>
+ <p><span class="stag">A</span> I created one bridge, log, and decision list. I traced inventory sufficiency and queue behavior to a scheduler that had stopped silently after daylight-saving time. I chose reversible manual rebalancing by promise at risk, coordinated restart with engineering and the client business team, and reported orders at risk, orders recovered, and clearance time every two hours. In the post-mortem I converted the absence of a scheduler heartbeat into an alert and added the checklist and playbook.</p>
+ <p><span class="stag">R</span> I helped hold fill at 99% and protect about $8M of that day’s sales; the next peak ran without the incident class. <span class="basis record">record</span></p>
+</div>
+<div class="influence"><b>WHO I INFLUENCED.</b> I aligned the client business team on promise-first triage, directed the cross-DC allocation sequence, gave engineers a reproduced failure instead of a capacity theory, and kept leaders aligned through plain two-hour updates.</div>
+<div class="trade"><b>TRADE-OFF I MADE.</b> I chose a reversible, manual rebalance over waiting for an elegant automated diagnosis. It was deliberately unscalable for the night; the scalable heartbeat and playbook came through the post-mortem.</div>
+<div class="learn"><b>Failure / learning.</b> The daylight-saving control should have existed before peak, and I should have paged the on-call engineer sooner rather than carrying the first stretch alone.</div>
+<div class="safe"><b>SAFE-SAY:</b> “About $6M was on the line when the page fired; fill held at 99%, and about $8M of that day’s sales was protected—protected sales, not savings.”<br><b>If asked for source:</b> “Apple M1 pages 40–41 and the resume; the final protected-sales noun resolves the source wording.”</div>
+<div class="say"><div class="label">20-second version</div><p>“At 4 AM Cyber Monday, a silent scheduler stopped allocation. I rebalanced three DCs by promise at risk, ran one bridge and log, and held fill at 99%, protecting about $8M of that day’s sales. The post-mortem made silence itself the alarm.”</p></div>
+</section>
+
+<section class="probe">
+<h2>S13 · Four bar-raiser probes</h2>
+<div class="product"><b>Product/customer framing.</b> Incident response is part of the product: observable failure, a reversible customer-priority action, truthful communication, and a post-incident control that removes dependence on heroics.</div>
+<div class="qa"><p class="q">1. What did you personally decide at 4 AM?</p><p>I chose promise-at-risk as the triage order, authorized the cross-DC rebalance sequence with the business team, maintained the decision log, and set the two-hour executive update. Engineers restarted and repaired the scheduler.</p></div>
+<div class="qa"><p class="q">2. How can protected sales exceed the amount initially on the line?</p><p>The approximately $6M was the exposure visible when the page fired. The approximately $8M was the final value of the day’s orders protected across the failure window. They are different timestamps, not an arithmetic conversion.</p></div>
+<div class="qa"><p class="q">3. Why did the system need a human?</p><p>On that night, the system we had was silent. Waiting for a perfect automated response would break promises by breakfast. I used a reversible human action, then removed that dependence with a heartbeat and rehearsed playbook.</p></div>
+<div class="qa"><p class="q">4. What would make you stop the manual rebalance?</p><p>If the queue stopped improving, inventory sufficiency changed, or a node approached its operating limit, I would halt and reassess on the bridge. Reversibility was part of choosing the action.</p></div>
+<div class="safe"><b>Bar-raiser close:</b> “The heroics protected one peak; the heartbeat protected every peak after it.”</div>
+</section>
+
+<section class="story" id="i1">
+<h2>5 · I1 — LLM triage agent with an eval contract</h2>
+<div class="meta"><span class="badge">INDEPENDENT BUILD</span><span class="badge">AI PRODUCT</span> $25 → $0.40 per incident; 98% cut; 100% citation coverage. <span class="basis record">build record</span></div>
+<div class="lp"><b>LPs:</b> Invent and Simplify — I routed classes instead of using one model. · Frugality — unit cost was a release KPI. · Dive Deep — historical outcomes became a versioned eval contract. · Ownership — I built the stack and operating rules end to end.</div>
+<div class="say"><div class="label">60-second pitch</div><p>“I independently built an LLM incident-triage agent and treated it as an operations product, not a demo. The naive path cost $25 per incident, and an uncited proposal forced the operator to repeat the work. I built a graded historical eval set before changing prompts or models and made it the release contract: every change had to keep the known past passing. I added one trust rule—no citation, no proposal—binding every action to ticket evidence and a runbook line. Then I measured cost by class, sent routine classifications to smaller models, and reserved expensive calls for the hard tail. Cost fell from $25 to $0.40 per incident, a 98% reduction, while accuracy held on the eval set and citation coverage reached 100%. The trade-off was routing complexity and eval maintenance, which I accepted for checkable quality and viable unit economics. My miss was allowing the early eval set to grow while prompts were being judged; now I freeze and version the baseline before the first experiment.”</p></div>
+<div class="star compact">
+ <p><span class="stag">S</span> I built a Python/FastAPI triage agent for operational incident queues. The naive system produced useful output but cost $25 per incident and could recommend an action without checkable evidence.</p>
+ <p><span class="stag">T</span> I needed an operations-grade product: known quality held, every proposal auditable, and unit cost below one dollar—without representing it as an employer deployment.</p>
+ <p><span class="stag">A</span> I graded historical incidents with known-correct outcomes, versioned the eval harness, and gated prompt/model/routing changes on regression results. I required ticket and runbook citations for every proposal. I segmented incident classes, proved small models on routine classes, routed uncertain cases to the expensive path, and reviewed accuracy, citation coverage, and unit cost in one pane.</p>
+ <p><span class="stag">R</span> I reduced unit cost from $25 → $0.40, a 98% cut; held accuracy on the eval set; reached 100% citation coverage; and cleared the sub-dollar release bar. <span class="basis record">build record</span></p>
+</div>
+<div class="influence"><b>WHO I INFLUENCED.</b> This was an independent build, so I did not claim an enterprise rollout. The influence mechanism was product evidence: the eval report makes quality reviewable, citations make operator verification fast, and unit economics makes the scale decision explicit.</div>
+<div class="trade"><b>TRADE-OFF I MADE.</b> I rejected one premium model for every incident and chose tiered routing. That added classification logic and eval upkeep, but protected hard cases while making routine work economically viable.</div>
+<div class="learn"><b>Failure / learning.</b> Early prompts were judged while the eval set was still changing. I now freeze and version the baseline first so a “win” cannot come from moving the test.</div>
+<div class="safe"><b>SAFE-SAY:</b> “This was my independent build: $25 to $0.40 per triaged incident, a 98% cut, with accuracy held on my eval set and 100% citation coverage.”<br><b>If asked for source:</b> “My build record as captured in Apple I1, pages 41–42—not an employer production claim.”</div>
+<div class="say"><div class="label">20-second version</div><p>“I built an independent triage agent with the eval set first and one rule: no citation, no proposal. Tiered routing moved unit cost from $25 to $0.40, down 98%, while eval quality held and citations reached 100%.”</p></div>
+</section>
+
+<section class="probe">
+<h2>I1 · Four bar-raiser probes</h2>
+<div class="product"><b>Product/customer framing.</b> The operator’s job is not “receive AI text”; it is reach a correct, checkable first action faster. The product metrics therefore travel together: eval accuracy, citation coverage, and cost per incident.</div>
+<div class="qa"><p class="q">1. How did cost fall without quality falling?</p><p>Most incidents belonged to routine classes. I proved smaller models held on those classes against the same eval set, then reserved expensive calls for uncertain and hard-tail cases. The eval contract made cheaper routing testable rather than hopeful.</p></div>
+<div class="qa"><p class="q">2. What does 100% citation coverage prove?</p><p>It proves every proposal had checkable ticket and runbook evidence; it does not prove every proposal was correct. Accuracy and citation coverage are separate gates because a well-cited wrong answer and an uncited right answer create different risks.</p></div>
+<div class="qa"><p class="q">3. What would break at FBA scale?</p><p>Data boundaries, access approval, drift, eval-set ownership, latency, and human escalation become programs. I would start with shadow decisions, versioned slices by incident class, and a human approval gate until production evidence beats the baseline.</p></div>
+<div class="qa"><p class="q">4. Why is this more than another LLM demo?</p><p>It has a contract and a balance sheet. Every change must keep known cases passing, every proposal must cite evidence, and every incident carries an explicit unit cost. A demo can impress once; these controls can govern a quarter.</p></div>
+<div class="safe"><b>Bar-raiser close:</b> “The model was replaceable; the eval contract, citation rule, and cost curve were the product.”</div>
+</section>
+
+<section class="story" id="g1">
+<h2>6 · G1 — FAILURE: the UAT that crashed</h2>
+<div class="meta"><span class="failure">FAILURE STAR</span> <span class="badge">ELEMENTUM</span> Five users × ten scenarios passed; all-user concurrency failed two days before sign-off. <span class="basis record">record</span></div>
+<div class="lp"><b>LPs:</b> Are Right, A Lot — my initial judgment and reflex were wrong. · Earn Trust — I took the criteria miss to the sponsor as mine. · Highest Standards — load became a numeric gate. · Ownership — I changed the contract, not the explanation.</div>
+<div class="say"><div class="label">60-second pitch</div><p>“Two days before sign-off on an Elementum track-and-trace product, five key users had passed all ten end-to-end scenarios, so I declared UAT green. The sponsor then opened access to all users and concurrent logins crashed the system. My first response made the failure worse: I reran my scenarios, they passed, and I sent screenshots. I was defending my plan instead of reproducing the customer’s shape. I reversed course, simulated all-user concurrency with engineering, told the sponsor the missing performance criterion was mine, and the team worked the fix around the clock. We missed sign-off and had to rebuild confidence. I permanently rewrote the UAT contract so every critical flow has numeric uptime, page-load, and concurrency entrance and exit criteria at the customer’s user count, data volume, and network. Later, a Flexport launch had to prove 500 containers in 20 minutes at 99.6% connectivity before customer testing. The deepest lesson was not ‘add load testing’; it was that technically true screenshots can still be useless when the customer experience says the opposite.”</p></div>
+<div class="star compact">
+ <p><span class="stag">S</span> I had declared UAT green after five key users completed ten end-to-end scenarios each, with sign-off two days away. Broader concurrent access then crashed the product.</p>
+ <p><span class="stag">T</span> I owned readiness and had to restore service and trust after my success criteria omitted the customer’s real operating load.</p>
+ <p><span class="stag">A</span> I first repeated the same tests and sent passing screenshots—my failure. I then reproduced the customer’s all-user shape, found concurrency as the root cause, and explicitly owned the implicit requirement I had missed. Engineering simulated load and fixed the product while I reset sponsor expectations. I rewrote UAT with numeric uptime, page-load, user-count, volume, and network gates published before testing.</p>
+ <p><span class="stag">R</span> I missed the sign-off date and had to rebuild confidence. I turned the miss into a standing control: later launch proof required 500 containers in 20 minutes at 99.6% connectivity before customer testing. <span class="basis record">record</span></p>
+</div>
+<div class="influence"><b>WHO I INFLUENCED.</b> I moved the sponsor conversation from blame to an owned criterion gap, focused engineering on reproducible concurrent load, and changed future product and QA teams from scenario-only testing to customer-shape gates.</div>
+<div class="trade"><b>TRADE-OFF I MADE.</b> Once diagnosed, I chose transparent missed sign-off and round-the-clock remediation over relaxing performance expectations. It spent schedule and team capacity but did not ask the customer to accept an unproven product.</div>
+<div class="learn"><b>Failure / learning.</b> My worst action was the defensive screenshot email. The first hour of an escalation now goes to reproducing the customer’s shape, not proving our innocence.</div>
+<div class="safe"><b>SAFE-SAY:</b> “Five users passed ten scenarios, but all-user concurrency crashed the system two days before sign-off; my criteria omitted load, and the sign-off date was missed.”<br><b>If asked for source:</b> “Apple G1, pages 43–44; later proof is Apple A5 and the Flexport program status record.”</div>
+<div class="say"><div class="label">20-second version</div><p>“Five users passed ten UAT scenarios, but all-user concurrency crashed the product two days before sign-off. I first defended with screenshots—my mistake—then owned the missing load criterion. The date was missed; every gate I run now tests at the customer’s shape.”</p></div>
+</section>
+
+<section class="probe">
+<h2>G1 · Four three-level probe ladders + standing control</h2>
+<div class="control"><b>STANDING CONTROL CREATED.</b> Every critical end-to-end flow now carries numeric entrance and exit criteria for uptime, page load, concurrent users, data volume, and the customer’s network. Criteria are published before UAT and can stop sign-off. Later proof: 500 containers in 20 minutes at 99.6% connectivity before customer testing.</div>
+<div class="qa ladder"><p class="q">1. Why did you send screenshots?</p><p><b>Level 1:</b> My scenarios genuinely passed, and I mistook coverage for truth.<br><b>Level 2:</b> I optimized for defending the plan rather than learning why the customer could not work.<br><b>Level 3:</b> The screenshots were technically true but decision-useless. Now the customer experience outranks my test artifact, and I reproduce their shape first.</p></div>
+<div class="qa ladder"><p class="q">2. Was the sponsor wrong to open access to everyone?</p><p><b>Level 1:</b> No; they used the product as their work required.<br><b>Level 2:</b> Their action exposed an implicit performance requirement that I failed to surface.<br><b>Level 3:</b> Readiness ownership means converting foreseeable real use into written criteria; calling it “unexpected use” would preserve the defect in my process.</p></div>
+<div class="qa ladder"><p class="q">3. What did the failure cost?</p><p><b>Level 1:</b> We missed sign-off and spent round-the-clock engineering effort.<br><b>Level 2:</b> The larger cost was customer confidence; prior green evidence became suspect.<br><b>Level 3:</b> I rebuilt trust by naming my criterion gap, showing reproducible load evidence, and giving the sponsor a gate that could stop us—not by asking them to trust another promise.</p></div>
+<div class="qa ladder"><p class="q">4. How do you know the learning stuck?</p><p><b>Level 1:</b> UAT templates gained uptime, page-load, and concurrency thresholds.<br><b>Level 2:</b> Tests run at customer user count, data volume, and network, not a lab approximation.<br><b>Level 3:</b> A later launch required 500 containers in 20 minutes at 99.6% connectivity before customer testing. The lesson became a release control with evidence.</p></div>
+<div class="product"><b>Product/customer framing.</b> Scenario correctness answers “can the flow work?” Load readiness answers “can the customer work?” A launch product needs both.</div>
+<div class="safe"><b>Bar-raiser close:</b> “I do not use the later success to erase the miss. I use it to prove the miss became a control.”</div>
+<p class="foot">Integrity check: six lived stories only. No design cases. Basis labels distinguish record, user anchor, and BRD pricing.</p>
+</section>
+</body>
+</html>
