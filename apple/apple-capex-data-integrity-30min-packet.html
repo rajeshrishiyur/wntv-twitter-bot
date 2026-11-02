@@ -64,7 +64,7 @@
   <tbody>
     <tr><td><b>0–2</b> Rapport</td><td>One human beat, then their language: system of record, pilot into a playbook, Procurement / Engineering / contract manufacturer. Do not pitch.</td></tr>
     <tr><td><b>2–5</b> Tell me about yourself</td><td>75-second version in section B. Land four beats and stop: system of record, counted-row integrity, change without escalation, getting into the weeds. If they nod early, use the 45-second cut.</td></tr>
-    <tr><td><b>5–20</b> Their questions</td><td>Four answers cold, in this order of likelihood: <b>(1)</b> off spreadsheets onto a system of record — UDC dual inventory. <b>(5)</b> budget, schedule, and supplier in tension — RP to JDA. <b>(10)/(11)</b> a decision from someone who does not report to you, and a review that actually decides — architecture council, 44 rows. <b>(14)</b> a gate you missed — functional design planned July 26, signed August 14. Section H has the other eleven compact.</td></tr>
+    <tr><td><b>5–20</b> Their questions</td><td>Four answers cold, in this order of likelihood: <b>(1)</b> off spreadsheets onto a system of record — UDC dual inventory. <b>(5)</b> budget, schedule, and supplier in tension — Utah conversion, Locus vendor, council July 31. <b>(10)/(11)</b> a decision from someone who does not report to you, and a review that actually decides — architecture council, 44 rows. <b>(14)</b> a gate you missed — functional design planned July 26, signed August 14. Section H has the other eleven compact.</td></tr>
     <tr><td><b>20–26</b> Product idea</td><td>Only if they invite “how would you improve this.” Otherwise hold section G and stay on their thread. The idea is a question, not a critique.</td></tr>
     <tr><td><b>26–30</b> Your questions + close</td><td>The three questions in section J, in that order. Close on one sentence: one instrument, one owner per field, no escalation of a row the owner can close.</td></tr>
   </tbody>
@@ -74,9 +74,9 @@
 <ul class="res">
   <li><b>7 → 68 customers = 9.7×</b>, targets landed two months early. <span class="b">record</span> Never a promotional multiplier.</li>
   <li><b>$0.66 → $0.03 per container, about 95%.</b> <span class="b">record</span> The hand-carried start near a dollar comes up only if they ask.</li>
-  <li><b>Mocks 7.0% → 1.8% → 0.3% against 0.5%</b> published with Finance before the first mock. Eight months, on time, about 3% under a roughly $1.8M budget. <span class="b">record</span> The dollar under is about $54K, your division of 3%.</li>
+  <li><b>S/4 exit bars:</b> no SKU with two published AFS values; <b>Negative AFS clean at T+1</b>. January go-live, reserve rules live against demand; May go-live, execution. The order system reads ISM AFS and never computes. <span class="b">record</span> design. Oversell, recurring, to zero through both.</li>
   <li><b>836-row log, 714 closed = 85.4%.</b> Council pack: <b>44 requirement rows across 23 systems</b>; <b>seven system families, about two dozen named systems</b>. <b>Three reserve buckets</b>, not a longer list. <span class="b">record / record-from-docs</span></li>
-  <li><b>Functional design planned July 26, signed August 14.</b> Never say the gate chain held to the day. RF devices: say <b>hundreds</b>; device test before training; training moved 1.5 weeks; the go-live date held. <span class="b">record</span></li>
+  <li><b>Functional design planned July 26, signed August 14.</b> Never say the gate chain held to the day. The other miss, if asked: five users passed ten scenarios; concurrent access failed two days before sign-off. <span class="b">record</span></li>
 </ul>
 
 <h3>Three phrases in their language</h3>
@@ -98,14 +98,14 @@
 <div class="say">
   <div class="label">75-second version — say this, then stop</div>
   <p>I run the operating system around a live supply-chain system, and I get into the data myself.</p>
-  <p>First, I have moved live operations off spreadsheets and side files onto a system of record. At Sephora a Utah building ran as two inventory books. We put it on one pool, with two selling identities and three reserve buckets, and we refused to convert historical transactions. Before that, two distribution centers moved from the legacy warehouse system to JDA, and the reconciliation tolerance was published before anyone could negotiate it.</p>
-  <p>Second, I run data integrity as a program with counted rows. That tolerance was half a percent, agreed with Finance before the first mock. The Utah program carried an 836-row issue log; 714 closed, 85.4 percent. On a European transportation program the report said 40 percent data quality; I pulled the history myself, the true figure was about 55 percent, and it reached about 99 percent within a quarter.</p>
+  <p>First, I have moved live operations off spreadsheets and side files onto a system of record. At Sephora a Utah building ran as two inventory books. We put it on one pool, with two selling identities and three reserve buckets, and we refused to convert historical transactions. On the inventory publish, S/4 HANA and ISM became the one number. The order system reads available-for-sale and never computes its own.</p>
+  <p>Second, I run data integrity as a program with counted rows. The bars on that publish were no SKU with two published AFS values, and Negative AFS clean at T+1. The Utah program carried an 836-row issue log; 714 closed, 85.4 percent. On a European transportation program the report said 40 percent data quality; I pulled the history myself, the true figure was about 55 percent, and it reached about 99 percent within a quarter.</p>
   <p>Third, I move teams who have always done it this way without escalating. I pre-wire every row with the person who owns the input. On a cadence change, the skeptic wrote the gate.</p>
   <p>The weeds are the work. I have read application logs to find a missing trace id, and I count the rows myself before I call a go or a no-go.</p>
 </div>
 <div class="say">
   <div class="label">45-second version — if they cut you off or the room is warm</div>
-  <p>I move live operations off side files onto a system of record, and I treat data integrity as the program. At Sephora we took a Utah building from two inventory books to one pool with three reserve buckets, and we did not convert history. On a dual-DC warehouse cutover, Finance and I published a half-percent reconciliation tolerance before the first mock. I keep an issue log with an owner on every row — 836 rows, 85.4 percent closed — and I get teams to change by pre-wiring the owner, not by escalating. I count the rows myself before I call a gate.</p>
+  <p>I move live operations off side files onto a system of record, and I treat data integrity as the program. At Sephora we took a Utah building from two inventory books to one pool with three reserve buckets, and we did not convert history. The order system reads one published available-for-sale and never computes its own. The bars were no SKU with two published AFS values, and Negative AFS clean at T+1. I keep an issue log with an owner on every row — 836 rows, 85.4 percent closed — and I get teams to change by pre-wiring the owner, not by escalating. I count the rows myself before I call a gate.</p>
 </div>
 <ul class="res">
   <li><b>If they ask “what did you personally do?”</b> “I wrote the scorecard, the gates, and the cadence, and I made the cutover call. Engineering built the code. DC Ops measured the 15 percent processing efficiency.”</li>
@@ -264,7 +264,7 @@
     <tr><td>Manual status</td><td>Placed-in-service, program split, “someone knows”</td><td>PO ↔ invoice ↔ asset reconciliation. Exception queue with owner and age. Periodic physical-to-book count. Audit trail on every override.</td></tr>
   </tbody>
 </table>
-<p>Tolerances are published before the first load, the way I publish a reconciliation tolerance before the first mock. A gate that can be rewritten after the file arrives is not a gate. Person-dependent fields — the ones only one analyst can explain — are flagged on the scorecard until they have an owner in the system.</p>
+<p>The go or no-go is a count of rows, the way I read the S/4 publish: no SKU with two published AFS values, and Negative AFS clean at T+1. A gate that can be rewritten after the file arrives is not a gate. Beside that, the issues log is the triage — 331 go-live, 77 fast-follow, 36 enhancement — so a red row has an owner before it becomes a speech. Person-dependent fields — the ones only one analyst can explain — are flagged on the scorecard until they have an owner in the system.</p>
 
 <h3>5. Onboarding a new program — six gates, then the playbook loop</h3>
 <svg class="fig" viewBox="0 0 700 92" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Six onboarding gates">
@@ -283,12 +283,12 @@
     <tr><td>1 Discover</td><td>Named sponsor and program code</td><td>Equipment list counted and signed by TPM and AME. Row count written down.</td></tr>
     <tr><td>2 Owners</td><td>Signed list</td><td>An owner on each of the ten fields above. Blank owner blocks the gate.</td></tr>
     <tr><td>3 Harness</td><td>The Excel or extract, not production</td><td>Schema, duplicate, serial, and referential checks green. Counted rows match the signed list.</td></tr>
-    <tr><td>4 Pilot load</td><td>Harness green, one line or one CM</td><td>PO ↔ asset reconciliation inside the tolerance published before the load. Every exception has an owner and an age.</td></tr>
+    <tr><td>4 Pilot load</td><td>Harness green, one line or one CM</td><td>Counted-rows go or no-go, same shape as the S/4 bars: no record with two published values of the field, and the exception report clean at the next check. Every open row has an owner and an age.</td></tr>
     <tr><td>5 Playbook</td><td>The pilot’s exception log</td><td>Standard work the next program can run without the pilot team in the room. What stayed local is written, not implied.</td></tr>
     <tr><td>6 Scale</td><td>Playbook plus the same gates</td><td>First-time-right on the ten fields. The side file is not what the forum reads.</td></tr>
   </tbody>
 </table>
-<p>What I standardize from a pilot: the field owner, the tolerance, the exception grammar, and the reconciliation. What I leave local: the CM’s station naming and the supplier’s pack format, mapped through the crosswalk, not forced into one spreadsheet layout. That split is the same one I use when a pilot becomes a rollout.</p>
+<p>What I standardize from a pilot: the field owner, the exit bar, the exception grammar, and the reconciliation. What I leave local: the CM’s station naming and the supplier’s pack format, mapped through the crosswalk, not forced into one spreadsheet layout. That split is the same one I use when a pilot becomes a rollout.</p>
 
 <h2>E. Worked example — a new test-station line at a CM</h2>
 <div class="model">
@@ -320,19 +320,19 @@
   <li><b>Close.</b> A row closes only when an asset id, a tag, a location, and a placed-in-service date post, or when GSM confirms the line is still a legitimate in-transit with a carrier event newer than the age bar. “We think it arrived” does not close it.</li>
   <li><b>What I refuse to do.</b> I do not let the 38 post and drop the 2 off the scorecard so the program looks at 100%. The denominator stays 40 until the two rows close or the scope is formally cut.</li>
 </ul>
-<p>That is the same mechanism as a mock reconciliation: publish the tolerance and the denominator before the file arrives, classify the miss, name the owner, and do not change the denominator to go green.</p>
+<p>That is the same mechanism as the S/4 go/no-go: the exit bar and the denominator are written before the file arrives — no record with two published values, the exception report clean at the next check — classify the miss, name the owner, and do not change the denominator to go green. The Utah issues log is how I triaged that kind of queue: 331 go-live, 77 fast-follow, 36 enhancement.</p>
 
 <h2>F. Resume → this role</h2>
 <p>Every experience bullet on the Apple-tailored resume, in the inventory already mapped in the Apple delta add-on. The raw resume text file was not on disk for this build; that add-on states the table is complete. The summary line is a guardrail, not a story.</p>
 <table class="sm">
   <thead><tr><th style="width:27%">Resume bullet</th><th style="width:20%">JD line it proves</th><th style="width:24%">Story and number</th><th>20-second version</th></tr></thead>
   <tbody>
-    <tr><td>S/4HANA ↔ ISM; one definition of available; legacy inventory system retired; zero incidents.</td><td>Accuracy of the input. One meaning the whole chain uses.</td><td>S1 / E1. Zero customer-facing incidents. <span class="b">record</span></td><td>I owned the policy and the integration governance. ERP engineers owned configuration. A unit was not available until someone had dispositioned it.</td></tr>
-    <tr><td>Portfolio system: RAID, 836-item log, 343-task runbook, numeric rollback, 60+ stakeholders.</td><td>Track, prioritize, and close many tasks. Protocols.</td><td>836 rows, 714 closed = 85.4%. 343 tasks, about 815 task-hours. 60+ stakeholders. <span class="b">record</span></td><td>One log for the umbrella program, not a side status. Owner, age, and a close. Rollback triggers were numeric and never fired.</td></tr>
+    <tr><td>S/4HANA ↔ ISM; one definition of available; legacy inventory system retired; zero incidents.</td><td>Accuracy of the input. One meaning the whole chain uses.</td><td>S1. Order system reads ISM AFS and never computes. Exit bars: no SKU with two published AFS values; Negative AFS clean at T+1. January, reserve rules live against demand; May, execution. Oversell recurring → zero. <span class="b">record</span></td><td>I owned the policy and the go/no-go recommendation. ERP engineers owned configuration. The AFS correction report had a screen, a role, and an owner.</td></tr>
+    <tr><td>Portfolio system: RAID, 836-item log, numeric rollback, 60+ stakeholders.</td><td>Track, prioritize, and close many tasks. Protocols.</td><td>836 rows, 714 closed = 85.4%. Categories 331 go-live, 77 fast-follow, 36 enhancement. 60+ stakeholders. <span class="b">record</span></td><td>One log for the umbrella program, not a side status. Owner, age, and a close. A percent closed was not the gate. Rollback triggers were numeric and never fired.</td></tr>
     <tr><td>UDC omni launch on Blue Yonder plus robotics; staged gates; efficiency up.</td><td>Manufacturing and supply-chain program work. Milestones. Learn the system.</td><td>+15% processing efficiency, DC Ops’ measure. Two go-lives, zero customer-facing incidents. <span class="b">record</span></td><td>I had not configured that WMS. I ran gates. DC Ops measured the 15 percent. I do not claim the code.</td></tr>
     <tr><td>Re-sequenced an 18-month roadmap; 66% less effort; value in six months.</td><td>Influence. Analytical. Change a plan people already believed.</td><td>18 months to value in 6. 66% less effort. About $5M of avoided cost, once. <span class="b">record</span></td><td>I brought the cost-to-serve comparison to the person who owned the roadmap. Avoided cost, not an annual reduction.</td></tr>
     <tr><td>Scaled 4PL visibility from 7 customers; cost-to-serve; a separate accuracy program.</td><td>Pilot, then a wider launch. Data integrity. Learn software fast.</td><td>7 → 68 = 9.7×, two months early. $0.66 → $0.03 per container, about 95%. Accuracy 60% → 90% is the other story. <span class="b">record</span></td><td>Six graduation criteria, not a date. I keep the customer ramp and the accuracy pipeline as two stories.</td></tr>
-    <tr><td>Dual-DC legacy ERP to JDA in eight months; three mocks; pipeline behind the date.</td><td>Budget, schedule, and supplier in one program. High accuracy.</td><td>Mocks 7.0% → 1.8% → 0.3% vs 0.5% before mock one. On time. About 3% under roughly $1.8M. $20M pipeline of four programs. <span class="b">record</span></td><td>The pipeline is value unblocked, not savings I bank. The pass line was Finance’s as well as mine.</td></tr>
+    <tr><td>Utah omni conversion with a Blue Yonder upgrade on the same path, and a Locus vendor under a statement of work.</td><td>Budget, schedule, and supplier in one program. High accuracy. The upgrade is part of this conversion.</td><td>Council signed July 31. Functional design planned July 26, signed August 14. Locus: 94% against a 98% gate; full automation in week three. Two go-lives, zero customer-facing incidents, +15% by DC Ops’ measure. <span class="b">record</span></td><td>I will not quote a program-budget variance here. The date moved in the open. The gate did not move. I do not tell the warehouse upgrade as its own migration.</td></tr>
     <tr><td>VP-sponsored move of a 20-person group onto a four-week cadence; defects down.</td><td>Change management without escalation. People skills.</td><td>20 people. Six-week to four-week cadence in six weeks. Critical defects −50%. <span class="b">record</span></td><td>Nobody reported to me. The skeptic in QA wrote the gate and defended it.</td></tr>
     <tr><td>SAP supply and demand view; daily reconciliation; forecast accuracy; safety stock.</td><td>Analytical, high accuracy, adherence to a protocol. Excel-grade hygiene on a system.</td><td>Forecast accuracy 70% → 85%. About $2M safety stock released. Planner collaboration up 50%. <span class="b">record</span></td><td>I say collaboration up, not effort down. The release rule was the one Planning and Finance signed.</td></tr>
     <tr><td>About 1,000 supplier and carrier routes; valid ASN at or above 95%; completeness up.</td><td>Vendor onboarding. Data integrity as the toll to go live.</td><td>A thousand-lane program across 25 European locations. Completeness 60% → 95%. <span class="b">record</span> Delivered-count split is not settled.</td><td>Phased by value. If asked what went live first, the 597 figure is my earlier anchor, not the settled count.</td></tr>
@@ -342,7 +342,7 @@
   </tbody>
 </table>
 <div class="hon">
-  <strong>What I have not done.</strong> I have not used Apple’s proprietary CapEx tool, and I have not run a factory capital-equipment launch. Tableau and Power BI do not appear in the mapped experience bullets. <strong>Safe sentence:</strong> “I build the scorecard in the tool the team already reads. I am not a dashboard stylist. I can interrogate the data underneath it, including in SQL, which I have done when a reported quality number did not match the rows. If this team’s view is Tableau, I will learn the view. The grain, the owner, and the tolerance are the part I already run.” Excel is a must-have on the JD and is how the side files I replace are actually kept; I do not need to pretend it is the system of record.
+  <strong>What I have not done.</strong> I have not used Apple’s proprietary CapEx tool, and I have not run a factory capital-equipment launch. Tableau and Power BI do not appear in the mapped experience bullets. <strong>Safe sentence:</strong> “I build the scorecard in the tool the team already reads. I am not a dashboard stylist. I can interrogate the data underneath it, including in SQL, which I have done when a reported quality number did not match the rows. If this team’s view is Tableau, I will learn the view. The grain, the owner, and the exit bar are the part I already run.” Excel is a must-have on the JD and is how the side files I replace are actually kept; I do not need to pretend it is the system of record.
 </div>
 
 <h2>G. Product improvement idea — ask it, do not pitch it</h2>
@@ -357,7 +357,7 @@
   <li><b>Exception aging.</b> Share of open exceptions older than the age bar Finance and the Data Integrity PM set in the pilot. I will not invent that bar in the room.</li>
 </ul>
 <p><b>MVP in six weeks, one pilot program.</b> Weeks 1–2: field dictionary and a named owner for each of the ten fields. Weeks 3–4: one reconciliation extract, PO to invoice to asset, and an exception queue with owner and age. Weeks 5–6: one weekly view the forum actually reads, even if the refresh is a query. A polished visual can wait.</p>
-<p><b>What I would not build first.</b> An anomaly model, a contract-manufacturer portal, a backfill of every historical program, or a leaderboard. The second, smaller idea is the pre-migration harness: schema, duplicate and serial checks, referential checks, and a counted-rows go or no-go before any Excel file touches the system. That harness is the entry bar to the scorecard, not a second product.</p>
+<p><b>What I would not build first.</b> An anomaly model, a contract-manufacturer portal, a backfill of every historical program, or a leaderboard. The second, smaller idea is the pre-migration harness: schema, duplicate and serial checks, referential checks, and a counted-rows go or no-go before any Excel file touches the system — the same shape as Negative AFS clean at T+1, and as the issues-log triage that separated go-live from fast-follow. That harness is the entry bar to the scorecard, not a second product.</p>
 <p><b>One risk.</b> If the view shames owners, they go back to the side file. I would design it as that owner’s queue, reviewed in their forum, with Data Integrity accountable for the queue and the business owner accountable for the value.</p>
 <div class="model"><strong>Still my model.</strong> I am describing a scorecard I would propose. I am not describing a gap I have seen inside Apple. The AI line is the interviewer’s own public profile: a centralized data foundation for future AI applications. My independent triage agent — eval set first, a citation on every proposal, unit cost from $25 to $0.40 — is the proof I know how to refuse automation. It was not deployed at an employer.</div>
 
@@ -406,13 +406,13 @@
 
 <h3>5. A multi-team launch where budget, schedule, and supplier were all in tension</h3>
 <div class="star">
-<p><span class="stag">S</span> Two distribution centers, legacy warehouse system to JDA, eight months, a $20M pipeline of four programs waiting on the date. I had never run that migration. Budget roughly $1.8M. <span class="b">record</span></p>
-<p><span class="stag">T</span> One recommendation that could hold the date, the budget, and the supplier quality at the same time.</p>
-<p><span class="stag">A</span> Five gated phases. Finance and I published a 0.5% reconciliation tolerance before the first mock. Mock one came back at 7.0%, mock two at 1.8%, mock three at 0.3%. I took the 7.0% upstairs with my name on it. The go-live note cited the scorecard.</p>
-<p><span class="stag">R</span> On time. About 3% under, roughly $54K by my division of that 3%. Hypercare cleared its exit — under two blocker tickets a day — in week three of four. The pipeline started the month after. That is unblocked pipeline, not banked savings. <span class="b">record</span></p>
-<p><span class="stag">Failure.</span> I had scored device conversion by effort. Hundreds of devices; training moved 1.5 weeks; the date held because device test came before we called training done.</p>
+<p><span class="stag">S</span> Utah, one building, two inventory books, a Blue Yonder upgrade on the same path, and Locus robots on retail outbound. The architecture council signed July 31. Peak, October through December, was not mine to spend. I did not own the systems or the vendor. <span class="b">record</span></p>
+<p><span class="stag">T</span> Hold two go-lives — purchasing and inbound in January, the combined flip in May — with the vendor’s readiness honest, and without a customer-facing incident. I will not invent a program-budget variance for this story.</p>
+<p><span class="stag">A</span> The council pack asked for separable decisions: the architecture, one pool with two selling identities and three reserve buckets, the staged timeline, and a written fence. Functional design was planned for July 26 and signed August 14. I do not say the chain held to the day. Locus sat under a statement of work. The gate I published before a bot took volume was 98 percent pick-accurate throughput. Retail testing slipped three weeks. Steering got the choice that week: compress the test, or move retail end-to-end to the end of January and keep the test whole. We moved the date. Week two of go-live read 94 percent against that gate. I throttled about 30 percent of volume to carts. Full automation was week three. On the inventory publish, go or no-go was counted rows: no SKU with two published AFS values, and Negative AFS clean at T+1. January put the reserve rules live against demand. May was execution.</p>
+<p><span class="stag">R</span> Both go-lives landed. Zero customer-facing incidents. Processing efficiency +15 percent, DC Ops’ measure. The retail date moved in public. The May date did not. <span class="b">record</span></p>
+<p><span class="stag">Failure.</span> I carried the vendor’s January 15 as if it were the floor’s date. The slip was handled in the open, and it was visible later than it should have been.</p>
 </div>
-<p><b>Data integrity.</b> The bad inputs were reconciliation classes: unit of measure, location names, order-status codes. Engineering owned the extract. Finance and I owned the tolerance. The control was a mock scorecard whose denominator we did not rewrite.</p>
+<p><b>Data integrity.</b> The bad input was a vendor date treated as a floor date, and a zone map that did not match our induction rules. The control was a gate published before volume, and a go/no-go read from counted rows. The issues log triaged what could not wait: 331 go-live, 77 fast-follow, 36 enhancement.</p>
 
 <h3>6. Engineering wanted a capability finance would not fund</h3>
 <div class="star">
@@ -500,7 +500,7 @@
 <p><span class="stag">T</span> Close the spec without smuggling scope, and without moving the go-lives.</p>
 <p><span class="stag">A</span> I named the slip the week it was clear. Rows whose owners had already started stayed fenced. The downstream rows got the re-read they asked for. We signed on August 14. I do not say the chain held to the day.</p>
 <p><span class="stag">R</span> About three weeks late on the spec. Both go-lives held. Zero customer-facing incidents. <span class="b">record</span> What changed: I count the signers by name before a date is printed, and discovery results close with the functional design as one gate.</p>
-<p><span class="stag">Failure.</span> An optimistic date costs more trust than the slip. If they want the other miss: hundreds of RF devices, training plus 1.5 weeks, go-live date held, because I had scored risk by effort instead of by impact.</p>
+<p><span class="stag">Failure.</span> An optimistic date costs more trust than the slip. If they want the other miss: on an Elementum track-and-trace application, five key users passed all ten end-to-end scenarios, and concurrent logins crashed the system two days before sign-off. I first sent screenshots. The date was missed. Load is now an entrance criterion.</p>
 </div>
 <p><b>Data integrity.</b> The bad input was a date with no signer list. I owned it. The control is a named list before the date exists.</p>
 
@@ -508,7 +508,7 @@
 <div class="star">
 <p><span class="stag">S</span> The profile treats the system of record as the foundation for later AI. I agree with the sequence, and I have not seen the tool. <span class="ill">model</span></p>
 <p><span class="stag">T</span> Name the fields I would not automate.</p>
-<p><span class="stag">A</span> I would refuse placed-in-service date, the purchase-order to asset join, and the reuse-source link until reconciliation sits inside a published tolerance and every exception has an owner. My only language-model build was independent: eval set first, a citation on every proposal, unit cost from $25 to $0.40. <span class="b">record</span> It was not deployed at an employer.</p>
+<p><span class="stag">A</span> I would refuse placed-in-service date, the purchase-order to asset join, and the reuse-source link until the reconciliation is a counted go or no-go and every exception has an owner. My only language-model build was independent: eval set first, a citation on every proposal, unit cost from $25 to $0.40. <span class="b">record</span> It was not deployed at an employer.</p>
 <p><span class="stag">R</span> The result I want credit for is the refusal. A narrative draft can be assisted. A book field cannot be guessed.</p>
 <p><span class="stag">Failure.</span> I once scoped a pipeline for correctness and discovered the access review mid-build. Same lesson: do not automate a field whose lineage you have not named.</p>
 </div>
@@ -527,10 +527,10 @@
 
 <h3>Learned a new software fast</h3>
 <div class="star">
-<p><span class="stag">S</span> I had never run a WMS migration, and the dual-DC move to JDA did not come with a guidebook. <span class="b">record</span></p>
-<p><span class="stag">T</span> Learn the system well enough to set gates, not well enough to pretend I configured it.</p>
-<p><span class="stag">A</span> I learned it in the mocks, class by class, and on a later visibility program I learned the event path through six systems well enough to find a missing trace id. Bugs went from hours to locate to traceable per system. <span class="b">record-from-docs</span> I will not quote a time-cut percentage.</p>
-<p><span class="stag">R</span> The JDA cutover went on time against a tolerance I could explain. The trace id is what made monitoring possible.</p>
+<p><span class="stag">S</span> I had not configured S/4, and I had not configured the warehouse system on the Utah conversion. The Blue Yonder upgrade was part of that program, not a migration I tell on its own. <span class="b">record</span></p>
+<p><span class="stag">T</span> Learn each system well enough to set gates, not well enough to pretend I configured it.</p>
+<p><span class="stag">A</span> On S/4 I walked one unit from the book to the number the order system reads, and I wrote the exit bars before the night: no SKU with two published AFS values, and Negative AFS clean at T+1. On a visibility program I learned the event path through six systems well enough to find a missing trace id, counting events in versus events out at each boundary. Bugs went from hours to locate to traceable per system. <span class="b">record-from-docs</span> I will not quote a time-cut percentage.</p>
+<p><span class="stag">R</span> Oversell went from recurring to zero through the January and May go-lives. The trace id is what made monitoring possible.</p>
 <p><span class="stag">Failure.</span> I learned the trace-id hole during testing, not during design. Next time the identifier is a design row.</p>
 </div>
 <p><b>Data integrity.</b> The missing input was a trace id. Engineering owned the pipe. I owned the test that proved the hole. The control is an identifier before the first customer test.</p>
@@ -550,7 +550,7 @@
 <p><span class="stag">S</span> The umbrella program’s log is 836 rows over the life of the Utah conversion, not a private list. <span class="b">record</span></p>
 <p><span class="stag">T</span> Prioritize and close, in the open.</p>
 <p><span class="stag">A</span> One row, one owner, an age, a severity. The grammar the log itself used: 331 go-live, 77 fast-follow, 36 enhancement. Just over half the book was Blocker or Critical.</p>
-<p><span class="stag">R</span> 714 of 836 closed, 85.4%. <span class="b">record</span> The cutover beside it was 343 tasks, about 815 task-hours.</p>
+<p><span class="stag">R</span> 714 of 836 closed, 85.4%. <span class="b">record</span> Go or no-go still required the severe rows open at zero. A percent closed was not the gate.</p>
 <p><span class="stag">Failure.</span> A log without an owner is a diary. I have let a row sit when the owner was a team name. Team names do not close rows.</p>
 </div>
 <p><b>Data integrity.</b> The row is the input. A named person owns it. The control is the close rate on a denominator we do not shrink.</p>
@@ -594,7 +594,7 @@
     <tr><td>V1</td><td>Canada bulk-ship results after discovery exit are not in the sources.</td><td>“That was the plan at discovery exit. I will not quote a post-launch workload or brand count.”</td></tr>
     <tr><td>V2</td><td>How many of the thousand lanes actually went live. 597 is an earlier anchor, not the settled count.</td><td>“A thousand-lane program across 25 European locations. I phased by value.”</td></tr>
     <tr><td>V3</td><td>Austria quality timing: sources disagree on two months versus about three.</td><td>“About 99 percent within a quarter.”</td></tr>
-    <tr><td>V4</td><td>Device fleet size. The two tellings disagree.</td><td>“Hundreds of RF devices. Training moved a week and a half. The go-live date held.”</td></tr>
+    <tr><td>V4</td><td>Elementum UAT. Five key users, ten scenarios, concurrent access.</td><td>“Five key users passed ten scenarios. Concurrent access crashed the system two days before sign-off. The date was missed. Load is now an entrance criterion.”</td></tr>
     <tr><td>V5</td><td>Names of the first visibility customers disagree across documents.</td><td>“The first two hand-carried customers.”</td></tr>
     <tr><td>V6</td><td>MetricStream: responsibilities are on the resume. No client, headcount, or outcome is.</td><td>“I owned SOWs, estimates, budgets, and delivery through hypercare. I will not attach a client or a dollar.”</td></tr>
     <tr><td>V7</td><td>The resume summary adds unlike savings, avoidance, released inventory, and protected revenue.</td><td>“I will use each program’s number with its noun. I will not quote the rolled-up total.”</td></tr>
@@ -605,7 +605,7 @@
     <tr><td>V12</td><td>The language-model triage agent was an independent build.</td><td>“I built it independently. It was not deployed at an employer.”</td></tr>
     <tr><td>V13</td><td>Anything about Apple’s CapEx tool, age bars, or who signs a launch.</td><td>“Here is how I understand it. Correct me where I’m wrong.”</td></tr>
     <tr><td>V14</td><td>Trace-id time saved. A half-reduction appears only as your own note.</td><td>“Bugs went from hours to locate to traceable per system. I will not quote a percentage.”</td></tr>
-    <tr><td>V15</td><td>About $54K under budget is 3% of roughly $1.8M, your division.</td><td>“About 3 percent under a roughly $1.8 million budget. The dollar under is my division, not a separate record.”</td></tr>
+    <tr><td>V15</td><td>S/4 annual dollar is a split, not a record total.</td><td>“If they ask, about one million of support cost retired is my program anchor, and the rest of that annual figure is my model. I do not open with it, and I do not say a bare total.”</td></tr>
   </tbody>
 </table>
 
@@ -614,18 +614,16 @@
   <thead><tr><th>Number</th><th>Where</th><th>Story</th><th>Source file</th><th>Match</th></tr></thead>
   <tbody>
     <tr><td>Three reserve buckets; no historical conversion</td><td>B, H1, H9</td><td>UDC dual inventory</td><td>udc-canada-story-pack (council deck p.4)</td><td>Y</td></tr>
-    <tr><td>0.5% before mock one; 7.0% → 1.8% → 0.3%</td><td>B, F, H5</td><td>RP → JDA, D2</td><td>goforth-pgm-stories P2; apple-delta D2</td><td>Y</td></tr>
+    <tr><td>No SKU with two published AFS values; Negative AFS clean at T+1; OMS reads ISM AFS and never computes; January reserve rules live against demand; May execution; oversell recurring → zero</td><td>B, F, H5, I</td><td>S1 S/4 HANA ↔ ISM</td><td>goforth-s4-end-to-end; panel S1 cutover phase</td><td>Y, record design</td></tr>
     <tr><td>836 rows; 714 closed = 85.4%</td><td>B, F, H1, I</td><td>UDC issues log</td><td>numbers-reconciliation S2.03; apple-delta</td><td>Y</td></tr>
     <tr><td>Reported 40%; true about 55%; about 99% within a quarter</td><td>B, I</td><td>S10 Austria</td><td>cabreros-stories-b S10; numbers-reconciliation S10</td><td>Y on the levels; months = within a quarter</td></tr>
     <tr><td>Zero customer-facing incidents; +15% DC Ops</td><td>F, H1, H4</td><td>UDC C1</td><td>apple-delta resume map; udc pack</td><td>Y</td></tr>
-    <tr><td>343 tasks; about 815 task-hours; 60+ stakeholders</td><td>F, I</td><td>UDC cutover / council</td><td>apple-delta; numbers-reconciliation S2.12 (48,885 min)</td><td>Y, hours rounded</td></tr>
+    <tr><td>60+ stakeholders; issues-log triage is the close mechanism</td><td>F, I</td><td>UDC council / issues log</td><td>udc pack; numbers-reconciliation S2</td><td>Y. Severe-open at zero is the gate, not percent closed</td></tr>
     <tr><td>18 months → value in 6; 66%; about $5M avoided cost</td><td>F, H7</td><td>S12 / B2</td><td>apple-delta numbers check</td><td>Y, avoided-cost noun</td></tr>
     <tr><td>7 → 68 = 9.7×; two months early; 170 users</td><td>F, H3, H12</td><td>S11 / A1</td><td>apple-delta; numbers-reconciliation S11</td><td>Y, 9.7× is 68/7</td></tr>
     <tr><td>$0.66 → $0.03 per container, about 95%</td><td>F</td><td>S11 / A1</td><td>apple-delta; numbers-reconciliation S11</td><td>Y, rounded from 95.45%</td></tr>
     <tr><td>System accuracy 60% → 90%; parity within 1%</td><td>F, H2, I</td><td>S16 / A3 and G3</td><td>apple-delta A3 / G3</td><td>Y</td></tr>
-    <tr><td>Eight months; about 3% under roughly $1.8M; $20M pipeline of four programs</td><td>F, H5</td><td>S18 / D1</td><td>goforth-pgm-stories P2; apple-delta</td><td>Y</td></tr>
-    <tr><td>About $54K under</td><td>H5</td><td>3% of roughly $1.8M</td><td>goforth-pgm-stories P2</td><td>Your division, say so</td></tr>
-    <tr><td>Under two blocker tickets a day, week three of four</td><td>H5</td><td>S18 hypercare</td><td>goforth-pgm-stories P2</td><td>Y</td></tr>
+    <tr><td>Council July 31; FSD planned July 26, signed August 14; Locus 94% vs 98%; about 30% to carts; full automation week three; retail date moved, May held</td><td>F, H5, H8</td><td>UDC + Locus</td><td>udc pack; goforth-pgm-stories P3</td><td>Y. No program-budget variance on this story</td></tr>
     <tr><td>20 people; six-week → four-week in six weeks; critical defects −50%</td><td>F, H13, I</td><td>S15 / D3</td><td>apple-delta; cabreros-stories-b S15</td><td>Y, defect result via resume</td></tr>
     <tr><td>Forecast 70% → 85%; about $2M safety stock; collaboration up 50%</td><td>F, H6</td><td>S6 / F3</td><td>apple-delta numbers check</td><td>Y</td></tr>
     <tr><td>Thousand-lane program; 25 European locations; completeness 60% → 95%</td><td>F</td><td>S9 / F1</td><td>apple-delta; numbers-reconciliation S9</td><td>Y on the program; delivered split unresolved</td></tr>
@@ -635,8 +633,7 @@
     <tr><td>Retail E2E planned Jan 15, completed end of January; combined go-live held</td><td>H8, H14</td><td>Locus slip / council timeline</td><td>udc pack B5, B6</td><td>Y</td></tr>
     <tr><td>44 rows / 23 systems; seven families; about two dozen named systems</td><td>H9, H10</td><td>Council pack pp.9, 13–14</td><td>udc-canada-story-pack conflict row 6</td><td>Y, source doc over “about a dozen” alone</td></tr>
     <tr><td>FSD planned Jul 26; signed Aug 14; council Jul 31</td><td>H10, H14</td><td>B5</td><td>udc pack B5; apple-delta does not say the chain held</td><td>Y</td></tr>
-    <tr><td>Hundreds of devices; training +1.5 weeks; date held</td><td>H5, H14</td><td>G2</td><td>apple-delta G2; numbers-reconciliation S18.09</td><td>Y after conflict resolution</td></tr>
-    <tr><td>500 containers / 20 min / 99.6%; 5 users × 10 scenarios; crash 2 days before sign-off</td><td>H12</td><td>A5 and G1</td><td>apple-delta A02</td><td>Y</td></tr>
+    <tr><td>500 containers / 20 min / 99.6%; 5 users × 10 scenarios; crash 2 days before sign-off</td><td>H12, H14, V4</td><td>A5 and Elementum UAT</td><td>apple-delta A02</td><td>Y. The sign-off date was missed</td></tr>
     <tr><td>$25 → $0.40; citations on every proposal</td><td>H15, G</td><td>I1 independent agent</td><td>apple-delta A01</td><td>Y, not an employer deployment</td></tr>
     <tr><td>8–10 hours/week → 1–2; about $500K Austria; about $8M across 25 European sites</td><td>I</td><td>S10</td><td>cabreros-stories-b S10</td><td>Y, executed-only method</td></tr>
     <tr><td>331 go-live / 77 fast-follow / 36 enhancement; just over half Blocker or Critical</td><td>I</td><td>UDC log categories</td><td>numbers-reconciliation S2.04, S2.05</td><td>Y, 441/836 rounded in speech</td></tr>
@@ -645,7 +642,7 @@
     <tr><td>Illustrative 40 stations, $75,000, $3,000,000, 2 sites, 3 suppliers, 12 fixtures, 40 / 38 / 2</td><td>E only</td><td>Worked example</td><td>This packet</td><td>ILLUSTRATIVE, not a source</td></tr>
   </tbody>
 </table>
-<p class="foot">Files behind the short names: amazon/panel/amazon-nacf-apple-delta-addon-star-kimi-k3.html; amazon/numbers-reconciliation.md; amazon/panel/amazon-nacf-udc-canada-story-pack-star-kimi-k3.html; amazon/panel/amazon-nacf-panel-3-goforth-pgm-stories-star-kimi-k3.html; amazon/panel/amazon-nacf-panel-4-cabreros-stories-b-star-kimi-k3.html. Apple workbook v11 and the Apple-tailored resume were not on disk as text; every resume bullet above is the bullet the delta add-on says it mapped, and every number is one that add-on or the reconciliation already checked. No new client, headcount, or outcome was added.</p>
+<p class="foot">Files behind the short names: amazon/panel/amazon-nacf-apple-delta-addon-star-kimi-k3.html; amazon/numbers-reconciliation.md; amazon/panel/amazon-nacf-udc-canada-story-pack-star-kimi-k3.html; amazon/panel/amazon-nacf-panel-3-goforth-s4-end-to-end-kimi-k3.html; amazon/panel/amazon-nacf-panel-3-goforth-pgm-stories-star-kimi-k3.html (Locus, P3 only); amazon/panel/amazon-nacf-panel-4-cabreros-stories-b-star-kimi-k3.html. Apple workbook v11 and the Apple-tailored resume were not on disk as text; every resume bullet above is the bullet the delta add-on says it mapped, except the warehouse-migration bullet, which is omitted, and every number is one that add-on or the reconciliation already checked. No new client, headcount, or outcome was added.</p>
 </body>
 </html>
 
