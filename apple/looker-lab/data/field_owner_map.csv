@@ -1,0 +1,9 @@
+field_name,owner_id,applies_when,why
+placed_in_service_date,OWN-FIN,every tagged asset,The day depreciation starts. Not the ship date and not the day the CM unpacked the crate.
+cost_center,OWN-GSM,every tagged asset,Which cost center carries the asset. The GSM owns the cost assignment on the buy.
+program_allocation,OWN-TPM,every tagged asset,Which program the asset serves. Shared tools get split by memory when this field has one editor.
+reuse_source_asset_id,OWN-AME,only when equipment_type is reused_fixture,"The prior asset this fixture came from. Without it, Finance can capitalize a tool the company already owns. The denominator is the reuse lines, not every line."
+site_id,submitting CM coordinator,every tagged asset,Where the asset physically is. A code that exists in the site list can still be the wrong site for the PO. Completeness is not validity.
+serial_number,submitting CM coordinator,every tagged asset,Identity of the physical unit. Two assets with one serial cannot be counted.
+po_line_id,OWN-GSM,every tagged asset,The link from the thing on the floor to the buy. An asset with no PO line is an orphan.
+asset_linkage,OWN-GSM,every PO line,"A PO line with no asset is not reconciled. In transit is a state, and it stays in the denominator until an asset is tagged."

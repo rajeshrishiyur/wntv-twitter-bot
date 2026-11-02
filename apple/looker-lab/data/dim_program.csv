@@ -1,0 +1,4 @@
+program_id,program_name,status,line_of_business,equipment_list_count,notes
+TS-LINE-RAMP,Test-station line ramp,onboarding,Test,40,Moving off CM Excel trackers onto the system of record. This is the lab program.
+PACK-CELL-EXP,Pack cell expansion,sustaining,Pack,32,"Already on the system of record. Clean on purpose, so a blended rate looks finished."
+FIXTURE-REUSE-24,Fixture reuse 2024,sustaining,Test,28,Prior program. Holds the 12 source assets the ramp reuses. Edits are outside the 90-day window.

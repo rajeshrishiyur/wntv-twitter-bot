@@ -1,0 +1,5 @@
+definition,certified,numerator,denominator,rate,why
+certified_lines_with_asset_over_lines,yes,38,40,0.95,38/40. The two in-transit lines stay in the denominator.
+trap_assets_over_lines,no,39,40,0.975,"39/40. Line 00018 has two assets, so one extra asset hides one missing line."
+trap_received_only,no,38,38,1.0,38/38. A default filter of received date drops the in-transit lines and the scorecard goes green.
+trap_program_assets_including_orphan_over_lines,no,40,40,1.0,40/40. The orphan has no PO line and still fills the hole if you count assets on the program.

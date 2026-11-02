@@ -1,0 +1,7 @@
+field_name,owner_id,person_name,role_name,denominator,filled,missing,completeness
+cost_center,OWN-GSM,Priya Raman,Global Supply Manager,40,40,0,1.0
+placed_in_service_date,OWN-FIN,Morgan Ellis,Finance fixed assets,40,28,12,0.7
+program_allocation,OWN-TPM,David Cho,Technical Program Manager,40,40,0,1.0
+reuse_source_asset_id,OWN-AME,Elena Vasquez,Advanced Manufacturing Engineer,12,12,0,1.0
+site_id,OWN-CMA,Wei Chen,CM site A coordinator,22,22,0,1.0
+site_id,OWN-CMB,Jordan Hale,CM site B coordinator,18,18,0,1.0

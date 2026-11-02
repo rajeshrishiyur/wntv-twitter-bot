@@ -1,0 +1,22 @@
+exception_id,defect_type,field_name,po_line_id,asset_id,owner_id,opened_date,age_days,bucket,why_it_matters
+EX-PIS-00017,missing_placed_in_service,placed_in_service_date,00017,AST-TS-0017,OWN-FIN,2026-03-12,4,0-7,Tagged asset has no placed-in-service date. Depreciation cannot start. Finance owns the field.
+EX-PIS-00006,missing_placed_in_service,placed_in_service_date,00006,AST-TS-0006,OWN-FIN,2026-03-10,6,0-7,Tagged asset has no placed-in-service date. Depreciation cannot start. Finance owns the field.
+EX-PIS-00007,missing_placed_in_service,placed_in_service_date,00007,AST-TS-0007,OWN-FIN,2026-03-09,7,0-7,Tagged asset has no placed-in-service date. Depreciation cannot start. Finance owns the field.
+EX-PIS-00008,missing_placed_in_service,placed_in_service_date,00008,AST-TS-0008,OWN-FIN,2026-03-01,15,8-30,Tagged asset has no placed-in-service date. Depreciation cannot start. Finance owns the field.
+EX-PIS-00009,missing_placed_in_service,placed_in_service_date,00009,AST-TS-0009,OWN-FIN,2026-02-20,24,8-30,Tagged asset has no placed-in-service date. Depreciation cannot start. Finance owns the field.
+EX-PIS-00010,missing_placed_in_service,placed_in_service_date,00010,AST-TS-0010,OWN-FIN,2026-02-16,28,8-30,Tagged asset has no placed-in-service date. Depreciation cannot start. Finance owns the field.
+EX-PIS-00011,missing_placed_in_service,placed_in_service_date,00011,AST-TS-0011,OWN-FIN,2026-02-10,34,31+,Tagged asset has no placed-in-service date. Depreciation cannot start. Finance owns the field.
+EX-PIS-00012,missing_placed_in_service,placed_in_service_date,00012,AST-TS-0012,OWN-FIN,2026-02-05,39,31+,Tagged asset has no placed-in-service date. Depreciation cannot start. Finance owns the field.
+EX-PIS-00013,missing_placed_in_service,placed_in_service_date,00013,AST-TS-0013,OWN-FIN,2026-01-28,47,31+,Tagged asset has no placed-in-service date. Depreciation cannot start. Finance owns the field.
+EX-PIS-00014,missing_placed_in_service,placed_in_service_date,00014,AST-TS-0014,OWN-FIN,2026-01-20,55,31+,Tagged asset has no placed-in-service date. Depreciation cannot start. Finance owns the field.
+EX-PIS-00015,missing_placed_in_service,placed_in_service_date,00015,AST-TS-0015,OWN-FIN,2026-03-14,2,0-7,Tagged asset has no placed-in-service date. Depreciation cannot start. Finance owns the field.
+EX-PIS-00016,missing_placed_in_service,placed_in_service_date,00016,AST-TS-0016,OWN-FIN,2026-02-25,19,8-30,Tagged asset has no placed-in-service date. Depreciation cannot start. Finance owns the field.
+EX-DUP-4421,duplicate_serial,serial_number,00021,AST-TS-0022,OWN-CMB,2026-03-11,5,0-7,Serial SN-DUP-4421 is also on the asset for PO line 00020. The second entry failed uniqueness.
+EX-DUP-4422,duplicate_serial,serial_number,00022,AST-TS-0023,OWN-CMA,2026-02-19,25,8-30,Serial SN-DUP-4422 is also on the asset for PO line 00023. The second entry failed uniqueness.
+EX-ORPHAN-0040,orphan_asset,po_line_id,,AST-TS-0040,OWN-GSM,2026-01-15,60,31+,Asset was keyed into the system of record with no PO line. It is not in either CM tracker. GSM owns the link.
+EX-SITE-00024,site_mismatch,site_id,00024,AST-TS-0025,OWN-CMA,2026-03-15,1,0-7,PO receiving site is CM-A; the asset was tagged CM-B. The code is real. It is the wrong site.
+EX-SITE-00025,site_mismatch,site_id,00025,AST-TS-0026,OWN-CMB,2026-02-28,16,8-30,PO receiving site is CM-B; the asset was tagged CM-A. The code is real. It is the wrong site.
+EX-SITE-00026,site_mismatch,site_id,00026,AST-TS-0027,OWN-CMA,2026-02-01,43,31+,PO receiving site is CM-A; the asset was tagged PLANT-01. The code is real. It is the wrong site.
+EX-DATE-00019,pis_before_received,placed_in_service_date,00019,AST-TS-0020,OWN-FIN,2026-03-08,8,8-30,Placed-in-service 2026-02-11 is before received 2026-02-18. Depreciation would start before the tool arrived.
+EX-TRANSIT-00039,in_transit_no_asset,asset_linkage,00039,,OWN-GSM,2026-03-13,3,0-7,PO line has no received date and no asset. It is in transit. It stays in the reconciliation denominator.
+EX-TRANSIT-00040,in_transit_no_asset,asset_linkage,00040,,OWN-GSM,2026-02-12,32,31+,PO line has no received date and no asset. It is in transit. It stays in the reconciliation denominator.

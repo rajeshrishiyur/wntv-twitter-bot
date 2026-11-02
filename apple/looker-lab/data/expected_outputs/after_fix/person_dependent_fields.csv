@@ -1,0 +1,7 @@
+field_name,editor_count,edited_by,editor_names,is_person_dependent
+placed_in_service_date,1,usr_morgan_fin,Morgan Ellis,true
+program_allocation,1,usr_david_tpm,David Cho,true
+reuse_source_asset_id,1,usr_elena_ame,Elena Vasquez,true
+cost_center,2,"usr_morgan_fin, usr_priya_gsm","Morgan Ellis, Priya Raman",false
+serial_number,2,"usr_jordan_cmb, usr_wei_cma","Jordan Hale, Wei Chen",false
+site_id,2,"usr_jordan_cmb, usr_wei_cma","Jordan Hale, Wei Chen",false
