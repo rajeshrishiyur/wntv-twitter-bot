@@ -1,0 +1,9 @@
+check_name,failures
+asset_owner_not_in_dim,0
+asset_site_not_in_dim,0
+exception_owner_not_in_dim,0
+orphan_or_dangling_po_line,1
+po_program_not_in_dim,0
+po_site_not_in_dim,0
+po_supplier_not_in_dim,0
+reuse_source_missing,0

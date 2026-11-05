@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Apple CapEx — Elementum stories: shortage alert and procure-to-pay EDI</title>
+<style>
+  @page { size: letter; margin: 0.62in 0.68in 0.68in 0.68in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", "Inter", Arial, sans-serif; font-size: 10.3pt; line-height: 1.38; color: #1c1c1c; }
+  h1 { font-size: 20pt; line-height: 1.15; margin: 0 0 6px; letter-spacing: -0.02em; }
+  h2 { font-size: 13pt; margin: 16px 0 6px; padding-top: 8px; border-top: 2px solid #1a2744; page-break-after: avoid; }
+  h2.break { page-break-before: always; }
+  h3 { font-size: 11.3pt; margin: 12px 0 4px; page-break-after: avoid; color: #1a2744; }
+  h3.st { font-size: 12pt; color: #1c1c1c; border-left: 4px solid #1a2744; padding-left: 8px; margin-top: 16px; page-break-before: always; }
+  h4 { font-size: 10.3pt; margin: 9px 0 3px; page-break-after: avoid; color: #8a1c2b; }
+  p { margin: 0 0 7px; }
+  ul, ol { margin: 2px 0 8px; padding-left: 18px; }
+  li { margin: 0 0 3px; }
+  .kicker { font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .cover { min-height: 8.6in; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 1.0in; page-break-after: always; }
+  .cover .role { font-size: 12.5pt; color: #1a2744; margin: 0 0 18px; }
+  .cover .who { background: #1a2744; color: #fff; padding: 16px 20px; margin: 10px 0 16px; }
+  .cover .who .nm { font-size: 17pt; font-weight: 700; letter-spacing: -0.01em; }
+  .cover .who .tt { font-size: 11pt; color: #e6ddcb; margin-top: 3px; }
+  .cover .who .dt { font-size: 12pt; margin-top: 10px; font-weight: 700; }
+  .cover .who .sh { font-size: 9.5pt; color: #e6ddcb; margin-top: 4px; }
+  .cover .strat { background: #f7f4ee; border-left: 4px solid #8a1c2b; padding: 10px 14px; margin: 8px 0; font-size: 10.6pt; }
+  .cover .strat strong { color: #8a1c2b; }
+  .cover .lpg { font-size: 9.6pt; color: #333; margin-top: 10px; }
+  .cover .lpg em { color: #7a5a00; font-style: normal; font-weight: 700; }
+  .cover .src { font-size: 8.8pt; color: #666; margin-top: auto; padding-top: 24px; }
+  .meta { background: #f4f1ea; border-left: 4px solid #1a2744; padding: 8px 12px; margin: 8px 0 10px; font-size: 10pt; }
+  .meta div { margin: 1px 0; }
+  .say { background: #f7f4ee; border: 1px solid #d9d0c1; border-left: 4px solid #8a1c2b; padding: 8px 12px 4px; margin: 6px 0 10px; page-break-inside: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, serif; font-size: 10.4pt; line-height: 1.42; }
+  .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .star { background: #fcfbf8; border: 1px solid #d9d0c1; padding: 7px 12px 3px; margin: 4px 0 10px; font-size: 9.7pt; }
+  .star p { margin: 0 0 5px; }
+  .stag { font-weight: 700; color: #8a1c2b; }
+  .hon { background: #f3f0fa; border-left: 4px solid #5b4a8a; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.3pt; color: #333; }
+  .hon strong { color: #5b4a8a; }
+  .doc { background: #eef4f6; border: 1px solid #c3d5da; border-left: 4px solid #1f6f7a; padding: 7px 12px 4px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .doc p { margin: 0 0 5px; }
+  .doc .label { color: #1f6f7a; }
+  .kc { background: #fdf8ef; border: 1px solid #e4d2ac; border-left: 4px solid #b8860b; padding: 6px 12px 4px; margin: 6px 0 10px; font-size: 9.4pt; }
+  .kc ul { margin: 2px 0 6px; padding-left: 16px; }
+  .inf { background: #fbf7ec; border-left: 4px solid #b8860b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.4pt; }
+  .inf strong { color: #7a5a00; }
+  .rules { background: #fdf0f0; border: 1px solid #e3b7b7; border-left: 4px solid #8a1c2b; padding: 7px 12px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .rules strong { color: #8a1c2b; }
+  .qa { border-left: 3px solid #d9d0c1; padding: 2px 0 2px 10px; margin: 0 0 9px; font-size: 9.5pt; page-break-inside: avoid; }
+  .qa p { margin: 0 0 3px; }
+  .qa p.q { color: #1a2744; font-weight: 700; }
+  .sh { font-size: 8.8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin: 10px 0 4px; border-bottom: 1px solid #d9d0c1; padding-bottom: 2px; page-break-after: avoid; }
+  ul.res { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
+  ul.res li { margin: 0 0 3px; }
+  ul.phz { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
+  ul.phz li { margin: 0 0 4px; }
+  .pb { font-weight: 700; color: #1a2744; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 9.1pt; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #ddd; padding: 4px 6px 4px 0; }
+  th { font-size: 8.2pt; letter-spacing: 0.04em; text-transform: uppercase; color: #555; border-bottom: 1.5px solid #1a2744; }
+  table.sm { font-size: 8.5pt; }
+  table.sm th, table.sm td { padding: 3px 5px 3px 0; }
+  td.c { color: #8a1c2b; font-weight: 700; }
+  span.new { display: inline-block; background: #8a1c2b; color: #fff; font-size: 7.4pt; letter-spacing: 0.08em; padding: 1px 5px; border-radius: 3px; vertical-align: middle; margin-left: 4px; text-transform: uppercase; }
+  span.b { display: inline-block; background: #e8eef6; color: #1a2744; font-size: 7.6pt; padding: 0 4px; border-radius: 3px; margin-left: 2px; }
+  .toc div { margin: 2px 0; font-size: 9.8pt; }
+  .toc .grp { font-weight: 700; color: #8a1c2b; margin-top: 8px; }
+  a { color: #1a2744; text-decoration: none; }
+  .cite { color: #1f6f7a; font-size: 8.6pt; }
+  .two { columns: 2; column-gap: 22px; }
+  svg.flow { width: 100%; height: auto; display: block; margin: 2px 0 4px; }
+  .fig { font-size: 8.4pt; color: #555; margin: 0 0 8px; }
+</style>
+</head>
+<body>
+
+<div class="kicker">Apple · 30-minute call · CapEx Systems Onboarding Data Integrity · Elementum pair · part 5</div>
+<h1>Two Elementum stories for a data-integrity interviewer</h1>
+<p class="cite">Rajesh Rishiyur Chandrasekaran · interviewer: Capital Expenditure Systems Lead. Speak in first person. Every number keeps its noun and its basis: <span class="b">record</span> Apple v11 / resume, <span class="b">user anchor</span> earlier packet only, <span class="b">illustrative</span> worked example, <span class="b">modeled</span>. The eight domain names below are the list in the Hoerger S6 packet. Field-level owners the packet does not name are marked <strong>my reconstruction — confirm</strong>.</p>
+
+<h2 id="s1">Story 1 — The Class A finished-goods shortage alert: eight domains of data, one trustworthy number</h2>
+<div class="meta">
+  <div><b>Where:</b> Elementum, a six-site manufacturing customer. I owned definitions, the data-integrity program and delivery. SAP teams and integration engineers built the feeds. Planners owned the forecast; I owned the measurement.</div>
+  <div><b>Grain:</b> finished goods, SKU × location × date, scoped class-A SKUs. The packet’s supply rule excludes unfirmed planned orders. This walk does not convert a finished good into components.</div>
+  <div><b>Headline, said apart:</b> forecast accuracy 70% → 85% on scoped class-A SKUs <span class="b">record</span>; about $2M of safety stock released under a both-errors rule <span class="b">record, one-time</span>; alert product live in 3 months <span class="b">record</span>. The 200-lane lead-time program is a different result: 99% lead-time accuracy, 580,000 units, about $1.5M of inventory carrying cost released, zero stockouts <span class="b">record</span>. I never add the two releases and I do not annualize the carrying-cost release.</div>
+</div>
+
+<div class="say">
+  <div class="label">60-second pitch — stop on the class-A accuracy</div>
+  <p>Planners at a six-site manufacturer learned about a shortage when the line stopped. About eight data domains lived in SAP and the site systems and never met, so “which orders are at risk?” had no path. I took the definitions and the data integrity. Supply, at finished-goods grain, was on-hand plus in-transit due plus production due plus released planned orders only — unfirmed orders change every planning run, so I refused to count them. Each domain went live behind a data-quality gate, inventory and production first, with a nightly full load to re-baseline and intraday deltas so receipts and shipments stayed current, and a daily reconciliation back to the SAP stock and requirements lists before anyone trusted the alert. The alert fired when days of cover fell to the lane’s measured 90th-percentile lead time — a lead time early, not at line-down. Safety stock came out only where forecast error and lead-time error had both improved. Forecast accuracy on the scoped class-A SKUs went from 70% to 85%. About $2M of safety stock was released, one time, under that signed rule.</p>
+</div>
+<div class="say">
+  <div class="label">20-second version</div>
+  <p>Eight domains, one definition of supply at finished-goods grain, a nightly re-baseline plus intraday deltas, and an alert when cover falls inside the lane’s measured lead time. Class-A forecast accuracy 70% to 85%. About $2M of safety stock released only where both errors had improved.</p>
+</div>
+
+<div class="sh">STAR — first person</div>
+<div class="star">
+  <p><span class="stag">S —</span> S&amp;OP ran on private spreadsheets. Shipment data was incomplete. The eight domains — supplier, material, bill of materials, inventory, production, transportation, sales order and planning — sat in SAP and never joined. Leadership could not say which customer orders were at risk this quarter. The line found out at line-down. Buffers were sized on that noise.</p>
+  <p><span class="stag">T —</span> Nobody owned the seam. I took the grain, the definition of supply, the quality bar and the delivery. The product was a shortage a planner could act on a lead time early, and a number Finance would sign.</p>
+  <p><span class="stag">A —</span> I profiled every domain for completeness, latency and whether it would join. I wrote the definition before any screen: grain SKU × location × date; supply equals on-hand, plus in-transit due by that date, plus production due by that date, plus released planned orders only. I sequenced waves by what planners already believed — inventory and production, then purchasing and the advance ship notice, then transportation — and each wave had a published quality gate the domain owner could fail. Feeds were a nightly full load, which re-baselines and heals a missed change, and intraday deltas on receipts and shipments, plus carrier status as an event. Every morning the landed quantities were reconciled to the SAP lists (stock requirements, production orders, sales orders, warehouse stock) before the alert was treated as true. A bad row was fixed in the source system, not edited in the warehouse. False alarms were classed each week as a threshold effect or a data defect. The release rule, signed with Planning and Finance before the first unit came out, was both errors improved: forecast error and lead-time error.</p>
+  <p><span class="stag">R —</span> Forecast accuracy on scoped class-A SKUs 70% → 85% <span class="b">record</span>. About $2M of safety stock released, one time, under that rule <span class="b">record</span>. The alert product was live in three months <span class="b">record</span>. Planner collaboration increased 50% <span class="b">record — Apple v11 wording</span>. Adoption rose eight times <span class="b">record in the Hoerger packet</span>. “Which orders are at risk?” was answered in the live planning meeting from the platform.</p>
+</div>
+
+<div class="inf"><strong>TRADE-OFF I MADE.</strong> A blanket buffer cut would have looked like a win in one meeting. I refused it. Capital came out only on the class-A families where forecast error and lead-time error had both improved, and lanes with a fatter measured tail kept or raised their buffer. What it cost: a slower release, and a sponsor who wanted the whole number. What it bought: a release that survived audit, and zero stockouts on the separate 200-lane watch.</div>
+<div class="hon"><strong>Failure / learning.</strong> The manufacturer-part cross-reference gated longer than the plan because I did not open that worklist on day one. Austria had already taught me the rule I should have led with: measure the data before blaming the process. Reported quality there was 40%; at the real grain it was about 55%; it reached about 99% within a quarter, and manual reconciliation fell from 8–10 hours a week to 1–2 <span class="b">record</span>. I do not say a month count inside that quarter.</div>
+<p><span class="b">Dive Deep</span> the supply definition. <span class="b">Earn Trust</span> the both-errors rule signed before the release. <span class="b">Deliver Results</span> the alert in three months behind gates, not a mandate off the spreadsheet.</p>
+<div class="rules"><strong>SAFE-SAY.</strong> “Accuracy is 1 minus MAPE on the scoped class-A SKUs, bias published beside it. Planners owned the forecast; I owned the measurement and the inputs. About $2M is safety stock, one time. The lane program is separate: about $1.5M of inventory carrying cost released, and I do not annualize it. The worked SKU below is illustrative. The eight domain names are the packet’s list; the person I name as source owner is my reconstruction unless I say otherwise.”</div>
+
+<h3>The eight domains, who owns each at the source</h3>
+<p>The Hoerger S6 packet enumerates the eight: supplier, material, bill of materials, inventory, production, transportation, sales order, planning <span class="b">user anchor — “about eight”</span>. The solution-flow diagram names the SAP objects and the nightly-versus-delta pattern. It does not name a person per domain. The owner column is my reconstruction — confirm.</p>
+<table class="sm">
+<thead><tr><th>Domain (packet)</th><th>What the alert reads</th><th>Source owner — reconstruction, confirm</th><th>How it arrives</th></tr></thead>
+<tbody>
+<tr><td>1 · Supplier</td><td>Id, calendar</td><td>Procurement steward</td><td>Nightly full</td></tr>
+<tr><td>2 · Material</td><td>Class A finished good, unit</td><td>Material steward</td><td>Nightly full</td></tr>
+<tr><td>3 · Bill of materials</td><td>Ingested. Not used to convert this alert.</td><td>Manufacturing engineering</td><td>Nightly full</td></tr>
+<tr><td>4 · Inventory</td><td>On-hand by location</td><td>Warehouse</td><td>Intraday; morning snapshot</td></tr>
+<tr><td>5 · Production</td><td>Due quantity; released orders only</td><td>Production planning</td><td>Intraday confirmation</td></tr>
+<tr><td>6 · Transportation</td><td>856 ship notice; 214 status</td><td>Logistics; carrier owns the 214</td><td>Event, not a nightly batch</td></tr>
+<tr><td>7 · Sales order</td><td>Open orders as demand</td><td>Order management</td><td>Intraday delta</td></tr>
+<tr><td>8 · Planning</td><td>Forecast; planned vs actual lead time</td><td>Planners own the forecast; I owned the measurement</td><td>Forecast nightly; lane from receipts and 214s</td></tr>
+</tbody>
+</table>
+<p class="fig">Open POs and acknowledgements are a feed in that same flow, not a ninth domain. Lane lead time sits in planning. Calendars and order minimums sit on supplier and material. Confirm those field homes.</p>
+
+<svg class="flow" viewBox="0 0 720 248" role="img" aria-label="Ingestion swimlane from eight source domains to the weekly planning review">
+  <rect x="0" y="0" width="720" height="248" fill="#f7f4ee"/>
+  <text x="8" y="16" font-size="11" font-family="Liberation Sans, Arial" fill="#8a1c2b" font-weight="700">EIGHT SOURCES</text>
+  <g font-family="Liberation Sans, Arial" font-size="9" fill="#1a2744">
+    <rect x="8" y="24" width="82" height="36" rx="2" fill="#fff" stroke="#1a2744"/><text x="14" y="40">Supplier</text><text x="14" y="52" fill="#555">nightly</text>
+    <rect x="96" y="24" width="82" height="36" rx="2" fill="#fff" stroke="#1a2744"/><text x="102" y="40">Material</text><text x="102" y="52" fill="#555">Class A FG</text>
+    <rect x="184" y="24" width="82" height="36" rx="2" fill="#fff" stroke="#1a2744"/><text x="190" y="40">Bill of mat.</text><text x="190" y="52" fill="#555">FG grain only</text>
+    <rect x="272" y="24" width="82" height="36" rx="2" fill="#fff" stroke="#1a2744"/><text x="278" y="40">Inventory</text><text x="278" y="52" fill="#555">intraday</text>
+    <rect x="360" y="24" width="82" height="36" rx="2" fill="#fff" stroke="#1a2744"/><text x="366" y="40">Production</text><text x="366" y="52" fill="#555">intraday</text>
+    <rect x="448" y="24" width="82" height="36" rx="2" fill="#fff" stroke="#1a2744"/><text x="454" y="40">Transport</text><text x="454" y="52" fill="#555">856 / 214</text>
+    <rect x="536" y="24" width="82" height="36" rx="2" fill="#fff" stroke="#1a2744"/><text x="542" y="40">Sales order</text><text x="542" y="52" fill="#555">intraday</text>
+    <rect x="624" y="24" width="88" height="36" rx="2" fill="#fff" stroke="#1a2744"/><text x="630" y="40">Planning</text><text x="630" y="52" fill="#555">forecast full</text>
+  </g>
+  <text x="360" y="78" text-anchor="middle" font-size="11" fill="#1a2744">↓ one pipe, masters before the transactions that cite them</text>
+  <g font-family="Liberation Sans, Arial" font-size="10" fill="#1c1c1c">
+    <rect x="8" y="88" width="92" height="52" rx="2" fill="#1a2744"/><text x="16" y="108" fill="#fff" font-weight="700">Extract</text><text x="16" y="124" fill="#e6ddcb">full + delta</text>
+    <rect x="112" y="88" width="92" height="52" rx="2" fill="#fff" stroke="#1a2744"/><text x="120" y="108" font-weight="700">Landing</text><text x="120" y="124" fill="#555">raw, append</text>
+    <rect x="216" y="88" width="100" height="52" rx="2" fill="#fff" stroke="#8a1c2b"/><text x="224" y="108" font-weight="700">Validation</text><text x="224" y="124" fill="#555">or quarantine</text>
+    <rect x="328" y="88" width="110" height="52" rx="2" fill="#fff" stroke="#1a2744"/><text x="336" y="108" font-weight="700">Conformed</text><text x="336" y="124" fill="#555">SKU×loc×date</text>
+    <rect x="450" y="88" width="120" height="52" rx="2" fill="#8a1c2b"/><text x="458" y="108" fill="#fff" font-weight="700">Alert engine</text><text x="458" y="124" fill="#f7d5d5">cover vs p90</text>
+    <rect x="582" y="88" width="130" height="52" rx="2" fill="#1f6f7a"/><text x="590" y="108" fill="#fff" font-weight="700">Weekly review</text><text x="590" y="124" fill="#d5ecec">planner acts</text>
+  </g>
+  <g font-size="10" font-family="Liberation Sans, Arial" fill="#333">
+    <text x="8" y="162">Pass path: schema, referential, units, quantity, duplicate ship notice → conformed model.</text>
+    <text x="8" y="178">Fail path: exception workbench, one owner per source. Fix goes back to SAP or the partner, then the next delta.</text>
+    <text x="8" y="198">Morning control, before the alert is trusted: row counts and quantity sums, source versus landed;</text>
+    <text x="8" y="214">on-hand versus the warehouse snapshot; open-PO total versus ERP. Daily named lists: stock requirements,</text>
+    <text x="8" y="230">production orders, sales orders, warehouse stock.</text>
+  </g>
+</svg>
+<p class="fig">Source → extract → landing → validation → conformed model → alert → weekly planning meeting. “Quarantine” is my name for the packet’s exception workbench.</p>
+
+<h3>Nightly full loads and delta feeds, and how a bad row gets corrected</h3>
+<p>The full load re-baselines masters and the forecast and heals a missed delta. The intraday delta keeps receipts and in-transit true the same day. The 856 and the 214 are events; they wait for neither batch.</p>
+<table class="sm">
+<thead><tr><th></th><th>Nightly full</th><th>Intraday delta and events</th></tr></thead>
+<tbody>
+<tr><td>What the packet shows</td><td>Planning forecast as a nightly full. Master IDocs on change pointers, nightly.</td><td>Goods movements, PO history and production confirmations as intraday deltas. Deliveries and schedule lines the same way. EDI 856 and EDI 214 as events through the value-added network or AS2.</td></tr>
+<tr><td>Why</td><td>A missed delta would otherwise live forever. The morning number has to match SAP.</td><td>A receipt or a shipment that lands at noon changes cover today.</td></tr>
+<tr><td>Order</td><td colspan="2">Masters before the transactions that cite them — my reconstruction of referential integrity; confirm. Program sequence in the record is trust order: inventory and production, then purchasing and the ship notice, then transportation.</td></tr>
+<tr><td>Change key</td><td colspan="2">Packet word: change pointers. “Watermark” and an idempotent upsert on SKU, location, document and line are my words — confirm. A late ship notice applies on the next event and is healed again by the nightly full.</td></tr>
+</tbody>
+</table>
+<div class="doc">
+  <p class="label">Error correction — what is record, what I am reconstructing</p>
+  <p><b>Record.</b> A published data-quality gate per domain. Daily reconciliation to the stock-requirements list, the production-order list, the sales-order list and the warehouse stock list. False alarms worked as defects, weekly, with a root cause. Domain owners could fail their own wave. The exception workbench was staffed in hypercare.</p>
+  <p><b>My reconstruction — confirm the names.</b> At landing I reject, and do not silently fix: schema, a missing SKU or location, a unit mismatch, a negative or impossible quantity, a duplicate ship notice. The reject sits with the source owner. Before the alert is trusted that morning I count rows source versus landed, the sum of quantities, the open-PO total versus ERP, and on-hand versus the warehouse snapshot. The fix goes back to SAP, the supplier or the carrier, and returns on the next delta. I do not patch the warehouse. That is the Austria rule: measure the data before blaming the process — about 55% true against 40% reported, then about 99% within a quarter.</p>
+</div>
+
+<h3>How the shortage alert is calculated — finished goods, values substituted</h3>
+<p>Two illustrative examples from the Hoerger packet. They are not the same SKU. The rule is record; the quantities are illustrative. Program results stay the record numbers above.</p>
+<p><b>Example A — timing, not volume.</b> Finished-good SKU ROUTER-100 at DC-East. On-hand 400. In-transit 600 lands day 5. Production 800 lands day 9. Demand 500 on day 3, 700 on day 7, 400 on day 10. Projected position on a date = on-hand + in-transit due by that date + production due by that date − demand through that date. Released planned orders would add the same way; this example has none. Unfirmed planned orders are excluded on purpose.</p>
+<table class="sm">
+<thead><tr><th>Day</th><th>Supply due</th><th>Demand to date</th><th>Projected position</th><th>What the planner hears</th></tr></thead>
+<tbody>
+<tr><td>3</td><td>400</td><td>500</td><td class="c">−100</td><td>Short 100. In-transit has not landed. Second tier: position has crossed zero.</td></tr>
+<tr><td>5</td><td>400 + 600 = 1,000</td><td>500</td><td>+500</td><td>Ship notice lands. Same inputs; the packet’s checkpoints are days 3, 7 and 10.</td></tr>
+<tr><td>7</td><td>1,000</td><td>1,200</td><td class="c">−200</td><td>Short 200. Day-9 production is too late. Fix window = 9 − 7 = 2 days.</td></tr>
+<tr><td>10</td><td>1,800</td><td>1,600</td><td>+200</td><td>The quarter is long, the week is short. This is a timing shortage, not a volume shortage.</td></tr>
+</tbody>
+</table>
+<p><b>Example B — the alert rule, and safety stock, on the packet’s other illustrative lane</b> (demand 100 units a day, not ROUTER-100). Days of cover = on-hand ÷ daily demand = 1,200 ÷ 100 = 12. Lane 90th percentile = 14 days → 12 is inside 14 → the alert fires today, a lead time early. Same SKU on a lane whose 90th percentile is 9 days: 12 &gt; 9 → no alert. That is how a measured lane kills a false alarm the brochure would have raised.</p>
+<p>Safety stock on that lane, the form I use to explain the buffer, not a screen I claim was in production: SS = z × d × σ of lead time = 2.33 × 100 × 4 = 932 units. If measured σ of lead time falls from 4 days to 2, SS = 2.33 × 100 × 2 = 466, and 466 units are the release — only if forecast error and lead-time error have both improved. Position falls below that 932-unit safety stock on day 3 (1,200 − 300 = 900). Position hits zero on day 12. Two tiers: below safety stock inside the lead time (re-plan), and at zero (the line-down we used to discover). z = 2.33 because the signed service level was 99%.</p>
+<p><b>The formula I actually shipped on the lanes</b> replaced that single root with two terms a planner can read, because the old root was dominated by a lead-time swing nobody had measured. Illustrative Lane A: demand 500 a day, σ of demand 150, brochure lead time 18 days, ERP default σ of lead time 8 days (never measured), measured mean 21 days, measured σ 4 days, ranked 99th percentile 34 days, about 400 shipments.</p>
+<table class="sm">
+<thead><tr><th>Step</th><th>Formula with this lane’s values</th><th>Result</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>Old demand piece</td><td>18 × 150² = 405,000</td><td rowspan="2">97.5% of the variance was the unmeasured 8-day swing</td><td>illustrative</td></tr>
+<tr><td>Old lead-time piece</td><td>500² × 8² = 16,000,000. √(405,000+16,000,000) = 4,050. × 2.33 = 9,437. Plus a 7-day pad × 500 = 3,500.</td><td>illustrative</td></tr>
+<tr><td>Before</td><td>9,437 + 3,500</td><td>12,937 units (25.9 days)</td><td>illustrative</td></tr>
+<tr><td>After, two terms</td><td>Lead-time cover 500 × (34 − 21) = 6,500. Demand cover 2.33 × 150 × √21 = 2.33 × 150 × 4.583 = 1,602. Pad = 0.</td><td>8,102 units. Release 4,835.</td><td>illustrative lane</td></tr>
+<tr><td>What the bell curve would have done</td><td>2.33 × √(21 × 150² + 500² × 4²) = 4,928 units, a plan of 30.3 days</td><td>14 of 400 shipments ran past it — a “99%” plan that held 96.5%</td><td>illustrative</td></tr>
+</tbody>
+</table>
+
+<h3>Planned lead time versus the 200-lane actuals — false alerts and misses</h3>
+<table class="sm">
+<thead><tr><th>What changed</th><th>Before</th><th>After</th><th>Basis</th></tr></thead>
+<tbody>
+<tr><td>Example lane, plan vs scans</td><td>Brochure 18 days. 240 of 400 shipments (60%) slower than the plan. ERP σ = 8 days.</td><td>Mean 21, σ 4, ranked 99th percentile 34. Late against that plan: 4 of 400, 1%.</td><td>illustrative lane; the pattern behind the program</td></tr>
+<tr><td>Lane A promise misses</td><td>7 in 100 late against brochure-plus-pad</td><td>1 in 100 late against the ranked 99th percentile</td><td>same illustrative lane (28 of 400 → 4 of 400)</td></tr>
+<tr><td>Shortage-alert false alarms</td><td>Brochure lead time alerted fast lanes. Defects (bad on-hand, missing receipt, unfirmed order counted) were mixed in.</td><td>At the 90th percentile, illustrative precision 71.2% and recall 98.6% — about 29% of alerts are the price of the window. At the 99th, precision 58.8%, recall 99.9%: more false alerts, almost no misses saved. Defects were burned down weekly. No program count of that burn-down.</td><td>rule record; rates illustrative</td></tr>
+<tr><td>Program</td><td>Brochure lead time on 200 lanes</td><td>99% lead-time accuracy at a 99th-percentile promise. 580,000 units. About $1.5M of inventory carrying cost released. Zero stockouts in the watch. I do not annualize it.</td><td>record</td></tr>
+</tbody>
+</table>
+<p>The alert and the promise read the same distribution and make different decisions. The alert is a re-plan trigger at the 90th percentile, so the planner still has a window. The promise is a commitment at the 99th percentile, the tail you can defend.</p>
+
+<div class="kc">
+  <p class="label">Alert payload, and who acts in the weekly planning meeting</p>
+  <ul>
+    <li><b>SKU, location, day of breach, shortfall.</b> On the illustrative finished good: ROUTER-100, DC-East, day 3 short 100 and day 7 short 200, with a two-day window before production lands.</li>
+    <li><b>The input that moved.</b> Apple’s own write-up of this program: every alert carried the input that moved, so a planner could check it in about thirty seconds. That is record of the design, not a field list I can quote from a screenshot.</li>
+    <li><b>Recommended action.</b> Re-plan inside the window first. Expedite only if the window is already gone. Pull a released order forward if one exists. Reallocate only against stock the definition counts. I describe those four; confirm the menu labels.</li>
+    <li><b>Who acts.</b> The planner, in the weekly planning meeting (the meeting the packets call S&amp;OP). Domain owners take data defects, not the planner. Planning and Finance act on the buffer release, not on a single SKU row. I would call that meeting a weekly business review if the room uses those words.</li>
+  </ul>
+</div>
+
+<div class="doc">
+  <p class="label">Data-integrity angle for this interviewer — the same mechanism, different nouns</p>
+  <p>What I ran is not a planning trick. It is eight source domains, one owner each, a nightly re-baseline plus deltas, a quarantine row with an owner, and counted rows — source versus landed, sums, open documents versus the book of record — before anyone trusts a number. On a capital-equipment program the nouns change and the mechanism does not: the equipment list, the supplier, the purchase order, the ship notice, the acceptance, the asset tag, the site, the placed-in-service date. Each input has one owner. A nightly snapshot heals a missed change from the contract manufacturer’s tracker. An intraday delta keeps a receipt current. A row that fails referential checks waits, with an owner, and the fix goes back to the source spreadsheet or the vendor, not into a side file that makes the dashboard green. I would not put a capitalization number, or any later model, on top of a reconciliation that has not been counted. This is my analogy from the manufacturing program. It is not a description of Apple’s tool.</p>
+</div>
+
+<div class="sh">Six probes — answer the one asked, then stop</div>
+<div class="qa"><p class="q">1. Why both a nightly full load and a delta?</p><p>The full load heals a missed change pointer so masters match SAP in the morning. The delta is the clock: a noon receipt or 214 changes cover today. Masters before the transactions that cite them. “Watermark” and “upsert” are my words for the change pointer and the business key.</p></div>
+<div class="qa"><p class="q">2. Why exclude unfirmed planned orders?</p><p>They change every planning run and were inflating supply. Released orders only, agreed before the first screen.</p></div>
+<div class="qa"><p class="q">3. Walk one Class A finished good.</p><p>ROUTER-100, illustrative. On-hand 400, in-transit 600 on day 5, production 800 on day 9, demand 500 / 700 / 400. Position −100 on day 3, −200 on day 7, +200 on day 10. Timing, not volume. The other illustrative lane: cover 12 inside a 14-day 90th percentile, so the alert fires now; below 932 units of safety stock on day 3; zero on day 12.</p></div>
+<div class="qa"><p class="q">4. Why the 90th for the alert and the 99th for the promise?</p><p>One distribution, two decisions. The alert is a re-plan trigger: illustrative recall 98.6% at 71.2% precision. The promise sits at the ranked 99th. A bell-curve 99th on Lane A held 96.5%.</p></div>
+<div class="qa"><p class="q">5. How do you separate a false alert from bad data?</p><p>About 29% of alerts at the 90th percentile are the price of the window, illustrative. A defect is the data lying — wrong on-hand, missing receipt, an unfirmed order counted — and that kind is burned down weekly. I have no program count of the burn-down.</p></div>
+<div class="qa"><p class="q">6. What would you refuse to automate until the number is trustworthy?</p><p>The buffer release, and any model on top of it. Austria was 40% reported and about 55% true. I release capital only where both errors improved, and I do not put a capitalization or a model on a reconciliation I have not counted.</p></div>
+
+<h2 id="s2">Story 2 — Procure-to-pay in Elementum: bringing supplier and carrier EDI into one record</h2>
+<div class="meta">
+  <div><b>Where:</b> the same Elementum years. I owned the onboarding standard and the scope cut. Engineers built the maps. Transportation owned the carrier relationships. I did not own a payment run.</div>
+  <div><b>Sets in the record:</b> X12 850, 855, 856, 940, 945, 214, 997, plus an XML or portal floor. <b>Standard cycle I am reconstructing — confirm before you say the customer exchanged them:</b> 860/865, receipt as a goods movement, 810, 820, and the carrier set 204, 990, 210.</div>
+  <div><b>Numbers I will say:</b> a thousand-lane program across 25 European locations <span class="b">record</span>; completeness 60% → 95% <span class="b">record</span>; cohort gate at least 95% valid ASN <span class="b">record</span>. A thousand lanes were asked; 597 first <span class="b">user anchor</span>. No supplier count, interchange volume, match rate or days-to-onboard is in the notes.</div>
+</div>
+<div class="say">
+  <div class="label">60-second pitch</div>
+  <p>Inbound visibility on a thousand lanes, across 25 European locations, was asked for in two months. Completeness was 60%. I owned the standard. The order went out as an 850, the acknowledgement came back as an 855, the ship notice as an 856, the warehouse pair as 940 and 945, carrier status as a 214, and a 997 closed every interchange. No EDI meant the same fields by XML or a portal. A cohort went live only after at least 95% valid ship notices. One cohort failed twice on a timestamp; I held it. A thousand lanes were asked; 597 went first. Completeness went from 60% to 95%. That 856 and that 214 are the in-transit the alert reads.</p>
+</div>
+<div class="say"><div class="label">20-second version</div><p>I joined the purchase order, the ship notice and the carrier status into one shipment, behind a 95% valid-ASN gate. A thousand lanes were asked across 25 European locations; 597 went first. Completeness 60% to 95%. I will not quote a supplier count or a match rate I do not have.</p></div>
+<div class="sh">STAR — first person</div>
+<div class="star">
+  <p><span class="stag">S —</span> Inbound visibility was a pile of files. The ERP had the purchase order. The acknowledgement lived in email. The ship notice was late, partial, or missing. Carrier status lived in a portal the planner did not join. Completeness was 60%. The ask was a thousand lanes in two months, scope and date and quality all frozen.</p>
+  <p><span class="stag">T —</span> Make one record a planner and the shortage alert could trust: the order, the acknowledgement, the shipment, the milestone. Influence an executive two levels up. No line authority over Transportation, Procurement or the carriers.</p>
+  <p><span class="stag">A —</span> I ranked lanes by spend, criticality, mode and volume and took a phased cut up with Transportation and Procurement already signed on, so no lane owner could contradict it in the room. I wrote the document set and published the gate before the first cohort: at least 95% valid advance ship notices in test, 997s flowing, tracking numbers joinable to the order. Engineers built a parameterized harness — one map shape, not a new map per carrier. Test files, then certify, then go-live, then a weekly scorecard. A lane that slipped went back to fix, not live. For partners who could not send X12, the same fields arrived as XML or a portal upload. The procure-to-pay story I tell around that standard is the full cycle below; I mark the transaction sets the notes do not list.</p>
+  <p><span class="stag">R —</span> Completeness 60% → 95% on a thousand-lane program across 25 European locations <span class="b">record</span>. A thousand lanes were asked; 597 first <span class="b">user anchor</span> — I confirm what actually went live before I call 597 the delivered count. The gate held: one cohort failed twice on a timestamp format <span class="b">user anchor</span>. In my earlier notes, freight cost on the onboarded lanes was down about 10%, about $2M of freight cost in six months <span class="b">user anchor</span> — not annualized, and not the safety-stock release. The ship notice and the 214 fed the shortage alert’s in-transit. I claim no award dollar on the later carrier bid.</p>
+</div>
+<div class="inf"><strong>TRADE-OFF I MADE.</strong> All thousand lanes in two months would have automated dirty data and manufactured confident wrong answers. I phased by value — 597 first in my earlier notes, the remainder behind the same gate — and I held a cohort that missed the bar. What it cost: a date on the long tail, and an executive who had asked for everything. What it bought: a number the alert could read.</div>
+<div class="hon"><strong>Failure / learning.</strong> The harness should have existed for cohort one, not cohort two; early maps were more bespoke than they needed to be. The gate itself was right: a timestamp format failed twice and I held the cohort both times rather than relaxing the bar. Same lesson as Austria — measure the data before blaming the carrier. Reported quality there was 40%, true quality about 55%, about 99% within a quarter.</div>
+<p><span class="b">Insist on the Highest Standards</span> the gate, held in public. <span class="b">Have Backbone</span> the re-scope, two levels up, then full commitment to the phased plan. <span class="b">Dive Deep</span> the spend curve before the debate.</p>
+<div class="rules"><strong>SAFE-SAY.</strong> “It was a thousand-lane program across 25 European locations. I phased by value. The 597-first figure is my earlier user anchor, not a settled delivered count. Completeness 60 to 95 is the record, and so is the 95% valid-ASN gate. About $2M of freight cost in six months is a different number from the safety-stock release, and it is a user anchor. I do not have a supplier count, an interchange volume, a three-way match rate, or days to onboard. I will not invent them.”</div>
+
+<h3>The cycle, and which sets the notes actually name</h3>
+<table class="sm">
+<thead><tr><th>Step</th><th>Set</th><th>In the notes?</th></tr></thead>
+<tbody>
+<tr><td>Requisition to PO</td><td>850</td><td>Yes — ERP out via VAN or AS2</td></tr>
+<tr><td>Acknowledgement</td><td>855</td><td>Yes — back from the supplier</td></tr>
+<tr><td>Change</td><td>860 / 865</td><td>Standard set — confirm; not in the list I published</td></tr>
+<tr><td>Ship notice</td><td>856</td><td>Yes — the in-transit the alert nets</td></tr>
+<tr><td>Receipt</td><td>ERP goods movement</td><td>Yes as a delta. No EDI receipt code in the notes.</td></tr>
+<tr><td>Invoice, match, pay</td><td>810, three-way match, 820</td><td>Standard close — confirm. No match rate. I will not invent one.</td></tr>
+<tr><td>Warehouse</td><td>940 in, 945 out</td><td>Yes, for the 3PL</td></tr>
+<tr><td>Carrier tender</td><td>204, 990</td><td>Standard carrier set — confirm</td></tr>
+<tr><td>Status</td><td>214</td><td>Yes. Late events apply on the next delta. No late-rate.</td></tr>
+<tr><td>Freight invoice</td><td>210</td><td>Standard set — confirm. Austria used paid freight; that is not a claim we ingested 210.</td></tr>
+<tr><td>Functional ack</td><td>997 both ways</td><td>Yes. A reject stops the map. No 997 percentage in the notes.</td></tr>
+</tbody>
+</table>
+
+<svg class="flow" viewBox="0 0 720 168" role="img" aria-label="Supplier and carrier EDI path into Elementum">
+  <rect width="720" height="168" fill="#f7f4ee"/>
+  <g font-family="Liberation Sans, Arial" font-size="10" fill="#1c1c1c">
+    <rect x="8" y="12" width="150" height="44" rx="2" fill="#1a2744"/><text x="16" y="30" fill="#fff" font-weight="700">Suppliers</text><text x="16" y="46" fill="#e6ddcb">850 855 856</text>
+    <rect x="168" y="12" width="150" height="44" rx="2" fill="#1a2744"/><text x="176" y="30" fill="#fff" font-weight="700">Carriers / 3PL</text><text x="176" y="46" fill="#e6ddcb">214 · 940/945</text>
+    <rect x="336" y="12" width="170" height="44" rx="2" fill="#fff" stroke="#1a2744"/><text x="344" y="30" font-weight="700">VAN or AS2</text><text x="344" y="46" fill="#555">997 both ways</text>
+    <rect x="522" y="12" width="190" height="44" rx="2" fill="#fff" stroke="#8a1c2b"/><text x="530" y="30" font-weight="700">Translator</text><text x="530" y="46" fill="#555">map to canonical</text>
+    <rect x="8" y="72" width="168" height="40" rx="2" fill="#fff" stroke="#8a1c2b"/><text x="16" y="88" font-weight="700">Validation</text><text x="16" y="104" fill="#555">or exception + owner</text>
+    <rect x="188" y="72" width="250" height="40" rx="2" fill="#fff" stroke="#1a2744"/><text x="196" y="88" font-weight="700">Elementum entities</text><text x="196" y="104" fill="#555">PO · shipment · milestone</text>
+    <rect x="450" y="72" width="262" height="40" rx="2" fill="#1f6f7a"/><text x="458" y="88" fill="#fff" font-weight="700">What it feeds</text><text x="458" y="104" fill="#d5ecec">alert in-transit · scorecard</text>
+    <text x="8" y="136">Invoice (810) and freight invoice (210) are the standard match step. Confirm them before you say we posted them.</text>
+    <text x="8" y="154">204 / 990 sit on the same carrier path in the standard cycle. The notes name 214, not the tender.</text>
+  </g>
+</svg>
+<p class="fig">Supplier or carrier → VAN or AS2 → translator → validation → Elementum entities → the alert and the scorecard. Exception path is the validation box.</p>
+
+<div class="kc">
+  <p class="label">Onboarding a new supplier or carrier — the playbook I actually ran</p>
+  <ul>
+    <li><b>Test files.</b> The partner sends a file. The harness classifies defects as format, timestamp, missing segment, or join key, each with an owner.</li>
+    <li><b>Map.</b> One parameterized template onto the canonical purchase order, shipment and milestone. Not a new integration per name.</li>
+    <li><b>Certify.</b> Valid advance ship notices at or above 95% in test, 997s flowing both ways, tracking number joinable. The gate was published before cohort one. A gate that holds only in private is a suggestion.</li>
+    <li><b>Go live.</b> Activate only off that gate. The first wave, in my earlier notes, was the 597 lanes. I do not quote a days-to-onboard figure — <b>[your number] days to onboard a supplier</b> is not in the notes. Safe line: “The first wave was the spend, not a stopwatch per supplier.”</li>
+    <li><b>Monitor.</b> Weekly scorecard: events received over events expected, the 997 rate, joinability, completeness. Below the line, the lane returns to fix.</li>
+  </ul>
+</div>
+<table class="sm">
+<thead><tr><th>Error class</th><th>What the notes support</th><th>Who closed it</th></tr></thead>
+<tbody>
+<tr><td>997 reject</td><td>The scorecard watched the 997 rate. No percentage is in the notes.</td><td>The partner, on their map. We did not activate over a reject.</td></tr>
+<tr><td>Timestamp format</td><td>One cohort failed the gate twice <span class="b">user anchor</span>.</td><td>I held it. The carrier fixed the format. Then it activated.</td></tr>
+<tr><td>Missing segment, join key</td><td>Named in the cohort test-day classification.</td><td>Owner per defect. Fix at the source file.</td></tr>
+<tr><td>Duplicate or partial ASN; quantity or unit mismatch; unknown PO line; late 214</td><td>Not counted in the notes. Same control as the landing rules on the shortage alert: quarantine, one owner, fix at the source, next delta heals it.</td><td>Confirm these classes with your own examples before you tell one. Do not invent a rate.</td></tr>
+<tr><td>Five spellings of one carrier</td><td>Austria defect census <span class="b">record</span>. A name map, not a new carrier.</td><td>Fix the master. Do not default a carrier on a no-hit.</td></tr>
+</tbody>
+</table>
+<p><b>What the record fed.</b> The alert’s in-transit is the 856 and the 214. Transportation watched the per-lane scorecard. Austria — about 55% true to about 99% within a quarter — shows a carrier comparison is only as good as the promise; I do not claim that scorecard set an award. The bid used a lane master (one origin, destination and mode) so dozens of rate files could be compared: about six weeks to about three, back-test under 5% against the last two awards <span class="b">user anchor</span>. Hundreds of lanes, dozens of rate files, no carrier count, no award dollar. <b>[your number] suppliers onboarded</b>, <b>[your number] interchanges a week</b>, <b>[your number] three-way match rate</b> are not in the notes. Safe line: “I can defend completeness and the gate. I cannot defend a volume I did not write down.”</p>
+
+<div class="sh">Six probes</div>
+<div class="qa"><p class="q">1. Which documents did the customer actually send?</p><p>850, 855, 856, 940, 945, 214, and 997 both ways, plus XML or a portal for partners without EDI. 860, 865, 810, 820, 204, 990 and 210 are the standard cycle I use to explain procure-to-pay. I confirm those before I say we exchanged them.</p></div>
+<div class="qa"><p class="q">2. What does 95% valid ASN mean?</p><p>The cohort had to clear it in test before activation. That bar is record. Cohort sizes are not in the notes, so I do not quote a sample size or a confidence bound as if I had run one. A lane under the scorecard went back to fix.</p></div>
+<div class="qa"><p class="q">3. A partner’s file was wrong. What did you do?</p><p>Classified it — format, timestamp, missing segment, join key — named an owner, and held the cohort. Twice, on a timestamp. I did not relax the gate and I did not patch the warehouse.</p></div>
+<div class="qa"><p class="q">4. How does this reach the shortage alert?</p><p>The 856 is in-transit due, dated. The 214 is the milestone that says whether that date is still true. The alert’s projected position adds that quantity on the due date and does not add it before. A duplicate or an unknown line never reaches that sum; it waits on the exception owner.</p></div>
+<div class="qa"><p class="q">5. How many suppliers, and how fast did you onboard them?</p><p>I don’t have those counts in my notes. A thousand lanes were asked across 25 European locations; 597 went first in my earlier record; completeness went from 60% to 95%. That is the scale I can defend. <b>[your number]</b> stays a blank until you fill it.</p></div>
+<div class="qa"><p class="q">6. Did the carrier bid use these scorecards?</p><p>The bid used a lane master so rate files shared one key, and a back-test under 5% against the last two awards. The EDI scorecard made the shipment record trustworthy. I will not say the scorecard set the award. I claim no award dollar. The cycle, about six weeks to about three, is a user anchor.</p></div>
+
+<h2 id="close">Close — the control table, the 90-second versions, what to verify</h2>
+<h3>Eight domains → field → owner → control</h3>
+<p>Domain names are the Hoerger list. The field is what I would defend in the room. The owner is my reconstruction unless the cell says the packet named the role. The control is the one I would refuse to skip.</p>
+<table class="sm">
+<thead><tr><th>Domain</th><th>Field the number uses</th><th>Owner</th><th>Control before the number is trusted</th></tr></thead>
+<tbody>
+<tr><td>Supplier</td><td>Id, calendar</td><td>Procurement — confirm</td><td>Nightly full. Unknown id quarantined. Five spellings mapped to one carrier.</td></tr>
+<tr><td>Material</td><td>Class A finished-good id, unit</td><td>Material steward — confirm</td><td>Nightly full. Unit mismatch rejected. Finished goods only.</td></tr>
+<tr><td>Bill of materials</td><td>Ingested; not used to convert this alert</td><td>Manufacturing engineering — confirm</td><td>Nightly full. Walk stays at finished-goods grain.</td></tr>
+<tr><td>Inventory</td><td>On-hand by location</td><td>Warehouse — confirm</td><td>Intraday. Morning sum vs warehouse list. Negative qty quarantined.</td></tr>
+<tr><td>Production</td><td>Due qty, released only</td><td>Production planning — confirm</td><td>Intraday. Unfirmed orders excluded by rule.</td></tr>
+<tr><td>Transportation</td><td>856 qty and date; 214; lane</td><td>Logistics; carrier owns the 214</td><td>Event plus 997. Duplicate notice quarantined. ≥95% valid ASN before go-live.</td></tr>
+<tr><td>Sales order</td><td>Open-order demand</td><td>Order management — confirm</td><td>Intraday. Reconciled to the sales-order list.</td></tr>
+<tr><td>Planning</td><td>Forecast; planned vs actual lead time</td><td>Planners own the forecast. I owned the measurement — packet.</td><td>Forecast nightly. Lane from receipts and 214s. Both errors improved before a release.</td></tr>
+</tbody>
+</table>
+
+<div class="say">
+  <div class="label">Say it in 90 seconds — story 1</div>
+  <p>We found shortages when the line stopped, because eight domains never met and supply counted orders that changed every planning run. I defined supply at finished-goods grain before any screen: on-hand, plus in-transit due, plus production due, plus released orders only. Masters came in on a nightly full load, so a missed change healed overnight. Receipts, ship notices and carrier status came as deltas and events, so cover was true the same day. A bad row — schema, reference, unit, quantity, duplicate ship notice — waited with an owner, and the fix went back to the source. Each morning I counted rows and quantities against SAP before the alert was trusted. On the illustrative finished good, position went negative on day 3 and again on day 7 even though total supply covered total demand: a timing shortage, two-day window. The rule fired when cover fell inside the lane’s measured 90th-percentile lead time, and a second tier fired at zero. Measured lanes — 200 of them, promise at the 99th percentile, 99% lead-time accuracy — made that threshold honest and released about $1.5M of inventory carrying cost, which I do not annualize. Separately, class-A accuracy went from 70% to 85%, and about $2M of safety stock came out only where both errors improved. I never add the two releases. Austria sits underneath: measure the data before you blame the process.</p>
+</div>
+<div class="say">
+  <div class="label">Say it in 90 seconds — story 2</div>
+  <p>Procure-to-pay became one record only where the documents shared one pipe. The order went out as an 850, the acknowledgement returned as an 855, the ship notice as an 856, the warehouse pair as 940 and 945, carrier status as a 214, and a 997 closed every interchange both ways. Partners without EDI sent the same fields by XML or a portal. I confirm 860, 865, invoice 810, remittance 820, and carrier tender 204, 990 and 210 before I claim them — that is the standard cycle, not the list I published. Onboarding was test file, map, certify, go live, monitor. Certify meant at least 95% valid ship notices, published in advance, and I held a cohort twice on a timestamp. A thousand lanes were asked across 25 European locations; 597 went first in my earlier notes; completeness went from 60% to 95%. That ship notice and that status are the in-transit the shortage alert adds. The same lane key later let a bid compare rate files, and I claim no dollar on the award. I have no supplier count, match rate, or days-to-onboard written down, so I will not make one up.</p>
+</div>
+
+<h3>Verify — fill these, and the sentence until you do</h3>
+<table class="sm">
+<thead><tr><th>Blank</th><th>Safe sentence</th></tr></thead>
+<tbody>
+<tr><td>[your number] suppliers; interchanges a week; days to onboard</td><td>“A thousand lanes, phased by value. Completeness 60% to 95%. I will not quote a supplier count, a daily volume, or days per supplier.”</td></tr>
+<tr><td>[your number] three-way match rate</td><td>“Invoice match closes procure-to-pay. I do not have a match rate, so I will not invent one.”</td></tr>
+<tr><td>597 as a delivered count</td><td>“A thousand lanes were asked; 597 first, in my earlier notes. I confirm what went live.”</td></tr>
+<tr><td>Quarantine, watermark, upsert; owner names</td><td>“The packet shows change pointers, a nightly full, intraday deltas, and an exception workbench. Those words, and the person per domain, are my reconstruction — confirm.”</td></tr>
+<tr><td>860, 865, 810, 820, 204, 990, 210</td><td>“Standard cycle. The sets I published were 850, 855, 856, 940, 945, 214 and 997.”</td></tr>
+<tr><td>Duplicate ASN, unit mismatch, unknown PO line, late 214</td><td>“Same control: an owner, fix at the source. I do not have a rate.”</td></tr>
+<tr><td>Watch-window length; Austria months</td><td>“Zero stockouts in the watch. About 99% within a quarter. I do not quote the window or a month count.”</td></tr>
+<tr><td>Freight about $2M; bid six weeks to about three</td><td>“About $2M of freight cost in six months is a user anchor, not the safety-stock release. The bid cycle is a user anchor. No award dollar.”</td></tr>
+</tbody>
+</table>
+
+<h3>Source trace</h3>
+<table class="sm">
+<thead><tr><th>Number</th><th>Story</th><th>Source file</th><th>Match</th></tr></thead>
+<tbody>
+<tr><td>Eight domains, named</td><td>S6</td><td>hoerger-kimi-k3.html S6</td><td>User anchor</td></tr>
+<tr><td>Supply definition; unfirmed orders out</td><td>S6</td><td>same, action and table 2</td><td>Record rule</td></tr>
+<tr><td>Nightly full, change pointers, intraday deltas, 856/214</td><td>S6</td><td>same, solution flow</td><td>Record design</td></tr>
+<tr><td>Daily recon to MD04, COOIS, VA05, MB52; trust-order waves; alert in 3 months</td><td>S6</td><td>same</td><td>Record</td></tr>
+<tr><td>70% → 85%; about $2M of safety stock; collaboration +50%</td><td>S6 / F3</td><td>Hoerger S6; apple delta §5; master S6</td><td>Record. Say collaboration increased 50%.</td></tr>
+<tr><td>ROUTER-100 position −100 / −200 / +200</td><td>S6</td><td>Hoerger table 2</td><td>Illustrative</td></tr>
+<tr><td>Cover 12 vs p90 14; SS 932 → 466</td><td>S6</td><td>Hoerger table 2</td><td>Illustrative values; rule is record</td></tr>
+<tr><td>Precision 71.2% / recall 98.6%; at p99, 58.8% / 99.9%</td><td>S6</td><td>Hoerger alert table</td><td>Illustrative</td></tr>
+<tr><td>Lane A 18 / 21 / σ 4 / p99 34; 60% → 1%; 12,937 → 8,102; bell curve held 96.5%</td><td>S8a, S8b</td><td>Hoerger</td><td>Illustrative lane</td></tr>
+<tr><td>200 lanes; 99% lead-time accuracy; 580,000 units; about $1.5M of inventory carrying cost released; zero stockouts</td><td>S8 / F4</td><td>numbers-reconciliation S8; apple delta §5</td><td>Record. Do not annualize.</td></tr>
+<tr><td>Austria 40% reported, about 55% true, about 99% within a quarter; 8–10 h → 1–2 h</td><td>S10</td><td>cabreros-stories-b; apple delta §5</td><td>Record</td></tr>
+<tr><td>Thousand lanes; 25 European locations; 60% → 95%; gate ≥95% valid ASN</td><td>S9 / F1</td><td>apple delta §5; Hoerger S9</td><td>Record</td></tr>
+<tr><td>597 first; about 80% of spend; about $2M of freight cost in six months; timestamp held twice</td><td>S9</td><td>Hoerger S9; numbers-reconciliation S9</td><td>User anchor</td></tr>
+<tr><td>850, 855, 856, 940, 945, 214, 997; XML or portal floor</td><td>S9</td><td>Hoerger S9; josyula S9</td><td>Record design</td></tr>
+<tr><td>Bid about six weeks → about three; under 5%; hundreds of lanes; dozens of rate files</td><td>S17</td><td>cabreros-stories-b; numbers-reconciliation S17</td><td>User anchor. No award dollar.</td></tr>
+<tr><td>Alert carried the input that moved</td><td>F3</td><td>apple delta JΔ3</td><td>Record of the design</td></tr>
+</tbody>
+</table>
+<p class="cite">Files under /workspace/amazon/: panel/amazon-nacf-panel-2-hoerger-kimi-k3.html, amazon-l6-scm-master-packet.html, panel/amazon-nacf-panel-4-cabreros-stories-b-star-kimi-k3.html, panel/amazon-nacf-apple-delta-addon-star-kimi-k3.html §5, numbers-reconciliation.md. Not a claim about Apple’s capital system.</p>
+</body>
+</html>

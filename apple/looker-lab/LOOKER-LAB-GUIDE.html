@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Looker lab — CapEx data-integrity scorecard</title>
+<style>
+  @page { size: letter; margin: 0.58in 0.64in 0.62in 0.64in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", Arial, sans-serif; font-size: 10.2pt; line-height: 1.36; color: #1c1c1c; }
+  h1 { font-size: 16.2pt; line-height: 1.12; margin: 0 0 4px; letter-spacing: -0.02em; }
+  h2 { font-size: 12.4pt; margin: 11px 0 4px; padding-top: 6px; border-top: 2px solid #1a2744; page-break-after: avoid; }
+  h2.break { page-break-before: always; border-top: none; padding-top: 0; margin-top: 0; }
+  h3 { font-size: 11pt; margin: 9px 0 3px; page-break-after: avoid; color: #1a2744; }
+  p { margin: 0 0 6px; }
+  ul, ol { margin: 2px 0 7px; padding-left: 18px; }
+  li { margin: 0 0 2px; }
+  code { font-family: "Liberation Mono", monospace; font-size: 8.6pt; }
+  .kicker { font-size: 8.4pt; letter-spacing: 0.12em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 3px; }
+  .meta { background: #f4f1ea; border-left: 4px solid #1a2744; padding: 5px 10px; margin: 4px 0 6px; font-size: 9.3pt; }
+  .hon { background: #f3f0fa; border-left: 4px solid #5b4a8a; padding: 5px 10px; margin: 4px 0 7px; font-size: 9.2pt; }
+  .say { background: #f7f4ee; border: 1px solid #d9d0c1; border-left: 4px solid #8a1c2b; padding: 6px 10px 2px; margin: 4px 0 8px; page-break-inside: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, serif; font-size: 10.3pt; line-height: 1.38; }
+  .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 2px; }
+  table { width: 100%; border-collapse: collapse; margin: 4px 0 8px; font-size: 8.7pt; }
+  thead { display: table-header-group; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #ddd; padding: 3px 5px 3px 0; }
+  th { font-size: 7.8pt; letter-spacing: 0.04em; text-transform: uppercase; color: #555; border-bottom: 1.5px solid #1a2744; }
+  .step { margin: 0 0 8px; }
+  .tag { font-size: 8pt; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #1f6f7a; }
+  pre { font-family: "Liberation Mono", monospace; font-size: 8pt; line-height: 1.3; background: #f4f1ea; border-left: 4px solid #1a2744; padding: 6px 8px; margin: 4px 0 8px; white-space: pre-wrap; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+
+<p class="kicker">Looker lab · CapEx Systems Onboarding · Data Integrity Program Manager</p>
+<h1>Work one program from the tracker to the scorecard</h1>
+<div class="meta">
+  <div><b>Role.</b> You make the inputs accurate when a program moves off Excel trackers onto the CapEx system of record, and you do the change with GSM, TPM, AME, the contract manufacturers, and Finance without escalating it.</div>
+  <div><b>Tool.</b> Looker on Google Cloud, the product with LookML. Excel is the must-have. This lab is how you explain the scorecard, not a claim that you have shipped LookML.</div>
+  <div><b>Time.</b> Path A is about 45 minutes on this machine. Path B is a real Looker or Looker Studio session and takes longer.</div>
+</div>
+<div class="hon"><b>Illustrative, and labeled that way.</b> Not Apple’s system and not a program you ran. People, suppliers, and sites are lab labels. Every rate below is from <code>python3 run_local.py</code> against these files. The lived numbers you are allowed to put next to it are named where they appear: a counted-rows go/no-go and “Negative AFS clean at T+1”; 44 requirement rows across 23 systems; an issues log of 331 go-live, 77 fast-follow, 36 enhancement; Austria data quality about 55% to about 99% within a quarter; Shipment Visibility events-in versus events-out; a Zendesk-to-Snowflake requirements document where you wrote seven metric definitions and named Looker SQL Runner. You did not write the Looker layer on that pipeline.</div>
+
+<h2>Part 0 — What we are doing and why</h2>
+<p>A test-station line, <code>TS-LINE-RAMP</code>, is still living in two contract-manufacturer trackers. The team’s job is to get that program onto the system of record with inputs someone can defend: the PO line matches an asset, the placed-in-service date is the day depreciation starts, the site code is the site the tool is actually at, a reused fixture points at the asset it came from, and each of those fields has a named owner. The scorecard is how you see that without opening the tracker. The queue is how you close it without a side file.</p>
+<p>Two other programs are already loaded and clean, on purpose. <code>PACK-CELL-EXP</code> has 32 lines. <code>FIXTURE-REUSE-24</code> has 28, including the twelve source assets the ramp reuses. If you forget the program filter, reconciliation is 98 of 100, which is 98.0%. The ramp alone is 38 of 40, which is 95.0%. The blend looks finished. The program you are onboarding is not.</p>
+<p><b>What the lab proves.</b> You can read a messy tracker, publish a tolerance before you load, quarantine what fails a structural rule, and still find the business defects the structural rules did not cover. You can define “reconciled” once, show three other formulas that print a healthier number, and refuse them. You can put an owner on each field, age the open defects, and show that fixing one record closes the exception and does not repair first-time-right.</p>
+<p><b>The final output</b> is the data-integrity scorecard for <code>TS-LINE-RAMP</code>, as of 2026-03-16, plus the exception list behind it.</p>
+<table>
+  <thead><tr><th>Tile</th><th>Result from the SQL run</th></tr></thead>
+  <tbody>
+    <tr><td>Reconciliation</td><td>38 / 40 = 95.0%. Alert fires. The proposed line is under 98%.</td></tr>
+    <tr><td>Exception aging, open</td><td>7 in 0–7 days, 7 in 8–30, 7 in 31+. Twenty-one open, all go-live.</td></tr>
+    <tr><td>Field completeness by owner</td><td>Placed-in-service 28 / 40 = 70%, owner Finance. Reuse 12 / 12. Site 100% complete and not 100% valid.</td></tr>
+    <tr><td>First-time-right</td><td>21 / 40 = 52.5%.</td></tr>
+    <tr><td>Person-dependent fields</td><td>3. Placed-in-service (Morgan Ellis), program allocation (David Cho), reuse source (Elena Vasquez).</td></tr>
+  </tbody>
+</table>
+<p>That output is this role. The accuracy of the inputs is the job. The owner on the field is how you ask for a correction without escalating. The playbook rule at the end is how the next tracker does not repeat the miss. A chart with no owner is a status meeting. This scorecard is a close-out list.</p>
+<div class="say"><p class="label">What you say, if they ask what you are about to show</p><p>I would walk one program off the tracker and onto a scorecard where reconciled means one thing, every blank has an owner, and a late fix does not pretend the first entry was right.</p></div>
+
+<h2 class="break">Part 1 — Two paths, honestly</h2>
+<h3>Path A — this machine, about 45 minutes</h3>
+<p>You do not need Looker, a cloud account, or a card. DuckDB runs the same checks the answer key was built from. The dashboard you can hold up is <code>dashboard_mock.html</code>, drawn from those query results. It is a static page, not a Looker session. Say that in the first sentence if you show it.</p>
+<pre>cd /workspace/apple/looker-lab
+python3 generate_data.py
+python3 run_local.py</pre>
+<p><code>generate_data.py</code> rewrites the CSVs from a fixed seed. You can skip it; the files are already there. <code>run_local.py</code> loads them, runs <code>sql/02</code> and <code>sql/03</code>, writes <code>data/expected_outputs/</code>, applies the step-9 fix into <code>data/expected_outputs/after_fix/</code>, and leaves <code>/tmp/lookerlab-scratch/lab.duckdb</code> on the open queue so a query matches the answer key. Open <code>dashboard_mock.html</code> in a browser. Diff any CSV you compute against <code>expected_outputs/</code>.</p>
+<p>If DuckDB is missing: <code>pip install duckdb</code>. The SQL that creates the tables also exists as BigQuery in <code>sql/00_create_tables.sql</code>. The file you execute locally is <code>sql/00_create_tables_duckdb.sql</code>.</p>
+<h3>Path B — a real Looker, or Looker Studio if that is what you have</h3>
+<ol>
+  <li><b>BigQuery sandbox.</b> Google’s sandbox is free and does not ask for a card. It has storage and query caps this lab will not touch. Confirm the current cap on Google’s page before you depend on it. Create a dataset named <code>capex</code>.</li>
+  <li><b>Load the CSVs</b> with the column types in <code>sql/00_create_tables.sql</code>. <code>po_line_id</code> is STRING. If the loader guesses a number, <code>00017</code> becomes <code>17</code> and every join fails. Do not load the raw trackers into the fact tables. They are the file the gate reads. <code>sql/01_load.sql</code> has the <code>bq load</code> shape.</li>
+  <li><b>Connect Looker.</b> Looker, the product with LookML, needs a Google Cloud Looker instance or a trial. There is no free Looker core that simply attaches to the sandbox. <b>Looker Studio is a different product.</b> It is free, it can sit on these BigQuery tables, and it can draw the same five tiles. It does not run the LookML in <code>lookml/</code>. If they say “Looker,” ask which one, then stay on the one they named.</li>
+  <li><b>If you have Looker:</b> new project, connection name whatever your instance uses (the model file says <code>capex_bigquery_placeholder</code>), paste the LookML, validate, and explore. Set user attribute <code>program_ids</code> from <code>user_program_map.csv</code>. Jordan’s value is <code>TS-LINE-RAMP</code> only.</li>
+  <li><b>If you have Looker Studio:</b> build the five tiles as five charts on the BigQuery tables, with the SQL from <code>sql/03_metrics.sql</code> as the definition you refuse to fork. You will not have an access filter or a Git-backed measure. Say that. The grain and the tolerance are still yours.</li>
+  <li>The checks in <code>sql/02</code> and <code>sql/03</code> are DuckDB, because that is what was executed. On BigQuery, <code>date_diff('day', opened, as_of)</code> becomes <code>DATE_DIFF(as_of, opened, DAY)</code>, and the CSV reader becomes an external table. The counts do not change.</li>
+</ol>
+<div class="say"><p class="label">What you say about the tool</p><p>I have not shipped LookML. On the Snowflake pipeline I wrote seven metric definitions and named Looker SQL Runner as the surface. The infrastructure team built the pipeline. I can specify the grain, the owner, and the tolerance, and I would want your Looker developer on the model until I have one in production.</p></div>
+
+<h2 class="break">Part 2 — Step by step</h2>
+
+<div class="step">
+<h3>1. Inspect the raw trackers and list the defects by eye</h3>
+<p><span class="tag">What.</span> Open <code>data/raw_cm_tracker_siteA.csv</code> and <code>data/raw_cm_tracker_siteB.csv</code> in a text editor, not by saving them out of Excel. Excel will turn <code>00017</code> into <code>17</code>.</p>
+<p><span class="tag">Why it matters.</span> The must-have skill is Excel, and the failure mode of Excel is a silent type change. You list what a person can see before you trust a loader. You will not see all of it. That is why the checks exist.</p>
+<p>What is visible without SQL:</p>
+<ul>
+  <li>Two header languages. Site A’s header has trailing spaces: <code>PO Line </code>, <code>Site </code>, <code>Qty </code>, <code>Unit Cost </code>, <code>Notes </code>. Site B uses <code>po_line</code>, <code>PO#</code>, <code>Location</code>, <code>date received</code>.</li>
+  <li>Three date shapes: <code>2026-01-21</code>, <code>01/08/2026</code>, <code>12-Feb-2026</code>. One impossible date: <code>13/32/2026</code>.</li>
+  <li>Site text: <code>A</code>, <code>Site A</code>, <code>SITE-A</code>, <code>site a</code>, <code>Site B</code>, <code>SITE-B</code>, <code>B</code>. Line <code>00024</code> sits in the site A file and says <code>Site B</code>. Line <code>00026</code> says <code>PLANT-01</code>. Line <code>00025</code> says <code>A</code> in the site B file.</li>
+  <li>Line <code>00018</code> appears twice, quantity 2, two serials.</li>
+  <li><code>SN-DUP-4421</code> on lines <code>00020</code> and <code>00021</code>. <code>SN-DUP-4422</code> on <code>00022</code> and <code>00023</code>.</li>
+  <li>Blank in-service cells. You may not count all twelve by eye. The SQL says twelve.</li>
+  <li>Line <code>00019</code>: in-service <code>11-Feb-2026</code>, received <code>2026-02-18</code>.</li>
+  <li>Lines <code>00039</code> and <code>00040</code>: no asset tag, no received date.</li>
+  <li>Row <code>00901</code> with site <code>SITE-Z</code>. A row with a blank PO line. A fully blank row at the bottom of the site B file.</li>
+  <li>Trailing space on serial <code>SN-TS-0005 </code> and asset tag <code>AST-TS-0005 </code>.</li>
+</ul>
+<p>What you will not see: asset <code>AST-TS-0040</code>. It was keyed into the system of record and is on neither tracker.</p>
+<p><span class="tag">Expected.</span> A written list in those words. The blank Excel row is not a defect and not a submission.</p>
+<div class="say"><p class="label">What you say</p><p>I read the file before I load it, and I write down what I can see, because the loader will hide the rest inside a green row count.</p></div>
+</div>
+
+<div class="step">
+<h3>2. Load</h3>
+<p><span class="tag">What.</span> Run <code>sql/00_create_tables_duckdb.sql</code> and <code>sql/01_load_duckdb.sql</code>, or just <code>python3 run_local.py</code>. The fact tables are the system of record. The equipment list is the authority for which PO lines exist. The trackers are not copied in as facts. Values are trimmed. Empty strings become null. Ids stay strings.</p>
+<p><span class="tag">Why it matters.</span> A load that “succeeds” with the wrong type is a bad load. The counted-rows read after load is 100 PO lines, 100 assets, 21 exceptions, and 40 lines on <code>TS-LINE-RAMP</code>.</p>
+<p><span class="tag">Expected.</span> <code>SELECT COUNT(*) FROM fact_po_line</code> → 100. <code>WHERE program_id = 'TS-LINE-RAMP'</code> → 40. <code>fact_asset</code> → 100. <code>fact_exception</code> → 21. <code>SELECT po_line_id FROM fact_po_line WHERE po_line_id = '00017'</code> returns the five-character id, not 17.</p>
+<div class="say"><p class="label">What you say</p><p>I count the rows after the load against the count I published before it, and I check that the line id is still text.</p></div>
+</div>
+
+<div class="step">
+<h3>3. Quality checks, and the counted-rows go / no-go</h3>
+<p><span class="tag">What.</span> Read <code>data/published_tolerance.csv</code> first. The rules are dated 2026-03-01. Then run <code>sql/02_quality_checks.sql</code>. The tolerance is not edited after you see the file.</p>
+<p><span class="tag">Why it matters.</span> On the Sephora S/4 HANA work, the go / no-go was a counted-rows read, and the bar I still use the morning after a load is the one we called “Negative AFS clean at T+1”: the business rules, not the file shape, have to be clean the next day. Here the structural gate can pass and the T+1 rules can still be red. Both results belong in the room.</p>
+<table>
+  <thead><tr><th>Check</th><th>Value</th><th>Bar, published 2026-03-01</th><th>Result</th></tr></thead>
+  <tbody>
+    <tr><td>Submitted tracker rows</td><td>43</td><td></td><td></td></tr>
+    <tr><td>Quarantined</td><td>2</td><td></td><td></td></tr>
+    <tr><td>Quarantine rate</td><td>2 / 43 = 4.65%</td><td>R3 ≤ 5%</td><td>Pass</td></tr>
+    <tr><td>Accepted rows</td><td>41</td><td></td><td>40 lines plus the second asset row on 00018</td></tr>
+    <tr><td>Distinct PO lines loaded</td><td>40</td><td>Equipment list 40</td><td>Pass</td></tr>
+    <tr><td>Missing list lines</td><td>0</td><td>R1 = 0</td><td>Pass</td></tr>
+    <tr><td>Duplicate PO line ids in the load</td><td>0</td><td>R2 = 0</td><td>Pass. The fan-out is not a duplicate id.</td></tr>
+    <tr><td>Decision</td><td>GO</td><td></td><td>The file may load. The book is not clean.</td></tr>
+  </tbody>
+</table>
+<p>Quarantine detail, from <code>quarantine_rows.csv</code>: site A row <code>00901</code>, reasons <code>unknown_site</code> and <code>not_on_equipment_list</code> (the raw site is <code>SITE-Z</code>). Site B row with a blank PO line, reasons <code>blank_po_line</code> and <code>bad_po_date</code> (the raw date is <code>13/32/2026</code>). The blank artifact row is ignored. <code>tracker_vs_fact.csv</code> is 0 received-date mismatches and 0 linked-asset mismatches. The orphan is the one asset the tracker does not have.</p>
+<p>What the structural gate did not stop, and the T+1 checks did:</p>
+<table>
+  <thead><tr><th>Check</th><th>Rows</th></tr></thead>
+  <tbody>
+    <tr><td>Duplicate serials</td><td>2 serials, each on 2 assets. SN-DUP-4421 on AST-TS-0021 and AST-TS-0022. SN-DUP-4422 on AST-TS-0023 and AST-TS-0024.</td></tr>
+    <tr><td>Orphan</td><td>1. AST-TS-0040, no PO line, created by Jordan, site CM-B.</td></tr>
+    <tr><td>Site mismatch</td><td>3. 00024 PO CM-A / asset CM-B. 00025 PO CM-B / asset CM-A. 00026 PO CM-A / asset PLANT-01.</td></tr>
+    <tr><td>Placed-in-service before receipt</td><td>1. Line 00019, received 2026-02-18, date 2026-02-11, seven days early.</td></tr>
+    <tr><td>Referential, other</td><td>0 bad programs, sites, suppliers, owners, or reuse sources. The only referential failure is the orphan.</td></tr>
+  </tbody>
+</table>
+<p><span class="tag">Expected.</span> Decision <b>GO</b> on the file, and a queue that is not empty. A gate you tighten after you see the quarantine rate is not a gate.</p>
+<div class="say"><p class="label">What you say</p><p>I publish the tolerance before the file arrives. This file is a go on counted rows, and it is not clean: the rules I had not written yet are the queue.</p></div>
+</div>
+
+<div class="step">
+<h3>4. Define the metrics once</h3>
+<p><span class="tag">What.</span> Read the view files in <code>lookml/</code> next to <code>sql/03_metrics.sql</code>. A <b>dimension</b> is something you group or filter by: program, site, owner, a date. You do not sum it. A <b>measure</b> is an aggregate: a count distinct, or a ratio of two of those. The <b>primary key</b> on <code>fact_po_line</code> is <code>po_line_id</code>. <code>count_distinct</code> of that key is a symmetric aggregate: Looker will not let the one-to-many asset join multiply it. <code>type: count</code> counts joined rows. A ratio you type by hand is not protected.</p>
+<p><span class="tag">Why it matters.</span> Two spreadsheets with two formulas is how “reconciled” forks. On Shipment Visibility, the useful watch was events-in versus events-out, both sides, not a blended status. Same shape here: lines in, assets out. The requirements I wrote for Zendesk data in Snowflake froze seven metric definitions and named Looker SQL Runner. The acceptance gate on that pipeline was a parallel run within 1% for consecutive weeks. I did not write the LookML. This lab’s bar is the counted-rows tolerance, a different file. The habit is the same: one definition, written down before the tile.</p>
+<p>Line <code>00018</code> is quantity 2, assets <code>AST-TS-0018</code> and <code>AST-TS-0019</code>. It is not a defect. It is the fan-out.</p>
+<table>
+  <thead><tr><th>On TS-LINE-RAMP</th><th>Result</th></tr></thead>
+  <tbody>
+    <tr><td>Joined rows after the asset join</td><td>41</td></tr>
+    <tr><td>Plain count of po_line_id</td><td>41. The line with two assets is counted twice.</td></tr>
+    <tr><td>Count distinct po_line_id</td><td>40</td></tr>
+    <tr><td>Count distinct asset_id on the join</td><td>39. The orphan is not on this join.</td></tr>
+    <tr><td>Line 00018 alone</td><td>plain count 2, distinct lines 1, assets 2</td></tr>
+  </tbody>
+</table>
+<table>
+  <thead><tr><th>Definition</th><th>Rate</th><th>Certify?</th></tr></thead>
+  <tbody>
+    <tr><td>Lines with at least one asset / lines</td><td>38 / 40 = 95.0%</td><td>Yes. The two in-transit lines stay in the denominator.</td></tr>
+    <tr><td>Assets on a line / lines</td><td>39 / 40 = 97.5%</td><td>No. The extra asset on 00018 hides one missing line.</td></tr>
+    <tr><td>Lines with an asset / lines that have a received date</td><td>38 / 38 = 100%</td><td>No. A default filter dropped 00039 and 00040.</td></tr>
+    <tr><td>Assets allocated to the program / lines</td><td>40 / 40 = 100%</td><td>No. The orphan fills the hole and is not a reconciliation.</td></tr>
+    <tr><td>First-time-right, all assets on the program</td><td>21 / 40 = 52.5%</td><td>Yes.</td></tr>
+    <tr><td>First-time-right, dropping the orphan</td><td>21 / 39 = 53.85%</td><td>No. The PO explore cannot see an asset with no line.</td></tr>
+    <tr><td>Reuse source filled / every asset</td><td>12 / 40 = 30%</td><td>No. The field applies to 12 reuse lines, and 12 of 12 are filled.</td></tr>
+  </tbody>
+</table>
+<p>The descriptions on the LookML fields are the “why” behind the input. Placed-in-service says it is the day depreciation starts, not the ship date and not the unpack date. A field with a blank description is how two people capitalize on two different days and both think they followed the rule.</p>
+<p><span class="tag">Expected.</span> You can point at <code>reconciliation_rate</code> in <code>fact_po_line.view.lkml</code> and say the other three rates are hidden measures, present so you can show them and then not ship them.</p>
+<div class="say"><p class="label">What you say</p><p>Count distinct on the PO line is the fix for the fan-out. A plain count on this join says 41 lines. There are 40.</p></div>
+</div>
+
+<div class="step">
+<h3>5. Build the explore and run reconciliation</h3>
+<p><span class="tag">What.</span> In Looker, open explore <code>po_lines</code>. The base is the PO line. Assets join <code>left_outer</code>, relationship <code>one_to_many</code>. Program, site, and supplier join <code>many_to_one</code>. There is no default filter on received date. Pick program, the reconciliation rate, and filter program to <code>TS-LINE-RAMP</code>. On Path A, the same query is <code>metric_reconciliation_by_program</code> and <code>metric_scorecard</code>.</p>
+<p><span class="tag">Why it matters.</span> The explore is the only surface a user queries. A Look someone saved in a personal folder is not the definition. The definition is the merged view.</p>
+<p><span class="tag">Expected.</span> One row. 40 lines, 38 with an asset, rate 0.95. By program, the other two are 32/32 and 28/28, each 1.0. All programs together, which is what Priya sees with the filter off: 98 / 100 = 98.0%.</p>
+<div class="say"><p class="label">What you say</p><p>I start the explore at the PO line so a line with no asset is still in the denominator. If I start at the asset, the two in-transit lines disappear.</p></div>
+</div>
+
+<div class="step">
+<h3>6. Build the five tiles</h3>
+<p><span class="tag">What.</span> The dashboard file is <code>lookml/capex_integrity_scorecard.dashboard.lookml</code>. On Path A, open <code>dashboard_mock.html</code>. Five tiles, filters for program and site, drill to the exception list. Default program is <code>TS-LINE-RAMP</code>, and that default is visible. It does not hide the in-transit lines, because those lines are inside the program. The site filter is the PO receiving site on the reconciliation tile and the exception tile. On the asset tile and the completeness tile it is the asset site. Say that before you turn it. Person-dependent does not listen to site: Wei alone writes site A, and splitting by site would call the field person-dependent when the program has two editors.</p>
+<p><span class="tag">Why it matters.</span> Each tile is a query. The owner on the completeness tile is who you ask, which is the change-management part of the job. The same habit, at a larger scale, was 44 requirement rows across 23 systems, each row pre-wired to an owner before the room saw it. The queue uses the same three classes as that issues log — 331 go-live, 77 fast-follow, 36 enhancement. Those are category counts, not a split of some other total. Every one of these 21 rows is go-live, because the book is wrong without the fix. A nicer chart would be an enhancement, and this queue has none.</p>
+<table>
+  <thead><tr><th>Tile</th><th>Number</th></tr></thead>
+  <tbody>
+    <tr><td>Reconciliation</td><td>95.0% (38/40). Alert fires, because 95% is under the proposed 98%.</td></tr>
+    <tr><td>Exception aging</td><td>7, 7, and 7. Age 7 is still 0–7. Age 8 is 8–30. EX-PIS-00017 is age 4.</td></tr>
+    <tr><td>Completeness</td><td>Finance, placed-in-service, 28 filled, 12 missing, 70%. GSM cost center 40/40. TPM program allocation 40/40. AME reuse 12/12. Wei 22/22 sites. Jordan 18/18 sites. Eleven of the twelve blank dates were submitted from site A. The demo row is the one on site B.</td></tr>
+    <tr><td>First-time-right</td><td>52.5% (21/40). The 19 misses are the 12 blank dates, 2 duplicate serials, 3 site mismatches, 1 date-order failure, and 1 orphan.</td></tr>
+    <tr><td>Person-dependent</td><td>3 fields, one editor each, window 2025-12-16 through 2026-03-16.</td></tr>
+  </tbody>
+</table>
+<p>Click the aging number and you land on <code>exception_open.csv</code>: exception id, PO line, asset, field, owner, age, and the sentence. That is the drill. A tile that does not drill is a poster.</p>
+<p><span class="tag">Expected.</span> The five numbers above, and you can name the owner of the blank date without opening the tracker. It is Morgan Ellis, Finance, even though Wei or Jordan keyed the asset.</p>
+<div class="say"><p class="label">What you say</p><p>Complete is not valid. Site is 100 percent filled, and three of those codes disagree with the PO. Those three are on the queue, not in the null count.</p></div>
+</div>
+
+<div class="step">
+<h3>7. Row-level security, tested as the CM user</h3>
+<p><span class="tag">What.</span> The model sets <code>access_filter</code> on <code>dim_program.program_id</code> using user attribute <code>program_ids</code>. An admin loads the attribute from <code>user_program_map.csv</code>. The user cannot clear it. On Path A, <code>metric_rls_by_user</code> is that filter written as SQL.</p>
+<p><span class="tag">Why it matters.</span> A contract manufacturer does not get the other programs by clearing a dashboard filter. Content folders are not a substitute. The filter has to be in the SQL.</p>
+<table>
+  <thead><tr><th>User</th><th>Programs</th><th>Lines visible</th><th>Lines with an asset</th><th>Rate</th></tr></thead>
+  <tbody>
+    <tr><td>Jordan Hale, CM site B</td><td>1</td><td>40</td><td>38</td><td>95.0%</td></tr>
+    <tr><td>Morgan Ellis, Finance</td><td>2 (ramp and pack, not the prior program)</td><td>72</td><td>70</td><td>97.22%</td></tr>
+    <tr><td>Priya Raman, GSM</td><td>3</td><td>100</td><td>98</td><td>98.0%</td></tr>
+  </tbody>
+</table>
+<p>Jordan asking for <code>PACK-CELL-EXP</code> returns <b>0</b> lines. That is <code>rls_jordan_pack.csv</code>. His security is on program, not on site, so he can still see site A’s rows of this program. Say that. Site-level restriction is a follow-on, and it is not in this model.</p>
+<p><span class="tag">Expected.</span> Jordan sees 95%, not 98%. He cannot produce Priya’s blend, and he should not be able to.</p>
+<div class="say"><p class="label">What you say</p><p>I test the access filter as the CM user, and I try to open a program he does not have. Zero rows is the pass. A dashboard filter he can clear is not security.</p></div>
+</div>
+
+<div class="step">
+<h3>8. Schedule and alert</h3>
+<p><span class="tag">What.</span> Two different mechanisms. A schedule sends the dashboard Monday at 07:00 to the owners on the completeness tile — Morgan for the blank dates, not a general list. An alert fires when the certified reconciliation rate is strictly below 0.98. That 0.98 is rule R4, proposed for this lab and dated before the tile. It is not a number I am attributing to this team. Replace it with theirs when they have one.</p>
+<p><span class="tag">Why it matters.</span> A schedule does not notice that the rate crossed a line. An alert does not explain the rows. You want both, and you want the datagroup: the cache rebuilds when <code>max(created_at)</code> on the asset table moves, and it is never older than 24 hours. A Friday cache read on Monday is how a weekend receipt goes missing. Looker keeps the result cache. The rows stay in the warehouse.</p>
+<p><span class="tag">Expected.</span> On <code>TS-LINE-RAMP</code>, 0.95 is below 0.98, so <code>alert_fires</code> is true. On Priya’s unfiltered 0.98, strictly-below is false, so the blend stays quiet. That is the bug you are preventing with the program filter. Morgan’s unfiltered book is 0.9722 and would still fire, because she cannot see the prior program that makes Priya’s blend land on the line.</p>
+<div class="say"><p class="label">What you say</p><p>The Monday email goes to the person who can fill the null. The alert is a separate object, and I do not let an unfiltered blend sit on the line and stay quiet.</p></div>
+</div>
+
+<div class="step">
+<h3>9. Fix one record</h3>
+<p><span class="tag">What.</span> In the system of record, not in the tracker and not on the tile, set the placed-in-service date on the asset for PO line <code>00017</code> (<code>AST-TS-0017</code>) to <code>2026-02-17</code>. That is five days after received <code>2026-02-12</code>, so you do not create a new date-order defect. Set <code>closed_date</code> on <code>EX-PIS-00017</code> to <code>2026-03-16</code>. Insert one field edit by <code>usr_morgan_fin</code>. Do not update <code>passed_validation_on_first_entry</code>. The SQL is <code>sql/04_rls_and_fix.sql</code>. Path A already ran it into <code>expected_outputs/after_fix/</code>. The CSVs in <code>data/</code> are still the open queue. Re-run <code>00</code> and <code>01</code> if you applied the update and want the open queue back.</p>
+<p><span class="tag">Why it matters.</span> The write path leaves Looker. The owner fixes the system of record. The next refresh closes the row. If Jordan had typed the date, first-time-right would still not recover, and placed-in-service would pick up a second editor and stop being person-dependent. The fix path is the field owner.</p>
+<table>
+  <thead><tr><th></th><th>Before</th><th>After</th></tr></thead>
+  <tbody>
+    <tr><td>Missing placed-in-service</td><td>12</td><td>11</td></tr>
+    <tr><td>Completeness of that field</td><td>28/40 = 70%</td><td>29/40 = 72.5%</td></tr>
+    <tr><td>Aging, open</td><td>7 / 7 / 7</td><td>6 / 7 / 7</td></tr>
+    <tr><td>Reconciliation</td><td>95.0%</td><td>95.0%</td></tr>
+    <tr><td>First-time-right</td><td>21/40 = 52.5%</td><td>21/40 = 52.5%. The flag on AST-TS-0017 is still 0.</td></tr>
+    <tr><td>Person-dependent fields</td><td>3</td><td>3. Morgan is still the only editor of the date.</td></tr>
+    <tr><td>Alert</td><td>fires</td><td>fires</td></tr>
+    <tr><td>EX-PIS-00017</td><td>open, age 4</td><td>closed 2026-03-16, gone from the open bucket</td></tr>
+  </tbody>
+</table>
+<p><code>after_fix/tracker_vs_fact.csv</code> shows one linked-asset mismatch. The tracker still has a blank, and the system of record does not. You do not reload the tracker over the correction.</p>
+<p><span class="tag">Expected.</span> The table above, from the two scorecard CSVs, not from memory.</p>
+<div class="say"><p class="label">What you say</p><p>Closing the exception is the refresh. First-time-right does not move, and I do not want a measure that lets it move.</p></div>
+</div>
+
+<div class="step">
+<h3>10. The playbook rule that prevents it next time</h3>
+<p><span class="tag">What.</span> Write the rule, then compare it to <code>playbook/RULE-pis-required-at-tagging.md</code>. A tracker row with a received date and a blank placed-in-service date is quarantined. It does not load. The date cannot be earlier than receipt. Finance owns the definition. The CM coordinator sees the rule in the instructions before the file is due, not in a note after the load.</p>
+<p><span class="tag">Why it matters.</span> The scorecard found a miss the gate was not asked to catch. Austria was the same shape of work at a different company: data quality about 55% to about 99% within a quarter, by making the rule explicit and staying with it. This lab’s first-time-right is 52.5%. I am not saying this file is that program. I am saying the rate moves when the rule is in the gate, and it does not move when someone backfills a cell. On the next tracker, those twelve blanks would be part of the quarantine count. If that pushed the rate over 5%, the decision would be no-go, and that would be the gate working.</p>
+<p><span class="tag">Expected.</span> One short rule with an owner, a reject condition, and a sentence that a late fix does not restore first-time-right.</p>
+<div class="say"><p class="label">What you say</p><p>The playbook entry is the reject, written down before the next file. The scorecard is how I see it if the rule is not in the gate yet.</p></div>
+</div>
+
+<h2 class="break">Part 3 — Explaining it to the hiring manager</h2>
+<p>About three minutes. You are walking a model of the work, and you say so. You have not shipped this LookML.</p>
+<div class="say">
+<p class="label">The narration</p>
+<p>A program is still in two trackers. My job is the accuracy of the inputs when it moves onto the system of record, and the change with the GSM, the TPM, the AME, the two CM coordinators, and Finance.</p>
+<p>I publish the tolerance before the file shows up. Missing lines against the equipment list: zero. Duplicate line ids: zero. Quarantine under 5 percent. This file is 2 quarantined out of 43, and 40 lines loaded. That is a go. The morning after, I still recount the business rules. Two serials are duplicated, one asset has no PO line, three sites disagree with the PO, one depreciation date is before receipt, and twelve assets have no placed-in-service date. The file gate was not asked to catch those. They are the queue, and each one has an owner.</p>
+<p>The model starts at the PO line. Assets join one-to-many, because one line can carry two units. I count distinct line ids. A plain count on this data says 41. There are 40. The certified rate is lines with an asset over lines, 38 over 40, 95 percent. Assets over lines prints 97.5, and a filter that keeps only received lines prints 100. I do not certify either. The definition lives in the view, in Git. A personal report does not get its own formula.</p>
+<p>The scorecard is five queries. Reconciliation 95 percent, so the alert fires under the line I proposed at 98, which I would replace with the team’s number. Aging is 7, 7, and 7. Completeness by owner: Finance is at 70 percent on the date that starts depreciation, and site is 100 percent filled with three codes that are still wrong. First-time-right is 21 of 40. Three fields were edited by exactly one person in the last 90 days.</p>
+<p>I fix one record in the system of record, PO line 00017, the blank date. The exception closes. Missing dates go from 12 to 11. Reconciliation stays 95. First-time-right stays 52.5, because the flag is about the first submit. Then I write the rule that quarantines a blank date on the next file, so the scorecard is not where we notice it the second time.</p>
+<p>Row-level security is a user attribute the CM cannot clear. Jordan sees this program only. He sees 95 percent, and a program he does not own returns no rows.</p>
+</div>
+<h3>Five follow-ups</h3>
+<p><b>Why is the PO line the grain?</b> Because the failure you are managing is a buy with no asset, and an asset-grain table cannot show a row that was never tagged. Two assets on one line are still one line. The orphan is a different check, on the asset, and it does not get to fill the reconciliation hole.</p>
+<p><b>Why Looker rather than Excel for this?</b> Excel holds the rows. It does not hold a definition. The next copy of the file is a second meaning of reconciled, and it will turn <code>00017</code> into a number if someone saves it. Looker, if that is the tool they have, keeps the measure in Git and queries the warehouse. Looker Studio can draw the tiles and will not give you that Git history. I would not pretend those are the same product. I have not shipped either model. I have frozen definitions and a parity gate, with SQL Runner named as the surface.</p>
+<p><b>How do you stop two definitions of reconciled?</b> One measure in the view, count distinct on both sides, reviewed like code. The asset version and the received-only version stay in the repo as hidden measures so someone can see the trap, and they are not on the tile. The Monday schedule and the alert both point at the certified measure. A side file that divides assets by lines ordered is a different metric, and it does not replace the tile without a change to the view.</p>
+<p><b>What would you not automate yet?</b> I would not let a model fill placed-in-service, the reuse source, or the program allocation. Those are judgments, and this program’s first-time-right is 52.5 percent. I would not train anything on a queue that still has duplicate serials and an orphan. I would automate the gate that is already a rule: trim, parse the date, map the site, reject a blank key, reject an unknown site, reject a line that is not on the equipment list. Capitalization and reuse stay with Finance and the AME until the scorecard says the input is trustworthy.</p>
+<p><b>How does this map to onboarding playbooks?</b> The pilot is this program. The playbook entry is the reject we added after the scorecard found the blank date. The next program inherits the rule, the owner map, the tolerance, and the same five tiles. What stays local is the equipment list and the CM’s site codes, which still have to be mapped. I would ask, on the pilot that became their playbook, which lesson teams actually followed and which one they had to keep enforcing.</p>
+
+<h2>Part 4 — Glossary and the checklist</h2>
+<table>
+  <thead><tr><th>Term</th><th>In this lab</th></tr></thead>
+  <tbody>
+    <tr><td>Dimension</td><td>Program, site, owner, a date. Group and filter. Do not sum.</td></tr>
+    <tr><td>Measure</td><td>count_distinct, or a ratio of two. The reconciliation rate is a measure.</td></tr>
+    <tr><td>Primary key</td><td>po_line_id on the line, asset_id on the asset, exception_id on the defect.</td></tr>
+    <tr><td>Fan-out</td><td>Line 00018, one line, two assets. Plain count becomes 2. Count distinct stays 1.</td></tr>
+    <tr><td>Symmetric aggregate</td><td>count_distinct of the primary key. Looker will not let the one-to-many join multiply it. A hand-written ratio is not protected.</td></tr>
+    <tr><td>Explore</td><td>po_lines for reconciliation. exceptions for the queue. assets for first-time-right, so the orphan stays in. completeness and field_edits because those grains must not join into the line.</td></tr>
+    <tr><td>LookML</td><td>The model in lookml/. Production would be a merge. This lab is the files, not a merge you have done.</td></tr>
+    <tr><td>PDT</td><td>exception_aging and person_dependent_fields. Derived tables Looker builds in the warehouse, refreshed by the datagroup. Not stored inside Looker.</td></tr>
+    <tr><td>Access filter</td><td>User attribute program_ids on dim_program.program_id. Jordan cannot take it off.</td></tr>
+    <tr><td>Datagroup</td><td>capex_daily. Trigger on the newest asset timestamp, and never older than 24 hours.</td></tr>
+    <tr><td>First-time-right</td><td>Passed validation on the first submit. A later correction does not flip it.</td></tr>
+    <tr><td>Person-dependent</td><td>A field written by exactly one user in the 90 days ending 2026-03-16, inside the program.</td></tr>
+    <tr><td>Looker Studio</td><td>A different product. Free, no LookML, no Git-backed measure. Fine for the five tiles. Not this model.</td></tr>
+  </tbody>
+</table>
+<p><b>Files and the numbers to expect</b> after <code>python3 run_local.py</code>. Before the fix unless the path says <code>after_fix/</code>.</p>
+<table>
+  <thead><tr><th>File</th><th>Expect</th></tr></thead>
+  <tbody>
+    <tr><td>data/expected_outputs/go_nogo.csv</td><td>43 submitted, 2 quarantined, 40 lines, rate about 0.0465, decision GO</td></tr>
+    <tr><td>quarantine_rows.csv</td><td>00901 unknown site; blank PO line and bad date</td></tr>
+    <tr><td>tracker_vs_fact.csv</td><td>0, 0, and 1 orphan not in the tracker. After the fix: 1 linked-asset mismatch</td></tr>
+    <tr><td>duplicate_serials.csv</td><td>2 serials</td></tr>
+    <tr><td>orphans.csv</td><td>AST-TS-0040</td></tr>
+    <tr><td>site_mismatches.csv</td><td>3 rows</td></tr>
+    <tr><td>date_logic.csv</td><td>1 row, line 00019</td></tr>
+    <tr><td>referential.csv</td><td>orphan 1, everything else 0</td></tr>
+    <tr><td>reconciliation_by_program.csv</td><td>ramp 0.95, pack 1.0, fixture 1.0</td></tr>
+    <tr><td>reconciliation_traps.csv</td><td>0.95 certified; 0.975; 1.0; 1.0</td></tr>
+    <tr><td>fanout_program.csv</td><td>41 joined rows, 40 distinct lines, 39 assets</td></tr>
+    <tr><td>fanout_line_00018.csv</td><td>qty 2, plain count 2, distinct lines 1</td></tr>
+    <tr><td>missing_pis.csv</td><td>ramp 12 of 40. After the fix, 11</td></tr>
+    <tr><td>completeness_by_field_owner.csv</td><td>placed-in-service 28/40. After the fix, 29/40</td></tr>
+    <tr><td>reuse_denominator_trap.csv</td><td>certified 1.0 on 12; trap 0.3 on 40</td></tr>
+    <tr><td>exception_aging.csv</td><td>7, 7, 7. After the fix, 6, 7, 7</td></tr>
+    <tr><td>first_time_right.csv</td><td>21/40 = 0.525, unchanged after the fix</td></tr>
+    <tr><td>first_time_right_trap.csv</td><td>21/39 = 0.5385</td></tr>
+    <tr><td>first_time_right_all.csv</td><td>81/100 = 0.81 with the filter off. Not the same 81 as any other sketch</td></tr>
+    <tr><td>person_dependent_fields.csv</td><td>3 true. Without the window, program allocation is false (2 editors)</td></tr>
+    <tr><td>rls_by_user.csv</td><td>Jordan 0.95, Morgan 0.9722, Priya 0.98</td></tr>
+    <tr><td>rls_jordan_pack.csv</td><td>0</td></tr>
+    <tr><td>scorecard.csv</td><td>0.95, missing 12, 7/7/7, 0.525, 3 person-dependent, alert true</td></tr>
+    <tr><td>after_fix/scorecard.csv</td><td>0.95, missing 11, 6/7/7, 0.525, 3, alert true</td></tr>
+    <tr><td>fix_proof_00017.csv</td><td>Before: blank date, flag 0, closed blank. After: 2026-02-17, flag 0, closed 2026-03-16</td></tr>
+    <tr><td>dashboard_mock.html</td><td>The five tiles, from the open queue, plus the one-line after</td></tr>
+    <tr><td>lookml/</td><td>The model you would commit. Not a model you have run in Looker unless you did Path B</td></tr>
+  </tbody>
+</table>
+<p>Regenerate with <code>python3 generate_data.py &amp;&amp; python3 run_local.py</code> from this directory. If a number in this guide and a CSV disagree, believe the CSV. The SQL is the definition.</p>
+
+</body>
+</html>

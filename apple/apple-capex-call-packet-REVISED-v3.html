@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Apple CapEx Systems Onboarding Data Integrity PM — 30-minute call packet, revised v3</title>
+<style>
+  @page { size: letter; margin: 0.6in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", Arial, Helvetica, sans-serif; font-size: 10.5pt; line-height: 1.38; color: #1a1a1a; }
+  h1 { font-size: 17pt; line-height: 1.15; margin: 0 0 6px; color: #10243e; }
+  h1.sec { page-break-before: always; border-bottom: 2.5px solid #10243e; padding-bottom: 5px; margin-bottom: 10px; }
+  h2 { font-size: 13pt; margin: 14px 0 6px; color: #10243e; page-break-after: avoid; border-top: 1.5px solid #c9c2b4; padding-top: 8px; }
+  h2.break { page-break-before: always; border-top: none; padding-top: 0; }
+  h3 { font-size: 11pt; margin: 10px 0 4px; color: #7a1c28; page-break-after: avoid; letter-spacing: 0.02em; }
+  h4 { font-size: 10.5pt; margin: 8px 0 3px; page-break-after: avoid; color: #10243e; }
+  p { margin: 0 0 7px; }
+  .kicker { font-size: 8.5pt; letter-spacing: 0.12em; text-transform: uppercase; color: #7a1c28; font-weight: 700; margin-bottom: 4px; }
+  .meta { background: #f3f0e9; border-left: 4px solid #10243e; padding: 7px 11px; margin: 8px 0 10px; font-size: 9.8pt; }
+  .meta div { margin: 2px 0; }
+  .say { background: #faf7f1; border: 1px solid #d8cfbf; border-left: 4px solid #7a1c28; padding: 8px 12px 3px; margin: 6px 0 9px; page-break-inside: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, "Times New Roman", serif; font-size: 11pt; line-height: 1.45; }
+  .say .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #7a1c28; font-weight: 700; margin-bottom: 4px; }
+  .star { background: #fcfbf8; border: 1px solid #d8cfbf; padding: 7px 12px 3px; margin: 5px 0 9px; page-break-inside: avoid; }
+  .star h4 { color: #7a1c28; font-size: 9.2pt; letter-spacing: 0.1em; text-transform: uppercase; margin: 6px 0 3px; }
+  .qblock { page-break-inside: avoid; }
+  .alt { background: #f6f6f3; border: 1px solid #d8d4cb; border-left: 4px solid #8a8f98; padding: 6px 11px 2px; margin: 4px 0 10px; page-break-inside: avoid; }
+  .alt .label { font-size: 8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #555; font-weight: 700; margin-bottom: 3px; }
+  .alt p { font-family: "Liberation Serif", Georgia, serif; font-size: 10.4pt; line-height: 1.42; margin: 0 0 5px; }
+  h3.sub { color: #10243e; font-size: 11.5pt; margin: 10px 0 4px; letter-spacing: 0; }
+  table.map { font-size: 8.3pt; }
+  table.map th, table.map td { padding: 3px 5px; }
+  .star .wcl { font-family: "Liberation Sans", Arial, sans-serif; font-size: 7.8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #5c6670; font-weight: 700; margin: 0 0 1px; }
+  .star p { font-family: "Liberation Serif", Georgia, serif; font-size: 10.8pt; line-height: 1.44; margin: 0 0 6px; }
+  .probe { background: #f1f3f8; border-left: 4px solid #10243e; padding: 6px 11px 2px; margin: 4px 0 10px; font-size: 9.6pt; page-break-inside: avoid; }
+  .probe .label { font-size: 8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #10243e; font-weight: 700; margin-bottom: 4px; }
+  .probe p { margin: 0 0 4px; }
+  .probe b { color: #10243e; }
+  .note { background: #fff7e6; border: 1px solid #e6cf9a; border-left: 4px solid #b8860b; padding: 6px 11px; margin: 6px 0 9px; font-size: 9.4pt; page-break-inside: avoid; }
+  .note strong { color: #7a5a00; }
+  .basis { font-size: 9pt; color: #555; margin: -3px 0 9px; }
+  table { width: 100%; border-collapse: collapse; margin: 5px 0 10px; font-size: 8.8pt; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; border: 1px solid #b9b2a4; padding: 4px 6px; }
+  th { background: #e9e5db; font-size: 8.2pt; letter-spacing: 0.04em; text-transform: uppercase; color: #333; }
+  table.toc td { border: none; border-bottom: 1px dotted #b9b2a4; padding: 3px 6px; font-size: 10pt; }
+  table.toc td.pg { text-align: right; width: 48px; font-variant-numeric: tabular-nums; }
+  table.toc td.sub { padding-left: 22px; }
+  table.sm { font-size: 8.3pt; }
+  .tag { display: inline-block; background: #e4eaf3; color: #10243e; font-size: 7.6pt; padding: 0 4px; border-radius: 2px; font-weight: 700; vertical-align: middle; }
+  .tag.ua { background: #fff2cc; color: #7a5a00; }
+  .tag.mod { background: #f6e3e3; color: #7a1c28; }
+  .foot { font-size: 8.4pt; color: #5c6670; margin-top: 10px; }
+  ol.src { font-size: 8.8pt; padding-left: 18px; margin: 4px 0 8px; }
+  ol.src li { margin: 0 0 3px; word-break: break-all; }
+  .two { display: flex; gap: 14px; }
+  .two > div { flex: 1; }
+</style>
+</head>
+<body>
+
+<!-- ============================ COVER + TOC ============================ -->
+<p class="kicker">30-minute call · revised v3 · speak only what is in the say boxes</p>
+<h1>Apple — CapEx Systems Onboarding Data Integrity Program Manager</h1>
+<div class="meta">
+  <div><strong>You.</strong> Rajesh Rishiyur Chandrasekaran.</div>
+  <div><strong>Them.</strong> Capital Expenditure Systems Lead, Apple.</div>
+  <div><strong>What this is.</strong> An audited, rewritten replacement for the 19-page call packet and the 3-page use-case insert; v3 rebuilds Section B so Elementum, Flexport and the Sephora S/4HANA work carry the weight and the Utah program appears where it fits. Every career fact, date and number is reconciled to the Amazon master packet (<i>amazon-nacf-FINAL-all-in-one-kimi-k3.pdf</i>); every Apple fact is from a public source dated in Section A4. Source pages are listed in the numbers card in Section C.</div>
+  <div><strong>Basis tags.</strong> <span class="tag">record</span> program record or resume · <span class="tag">record-from-docs</span> a dated artifact · <span class="tag ua">user anchor</span> earlier packet only, confirm from memory · <span class="tag mod">model</span> my arithmetic or my understanding of Apple, never Apple's figure.</div>
+  <div><strong>Five rules.</strong> Lead stories, in weight order: Elementum (eight SAP domains, 200 lanes, EDI cohorts), Flexport (Shipment Visibility, the Snowflake pipeline, the freight-forwarding app), Sephora S/4HANA (the inventory data contract). Sephora Utah is used where it fits best: the multi-timeline question and the robotics gate. Manhattan Associates is back-up only. No warehouse-system migration stories, no dress-rehearsal stories, no cutover task counts. Say "one umbrella program" if the S/4HANA and Utah stories both come up. Say "my model" before anything about how Apple's CapEx lifecycle works. No company is the primary story for more than three questions; the story map at the start of Section B shows the spread.</div>
+</div>
+
+<h3>Contents</h3>
+<table class="toc">
+  <tr><td><b>Section A — The four recruiter sample questions, 60 seconds each</b></td><td class="pg" data-k="A">3</td></tr>
+  <tr><td class="sub">A1 Tell me about yourself and background (60 s and 30 s)</td><td class="pg" data-k="A1">3</td></tr>
+  <tr><td class="sub">A2 Day-to-day responsibilities on the most recent project</td><td class="pg" data-k="A2">4</td></tr>
+  <tr><td class="sub">A3 Why do you want to join Apple (60 s and 30 s)</td><td class="pg" data-k="A3">5</td></tr>
+  <tr><td class="sub">A4 What do you know about Apple (verified public facts, with sources)</td><td class="pg" data-k="A4">6</td></tr>
+  <tr><td><b>Section B — The ten likely questions, STAR format</b></td><td class="pg" data-k="B">8</td></tr>
+  <tr><td class="sub">Story map — primary and alternate story per question, company spread</td><td class="pg" data-k="MAP">8</td></tr>
+  <tr><td class="sub">Q1 Program and project initiatives in supply chain, manufacturing, operations — a guided tour of six</td><td class="pg" data-k="Q1">9</td></tr>
+  <tr><td class="sub">Q2 Systems onboarding, accurate inputs, adoption — Elementum eight SAP domains (alt: S/4HANA)</td><td class="pg" data-k="Q2">10</td></tr>
+  <tr><td class="sub">Q3 Data discrepancies across systems — Flexport review data, four systems into Snowflake (alt: S/4 drift)</td><td class="pg" data-k="Q3">11</td></tr>
+  <tr><td class="sub">Q4 Resistant stakeholders — 4a Sephora S/4HANA available-for-sale; 4b Flexport forwarding-app roadmap</td><td class="pg" data-k="Q4">12</td></tr>
+  <tr><td class="sub">Q5 Excel — honest inventory anchored at Flexport, Elementum and Sephora</td><td class="pg" data-k="Q5">14</td></tr>
+  <tr><td class="sub">Q6 Multiple timelines, dependencies, competing priorities — Sephora Utah (alt: S/4 two go-lives)</td><td class="pg" data-k="Q6">15</td></tr>
+  <tr><td class="sub">Q7 Vendors and suppliers following data protocols — Elementum carriers and EDI cohorts (alt: Flexport)</td><td class="pg" data-k="Q7">16</td></tr>
+  <tr><td class="sub">Q8 SAP, WMS, MRP and database platforms — honest inventory, Elementum first</td><td class="pg" data-k="Q8">17</td></tr>
+  <tr><td class="sub">Q9 Operational inefficiency or process gap — 9a Utah robotics 94 vs 98; 9b Flexport review automation</td><td class="pg" data-k="Q9">18</td></tr>
+  <tr><td class="sub">Q10 Familiarity with the Apple ecosystem and cross-team collaboration — outside-in</td><td class="pg" data-k="Q10">20</td></tr>
+  <tr><td><b>Section C — Audit findings and the numbers card</b></td><td class="pg" data-k="C">21</td></tr>
+  <tr><td class="sub">C1 Audit of the uploaded packet and use-case insert</td><td class="pg" data-k="C1">21</td></tr>
+  <tr><td class="sub">C2 Career chronology from the Amazon packet</td><td class="pg" data-k="C2">24</td></tr>
+  <tr><td class="sub">C3 Numbers card — every metric in this packet with its Amazon-packet page</td><td class="pg" data-k="C3">24</td></tr>
+</table>
+
+<h3>How to use the thirty minutes</h3>
+<table class="sm">
+  <thead><tr><th style="width:16%">Clock</th><th>What you do</th></tr></thead>
+  <tbody>
+    <tr><td>0 to 2</td><td>One human beat. Use their words back: system of record, pilot, playbook, contract manufacturer. Do not pitch.</td></tr>
+    <tr><td>2 to 4</td><td>A1, the 60-second version. If they nod early, the 30-second cut. Stop on the last sentence.</td></tr>
+    <tr><td>4 to 22</td><td>Their questions. Find the question word: program (Q1 tour), onboarding or adoption (Q2 Elementum), discrepancy (Q3 Flexport), resistance (Q4 S/4HANA or forwarding app), Excel (Q5), timelines (Q6 Utah), vendors (Q7 Elementum), systems (Q8), inefficiency (Q9 robotics or review automation), Apple (Q10, A4). Spread the companies: do not tell three Sephora stories in a row. Answer SITUATION/TASK, ACTION, RESULTS in that order, then stop and let them probe.</td></tr>
+    <tr><td>22 to 26</td><td>If invited: A3. Otherwise stay on their thread.</td></tr>
+    <tr><td>26 to 30</td><td>Your questions (end of Q10), then one closing sentence: I baseline the number, I put one owner on every field, and I do not escalate a row the owner can close.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================ SECTION A ============================ -->
+<h1 class="sec" id="secA">Section A — The four recruiter sample questions, 60 seconds each</h1>
+<p>Spoken answers. Plain sentences, first person, concrete numbers, the fiscal year on every Apple figure. Sixty seconds is about 150 to 170 words. Word counts are printed in each box label.</p>
+
+<div class="qblock">
+<h2 id="a1">A1. "Tell me about yourself and your background."</h2>
+<p>Chronological, oldest to newest, one concrete metric per stop, ending on why this role is the natural next step. The Amazon packet gives years for Elementum (2017 to 2019), Flexport (2021 to 2022) and Sephora (April 2023 to present). It gives no years for Manhattan Associates ("where I started") or for MetricStream, so the spoken answer uses "I started at" and does not invent a year. MetricStream is on the resume; the Amazon packet records responsibilities only and no client outcome, so it is held for a probe.</p>
+
+<div class="say">
+  <div class="label">Say this — about 60 seconds — <span class="wc" data-wc="a1-60">170 words</span></div>
+  <p>I have spent fifteen years making supply-chain records match the physical world, across four companies. I started at Manhattan Associates, running order-management programs for a retailer with three distribution centers and a hundred stores; through Cyber Monday we held 99 percent fill against a 95 percent goal. At Elementum, 2017 to 2019, I led data and planning programs for manufacturers: eight SAP data domains into one supply view, and class-A forecast accuracy 70 to 85 percent. At Flexport, 2021 to 2022, I was technical program manager for Shipment Visibility: seven customers to sixty-eight behind published graduation gates, and four systems into one Snowflake pipeline with accuracy from 60 to 90 percent. Since April 2023 I have been at Sephora, where I own the inventory data contract on S/4HANA: one signed available-for-sale number per node, and oversell from recurring to zero. This role is the same job on capital assets: purchase order, asset tag and placed-in-service date must agree before Finance can depreciate a tool Apple owns in someone else's factory.</p>
+</div>
+
+<div class="say">
+  <div class="label">30-second cut — <span class="wc" data-wc="a1-30">84 words</span></div>
+  <p>Fifteen years making supply-chain records match the floor. Manhattan Associates first: order promising for three distribution centers and a hundred stores, 99 percent fill at peak. Elementum, 2017 to 2019: eight SAP domains into one supply view, forecast accuracy 70 to 85 percent. Flexport, 2021 to 2022: Shipment Visibility from seven customers to sixty-eight. Sephora since 2023: one signed available-for-sale number on S/4HANA, oversell to zero. Capital assets are the same discipline: purchase order, asset tag and placed-in-service date must agree before Finance depreciates.</p>
+</div>
+</div>
+
+<div class="probe">
+  <div class="label">IF THEY PROBE — the background</div>
+  <p><b>What were your titles?</b> Technical program manager for retail fulfillment and inventory at Sephora, and the S/4HANA inventory integration program lead; technical program manager for Shipment Visibility at Flexport and program lead on the Freight Forwarding App export launch; program lead on customer programs at Elementum; order-management program lead at Manhattan Associates, the one platform I configured hands-on.</p>
+  <p><b>Anything with direct reports?</b> MetricStream, earlier in my career: onshore and offshore delivery teams, statements of work, estimates, budgets, UAT, cutover and hypercare. I will not attach a client or a dollar to it. Everything since has been matrix leadership, and I say so.</p>
+  <p><b>Why fifteen years and not a year count per company?</b> Because the Amazon packet gives years for Elementum, Flexport and Sephora only. I give the years I can stand behind.</p>
+  <p><b>Why are you leaving Sephora?</b> What I went there to build is live: the inventory data contract, the Utah omni conversion, the control screens with owners. This is the bigger version of the same problem.</p>
+</div>
+
+<div class="qblock">
+<h2 id="a2">A2. "Explain your day-to-day responsibilities on your most recent project."</h2>
+<p>Most recent engagement per the Amazon packet: the Sephora S/4HANA and ISM inventory-supply integration, where the functional specification was versioned 1.1 on March 5, 2025, 1.2 on May 16, and signed June 5, 2025 by Supply Chain Strategy, Inventory Management and FSC Inventory Accounting, then built, tested on dated end-to-end days, cut over in a January planning go-live and a May execution go-live, and exited hypercare into the monthly release train. The week below is the record's cadence; no meeting name or clock time is invented.</p>
+
+<div class="say">
+  <div class="label">Say this — about 60 seconds — <span class="wc" data-wc="a2-60">167 words</span></div>
+  <p>My most recent project was the inventory data contract at Sephora: S/4HANA became the book of record and ISM publishes one available-for-sale number per SKU, node and channel. I owned the definitions, the requirements register and the go/no-go; configurators built to the signed specification. A typical week started with me reading the daily drift report, ISM against the S/4 stock list, and the Negative AFS report before anyone else, so I walked into the weekly review with a number I had counted. That review was two blocks, IT and business, one risk register, every red with an owner and a date. Between reviews I ran working sessions: Supply Chain Strategy, Inventory Management and Inventory Accounting on the data contract, one owner per bucket; the configurators on the bucket-transition matrix. The decisions were mine to recommend and the forum's to take: whether a bucket was promisable, whether a story could enter QA without a matrix reference, and whether severe issues were at zero so we could say go.</p>
+</div>
+</div>
+
+<table class="sm">
+  <thead><tr><th style="width:21%">Cadence</th><th>What I did</th><th style="width:34%">Artifact I owned and what I counted</th></tr></thead>
+  <tbody>
+    <tr><td>Daily, in build-to-hypercare</td><td>Read the ISM-versus-MB52 drift report and the Negative AFS report first; attributed timing rows (a late goods receipt across the snapshot cut) before anyone called a severity; sent oldest open rows to their owner before the review, not after.</td><td>Drift report, tolerance zero; Negative AFS clean at T+1. Exit bar at hypercare: drift of zero SKUs on consecutive days. <span class="tag">record</span></td></tr>
+    <tr><td>Weekly review</td><td>Two blocks, thirty minutes IT and thirty business; one dashboard, one risk register; the worst number said out loud with an owner and a date. Steering: DC Operations, IT, Supply Chain Strategy.</td><td>Umbrella issues log, 836 rows, 714 closed (85.4%); Blocker plus Critical read first. <span class="tag">record</span></td></tr>
+    <tr><td>Working sessions, two or three a week</td><td>One table per topic instead of arbitration in meetings: bucket ownership, the lower-of-two basis, the reserve-copy invariant (ISM reserve equals the plan at every nightly cut), the publish switch (zero on the old location, then the new, so no SKU is promisable from two places).</td><td>Requirements register = the functional specification, v1.1 → v1.2 → signed 6/5/25 by three orgs; every bucket owned by exactly one system. <span class="tag">record</span></td></tr>
+    <tr><td>Dated end-to-end days</td><td>Inbound, dotcom and retail flows run in one room by business and engineering; every finding got a severity and an owner before we broke.</td><td>Node × channel × bucket-transition matrix; no story into QA without a matrix cell reference; zero open contract defects in SIT. <span class="tag">record</span></td></tr>
+    <tr><td>Go/no-go</td><td>Wrote the recommendation from counted rows: Blocker plus Critical open at zero, end-to-end green, reconciliation clean, rollback triggers armed, control owners named. The forum decided.</td><td>Go/no-go memo; rollback triggers (sync below 99% for four hours, or order-flow p95 above twice budget for an hour) armed for both go-lives, never fired. <span class="tag">record</span></td></tr>
+    <tr><td>Hypercare exit</td><td>Handed each AFS-changing act to a screen, a role and an audit row; wrote the exit memo and the as-built note.</td><td>Control-owner map: Negative AFS to Inventory Control, Internal Audit and Finance; AFS Correction to the ISM application team; drift report to Inventory Control. <span class="tag">record</span></td></tr>
+  </tbody>
+</table>
+
+<div class="qblock">
+<h2 id="a3">A3. "Why do you want to join Apple?"</h2>
+<p>Specific to this role. Apple capitalizes tooling and test equipment it owns but that sits at contract manufacturers; the job is data integrity across the CapEx chain, appropriation to purchase order to asset tag to placed-in-service to depreciation to physical-to-book reconciliation. Three public facts carry fiscal years and are footnoted in A4. Everything about Apple's internal process is labelled "as I understand it."</p>
+
+<div class="say">
+  <div class="label">Say this — about 60 seconds — <span class="wc" data-wc="a3-60">170 words</span></div>
+  <p>Three reasons, specific to this seat. First, the asset. Apple's fiscal 2026 10-K says substantially all hardware is made by outsourcing partners in six countries, and that Apple holds capital assets at its suppliers' facilities; gross machinery and equipment on the books is about 84 billion dollars. As I understand it, that is a tool Apple owns on a floor Apple does not run, and the record breaks at the joins: appropriation to purchase order, purchase order to asset tag, tag to placed-in-service date, date to depreciation, book to floor. Second, those joins are my work. At Sephora three organizations signed one definition of available inventory and go/no-go was read from counted rows. At Elementum eight data domains went behind published quality gates. At Flexport carriers and forwarders cleared a data standard before going live. Third, pilot to playbook is how I run a program: one site, a numeric gate, then the same control on the next one. I would rather learn Apple's lanes from the people who built them.</p>
+</div>
+
+<div class="say">
+  <div class="label">30-second cut — <span class="wc" data-wc="a3-30">86 words</span></div>
+  <p>Apple's fiscal 2026 10-K says substantially all hardware is built by outsourcing partners and that Apple holds capital assets at their facilities. As I understand it, that is a tool Apple owns on a floor it does not run; the record breaks at the joins, purchase order to asset tag to placed-in-service date to the physical count. Those joins are mine: one signed inventory definition at Sephora, eight data domains behind gates at Elementum, carriers gated at Flexport. I want that job on assets Finance depreciates.</p>
+</div>
+</div>
+
+<div class="probe">
+  <div class="label">IF THEY PROBE</div>
+  <p><b>What do you want to learn from us?</b> How a program actually closes: who types the placed-in-service date, who signs site acceptance, and where the purchase-order-to-asset link breaks first. I have a model. I would like you to correct it.</p>
+  <p><b>Have you run a factory capital-equipment launch?</b> No. I have run live warehouse and inventory conversions with zero customer-facing incidents and a published gate that could stop the program. I have not run a factory, and I will not pretend to.</p>
+  <p><b>If they bring up AI.</b> I would not automate a field I cannot reconcile. The placed-in-service date and the purchase-order-to-asset join stay with a named person until the count is clean.</p>
+</div>
+
+<div class="qblock">
+<h2 id="a4">A4. "What do you know about Apple?"</h2>
+<p>Only publicly verifiable facts, each with its fiscal year and a source in the footnote list. Figures were checked on November 5, 2026 against the FY2026 Form 10-K (filed November 3, 2026), Apple Newsroom, Apple's leadership pages, the Apple Supplier List and the 2025 Supply Chain Progress Report. Anything that could not be verified was left out and is listed under "not said."</p>
+
+<div class="say">
+  <div class="label">Say this — about 60 seconds — <span class="wc" data-wc="a4-60">170 words</span></div>
+  <p>I know Apple from the outside, from the filings and the newsroom, not from inside its systems. In fiscal 2026, which ended September 26, Apple reported 478.8 billion dollars of net sales, up from 416.2 billion in fiscal 2025. Net property, plant and equipment was 52.1 billion, with about 84.4 billion of gross machinery, equipment and internal-use software, and Apple paid 9.0 billion for new property and equipment in the year, after 12.7 billion in fiscal 2025. The 10-K says substantially all hardware is manufactured by outsourcing partners located primarily in China mainland, India, Japan, South Korea, Taiwan and Vietnam, and that Apple reviews capital assets held at its suppliers' facilities for impairment. That is the sentence this role lives in. In August 2025 Apple raised its four-year US commitment to 600 billion dollars, and the Houston factory began shipping AI servers that October. And since September 1, 2026, John Ternus is CEO, Tim Cook is executive chair, and Sabih Khan as COO runs planning, procurement, manufacturing, quality and logistics.</p>
+</div>
+</div>
+
+<div class="note"><strong>How to say it without sounding like a brochure.</strong> Say the figures once, with the fiscal year, in a flat voice, and then turn each into the job: "84 billion of gross machinery and equipment, some of it at suppliers' facilities, is a lot of asset tags and placed-in-service dates that have to agree with a purchase order." Do not list all of it unless asked; two facts and one implication is usually enough. If they correct a figure, thank them and write it down.</div>
+
+<table class="sm">
+  <thead><tr><th style="width:36%">Fact as spoken</th><th>Exact figure and period</th><th style="width:14%">Source</th></tr></thead>
+  <tbody>
+    <tr><td>Net sales FY2026 vs FY2025</td><td>$478,834M for the fiscal year ended September 26, 2026; $416,161M for FY2025 (ended September 27, 2025); $391,035M for FY2024. Up 15% year over year.</td><td>[1], [2]</td></tr>
+    <tr><td>Property, plant and equipment</td><td>Net PP&amp;E $52,084M at September 26, 2026 ($49,834M a year earlier). Gross PP&amp;E $129,935M: land and buildings $29,413M; machinery, equipment and internal-use software $84,379M; leasehold improvements $16,143M; accumulated depreciation $77,851M.</td><td>[1]</td></tr>
+    <tr><td>Capital expenditures and depreciation</td><td>Payments for acquisition of property, plant and equipment: $9,041M in FY2026, $12,715M in FY2025, $9,447M in FY2024. Depreciation expense on PP&amp;E: $8.7B FY2026, $8.0B FY2025, $8.2B FY2024.</td><td>[1]</td></tr>
+    <tr><td>Manufacturing by outsourcing partners</td><td>"Substantially all of the Company's hardware products are manufactured by outsourcing partners that are located primarily in China mainland, India, Japan, South Korea, Taiwan and Vietnam." The company "relies on single-source partners" for many components and has "outsourced much of its transportation and logistics management." FY2026 10-K.</td><td>[1]</td></tr>
+    <tr><td>Capital assets at suppliers</td><td>The company reviews "capital assets held at its suppliers' facilities" for impairment; other purchase obligations ($27.3B at September 26, 2026) include "noncancelable obligations related to ... the acquisition of capital assets"; manufacturing purchase obligations $89.7B, $82.7B payable within 12 months. FY2026 10-K.</td><td>[1]</td></tr>
+    <tr><td>Headcount</td><td>Approximately 167,000 full-time equivalent employees as of September 26, 2026.</td><td>[1]</td></tr>
+    <tr><td>US investment commitment</td><td>February 24, 2025: more than $500B in the US over four years, including a 250,000-square-foot server factory in Houston and doubling the US Advanced Manufacturing Fund from $5B to $10B. August 6, 2025: raised to $600B over four years with the American Manufacturing Program. October 23, 2025: Houston began shipping AI servers. February 2026: Mac mini production coming to Houston.</td><td>[3], [4], [5], [6]</td></tr>
+    <tr><td>Supplier list and key partners</td><td>The Apple Supplier List represents 98% of direct spend for materials, manufacturing and assembly (list for fiscal 2023, published 2024; the 2025 Progress Report says "at least 98 percent"). It names Hon Hai Precision Industry (Foxconn), Pegatron, Luxshare Precision Industry and Taiwan Semiconductor Manufacturing Company.</td><td>[7], [8]</td></tr>
+    <tr><td>Supplier responsibility program</td><td>Annual report "People and Environment in Our Supply Chain" (2025 Progress Report): 893 independent third-party supplier assessments in the 2024 reporting period; Supplier Code of Conduct in place for almost twenty years; suppliers required to use 100% renewable electricity for Apple production before 2030.</td><td>[8]</td></tr>
+    <tr><td>Leadership</td><td>John Ternus became CEO on September 1, 2026 (announced April 20, 2026; previously SVP Hardware Engineering); Tim Cook became executive chair after serving as CEO 2011 to 2026 and, before that, COO responsible for worldwide operations including the supply chain. Sabih Khan, COO, leads planning, procurement, manufacturing, quality, logistics and product fulfillment.</td><td>[9], [10], [11]</td></tr>
+  </tbody>
+</table>
+
+<div class="note"><strong>Not said, because not verifiable from a public source.</strong> Any dollar or share for tooling specifically at contract manufacturers (the 10-K reports capital assets by class, not by location). Any country share of production. The name, age or design of Apple's internal CapEx system. Anything from the interviewer's personal profile about how CapEx is tracked inside Apple today. The older 10-K phrase "manufacturing equipment and tooling located at outsourcing partners" could not be confirmed in the FY2026 filing, so the FY2026 wording "capital assets held at its suppliers' facilities" is used instead. The superseded packet's line "the chief executive came up through operations" is no longer accurate and is not said.</div>
+
+<h4>Sources for Section A3 and A4</h4>
+<ol class="src">
+  <li>Apple Inc., Form 10-K for the fiscal year ended September 26, 2026, filed November 3, 2026. https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm</li>
+  <li>Apple Inc., Form 10-K for the fiscal year ended September 27, 2025, filed October 31, 2025. https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm</li>
+  <li>Apple Newsroom, "Apple will spend more than $500 billion in the U.S. over the next four years," February 24, 2025. https://www.apple.com/newsroom/2025/02/apple-will-spend-more-than-500-billion-usd-in-the-us-over-the-next-four-years/</li>
+  <li>Apple Newsroom, "Apple increases U.S. commitment to $600 billion, announces American Manufacturing Program," August 6, 2025. https://www.apple.com/newsroom/2025/08/apple-increases-us-commitment-to-600-billion-usd-announces-ambitious-program/</li>
+  <li>Reuters, "Apple begins shipping AI servers from Houston factory," October 23, 2025. https://www.reuters.com/business/apple-begins-shipping-ai-servers-houston-factory-2025-10-23/</li>
+  <li>Apple Newsroom, "Apple accelerates U.S. manufacturing with Mac mini production," February 2026. https://www.apple.com/newsroom/2026/02/apple-accelerates-us-manufacturing-with-mac-mini-production/</li>
+  <li>Apple Supplier List (fiscal year 2023), published 2024. https://s203.q4cdn.com/367071867/files/doc_downloads/2024/04/Apple-Supplier-List.pdf</li>
+  <li>Apple, "People and Environment in Our Supply Chain, 2025 Annual Progress Report." https://s203.q4cdn.com/367071867/files/doc_downloads/2025/04/Apple-Supply-Chain-2025-Progress-Report.pdf</li>
+  <li>Apple Newsroom, "Tim Cook to become Apple Executive Chairman, John Ternus to become Apple CEO," April 20, 2026. https://www.apple.com/newsroom/2026/04/tim-cook-to-become-apple-executive-chairman-john-ternus-to-become-apple-ceo/</li>
+  <li>Apple Leadership, Tim Cook. https://www.apple.com/leadership/tim-cook/</li>
+  <li>Apple Leadership, Sabih Khan. https://www.apple.com/leadership/sabih-khan/</li>
+</ol>
+
+<!-- ============================ SECTION B ============================ -->
+<h1 class="sec" id="secB">Section B — The ten likely questions, STAR format</h1>
+<p>Every story uses the same three spoken headings: <b>SITUATION/TASK</b> (what, why, when, scope, scale and the target metric), <b>ACTION</b> (how, and who was influenced), <b>RESULTS</b> (the metric before and after). The three together are held to 220 words or fewer, about ninety seconds spoken; Q1 is a guided tour of up to 250 words. Then a short <b>IF THEY PROBE</b> block with one-line answers, and where a second company carries the same point, an <b>ALTERNATE</b> of 80 words or fewer. No probing material sits before RESULTS.</p>
+<h2 id="map">Story map — which company carries each question</h2>
+<p>Primary is the story told first. Alternate is the 80-word switch if the interviewer has already heard the primary or asks for another company. No company is primary for more than three of the ten questions; Sephora is primary for three (Q4a, Q6, Q9a), Flexport for three (Q3, Q4b, Q9b), Elementum for three (Q2, Q7, Q8 lead). Q1, Q5 and Q10 are multi-company or public-fact answers.</p>
+<table class="map">
+  <thead><tr><th style="width:5%">Q</th><th style="width:30%">Question</th><th style="width:24%">Primary story (company)</th><th style="width:21%">Alternate story (company)</th><th>Lead metric</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Program and project initiatives in supply chain, manufacturing, operations</td><td>Guided tour: Elementum ×2, Flexport ×2, Sephora ×2</td><td>—</td><td>One metric per stop; 70→85%, $1.5M, 7→68, month 6 vs 18, oversell→0, +15%</td></tr>
+    <tr><td>2</td><td>Systems onboarding; accurate inputs; end-user adoption</td><td>Eight SAP domains and the CM BOM feed (Elementum)</td><td>S/4HANA inventory data contract (Sephora)</td><td>Class-A forecast accuracy 70% → 85%</td></tr>
+    <tr><td>3</td><td>Data discrepancies across systems and teams</td><td>Review data, four systems into Snowflake (Flexport)</td><td>Daily drift and Negative AFS (Sephora)</td><td>Review accuracy 60% → 90%; parity within 1%</td></tr>
+    <tr><td>4a</td><td>Resistant stakeholders; driving change</td><td>Available-for-sale definition, in-transit tradeoff (Sephora S/4HANA)</td><td>—</td><td>Oversell recurring → zero; no SKU with two published values</td></tr>
+    <tr><td>4b</td><td>Resistant stakeholders; driving change</td><td>Forwarding-app roadmap flip, partner-first and the reuse rule (Flexport)</td><td>—</td><td>Value month 6 vs 18; −66% effort; ~$5M avoided, said once</td></tr>
+    <tr><td>5</td><td>Excel proficiency</td><td>Honest inventory: Flexport review sheets, Elementum lane master, Sephora matrix</td><td>—</td><td>Sheet at 60% → pipeline 90%; bid 6 → 3 weeks</td></tr>
+    <tr><td>6</td><td>Multiple timelines, dependencies, competing priorities</td><td>Utah dual inventory, two go-lives (Sephora)</td><td>S/4 publish on the same two go-lives (Sephora)</td><td>Zero incidents; +15%; 714 of 836 closed</td></tr>
+    <tr><td>7</td><td>Vendors and suppliers following data protocols</td><td>Carrier lanes measured; EDI cohort gate (Elementum)</td><td>Forwarders and carriers behind graduation gates (Flexport)</td><td>Completeness 60% → 95%; 580K units at 99% service</td></tr>
+    <tr><td>8</td><td>SAP, WMS, MRP, database platforms</td><td>Inventory, Elementum first, then S/4HANA, Snowflake, WMS, Manhattan</td><td>—</td><td>One number per system</td></tr>
+    <tr><td>9a</td><td>Operational inefficiency or process gap</td><td>Robotics gate 94 vs 98 (Sephora Utah)</td><td>—</td><td>Full automation week 3; zero incidents; 86 of 836 rows</td></tr>
+    <tr><td>9b</td><td>Operational inefficiency or process gap</td><td>Review automation, Sheets to Snowflake (Flexport)</td><td>—</td><td>Accuracy 60% → 90%; bus factor 1 → ≥2</td></tr>
+    <tr><td>10</td><td>Apple ecosystem and cross-team collaboration</td><td>Public facts, outside-in; ends on a question back</td><td>—</td><td>No internal claim made</td></tr>
+  </tbody>
+</table>
+<div class="qblock">
+<h2 id="q1">Q1. "Walk me through your experience managing program or project initiatives in supply chain, manufacturing or operations."</h2>
+<p class="basis">A guided tour, about ninety seconds, not a single STAR. One sentence of situation and one metric per stop, weighted to Elementum and Flexport, then a closing sentence on where to go deep. All six metrics are <span class="tag">record</span> in the Amazon packet; pages in the numbers card.</p>
+<div class="star" data-wc="q1">
+  <div class="wcl">Guided tour, about ninety seconds — 247 words</div>
+  <p>Fifteen years, four companies, one job: making the record match the floor. At Elementum, a six-site manufacturer learned about component shortages when the line stopped, because eight SAP data domains and the contract manufacturer's bill of materials never met; I owned the definitions and the data-quality gates, and class-A forecast accuracy went from 70 to 85 percent. Same customer, logistics side: 200 shipping lanes were planned on carrier brochure lead times; I replaced them with measured distributions and about 580,000 units, roughly a million and a half dollars of safety stock, came out while lane service held 99 percent. At Flexport, Shipment Visibility went from seven pilot customers to sixty-eight behind six published graduation gates, and the weekly review I stitched by hand from four systems became one Snowflake pipeline, accuracy 60 to 90 percent. Also at Flexport, I re-sequenced an eighteen-month freight-forwarding app roadmap: partners first, a reuse rule for any module over eight developer-weeks, and first value came in six months at 66 percent less engineering effort. At Sephora, I own the inventory data contract on S/4HANA: three organizations signed one definition of available-for-sale, and oversell went from recurring to zero. And I ran the Utah distribution center's conversion from two systemic warehouses to one pool across two go-lives with zero customer-facing incidents and processing efficiency up 15 percent. I can go deep on any of them; the Elementum and Flexport ones are where I learned the method, and Sephora is where it runs today.</p>
+</div>
+</div>
+<div class="probe">
+  <div class="label">IF THEY PROBE — where each stop is expanded</div>
+  <p><b>Eight SAP domains.</b> Q2 tells it as a systems onboarding; Q8 lists the SAP transactions I reconciled to.</p>
+  <p><b>200 lanes on brochure lead times.</b> Q7 tells it as carriers held to a data protocol; the 18, 21 and 34-day lane is the worked example.</p>
+  <p><b>Shipment Visibility, seven to sixty-eight.</b> Q3 is the data-accuracy procedure; Q9b is the review automation that came out of it.</p>
+  <p><b>The forwarding-app roadmap.</b> Q4b, the partner-first flip and the eight-week reuse rule; the five million is said once.</p>
+  <p><b>S/4HANA available-for-sale.</b> Q4a, the three stakeholder positions and the in-transit tradeoff; the alternates in Q2 and Q3 are the same program.</p>
+  <p><b>Utah dual inventory.</b> Q6 for the schedule and dependencies; Q9a for the robotics gate. Same umbrella program as the S/4HANA publish.</p>
+  <p><b>Which is most recent?</b> Sephora, since April 2023; the S/4HANA contract was signed June 5, 2025 and both go-lives are behind us.</p>
+</div>
+<div class="qblock">
+<h2 id="q2">Q2. "Tell me about a systems onboarding project you managed. How did you ensure accurate data inputs and adoption by end users?"</h2>
+<p class="basis">Primary: Elementum, eight SAP data domains and the contract manufacturer's bill-of-materials feed into one supply view for a six-site manufacturer, 2017 to 2019. Mechanism and metrics <span class="tag">record</span>; the landing-validation wording follows the existing Apple Elementum insert, which labels it "my reconstruction, confirm the names." Alternate: Sephora S/4HANA.</p>
+<div class="star" data-wc="q2">
+  <div class="wcl">Situation/Task + Action + Results — 220 words</div>
+  <h4>SITUATION/TASK</h4>
+  <p>At Elementum, 2017 to 2019, a six-site manufacturer learned about component shortages when the line stopped. Eight SAP data domains never met, and the contract manufacturer's bill of materials arrived as an unreconciled feed. I owned the definitions and the data-integrity program; the client's SAP teams and our engineers built feeds. The target was a shortage visible a lead time early.</p>
+  <h4>ACTION</h4>
+  <p>I wrote the definition before any screen: grain SKU by location by date; supply is on-hand plus production plan plus released planned orders only; I refused to count unfirmed orders. Every domain went live behind a published data-quality gate its owner could fail, inventory and production first. Feeds ran as a nightly full load to re-baseline and heal a missed change, plus intraday deltas for receipts and shipments. A row that failed validation went to an exception queue with a source owner and was fixed at the source, never in our warehouse. Each morning landed numbers were reconciled to the SAP lists before the alert was trusted. Nobody was mandated off their spreadsheet.</p>
+  <h4>RESULTS</h4>
+  <p>Class-A forecast accuracy went from 70 to 85 percent. The shortage alert was live in three months, firing when days of cover fell inside the lane's lead time. Planner effort fell by half; two million dollars of safety stock came out under a rule Finance signed.</p>
+</div>
+</div>
+<div class="probe">
+  <div class="label">IF THEY PROBE</div>
+  <p><b>What did a quality gate look like?</b> Per-domain completeness at or above the bar, reconciliation passing daily, false alarms trending down. Below the gate the feed got fixed, not automated.</p>
+  <p><b>Who could fail a wave?</b> The domain owner. The business could say no to its own data, which is why they trusted it when they said yes.</p>
+  <p><b>The contract manufacturer's data?</b> Phantom assemblies found by math, exploding bills of materials against their MRP; revision overlaps held in an effective-date quarantine with a human disposition, never auto-loaded. Six sites in three waves over five months, zero auto-loaded overlaps.</p>
+  <p><b>Is the two million annual?</b> No. One-time working capital, released only where forecast error and lead-time error had both improved. I never add it to the lane program's million and a half.</p>
+  <p><b>What slipped?</b> The part-number mapping worklist gated longer than planned; it went to the sponsor as a re-sequenced date with the coverage number attached.</p>
+</div>
+<div class="alt" data-wc="q2-alt">
+  <div class="label">ALTERNATE — Sephora S/4HANA onboarding — <span class="wc" data-wc="q2-alt">74 words</span></div>
+  <p>Same shape at Sephora: S/4HANA became the inventory book of record with ISM publishing one available-for-sale number per SKU, node and channel. I mapped every bucket across fifteen functions to one owning system and held configuration until three organizations signed the specification on June 5, 2025. The order system reads the published number and never computes its own. Oversell went from recurring to zero through both go-lives; drift was zero SKUs at hypercare exit.</p>
+</div>
+<div class="qblock">
+<h2 id="q3">Q3. "How do you identify, investigate and resolve data discrepancies across systems or teams?"</h2>
+<p class="basis">Primary: Flexport, the Shipment Visibility weekly review, four systems (ticketing, the container pull, platform tracking data, blocker and critical counts) into one Snowflake pipeline. Procedure and metrics <span class="tag">record</span>; the four source systems <span class="tag">record-from-docs</span>. Alternate: Sephora S/4HANA daily drift and Negative AFS.</p>
+<div class="star" data-wc="q3">
+  <div class="wcl">Situation/Task + Action + Results — 219 words</div>
+  <h4>SITUATION/TASK</h4>
+  <p>At Flexport, the Monday review for Shipment Visibility ran on four systems that did not talk, stitched in Sheets by one person, me. Accuracy was about 60 percent, tickets carried no container identifier, and a vice president was steering a rollout on a number one person could break. My task was the same seven numbers out of one pipeline, every discrepancy explained.</p>
+  <h4>ACTION</h4>
+  <p>Step one, freeze the definitions: seven metrics, each signed by its input owner, so disagreements were about data, not vocabulary. Step two, fix the denominator: a fifteen-day inactive rule decided what counted. Step three, build the join: tickets had no container key, so we shipped a cross-reference table and pushed a real key upstream. Step four, run old and new in parallel and explain every mismatch before anyone switched; most were late tickets on the manual side. Step five, data honesty: a truncated week is a data miss, not a result, so I discarded a flattering 99.4 percent week and printed the gap. Step six, keep the manual pull as rollback until parity held a week more.</p>
+  <h4>RESULTS</h4>
+  <p>Review accuracy went from 60 to 90 percent, parallel-run parity inside one percent for consecutive weeks. The first automated catch was a four percent ticket-sync drop invisible by hand. Those seven numbers steered the rollout from seven customers to sixty-eight.</p>
+</div>
+</div>
+<div class="probe">
+  <div class="label">IF THEY PROBE</div>
+  <p><b>What was the acceptance gate?</b> Parallel run within one percent per frozen metric for consecutive weeks, every mismatch explained by cause, before the Monday deck moved onto the pipeline.</p>
+  <p><b>Across systems with no common key?</b> Count events in against events out at every boundary and give the record a trace identifier. At Flexport a missing trace identifier cost two to four hours per bug just to find the row; with it, about an hour.</p>
+  <p><b>What do you do with a row you cannot explain?</b> It stays open with an owner and an age. I do not type a guess to turn a tile green.</p>
+  <p><b>What did you get wrong?</b> I treated a data-access security review as an engineering concern, not a program dependency with a lead time. Two weeks; owned upward the same day; no Monday skipped.</p>
+  <p><b>How do you know the number is fixed?</b> The same report that found it goes green the next day, and stays green two days running.</p>
+</div>
+<div class="alt" data-wc="q3-alt">
+  <div class="label">ALTERNATE — Sephora S/4HANA daily drift — <span class="wc" data-wc="q3-alt">73 words</span></div>
+  <p>At Sephora the same discipline is a daily drift report, ISM against the S/4 stock list per SKU and node, tolerance zero. Timing rows are attributed first; an unmapped movement type is quarantined, never guessed; the Negative AFS report must be clean the next day or the row goes to Inventory Control. The fix goes into the source and tomorrow's report proves it. Drift was zero SKUs on consecutive days at hypercare exit.</p>
+</div>
+<div class="qblock">
+<h2 id="q4">Q4. "Describe a situation where multiple stakeholders resisted a new process or system. How did you drive change?"</h2>
+<p class="basis">Two full stories. 4a is Sephora S/4HANA, the available-for-sale definition: the three stakeholder positions and the design choice are <span class="tag">record</span> (Amazon pp. 167, 592, 647); the in-transit correction is the record's own policy-failure story (p. 546). 4b is Flexport, the freight-forwarding app roadmap <span class="tag">record</span> (pp. 1103–1106). Lead with whichever company the interviewer has not yet heard.</p>
+<h3 class="sub" id="q4a">4a — Sephora S/4HANA: one definition of available-for-sale, and the in-transit tradeoff</h3>
+<div class="star" data-wc="q4a">
+  <div class="wcl">Situation/Task + Action + Results — 220 words</div>
+  <h4>SITUATION/TASK</h4>
+  <p>On Sephora's S/4HANA inventory integration, "available" had three working definitions, and most oversell was a vocabulary defect. Merchandising wanted its reserve promisable. Finance wanted on-hand to tie to the book. Dotcom wanted in-transit units promisable. Engineering teams each proposed computing available-for-sale their own way. I owned no system; my task was one signed definition per node and channel and zero oversell.</p>
+  <h4>ACTION</h4>
+  <p>I wrote each need down as a need, not a mechanism, and priced the trades. Merchandising's reserve became visible but not promisable; promising it was selling unpickable stock, and the no became a specification row. Finance got an on-hand that includes reserves and ties to the book; the lower of SAP and warehouse quantities became the promising basis. On in-transit I conceded my first rule, promising none of it, was wrong: it starved dotcom of fast movers a day out. The replacement promises in-transit only where the lane's arrival falls inside a back-tested half-day window, with an on-time floor and a kill switch. Engineering gave up its own math: ISM publishes one number; everyone else reads it and never computes.</p>
+  <h4>RESULTS</h4>
+  <p>Three organizations signed on June 5, 2025. Oversell went from recurring to zero through both go-lives; no SKU ever carried two published values. The in-transit correction shipped as a signed specification change, oversell increase zero, kill switch never fired.</p>
+</div>
+</div>
+<div class="probe">
+  <div class="label">IF THEY PROBE 4a</div>
+  <p><b>Why not make S/4 the promising truth?</b> It posts documents and settles store sales as a nightly aggregate; promising needs every click and scan. Physical truth is S/4, promisable truth is the published number, and the two are reconciled daily at tolerance zero, not merged.</p>
+  <p><b>What did Merchandising actually get?</b> Its reserve visible inside financial on-hand, so Finance's number is whole, and never promisable. The no is a row in the signed specification, not a meeting minute.</p>
+  <p><b>Why was your first in-transit rule wrong?</b> Promising none of it is the same as claiming infinite lane variability. The aging report showed dotcom starved, so I reframed it as promise math: a lane window of about half a day covering roughly 95 percent of arrivals, an on-time floor, a kill switch, four regression cells, released lane by lane on the monthly cadence.</p>
+  <p><b>Did you escalate?</b> No. Private first, then the three signatures. A gate I win by rank dies when I leave the meeting.</p>
+  <p><b>What did the wrong rule cost?</b> The record carries no dollar for the conversion lost while I was wrong, and I will not invent one. The record movement is starved lanes restored with oversell increase zero.</p>
+</div>
+<div class="qblock">
+<h3 class="sub" id="q4b">4b — Flexport: re-sequencing my manager's roadmap, partners first, with a reuse rule</h3>
+<div class="star" data-wc="q4b">
+  <div class="wcl">Situation/Task + Action + Results — 217 words</div>
+  <h4>SITUATION/TASK</h4>
+  <p>At Flexport the freight-forwarding app's export launch had an inherited roadmap: operators first, eighteen months, socialized, my manager's name on it. Baselines were 339.5 minutes of operator time and 2,200 interactions per departed shipment; forwarding partners would wait. I owned the sequencing recommendation, not the roadmap; I restated the question as time to value and unit cost.</p>
+  <h4>ACTION</h4>
+  <p>I rebuilt the comparison at work-item grain with engineering re-estimates and confidence buffers: operator-first cut cost-to-serve 25 percent in nine months and still left operators a fifth of their time in the old app; partner-first cut it 50 percent in six. Then I wrote a reuse rule per module: anything over eight developer-weeks to rebuild gets reused from the existing app, ranked by benefit times impact over developer-weeks. I read it to my manager privately first; he argued two points, I adjusted one; engineering had two days to break the model. The objection was abandoning operators, so their two further quarters on old screens were priced and published, with a reversal trigger. He put his name on the flip.</p>
+  <h4>RESULTS</h4>
+  <p>First value came in month six instead of eighteen, at 66 percent less engineering effort, about five million dollars avoided, said once. The MVP went live with eleven partners in ten countries; 48 of 53 import partners migrated in a month.</p>
+</div>
+</div>
+<div class="probe">
+  <div class="label">IF THEY PROBE 4b</div>
+  <p><b>Was this build versus buy?</b> No, and I say so. It was sequencing and reuse on our own chassis: the rule decided which modules were rebuilt and which were reused from the existing app. The build-versus-buy call I did support was on Shipment Visibility, where we kept buying raw tracking sources but did not buy a competitor's visibility data, because visibility was the product.</p>
+  <p><b>What was the reuse rule exactly?</b> Over eight developer-weeks to rebuild, reuse; under, rebuild; rank by benefit times impact divided by developer-weeks. Agreed with product, UX and engineering per module.</p>
+  <p><b>How did your manager react?</b> He asked for the estimation details, argued two points, and put his name on the flip. That is the point of private-first.</p>
+  <p><b>How did you stop scope creep?</b> A burn-up tripwire: new work estimated and swapped, never absorbed. The burn-up ran 55.8 to 83.2 percent across two quarters with every work item owned.</p>
+  <p><b>Is the five million annual?</b> No. It is one-time cost avoidance, engineering never spent plus a year of unit savings pulled forward. I never present it as an annual reduction too.</p>
+</div>
+<div class="qblock">
+<h2 id="q5">Q5. "How proficient are you with Excel? How have you used it for analysis, reporting, tracking and reconciliation?"</h2>
+<p class="basis">Honest inventory anchored across three companies: the Flexport weekly-review snapshots (four exports, 1.5 to 2 hours each) <span class="tag">record</span>; the Elementum carrier-bid lane master <span class="tag ua">user anchor</span>; the Sephora node × channel × bucket-transition matrix and go/no-go read <span class="tag">record</span>. No VBA or macros are claimed; no BI dashboards are claimed as built.</p>
+<div class="star" data-wc="q5">
+  <div class="wcl">Situation/Task + Action + Results — 211 words</div>
+  <h4>SITUATION/TASK</h4>
+  <p>Excel and Google Sheets are where my reconciliations live until a system does the job. Same shape every time: two sources, one key, a delta, an owner, a disposition, and an exit bar written before I look.</p>
+  <h4>ACTION</h4>
+  <p>At Flexport the Monday review was four system exports stacked in Sheets, 1.5 to 2 hours a snapshot: a built key per container, XLOOKUP or INDEX-MATCH to put one system beside the other, SUMIFS and COUNTIFS for the seven metrics, Power Query when the files got large, and a plus-or-minus-five-percent week-over-week rule in conditional formatting. I froze the definitions in that sheet before anyone automated it. At Elementum the carrier-bid lane master gave every rate file one origin, destination and mode key, with data-validation lists so a lane could not be spelled five ways. At Sephora the go/no-go read was old available-for-sale against the new publish by SKU, node and channel, a pivot proving the bucket-transition matrix, and an unexplained variance red, never hidden in a filter.</p>
+  <h4>RESULTS</h4>
+  <p>The Flexport sheet ran at about 60 percent accuracy; the pipeline it specified reached 90. The carrier bid went from about six weeks a cycle to about three in my earlier record. The Sephora read showed no SKU with two published values, and oversell went to zero.</p>
+</div>
+</div>
+<table class="sm">
+  <thead><tr><th style="width:26%">Reconciliation template I use</th><th>Columns, left to right</th><th style="width:30%">Rule</th></tr></thead>
+  <tbody>
+    <tr><td>Two-system reconciliation</td><td>Key (built, trimmed, leading zeros restored) · Left system value · Right system value · Delta · Delta class (timing / mapping / duplicate / unexplained) · Owner · Disposition · Age in days</td><td>Denominator fixed before the load; raw tab untouched; raw = clean + quarantine; every key still found.</td></tr>
+    <tr><td>Before-and-after assertion</td><td>Node · Channel · Bucket from · Bucket to · Expected AFS change · Observed · Pass/Fail</td><td>No story enters QA without a matrix cell; a fail is a counted row, not a note.</td></tr>
+    <tr><td>Issue log</td><td>ID · Type · Severity · Operation · Functional area · Owner · Opened · Target · Status · Note</td><td>One grammar, data-validation lists; aged before the review; parked is a status, not a deletion.</td></tr>
+  </tbody>
+</table>
+<div class="probe">
+  <div class="label">IF THEY PROBE</div>
+  <p><b>Macros or VBA?</b> No. When a sheet needs code I write SQL or hand it to a pipeline with the definitions frozen.</p>
+  <p><b>Tableau or Power BI?</b> I have not built those dashboards hands-on. I have specified the metrics behind a Looker layer that infrastructure built. I would learn the view; the grain, the owner and the exit bar are the part I already run.</p>
+  <p><b>Biggest spreadsheet mistake you have seen?</b> A lookup without exact match on sorted data, and a quantity pasted over a serial. Both are why the raw tab stays untouched and the proof row exists.</p>
+  <p><b>How would you reconcile a contract manufacturer's tracker to the system?</b> Load both onto the purchase-order line list, quarantine what cannot be read, exact-match join, count misses and repeats, and publish the tolerance before I look.</p>
+</div>
+<div class="qblock">
+<h2 id="q6">Q6. "Tell me about a complex project with multiple timelines, dependencies and competing priorities. How did you keep it on track?"</h2>
+<p class="basis">Primary: Sephora Utah dual inventory, discovery through architecture council (effort signed 7/2, sign-off 7/31, specification 8/14), the dependency register, the critical path, January and May go-lives, hypercare exit. Dates <span class="tag">record</span> and <span class="tag">record-from-docs</span>. Alternate: the S/4HANA publish on the same two go-lives, one umbrella program.</p>
+<div class="star" data-wc="q6">
+  <div class="wcl">Situation/Task + Action + Results — 219 words</div>
+  <h4>SITUATION/TASK</h4>
+  <p>Sephora's Utah distribution center ran as two systemic warehouses in one building; converting to one pool shared a critical path with a warehouse-system upgrade and a robotics ramp, under an October-to-December peak freeze, thirty build tracks, and sixty-plus stakeholders wanting one date. My task was the model, the staging and the gates; zero customer-facing incidents allowed.</p>
+  <h4>ACTION</h4>
+  <p>Discovery ran March 29 to April 30, each system named to an owner. The architecture council got three decisions plus an out-of-scope fence: challenge May 15, every row pre-wired with its owner's signed effort by July 2, sign-off July 31, specification August 14. I split the release into two go-lives so each carried one defect class: purchasing and inbound in January 2025, inventory in May. The dependency register was the requirement table, 44 rows across 23 systems, under one log; the dated end-to-end tests, November 22, December 20 and January, were the deadlines. When the robotics retail test slipped three weeks I took the choice to steering that week; it moved the test to end of January rather than compress testing.</p>
+  <h4>RESULTS</h4>
+  <p>Both go-lives landed with zero customer-facing incidents; processing efficiency finished up 15 percent, DC Operations' measurement. The log closed 714 of 836 rows; after May it spiked to 271 and burned down 65, 21, 14, 4; hypercare exited week three of four.</p>
+</div>
+</div>
+<div class="probe">
+  <div class="label">IF THEY PROBE</div>
+  <p><b>What did you miss?</b> The retail robotics date was the vendor's calendar, not the floor's. A readiness row with its own owner would have moved that date in November, not December. I handled the slip in the open; I saw it late.</p>
+  <p><b>How did you decide what to defer?</b> Business criticality times effort under one log. The comingle-reserve improvements went out of the release to protect zero incidents, priced as a later enhancement at steering; a single go-live and an unrelated decommission also lost.</p>
+  <p><b>What were the top risks at sign-off?</b> Two live truths during the interim, a robotics ramp with no stop condition, and a peak collision. Each had a trigger, a mitigation and an owner before the council signed.</p>
+  <p><b>How did you know hypercare was over?</b> Blockers per day sustained under the bar and the post-go-live spike decaying 271, 65, 21, 14, 4. Exited week three of four. A calendar exit declares victory over open defects.</p>
+  <p><b>Same program as the S/4HANA story?</b> Yes, one umbrella program: same two go-lives, same 836-row log, same gate grammar. The alternate below is the S/4HANA lens.</p>
+</div>
+<div class="alt" data-wc="q6-alt">
+  <div class="label">ALTERNATE — Sephora S/4HANA on the same two go-lives — <span class="wc" data-wc="q6-alt">55 words</span></div>
+  <p>The S/4HANA inventory publish rode the same two go-lives, one umbrella program: January put reserve rules live against demand, May was execution. The specification went v1.1 in March, v1.2 in May and was signed June 5, 2025 by three organizations; rollback triggers were armed for both go-lives and never fired. Same log, same gate grammar.</p>
+</div>
+<div class="qblock">
+<h2 id="q7">Q7. "Have you worked with external vendors or suppliers during implementations? How did you make sure they followed the required processes and data protocols?"</h2>
+<p class="basis">Primary: Elementum, carriers as data vendors: 200 lanes measured against brochure lead times (worked example 18 / 21 / 34 days) <span class="tag">record</span>, and the supplier-and-carrier EDI onboarding behind a ≥95 percent valid-ASN cohort gate <span class="tag">record</span>. "597 first" is said as "in my earlier record" per the Amazon packet's verify list. The two are separate programs for the same manufacturer; the dollars are never added. Alternate: Flexport forwarders and carriers.</p>
+<div class="star" data-wc="q7">
+  <div class="wcl">Situation/Task + Action + Results — 220 words</div>
+  <h4>SITUATION/TASK</h4>
+  <p>At Elementum, carriers were my data vendors. A six-site manufacturer planned 200 lanes on brochure transit times, and its supply-chain head wanted inbound visibility on a thousand lanes in two months at 60 percent completeness. I owned the lane measurement and the onboarding standard; Transportation owned the carriers.</p>
+  <h4>ACTION</h4>
+  <p>On the lanes, I stopped taking the carrier's number on faith: a year of shipments per lane gave a mean and a tail. One brochure said 18 days; the mean was 21 and 99 percent arrived by day 34, so planned lead time moved to the tail. For onboarding I wrote the data contract first: the EDI document set with an XML and portal floor so small carriers stayed inside it. The gate was 95 percent valid advance ship notices in test, published before the first cohort, with a weekly lane scorecard; a failing file went back to its owner. I phased by spend and took the plan two levels up. One cohort failed the gate twice on a timestamp format; I held it twice.</p>
+  <h4>RESULTS</h4>
+  <p>Completeness went from 60 to 95 percent, the 597 lanes carrying 80 percent of spend live first in my earlier record, and about two million dollars of freight saved in six months. On the 200 lanes, 580,000 units of safety stock came out at 99 percent service.</p>
+</div>
+</div>
+<div class="probe">
+  <div class="label">IF THEY PROBE</div>
+  <p><b>What if a carrier cannot do EDI?</b> The floor exists for that: a portal or XML path with the same validation. The standard was the data, not the transport.</p>
+  <p><b>Why 597 and not a thousand?</b> A spend Pareto: those lanes carried 80 percent of freight spend, pre-validated with Transportation and Procurement so no lane owner could contradict it, and the remaining lanes carrying about 20 percent were deferred and priced. The executive accepted the phased plan in spend share, not lane count.</p>
+  <p><b>What about lanes that got worse?</b> About 50 lanes had more variability than the old assumption and took stock in. That is what made the release credible; fat-tail lanes kept their buffer until the source process moved.</p>
+  <p><b>How did the lanes stay true?</b> A drift flag per lane: rolling 90-day tail more than two days past plan, spread up by a quarter, or four or more late per hundred, and the lane came back for planner review, never a silent re-plan.</p>
+  <p><b>Forwarders at Flexport?</b> The alternate below: six published graduation criteria on the customer's own containers, and a wave held in public on an ETA miss.</p>
+</div>
+<div class="alt" data-wc="q7-alt">
+  <div class="label">ALTERNATE — Flexport forwarders and carriers — <span class="wc" data-wc="q7-alt">66 words</span></div>
+  <p>At Flexport, Shipment Visibility customers graduated through six published criteria measured on their own containers, never on demo data, and wave three was held in public when ETA accuracy missed because of one bad source. On the forwarding app, no work item went live without one named owner, and 48 of 53 import partners migrated within a month. The standard was the data, not the transport.</p>
+</div>
+<div class="qblock">
+<h2 id="q8">Q8. "Describe your experience with supply-chain or manufacturing systems such as SAP, WMS, MRP or other database platforms."</h2>
+<p class="basis">Honest inventory, Elementum first: what I did in each, not a feature list. I did not configure S/4HANA, ISM or the warehouse system; engineers and configurators did. Manhattan is the one platform I configured hands-on and it is back-up only. No MRP configuration is claimed.</p>
+<div class="star" data-wc="q8">
+  <div class="wcl">Situation/Task + Action + Results — 219 words</div>
+  <h4>SITUATION/TASK</h4>
+  <p>For fifteen years my seat has been integration owner between systems, not configurator. The honest list, in order: the Elementum planning platform over eight SAP domains and EDI, SAP S/4HANA with ISM, Snowflake with SQL, a warehouse-management system upgrade inside a live conversion, and Manhattan order management as back-up.</p>
+  <h4>ACTION</h4>
+  <p>At Elementum I owned definitions and data integrity over supplier, material, bill of materials, inventory, production, transportation, sales-order and planning data, reconciled daily to MD04, COOIS, VA05 and MB52, with nightly full loads, intraday deltas and X12 EDI; I pulled three years of shipments in SQL. On S/4HANA I owned the inventory-supply data contract: which buckets exist, which system owns each, how available-for-sale is computed, and the daily reconciliation of ISM to MB52; SAP teams configured to the signed specification. At Flexport I wrote the requirements and acceptance gate for four systems into one Snowflake pipeline, parallel run within one percent; infrastructure built it. On the warehouse system I owned requirement rows and gates; the vendor configured. At Manhattan I configured order promising and allocation.</p>
+  <h4>RESULTS</h4>
+  <p>Elementum: forecast accuracy 70 to 85 percent, completeness 60 to 95. S/4HANA: oversell recurring to zero, drift zero SKUs at hypercare exit. Snowflake: review accuracy 60 to 90 percent. Manhattan: 99 percent fill against a 95 percent goal across three DCs and a hundred stores.</p>
+</div>
+</div>
+<table class="sm">
+  <thead><tr><th style="width:20%">System</th><th>What I did in it</th><th style="width:30%">Number I can stand behind</th></tr></thead>
+  <tbody>
+    <tr><td>Elementum over SAP extracts and EDI</td><td>Definitions, data-quality gates per domain, reconciliation to MD04 / COOIS / VA05 / MB52, nightly full plus intraday deltas, 856 and 214 as events, exception workbench; SQL on three years of shipments.</td><td>Forecast accuracy 70% → 85%; $2M safety stock released under a both-errors rule; completeness 60% → 95%; Austria ~55% → ~99%. <span class="tag">record</span></td></tr>
+    <tr><td>SAP S/4HANA and ISM</td><td>Integration program lead for inventory supply: bucket inventory, lower-of-two AFS definition, real-time decrement contract, daily ISM-versus-MB52 drift, Negative AFS and AFS Correction controls, go/no-go. Did not configure.</td><td>One signed AFS per node per channel; oversell recurring → zero; drift 0 SKUs on consecutive days. <span class="tag">record</span></td></tr>
+    <tr><td>Snowflake and SQL</td><td>Business requirements and acceptance gate for four systems into one pipeline; parallel run within 1%; specified the queries. Infrastructure built it.</td><td>Accuracy 60% → 90%; first automated catch a 4% ticket-sync drop. <span class="tag">record</span></td></tr>
+    <tr><td>Warehouse management system (Utah upgrade)</td><td>Requirement rows, gates, council pack and staging while the building moved to one omni pool; the vendor and platform teams configured.</td><td>Two go-lives, zero customer-facing incidents; processing efficiency +15% (DC Operations' number). <span class="tag">record</span></td></tr>
+    <tr><td>Manhattan order management (back-up)</td><td>Configured order promising and allocation for a retailer; owned the operating rule at peak.</td><td>3 DCs, 100 stores; 99% fill vs 95% goal; stockouts −20%. <span class="tag">record</span></td></tr>
+    <tr><td>MRP</td><td>Planning grain (forecast, safety stock, lane lead time) on Elementum against SAP extracts. Not configured.</td><td>Safe sentence: "I can tell you what the planning input has to mean and reconcile it; I did not configure MRP."</td></tr>
+  </tbody>
+</table>
+<div class="probe">
+  <div class="label">IF THEY PROBE</div>
+  <p><b>How do you learn a system you have not configured?</b> I sit with the person who runs the screen, take one transaction and walk it back to the row, and count what entered a boundary against what left before I trust a dashboard.</p>
+  <p><b>Fixed-asset modules?</b> Not in my record. The mechanism I bring is the same one I ran on inventory: one owner per field, a counted reconciliation, and a control screen with an audit row.</p>
+  <p><b>Database depth?</b> Keys, grain and joins; SQL to interrogate the data under a report when the reported number did not match the rows.</p>
+</div>
+<div class="qblock">
+<h2 id="q9">Q9. "Tell me about a time you identified an operational inefficiency or process gap. What did you do and what was the outcome?"</h2>
+<p class="basis">Two full stories. 9a is Sephora Utah, the robotics ramp: the 98 percent gate, 94 in week two, about 30 percent throttled to carts, full volume week three, 86 of 836 rows, are <span class="tag">record</span> (Amazon pp. 58, 1052–1053, 1055); the mis-pick arithmetic in the probe is <span class="tag mod">model</span>. 9b is Flexport, the weekly review moved from hand-built Sheets to the Snowflake pipeline <span class="tag">record</span> (pp. 1110–1112).</p>
+<h3 class="sub" id="q9a">9a — Sephora Utah: a robotics ramp with no stop condition, 94 against 98</h3>
+<div class="star" data-wc="q9a">
+  <div class="wcl">Situation/Task + Action + Results — 217 words</div>
+  <h4>SITUATION/TASK</h4>
+  <p>Inside the Utah conversion, Sephora was ramping Locus robots on retail outbound picking in a building that was also moving warehouse systems. The gap I named was that the plan had no stop condition: robots would take volume on the vendor's say-so. I set the gate with DC Operations before a bot arrived: 98 percent pick-accurate throughput, carts as fallback, and the robot-versus-cart share built as a dial the floor owned.</p>
+  <h4>ACTION</h4>
+  <p>Discovery was three working days of workshops with the vendor, not email. The network expansion went under a versioned statement of work with photo evidence as acceptance; integration was tested on simulated data before a physical bot rolled. When the retail test slipped three weeks I escalated it the week it surfaced and refused to compress acceptance testing. In week two of go-live the gate read 94 against 98. The rule fired: I moved about 30 percent of retail volume to carts for a week while zone and slotting logic was root-caused and fixed, rather than redefine the bar.</p>
+  <h4>RESULTS</h4>
+  <p>Full automation in week three. Retail outbound went live inside the combined cutover with zero customer-facing incidents; robotics issues were 86 of the program's 836 logged rows. DC Operations measured processing efficiency up 15 percent on the converted building. The cost was a week of cart labor.</p>
+</div>
+</div>
+<div class="probe">
+  <div class="label">IF THEY PROBE 9a</div>
+  <p><b>What were the 94 and 98?</b> Pick-accurate throughput, in percent, read weekly against a gate published before the first bot arrived. The record also carries a 99 percent stretch.</p>
+  <p><b>Why 98?</b> Set from the pre-ramp baseline and the incident budget before the event. A gate that cannot stop the program is decoration; mine did.</p>
+  <p><b>Why 30 percent and not zero?</b> By my model, not the record: four points of accuracy at full robot share is about 6,000 mis-picks a week against a budget of about 2,000 on an illustrative 100,000-unit week; a roughly 30 percent share keeps robot-side errors inside the budget. The record is the dial at about 30 percent.</p>
+  <p><b>How did the vendor take it?</b> I had refused "ramp to 100 percent on our say-so" in the workshops, so the gate was published first and the throttle was a rule, not an argument.</p>
+  <p><b>What would you do differently?</b> Put the vendor's retail test on the risk register with an owner and a trigger, not on the plan as a task. The slip was handled in the open; it was seen late.</p>
+</div>
+<div class="qblock">
+<h3 class="sub" id="q9b">9b — Flexport: a weekly review built by hand, moved onto a pipeline</h3>
+<div class="star" data-wc="q9b">
+  <div class="wcl">Situation/Task + Action + Results — 219 words</div>
+  <h4>SITUATION/TASK</h4>
+  <p>At Flexport the weekly business review for Shipment Visibility was built by hand every Monday for over a year: four systems that did not join, stitched in Sheets, 1.5 to 2 hours a snapshot and later about four, accuracy around 60 percent, bus factor one. A vice president was steering a rollout on a number only I could produce. I wrote them and owned the cutover; infrastructure owned the build.</p>
+  <h4>ACTION</h4>
+  <p>I priced the status quo in the infrastructure team's own loaded rates, over a hundred thousand dollars a year including decision risk, so they prioritized the build themselves. The requirements froze the seven metric definitions, specified a daily feed with failure alerts, and set the acceptance gate: parallel run within one percent per metric for consecutive weeks. Scope was the seven numbers, nothing new. The manual pull stayed as rollback until parity held a week past the gate. The miss was mine: an unplanned data-access security review cost two weeks; I owned it upward the same day and kept the review alive by hand.</p>
+  <h4>RESULTS</h4>
+  <p>Accuracy went from 60 to 90 percent; bus factor from one to at least two; zero Mondays skipped through the build. The first automated catch was a four percent ticket-sync drop invisible by hand. Every kickoff I run now asks whose approval the data needs.</p>
+</div>
+</div>
+<div class="probe">
+  <div class="label">IF THEY PROBE 9b</div>
+  <p><b>Why did infrastructure prioritize it?</b> Because I priced the status quo in their own loaded rates, including the vice president's decision risk, at over a hundred thousand a year. That is a priced baseline, not a claimed saving.</p>
+  <p><b>Is 60 to 90 the same number as the Shipment Visibility accuracy?</b> No, and I keep them apart. This is the review's data accuracy once four systems became one pipeline. The visibility product's ETA accuracy also moved 60 to 90 in the same program family; I say which one I mean.</p>
+  <p><b>The join problem?</b> Tickets carried no container identifier. We shipped a documented cross-reference table and pushed a real key upstream to Support.</p>
+  <p><b>Who owns it now?</b> The pipeline steers the review without me; the seven definitions live in code; the manual pull is retired.</p>
+  <p><b>The two-week miss?</b> Mine. I had not planned the data-access security review. Owned upward the same day, build re-sequenced, zero Mondays skipped, and every kickoff since asks whose approval the data needs.</p>
+</div>
+<div class="qblock">
+<h2 id="q10">Q10. "How familiar are you with the Apple ecosystem, its internal systems, and how teams collaborate across Apple's supply chain and operations?"</h2>
+<p class="basis">Outside-in only. Public facts from A4; role names from the requisition. No internal system is named or guessed. Ends on a question back to the interviewer.</p>
+<div class="star" data-wc="q10">
+  <div class="wcl">Situation/Task + Action + Results — 220 words</div>
+  <h4>SITUATION/TASK</h4>
+  <p>I do not have inside knowledge of Apple's systems, and I will not guess a tool name. What I know is public. The fiscal 2026 10-K says substantially all hardware is built by outsourcing partners in six countries and that Apple holds capital assets at suppliers' facilities. The requisition names the people in the room: the global supply manager, the technical program manager and advanced manufacturing engineer, the operations program manager, Finance, and the contract manufacturer who lives with the tool.</p>
+  <h4>ACTION</h4>
+  <p>My model of how they collaborate, and I would ask you to correct it, is that they meet on a launch. Engineering wants a capability, Finance has an appropriation, the supply manager has a supplier and a purchase order, the contract manufacturer has a floor and a tag, and the system of record keeps those four out of private workbooks. The fields that break quietly are the joins: purchase order to asset, placed-in-service date, quantity versus serialized units, site and cost center. I have run that meeting on inventory, three organizations signing one definition, not inside Apple.</p>
+  <h4>RESULTS</h4>
+  <p>So rather than claim familiarity, I would ask: on the pilot that became your playbook, which lesson did teams actually follow, and which did you have to keep enforcing? And where does the CapEx system still lose to a side spreadsheet today?</p>
+</div>
+</div>
+<div class="probe">
+  <div class="label">IF THEY PROBE — and the three questions to ask in the last four minutes</div>
+  <p><b>What about Apple's suppliers?</b> The public supplier list covers 98 percent of direct spend and names Hon Hai, Pegatron, Luxshare and TSMC; the 2025 supply-chain report counts 893 third-party supplier assessments in 2024. I know the program exists and what it is for; I have not memorized it.</p>
+  <p><b>Question 1.</b> On the pilot that became the playbook, which lesson did teams follow, and which did you have to keep enforcing?</p>
+  <p><b>Question 2.</b> Where does the CapEx system still lose to a side spreadsheet, and what would you want a program manager to do about it in the first ninety days?</p>
+  <p><b>Question 3.</b> When Engineering and Finance disagree on a launch, who makes the call today, and what evidence do they need in the room?</p>
+  <p><b>Close, one breath.</b> I baseline the number, I put one owner on every field, and I do not escalate a row the owner can close. I would like the seat that makes that true for onboarding.</p>
+</div>
+
+<!-- ============================ SECTION C ============================ -->
+<h1 class="sec" id="secC">Section C — Audit findings and the numbers card</h1>
+
+<h2 id="c1">C1. Audit of the uploaded packet and use-case insert</h2>
+<div class="note"><strong>v3 change.</strong> The v2 Section B was rejected because all ten primary stories were Sephora. v3 rebuilds Section B so Elementum, Flexport and the Sephora S/4HANA work carry the weight, with the Utah program used for the multi-timeline question and the robotics gate. Sections A and C are unchanged except for the new rows in the numbers card below. Three of the brief's framings differed from the Amazon packet and were written to the record: the forwarding-app decision is partner-persona-first with a per-module rebuild-or-reuse rule, not a build-versus-partner vendor choice (p. 1103–1106); it was dotcom, not Merchandising, that wanted in-transit promisable, while Merchandising wanted its reserve promisable (pp. 592, 647); and the eight SAP domains belonged to the six-site manufacturer, with the contract manufacturer supplying the bill-of-materials feed (pp. 1124, 1139).</div>
+<p>Files audited: <i>capex-call-packet-revised_191b.pdf</i> (19 pages, "P") and <i>capex-usecase-rewrite__2__bbdf.pdf</i> (3 pages, "U"). Where a finding concerns an answer that exists only in the superseded 76-page packet's recruiter-question companion, the row says "old Part 2." The forbidden-term grep (the two legacy warehouse-system vendor names, the cutover task count and the dress-rehearsal term) returned nothing in either uploaded file; the same grep is run on this PDF after rendering and must return nothing.</p>
+<table class="sm">
+  <thead><tr><th style="width:9%">Where</th><th style="width:30%">Finding</th><th style="width:31%">What the Amazon packet says</th><th>Fix in this packet</th></tr></thead>
+  <tbody>
+    <tr><td>P3 (a)</td><td>"Tell me about yourself" has no chronology: no company years, no titles, Manhattan Associates omitted; the order Flexport → Elementum → Sephora is neither oldest-first nor newest-first; it opens as a habits pitch ("a program manager who gets teams to agree on what a number means"), not background.</td><td>75-second TMAY is newest-to-oldest across four companies with one number each (p.1041); the 60-second Amazon format is present → past → future (p.1325); Elementum 2017–19 (p.1240), Flexport 2021–22 (p.61), Sephora April 2023–present (p.717); "fifteen years" (p.1041, p.34).</td><td>A1 is chronological with the years the Amazon packet gives, one metric per stop, titles in the probe block.</td></tr>
+    <tr><td>P3 (a)</td><td>The 45-second cut repeats the same structure and omits background.</td><td>30-second version exists in the Amazon packet (p.1041) in company order.</td><td>A1 30-second cut, chronological.</td></tr>
+    <tr><td>P3 (f)</td><td>"I also wrote the seven metric definitions for the Zendesk-to-Snowflake pipeline" carries no outcome.</td><td>S16: accuracy 60% → 90%, parallel run within 1% (p.1111–1112).</td><td>A1 and Q8 state 60 → 90.</td></tr>
+    <tr><td>P4 (a)</td><td>"Why Apple" restates the posting ("Three things in the posting pulled me in"). The only Apple-specific fact is hedged ("a lot of the capital equipment sits in contract manufacturers' factories") and carries no source, year or figure; the CapEx chain appears as one clause.</td><td>Not an Amazon-packet matter; the Amazon "Why Amazon" (p.1042) shows the required shape: three reasons, each tied to a lived number.</td><td>A3 names three verified FY2026 10-K facts, walks the appropriation → PO → tag → placed-in-service → depreciation → physical-to-book chain, and ties each to Sephora, Elementum and Flexport.</td></tr>
+    <tr><td>P4, P18 (d)</td><td>"Quote no tooling or capital-spend dollar" leaves the candidate with nothing concrete; "order of ten billion" in old Part 2 has no fiscal year.</td><td>—</td><td>A4 gives FY2026 and FY2025 figures with the fiscal year on each and a footnoted URL.</td></tr>
+    <tr><td>P (missing)</td><td>Two of the four recruiter sample questions, "day-to-day responsibilities" and "what do you know about Apple," are absent from the 19-page packet.</td><td>Most recent engagement is the S/4HANA ↔ ISM integration, FSD v1.1 3/5/25 → v1.2 5/16/25 → signed 6/5/25 (p.1045).</td><td>A2 and A4 added.</td></tr>
+    <tr><td>Old Part 2 Q4 (d)</td><td>"The chief executive came up through operations." Outdated: John Ternus (hardware engineering) became CEO September 1, 2026; Tim Cook is executive chair.</td><td>—</td><td>A4 states the current leadership with the date; the operations lineage is attributed to the COO.</td></tr>
+    <tr><td>Old Part 2 Q4 (d)</td><td>"Public filings describe Apple as owning a substantial share of the specialized tooling and test equipment at those partners." The FY2026 10-K does not disclose a share; its wording is "capital assets held at its suppliers' facilities."</td><td>—</td><td>A4 quotes the 10-K wording; no share is claimed.</td></tr>
+    <tr><td>P3 (b)</td><td>S/4HANA "through both go-lives" and Utah "through two go-lives" read as two separate pairs of go-lives.</td><td>S1: the dated gate chain, the issues log and the rollback triggers are program-level artifacts shared with S2/S5, "one umbrella program; if two of these stories go to one loop, say so" (p.1045).</td><td>Q1, Q2 and Q6 say "one umbrella program"; the cover rule says it too.</td></tr>
+    <tr><td>P8 (b)</td><td>"I re-sequenced an 18-month roadmap to value in six, 66 percent less effort, about $5M" names no company.</td><td>S12 is the Flexport Freight Forwarding App export roadmap (p.1104); the numbers check flags that a loop packet once told it as a Sephora roadmap (p.1104).</td><td>Q4 probe attributes it to Flexport and says the $5M once as avoided cost.</td></tr>
+    <tr><td>P6, P18 (b)</td><td>"597 first" labelled user anchor; completeness 60 → 95 on a thousand-lane program across 25 European locations.</td><td>S9 carries 597 = 80% of spend live in month one as record (p.1133–1134), but VERIFY V1 says the delivered count conflicts and gives the safe wording (p.39).</td><td>Q7 uses the safe wording: "597 carrying 80 percent of spend in my earlier record." No change to the number.</td></tr>
+    <tr><td>P7 (b)</td><td>Austria "within a quarter."</td><td>S10 says "~99% in 3 months" (p.1148); V2 safe wording "within a quarter" (p.39). Consistent.</td><td>Kept.</td></tr>
+    <tr><td>P8 (b)</td><td>Council "more than sixty stakeholders."</td><td>S5: ~80 named participants across ~15 functions on the impact table; resume: 60+ stakeholders (p.1083, p.34). Both are record.</td><td>Q4 says "about eighty names across fifteen functions, sixty-plus on the steering path."</td></tr>
+    <tr><td>P7 (f)</td><td>Flexport trace id: "Bugs went from hours to locate to traceable per system" has no before/after.</td><td>S19: bug localization 2–4 hours → about 1 hour (p.1234).</td><td>Q3 probe: two to four hours to about an hour.</td></tr>
+    <tr><td>P8 (f)</td><td>Council say-box ends on "signed on July 31" with no metric.</td><td>S5 primary metric: surprise escalations, the norm → zero for the program's life; LOE 7/2, sign-off 7/31, FSD 8/14 (p.1083).</td><td>Q4 RESULTS carries escalations → zero and the dated chain.</td></tr>
+    <tr><td>P13 (e)(b)</td><td>Excel page leans on a formula table and a Python checker ("excel_toolkit.py", a 10,289-row workbook). The checker is a personal tool test and is not in the Amazon packet; the formula list is tech-centric for a business call.</td><td>Excel-relevant record: node × channel × bucket-transition matrix with before/after assertions (p.1045); 836-row log workbook (p.123); Sheets WBR 1.5–2 hours per snapshot (p.1111); Austria SQL census (p.1148); carrier-bid lane master, user anchor (p.1155).</td><td>Q5 is an honest inventory anchored to those artifacts, with a reconciliation template; the Python checker is dropped.</td></tr>
+    <tr><td>P14 (e)</td><td>Three SQL queries and an entity sketch on the practice data.</td><td>—</td><td>Not reproduced; SQL is one sentence in Q8.</td></tr>
+    <tr><td>P1, P16 (d)</td><td>"Who is across the table" and "the profile says the system of record is the foundation for later AI" recite the interviewer's personal profile as facts about Apple's internal CapEx tracking.</td><td>—</td><td>Not recited anywhere in this packet; A4 lists it under "not said."</td></tr>
+    <tr><td>P10–P12, U1–U2</td><td>CapEx lifecycle model and TS-LINE-RAMP practice program. Correctly labelled "my model" and "practice data"; useful business content.</td><td>—</td><td>Kept as the model behind A3 and Q10; practice data is not spoken unless asked.</td></tr>
+    <tr><td>P2, P9 (b)</td><td>"7 to 68 customers, 9.7x, 170 users, two months early."</td><td>Numbers check: 170 MAU and 32,000 shipments were targets; safe aloud "170 users landed two months early; 32,000 shipments was a target" (p.35).</td><td>A1 uses 7 → 68 only; no user or shipment count.</td></tr>
+    <tr><td>P9 (b)</td><td>Carrier bid "about six weeks to about three; back-test under 5 percent."</td><td>S17 is user anchor; no award dollar (p.1155).</td><td>Q9 probe keeps the label "my earlier record" and no dollar.</td></tr>
+    <tr><td>All (c)</td><td>Forbidden terms: the two legacy warehouse-system vendor names, the cutover task count, the dress-rehearsal cutover.</td><td>The Amazon packet's UDC and S/4 stories carry a cutover task count and dress-rehearsal references.</td><td>None imported. Post-render grep of this PDF is part of the build.</td></tr>
+    <tr><td>P (b)</td><td>"twelve years" never appears in P, but the Amazon packet carries both "twelve" and "fifteen."</td><td>Loop packet p.1232 says twelve; the reconciled packet (p.1040) says its values override, and uses fifteen (p.1041, p.34, p.717).</td><td>Fifteen.</td></tr>
+    <tr><td>Scope note</td><td>The brief lists "Walmart client" under Elementum.</td><td>The Amazon packet labels all Walmart stories (S19–S21) and Google Fiber E-series stories DESIGN CASES with no delivered result: "Say I designed / in the model" (p.3, p.37).</td><td>Not used as a delivered story; no Walmart or Google Fiber number appears in this packet.</td></tr>
+  </tbody>
+</table>
+
+<h2 class="break" id="c2">C2. Career chronology extracted from the Amazon packet</h2>
+<table class="sm">
+  <thead><tr><th style="width:18%">Company</th><th style="width:26%">Title as the Amazon packet states it</th><th style="width:16%">Dates in the Amazon packet</th><th>What he owned there, and the Amazon-packet page</th></tr></thead>
+  <tbody>
+    <tr><td>Manhattan Associates</td><td>"Where I started." Ran distribution order-management programs for a major retailer; Manhattan DOM is the only platform personally configured in canon.</td><td>No years given.</td><td>Allocation and order promising, 3 DCs and 100 stores; Cyber Monday 99% fill vs 95% goal; stockouts −20%; about $6M on the line when paged, about $8M of the day's sales protected (p.1041, p.1213, p.36, p.717).</td></tr>
+    <tr><td>MetricStream</td><td>Dual-hat program manager and solution lead; the one role with direct reports.</td><td>No years given; before Flexport ("everywhere since, matrix").</td><td>SOWs, estimates, budgets, onshore/offshore delivery, UAT, cutover, hypercare. Resume-only role proof; no client or dollar in the source set (p.34, p.39, p.1367).</td></tr>
+    <tr><td>Elementum</td><td>Program lead on customer programs; supply-chain planning software for manufacturers; client-SAP data integration.</td><td>2017–19</td><td>Eight SAP domains into one view, 70% → 85%, $2M released (p.1125); 1,000-lane EDI program, 60% → 95%, 597 first (p.1133); Austria ~55% → ~99%, $500K/yr then ~$8M across 25 EU sites (p.1148); 200 lanes measured, 580K units ≈ $1.5M at 99% service (p.1240); CM BOM, 0 → 6 sites (p.1140); carrier bid 6 → 3 weeks, user anchor (p.1155).</td></tr>
+    <tr><td>Flexport</td><td>Technical Program Manager, Shipment Visibility; program lead, Freight Forwarding App export; program owner across nine teams / ~100 people.</td><td>2021–22 (visibility team created May 2020; FF App 2022)</td><td>7 → 68 customers (9.7×), $0.66 → $0.03 per container, automation 40% → 90% (p.1097); four systems into Snowflake, 60% → 90% (p.1111); roadmap flip, value in 6 months not 18, 66% less effort, ~$5M avoided (p.1104); Crux decommission, 79 customers (p.61).</td></tr>
+    <tr><td>Sephora</td><td>Technical program manager for retail fulfillment and inventory; S/4HANA inventory integration program lead; Utah dual-inventory program lead.</td><td>April 2023 – present</td><td>One signed AFS per node per channel, oversell recurring → zero (p.1044–1045); Utah two warehouses → one omni pool, +15%, zero incidents, 836-row log (p.1052, p.123); architecture council, escalations → zero (p.1083); 20-person cadence 6 → 4 weeks, defects −50% (p.1090).</td></tr>
+  </tbody>
+</table>
+<div class="note"><strong>Where the uploaded packet disagreed with this chronology.</strong> It did not state a chronology at all; that is the finding. It never names Manhattan Associates in the opener and never gives a year for any employer. It mentions MetricStream only in a vendor-pricing probe, consistent with the Amazon packet's safe line. It carries "fifteen years" nowhere and "twelve years" nowhere; the Amazon packet itself carries both, and the reconciled section says fifteen.</div>
+
+<h2 id="c3">C3. Numbers card — every metric in this packet, its noun, its basis, and its Amazon-packet page</h2>
+<table class="sm">
+  <thead><tr><th style="width:26%">Number</th><th>Noun and context</th><th style="width:12%">Basis</th><th style="width:11%">Amazon p.</th></tr></thead>
+  <tbody>
+    <tr><td>Fifteen years; four companies</td><td>Career span; Manhattan, Elementum, Flexport, Sephora (MetricStream held for a probe)</td><td>record</td><td>1041, 34</td></tr>
+    <tr><td>3 DCs, 100 stores; 99% fill vs 95% goal; stockouts −20%</td><td>Manhattan Associates, Cyber Monday peak</td><td>record</td><td>1041, 1213</td></tr>
+    <tr><td>About $6M on the line; about $8M protected</td><td>Manhattan Cyber Monday; two nouns kept apart</td><td>record</td><td>36</td></tr>
+    <tr><td>Elementum 2017–19; Flexport 2021–22; Sephora Apr 2023–present</td><td>Employment years</td><td>record</td><td>1240, 61, 717</td></tr>
+    <tr><td>Eight SAP data domains; six sites; alert live in 3 months</td><td>Elementum supply/demand view</td><td>record</td><td>1125–1126</td></tr>
+    <tr><td>Forecast accuracy 70% → 85%</td><td>Scoped class-A SKUs</td><td>record</td><td>1125–1126</td></tr>
+    <tr><td>$2M safety stock released</td><td>One-time, under the both-errors-improved rule; never added to $1.5M</td><td>record</td><td>1126</td></tr>
+    <tr><td>Nightly full load; intraday deltas; reconciliation to MD04 / COOIS / VA05 / MB52</td><td>Elementum data map</td><td>record</td><td>1125, 1131</td></tr>
+    <tr><td>Austria 40% reported, ~55% true, ~99% within a quarter; 8–10 → 1–2 hrs/week</td><td>Routing-guide data quality; three years of shipments in SQL</td><td>record</td><td>1148–1149, 39</td></tr>
+    <tr><td>$500K/yr Austria; ~$8M across 25 EU sites</td><td>Finance-signed executed-only method (probe only; not spoken in the main answers)</td><td>record</td><td>1149</td></tr>
+    <tr><td>1,000 lanes asked; 25 European locations; completeness 60% → 95%; ≥95% valid-ASN gate; cohort held twice</td><td>Elementum EDI onboarding</td><td>record</td><td>1133–1134</td></tr>
+    <tr><td>597 lanes = 80% of spend first</td><td>Phasing by spend; "in my earlier record"</td><td>user anchor / conflict</td><td>1133, 39</td></tr>
+    <tr><td>Freight spend −10% ≈ $2M in six months</td><td>On the onboarded lanes</td><td>record</td><td>1134</td></tr>
+    <tr><td>200 lanes; brochure 18 d, mean 21, p99 34; 60% late; ~400 shipments per lane</td><td>Measured lane lead time, example lane</td><td>record / worked example</td><td>1240</td></tr>
+    <tr><td>580,000 units ≈ $1.5M; 99% service; ~50 lanes took stock in; 12,900 → 8,100 units</td><td>Lane program release; example lane</td><td>record</td><td>1240</td></tr>
+    <tr><td>Carrier bid ~6 weeks → ~3; back-test under 5%</td><td>Lane master; no award dollar</td><td>user anchor</td><td>1155</td></tr>
+    <tr><td>7 → 68 customers (9.7×); two months early; six graduation criteria; wave 3 held</td><td>Flexport Shipment Visibility</td><td>record</td><td>1097–1098</td></tr>
+    <tr><td>Four systems → one Snowflake pipeline; accuracy 60% → 90%; parallel run within 1%; 1.5–2 hrs per snapshot; 4% ticket-sync drop</td><td>Flexport WBR pipeline</td><td>record</td><td>1111–1112</td></tr>
+    <tr><td>Trace id: 2–4 hours → about 1 hour per bug</td><td>Flexport bug localization</td><td>record-from-docs</td><td>1234</td></tr>
+    <tr><td>Roadmap flip: value month 6 vs 18; −66% effort; ~$5M avoided; −25% vs −50% CTS; 48 of 53 partners in a month</td><td>Flexport Freight Forwarding App export</td><td>record</td><td>1104–1105</td></tr>
+    <tr><td>FSD v1.1 3/5/25 → v1.2 5/16/25 → signed 6/5/25; three signatories; ~15 functions; two-week hold</td><td>Sephora S/4HANA ↔ ISM data contract</td><td>record</td><td>1044–1047</td></tr>
+    <tr><td>Oversell recurring → zero through two go-lives; one AFS per node per channel; drift 0 SKUs on consecutive days</td><td>Sephora S/4HANA ↔ ISM</td><td>record</td><td>1045</td></tr>
+    <tr><td>Rollback triggers: sync &lt;99% for 4 h, or p95 &gt; 2× budget for 1 h; never fired</td><td>Sephora go-lives</td><td>record</td><td>1047</td></tr>
+    <tr><td>≈$1M/yr legacy support cost retired; ≈4 FTE → ≈1 FTE reconciliation</td><td>Sephora; $1M is user anchor, FTEs are model</td><td>user anchor / model</td><td>1045, 1049</td></tr>
+    <tr><td>Negative AFS clean at T+1; AFS Correction screen; control owners</td><td>Sephora control screens</td><td>record</td><td>1045, 1047</td></tr>
+    <tr><td>Unmapped movement type quarantined; late goods receipt attributed as timing</td><td>Drift root-cause classes</td><td>record (design)</td><td>168</td></tr>
+    <tr><td>Kickoff 3/29/24; sessions 4/30; council 5/15; LOE 7/2; sign-off 7/31; FSD planned 7/26, signed 8/14</td><td>Utah dated chain</td><td>record / record-from-docs</td><td>1052, 1083, 74</td></tr>
+    <tr><td>E2E 11/22, 12/20, 1/15 planned → end of January; go-lives January 2025 and May 2025</td><td>Utah two go-lives</td><td>record</td><td>1052, 124</td></tr>
+    <tr><td>836 rows; 714 closed (85.4%); ~1 in 7 a bug; June spike 271 → 65 → 21 → 14 → 4</td><td>Utah issues log</td><td>record</td><td>123–124</td></tr>
+    <tr><td>44 requirement rows; 23 named systems; ~80 names / ~15 functions; 60+ stakeholders; ~30 build tracks; about a dozen core systems</td><td>Utah council pack and program scale</td><td>record-from-docs / record</td><td>42, 1083, 1052</td></tr>
+    <tr><td>Zero customer-facing incidents; processing efficiency +15%</td><td>Utah; DC Operations' measurement</td><td>record</td><td>1053</td></tr>
+    <tr><td>Robotics gate 98%; week two 94%; ~30% to carts; full volume week three; testing slipped 3 weeks</td><td>Utah robotics ramp</td><td>record</td><td>1052–1053</td></tr>
+    <tr><td>Surprise escalations: norm → zero</td><td>Utah architecture council</td><td>record</td><td>1083</td></tr>
+    <tr><td>Three reserve buckets; no historical conversion</td><td>Utah location model</td><td>record-from-docs</td><td>87 (old Part 2 trace)</td></tr>
+    <tr><td>20 people; 6-week → 4-week cadence in six weeks; critical defects −50%</td><td>Sephora cadence (probe only)</td><td>record</td><td>1090</td></tr>
+    <tr><td>Robotics gate 98% (99% stretch); week two 94%; ~30% of retail volume to carts for a week; full automation week three; 86 of 836 rows Locus-side</td><td>Utah robotics ramp (Q9a); pick-accurate throughput in percent</td><td>record / user anchor on detail</td><td>58, 1052–1053, 1055, 52</td></tr>
+    <tr><td>Three-day vendor workshops; SOW v1.4 (Nov 19, 2024); photo evidence as acceptance; simulated-data SIT before a physical bot</td><td>Utah robotics track (Q9a)</td><td>record-from-docs</td><td>58, 141</td></tr>
+    <tr><td>6,000 mis-picks vs 2,000 budget at full share; 33.3% maximum safe share; 100,000 units/week</td><td>Why ~30% (Q9a probe); illustrative inputs</td><td>model</td><td>598, 603</td></tr>
+    <tr><td>Roadmap operator-first 18 months; 339.5 min/shipment; 2,200 operator interactions per departed shipment; 9 vs 6 months; −25% vs −50% CTS; 20% still in old app</td><td>Flexport forwarding-app export (Q4b)</td><td>record</td><td>1103–1104</td></tr>
+    <tr><td>Rebuild-or-reuse rule: &gt;8 dev-weeks to rebuild → reuse; rank by benefit × impact ÷ dev-weeks; 15 domains × 6 modules; burn-up 55.8% → 83.2%</td><td>Flexport forwarding-app (Q4b)</td><td>record</td><td>1104–1105, 284</td></tr>
+    <tr><td>MVP 11 partners in 10 countries; 48 of 53 import partners in a month; value month 6 vs 18; −66% effort; ~$5M avoided (said once)</td><td>Flexport forwarding-app (Q4b)</td><td>record</td><td>1104–1106</td></tr>
+    <tr><td>Partner-first vs operator-first persona sequencing; not a build-vs-buy vendor decision</td><td>Framing correction (Q4b probe); SV did not buy competitor visibility data, kept buying raw sources</td><td>record / record-from-docs</td><td>1103, 284, 256</td></tr>
+    <tr><td>Four review sources: ticketing (Zendesk), the Crux container pull, platform tracking data, Jira blocker/critical counts; join ticket ID ↔ container number</td><td>Flexport weekly review (Q3, Q9b)</td><td>record-from-docs</td><td>331, 393</td></tr>
+    <tr><td>Seven frozen metrics; 15-day inactive rule; ±5% WoW rule; cross-reference table then real key upstream; parallel run within 1% for consecutive weeks</td><td>Flexport review data accuracy (Q3)</td><td>record</td><td>1097, 1110–1111</td></tr>
+    <tr><td>99.4% truncated week discarded; six graduation criteria; waves W1 Q4'21 (2) → W2 Q1'22 (4 of 7) → W3 Q2'22 (20+, held) → full H2'22; nine teams / ~100 people</td><td>Flexport Shipment Visibility (Q3, Q7 alt)</td><td>record</td><td>1096–1098</td></tr>
+    <tr><td>&gt;$100K/yr priced baseline (BRD arithmetic $103,680); bus factor 1 → ≥2; 1.5–2 h then ~4 h per snapshot; 2-week security-review miss; 4% ticket-sync drop; zero Mondays skipped</td><td>Flexport review automation (Q9b)</td><td>record / record-from-docs</td><td>1110–1112, 393</td></tr>
+    <tr><td>Three positions: Merchandising reserve promisable; Finance on-hand ties to book; dotcom in-transit promisable. Design options A (S/4 as promising truth) and B (each consumer computes) rejected; C (one publisher, consumers never compute) chosen</td><td>Sephora S/4HANA AFS (Q4a)</td><td>record</td><td>592, 647, 167–168</td></tr>
+    <tr><td>In-transit rule v1 = promise none (mine, wrong); v2 lane σ ≈ 0.3 d → ~0.49-d window ≈ 95% coverage, on-time floor, kill switch, four regression cells, released lane by lane on the monthly cadence; oversell increase 0; kill switch never fired</td><td>Sephora S/4HANA in-transit tradeoff (Q4a)</td><td>record (promise math); no loss dollar in record</td><td>546, 132</td></tr>
+    <tr><td>Six-site manufacturer; eight SAP domains (supplier, material, BOM, inventory, production, transportation, sales order, planning); supply = on-hand + production plan + released planned orders only; unfirmed MRP orders refused</td><td>Elementum eight domains (Q2)</td><td>record</td><td>1124–1125</td></tr>
+    <tr><td>Shortage alert = days-of-cover ≤ lane lead-time p90; live in 3 months; planner effort −50%; adoption 8×; MPN worklist slipped</td><td>Elementum eight domains (Q2)</td><td>record</td><td>1125–1126</td></tr>
+    <tr><td>Contract-manufacturer BOM: phantoms found by math; effective-date quarantine, human disposition, never auto-load; 0 → 6 sites in 3 waves / 5 months; zero auto-loaded revision overlaps</td><td>Elementum CM BOM feed (Q2 probe)</td><td>record</td><td>1139–1140</td></tr>
+    <tr><td>Landing → validation or quarantine → conformed → alert; reject at landing, never silently fix</td><td>Elementum data flow wording (Q2)</td><td>Apple Elementum insert, "my reconstruction"</td><td>existing Apple part 5</td></tr>
+    <tr><td>p99 promise policy; lead-time accuracy gate 99% on the 200-lane set; held-out quarter 99.1%; drift flag: p99 &gt; plan + 2 d, or σ &gt; 1.25× baseline, or ≥4 late per 100</td><td>Elementum 200 lanes (Q7)</td><td>record</td><td>1117–1118, 1240</td></tr>
+    <tr><td>Spend Pareto 597 lanes = 80% of spend; ~200 next wave; ~400 lanes ≈ 20% of spend deferred and priced; two levels up</td><td>Elementum EDI onboarding (Q7)</td><td>record (count flagged by V1)</td><td>1132–1134, 39</td></tr>
+    <tr><td>Apple figures: $478.8B, $416.2B, $52.1B, $84.4B, $9.0B, $12.7B, $8.7B, $89.7B, $27.3B, 167,000, $500B, $600B, 98%, 893</td><td>Public sources, fiscal years stated in A4</td><td>public, footnoted</td><td>A4 sources [1]–[11]</td></tr>
+  </tbody>
+</table>
+<p class="foot">Build: HTML rendered with headless Chrome to Letter, 0.6-inch margins, document outline generated from headings; page numbers in the contents table filled from the rendered PDF; post-render grep for the two legacy vendor names, the task count and the dress-rehearsal term. Word counts per spoken box are printed in each box label; alternates are held to 80 words, Q1 to 250, every other STAR to 220.</p>
+
+</body>
+</html>

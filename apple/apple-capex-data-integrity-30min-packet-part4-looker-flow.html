@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CapEx data integrity — Looker end-to-end flow (part 4)</title>
+<style>
+  @page { size: letter; margin: 0.62in 0.68in 0.68in 0.68in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", "Inter", Arial, sans-serif; font-size: 10.3pt; line-height: 1.38; color: #1c1c1c; }
+  h1 { font-size: 20pt; line-height: 1.15; margin: 0 0 6px; letter-spacing: -0.02em; }
+  h2 { font-size: 13pt; margin: 16px 0 6px; padding-top: 8px; border-top: 2px solid #1a2744; page-break-after: avoid; }
+  h2.break { page-break-before: always; }
+  h3 { font-size: 11.3pt; margin: 12px 0 4px; page-break-after: avoid; color: #1a2744; }
+  h3.st { font-size: 12pt; color: #1c1c1c; border-left: 4px solid #1a2744; padding-left: 8px; margin-top: 16px; page-break-before: always; }
+  h4 { font-size: 10.3pt; margin: 9px 0 3px; page-break-after: avoid; color: #8a1c2b; }
+  p { margin: 0 0 7px; }
+  ul, ol { margin: 2px 0 8px; padding-left: 18px; }
+  li { margin: 0 0 3px; }
+  .kicker { font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .cover { min-height: 8.6in; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 1.0in; page-break-after: always; }
+  .cover .role { font-size: 12.5pt; color: #1a2744; margin: 0 0 18px; }
+  .cover .who { background: #1a2744; color: #fff; padding: 16px 20px; margin: 10px 0 16px; }
+  .cover .who .nm { font-size: 17pt; font-weight: 700; letter-spacing: -0.01em; }
+  .cover .who .tt { font-size: 11pt; color: #e6ddcb; margin-top: 3px; }
+  .cover .who .dt { font-size: 12pt; margin-top: 10px; font-weight: 700; }
+  .cover .who .sh { font-size: 9.5pt; color: #e6ddcb; margin-top: 4px; }
+  .cover .strat { background: #f7f4ee; border-left: 4px solid #8a1c2b; padding: 10px 14px; margin: 8px 0; font-size: 10.6pt; }
+  .cover .strat strong { color: #8a1c2b; }
+  .cover .lpg { font-size: 9.6pt; color: #333; margin-top: 10px; }
+  .cover .lpg em { color: #7a5a00; font-style: normal; font-weight: 700; }
+  .cover .src { font-size: 8.8pt; color: #666; margin-top: auto; padding-top: 24px; }
+  .meta { background: #f4f1ea; border-left: 4px solid #1a2744; padding: 8px 12px; margin: 8px 0 10px; font-size: 10pt; }
+  .meta div { margin: 1px 0; }
+  .say { background: #f7f4ee; border: 1px solid #d9d0c1; border-left: 4px solid #8a1c2b; padding: 8px 12px 4px; margin: 6px 0 10px; page-break-inside: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, serif; font-size: 10.4pt; line-height: 1.42; }
+  .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .star { background: #fcfbf8; border: 1px solid #d9d0c1; padding: 7px 12px 3px; margin: 4px 0 10px; font-size: 9.7pt; }
+  .star p { margin: 0 0 5px; }
+  .stag { font-weight: 700; color: #8a1c2b; }
+  .hon { background: #f3f0fa; border-left: 4px solid #5b4a8a; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.3pt; color: #333; }
+  .hon strong { color: #5b4a8a; }
+  .doc { background: #eef4f6; border: 1px solid #c3d5da; border-left: 4px solid #1f6f7a; padding: 7px 12px 4px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .doc p { margin: 0 0 5px; }
+  .doc .label { color: #1f6f7a; }
+  .kc { background: #fdf8ef; border: 1px solid #e4d2ac; border-left: 4px solid #b8860b; padding: 6px 12px 4px; margin: 6px 0 10px; font-size: 9.4pt; }
+  .kc ul { margin: 2px 0 6px; padding-left: 16px; }
+  .inf { background: #fbf7ec; border-left: 4px solid #b8860b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.4pt; }
+  .inf strong { color: #7a5a00; }
+  .rules { background: #fdf0f0; border: 1px solid #e3b7b7; border-left: 4px solid #8a1c2b; padding: 7px 12px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .rules strong { color: #8a1c2b; }
+  .qa { border-left: 3px solid #d9d0c1; padding: 2px 0 2px 10px; margin: 0 0 9px; font-size: 9.5pt; page-break-inside: avoid; }
+  .qa p { margin: 0 0 3px; }
+  .qa p.q { color: #1a2744; font-weight: 700; }
+  .sh { font-size: 8.8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin: 10px 0 4px; border-bottom: 1px solid #d9d0c1; padding-bottom: 2px; page-break-after: avoid; }
+  ul.res { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
+  ul.res li { margin: 0 0 3px; }
+  ul.phz { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
+  ul.phz li { margin: 0 0 4px; }
+  .pb { font-weight: 700; color: #1a2744; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 9.1pt; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #ddd; padding: 4px 6px 4px 0; }
+  th { font-size: 8.2pt; letter-spacing: 0.04em; text-transform: uppercase; color: #555; border-bottom: 1.5px solid #1a2744; }
+  table.sm { font-size: 8.5pt; }
+  table.sm th, table.sm td { padding: 3px 5px 3px 0; }
+  td.c { color: #8a1c2b; font-weight: 700; }
+  span.new { display: inline-block; background: #8a1c2b; color: #fff; font-size: 7.4pt; letter-spacing: 0.08em; padding: 1px 5px; border-radius: 3px; vertical-align: middle; margin-left: 4px; text-transform: uppercase; }
+  span.b { display: inline-block; background: #e8eef6; color: #1a2744; font-size: 7.6pt; padding: 0 4px; border-radius: 3px; margin-left: 2px; }
+  .toc div { margin: 2px 0; font-size: 9.8pt; }
+  .toc .grp { font-weight: 700; color: #8a1c2b; margin-top: 8px; }
+  a { color: #1a2744; text-decoration: none; }
+  .cite { color: #1f6f7a; font-size: 8.6pt; }
+  .two { columns: 2; column-gap: 22px; }
+  pre.lk { font-family: "Liberation Mono", "Courier New", monospace; font-size: 7.6pt; line-height: 1.28; background: #f4f1ea; border: 1px solid #d9d0c1; border-left: 4px solid #1a2744; padding: 6px 8px; margin: 4px 0 8px; white-space: pre-wrap; page-break-inside: avoid; }
+  svg.flow { width: 100%; height: auto; display: block; margin: 2px 0 4px; }
+  .figcap { font-size: 8.4pt; color: #444; margin: 0 0 8px; }
+  .figwrap { page-break-inside: avoid; }
+  .dash { border: 1.5px solid #1a2744; margin: 4px 0 8px; page-break-inside: avoid; }
+  .dash .bar { background: #1a2744; color: #fff; padding: 5px 8px; font-size: 8.6pt; font-weight: 700; }
+  .dash .bar span { color: #e6ddcb; font-weight: 400; }
+  .dash .tag { font-size: 7.5pt; letter-spacing: 0.06em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; padding: 4px 8px 0; }
+  table.kpi { margin: 2px 0 0; font-size: 8.2pt; }
+  table.kpi td { width: 20%; border-bottom: 1px solid #d9d0c1; padding: 5px 6px 6px; }
+  table.kpi .n { font-size: 12.5pt; font-weight: 700; color: #1a2744; line-height: 1.05; }
+  table.kpi .sub { font-size: 7.6pt; color: #444; }
+  table.inside { margin: 0; }
+  table.inside th, table.inside td { padding: 2px 5px; }
+  ol.tight { margin: 2px 0 8px; padding-left: 18px; }
+  ol.tight li { margin: 0 0 3px; }
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<p class="kicker">Apple CapEx · 30-minute call · part 4 · Looker end-to-end flow · practice program TS-LINE-RAMP</p>
+<h1>From the tracker to the closed exception, in Looker</h1>
+<div class="meta">
+  <div><strong>Who this is for.</strong> You, walking the Capital Expenditure Systems Lead through one technical flow. The tool is <strong>Looker on Google Cloud</strong> (LookML in Git). Looker Studio is a different product. This packet does not use a Microsoft BI tool.</div>
+  <div><strong>Already written, do not re-teach.</strong> Part 3 is the seven layers, LookML object names, and the Power BI / Tableau / Looker comparison. This part is the path for one program: sources, the warehouse, the lab’s LookML, one PO line, the load gate, and what you say.</div>
+  <div><strong>Banner.</strong> The flow is my model of how a company like this would run CapEx data integrity — public knowledge, the job description, and the interviewer’s profile. It is not inside knowledge of Apple’s proprietary system. In the room: “Here is how I would wire it. Correct me where your stack differs.” Every count below is the lab’s answer key unless a line says <span class="b">record</span> or <span class="b">record-from-docs</span>.</div>
+</div>
+<div class="hon"><strong>The practice program, exact.</strong> <b>TS-LINE-RAMP</b>, test-station line ramp, as-of <b>16 March 2026</b>. Forty PO lines. Sites <b>CM-A</b>, <b>CM-B</b>, and internal <b>PLANT-01</b>. Suppliers Atlas Fixture Co, Northline Test Systems, Helix Instruments. Owners: Elena Vasquez (AME), David Cho (TPM), Priya Raman (GSM), Wei Chen (site A), Jordan Hale (site B), Morgan Ellis (Finance). The row you walk is <b>PO line 00017</b>, asset <b>AST-TS-0017</b>, Northline, PO-55022, CM-B, received 12 February 2026, placed-in-service blank. LookML files: <span class="cite">capex_integrity.model.lkml</span>, <span class="cite">fact_po_line.view.lkml</span>, <span class="cite">fact_asset.view.lkml</span>, <span class="cite">fact_exception.view.lkml</span>, <span class="cite">fact_field_edit.view.lkml</span>, the five <span class="cite">dim_*.view.lkml</span> files, and <span class="cite">capex_integrity_scorecard.dashboard.lookml</span>. <span class="b">lab</span></div>
+
+<h2 id="s1">1. Architecture — nine stages, left to right</h2>
+<p>Looker does not hold the book of record. The warehouse does. Looker stores LookML, users, saved content, and a result cache, and it generates SQL at query time. A persistent derived table is still a table in the warehouse. The fix never lands in Looker.</p>
+
+<div class="figwrap">
+<svg class="flow" viewBox="0 0 740 268" role="img" aria-label="Nine stages from sources through lifecycle">
+  <defs>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#1a2744"/>
+    </marker>
+  </defs>
+  <g font-family="Liberation Sans, Arial, sans-serif">
+    <rect x="4" y="4" width="136" height="108" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="12" y="20" font-size="11" font-weight="700" fill="#1a2744">1 · Sources</text>
+    <text x="12" y="38" font-size="8.5" fill="#333">CapEx system-of-record DB</text>
+    <text x="12" y="52" font-size="8.5" fill="#333">ERP: PO and fixed-asset</text>
+    <text x="12" y="66" font-size="8.5" fill="#333">master (e.g., SAP)</text>
+    <text x="12" y="80" font-size="8.5" fill="#333">CM Excel / SharePoint</text>
+    <text x="12" y="94" font-size="8.5" fill="#333">Supplier ship notices</text>
+
+    <line x1="140" y1="58" x2="152" y2="58" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="156" y="4" width="136" height="108" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="164" y="20" font-size="11" font-weight="700" fill="#1a2744">2 · Ingestion</text>
+    <text x="164" y="38" font-size="8.5" fill="#333">Warehouse: BigQuery</text>
+    <text x="164" y="52" font-size="8.5" fill="#333">or Snowflake</text>
+    <text x="164" y="66" font-size="8.5" fill="#333">Scheduled pipelines</text>
+    <text x="164" y="80" font-size="8.5" fill="#333">(e.g. Fivetran / Airflow)</text>
+    <text x="164" y="94" font-size="8.5" fill="#333">Trackers: file loader + log</text>
+
+    <line x1="292" y1="58" x2="304" y2="58" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="308" y="4" width="136" height="108" rx="3" fill="#fdf0f0" stroke="#8a1c2b" stroke-width="1.5"/>
+    <text x="316" y="20" font-size="11" font-weight="700" fill="#8a1c2b">3 · Transform</text>
+    <text x="316" y="38" font-size="8.5" fill="#333">dbt / SQL in the warehouse</text>
+    <text x="316" y="52" font-size="8.5" fill="#333">Type, trim, serial dedupe</text>
+    <text x="316" y="66" font-size="8.5" fill="#333">Conform site and supplier</text>
+    <text x="316" y="80" font-size="8.5" fill="#333">Surrogate keys</text>
+    <text x="316" y="94" font-size="8.5" fill="#333">Quarantine table</text>
+
+    <line x1="444" y1="58" x2="456" y2="58" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="460" y="4" width="136" height="108" rx="3" fill="#fdf0f0" stroke="#8a1c2b" stroke-width="1.5"/>
+    <text x="468" y="20" font-size="11" font-weight="700" fill="#8a1c2b">4 · LookML</text>
+    <text x="468" y="38" font-size="8.5" fill="#333">Views, explores</text>
+    <text x="468" y="52" font-size="8.5" fill="#333">Dimensions and measures</text>
+    <text x="468" y="66" font-size="8.5" fill="#333">Derived tables and PDTs</text>
+    <text x="468" y="80" font-size="8.5" fill="#333">Aggregate awareness</text>
+    <text x="468" y="94" font-size="8.5" fill="#333">Git is the definition</text>
+
+    <line x1="596" y1="58" x2="608" y2="58" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="612" y="4" width="124" height="108" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="620" y="20" font-size="11" font-weight="700" fill="#1a2744">5 · Content</text>
+    <text x="620" y="38" font-size="8.5" fill="#333">Explores, Looks,</text>
+    <text x="620" y="52" font-size="8.5" fill="#333">dashboards</text>
+    <text x="620" y="66" font-size="8.5" fill="#333">Filters, drill fields</text>
+    <text x="620" y="80" font-size="8.5" fill="#333">Link to the record</text>
+    <text x="620" y="94" font-size="8.5" fill="#333">Five scorecard tiles</text>
+
+    <line x1="674" y1="112" x2="674" y2="132" stroke="#1a2744"/>
+    <line x1="674" y1="132" x2="72" y2="132" stroke="#1a2744"/>
+    <line x1="72" y1="132" x2="72" y2="146" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="4" y="150" width="136" height="108" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="12" y="166" font-size="11" font-weight="700" fill="#1a2744">6 · Governance</text>
+    <text x="12" y="184" font-size="8.5" fill="#333">User attribute +</text>
+    <text x="12" y="198" font-size="8.5" fill="#333">access_filter (row-level)</text>
+    <text x="12" y="212" font-size="8.5" fill="#333">Folders and roles</text>
+    <text x="12" y="226" font-size="8.5" fill="#333">LookML validation, PR</text>
+    <text x="12" y="240" font-size="8.5" fill="#333">Certified content</text>
+
+    <line x1="140" y1="204" x2="152" y2="204" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="156" y="150" width="136" height="108" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="164" y="166" font-size="11" font-weight="700" fill="#1a2744">7 · Delivery</text>
+    <text x="164" y="184" font-size="8.5" fill="#333">Schedule Monday 07:00</text>
+    <text x="164" y="198" font-size="8.5" fill="#333">to the field owners</text>
+    <text x="164" y="212" font-size="8.5" fill="#333">Alert on a tile threshold</text>
+    <text x="164" y="226" font-size="8.5" fill="#333">Looker Action opens</text>
+    <text x="164" y="240" font-size="8.5" fill="#333">a task, with the drill</text>
+
+    <line x1="292" y1="204" x2="304" y2="204" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="308" y="150" width="136" height="108" rx="3" fill="#fdf0f0" stroke="#8a1c2b" stroke-width="1.5"/>
+    <text x="316" y="166" font-size="11" font-weight="700" fill="#8a1c2b">8 · Write-back</text>
+    <text x="316" y="184" font-size="8.5" fill="#333">Looker is read-only</text>
+    <text x="316" y="198" font-size="8.5" fill="#333">Fix in the system</text>
+    <text x="316" y="212" font-size="8.5" fill="#333">of record</text>
+    <text x="316" y="226" font-size="8.5" fill="#333">Next warehouse run</text>
+    <text x="316" y="240" font-size="8.5" fill="#333">closes the exception</text>
+
+    <line x1="444" y1="204" x2="456" y2="204" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="460" y="150" width="276" height="108" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="468" y="166" font-size="11" font-weight="700" fill="#1a2744">9 · Lifecycle</text>
+    <text x="468" y="184" font-size="8.5" fill="#333">LookML: dev branch, validation, pull request, prod merge</text>
+    <text x="468" y="198" font-size="8.5" fill="#333">dbt tests in the warehouse job, before Looker reads</text>
+    <text x="468" y="212" font-size="8.5" fill="#333">A playbook rule enters the gate before the next file</text>
+    <text x="468" y="226" font-size="8.5" fill="#333">Connection name in the model is a placeholder:</text>
+    <text x="468" y="240" font-size="8.5" fill="#333">capex_bigquery_placeholder — point it at the warehouse</text>
+  </g>
+</svg>
+<p class="figcap">Read the top row left to right, then the bottom row left to right. Red boxes are where a data-integrity PM owns the definition: the tests, the measure, and the rule that the tool must not write the fix. Aggregate awareness sits in stage 4 so a program total can use a rollup and a drill to the PO line still hits the base table. The lab model does not declare a rollup; the five tiles each query the explore whose grain matches the question.</p>
+</div>
+
+<h2 id="s2">2. What happens at each stage</h2>
+<p>Owner means the person accountable in this model. You, the data-integrity PM, do not type the asset row and you do not merge LookML you have not reviewed. The pipeline clock in this flow is <b>06:00</b>. The scorecard delivery is <b>Monday 07:00</b>, after that run. <span class="b">model schedule</span> The as-of date the lab freezes is 16 March 2026. <span class="b">lab</span></p>
+
+<table class="sm">
+  <thead>
+    <tr>
+      <th style="width:14%">Stage</th>
+      <th style="width:28%">What happens technically</th>
+      <th style="width:16%">Owner</th>
+      <th style="width:21%">What goes wrong</th>
+      <th style="width:21%">Control</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1 · Sources</strong></td>
+      <td>Four feeds. The CapEx system-of-record database. The ERP for the PO and the fixed-asset master (e.g., SAP). Wei’s and Jordan’s Excel or SharePoint trackers, with different headers. Supplier ship notices, which this extract does not contain as a file; the received date is already on the PO line.</td>
+      <td>Field owners: GSM, Finance, CM coordinators, supplier. Systems PM owns the system of record.</td>
+      <td>Two trackers, two header languages. A serial lives in an inbox and is typed twice. The floor moves a tool over a weekend and the book keeps the old site.</td>
+      <td>One system of record after onboarding. The tracker is a source, not a second book. Ship notices land as rows, not as email.</td>
+    </tr>
+    <tr>
+      <td><strong>2 · Ingestion</strong></td>
+      <td>Scheduled pipelines (for example Fivetran or Airflow) into BigQuery or Snowflake. ERP and the system of record are table syncs. Trackers go through a file loader that writes a load log: file name, row count, arrival time, hash. A fully blank Excel artifact is not a submission. The lab’s connection string is <span class="cite">capex_bigquery_placeholder</span>.</td>
+      <td>Data platform runs the job. You own the load log and the go / no-go call.</td>
+      <td>A silent miss: the file arrived and the log does not. Monday’s tile then describes Friday. A second copy of the same file double-counts if the loader is not idempotent on PO line id.</td>
+      <td>The 06:00 job fails closed when the log row is missing. Idempotent load on <span class="cite">po_line_id</span>. The log is what you count before you say go.</td>
+    </tr>
+    <tr>
+      <td><strong>3 · Transformation</strong></td>
+      <td>dbt or SQL in the warehouse, the checks in <span class="cite">sql/02_quality_checks.sql</span>. Trim values. Map site tokens (<span class="cite">A</span>, <span class="cite">SITE A</span>, <span class="cite">CM A</span>) to <span class="cite">CM-A</span>, <span class="cite">CM-B</span>, <span class="cite">PLANT-01</span>. Parse three date formats. Conform supplier codes to <span class="cite">SUP-ATLAS</span>, <span class="cite">SUP-NORTH</span>, <span class="cite">SUP-HELIX</span>. Surrogate keys on the dimensions. Rows that fail the structural gate go to a quarantine table and do not become facts.</td>
+      <td>Analytics engineer builds the models. You publish the tests and the tolerance before the file arrives.</td>
+      <td>A code that exists can still be the wrong site. A second asset on one PO line is a fan-out, not a duplicate id. Blank placed-in-service is not in today’s structural gate, so twelve blanks load.</td>
+      <td>Quarantine reasons are written, not dropped. Referential tests against <span class="cite">dim_program</span>, <span class="cite">dim_site</span>, <span class="cite">dim_supplier</span>. Serial uniqueness is its own test. Section 5 is the counted-rows gate.</td>
+    </tr>
+    <tr>
+      <td><strong>4 · LookML</strong></td>
+      <td>The Git project. <span class="cite">capex_integrity.model.lkml</span> sets the connection, the datagroup <span class="cite">capex_daily</span>, and five explores. Views declare dimensions, measures, and descriptions. <span class="cite">exception_aging</span> and <span class="cite">field_completeness</span> are derived tables. The aging one is a PDT, rebuilt on the datagroup. Aggregate awareness is how a later rollup would answer a program total and fall back to <span class="cite">fact_po_line</span> when the drill asks for the line id. This model does not declare that rollup yet.</td>
+      <td>A LookML developer branches. You own the certified measure and the description — the why behind the input.</td>
+      <td>A hand-written ratio is not protected from fan-out. Two measures with one name. A description left blank, so nobody knows that placed-in-service is the day depreciation starts.</td>
+      <td>One certified <span class="cite">reconciliation_rate</span>. The unsafe counts are <span class="cite">hidden: yes</span>. Production is the merge. LookML validation runs before the pull request can merge.</td>
+    </tr>
+    <tr>
+      <td><strong>5 · Explores, Looks, dashboards</strong></td>
+      <td>Each tile is a query. Reconciliation uses explore <span class="cite">po_lines</span>. Aging uses <span class="cite">exceptions</span>. First-time-right uses <span class="cite">assets</span>, so the orphan stays in the denominator. Completeness uses <span class="cite">completeness</span>. Person-dependent fields use <span class="cite">field_edits</span>. Filters are Program (default TS-LINE-RAMP, visible) and Site. <span class="cite">drill_fields</span> return the rows. A <span class="cite">link</span> on <span class="cite">po_line_id</span> and <span class="cite">asset_id</span> opens the system of record.</td>
+      <td>Content steward builds the dashboard from the merged explores. You refuse a tile whose grain is wrong.</td>
+      <td>A hidden “received only” filter turns 38/40 into 38/38. Joining completeness onto the PO explore multiplies the denominator. The site filter means the PO site on one tile and the asset site on another.</td>
+      <td>Default program filter is published, not hidden. No default on received date. Dashboard notes in <span class="cite">capex_integrity_scorecard.dashboard.lookml</span> say which site the filter is.</td>
+    </tr>
+    <tr>
+      <td><strong>6 · Governance</strong></td>
+      <td><span class="cite">access_filter</span> on <span class="cite">dim_program.program_id</span> bound to user attribute <span class="cite">program_ids</span>. The user cannot remove it. Priya: all three programs. Jordan: TS-LINE-RAMP only. Morgan: TS-LINE-RAMP and PACK-CELL-EXP. Folders and roles (viewer, explorer, developer) decide who may open a Look or edit LookML. Certified content is the LookML merged to production, not a Look in a personal folder.</td>
+      <td>Looker admin sets the user attribute from <span class="cite">user_program_map</span>. You specify which programs a CM may see.</td>
+      <td>An attribute that is empty shows nothing, or, if the filter is omitted, shows every program. A personal Look copies a formula the merge no longer uses. Warehouse grants are still required; the access filter is not a substitute.</td>
+      <td>The filter is in the generated SQL. Jordan’s test is on the PO explore, where the other programs exist. LookML validation plus PR review is the change control.</td>
+    </tr>
+    <tr>
+      <td><strong>7 · Delivery</strong></td>
+      <td>A schedule sends the dashboard Monday at 07:00 to the owners named on the completeness tile. An alert is a different object: it fires when <span class="cite">reconciliation_rate</span> is below 0.98. That 0.98 is lab rule R4, a proposed line, not a threshold this team has adopted. A Looker Action sends the drilled row onward — a task — with the link to the record.</td>
+      <td>You name the recipients and the threshold. You do not invent 98% as Apple’s number.</td>
+      <td>A schedule with no alert looks fine while the rate sits at 95%. An alert on the wrong measure pages Finance for an in-transit line they do not own. The cache can still be Friday’s if nothing invalidates it.</td>
+      <td>Schedule and alert stay separate. R4 is labelled proposed. The datagroup trigger plus <span class="cite">max_cache_age: "24 hours"</span> bounds staleness. Say the 98% is the lab’s line.</td>
+    </tr>
+    <tr>
+      <td><strong>8 · Action and write-back</strong></td>
+      <td>Looker is read-only. The Action opens a task to the field owner with the drill link. Morgan enters the placed-in-service date in the system of record. The next 06:00 run reads that row, sets <span class="cite">closed_date</span> on EX-PIS-00017, and the PDT drops it from the open queue.</td>
+      <td>The field owner writes the system of record. You own the queue until the next run shows the close.</td>
+      <td>Someone “fixes” the tile, or a side file, and the book is unchanged. A correction that does not move a load watermark leaves <span class="cite">MAX(created_at)</span> untouched, so the datagroup does not rebuild and the tile still shows 12 missing until the 24-hour cap.</td>
+      <td>The link goes to the system of record, not to a spreadsheet. The warehouse job writes a load watermark the datagroup watches. You close the task only when the next run shows the exception gone.</td>
+    </tr>
+    <tr>
+      <td><strong>9 · Lifecycle</strong></td>
+      <td>LookML: a dev branch, Looker validation, pull request, prod merge. dbt tests run in the warehouse job before Looker is allowed to read the new tables. The playbook rule — blank placed-in-service with a received date is quarantined — is added to the gate before the next tracker, in <span class="cite">playbook/RULE-pis-required-at-tagging.md</span>. It is not in force on the load you just scored.</td>
+      <td>Developer and data platform ship. You review the PR for the definition, and you publish the new gate before the file arrives.</td>
+      <td>A rule edited after the file arrives is not a gate. A prod explore pointed at a dev schema. A merge that changes the denominator without a note on the tile.</td>
+      <td>Dev and prod connections. dbt tests are red or green in the job log. The rule’s owner (Finance) writes the definition; you put it in the gate and in the tracker instructions.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="s3">3. Data model and the lab’s LookML</h2>
+<p>Reconciliation is counted at the <b>PO line</b>. An asset with no line, and a line with two assets, are both real, and neither is allowed to change the denominator by accident. The explores below are the ones in <span class="cite">capex_integrity.model.lkml</span>. They are not a new model.</p>
+
+<div class="figwrap">
+<svg class="flow" viewBox="0 0 740 196" role="img" aria-label="Star around the PO line, with fan-out to assets">
+  <g font-family="Liberation Sans, Arial, sans-serif">
+    <rect x="292" y="62" width="156" height="58" rx="3" fill="#fdf0f0" stroke="#8a1c2b" stroke-width="1.6"/>
+    <text x="370" y="80" text-anchor="middle" font-size="11" font-weight="700" fill="#8a1c2b">fact_po_line</text>
+    <text x="370" y="96" text-anchor="middle" font-size="8.5" fill="#333">Grain of reconciliation</text>
+    <text x="370" y="110" text-anchor="middle" font-size="8.5" fill="#333">40 lines · TS-LINE-RAMP</text>
+
+    <rect x="292" y="4" width="156" height="40" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="370" y="20" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2744">dim_program</text>
+    <text x="370" y="34" text-anchor="middle" font-size="8" fill="#333">many-to-one · access_filter</text>
+    <line x1="370" y1="44" x2="370" y2="58" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="20" y="70" width="168" height="44" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="104" y="88" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2744">dim_site</text>
+    <text x="104" y="102" text-anchor="middle" font-size="8" fill="#333">many-to-one · CM-A, CM-B, PLANT-01</text>
+    <line x1="188" y1="92" x2="288" y2="92" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="552" y="70" width="168" height="44" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="636" y="88" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2744">dim_supplier</text>
+    <text x="636" y="102" text-anchor="middle" font-size="8" fill="#333">many-to-one · Atlas, Northline, Helix</text>
+    <line x1="552" y1="92" x2="452" y2="92" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="552" y="4" width="168" height="40" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="636" y="20" text-anchor="middle" font-size="10" font-weight="700" fill="#1a2744">dim_date × 2</text>
+    <text x="636" y="34" text-anchor="middle" font-size="8" fill="#333">po_date and received_date</text>
+    <line x1="552" y1="36" x2="400" y2="60" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="250" y="140" width="240" height="50" rx="3" fill="#fff" stroke="#8a1c2b" stroke-width="1.5"/>
+    <text x="370" y="158" text-anchor="middle" font-size="10" font-weight="700" fill="#8a1c2b">fact_asset · one-to-many</text>
+    <text x="370" y="172" text-anchor="middle" font-size="8" fill="#333">Line 00018 → AST-TS-0018 and AST-TS-0019</text>
+    <text x="370" y="184" text-anchor="middle" font-size="8" fill="#333">Fan-out. count_distinct or the line is counted twice.</text>
+    <line x1="370" y1="120" x2="370" y2="136" stroke="#8a1c2b" marker-end="url(#arr)"/>
+    <text x="378" y="134" font-size="8" fill="#8a1c2b" font-weight="700">1:N</text>
+  </g>
+</svg>
+<p class="figcap">The star is the <span class="cite">po_lines</span> explore. Program, site, and supplier are many-to-one and are not on the fan-out path. <span class="cite">dim_input_owner</span> is not joined here: the owner is per field, and putting the owner on this explore would sit on the asset join. Three other explores stay off this star so they cannot multiply the 40: <span class="cite">exceptions</span> (the aging PDT), <span class="cite">completeness</span> (one row per asset per field), and <span class="cite">assets</span> (first-time-right, so orphan AST-TS-0040 stays in the denominator). <span class="cite">field_edits</span> is a fourth, one row per program per field, and it does not listen to the site filter.</p>
+</div>
+
+<p><b>Fan-out and the symmetric aggregate.</b> Line 00018 has quantity 2 and two assets. A plain <span class="cite">count</span> on the joined explore is 41 for the program. That measure is in the view as <span class="cite">plain_row_count_do_not_certify</span> with <span class="cite">hidden: yes</span>. Dividing assets by lines is 39/40 = 97.5%, because the second asset on 00018 hides one of the two in-transit lines (00039 and 00040). That measure is hidden too. The certified rate counts distinct lines on both sides: lines with at least one asset, over lines. Looker can protect a <span class="cite">count_distinct</span> of the primary key from the fan-out. A ratio you write by hand is not protected, so both the numerator and the denominator are <span class="cite">count_distinct</span>. There is no default filter on received date. Hiding nulls would turn 38/40 into 38/38. From the PO explore the orphan disappears and first-time-right becomes 21/39. The assets explore keeps 21/40. <span class="b">lab</span></p>
+
+<pre class="lk"># fact_po_line.view.lkml — both sides count_distinct. TS-LINE-RAMP is 38/40 = 95.0%.
+measure: lines_with_an_asset {
+  type: count_distinct
+  sql: ${po_line_id} ;;
+  filters: [fact_asset.asset_id: "-NULL"]
+}
+measure: reconciliation_rate {
+  type: number
+  sql: 1.0 * ${lines_with_an_asset} / NULLIF(${po_line_count}, 0) ;;
+  value_format_name: percent_1
+  description: "Certified definition: distinct PO lines with at least one asset, divided by distinct PO lines. TS-LINE-RAMP is 38/40 = 95.0%. Not assets divided by lines."
+}</pre>
+
+<pre class="lk"># capex_integrity.model.lkml — same block on po_lines, exceptions, completeness, field_edits, assets.
+# Priya: TS-LINE-RAMP, PACK-CELL-EXP, FIXTURE-REUSE-24. Jordan: TS-LINE-RAMP only.
+access_filter: {
+  field: dim_program.program_id
+  user_attribute: program_ids
+}
+join: fact_asset {
+  type: left_outer
+  relationship: one_to_many
+  sql_on: ${fact_po_line.po_line_id} = ${fact_asset.po_line_id} ;;
+}</pre>
+
+<p><b>The aging PDT.</b> Age is not a column on <span class="cite">fact_exception</span>. <span class="cite">exception_aging</span> in <span class="cite">fact_exception.view.lkml</span> is a derived table Looker persists in the warehouse. It keeps <span class="cite">closed_date</span> null, subtracts <span class="cite">opened_date</span> from the lab as-of (16 March 2026, not the wall clock), and buckets the day count. Open counts before the fix are 7 / 7 / 7. Closing EX-PIS-00017 removes one row from 0–7 on the next rebuild, so the counts become 6 / 7 / 7. The datagroup is <span class="cite">sql_trigger: SELECT MAX(created_at) FROM capex.fact_asset</span> and <span class="cite">max_cache_age: "24 hours"</span>. A correction of an existing asset does not by itself move <span class="cite">created_at</span>. The warehouse job has to touch a watermark that trigger reads, or the tile waits for the 24-hour cap.</p>
+
+<pre class="lk"># exception_aging PDT — open rows only. Age 7 is still 0-7. Age 8 is 8-30.
+DATE_DIFF(p.as_of_date, e.opened_date, DAY) AS age_days,
+CASE
+  WHEN DATE_DIFF(p.as_of_date, e.opened_date, DAY) &lt;= 7 THEN '0-7'
+  WHEN DATE_DIFF(p.as_of_date, e.opened_date, DAY) &lt;= 30 THEN '8-30'
+  ELSE '31+'
+END AS aging_bucket
+... WHERE e.closed_date IS NULL</pre>
+
+<p><b>The description is the why.</b> Every input the tile can pick has a <span class="cite">description</span> in the view. That sentence is what a GSM reads in the field picker. These are the ones that decide the scorecard, quoted from the LookML and from <span class="cite">field_owner_map.csv</span>.</p>
+
+<table class="sm">
+  <thead><tr><th style="width:24%">Field</th><th style="width:18%">Owner</th><th>Description — the why</th></tr></thead>
+  <tbody>
+    <tr><td><span class="cite">po_line_id</span></td><td>GSM, for the link</td><td>“The PO line. Reconciliation counts this, not the asset and not the tracker row. Line 00017 is the record the lab closes. Line 00018 is the fan-out.”</td></tr>
+    <tr><td><span class="cite">received_date</span></td><td>CM coordinator</td><td>“Null means in transit. A default filter that hides nulls drops lines 00039 and 00040 and makes reconciliation 38/38.”</td></tr>
+    <tr><td><span class="cite">placed_in_service_date</span></td><td>Morgan Ellis, Finance</td><td>“The day depreciation starts. Not the ship date and not the day the CM unpacked the crate. Null means Finance has not capitalized the asset. Twelve assets on TS-LINE-RAMP are null. A date before received_date is a different defect, on line 00019.”</td></tr>
+    <tr><td><span class="cite">site_id</span> on the asset</td><td>Wei or Jordan</td><td>“Where the asset physically is. A code in the site list can still be the wrong site.” Completeness of site is 22/22 and 18/18. Three mismatches still sit on the queue. Complete is not valid.</td></tr>
+    <tr><td><span class="cite">reuse_source_asset_id</span></td><td>Elena Vasquez, AME</td><td>“Required only when the PO line is a reused fixture. Twelve of twelve are filled. Dividing 12 by all 40 assets is the wrong denominator.”</td></tr>
+    <tr><td><span class="cite">passed_validation_on_first_entry</span></td><td>The gate, not the editor</td><td>“1 if the first submit passed every check that existed that day. A later correction does not flip this. PO line 00017 stays 0 after Finance enters the date.”</td></tr>
+  </tbody>
+</table>
+
+<h2 id="s4">4. One record, end to end — PO line 00017</h2>
+<p>Jordan Hale tags <b>AST-TS-0017</b>, serial SN-TS-0017, at CM-B on 13 February 2026. The PO line was received 12 February. Placed-in-service is blank. Cost center CC-4100 and program TS-LINE-RAMP are filled. The asset is linked, so this row is already inside the 38. The defect is the date, which Finance owns. Exception <b>EX-PIS-00017</b> opened 12 March, age 4 days on the as-of date, bucket 0–7. <span class="b">lab</span></p>
+<ol class="tight">
+  <li><b>06:00 warehouse run.</b> The loader writes the load log. dbt builds <span class="cite">fact_po_line</span>, <span class="cite">fact_asset</span>, and <span class="cite">fact_exception</span>. The structural gate does not yet quarantine a blank placed-in-service date, so the row lands and the validation flags it. EX-PIS-00017 is open. <span class="cite">passed_validation_on_first_entry</span> is 0.</li>
+  <li><b>Looker live query.</b> Cache miss, or a hit only if the datagroup still matches this load. Explore <span class="cite">assets</span>, program TS-LINE-RAMP: <b>missing placed-in-service = 12</b>, completeness <b>28/40 = 70.0%</b>. Explore <span class="cite">po_lines</span>: reconciliation <b>stays 38/40 = 95.0%</b>. A blank date does not remove the asset link. The two in-transit lines are the gap, and they were already the gap before this flag.</li>
+  <li><b>Alert.</b> Rule R4 fires because 95.0% is below 98%. R4 is the lab’s proposed alert, published in <span class="cite">published_tolerance.csv</span> on 1 March 2026, not a company threshold. It pages on the reconciliation tile. It does not by itself tell Morgan which date is blank. PACK-CELL-EXP and FIXTURE-REUSE-24 are each 100% on purpose; an unfiltered blend would look finished and stay quiet. The program filter is why this page happens.</li>
+  <li><b>Looker Action.</b> From the missing-date drill — asset id, PO line, site, who keyed it — a Looker Action opens a task to Morgan Ellis with the link on <span class="cite">asset_id</span> (<span class="cite">fact_asset.view.lkml</span>: “Open the asset in the system of record”). Looker does not write the date.</li>
+  <li><b>Fix in the system of record.</b> Finance enters placed-in-service <b>17 February 2026</b>, which is after received 12 February, so the date-logic check passes. The next 06:00 run sets <span class="cite">closed_date</span> on EX-PIS-00017 to 16 March 2026.</li>
+  <li><b>What the next query shows.</b> Missing dates <b>11</b>. Completeness <b>29/40 = 72.5%</b>. Aging <b>6 / 7 / 7</b>. Reconciliation <b>still 38/40 = 95.0%</b>, so R4 still fires. First-time-right <b>still 21/40 = 52.5%</b>. The flag is not updated when someone fills a blank later. <span class="b">lab, after_fix</span></li>
+</ol>
+<div class="rules"><strong>Playbook rule, and why first-time-right does not recover.</strong> <span class="cite">playbook/RULE-pis-required-at-tagging.md</span>: a tracker row with a received date and a blank placed-in-service date is quarantined and does not load. Finance writes that definition. You put it in the structural gate and in the tracker instructions before the next file arrives. A rule edited after the file arrives is not a gate. Entering the date closes EX-PIS-00017. It does not flip <span class="cite">passed_validation_on_first_entry</span>. First-time-right stays 21 of 40. Say that before anyone treats the close as proof the onboarding got cleaner.</div>
+
+<div class="dash">
+  <div class="bar">CapEx data-integrity scorecard <span>· capex_integrity_scorecard.dashboard.lookml · Monday 07:00 · program filter TS-LINE-RAMP, visible · as-of 16 March 2026</span></div>
+  <div class="tag">Five tiles, five explores. Numbers are the open state, before Finance fills line 00017. Lab, not a program you ran.</div>
+  <table class="kpi">
+    <tr>
+      <td><div class="n">95.0%</div><div>Reconciliation</div><div class="sub">po_lines. 38/40. Alert on, below 98%.</div></td>
+      <td><div class="n">7 · 7 · 7</div><div>Exception aging</div><div class="sub">exceptions PDT. After the close: 6 · 7 · 7.</div></td>
+      <td><div class="n">52.5%</div><div>First-time-right</div><div class="sub">assets. 21/40, orphan in. Stays 52.5%.</div></td>
+      <td><div class="n">12</div><div>Missing placed-in-service</div><div class="sub">completeness. 28/40 = 70%. After: 11, 72.5%.</div></td>
+      <td><div class="n">3</div><div>Person-dependent</div><div class="sub">field_edits. Morgan, David, Elena. No site filter.</div></td>
+    </tr>
+  </table>
+  <table class="sm inside">
+    <thead><tr><th>Field</th><th>Owner</th><th>Applies to</th><th>Filled</th><th>Missing</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Placed-in-service date</td><td>Morgan Ellis, Finance</td><td>40 assets</td><td>28</td><td class="c">12</td><td>Becomes 29 / 11 when 00017 closes. R4 does not clear.</td></tr>
+      <tr><td>Cost center</td><td>Priya Raman, GSM</td><td>40</td><td>40</td><td>0</td><td>Complete. Complete is not the same word as valid.</td></tr>
+      <tr><td>Program allocation</td><td>David Cho, TPM</td><td>40</td><td>40</td><td>0</td><td>One editor in 90 days. Person-dependent.</td></tr>
+      <tr><td>Reuse source asset</td><td>Elena Vasquez, AME</td><td>12 reused fixtures</td><td>12</td><td>0</td><td>Denominator is 12, not 40. One editor.</td></tr>
+      <tr><td>Site</td><td>Wei 22, Jordan 18</td><td>40</td><td>40</td><td>0</td><td>Filled, and three site mismatches remain on the queue.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p class="cite">Drill on 95.0% lands on po_line_id, site, received date, asset id, serial. Drill on a bucket lands on the exception row, including the detail sentence. The site filter is the PO receiving site on reconciliation and on exceptions, and the asset site on the asset and completeness tiles. Person-dependent does not listen to it: a site split would flag a field the program as a whole does not.</p>
+
+<h2 id="s5">5. Excel-to-system onboarding — the gate before the scorecard</h2>
+<p>The file can be a <b>GO</b> and the book can still be wrong. Rules R1–R3 were published on <b>1 March 2026</b>, before the trackers are treated as arrived (<span class="cite">data/published_tolerance.csv</span>). Looker does not run them. <span class="cite">sql/02_quality_checks.sql</span> does, in the warehouse, and the answer key is <span class="cite">data/expected_outputs/go_nogo.csv</span>. The same counts hold after the line 00017 fix, because that fix is not a reload. <span class="b">lab</span></p>
+<table class="sm">
+  <thead><tr><th style="width:8%">Rule</th><th style="width:42%">Published bar</th><th>This load</th></tr></thead>
+  <tbody>
+    <tr><td><strong>R1</strong></td><td>Missing equipment-list lines = 0. The approved list is 40. One missing line is a no-go.</td><td class="c">0 missing. Pass. 40 distinct lines accepted.</td></tr>
+    <tr><td><strong>R2</strong></td><td>Duplicate PO line ids in the load = 0. Two asset rows on one id are a fan-out, not a second id.</td><td class="c">0 duplicate ids. Pass. One id (00018) has two asset rows.</td></tr>
+    <tr><td><strong>R3</strong></td><td>Quarantined rows / submitted tracker rows ≤ 0.05. A fully blank Excel artifact is not a submission.</td><td class="c">2 / 43 = 4.65%. Pass.</td></tr>
+    <tr><td><strong>R4</strong></td><td>Alert when the certified reconciliation rate is below 98%. Proposed lab line, not a load gate and not a company threshold.</td><td>95.0% fires. Stays firing after 00017 is filled.</td></tr>
+  </tbody>
+</table>
+<p>Submitted 43, quarantined 2, accepted 41, distinct PO lines 40, decision <b>GO</b>. The two quarantined rows: site A line <b>00901</b>, site token SITE-Z — unknown site and not on the equipment list; site B, blank PO line, date <b>13/32/2026</b> — blank key and a date that will not parse. What the gate did not catch, because the rule was not in force: twelve blank placed-in-service dates, two duplicate serials (SN-DUP-4421, SN-DUP-4422), three site mismatches, line 00019 with a date before receipt, and orphan AST-TS-0040, which is not in either tracker. Those are post-load exceptions. A go on the file is the count against the published bar. It is not a clean scorecard.</p>
+<p>The dbt tests that implement the file are named in that SQL: trim and drop fully blank artifacts; <span class="cite">canon_site</span> to CM-A, CM-B, PLANT-01; <span class="cite">parse_lab_date</span> for three formats; quarantine reasons written, not dropped; referential checks to program, site, supplier, and reuse-source asset; duplicate serials; site on the asset versus site on the PO; placed-in-service on or after received. The playbook rule is the test you add before the next tracker: a received date with a blank placed-in-service date does not load.</p>
+<div class="doc">
+<p class="label">Lived evidence — only these four. Do not borrow a warehouse-cutover story.</p>
+<p><strong>Sephora, S/4 HANA.</strong> <span class="b">record</span> The go/no-go was a count of rows. Drift is ISM’s copy of S/4 available minus MB52 at one watermark; a non-zero row is a severity, tolerance zero. The exit bar I say out loud is “Negative AFS clean at T+1.” OMS reads the ISM available-for-sale and never computes its own. S/4 keeps the physical book. I owned the definitions, the tolerance, and the go/no-go recommendation; the engineers built the extracts. Any unit count in a one-SKU walk is illustrative. Do not quote it. Zero customer-facing oversell through both go-lives is the record.</p>
+<p><strong>Sephora, UDC dual inventory.</strong> <span class="b">record-from-docs</span> 44 requirement rows across 23 systems. The issues log’s own categories: 331 go-live, 77 fast-follow, 36 enhancement. Two go-lives, zero customer-facing incidents. The test on a row was whether the customer’s promise becomes false without it.</p>
+<p><strong>Elementum, Austria.</strong> <span class="b">record</span> Routing-guide data quality was about 55% true — the report had said 40% — and reached about 99% within a quarter. I pulled three years of history in SQL myself. Finance signed the savings method before any figure was claimed. The scorecard was released only after automated on-time matched a manual sample.</p>
+<p><strong>Flexport.</strong> <span class="b">record</span> Reading application logs, I found no id tying a load event to the screen, and I specified counting events in versus events out at each system boundary. On the Zendesk-to-Snowflake pipeline I wrote seven metric definitions and specified the Looker SQL Runner queries. The infrastructure team built the pipeline. Cutover was a parallel run within 1% for consecutive weeks. I did not write LookML. The weekly-review metrics I actually ran were in Excel and in SQL.</p>
+</div>
+
+<h2 id="s6">6. How to say it</h2>
+<div class="say">
+  <p class="label">Sixty seconds — walk the flow, then stop</p>
+  <p>TS-LINE-RAMP is forty PO lines leaving two CM trackers for one system of record. At six a.m. dbt lands them, trims and types, conforms site codes, and quarantines against a tolerance published before the files arrived. Looker stores LookML, not the rows. Reconciliation is distinct lines with an asset over distinct lines: 38 over 40, 95 percent. Line 00018 has two assets, so a raw count would lie. Line 00017 is tagged with a blank placed-in-service date: twelve missing, completeness 70 percent, reconciliation still 95. Under the lab’s 98 percent line the alert fires, and a Looker Action opens Finance a task with the drill link. Looker cannot write the date. The next run shows eleven missing and aging six, seven, seven. First-time-right stays 21 of 40. The playbook quarantines a blank date on the next file.</p>
+</div>
+<div class="say">
+  <p class="label">Proficiency — say this, then stop</p>
+  <p>I wrote seven metric definitions and specified the Looker SQL Runner queries for the Zendesk-to-Snowflake pipeline. The infrastructure team built it. The weekly-review metrics I ran were in Excel and in SQL. I have not built a dashboard hands-on in Looker, Tableau, or Power BI.</p>
+</div>
+<div class="qa"><p class="q">Ask, if they use a BI tool</p><p>Is the stack Looker with LookML in Git, or Looker Studio — and where does the certified definition of reconciled live today?</p></div>
+<div class="qa"><p class="q">Ask, about freshness</p><p>Is the warehouse BigQuery or Snowflake, and what invalidates the Monday cache: a datagroup on the load watermark, or a clock?</p></div>
+<div class="qa"><p class="q">Ask, about change control</p><p>Who may change a measure, and is that a LookML pull request with validation, or a Look saved in a personal folder?</p></div>
+
+<table class="sm">
+  <thead><tr><th style="width:22%">Term</th><th>One sentence, on this flow</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Grain</strong></td><td>The row the metric counts. Reconciliation counts PO lines. Completeness counts one asset and one field.</td></tr>
+    <tr><td><strong>Symmetric aggregate</strong></td><td>Both sides <span class="cite">count_distinct</span> on the line id. Line 00018 counts once: 38/40, not 39/40.</td></tr>
+    <tr><td><strong>Fan-out</strong></td><td>A one-to-many join repeats the left row. Line 00018 and two assets make a plain count 41.</td></tr>
+    <tr><td><strong>access_filter</strong></td><td>Row-level security. User attribute <span class="cite">program_ids</span> is in the SQL. Jordan cannot take it off.</td></tr>
+    <tr><td><strong>PDT</strong></td><td>A derived table Looker builds in the warehouse. Aging buckets live there, open rows only.</td></tr>
+    <tr><td><strong>Datagroup</strong></td><td><span class="cite">capex_daily</span> rebuilds on <span class="cite">MAX(created_at)</span> and never serves a result older than 24 hours.</td></tr>
+    <tr><td><strong>Aggregate awareness</strong></td><td>The smallest rollup that can answer; a drill for the line falls back to <span class="cite">fact_po_line</span>. None is declared yet.</td></tr>
+    <tr><td><strong>Drill fields</strong></td><td>The columns behind a click. The link opens that PO or asset in the system of record.</td></tr>
+    <tr><td><strong>Looker Action</strong></td><td>Sends the row out as a task. It does not update the book. The next run closes EX-PIS-00017.</td></tr>
+    <tr><td><strong>First-time-right</strong></td><td>21/40 = 52.5%, orphan included. A later correction does not flip the flag.</td></tr>
+  </tbody>
+</table>
+
+</body>
+</html>

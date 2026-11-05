@@ -1,0 +1,4 @@
+asset_id,po_line_id,po_site_id,asset_site_id,created_by
+AST-TS-0025,00024,CM-A,CM-B,usr_wei_cma
+AST-TS-0026,00025,CM-B,CM-A,usr_jordan_cmb
+AST-TS-0027,00026,CM-A,PLANT-01,usr_wei_cma

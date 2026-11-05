@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CapEx data-integrity scorecard — static rendering</title>
+<style>
+  body { font-family: "Liberation Sans", Arial, sans-serif; margin: 24px; color: #1c1c1c; background: #f4f1ea; }
+  h1 { font-size: 20px; margin: 0; }
+  .sub { color: #444; font-size: 13px; margin: 4px 0 12px; }
+  .banner { background: #1a2744; color: #fff; padding: 12px 16px; }
+  .banner span { color: #e6ddcb; font-weight: 400; }
+  .note { background: #f3f0fa; border-left: 4px solid #5b4a8a; padding: 8px 12px; margin: 12px 0; font-size: 13px; }
+  .filters { background: #fff; border: 1px solid #d9d0c1; padding: 8px 12px; font-size: 13px; margin-bottom: 12px; }
+  .filters b { color: #1a2744; }
+  .grid { display: grid; grid-template-columns: 1.1fr 1.3fr 1fr; gap: 12px; }
+  .tile { background: #fff; border: 1px solid #1a2744; }
+  .tile h2 { margin: 0; background: #1a2744; color: #fff; font-size: 13px; padding: 6px 10px; font-weight: 700; }
+  .tile .body { padding: 10px 12px 12px; }
+  .n { font-size: 32px; font-weight: 700; color: #1a2744; line-height: 1; }
+  .warn { color: #8a1c2b; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  th, td { text-align: left; border-bottom: 1px solid #e4e0d6; padding: 4px 6px 4px 0; }
+  th { font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: #555; }
+  .barline { display: flex; align-items: center; gap: 8px; margin: 6px 0; font-size: 13px; }
+  .bar { height: 14px; background: #1a2744; }
+  .bar.b2 { background: #8a1c2b; }
+  .wide { grid-column: 1 / span 2; }
+  .foot { font-size: 12px; color: #444; margin-top: 12px; }
+  .after { background: #fff; border: 1px solid #1f6f7a; margin-top: 16px; }
+  .after h2 { margin: 0; background: #1f6f7a; color: #fff; font-size: 13px; padding: 6px 10px; }
+  .after .body { padding: 10px 12px; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="banner">
+  <h1>CapEx data-integrity scorecard <span>· static rendering of the local SQL · not a Looker session</span></h1>
+</div>
+<p class="sub">Program TS-LINE-RAMP · as-of 2026-03-16 · alert proposed at under 98% · this rendering is the open queue, before the fix on PO line 00017.</p>
+<div class="note">Built from <code>data/expected_outputs/scorecard.csv</code> after <code>python3 run_local.py</code>. Illustrative lab data. Not Apple's system. The 98% line is the lab's proposed alert (rule R4), not a threshold a team has adopted.</div>
+<div class="filters">Filters in view: <b>Program = TS-LINE-RAMP</b> · <b>Site = all</b>. The site filter is off so the two in-transit lines stay in the denominator.</div>
+<div class="grid">
+  <div class="tile">
+    <h2>1 · Reconciliation</h2>
+    <div class="body">
+      <div class="n warn">95.0%</div>
+      <div>38 lines with an asset / 40 PO lines</div>
+      <div class="foot">Alert fires. 95% is under 98%. Certified definition is the line, not the asset.</div>
+    </div>
+  </div>
+  <div class="tile">
+    <h2>2 · Exception aging, open</h2>
+    <div class="body">
+      <div class="barline"><span style="width:42px">0–7</span><div class="bar" style="width:140px"></div><b>7</b></div>
+      <div class="barline"><span style="width:42px">8–30</span><div class="bar" style="width:140px"></div><b>7</b></div>
+      <div class="barline"><span style="width:42px">31+</span><div class="bar b2" style="width:140px"></div><b>7</b></div>
+      <div class="foot">21 open. All go-live. Drill is <code>exception_open.csv</code>. EX-PIS-00017 is in 0–7, age 4.</div>
+    </div>
+  </div>
+  <div class="tile">
+    <h2>4 · First-time-right</h2>
+    <div class="body">
+      <div class="n">52.5%</div>
+      <div>21 of 40 assets passed on the first submit</div>
+      <div class="foot">Includes the orphan. 21/39 if you drop it. A later date does not move this.</div>
+    </div>
+  </div>
+  <div class="tile wide">
+    <h2>3 · Field completeness by owner</h2>
+    <div class="body">
+      <table>
+        <thead><tr><th>Field</th><th>Owner</th><th>Filled</th><th>Missing</th><th>Complete</th></tr></thead>
+        <tbody>
+          <tr><td>placed_in_service_date</td><td>Morgan Ellis · Finance</td><td>28</td><td>12</td><td>70%</td></tr>
+          <tr><td>cost_center</td><td>Priya Raman · GSM</td><td>40</td><td>0</td><td>100%</td></tr>
+          <tr><td>program_allocation</td><td>David Cho · TPM</td><td>40</td><td>0</td><td>100%</td></tr>
+          <tr><td>reuse_source_asset_id</td><td>Elena Vasquez · AME</td><td>12</td><td>0</td><td>100% of 12 reuse lines</td></tr>
+          <tr><td>site_id</td><td>Wei Chen · CM site A</td><td>22</td><td>0</td><td>100% complete, not 100% valid</td></tr>
+          <tr><td>site_id</td><td>Jordan Hale · CM site B</td><td>18</td><td>0</td><td>100% complete, not 100% valid</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="tile">
+    <h2>5 · Person-dependent fields</h2>
+    <div class="body">
+      <div class="n">3</div>
+      <table>
+        <thead><tr><th>Field</th><th>Only editor</th></tr></thead>
+        <tbody>
+          <tr><td>placed_in_service_date</td><td>Morgan Ellis</td></tr>
+          <tr><td>program_allocation</td><td>David Cho</td></tr>
+          <tr><td>reuse_source_asset_id</td><td>Elena Vasquez</td></tr>
+        </tbody>
+      </table>
+      <div class="foot">Last 90 days, this program. Site is not applied to this tile.</div>
+    </div>
+  </div>
+</div>
+<div class="after">
+  <h2>After one correction — PO line 00017, not a reload of the tracker</h2>
+  <div class="body">
+    Missing placed-in-service goes from 12 to <b>11</b> (29/40 = 72.5%). Aging goes from 7 / 7 / 7 to <b>6 / 7 / 7</b>. Reconciliation stays <b>95.0%</b>. First-time-right stays <b>52.5%</b>, and the flag on AST-TS-0017 stays 0. The alert still fires. Source: <code>data/expected_outputs/after_fix/scorecard.csv</code>.
+  </div>
+</div>
+<p class="foot">Traps, not on the tile: assets/lines = 39/40 = 97.5%. Received-only = 38/38 = 100%. Assets on the program including the orphan = 40/40 = 100%. Joined rows = 41 against 40 distinct lines. Priya, with no program filter, sees 98/100 = 98.0%, and a strictly-below-98% alert stays quiet. That is why the default filter is the program.</p>
+</body>
+</html>

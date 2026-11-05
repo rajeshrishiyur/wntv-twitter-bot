@@ -1,0 +1,2 @@
+submitted_rows,quarantined_rows,accepted_rows,distinct_po_lines_accepted,equipment_list_lines,missing_lines,duplicate_po_line_ids_in_load,po_ids_with_more_than_one_asset_row,quarantine_rate,quarantine_tolerance,r1_pass,r2_pass,r3_pass,decision
+43,2,41,40,40,0,0,1,0.046511627906976744,0.05,true,true,true,GO

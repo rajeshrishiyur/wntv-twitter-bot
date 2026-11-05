@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Real-world use case — asset management for a test-station line</title>
+<style>
+  @page { size: letter; margin: 0.62in 0.68in 0.68in 0.68in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", "Inter", Arial, sans-serif; font-size: 10.3pt; line-height: 1.38; color: #1c1c1c; }
+  h1 { font-size: 18.5pt; line-height: 1.15; margin: 0 0 6px; letter-spacing: -0.02em; }
+  h2 { font-size: 12.5pt; margin: 8px 0 4px; padding-top: 4px; border-top: 2px solid #1a2744; page-break-after: avoid; }
+  h2.break { page-break-before: always; }
+  h3 { font-size: 11.3pt; margin: 10px 0 4px; page-break-after: avoid; color: #1a2744; }
+  h4 { font-size: 10.3pt; margin: 9px 0 3px; page-break-after: avoid; color: #8a1c2b; }
+  p { margin: 0 0 5px; }
+  ul, ol { margin: 2px 0 6px; padding-left: 16px; }
+  li { margin: 0 0 2px; }
+  .kicker { font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .meta { background: #f4f1ea; border-left: 4px solid #1a2744; padding: 5px 10px; margin: 5px 0 6px; font-size: 9.3pt; }
+  .meta div { margin: 1px 0; }
+  .say { background: #f7f4ee; border: 1px solid #d9d0c1; border-left: 4px solid #8a1c2b; padding: 6px 10px 2px; margin: 4px 0 6px; page-break-inside: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, serif; font-size: 9.6pt; line-height: 1.32; }
+  .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .star { background: #fcfbf8; border: 1px solid #d9d0c1; padding: 7px 12px 3px; margin: 4px 0 10px; font-size: 9.7pt; }
+  .star p { margin: 0 0 5px; }
+  .stag { font-weight: 700; color: #8a1c2b; }
+  .hon { background: #f3f0fa; border-left: 4px solid #5b4a8a; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.3pt; color: #333; }
+  .hon strong { color: #5b4a8a; }
+  .doc { background: #eef4f6; border: 1px solid #c3d5da; border-left: 4px solid #1f6f7a; padding: 7px 12px 4px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .doc p { margin: 0 0 5px; }
+  .doc .label { color: #1f6f7a; }
+  .kc { background: #fdf8ef; border: 1px solid #e4d2ac; border-left: 4px solid #b8860b; padding: 6px 12px 4px; margin: 6px 0 10px; font-size: 9.4pt; }
+  .kc ul { margin: 2px 0 6px; padding-left: 16px; }
+  .inf { background: #fbf7ec; border-left: 4px solid #b8860b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.4pt; }
+  .inf strong { color: #7a5a00; }
+  .rules { background: #fdf0f0; border: 1px solid #e3b7b7; border-left: 4px solid #8a1c2b; padding: 7px 12px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .rules strong { color: #8a1c2b; }
+  .qa { border-left: 3px solid #d9d0c1; padding: 2px 0 2px 10px; margin: 0 0 9px; font-size: 9.5pt; page-break-inside: avoid; }
+  .qa p { margin: 0 0 3px; }
+  .qa p.q { color: #1a2744; font-weight: 700; }
+  .sh { font-size: 8.8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin: 10px 0 4px; border-bottom: 1px solid #d9d0c1; padding-bottom: 2px; page-break-after: avoid; }
+  ul.res { margin: 2px 0 6px; padding-left: 15px; font-size: 8.7pt; line-height: 1.28; }
+  ul.res li { margin: 0 0 2px; }
+  ul.phz { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
+  ul.phz li { margin: 0 0 4px; }
+  .pb { font-weight: 700; color: #1a2744; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 9.1pt; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #ddd; padding: 4px 6px 4px 0; }
+  th { font-size: 8.2pt; letter-spacing: 0.04em; text-transform: uppercase; color: #555; border-bottom: 1.5px solid #1a2744; }
+  table.sm { font-size: 8.15pt; line-height: 1.28; }
+  table.sm th, table.sm td { padding: 2px 4px 2px 0; }
+  table.xs { font-size: 7.55pt; line-height: 1.25; margin: 4px 0 6px; }
+  table.xs th, table.xs td { padding: 2px 4px 2px 0; }
+  table.xs th { font-size: 7pt; }
+  td.c { color: #8a1c2b; font-weight: 700; }
+  span.b { display: inline-block; background: #e8eef6; color: #1a2744; font-size: 7.6pt; padding: 0 4px; border-radius: 3px; margin-left: 2px; }
+  .cite { color: #1f6f7a; font-size: 8.6pt; }
+  svg.fig { width: 100%; height: auto; display: block; margin: 2px 0 2px; }
+  .figcap { font-size: 8.5pt; color: #444; margin: 0 0 6px; }
+  .figwrap { page-break-inside: avoid; }
+  ol.tight { margin: 2px 0 4px; padding-left: 16px; font-size: 8.6pt; line-height: 1.28; }
+  ol.tight li { margin: 0 0 2px; }
+</style>
+</head>
+<body>
+
+<p class="kicker">Use case · real-world asset management · for the conversation with the CapEx Systems Lead</p>
+<h1>What actually happens to a machine the brand owns and does not hold</h1>
+<div class="hon"><strong>Illustrative storyline built from public knowledge of how capital equipment is managed at contract manufacturers and from the job description — not inside knowledge of Apple.</strong> Names, prices, and dates below are the practice extract for program TS-LINE-RAMP. They are there so you can point at a row. They are not Apple’s books.</div>
+<div class="meta">
+  <div><b>Who this is for.</b> You, explaining the use case in plain words to Apple’s Capital Expenditure Systems Lead.</div>
+  <div><b>The practice program.</b> Test-station line ramp, <b>TS-LINE-RAMP</b>. 40 purchase-order lines, CM site A and CM site B, one internal plant, three suppliers, 12 fixtures reused. As-of <b>16 March 2026</b>. People: Elena Vasquez (AME), David Cho (TPM), Priya Raman (GSM), Wei Chen (site A), Jordan Hale (site B), Morgan Ellis (Finance). No row for you. You run the load, the scorecard, and the queue.</div>
+</div>
+
+<h2>1. The real-world setting</h2>
+<p>A company designs a product. Contract manufacturers — other companies’ factories — build it. To build it and to test it, the line needs capital equipment: test stations that check each unit, handlers that move it, fixtures and jigs that hold it, instruments that measure it, and automation cells that repeat a motion without a person at every step.</p>
+<p>Much of that equipment is bought by the brand and stays on the brand’s books, while the machine sits in the contract manufacturer’s factory, often in another country. The brand owns a very large number of assets it does not physically control, across factories, programs, and suppliers. Order, pay, ship, install, move, reuse, scrap: the record can be wrong at each step. That is the asset-management problem. This role makes the record match the machine. The <b>ERP</b> is the main business system, where the purchase order and Finance’s book live. The <b>system of record</b> is the one official place this program’s equipment data lives after onboarding. Wei’s spreadsheet and Jordan’s spreadsheet are sources the load reads.</p>
+
+<table class="sm">
+<thead><tr><th style="width:22%">Word</th><th>What it means on a factory floor and in the book</th></tr></thead>
+<tbody>
+<tr><td><b>CapEx</b></td><td>Capital expenditure: money for a thing used for years. A test station counts. Parts consumed this week do not.</td></tr>
+<tr><td><b>Capital appropriation</b></td><td>The formal yes: an amount, a cost center (the accounting bucket), and a program. Here the yes is the 40-line equipment list. Prices sum to <b>$197,500</b>. <span class="b">lab list</span></td></tr>
+<tr><td><b>PO</b></td><td>Purchase order. One line is one buy: what, how many, the price, which program. Line <b>00017</b> is one test station.</td></tr>
+<tr><td><b>Asset tag</b></td><td>The label and its number. How someone on the floor points at one machine. Line 00017’s tag is <b>AST-TS-0017</b>.</td></tr>
+<tr><td><b>Asset master</b></td><td>The official list. One row per tagged asset, with the fields Finance and an auditor rely on.</td></tr>
+<tr><td><b>Placed-in-service date</b></td><td>The day the asset starts its job. That day starts capitalization and depreciation. A financial control. In this lab: not the ship date, and not the day the crate was unpacked.</td></tr>
+<tr><td><b>Capitalization</b></td><td>Recording the cost on the balance sheet as a long-lived asset.</td></tr>
+<tr><td><b>Depreciation</b></td><td>Charging a share of that cost to each year of use. A blank date means it does not start.</td></tr>
+<tr><td><b>Fixed-asset ledger</b></td><td>Finance’s book: cost, in-service date, depreciation taken, and where the asset is supposed to be.</td></tr>
+<tr><td><b>Custodian</b></td><td>The named person accountable for the physical machine. Here, Wei at site A and Jordan at site B. The extract stores the field owner, not a separate custodian column.</td></tr>
+<tr><td><b>FAT / SAT</b></td><td>Factory acceptance test: the supplier proves it works before ship. Site acceptance test: the factory proves it works after install. Two signatures, two dates.</td></tr>
+<tr><td><b>Retrofit / reuse</b></td><td>Using a machine the company already owns, as-is or modified. Twelve ramp rows point at fixtures from program Fixture reuse 2024.</td></tr>
+<tr><td><b>Disposition</b></td><td>The end for that asset: transfer, hold, sell or return, or scrap. The ledger records the same fate.</td></tr>
+<tr><td><b>Ghost asset</b></td><td>On the books and not findable on the floor. Or on a record with no purchase order behind it.</td></tr>
+<tr><td><b>Physical-to-book audit</b></td><td>Walk the floor, read the tags, compare to the ledger. The lab reconciles purchase order to tag. That check sits beside the walk; the walk still happens.</td></tr>
+</tbody>
+</table>
+
+<h2 class="break">2. One asset’s life, step by step</h2>
+<p>Follow <b>line 00017</b>: a Northline test station, PO-55022, CM site B, cost center CC-4100, lab price <b>$12,400</b>, ordered <b>20 January 2026</b>. The program around it is 40 lines — 8 test-station lines, 6 handlers, 7 instruments, 7 new fixtures, 12 reused fixtures; 22 for site A, 18 for site B. <span class="b">lab</span></p>
+
+<div class="figwrap">
+<svg class="fig" viewBox="0 0 736 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Six swimlanes for one test station, from spec to disposition">
+  <rect x="118" y="0" width="618" height="22" fill="#1a2744"/>
+  <g font-family="Liberation Sans, Arial, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">
+    <text x="162" y="15">1 Spec</text>
+    <text x="250" y="15">2 Plan</text>
+    <text x="338" y="15">3 Buy</text>
+    <text x="426" y="15">4 Ship</text>
+    <text x="514" y="15">5 Tag</text>
+    <text x="602" y="15">6 Use</text>
+    <text x="690" y="15">7 End</text>
+  </g>
+  <g font-family="Liberation Sans, Arial, sans-serif">
+    <rect x="0" y="26" width="736" height="42" fill="#f7f4ee"/>
+    <rect x="0" y="110" width="736" height="42" fill="#f7f4ee"/>
+    <rect x="0" y="194" width="736" height="42" fill="#f7f4ee"/>
+    <text x="6" y="42" font-size="11" font-weight="700" fill="#1a2744">Elena Vasquez</text>
+    <text x="6" y="56" font-size="9" fill="#8a1c2b">AME</text>
+    <text x="6" y="84" font-size="11" font-weight="700" fill="#1a2744">David Cho</text>
+    <text x="6" y="98" font-size="9" fill="#8a1c2b">TPM</text>
+    <text x="6" y="126" font-size="11" font-weight="700" fill="#1a2744">Priya Raman</text>
+    <text x="6" y="140" font-size="9" fill="#8a1c2b">GSM</text>
+    <text x="6" y="168" font-size="11" font-weight="700" fill="#1a2744">Supplier</text>
+    <text x="6" y="182" font-size="9" fill="#8a1c2b">3 companies</text>
+    <text x="6" y="210" font-size="11" font-weight="700" fill="#1a2744">Wei / Jordan</text>
+    <text x="6" y="224" font-size="9" fill="#8a1c2b">Site coordinators</text>
+    <text x="6" y="252" font-size="11" font-weight="700" fill="#1a2744">Morgan Ellis</text>
+    <text x="6" y="266" font-size="9" fill="#8a1c2b">Finance</text>
+  </g>
+  <g font-family="Liberation Sans, Arial, sans-serif" font-size="10" fill="#1c1c1c">
+    <rect x="126" y="32" width="72" height="30" rx="2" fill="#fff" stroke="#1a2744"/>
+    <text x="162" y="44" text-anchor="middle">40-line list</text>
+    <text x="162" y="56" text-anchor="middle">includes 00017</text>
+    <rect x="214" y="74" width="72" height="30" rx="2" fill="#fff" stroke="#1a2744"/>
+    <text x="250" y="86" text-anchor="middle">EVT DVT PVT</text>
+    <text x="250" y="98" text-anchor="middle">then ramp</text>
+    <rect x="302" y="116" width="72" height="30" rx="2" fill="#fff" stroke="#1a2744"/>
+    <text x="338" y="128" text-anchor="middle">40 PO lines</text>
+    <text x="338" y="140" text-anchor="middle">12 reused</text>
+    <rect x="390" y="158" width="72" height="30" rx="2" fill="#fff" stroke="#1a2744"/>
+    <text x="426" y="170" text-anchor="middle">FAT, then</text>
+    <text x="426" y="182" text-anchor="middle">ship</text>
+    <rect x="478" y="200" width="72" height="30" rx="2" fill="#fdf0f0" stroke="#8a1c2b" stroke-width="1.6"/>
+    <text x="514" y="212" text-anchor="middle" fill="#8a1c2b" font-weight="700">Tag 00017</text>
+    <text x="514" y="224" text-anchor="middle" fill="#8a1c2b">date blank</text>
+    <rect x="566" y="200" width="72" height="30" rx="2" fill="#fff" stroke="#1a2744"/>
+    <text x="602" y="212" text-anchor="middle">Move or</text>
+    <text x="602" y="224" text-anchor="middle">retrofit</text>
+    <rect x="478" y="242" width="72" height="30" rx="2" fill="#fdf0f0" stroke="#8a1c2b" stroke-width="1.6"/>
+    <text x="514" y="254" text-anchor="middle" fill="#8a1c2b">Cannot</text>
+    <text x="514" y="266" text-anchor="middle" fill="#8a1c2b">capitalize</text>
+    <rect x="566" y="242" width="72" height="30" rx="2" fill="#fff" stroke="#1a2744"/>
+    <text x="602" y="254" text-anchor="middle">Floor vs</text>
+    <text x="602" y="266" text-anchor="middle">the book</text>
+    <rect x="654" y="242" width="72" height="30" rx="2" fill="#fff" stroke="#1a2744"/>
+    <text x="690" y="254" text-anchor="middle">Disposition</text>
+    <text x="690" y="266" text-anchor="middle">updates book</text>
+  </g>
+</svg>
+<p class="figcap">Read left to right. The box sits in the lane of the person who does that step. Red is line 00017, asset AST-TS-0017: tagged at CM site B on 12 February 2026, placed-in-service left blank, so Morgan cannot start depreciation. You, the Data Integrity PM, are not a builder of the asset. You arrive when this picture is already wrong.</p>
+</div>
+
+<table class="sm">
+<thead><tr><th style="width:12%">Step</th><th style="width:20%">Who</th><th>What happens</th></tr></thead>
+<tbody>
+<tr><td><b>a. Spec</b></td><td>Elena, AME</td><td>Units per hour × shifts × yield becomes the 40-line list (<span class="cite">equipment_list_ts_line_ramp.csv</span>). Line 00017 is a site B test station on it.</td></tr>
+<tr><td><b>b. Plan</b></td><td>David, TPM</td><td>Install dates for <b>EVT</b> (early units: can we build the design?), <b>DVT</b> (does the process repeat?), <b>PVT</b> (does the line run as production will?), then ramp. He owns program allocation. In the last 90 days he is the only person who has written it on this ramp.</td></tr>
+<tr><td><b>c. Buy</b></td><td>Priya, GSM</td><td>Northline, stations and handlers, PO-55022. Helix, instruments, PO-55023. Atlas, new fixtures PO-55021 and reused fixtures PO-55030. She checks owned assets first. Lines <b>00027–00038</b>, all site B, are 12 reused fixtures at <b>$0</b>, each pointing at <b>AST-FR-0001</b> through <b>AST-FR-0012</b> from Fixture reuse 2024 at the internal plant. That search is what the interviewer’s profile credits with millions in retrofit opportunities. This file stores the link, not a savings figure.</td></tr>
+<tr><td><b>d. Ship</b></td><td>Supplier</td><td>Build, factory acceptance test, ship. A ship notice carries serials. This extract has no ship-notice file. Line 00017 is received <b>12 February 2026</b>.</td></tr>
+<tr><td><b>e. Tag</b></td><td>Jordan at B, Wei at A</td><td>Install, site acceptance test, then the tag: asset, serial, PO line, site, line, station, custodian, cost center, program, reuse source, placed-in-service date. Jordan tags <b>AST-TS-0017</b>, serial <b>SN-TS-0017</b>, on 13 February, and leaves the date blank. His sheet says site <b>B</b> and program <b>ts-line-ramp</b>.</td></tr>
+<tr><td><b>f. Use</b></td><td>Factory, then Finance</td><td>The station runs, moves, is retrofitted, or sits idle. Each of those is a data event. Finance and audit walk the floor against the ledger.</td></tr>
+<tr><td><b>g. End</b></td><td>David, with Morgan</td><td>Transfer, hold, sell or return, or scrap. The ledger records the same fate.</td></tr>
+</tbody>
+</table>
+
+<h2 class="break">3. Who enters which data, where, and why it breaks</h2>
+<p>Wei’s file and Jordan’s file are both “the tracker,” and the headers do not match. Site A has <span class="cite">PO Line</span>, <span class="cite">Site</span>, <span class="cite">In Svc</span>, <span class="cite">Reuse From</span>. Site B has <span class="cite">po_line</span>, <span class="cite">Location</span>, <span class="cite">pis</span>, <span class="cite">prior_asset</span>. Dates, costs, and the program name are typed in more than one format. Each sheet can be accurate about what that person saw, the ERP accurate about what was ordered, and Finance still unable to capitalize.</p>
+
+<table class="xs">
+<thead><tr>
+<th style="width:14%">Event</th>
+<th style="width:13%">Who enters it</th>
+<th style="width:16%">Where today</th>
+<th style="width:18%">The fields</th>
+<th style="width:19%">Why this input exists</th>
+<th style="width:20%">What goes wrong</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Capacity becomes an equipment list</td>
+<td>Elena Vasquez, AME</td>
+<td>Engineering spec, then the approved equipment list</td>
+<td>Line, type, site, quantity</td>
+<td>The buy has to match what the line needs to hit the rate.</td>
+<td>The model changes after the list is copied. The purchase order still says 40.</td>
+</tr>
+<tr>
+<td>Launch plan and the approval</td>
+<td>David Cho, TPM</td>
+<td>The program record. In the lab, program allocation on the asset.</td>
+<td>Program, need-by dates for EVT, DVT, PVT, ramp</td>
+<td>Spend and the asset have to belong to a program someone can name.</td>
+<td>One person holds the allocation rule. In the last 90 days David is the only editor of that field on this ramp.</td>
+</tr>
+<tr>
+<td>Reuse check, then the PO</td>
+<td>Priya Raman, GSM</td>
+<td>ERP for the purchase order. A mailbox or a private sheet for the reuse check, unless the source asset id is a real field.</td>
+<td>PO line, supplier, price, cost center, reuse-source asset</td>
+<td>The PO is the commitment. The reuse link is how the company avoids buying a fixture it already owns.</td>
+<td>A fixture at the internal plant is invisible, so a new one is bought. In the lab the 12 links exist, at $0, only if someone keeps AST-FR-0001 and the rest filled in. Elena owns that field.</td>
+</tr>
+<tr>
+<td>Build, FAT, ship</td>
+<td>Supplier</td>
+<td>Supplier email or portal. This extract starts at the received date.</td>
+<td>Serial, ship date</td>
+<td>The serial is what ties a physical unit to a PO line before the company tags it.</td>
+<td>The serial stays in an inbox. The tracker gets a typed copy, and one value is entered on two rows.</td>
+</tr>
+<tr>
+<td>Receive, SAT, tag</td>
+<td>Wei Chen (site A), Jordan Hale (site B)</td>
+<td>Two CM Excel trackers, different headers</td>
+<td>Asset, serial, PO line, site, cost center, program, reuse source, placed-in-service date</td>
+<td>So Finance can start depreciation, and so an auditor can find the machine.</td>
+<td>The date is left blank. The site is spelled five ways. A serial is repeated. One PO line arrives as two tagged assets. One asset is keyed with no PO line.</td>
+</tr>
+<tr>
+<td>Move, retrofit, idle</td>
+<td>Coordinator; Elena if the tool is retooled</td>
+<td>The same spreadsheet, sometimes nowhere</td>
+<td>New site or line, program, reuse flag</td>
+<td>The asset’s life continues after the first install. The book has to follow.</td>
+<td>The factory moves it over a weekend. The ledger still has the old line. A code that exists can still be the wrong site.</td>
+</tr>
+<tr>
+<td>Count, then disposition</td>
+<td>Morgan Ellis, with the custodian; David for the end state</td>
+<td>Count sheets, then the fixed-asset ledger</td>
+<td>Found or not found; transfer, hold, sell, or scrap, and the date</td>
+<td>The company has to show the book and the floor are the same set of machines.</td>
+<td>Paid for, and not on the floor: a ghost asset. Scrapped on the floor, still depreciating. Or the reverse of a ghost: on a record, and in neither tracker, with no PO.</td>
+</tr>
+</tbody>
+</table>
+
+<p class="sh">What those breaks cost, in the real world</p>
+<ul class="res">
+<li><b>Ghost assets.</b> Paid for, and not on the floor at audit. Lines <b>00039</b> and <b>00040</b> are in transit and still count as bought. <b>AST-TS-0040</b>, serial <b>SN-TS-ORPHAN-9001</b>, is the other ghost: keyed at site B with a date and no purchase-order line, in neither spreadsheet. Priya owns the link.</li>
+<li><b>The in-service date.</b> Twelve tagged assets have it blank, so Morgan cannot capitalize them. Line <b>00019</b> / AST-TS-0020 has the date <b>11 February 2026</b> and a receipt of <b>18 February</b>, so depreciation would start before the tool arrived. Either one is a financial-control finding.</li>
+<li><b>Missed reuse.</b> A fixture that could be retooled sits in another factory, off the new tracker, and Priya buys a new one. The lab’s counter is the reuse-source field, scored only on the 12 reuse lines. Elena owns it. Without that id, Finance can capitalize a tool the company already owns.</li>
+<li><b>Budget and forecast.</b> The list is a $197,500 commitment. Twelve tagged assets are not in service, and two lines have not arrived. The purchase-order forecast and the asset book describe different sets of machines.</li>
+<li><b>One person’s head.</b> In the 90 days to 16 March, a single editor holds placed-in-service (Morgan), program allocation (David), and reuse source (Elena). Cost center is shared by Priya and Morgan. On the older fixture program, allocation was written by a prior TPM who is not in today’s owner list.</li>
+<li><b>Both spreadsheets are “right.”</b> Jordan spells site B as <b>B</b>, <b>Site B</b>, <b>SITE-B</b>, <b>site b</b>, and B with a trailing space. Wei’s sheet does the same for site A, and it has line <b>00901</b>, “Mystery box,” site SITE-Z, which is not on the equipment list. Jordan’s sheet has a row with no line id, cost <b>abc</b>, and the date <b>13/32/2026</b>. The sheets, the 40-line list, and Finance’s rule on a blank date are three true statements, and still no single picture of the line.</li>
+</ul>
+
+<h2 class="break">4. The storyline, on the extract’s calendar</h2>
+<p>Speak it as a sequence: spec, approve, buy, ship, tag, reconcile. The extract does not number those as week 0, week 2, week 3. It stores dates. The as-of date is <b>16 March 2026</b>. The picture below is the open queue on that morning, before anything is closed.</p>
+<table class="sm">
+<thead><tr><th style="width:18%">When</th><th>What the files show</th></tr></thead>
+<tbody>
+<tr><td>June 2025</td><td><b>Fixture reuse 2024</b> at internal plant PLANT-01: 28 fixtures. Twelve become the reuse sources. Those edits sit outside the 90-day window.</td></tr>
+<tr><td>6 Jan–27 Feb 2026</td><td>Priya’s 40 lines. 00001 on 6 January, 00017 on 20 January, 00040 on 27 February. The equipment list is the authority. Rule R1: one missing line is a no-go.</td></tr>
+<tr><td>2–23 Feb 2026</td><td><b>38 of 40 lines</b> have a tag. <b>00039</b> (Helix instrument, site A) and <b>00040</b> (Atlas fixture, site B) have no receipt and no asset. They stay in the denominator. 38/40 is 95 percent.</td></tr>
+<tr><td>12 Feb 2026</td><td>Line <b>00017</b> arrives at site B. Jordan tags AST-TS-0017 and leaves the date blank: one of <b>twelve</b>. The other eleven are <b>00006–00016</b> at site A, left by Wei. Morgan owns the field. EX-PIS-00017 opens 12 March, age 4 days.</td></tr>
+<tr><td>The same tag pass</td><td><b>SN-DUP-4421</b> on 00020 and 00021 (Jordan; the second entry failed). <b>SN-DUP-4422</b> on 00022 and 00023 (Wei). Line <b>00018</b> is quantity 2: assets AST-TS-0018 and AST-TS-0019, a fan-out, not a duplicated PO id. Line <b>00019</b> is dated before receipt. Three real site codes are on the wrong factory: <b>00024</b> bought for A, tagged B; <b>00025</b> bought for B, tagged A; <b>00026</b> bought for A, tagged PLANT-01.</td></tr>
+<tr><td>1 Mar 2026</td><td>Tolerance published before the load. R1: zero missing list lines. R2: a repeated PO id is a no-go; two assets on 00018 are allowed. R3: quarantine rate at or under 5 percent; a fully blank Excel row is not a submission. R4: alert if this program is under 98 percent. The file calls 98 percent a proposed lab alert. A blend can sit at 98 percent and stay quiet while this program at 95 percent should page. Pack cell expansion is clean on purpose, so a blended rate looks finished.</td></tr>
+<tr><td>16 Mar 2026</td><td>You run the reconciliation. <b>21 open exceptions</b>, all go-live, no closed date. Aging <b>7 / 7 / 7</b> in 0–7, 8–30, and 31+ days. The orphan is 60 days. Line 00040 is 32. First entry passed on <b>21 of 40</b> assets.</td></tr>
+</tbody>
+</table>
+
+<p class="sh">What you do, in this order</p>
+<ol class="tight">
+<li><b>Publish the tolerance before the load.</b> R1–R4 are dated 1 March. You state them before you trust the file. You do not choose 98 percent after seeing 95.</li>
+<li><b>Load</b> both trackers onto the 40-line list. Quarantine the mystery-box row and the row whose cost is “abc.” A fully blank Excel row is not a submission.</li>
+<li><b>Counted-rows go/no-go.</b> Loaded PO ids against the 40. A missing id stops the load. A repeated id stops the load. Line 00018’s two assets stay: quantity 2, both serials kept.</li>
+<li><b>One exception per defect, named owner.</b> Twelve blank dates, Morgan. Duplicate serials: Jordan on 00021, Wei on 00022. Wrong sites: Wei, Jordan, Wei. Date-before-receipt: Morgan. Two in-transit lines and the orphan: Priya. Twenty-one rows. No second list in email.</li>
+<li><b>Owner-per-field scorecard.</b> Morgan sees the date. Priya sees the PO link, transit, and the orphan. Wei and Jordan see serial and site on the rows they submitted. Elena sees reuse source, on the 12 reuse lines only. David sees program allocation.</li>
+<li><b>Chase the twelve dates with Wei, Jordan, and Morgan. Do not escalate.</b> Show the ledger impact: the twelve are tagged, and Finance cannot capitalize them, so depreciation does not start. Agree the rule: the date is the day SAT is signed — not the ship date, and not the unpack date. Put line 00019 on the table as the early-date case. An unsigned SAT stays open under Morgan’s name. You do not type a guess to turn the tile green.</li>
+<li><b>Close when the field is corrected.</b> Closed date is filled because the serial, the site code, or the SAT date is now in the record. On 16 March every closed date is empty. That is the before picture.</li>
+<li><b>Write the playbook rule: “placed-in-service date required at tagging, validated at entry.”</b> The next tracker that omits it fails at entry. Filling it later leaves first-time-right at 21 of 40. That measure is the first entry, which is what the playbook is judged on.</li>
+</ol>
+
+<h2 class="break">5. What this role does, and the output you leave behind</h2>
+<p>Elena specs the station, David dates the launch, Priya places the buy, Wei and Jordan live with the tool, Morgan capitalizes it. You make the record trustworthy enough that Morgan can start depreciation, Priya can find the fixture next time, and an auditor can walk to the tag. You name an owner for every field, publish the tolerance before the load, count the rows, and close exceptions with the person who has the fact. The next program inherits the rule. The output on the table is a scorecard and a queue.</p>
+
+<table class="sm">
+<thead><tr><th style="width:24%">Tile</th><th style="width:36%">What it counts on this extract</th><th>The real-world failure it is there to catch</th></tr></thead>
+<tbody>
+<tr><td><b>Reconciliation %</b></td><td>38/40 tagged, 95 percent. 00039 and 00040 stay in the denominator. Read it on TS-LINE-RAMP. The clean pack-cell program can hold a blend at 98 percent and the alert stays quiet.</td><td>Money committed, asset not in service. Paid for and not tagged. A company-wide percent hides the program you are onboarding.</td></tr>
+<tr><td><b>Exception aging</b></td><td>7 / 7 / 7 in 0–7, 8–30, and 31+ days. EX-PIS-00017 is 4 days. The orphan is 60. Line 00040 is 32.</td><td>The date someone meant to fill after SAT, which became a quarter. A control finding gets old quietly.</td></tr>
+<tr><td><b>Completeness by field, by owner</b></td><td>Twelve blank dates. Field owner: Morgan. Wei typed eleven blanks, Jordan typed 00017. Reuse source is scored on the 12 reuse lines only.</td><td>One field and one owner, instead of “the program is messy.” A single editor on program allocation is how shared tools get split by memory.</td></tr>
+<tr><td><b>First-time-right %</b></td><td>21 of 40 assets passed on first entry. A later fix does not flip the flag.</td><td>Repeated serials, a date before receipt, a valid site code on the wrong factory, a blank date. The playbook is judged on the next file’s first pass.</td></tr>
+<tr><td><b>Person-dependent fields</b></td><td>90-day window: date = Morgan, program = David, reuse source = Elena. Cost center is shared by Priya and Morgan.</td><td>The rule leaves with that person. The prior program still has a TPM on allocation who is not in today’s list.</td></tr>
+<tr><td><b>Exceptions queue</b></td><td>21 rows, one defect, one owner, go-live, no closed date.</td><td>Both sheets can look right until a named person has to change one field. The queue is that ask, with an age.</td></tr>
+</tbody>
+</table>
+
+<h3>How the lab data maps to this story</h3>
+<p class="cite">No README was in the lab folder. Columns are the CSV headers. Every defect below is a row in planted_defects.csv or the rule that file is demonstrating.</p>
+<table class="xs">
+<thead><tr><th style="width:20%">Real-world event</th><th style="width:32%">CSV file / column</th><th style="width:28%">Planted defect</th><th>Metric that catches it</th></tr></thead>
+<tbody>
+<tr><td>Approved equipment list</td><td><span class="cite">equipment_list_ts_line_ramp.csv</span> · po_line_id, qty, unit_cost</td><td>40 lines. Sum of unit cost × quantity is $197,500. A missing line fails R1.</td><td>Counted-rows go/no-go</td></tr>
+<tr><td>Buy and receipt</td><td><span class="cite">fact_po_line.csv</span> · po_line_id, supplier_id, site_id, received_date</td><td>38 lines received between 2 Feb and 23 Feb. 00039 and 00040 blank.</td><td>Reconciliation %. In transit stays in the denominator.</td></tr>
+<tr><td>Tag, and the in-service date</td><td><span class="cite">fact_asset.csv</span> · asset_id, placed_in_service_date. <span class="cite">fact_exception.csv</span> · EX-PIS-*</td><td>12 blanks: 00006–00016 (Wei, site A) and 00017 / AST-TS-0017 (Jordan, site B). Owner OWN-FIN, Morgan Ellis.</td><td>Completeness by field by owner</td></tr>
+<tr><td>Date before the tool arrived</td><td>placed_in_service_date against received_date</td><td>00019 / AST-TS-0020: 2026-02-11 before 2026-02-18. EX-DATE-00019.</td><td>First-time-right. Exception aging.</td></tr>
+<tr><td>Serial typed twice</td><td><span class="cite">fact_asset.csv</span> · serial_number. Raw: <span class="cite">raw_cm_tracker_siteB.csv</span> · SN</td><td>SN-DUP-4421 on 00020 and 00021 (Jordan). SN-DUP-4422 on 00022 and 00023 (Wei).</td><td>First-time-right. Duplicate-serial exceptions.</td></tr>
+<tr><td>Site spelled three ways</td><td><span class="cite">raw_cm_tracker_siteB.csv</span> · Location. Site A column is “Site ”.</td><td>Same factory written B, Site B, SITE-B, site b, and B plus a space. Line 00017 is stored as B.</td><td>Load conform, before any rate. A filter on “Site B” would drop line 00017.</td></tr>
+<tr><td>Right code, wrong factory</td><td>fact_asset.site_id vs fact_po_line.site_id. Sites in <span class="cite">dim_site.csv</span>: CM-A, CM-B, PLANT-01.</td><td>00024 A bought, tagged B. 00025 B bought, tagged A. 00026 A bought, tagged PLANT-01.</td><td>First-time-right. Completeness would pass: the code exists.</td></tr>
+<tr><td>One PO, two serialized assets</td><td>fact_po_line.qty · fact_asset rows for 00018</td><td>Quantity 2. AST-TS-0018 and AST-TS-0019. Rule R2: this is a fan-out, not a duplicate id.</td><td>Go/no-go must allow it. Reconciliation has to count assets, not assume one tag per line.</td></tr>
+<tr><td>Asset with no PO</td><td>fact_asset.po_line_id (blank). EX-ORPHAN-0040.</td><td>AST-TS-0040, SN-TS-ORPHAN-9001, site B, in neither tracker. Owner Priya Raman.</td><td>Orphan on the queue. Reconciliation from the asset side, not only from the PO.</td></tr>
+<tr><td>Reuse instead of a new buy</td><td>fact_asset.reuse_source_asset_id · lines 00027–00038 · <span class="cite">field_owner_map.csv</span></td><td>12 rows, $0, PO-55030, sources AST-FR-0001–0012 from FIXTURE-REUSE-24. Elena owns the field.</td><td>Completeness of reuse source. Denominator is the reuse lines only.</td></tr>
+<tr><td>Who actually typed the field</td><td><span class="cite">fact_field_edit.csv</span> · field_name, edited_by. Window in <span class="cite">lab_parameters.csv</span>: 90 days, as-of 2026-03-16.</td><td>Single editors: Morgan, David, Elena, on the three fields above.</td><td>Person-dependent fields</td></tr>
+<tr><td>The open queue</td><td><span class="cite">fact_exception.csv</span> · owner_id, opened_date, closed_date, triage_class</td><td>21 open, all go-live, buckets 7 / 7 / 7. Owners in <span class="cite">dim_input_owner.csv</span>.</td><td>Exception aging. The queue itself.</td></tr>
+</tbody>
+</table>
+
+<h2>6. How to say it to the hiring manager</h2>
+<div class="say">
+<p class="label">About 90 seconds</p>
+<p>The brand designs the product. Contract manufacturers build it. The test stations, handlers, fixtures, and instruments on those lines are often the brand’s property, on the brand’s books, in a factory the brand does not run. That is the asset problem: a large number of machines you own and do not physically control.</p>
+<p>On the program I would walk you through, the manufacturing engineer specs 40 purchase-order lines across two factories and three suppliers. The supply manager reuses 12 fixtures from the prior program and points each one at the asset it came from. The factories tag what arrives in two spreadsheets that do not share column names. Thirty-eight lines have a tag. Two are still in transit. Twelve tags have no placed-in-service date, so Finance cannot start depreciation. Line 00017 at site B is one of those twelve.</p>
+<p>I publish the pass rules before I load the file, count the rows against the 40-line list, and open one exception per defect with the owner that field already has. For the twelve dates I sit with Finance and the site coordinator. I show them that a blank date means the book cannot capitalize the asset. We agree the date is the day the site test is signed. Then I write the rule down: placed-in-service date required at tagging, validated at entry.</p>
+</div>
+<div class="rules"><strong>The sentence that shows why this team cares.</strong> Apple cares because these are assets the company owns inside factories it does not control, and the placed-in-service date is a financial control, not a formality.</div>
+<p class="sh">One line each, from work I have done</p>
+<ul class="res">
+<li><b>Sephora, Utah DC.</b> One inventory record, two channels; 44 requirement rows across 23 systems; issues log 331 go-live / 77 fast-follow / 36 enhancement.</li>
+<li><b>Sephora, S/4 HANA.</b> The go/no-go was counted rows; the line we could stand on was “Negative AFS clean at T+1.”</li>
+<li><b>Elementum, Austria.</b> Data quality about 55% to about 99% within a quarter; measure before blaming the process.</li>
+<li><b>Flexport.</b> Events in versus events out at every boundary.</li>
+</ul>
+<p class="cite">Counts are from the lab CSVs as of 2026-03-16. $197,500 is unit cost × quantity on the 40-line equipment list. 38/40 and 21/40 are TS-LINE-RAMP. No README was in the folder. Files: equipment list, fact_po_line, fact_asset, fact_exception, fact_field_edit, planted_defects, field_owner_map, published_tolerance, lab_parameters, the dim_* tables, and both raw trackers.</p>
+
+</body>
+</html>

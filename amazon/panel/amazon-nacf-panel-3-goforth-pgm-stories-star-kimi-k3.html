@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Part 3C — Rocky Goforth — three program-management STAR stories (RP→JDA, Locus SLC, Crux transition)</title>
+<style>
+  @page { size: letter; margin: 0.62in 0.68in 0.68in 0.68in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", "Inter", Arial, sans-serif; font-size: 10.3pt; line-height: 1.38; color: #1c1c1c; }
+  h1 { font-size: 20pt; line-height: 1.15; margin: 0 0 6px; letter-spacing: -0.02em; }
+  h2 { font-size: 13pt; margin: 16px 0 6px; padding-top: 8px; border-top: 2px solid #1a2744; page-break-after: avoid; }
+  h2.break { page-break-before: always; }
+  h3 { font-size: 11.3pt; margin: 12px 0 4px; page-break-after: avoid; color: #1a2744; }
+  h3.st { font-size: 12pt; color: #1c1c1c; border-left: 4px solid #1a2744; padding-left: 8px; margin-top: 16px; page-break-before: always; }
+  h4 { font-size: 10.3pt; margin: 9px 0 3px; page-break-after: avoid; color: #8a1c2b; }
+  p { margin: 0 0 7px; }
+  ul, ol { margin: 2px 0 8px; padding-left: 18px; }
+  li { margin: 0 0 3px; }
+  .kicker { font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .cover { min-height: 8.6in; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 1.0in; page-break-after: always; }
+  .cover .role { font-size: 12.5pt; color: #1a2744; margin: 0 0 18px; }
+  .cover .who { background: #1a2744; color: #fff; padding: 16px 20px; margin: 10px 0 16px; }
+  .cover .who .nm { font-size: 17pt; font-weight: 700; letter-spacing: -0.01em; }
+  .cover .who .tt { font-size: 11pt; color: #e6ddcb; margin-top: 3px; }
+  .cover .who .dt { font-size: 12pt; margin-top: 10px; font-weight: 700; }
+  .cover .who .sh { font-size: 9.5pt; color: #e6ddcb; margin-top: 4px; }
+  .cover .strat { background: #f7f4ee; border-left: 4px solid #8a1c2b; padding: 10px 14px; margin: 8px 0; font-size: 10.6pt; }
+  .cover .strat strong { color: #8a1c2b; }
+  .cover .lpg { font-size: 9.6pt; color: #333; margin-top: 10px; }
+  .cover .lpg em { color: #7a5a00; font-style: normal; font-weight: 700; }
+  .cover .src { font-size: 8.8pt; color: #666; margin-top: auto; padding-top: 24px; }
+  .meta { background: #f4f1ea; border-left: 4px solid #1a2744; padding: 8px 12px; margin: 8px 0 10px; font-size: 10pt; }
+  .meta div { margin: 1px 0; }
+  .say { background: #f7f4ee; border: 1px solid #d9d0c1; border-left: 4px solid #8a1c2b; padding: 8px 12px 4px; margin: 6px 0 10px; page-break-inside: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, serif; font-size: 10.4pt; line-height: 1.42; }
+  .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .star { background: #fcfbf8; border: 1px solid #d9d0c1; padding: 7px 12px 3px; margin: 4px 0 10px; font-size: 9.7pt; }
+  .star p { margin: 0 0 5px; }
+  .stag { font-weight: 700; color: #8a1c2b; }
+  .hon { background: #f3f0fa; border-left: 4px solid #5b4a8a; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.3pt; color: #333; }
+  .hon strong { color: #5b4a8a; }
+  .doc { background: #eef4f6; border: 1px solid #c3d5da; border-left: 4px solid #1f6f7a; padding: 7px 12px 4px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .doc p { margin: 0 0 5px; }
+  .doc .label { color: #1f6f7a; }
+  .kc { background: #fdf8ef; border: 1px solid #e4d2ac; border-left: 4px solid #b8860b; padding: 6px 12px 4px; margin: 6px 0 10px; font-size: 9.4pt; }
+  .kc ul { margin: 2px 0 6px; padding-left: 16px; }
+  .inf { background: #fbf7ec; border-left: 4px solid #b8860b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.4pt; }
+  .inf strong { color: #7a5a00; }
+  .rules { background: #fdf0f0; border: 1px solid #e3b7b7; border-left: 4px solid #8a1c2b; padding: 7px 12px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .rules strong { color: #8a1c2b; }
+  .qa { border-left: 3px solid #d9d0c1; padding: 2px 0 2px 10px; margin: 0 0 9px; font-size: 9.5pt; page-break-inside: avoid; }
+  .qa p { margin: 0 0 3px; }
+  .qa p.q { color: #1a2744; font-weight: 700; }
+  .sh { font-size: 8.8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin: 10px 0 4px; border-bottom: 1px solid #d9d0c1; padding-bottom: 2px; page-break-after: avoid; }
+  ul.res { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
+  ul.res li { margin: 0 0 3px; }
+  ul.phz { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
+  ul.phz li { margin: 0 0 4px; }
+  .pb { font-weight: 700; color: #1a2744; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 9.1pt; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #ddd; padding: 4px 6px 4px 0; }
+  th { font-size: 8.2pt; letter-spacing: 0.04em; text-transform: uppercase; color: #555; border-bottom: 1.5px solid #1a2744; }
+  table.sm { font-size: 8.5pt; }
+  table.sm th, table.sm td { padding: 3px 5px 3px 0; }
+  td.c { color: #8a1c2b; font-weight: 700; }
+  span.new { display: inline-block; background: #8a1c2b; color: #fff; font-size: 7.4pt; letter-spacing: 0.08em; padding: 1px 5px; border-radius: 3px; vertical-align: middle; margin-left: 4px; text-transform: uppercase; }
+  span.b { display: inline-block; background: #e8eef6; color: #1a2744; font-size: 7.6pt; padding: 0 4px; border-radius: 3px; margin-left: 2px; }
+  .toc div { margin: 2px 0; font-size: 9.8pt; }
+  .toc .grp { font-weight: 700; color: #8a1c2b; margin-top: 8px; }
+  a { color: #1a2744; text-decoration: none; }
+  .cite { color: #1f6f7a; font-size: 8.6pt; }
+  .two { columns: 2; column-gap: 22px; }
+</style>
+<style>
+  .tb { border-top: 4px solid #1a2744; border-bottom: 1px solid #d9d0c1; padding: 10px 0 8px; margin: 0 0 10px; }
+  .tb .l1 { font-size: 17pt; font-weight: 700; color: #1a2744; letter-spacing: -0.01em; }
+  .tb .l2 { font-size: 11pt; color: #8a1c2b; font-weight: 700; margin-top: 2px; }
+  .tb .l3 { font-size: 9.4pt; color: #444; margin-top: 3px; }
+  .trade { background: #eef6ee; border: 1px solid #bcd6bc; border-left: 4px solid #2e6b2e; padding: 7px 12px 4px; margin: 6px 0 10px; font-size: 9.6pt; page-break-inside: avoid; }
+  .trade .label { color: #2e6b2e; }
+  .trade p { margin: 0 0 4px; }
+  .fail { background: #fdf0f0; border-left: 4px solid #8a1c2b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.5pt; }
+  .safe { background: #f3f0fa; border: 1px solid #cfc5e6; border-left: 4px solid #5b4a8a; padding: 6px 12px 3px; margin: 6px 0 10px; font-size: 9.5pt; page-break-inside: avoid; }
+  .safe .label { color: #5b4a8a; }
+  .safe p { margin: 0 0 4px; }
+  .s20 { background: #fdf8ef; border: 1px solid #e4d2ac; border-left: 4px solid #b8860b; padding: 6px 12px 3px; margin: 6px 0 10px; font-size: 9.6pt; page-break-inside: avoid; }
+  .s20 .label { color: #7a5a00; }
+  table.ph td.g { font-weight: 700; color: #1a2744; white-space: nowrap; }
+  .lp div { margin: 0 0 3px; font-size: 9.5pt; }
+  .lp b { color: #8a1c2b; }
+</style>
+</head>
+<body>
+
+<div class="tb">
+  <div class="l1">Part 3C — Rocky Goforth — program-management STAR stories</div>
+  <div class="l2">10:00 AM PDT, Fri Oct 30 · Sr Manager, Amazon Infrastructure · also the Bar Raiser</div>
+  <div class="l3">Scope: three full SDLC / large-deployment program stories — cadence, gates, stakeholders, cost-vs-speed trade-offs. No detailed math. Rajesh Rishiyur Chandrasekaran · Amazon NACF Supply Chain, Sr Supply Chain Manager (L6).</div>
+</div>
+
+<div class="meta">
+  <div><b>How to use this part.</b> His ask: an engineering / program leader who runs large-scale deployments on a cadence, manages stakeholders and trades cost against speed on purpose. Each story below is a full program: <b>60-second pitch → S / T / A / R in first person → five gated phases (entry · delivered · exit) → who I needed / what / how → TRADE-OFF I MADE → failure / learning → LP tags → SAFE-SAY → 20-second version → 4 probing Q&amp;As</b>.</div>
+  <div><b>Basis labels:</b> <b>record</b> = Apple v11 workbook / resume; <b>record-from-docs</b> = a page or row of an uploaded source document; <b>user anchor</b> = GFiber v8 only (confirm before saying the exact figure); <b>my division</b> = arithmetic I did, never banked.</div>
+  <div><b>Not repeated here (already told Thu to Snigdha / Ryan):</b> S/4 HANA / ISM, Flexport estimation / FF App, Shipment Visibility, safety stock, 200-lane. One-line bridges only.</div>
+</div>
+
+<div class="sh">Contents</div>
+<div class="toc">
+  <div><b>Framework</b> — how I run a program: cadence and a five-question cost-vs-speed framework (one page).</div>
+  <div><b>P2</b> — RP → JDA WMS migration across two DCs (Sephora): eight months, on time, about 3% under a ~$1.8M budget; mocks 7.0% → 1.8% → 0.3% against a 0.5% line; RF-device miss inside it.</div>
+  <div><b>P3</b> — Locus robotics deployment, Salt Lake City DC (Sephora / UDC program): vendor SOW, wiring install, change control, 94% vs a 98% readiness gate with a throttle, full automation in week three, the RTL slip.</div>
+  <div><b>P4</b> — Crux transition plan (Flexport): retiring a legacy visibility platform for 79 customers — parity, shadow accounts, cutover waves, comms, owner decisions, what we did not carry over. <i>Program / cutover lens only.</i></div>
+  <div><b>Pointers (not rewritten here)</b> — UDC dual inventory end to end, Canada bulk-ship plan, FSD-slip failure: <i>amazon-nacf-udc-canada-story-pack-star-kimi-k3</i> (B1, B2, B5). More stories, failures F1–F4, 32-answer LP bank: <i>amazon-nacf-panel-3-goforth-bar-raiser-bank-star-kimi-k3</i>.</div>
+</div>
+
+<div class="rules"><strong>Opening line for Rocky (say it once):</strong> “I run programs as gated lifecycles — every phase has a written entry and exit, the pass line is published before the data arrives, and I trade cost against speed explicitly, in writing, with the owner of the money in the room.”</div>
+
+<h2 class="break" id="fw">How I run a program — cadence and the cost-vs-speed framework (one page, say it in under a minute)</h2>
+<div class="say"><div class="label">If he asks “how do you run a large program?” — 45 seconds</div>
+<p>I run every program on the same machine. First, baseline the number before touching anything. Second, one scorecard on a fixed cadence with the same definitions every week — two dashboards is zero dashboards. Third, stage gates with numeric entry and exit criteria, published before the data arrives, so the gate can actually stop the program. Fourth, when a number goes red, I chase it to the root cause before spending money on the symptom. Fifth, the correction lands in the same weekly review that surfaced it, with an owner and a date. Every story I’m about to tell is that machine applied — two DCs, a robotics deployment, and a platform retirement.</p></div>
+<div class="cite">Source: Apple v11 workbook, Part 0 “How I run a program” <span class="b">record</span>.</div>
+
+<div class="sh">Program cadence — what I actually run</div>
+<table class="sm">
+<thead><tr><th>Rhythm</th><th>What it is</th><th>Where it shows up</th></tr></thead>
+<tbody>
+<tr><td>Daily</td><td>Blocker count / bug triage in stand-up; hypercare blockers against a written exit</td><td>P2 hypercare (under two blockers a day); P4 shadow-account bugs read daily</td></tr>
+<tr><td>Weekly</td><td>One cross-functional review — RAID or track status — the worst number said out loud by me, with owner and date</td><td>P2 weekly RAID; P3 Locus retail-track status inside the program’s two-block weekly; P4 wave readiness</td></tr>
+<tr><td>Per gate</td><td>Entry and exit criteria on paper; the gate reads the scorecard, not confidence</td><td>P2 mock scorecards and UAT entry; P3 98% robotics gate; P4 80% minor-to-no-issues shadow bar</td></tr>
+<tr><td>Steering</td><td>Decisions with prices: slips, scope fences, re-slots — the week they surface</td><td>P3 three-week re-slot; P4 RAPID decision per segment</td></tr>
+</tbody></table>
+
+<div class="sh">My cost-vs-speed framework (five questions I ask before I trade)</div>
+<table class="sm">
+<thead><tr><th>Question</th><th>What it decides</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td class="c">1. What does a slip cost, in the money owner’s terms?</td><td>How much I will pay to protect the date</td><td>P2: a $20M pipeline of four projects waited on the date</td></tr>
+<tr><td class="c">2. What defect class does going faster add?</td><td>Whether compressing a phase is really cheaper</td><td>P3: a compressed UAT is a defect class I would own at go-live — I re-slotted instead</td></tr>
+<tr><td class="c">3. Is the step reversible?</td><td>Pay for reversibility only where the step can’t be undone</td><td>P2: 72-hour freeze, RP read-only 30 days, rollback per interface</td></tr>
+<tr><td class="c">4. Can I make it a dial instead of a switch?</td><td>Partial speed instead of all-or-nothing</td><td>P3: bot-vs-cart share was a parameter — 30% throttled for a week</td></tr>
+<tr><td class="c">5. Can I segment instead of setting one date?</td><td>Move fast where the fit is clean, slow only where needed</td><td>P4: migrate, partner, API or cancel per segment, not one shutdown</td></tr>
+</tbody></table>
+<div class="rules"><strong>The rule under all five:</strong> the trade is written down, with its cost, in front of the person who owns the money — before the pressure arrives. A trade made quietly in a weekend is not a trade; it is a hidden risk.</div>
+
+<h3 class="st" id="p2">P2 — RP → JDA WMS migration across two DCs: eight months, on time, about 3% under budget <span class="new">full STAR</span></h3>
+<div class="meta">
+  <div><b>Company:</b> Sephora (two distribution centers) · <b>My role:</b> program lead, full SDLC owner · <b>Team:</b> 14 core + 6 DC Ops <span class="b">record</span></div>
+  <div><b>Why Rocky:</b> a large deployment run outside my expertise on gates, cadence and a published pass line — the cleanest “program management play” I have. <b>LP tags:</b> Deliver Results · Insist on the Highest Standards · Ownership · Earn Trust.</div>
+</div>
+
+<div class="say"><div class="label">60-second pitch</div>
+<p>At Sephora two distribution centers had to move from an old RP system to JDA WMS in eight months, with a twenty-million-dollar pipeline of four strategic projects waiting behind the date. I had never run a WMS migration and nothing was documented. So I ran gates instead of experience: discovery, design, build, test, cutover and hypercare, each with a written entry and exit, and no phase opened until the previous exit was signed. The pass line for data accuracy — half a percent — was agreed with Finance <i>before</i> the first mock cutover. Mock one came back at 7%, mock two at 1.8%, mock three at 0.3%, and the go-live recommendation cited that scorecard, not confidence. We went live on time, about 3% under a roughly $1.8M budget, and hypercare met its written exit in week three of four. The one miss inside it — an RF-device script that moved training a week and a half — is the reason every dependency I own now has a what-if plan.</p></div>
+
+<div class="star">
+<p><span class="stag">S — Situation.</span> Sephora, two DCs on a legacy RP warehouse system, a hard eight-month deadline to JDA WMS, and a $20M pipeline of four strategic projects that could not start until the migration landed <span class="b">record</span>. No strategy, scope, milestones, dependencies or risks were written down when I was handed it.</p>
+<p><span class="stag">T — Task.</span> I owned the program end to end: deliver on time, on budget (about $1.8M <span class="b">record</span>), with cutover data accuracy <i>proven</i> before go-live — and run it as a full lifecycle, not a technical swap.</p>
+<p><span class="stag">A — Action.</span> I sat with the sponsor first on objectives, assumptions and success criteria; turned the lifecycle into five gated phases (below); ran one weekly cross-functional RAID review as the program heartbeat; published the 0.5% reconciliation tolerance with Finance before mock one; gave every miss class an owner; and wrote the go-live recommendation off the scorecard. The JDA configuration was the team’s; the governance that made three honest mocks possible was mine.</p>
+<p><span class="stag">R — Result.</span> On time; about 3% under a ~$1.8M budget (roughly $54K — <span class="b">my division</span>); mocks 7.0% → 1.8% → 0.3% against the 0.5% line; the 72-hour in-transit freeze held; hypercare exited on “under two blocker tickets a day” in week three of four; the $20M pipeline started the month after <span class="b">record</span>.</p>
+</div>
+
+<div class="sh">Action — five gated phases (entry · delivered · exit)</div>
+<table class="ph sm">
+<thead><tr><th>Phase</th><th>Entry (what had to be true)</th><th>Delivered</th><th>Exit (written, signed)</th></tr></thead>
+<tbody>
+<tr><td class="g">1 Discovery</td><td>Sponsor objectives, assumptions and success criteria agreed one-to-one</td><td>Documented current state for every flow; scope, milestones, governance, risk register</td><td>Every call-out addressed — I held this gate even though it was the phase everyone wanted to rush</td></tr>
+<tr><td class="g">2 Plan &amp; design</td><td>Discovery exit signed</td><td>Leads walked every milestone’s dependencies; designs taken through the architecture council; stories ranked by criticality</td><td>Design sign-off; criticality-based build order agreed</td></tr>
+<tr><td class="g">3 Build</td><td>Signed designs; criticality order</td><td>Criticality-based build; QA demoing to DC Ops as features landed; dotcom and retail conversion build finished inside the phase</td><td>UAT entrance criteria met: function testing done, conversion build done, test data handed off, pre-prod and performance environments ready — “UAT opened on proof, never on promises”</td></tr>
+<tr><td class="g">4 Test &amp; mock cutovers</td><td>UAT exit; 0.5% tolerance published with Finance <b>before</b> mock one</td><td>Three full dress rehearsals at production volume: item, location, inventory masters and open orders, every record pair a match or a counted miss by defect class</td><td>Mock three at 0.3% ≤ 0.5% → written go-live recommendation citing the scorecard; device readiness proven (after the RF miss)</td></tr>
+<tr><td class="g">5 Cutover &amp; hypercare</td><td>Go-live recommendation accepted; runbook = mock-three timings</td><td>72-hour in-transit freeze; rollback per interface; RP kept read-only 30 days for failback; four-week hypercare schedule</td><td>Under two blocker tickets a day — hit in week three of four; pipeline released</td></tr>
+</tbody></table>
+
+<div class="sh">Who I needed · what · how I got it</div>
+<table class="sm">
+<thead><tr><th>Who</th><th>What I needed from them</th><th>How</th></tr></thead>
+<tbody>
+<tr><td>Executive sponsor</td><td>Success criteria; air cover to hold the discovery gate</td><td>One-to-one first, before any plan; the exit criteria on paper so the hold was a rule, not my opinion</td></tr>
+<tr><td>Finance partner</td><td>A pass line both of us would honour under pressure; budget actuals</td><td>Agreed 0.5% in writing before mock one; Finance owned the actuals against the charter</td></tr>
+<tr><td>DC Ops leads (6 on the program)</td><td>SME time, training windows, acceptance of a 72-hour freeze</td><td>QA demos as features landed so Ops saw progress early; freeze and read-only fallback framed as their insurance</td></tr>
+<tr><td>Engineering / JDA configuration team</td><td>Owners for each miss class; scripted reconciliation extracts</td><td>Defect classes with one owner each, re-verified in the next mock; the weekly RAID with the worst number said by me</td></tr>
+<tr><td>Devices / infrastructure team</td><td>RF guns, printers and workstations converted before training</td><td>After the miss: device readiness written into training’s entry criteria — proven devices, not promised ones</td></tr>
+</tbody></table>
+
+<div class="trade"><div class="label">Trade-off I made — cost vs speed</div>
+<p><b>Options.</b> (a) Compress discovery and overlap build to buy calendar against a hard date; (b) hold every gate and pay for reversibility at cutover.</p>
+<p><b>Chose (b).</b> I spent schedule and political capital holding discovery until every flow was documented, and I made the business accept operational cost — a 72-hour in-transit freeze and 30 days of RP read-only — so no flow was irreversible.</p>
+<p><b>Rejected (a)</b> because a skipped discovery shows up as a mock-three surprise, and a slip on this date stalled the whole $20M pipeline — about $2.5M a month on average <span class="b">my division, not banked</span>. Cost of my choice: freeze pain for the DCs and a hard few weeks defending the hold.</p></div>
+
+<div class="fail"><strong>Failure / learning (Apple G2, told honestly).</strong> Training sign-off was a go-live exit criterion that depended on <b>hundreds</b> of RF guns, printers and workstations converting. The devices team called it three to four days; I planned it as low effort. I scheduled a device test before training anyway — the upgrade script failed on newer RF hardware. With key people on COVID night shifts, manual conversion could not finish in time, so I told leadership straight: training moves 1.5 weeks, my miss. <b>Go-live held.</b> Root cause was my risk model — I sized by effort, not impact. Since then every cross-functional dependency gets a what-if line (what breaks, who owns the fallback, how long it takes).</div>
+
+<div class="lp">
+<div><b>Deliver Results</b> — eight months, on time, about 3% under, with the $20M pipeline released the month after.</div>
+<div><b>Insist on the Highest Standards</b> — the 0.5% pass line was published before any data could pressure it.</div>
+<div><b>Ownership</b> — I owned a program outside my expertise, and owned the RF miss out loud.</div>
+<div><b>Earn Trust</b> — mock one’s 7% went to leadership unvarnished, with my name on the note.</div>
+</div>
+
+<div class="safe"><div class="label">SAFE-SAY</div>
+<p><b>Most attackable number:</b> “The devices were in the hundreds — the 2022 write-ups count the fleet differently, so I say hundreds; the facts that matter are that the test ran before training, training moved a week and a half, and go-live did not move.”</p>
+<p><b>“What’s your source?”</b> “The program charter and my go-live recommendation: eight months, about $1.8M and roughly 3% under, and the three mock scorecards at 7, 1.8 and 0.3 against a half-percent line agreed with Finance before mock one.”</p></div>
+
+<div class="s20"><div class="label">20-second version</div>
+<p>“Two Sephora DCs from RP to JDA in eight months, a $20M pipeline behind the date, and I had never run a WMS migration. I ran it as five gated phases, published a half-percent accuracy line with Finance before the first mock, burned 7% down to 0.3% over three mocks, and went live on time and about 3% under budget.”</p></div>
+
+<div class="sh">Probing Q&amp;A</div>
+<div class="qa"><p class="q">Q1. You set the 0.5% yourself and passed at 0.3% — isn’t that grading your own exam?</p><p>The line was agreed with Finance, in writing, before mock one — the opposite of negotiating under pressure. A rehearsal passing inside a pre-agreed line is what rehearsal is for. Zero-defect cutovers don’t exist; the remaining tail was documented, priced and accepted by the business.</p></div>
+<div class="qa"><p class="q">Q2. What was your program cadence, concretely?</p><p>One weekly cross-functional RAID review as the heartbeat — risks, actions, issues, decisions, with owners and dates; phase-gate reviews with the sponsor at each exit; a mock every rehearsal cycle with a scorecard readout; daily blocker counts in hypercare against the “under two a day” exit.</p></div>
+<div class="qa"><p class="q">Q3. What was in mock one’s 7%?</p><p>Mostly vocabulary, not loss: unit-of-measure mappings, location naming that had drifted, and open-order status codes that meant different things in RP and JDA. Counted by class with an owner each, so the rate fell predictably. Learning: I’d now reconcile a thin sample before mock one — vocabulary classes surface on a small sample weeks earlier.</p></div>
+<div class="qa"><p class="q">Q4. What would you do differently?</p><p>Put the discovery exit criterion in front of leadership on day one, before calendar pressure arrived — holding discovery was right, but publishing what “done” meant earlier would have made the hold cheaper to defend. And the what-if line per dependency from kickoff, which would have turned the RF failure into a non-event.</p></div>
+<div class="hon"><strong>Do not attach</strong> the 343-task runbook to this story — 343 timed tasks is the UDC dual-cutover plan (May–Jul 2025), used in P3. Here the runbook is “mock three’s timings.” Never speak a cost multiplier for the fallback.</div>
+
+<h3 class="st" id="p3">P3 — Locus robotics deployment at the Salt Lake City DC: vendor SOW to full automation in week three <span class="new">full STAR</span></h3>
+<div class="meta">
+  <div><b>Company:</b> Sephora, Utah DC (UDC) in Salt Lake City · 2024–25 · <b>My role:</b> program owner for the robotics workstream inside the UDC conversion (BlueYonder WMS upgrade + dual inventory) · <b>Partners:</b> Locus (bots, LocusNet software, access points), a wiring vendor under the SOW, Sephora IT / WMS engineering, DC Ops.</div>
+  <div><b>Why Rocky:</b> a large physical deployment with a vendor — network, hardware, software, integration, go-live — landed inside a live system conversion, on a published gate. <b>LP tags:</b> Insist on the Highest Standards · Bias for Action · Deliver Results · Earn Trust.</div>
+  <div><b>Angle rule:</b> the full UDC dual-inventory program is UDC pack B1; the slip told as a failure is Bar Raiser bank F4. This story is the <i>deployment</i>: vendor scope, readiness gates, throttle, communication.</div>
+</div>
+
+<div class="say"><div class="label">60-second pitch</div>
+<p>At Sephora’s Salt Lake City DC we added Locus robots to retail outbound in a building that was changing its warehouse system at the same time. My job was to land the robotics without adding risk to the conversion. I ran it as five readiness gates — physical, hardware, software, integration, then testing and go-live — and the network expansion went through a written SOW: two new network closets, thirty-one new access points and a fiber ring, with photo evidence before anything powered on. Before a single bot took volume I published the gate: 98% pick-accurate throughput, with manual carts planned as the fallback and the bot-versus-cart split built as a dial. When retail testing slipped three weeks, I re-slotted it openly and refused to compress UAT. In week two of go-live we measured 94%, so I throttled about 30% of volume to carts while the zone logic was fixed, and we were fully automated in week three — with zero customer-facing incidents through the combined go-live.</p></div>
+
+<div class="star">
+<p><span class="stag">S — Situation.</span> The UDC conversion carried a Locus robotics rollout for retail outbound — bots picking in a building also moving warehouse systems mid-flight. Locus design and build ran July–December 2024; physical testing February–March 2025; combined go-live May 2025 <span class="b">record</span>. The site was an <i>expansion</i>: an existing Locus rack, but new coverage needed for the expanded floor <span class="b">record-from-docs, SOW v1.4</span>.</p>
+<p><span class="stag">T — Task.</span> Land pick-accurate robotic throughput at go-live and protect the program’s zero-customer-incident bar; coordinate a vendor, a wiring contractor, IT and DC Ops without letting robotics become the program’s noise.</p>
+<p><span class="stag">A — Action.</span> I set the go/no-go gate before the bots arrived (98% pick-accurate throughput, 99% stretch); ran discovery as three working days of workshops with Locus, not email; tracked the work on one Locus retail-track status page across five readiness categories with a YELLOW/GREEN program status; put the network expansion under a versioned SOW with a physical checklist; escalated the retail-testing slip the week it surfaced; and made the week-two throttle call.</p>
+<p><span class="stag">R — Result.</span> Full automation by week three; retail outbound went live with the combined cutover and zero customer-facing incidents <span class="b">record</span>; Locus-side issues held to 86 of the program’s 836 logged rows, about a tenth <span class="b">record</span>; DC Ops measured +15% processing efficiency on the converted building <span class="b">record — DC Ops’ own measurement, whole UDC program</span>.</p>
+</div>
+
+<div class="sh">Action — five gated phases (the Locus retail track’s own categories)</div>
+<table class="ph sm">
+<thead><tr><th>Phase</th><th>Entry</th><th>Delivered</th><th>Exit</th></tr></thead>
+<tbody>
+<tr><td class="g">1 Physical readiness</td><td>Site layout design workshop with Locus; three-day discovery agenda agreed</td><td>Bot map, travel paths, unreachable locations, pick / induction / drop-off zones, charger locations and electrical timing; site set-up (electrical, guardrails)</td><td>Site set-up complete; layout signed by DC Ops and Locus</td></tr>
+<tr><td class="g">2 Hardware &amp; network</td><td>SOW v1.4 issued (Nov 19, 2024) to the wiring vendor</td><td>Two new network closets (IDF3, IDF4) plus wiring to IDF1; 31 new access points (APs 19–49), each dual-cabled — 62 Cat6 runs — hung at about 35 ft with labelled backboards; three fiber runs closing a ring back to the main rack; existing rack and servers reused</td><td>Photo evidence of rack, closets and APs; rule “do not power on switches until physical fiber is connected”; bots and components delivered; Locus points installed and mapped</td></tr>
+<tr><td class="g">3 Software readiness</td><td>IT design checklist; WMS design scenarios (prioritization, cancelling)</td><td>LocusNet install and configuration; decisions logged: sockets rather than REST for the API; retail customer-owner configuration (SEPHORA-RTL) versus global variables</td><td>Design decisions closed on the track, owner named</td></tr>
+<tr><td class="g">4 Integration readiness</td><td>Interfaces unit-tested with simulated data before a physical bot rolled</td><td>System integration test; Locus mapping data uploaded; tote-type mapping and a base-36 outbound carton-ID request to Locus; WMS-to-bot end-to-end test</td><td>Retail E2E complete — planned January 15, completed end of January after the three-week re-slot</td></tr>
+<tr><td class="g">5 Testing &amp; go-live</td><td>UAT window pencilled Feb 28–Mar 15; physical floor testing Feb–Mar 2025</td><td>UAT held at full length; the 98% gate counted weekly; bot-vs-cart share as a dial; go-live inside the combined cutover (343 timed tasks, about 815 task-hours, May 1–Jul 1, 2025)</td><td>Week 2 = 94% → ~30% throttled to carts → zone-logic fix → full automation week 3</td></tr>
+</tbody></table>
+
+<div class="sh">Who I needed · what · how I got it</div>
+<table class="sm">
+<thead><tr><th>Who</th><th>What I needed</th><th>How</th></tr></thead>
+<tbody>
+<tr><td>Locus (vendor)</td><td>Zone design, LocusNet config, API agreement, the zone-logic fix</td><td>Three-day working workshops; decisions written on the shared track; I refused “ramp to 100% on our say-so” — the gate was published first</td></tr>
+<tr><td>Wiring vendor</td><td>Closets, AP cabling, fiber ring installed to spec</td><td>A versioned SOW with a checklist per area and photo evidence as the acceptance test</td></tr>
+<tr><td>Sephora IT / WMS engineering</td><td>Integration build, carton-ID and tote mapping, SIT</td><td>One status page, one Jira dashboard; owners per open item; simulated-data SIT before physical bots</td></tr>
+<tr><td>DC Ops</td><td>Floor time for testing, labour for the cart fallback, trust in the throttle</td><td>The gate and the dial were theirs before the ramp, so when week two read 94% “the rule fired; I didn’t improvise”</td></tr>
+<tr><td>Steering / sponsors</td><td>Acceptance of a three-week re-slot</td><td>Escalated the week the slip surfaced, with re-slotted dates attached, in the same forum as every other decision</td></tr>
+</tbody></table>
+
+<div class="trade"><div class="label">Trade-off I made — cost vs speed</div>
+<p><b>Twice.</b> (1) When retail testing slipped three weeks: compress UAT and keep every date, or re-slot openly and keep UAT at full length. (2) In go-live week two at 94%: keep full robot volume and fix live, or throttle to carts.</p>
+<p><b>Chose</b> the re-slot and the throttle. <b>Cost:</b> three weeks of float off the chain, an uncomfortable steering update, and about a week of manual-cart labour on roughly 30% of retail volume.</p>
+<p><b>Rejected</b> the faster options because a compressed test window is a defect class I would have owned in May, and a 94% system carrying full volume into a combined go-live is how you get a customer-facing incident with a robot in the photo.</p></div>
+
+<div class="fail"><strong>Failure / learning.</strong> The retail-testing slip sat on my plan as a <i>task with a date</i>, not on the risk register with a trigger and an owner, so I learned it from a status report — the full telling is Bar Raiser bank F4. Second learning: the zone contention was findable with the bot map on the floor before live volume exposed it; I would now run physical zone testing earlier in the design window.</div>
+
+<div class="lp">
+<div><b>Insist on the Highest Standards</b> — the 98% gate was published before the bots arrived, and it actually stopped the ramp at 94%.</div>
+<div><b>Bias for Action</b> — the throttle was pre-built as a dial, so the week-two call took minutes, not a meeting.</div>
+<div><b>Deliver Results</b> — full automation in week three, zero customer-facing incidents through the combined go-live.</div>
+<div><b>Earn Trust</b> — the vendor slip went to steering the week it surfaced, with dates, not absorbed into weekends.</div>
+</div>
+
+<div class="safe"><div class="label">SAFE-SAY</div>
+<p><b>Most attackable number:</b> “94 against 98 is the record from week two; about 30% of volume went to manual carts for roughly a week. The +15% processing efficiency is DC Ops’ measurement for the whole converted building, not a robotics-only number.”</p>
+<p><b>“What’s your source?”</b> “The Locus network SOW, version 1.4 dated November 19, 2024; the Locus retail-track status page; the program issues log — 86 of 836 rows were Locus-side; and the cutover plan, 343 timed tasks.”</p></div>
+
+<div class="s20"><div class="label">20-second version</div>
+<p>“I deployed Locus robots into Sephora’s Salt Lake City DC while the building changed warehouse systems. Five readiness gates, a versioned wiring SOW for 31 new access points and two new closets, a 98% gate published before the bots arrived. Week two read 94, I throttled 30% to carts, and we were fully automated in week three with zero customer incidents.”</p></div>
+
+<div class="sh">Probing Q&amp;A</div>
+<div class="qa"><p class="q">Q1. Why 98% and not 100%?</p><p>100% is a fantasy bar that teaches teams to hide misses; much below the high nineties is a manual process with robots for decoration. The bar sat where the building’s accuracy promise to stores lives. The point was that the number could stop the rollout — and it did, at 94.</p></div>
+<div class="qa"><p class="q">Q2. What was actually wrong in week two?</p><p>Zone logic. The bot map and the induction rules disagreed about which zone owned which work, so bots were routed into contention. Locus drove the fix with our WMS engineers; the throttle bought the time to find it. Not a hardware problem — the network SOW and photo checks had done their job.</p></div>
+<div class="qa"><p class="q">Q3. How did you run the vendor and the SOW — what was your cadence?</p><p>One retail-track status page with a program colour, five readiness categories, an action-item table with owner and due date, and a Jira dashboard behind it, read weekly inside the program’s two-block status. The SOW was the physical scope baseline — it was at version 1.4 when the expansion was specified — and acceptance was evidence: photos of the rack, closets and access points, fiber connected before switches powered on.</p></div>
+<div class="qa"><p class="q">Q4. Whose fault was the slip, and what did you change?</p><p>The slip came from the vendor-and-integration track; how I carried it was mine — a task, not a risk. Now every vendor dependency on the critical path goes on the risk register with a trigger date and a named owner on both sides, and a slipped vendor doesn’t get to lower the bar. <span class="b">VERIFY</span> the vendor-side root cause of the slip — safe sentence: “The integration items open at the time were the API style, the customer-owner configuration and tote mapping; I won’t pin the slip on one of them.”</p></div>
+
+<h3 class="st" id="p4">P4 — Crux transition plan: retiring a legacy platform for 79 customers, segment by segment <span class="new">full STAR</span></h3>
+<div class="meta">
+  <div><b>Company:</b> Flexport, 2021–22 · <b>Legacy platform:</b> Crux (track-and-trace service; engineering run by an offshore contractor) · <b>Destination:</b> the new visibility platform, the Transmission partner channel, the API, or a planned cancel.</div>
+  <div><b>My role:</b> the program lens — turning the RAPID decision into a cutover plan: a destination and a date for every customer, shadow accounts before exposure, wave gates, communication and commitments. Decision rights sat with others (Recommend and Perform: the product leads who owned the transition plan; Agree and Decide: two executives) <span class="b">record-from-docs, RAPID p1</span> <span class="b">VERIFY my named role</span>.</div>
+  <div><b>Angle rule:</b> Rocky gets the <i>program / cutover</i> lens only. Venkata gets the product lens; James gets the reliability comparison (25% vs 63% normalized). Do not retell the 7 → 68 customer growth here — that was told Thursday. <b>LP tags:</b> Ownership · Earn Trust · Deliver Results · Are Right, A Lot.</div>
+</div>
+
+<div class="say"><div class="label">60-second pitch</div>
+<p>At Flexport we were retiring a legacy visibility platform, Crux, that still served 79 paying customers — about $186K of annual recurring revenue and close to 295,000 containers a year. The goal was to move Crux clients onto the new platform by the end of 2022, but most of Crux’s revenue came from customers who were not Flexport trade clients and could not simply be moved. So I ran the retirement as a cutover program, not a shutdown date. Every one of the 79 customers got a destination and a date: trade clients migrated to the new platform in waves, two carriers and brokers were offered a partner path, forwarders and 3PLs got the existing API with no new build, and two software competitors were cancelled. Before any customer saw the new product, we ran shadow accounts on named Crux customers using their own data, with an 80% minor-to-no-issues bar. The decision went through a RAPID, every impacted owner committed in writing, and we said clearly what we would <i>not</i> carry over.</p></div>
+
+<div class="star">
+<p><span class="stag">S — Situation.</span> Crux had 79 customers across nine segments: 2 global key accounts, 14 enterprise and 39 SMB trade clients, plus 9 motor carriers, 3 truck brokers, 5 forwarders, 1 customs broker, 4 3PLs and 2 supply-chain SaaS companies — $15,491 a month, $185,892 a year, 294,581 containers in 2021 <span class="b">record-from-docs, RAPID p3–5</span>. About 75% of Crux revenue came from non-trade customers who could not use the client-app product as a replacement <span class="b">record-from-docs, 2021 Product Development Plan §5.4.3</span>. Running two platforms meant two cost bases and two versions of the truth.</p>
+<p><span class="stag">T — Task.</span> Retire Crux without a bad customer experience — “ejecting customers is never a good experience,” as one stakeholder wrote in the RAPID — on the end-of-2022 target, with no customer left without a written path.</p>
+<p><span class="stag">A — Action.</span> I put the decommission on the risk register as the top risk, with an owner and a date; worked with the transition-plan owners to give every customer a destination and a date; ran shadow accounts and wave gates before exposure; pushed the open stakeholder questions (cost to keep Crux running, the feature gap, what happens to cancelled customers) into the decision record; and made the Inform and Commitments steps explicit so each impacted party committed in writing.</p>
+<p><span class="stag">R — Result.</span> The decommission went through on evidence: all 79 customers and 294,581 annual containers had a per-segment path — grow, partner/white-label, API, or cancel <span class="b">record, Apple A4</span>. Cancellations were dated in the record (the customs broker on September 1, 2022; one SaaS on August 1 after legal review; the other on October 24, 2022) <span class="b">record-from-docs, RAPID appendix</span>. Trade clients rode the wave plan, with the remaining Crux clients scheduled for the H2 2022 full roll-out <span class="b">record-from-docs, Pilot Roll-out Schedule</span>.</p>
+</div>
+
+<div class="sh">Action — five gated phases (entry · delivered · exit)</div>
+<table class="ph sm">
+<thead><tr><th>Phase</th><th>Entry</th><th>Delivered</th><th>Exit</th></tr></thead>
+<tbody>
+<tr><td class="g">1 Inventory &amp; segment</td><td>Retirement target set (Crux clients to the new platform by end of 2022)</td><td>Customer-by-type table: count, MRR, ARR and 2021 containers for all 79; appendix listing every company and its churn status</td><td>Every customer in exactly one segment; revenue and volume concentration visible (two truck brokers carried most of both)</td></tr>
+<tr><td class="g">2 Parity &amp; options</td><td>Segment table signed</td><td>Per-segment options: migrate, partner channel, API, keep on Crux while gaps are closed, or cancel; the parity bar written as data quality “at least as accurate as Crux” 90%+ of the time; known gaps named (e.g. manual container search)</td><td>A recommendation per segment written into the RAPID</td></tr>
+<tr><td class="g">3 Decide (RAPID)</td><td>Recommendation and stakeholder input collected — seven named input roles</td><td>Input answered in the record: cost of running two systems, the earlier “Crux Absorption” effort, feature gap, partner status of each broker</td><td>Decision by segment; the transition-plan owners commissioned to build per-segment plans and review them with the exec team</td></tr>
+<tr><td class="g">4 Prove before exposure</td><td>Decision signed</td><td>Shadow accounts: Crux customers’ own container data fed into dedicated Flexport demo accounts, starting with Marc Fisher and Michelin; bugs in Jira, read in daily stand-ups</td><td>80% minor-to-no-issues before customer-facing testing; wave graduation criteria met</td></tr>
+<tr><td class="g">5 Cutover waves &amp; wind-down</td><td>Shadow and UAT gates passed</td><td>Trade clients in waves (Wave 3 mixed Crux and non-Crux clients; remaining Crux clients in the H2 2022 full roll-out); partner offers to brokers; API path to forwarders and 3PLs; dated cancels</td><td>Each customer migrated, partnered or cancelled on its date; Inform list and written commitments closed</td></tr>
+</tbody></table>
+
+<div class="sh">Who I needed · what · how I got it</div>
+<table class="sm">
+<thead><tr><th>Who</th><th>What I needed</th><th>How</th></tr></thead>
+<tbody>
+<tr><td>Decider and Agree role (exec)</td><td>One decision per segment, not one decision for Crux</td><td>A RAPID with the segment table and a recommendation for each; decisions recorded per segment</td></tr>
+<tr><td>Transition-plan owners</td><td>A per-customer plan and exec review</td><td>The decision named them as performers; I built the destination-and-date view with them</td></tr>
+<tr><td>Trucking / Transmission team</td><td>A partner path for brokers instead of a cancel</td><td>Partner status checked customer by customer (one broker was already a partner); offer framed “similar to” that existing partner</td></tr>
+<tr><td>Engineering and QA</td><td>Shadow accounts on real Crux data before any customer saw the product</td><td>Named starting customers, a staging-then-production environment plan, Jira bugs triaged daily</td></tr>
+<tr><td>Legal and everyone on the Inform list</td><td>Clean cancels for competitor-adjacent customers; one shared list</td><td>Legal review before one cancel; dated cancels in the appendix so everyone worked from the same list</td></tr>
+</tbody></table>
+
+<div class="trade"><div class="label">Trade-off I made — cost vs speed</div>
+<p><b>Options.</b> (a) One shutdown date for all of Crux — fastest and cheapest to run; (b) build parity for every segment first — for example, tracking non-Flexport containers in the partner product — before retiring anything; (c) segment it: migrate the customers the new platform fits, offer existing channels to the rest, cancel where the customer is a competitor, and carry nothing new.</p>
+<p><b>Chose (c).</b> Rejected (a) because ejecting 79 paying customers on one date damages trust and leaves forwarders and brokers to a competitor; rejected (b) because building new capability for non-trade customers would have kept two platforms running past the target. <b>Cost:</b> we accepted that part of the $185,892 legacy base would be cancelled rather than migrated, and the decision record names what we would not build — non-Flexport tracking in the partner product: “we will not do so at this time.”</p></div>
+
+<div class="fail"><strong>Failure / learning.</strong> A stakeholder’s question in the RAPID — “what are the missing features between Crux and SV… is that written down somewhere?” — showed the feature-gap view was not in front of the decision makers before the meeting. I now write the parity view and the cost of keeping the legacy system running <i>before</i> the decision document circulates, so the room decides instead of asking.</div>
+
+<div class="hon"><strong>What we did not carry over (say it plainly):</strong> no tracking of non-Flexport containers in the partner product “at this time”; no additional build for forwarders, customs brokers or 3PLs — the existing API or a cancel; no service for the two supply-chain SaaS companies; and no manual container search in the developer portal plan of 2021.</div>
+
+<div class="lp">
+<div><b>Ownership</b> — I treated the retirement as the program’s top risk, with an owner and a date, not as someone else’s clean-up.</div>
+<div><b>Earn Trust</b> — every customer had a written path and date; stakeholder objections were answered in the record, not around it.</div>
+<div><b>Deliver Results</b> — all 79 customers and 294,581 annual containers had a destination; cancels are dated in the record.</div>
+<div><b>Are Right, A Lot</b> — segment decisions used partner status and revenue concentration, not a blanket rule.</div>
+</div>
+
+<div class="safe"><div class="label">SAFE-SAY</div>
+<p><b>Most attackable number:</b> “$185,892 is the documented annual recurring revenue of the legacy base at the decision — not a claim that we lost that amount; most trade clients moved to the new platform.”</p>
+<p><b>“What’s your source?”</b> “The RAPID for the Crux customer transition — a segment table of 79 companies with MRR, ARR and 2021 containers, the per-segment decisions and a dated appendix — plus the pilot roll-out schedule and the product-testing approach for the shadow accounts.”</p></div>
+
+<div class="s20"><div class="label">20-second version</div>
+<p>“I ran the retirement of Flexport’s legacy visibility platform as a cutover program: 79 customers, about $186K of ARR, each given a destination and a date — migrate, partner, API or cancel — through a RAPID, with shadow accounts on real customer data before anyone was moved, and a plain list of what we would not carry over.”</p></div>
+
+<div class="sh">Probing Q&amp;A</div>
+<div class="qa"><p class="q">Q1. Why not just switch Crux off on one date?</p><p>Because most of the revenue sat with customers the new platform did not fit — brokers and carriers. A single date would have handed them to a competitor and broken trust with the rest. Segmenting let us move fast where the fit was clean — the SaaS competitors were cancelled in 2022 — and slow down only where a partner path existed.</p></div>
+<div class="qa"><p class="q">Q2. How did you decide who to cancel?</p><p>By segment and partner status, written in the RAPID. One broker was already a partner, so the other two were offered the same partner path; carriers with no partner relationship were cancelled at wind-down; the two SaaS companies were potential competitors for the same shippers, so they were cancelled, one after legal review.</p></div>
+<div class="qa"><p class="q">Q3. What was your cadence and how did you communicate?</p><p>The decision went through the RAPID steps — recommend, input, agree, decide — then the Inform step listed who needed to know, and the Commitments step had every impacted party confirm, verbally in the meeting or in writing by email. Day to day, shadow-account bugs were read in the daily stand-up and wave readiness in the weekly program review. <span class="b">VERIFY</span> the customer-facing notice timing — safe sentence: “Customers were told from the dated list; I won’t quote a notice period I can’t point to.”</p></div>
+<div class="qa"><p class="q">Q4. Was Crux actually shut down on time?</p><p><span class="b">VERIFY</span> the final shutdown date. Safe sentence: “The plan targeted end of 2022, and the record shows the cancels dated through October 2022 and every remaining customer on a path; I’d rather not state a final switch-off date I can’t show you.”</p></div>
+
+<h2 class="break" id="end">Pointers, bridges and VERIFY</h2>
+<div class="sh">Where the other Rocky material lives (not rewritten here)</div>
+<table class="sm">
+<thead><tr><th>If he asks for…</th><th>Go to</th></tr></thead>
+<tbody>
+<tr><td>The UDC dual-inventory program end to end — discovery, arch council, cutover, hypercare</td><td><i>amazon-nacf-udc-canada-story-pack-star-kimi-k3</i>, story B1</td></tr>
+<tr><td>US-managed bulk ship to Canada (plan at discovery exit; outcome VERIFY)</td><td>Same pack, story B2</td></tr>
+<tr><td>A failure on my own slide (FSD sign-off planned Jul 26, signed Aug 14)</td><td>Same pack, story B5</td></tr>
+<tr><td>The Locus slip told as a failure (vendor dependency carried as a task)</td><td><i>amazon-nacf-panel-3-goforth-bar-raiser-bank-star-kimi-k3</i>, F4</td></tr>
+<tr><td>More stories (R1–R9), failures F1–F4, the 32-answer LP bank</td><td>The Bar Raiser bank</td></tr>
+</tbody></table>
+
+<div class="sh">How the three stories map to his ask</div>
+<table class="sm">
+<thead><tr><th>His theme</th><th>P2 RP → JDA</th><th>P3 Locus SLC</th><th>P4 Crux</th></tr></thead>
+<tbody>
+<tr><td>Program cadence</td><td>Weekly RAID; phase-gate reviews; mock scorecards</td><td>Track status page + Jira; weekly two-block program status</td><td>RAPID steps; daily shadow-account stand-up</td></tr>
+<tr><td>Cost vs speed</td><td>Held discovery; paid a 72-hour freeze for reversibility</td><td>Re-slot vs compress UAT; throttle 30% to carts</td><td>Segment it vs one shutdown date vs full parity</td></tr>
+<tr><td>Large-scale deployment</td><td>Two DCs, hundreds of RF devices</td><td>31 access points, two closets, fiber ring, bots</td><td>79 customers, 294,581 containers a year</td></tr>
+<tr><td>Stakeholders</td><td>Sponsor, Finance, DC Ops</td><td>Vendor, wiring contractor, IT, DC Ops</td><td>Executives, transition-plan owners, partner team, legal</td></tr>
+</tbody></table>
+
+<div class="sh">VERIFY items (safe sentence for each)</div>
+<table class="sm">
+<thead><tr><th>Item</th><th>Safe sentence</th></tr></thead>
+<tbody>
+<tr><td>P4 — my named role in the Crux RAPID (not listed in its RAPID table)</td><td>“The decision rights sat with the product leads and two executives; my part was the program — the destination-and-date plan, the shadow accounts and the wave gates.”</td></tr>
+<tr><td>P4 — final Crux switch-off date</td><td>“The target was end of 2022; the record shows dated cancels through October 2022 and every remaining customer on a path.”</td></tr>
+<tr><td>P4 — customer notice period</td><td>“Customers were told from the dated list; I won’t quote a notice period I can’t point to.”</td></tr>
+<tr><td>P3 — vendor-side root cause of the three-week retail-testing slip</td><td>“The integration items open then were the API style, customer-owner configuration and tote mapping; I won’t pin the slip on one of them.”</td></tr>
+</tbody></table>
+
+<div class="rules"><strong>Number rules for this part.</strong> Say “hundreds of RF devices” (never a ratio of two counts). The $20M is a pipeline of four projects, not savings; “about $2.5M a month” is my division, never banked. 343 timed tasks is the UDC cutover, not RP → JDA. The +15% is DC Ops’ measurement for the whole UDC program. The $185,892 is the documented legacy ARR base, not money lost. All four RAPID uploads (a66c, dd61, c0ee, e582) carry identical text; e582 was used.</div>
+
+</body>
+</html>

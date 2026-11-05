@@ -1,0 +1,4 @@
+site_id,site_name,site_type
+CM-A,CM site A,contract_manufacturer
+CM-B,CM site B,contract_manufacturer
+PLANT-01,Internal plant,internal_plant
