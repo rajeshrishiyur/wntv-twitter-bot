@@ -1,0 +1,47 @@
+-- BigQuery load notes. The console load is the one you click.
+-- Set every id column to STRING before you load, or 00017 becomes 17.
+-- A blank cell must land as NULL, not as the word NULL and not as 0.
+--
+-- From Cloud Shell, after the CSVs are in a bucket (replace the bucket):
+--
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.dim_program gs://YOUR_BUCKET/dim_program.csv
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.dim_site gs://YOUR_BUCKET/dim_site.csv
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.dim_supplier gs://YOUR_BUCKET/dim_supplier.csv
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.dim_input_owner gs://YOUR_BUCKET/dim_input_owner.csv
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.dim_date gs://YOUR_BUCKET/dim_date.csv
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.fact_po_line gs://YOUR_BUCKET/fact_po_line.csv
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.fact_asset gs://YOUR_BUCKET/fact_asset.csv
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.fact_exception gs://YOUR_BUCKET/fact_exception.csv
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.fact_field_edit gs://YOUR_BUCKET/fact_field_edit.csv
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.user_program_map gs://YOUR_BUCKET/user_program_map.csv
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.equipment_list gs://YOUR_BUCKET/equipment_list_ts_line_ramp.csv
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.field_owner_map gs://YOUR_BUCKET/field_owner_map.csv
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.published_tolerance gs://YOUR_BUCKET/published_tolerance.csv
+-- bq load --source_format=CSV --skip_leading_rows=1 --replace \
+--   capex.lab_parameters gs://YOUR_BUCKET/lab_parameters.csv
+--
+-- Do not load the raw trackers into the fact tables.
+-- They are the file the gate reads. The fact tables are the system of record
+-- after the gate. Path A does that split in 01_load_duckdb.sql and 02_quality_checks.sql.
+--
+-- After the load, this is the counted-rows read. Run it before you build a tile.
+--
+-- SELECT 'fact_po_line' AS table_name, COUNT(*) AS rows FROM capex.fact_po_line
+-- UNION ALL SELECT 'fact_asset', COUNT(*) FROM capex.fact_asset
+-- UNION ALL SELECT 'fact_exception', COUNT(*) FROM capex.fact_exception
+-- UNION ALL SELECT 'ts_po_lines', COUNT(*) FROM capex.fact_po_line WHERE program_id = 'TS-LINE-RAMP';
+--
+-- Expected: fact_po_line 100, fact_asset 100, fact_exception 21, ts_po_lines 40.

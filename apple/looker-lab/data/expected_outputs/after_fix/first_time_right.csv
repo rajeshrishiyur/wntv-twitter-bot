@@ -1,0 +1,4 @@
+program_id,assets,passed_on_first_entry,failed_on_first_entry,first_time_right_rate
+FIXTURE-REUSE-24,28,28,0,1.0
+PACK-CELL-EXP,32,32,0,1.0
+TS-LINE-RAMP,40,21,19,0.525

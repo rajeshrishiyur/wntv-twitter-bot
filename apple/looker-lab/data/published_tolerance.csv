@@ -1,0 +1,5 @@
+rule_id,published_at,metric,operator,threshold,basis
+R1,2026-03-01,missing_equipment_list_lines,eq,0,Approved equipment list is 40 PO lines. One missing line is a no-go. Published before the trackers arrived.
+R2,2026-03-01,duplicate_po_line_ids_in_load,eq,0,"A second copy of a PO line id is a no-go. Two asset rows on one id are a fan-out, not a duplicate id."
+R3,2026-03-01,quarantine_rate,lte,0.05,Quarantined rows divided by submitted tracker rows. Fully blank Excel artifacts are not submissions.
+R4,2026-03-01,reconciliation_rate_alert,lt,0.98,"Proposed lab alert only, not a company threshold. Fires when the certified rate is below 98 percent. The blend at 98 percent stays quiet. The onboarding program at 95 percent pages."

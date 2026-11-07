@@ -1,0 +1,4 @@
+program_id,assets,missing_pis,pis_filled,pis_completeness
+FIXTURE-REUSE-24,28,0,28,1.0
+PACK-CELL-EXP,32,0,32,1.0
+TS-LINE-RAMP,40,11,29,0.725

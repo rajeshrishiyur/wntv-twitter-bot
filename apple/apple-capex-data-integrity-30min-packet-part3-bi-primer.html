@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How a BI tool works — Looker primer for the Apple CapEx data-integrity call</title>
+<style>
+  @page { size: letter; margin: 0.62in 0.68in 0.68in 0.68in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", "Inter", Arial, sans-serif; font-size: 10.3pt; line-height: 1.38; color: #1c1c1c; }
+  h1 { font-size: 16.5pt; line-height: 1.12; margin: 0 0 4px; letter-spacing: -0.02em; }
+  h2 { font-size: 12.5pt; margin: 10px 0 4px; padding-top: 6px; border-top: 2px solid #1a2744; page-break-after: avoid; }
+  h2.break { page-break-before: always; border-top: none; padding-top: 0; margin-top: 0; }
+  h3 { font-size: 11.3pt; margin: 11px 0 4px; page-break-after: avoid; color: #1a2744; }
+  h4 { font-size: 10.3pt; margin: 9px 0 3px; page-break-after: avoid; color: #8a1c2b; }
+  p { margin: 0 0 7px; }
+  ul, ol { margin: 2px 0 8px; padding-left: 18px; }
+  li { margin: 0 0 3px; }
+  .kicker { font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .meta { background: #f4f1ea; border-left: 4px solid #1a2744; padding: 5px 10px; margin: 4px 0 6px; font-size: 9.4pt; }
+  .meta div { margin: 1px 0; }
+  .say { background: #f7f4ee; border: 1px solid #d9d0c1; border-left: 4px solid #8a1c2b; padding: 8px 12px 4px; margin: 6px 0 10px; page-break-inside: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, serif; font-size: 10.4pt; line-height: 1.42; }
+  .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .hon { background: #f3f0fa; border-left: 4px solid #5b4a8a; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.3pt; color: #333; }
+  .hon strong { color: #5b4a8a; }
+  .doc { background: #eef4f6; border: 1px solid #c3d5da; border-left: 4px solid #1f6f7a; padding: 7px 12px 4px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .doc p { margin: 0 0 5px; }
+  .doc .label { color: #1f6f7a; }
+  .rules { background: #fdf0f0; border: 1px solid #e3b7b7; border-left: 4px solid #8a1c2b; padding: 5px 10px; margin: 4px 0 6px; font-size: 9pt; page-break-inside: avoid; }
+  .rules strong { color: #8a1c2b; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 9.1pt; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #ddd; padding: 4px 6px 4px 0; }
+  th { font-size: 8.2pt; letter-spacing: 0.04em; text-transform: uppercase; color: #555; border-bottom: 1.5px solid #1a2744; }
+  table.sm { font-size: 8.5pt; }
+  table.sm th, table.sm td { padding: 2px 5px 2px 0; }
+  .cite { color: #1f6f7a; font-size: 8.6pt; }
+  .dash { border: 1.5px solid #1a2744; margin: 4px 0 8px; page-break-inside: avoid; }
+  .dash .bar { background: #1a2744; color: #fff; padding: 5px 8px; font-size: 8.8pt; font-weight: 700; }
+  .dash .bar span { color: #e6ddcb; font-weight: 400; }
+  .dash .tag { font-size: 7.6pt; letter-spacing: 0.08em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; padding: 4px 8px 0; }
+  table.kpi { margin: 2px 0 0; font-size: 8.3pt; }
+  table.kpi td { width: 25%; border-bottom: 1px solid #d9d0c1; padding: 5px 8px 6px; }
+  table.kpi .n { font-size: 13.5pt; font-weight: 700; color: #1a2744; line-height: 1.05; }
+  table.kpi .sub { font-size: 7.8pt; color: #444; }
+  table.inside { margin: 0; }
+  table.inside th, table.inside td { padding: 2px 6px; }
+  pre.lk { font-family: "Liberation Mono", "Courier New", monospace; font-size: 7.7pt; line-height: 1.32; background: #f4f1ea; border: 1px solid #d9d0c1; border-left: 4px solid #1a2744; padding: 7px 10px; margin: 6px 0 8px; white-space: pre-wrap; page-break-inside: avoid; }
+  svg.flow { width: 100%; height: auto; display: block; margin: 2px 0 8px; }
+  ol.tight { margin: 2px 0 8px; padding-left: 18px; }
+  ol.tight li { margin: 0 0 2px; }
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<p class="kicker">Apple CapEx · 30-minute call · part 3 · say this, do not claim you built it</p>
+<h1>How a BI tool works, using Looker as the example</h1>
+<div class="meta">
+  <div><strong>Call.</strong> CapEx Systems Onboarding Data Integrity Program Manager, with the Capital Expenditure Systems Lead. Thirty minutes. Tableau is a nice-to-have; Power BI or Tableau is preferred. Explain the tool. Do not pretend to be the BI engineer.</div>
+  <div><strong>How to use it.</strong> Section 1 is the model. Section 2 is Looker, only as deep as a follow-up. Section 6 is what you say, including the honest proficiency line.</div>
+</div>
+
+<h2 id="s1">1. The seven layers of any BI tool</h2>
+<p>Looker, Tableau, Power BI, and a careful spreadsheet are the same stack. The chart is layer 5. Integrity is decided in the semantic layer and in governance, and it is lost in the connection when nobody knows how fresh the copy is.</p>
+
+<svg class="flow" viewBox="0 0 700 152" role="img" aria-label="Seven layers from sources to governance">
+  <defs>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#1a2744"/>
+    </marker>
+  </defs>
+  <g font-family="Liberation Sans, Arial, sans-serif">
+    <rect x="4" y="2" width="158" height="62" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="12" y="18" font-size="11" font-weight="700" fill="#1a2744">1 · Sources</text>
+    <text x="12" y="34" font-size="9" fill="#333">warehouse, ERP,</text>
+    <text x="12" y="47" font-size="9" fill="#333">system of record, sheets</text>
+
+    <line x1="162" y1="33" x2="176" y2="33" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="180" y="2" width="158" height="62" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="188" y="18" font-size="11" font-weight="700" fill="#1a2744">2 · Connection</text>
+    <text x="188" y="34" font-size="9" fill="#333">live / direct query</text>
+    <text x="188" y="47" font-size="9" fill="#333">or import / extract</text>
+
+    <line x1="338" y1="33" x2="352" y2="33" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="356" y="2" width="158" height="62" rx="3" fill="#fdf0f0" stroke="#8a1c2b" stroke-width="1.6"/>
+    <text x="364" y="18" font-size="11" font-weight="700" fill="#8a1c2b">3 · Semantic layer</text>
+    <text x="364" y="34" font-size="9" fill="#333">one name, one SQL</text>
+    <text x="364" y="47" font-size="9" fill="#333">Excel is weak here</text>
+
+    <line x1="514" y1="33" x2="528" y2="33" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="532" y="2" width="164" height="62" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="540" y="18" font-size="11" font-weight="700" fill="#1a2744">4 · Query engine</text>
+    <text x="540" y="34" font-size="9" fill="#333">SQL, cache, aggregates</text>
+    <text x="540" y="47" font-size="9" fill="#333">runs on the warehouse</text>
+
+    <line x1="614" y1="64" x2="614" y2="76" stroke="#1a2744"/>
+    <line x1="614" y1="76" x2="181" y2="76" stroke="#1a2744"/>
+    <line x1="181" y1="76" x2="181" y2="86" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="8" y="88" width="174" height="58" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="16" y="106" font-size="11" font-weight="700" fill="#1a2744">5 · Visualization</text>
+    <text x="16" y="122" font-size="9" fill="#333">tiles, filters, drill-down</text>
+    <text x="16" y="135" font-size="9" fill="#333">the chart is not the definition</text>
+
+    <line x1="182" y1="117" x2="198" y2="117" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="202" y="88" width="200" height="58" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="210" y="106" font-size="11" font-weight="700" fill="#1a2744">6 · Distribution</text>
+    <text x="210" y="122" font-size="9" fill="#333">dashboard, schedule, alert</text>
+    <text x="210" y="135" font-size="9" fill="#333">embed where people already work</text>
+
+    <line x1="402" y1="117" x2="418" y2="117" stroke="#1a2744" marker-end="url(#arr)"/>
+
+    <rect x="422" y="88" width="274" height="58" rx="3" fill="#f7f4ee" stroke="#1a2744"/>
+    <text x="430" y="106" font-size="11" font-weight="700" fill="#1a2744">7 · Governance</text>
+    <text x="430" y="122" font-size="9" fill="#333">row-level security, roles, version control</text>
+    <text x="430" y="135" font-size="9" fill="#333">lineage, certified content</text>
+  </g>
+</svg>
+
+<table class="sm">
+  <thead><tr><th style="width:18%">Layer</th><th style="width:44%">What it is</th><th>Where integrity breaks</th></tr></thead>
+  <tbody>
+    <tr><td><strong>1 · Sources</strong></td><td>The warehouse, the ERP, the system of record, and the spreadsheet a team still keeps.</td><td>A tile with no source system cannot be reconciled to a PO or an asset.</td></tr>
+    <tr><td><strong>2 · Connection</strong></td><td><strong>Live / direct query</strong> asks the warehouse each time: fresh, as fast as the source, and the number is the source’s number. <strong>Import / extract</strong> copies rows and refreshes on a schedule: fast, and only as fresh as the last refresh.</td><td>Trust follows the refresh. A missed refresh is a silent old truth. People believe the tile, not the timestamp.</td></tr>
+    <tr><td><strong>3 · Semantic layer</strong></td><td>One definition per metric. Joins and grain live here. A <strong>dimension</strong> is what you group or filter by (site, program, owner). A <strong>measure</strong> is the aggregation (count, sum, a ratio).</td><td>Two formulas with the same name. This is the layer a data-integrity program exists to own.</td></tr>
+    <tr><td><strong>4 · Query engine</strong></td><td>Turns the picked fields into SQL, checks a result cache, and may answer from a pre-aggregate instead of the raw rows.</td><td>A cache with no invalidation trigger still serves yesterday after the load has finished.</td></tr>
+    <tr><td><strong>5 · Visualization</strong></td><td>Tiles, filters, drill-down from the number to the rows that made it.</td><td>A filter default can hide the exceptions the scorecard is for.</td></tr>
+    <tr><td><strong>6 · Distribution</strong></td><td>The dashboard, a scheduled delivery, an alert when a tile crosses a threshold, an embed in the tool people already open.</td><td>Two emailed files diverge the moment someone edits a formula in one of them.</td></tr>
+    <tr><td><strong>7 · Governance</strong></td><td>Row-level security, roles, version control, lineage from the tile back to the column, and a certified mark on the content people should trust.</td><td>Without lineage you cannot answer why a field was filled in. That question is the job.</td></tr>
+  </tbody>
+</table>
+
+<div class="rules"><strong>Excel is weak at the semantic layer.</strong> A formula in a cell binds nobody. Copy the workbook and the definition forks — five files, five meanings of reconciled — with no row-level security that survives a forward, no lineage back to the source column, and no certified version. Excel can hold rows during a migration. It cannot stop the next copy from changing the rule.</div>
+
+<h2 class="break" id="s2">2. Looker specifically</h2>
+<div class="hon"><strong>What you are allowed to claim.</strong> You can explain this. You have not shipped LookML. Section 6 has the sentence. Looker here means Looker on Google Cloud, the product with LookML. <strong>Looker Studio</strong> (formerly Data Studio) is a different, lighter product: reports on top of connectors, no LookML, no Git-backed semantic model. If they say “Looker,” ask which one in the first sentence, then talk about this one.</div>
+
+<p>Looker does not store the business data. At query time it generates SQL and runs it on the warehouse you point it at — BigQuery, Snowflake, Redshift, and the usual others. What Looker itself keeps is the LookML, the saved content, users and permissions, and a result cache. A persistent derived table is still a table in the warehouse; Looker builds and refreshes it there. The book of record never moves into Looker.</p>
+
+<table class="sm">
+  <thead><tr><th style="width:22%">LookML object</th><th>What it is, in the order you meet it</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Project</strong></td><td>A Git repository of LookML. This is the unit you branch, review, and merge.</td></tr>
+    <tr><td><strong>Model</strong></td><td>Which warehouse connection, which explores are exposed, and who may open them.</td></tr>
+    <tr><td><strong>View</strong></td><td>One table, or one derived table, plus its dimensions and measures. The definition of a column and of a metric lives here.</td></tr>
+    <tr><td><strong>Explore</strong></td><td>A starting view plus its joins. This is the self-serve surface: the field picker a GSM or a finance partner actually uses. They never see the SQL unless someone opens the SQL tab.</td></tr>
+  </tbody>
+</table>
+
+<h3>What the model contains</h3>
+<table class="sm">
+  <thead><tr><th style="width:26%">Piece</th><th>The sentence you need</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Dimension</strong></td><td>An attribute. Site, program, supplier, a status. You group by it and filter on it. You do not sum it.</td></tr>
+    <tr><td><strong>Measure</strong></td><td>An aggregate: <span class="cite">count</span>, <span class="cite">sum</span>, <span class="cite">count_distinct</span>, or a ratio written <span class="cite">sql: ${a} / NULLIF(${b}, 0)</span>. <span class="cite">count_distinct</span> on the primary key is the fan-out-safe habit. A raw <span class="cite">count</span> counts joined rows.</td></tr>
+    <tr><td><strong>Dimension group</strong></td><td>One timestamp becomes a date, a week, and a month (<span class="cite">type: time</span>, with timeframes). Aging buckets are built on that date, not retyped in every tile.</td></tr>
+    <tr><td><strong>Join</strong></td><td>Declared on the explore, with a cardinality: one-to-one, many-to-one, one-to-many, many-to-many. Looker can rewrite a sum so a one-to-many join does not double-count, but only if the cardinality is declared correctly. A ratio you write by hand is not protected for you. Wrong cardinality, wrong total.</td></tr>
+    <tr><td><strong>Derived table</strong></td><td>A view defined by SQL you write, or by a native derived table (Looker builds the SQL from an explore). Use it when the grain you need is not a raw table — one row per line per field, for completeness.</td></tr>
+    <tr><td><strong>PDT</strong></td><td>A persistent derived table: the same idea, materialized in the warehouse and rebuilt on a trigger (a datagroup, often “rebuild when max(loaded_at) changes”). It is a pre-aggregate for speed. It is still warehouse data. A PDT that does not rebuild is a stale extract with a better name.</td></tr>
+    <tr><td><strong>Aggregate awareness</strong></td><td>You declare rollup tables. Looker uses the smallest rollup that can answer the question, and falls back to the base table when you ask for a field the rollup does not have. That is how a weekly total stays fast and a drill to the PO line still works.</td></tr>
+    <tr><td><strong>Caching</strong></td><td>Identical SQL can be served from the result cache. Tie the cache to the same datagroup as the load. No trigger means a Monday tile can contradict a query run a minute later.</td></tr>
+  </tbody>
+</table>
+
+<h3>What a person touches, and what makes the definition auditable</h3>
+<p>An <strong>Explore</strong> is the self-serve surface. A <strong>Look</strong> is one saved query. A <strong>dashboard</strong> is a layout of tiles; each tile is a query, not a picture. Filters narrow a tile. <span class="cite">drill_fields</span> are the columns you land on when you click a number. A <span class="cite">link</span> opens the same record in the system of record — the PO, the asset — so the tile is not a dead end. A scheduled delivery sends the dashboard on a clock (Monday 07:00). An alert fires when a tile crosses a threshold, which a schedule does not do. A Looker Action sends rows onward (a ticket, a webhook) when a person or a schedule asks it to.</p>
+<p>Row-level security is a <strong>user attribute</strong> plus an <span class="cite">access_filter</span>. The attribute (the program ids this GSM or this CM may see) is set on the user. The filter is injected into the SQL and the user cannot remove it. Content sits in folders; roles (viewer, explorer, developer, admin, or a custom role) decide who may look, explore, or edit LookML. None of that is a substitute for warehouse permissions. It is the application of them.</p>
+<p><strong>LookML in Git is the audit trail.</strong> A developer branches, Looker validates the LookML, a pull request is reviewed, and production is the merge. The commit is who changed the definition of reconciled, when, and from what. A Look saved in a personal folder is not that. The metric people steer by has to be the merged one.</p>
+
+<pre class="lk">view: po_lines {
+  sql_table_name: capex.po_lines ;;
+  dimension: po_line_id {
+    primary_key: yes
+    type: string
+    sql: ${TABLE}.po_line_id ;;
+  }
+  dimension: site_id {
+    type: string
+    sql: ${TABLE}.site_id ;;
+    description: "Receiving site. Blank means the input owner has not set it."
+  }
+  dimension: received_date {
+    type: date
+    sql: ${TABLE}.received_date ;;
+  }
+  measure: po_line_count {
+    type: count_distinct
+    sql: ${po_line_id} ;;
+    description: "Lines received. Distinct so an asset join cannot double-count."
+  }
+  measure: null_site_count {
+    type: count_distinct
+    sql: ${po_line_id} ;;
+    filters: [site_id: "NULL"]
+    description: "Lines with no site. A completeness exception, not a hidden filter."
+  }
+  measure: reconciliation_rate {
+    type: number
+    sql: 1.0 * ${assets.tagged_asset_count} / NULLIF(${po_line_count}, 0) ;;
+    value_format_name: percent_1
+    description: "Assets tagged / PO lines received. One definition of reconciled."
+  }
+}
+
+view: assets {
+  sql_table_name: capex.assets ;;
+  dimension: asset_id { primary_key: yes  type: string  sql: ${TABLE}.asset_id ;; }
+  dimension: po_line_id { type: string  sql: ${TABLE}.po_line_id ;; }
+  measure: tagged_asset_count {
+    type: count_distinct
+    sql: ${asset_id} ;;
+  }
+}
+
+explore: po_lines {
+  join: assets {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${po_lines.po_line_id} = ${assets.po_line_id} ;;
+  }
+}</pre>
+<p class="cite">Teaching snippet, not a model you have run. Three dimensions on po_lines (po_line_id, site_id, received_date), three measures (po_line_count, null_site_count, reconciliation_rate), one join. The assets view exists only so the ratio has a real numerator. Cardinality is one PO line to many assets; both counts are count_distinct.</p>
+
+<h2 id="s3">3. How one query flows, end to end</h2>
+<ol class="tight">
+  <li>The user opens the Explore and picks fields — program, site, reconciliation rate — and a filter.</li>
+  <li>Looker reads the LookML and builds the SQL: the columns, the join, the aggregates, and any access filter.</li>
+  <li>It checks the result cache. A hit returns the stored rows and does not touch the warehouse.</li>
+  <li>A miss runs the SQL on the warehouse (or on a PDT, which is still a warehouse table).</li>
+  <li>The warehouse returns the aggregated rows.</li>
+  <li>Looker renders the tile.</li>
+  <li>The user drills. Drill fields return the row-level detail behind the number, still under the same access filter.</li>
+  <li>A link opens that record in the system of record — the PO, the asset — where the input owner can fix the field.</li>
+</ol>
+<table class="sm">
+  <thead><tr><th style="width:28%">Where it goes wrong</th><th>What the integrity program does about it</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Stale extract</strong></td><td>A Friday refresh, read on Monday, misses a weekend receipt. The rate looks finished. Require a visible “loaded at,” and treat a cache with no datagroup trigger as the same defect.</td></tr>
+    <tr><td><strong>Two measures, one name</strong></td><td>Both called reconciliation rate. One divides tagged assets by lines received; the other divides by lines ordered. The semantic layer allows one of them in production.</td></tr>
+    <tr><td><strong>A join that fans out</strong></td><td>One line, two assets. A plain count counts the line twice, the denominator inflates, and the rate looks healthier than the book. Declare one-to-many and count distinct on the line id.</td></tr>
+    <tr><td><strong>A filter default nobody sees</strong></td><td>The explore opens on status = Received. Open and in-transit lines never appear, so the scorecard is green because the exceptions were filtered out. Defaults are visible, or they are a bug.</td></tr>
+    <tr><td><strong>A field with no description</strong></td><td>Placed-in-service date with a blank description. Nobody knows whether it means acceptance or the day depreciation starts. The description is the “why” behind the input, written where the field is picked.</td></tr>
+  </tbody>
+</table>
+<h2 id="s4">4. Power BI, Tableau, and Looker on one table</h2>
+<p>Same seven layers. The words change. If they say Tableau, stay on this table and do not switch into LookML unless they ask how a definition is audited. If they say Power BI, same table. The integrity idea does not change: one definition, stored where a second copy cannot silently fork it.</p>
+<table class="sm">
+  <thead><tr><th style="width:16%"></th><th style="width:28%">Power BI</th><th style="width:28%">Tableau</th><th style="width:28%">Looker</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Where the rows are at query time</strong></td><td>Import: copied into VertiPaq, in memory. DirectQuery: still in the source; Power BI sends a query.</td><td>Live: still in the database. Extract: copied into a Hyper file and refreshed on a schedule.</td><td>Still in the warehouse. A PDT is a table Looker maintains there. The cache holds results, not the book of record.</td></tr>
+    <tr><td><strong>Modeling language</strong></td><td>Power Query (M) shapes the tables. DAX defines the measures.</td><td>VizQL draws the sheet. Calculated fields and level-of-detail expressions define the numbers.</td><td>LookML. The explore is the only surface a user queries.</td></tr>
+    <tr><td><strong>Where the metric definition is stored</strong></td><td>In the semantic model, the published dataset. A local file can drift from it.</td><td>In the workbook, unless someone published a data source and pointed the workbook at it.</td><td>In LookML, in Git. A Look stores a query. It does not store the definition.</td></tr>
+    <tr><td><strong>Row-level security</strong></td><td>Roles in the model. A DAX filter decides which rows a role sees.</td><td>User filters, or a row-level policy on the published data source.</td><td>A user attribute plus <span class="cite">access_filter</span>, written into the SQL the user cannot remove.</td></tr>
+    <tr><td><strong>Versioning</strong></td><td>The dataset people query lives in a workspace. Deployment pipelines promote it. Git is optional, not the default audit trail.</td><td>Revision history on the server. Certification is a badge a steward applies, not a pull request.</td><td>Branch, LookML validation, pull request, merge. The merge is who changed “reconciled,” and when.</td></tr>
+    <tr><td><strong>Best for</strong></td><td>A Microsoft shop, a fast in-memory model, apps handed to a large set of viewers.</td><td>Visual analysis on a published data source someone has certified, so ten workbooks do not each invent the ratio.</td><td>One audited definition, queried live, when the failure mode is five spreadsheets and five formulas.</td></tr>
+  </tbody>
+</table>
+<p class="cite">A calculated field pasted into ten Tableau workbooks is the same fork as five spreadsheets. Publishing the data source and certifying it is how Tableau tries to stop that. LookML makes the stop structural: production is the merge.</p>
+
+<h2 id="s5">5. Worked example — the CapEx data-integrity scorecard in Looker</h2>
+<div class="hon"><strong>Illustrative, end to end.</strong> This is the scorecard from the product idea, drawn as a Looker explore so you can walk it. It is not Apple’s tool, and none of the counts below are a program you ran. Every figure on this page is <strong>ILLUSTRATIVE</strong>.</div>
+<p>Tables behind the explore: <strong>programs</strong>, <strong>purchase_orders</strong>, <strong>po_lines</strong>, <strong>assets</strong>, <strong>suppliers</strong>, <strong>sites</strong>, <strong>input_owners</strong>. The explore starts at <span class="cite">po_lines</span>, one row per received line. It joins <strong>assets</strong> one-to-many (a line can tag more than one asset — the fan-out), <strong>programs</strong> and <strong>sites</strong> many-to-one, and <strong>input_owners</strong> many-to-one on the line’s owner. <strong>purchase_orders</strong> and <strong>suppliers</strong> are many-to-one parents, joined only when a tile needs the PO number or the supplier name. They are not on the fan-out path. Reconciliation measures are <span class="cite">count_distinct</span> on the line id and on the asset id. A plain count would count a line once per asset and make the rate look healthier than the book.</p>
+<p>Field completeness is a different grain: one row per line per field (placed-in-service date, site, cost center, program allocation, reuse source asset), because each field has its own owner. That derived table is one-to-many off the line. Its measures count distinct lines <em>inside one field</em>. Joining it into the reconciliation tile would multiply the denominator. Two tiles, two grains, one explore only if the joins are the safe cardinality.</p>
+
+<div class="dash">
+  <div class="bar">CapEx data-integrity scorecard <span>· scheduled Monday 07:00 · row-level security on program</span></div>
+  <div class="tag">Every number in this wireframe is illustrative</div>
+  <table class="kpi">
+    <tr>
+      <td><div class="n">94.2%</div><div>PO ↔ asset reconciliation</div><div class="sub">113 assets tagged / 120 lines received. Assumes one asset on each tagged line.</div></td>
+      <td><div class="n">5 · 3 · 1</div><div>Exception aging, open</div><div class="sub">0–7 days · 8–30 · 31+. Nine open. The 31+ row is a close-out, not a color.</div></td>
+      <td><div class="n">81%</div><div>First-time-right</div><div class="sub">17 of 21 required fields passed on first submit. Two newly onboarded programs.</div></td>
+      <td><div class="n">3</div><div>Person-dependent fields</div><div class="sub">Edited by one user only in the window. The knowledge leaves with that person.</div></td>
+    </tr>
+  </table>
+  <table class="sm inside">
+    <thead><tr><th>Field</th><th>Input owner</th><th>Filled</th><th>Null</th><th>Complete</th><th>Flag</th></tr></thead>
+    <tbody>
+      <tr><td>Placed-in-service date</td><td>Finance</td><td>108</td><td>12</td><td>90%</td><td>One editor — person-dependent</td></tr>
+      <tr><td>Site</td><td>Contract manufacturer</td><td>116</td><td>4</td><td>97%</td><td></td></tr>
+      <tr><td>Cost center</td><td>GSM</td><td>111</td><td>9</td><td>93%</td><td></td></tr>
+      <tr><td>Program allocation</td><td>TPM</td><td>102</td><td>18</td><td>85%</td><td>One editor — person-dependent</td></tr>
+      <tr><td>Reuse source asset</td><td>AME</td><td>40 of 48 reuse lines</td><td>8</td><td>83%</td><td>One editor — person-dependent</td></tr>
+    </tbody>
+  </table>
+</div>
+<p class="cite">ILLUSTRATIVE throughout, including the 98% alert line below. The picture assumes one tagged asset per tagged line, so “assets tagged / lines received” equals “lines with an asset / lines received.” If a line can carry two assets, certify the line version. The asset version then reads high and hides untagged lines. Say that before anyone builds the tile. 113 / 120 = 94.2%; 17 / 21 = 81%; 40 / 48 = 83%.</p>
+
+<pre class="lk">explore: po_lines {
+  access_filter: {
+    field: po_lines.program_id
+    user_attribute: allowed_program_ids
+  }
+  join: assets {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${po_lines.po_line_id} = ${assets.po_line_id} ;;
+  }
+  join: programs {
+    relationship: many_to_one
+    sql_on: ${po_lines.program_id} = ${programs.program_id} ;;
+  }
+  join: sites {
+    relationship: many_to_one
+    sql_on: ${po_lines.site_id} = ${sites.site_id} ;;
+  }
+  join: input_owners {
+    relationship: many_to_one
+    sql_on: ${po_lines.field_owner_id} = ${input_owners.owner_id} ;;
+  }
+}</pre>
+<p>Each GSM and each CM gets a user attribute, <span class="cite">allowed_program_ids</span>. The access filter is in the SQL, and they cannot clear it. A scheduled delivery goes out Monday at 07:00 to the input owners on the completeness tile — the people who can fill the null, not a general list. An alert, separate from the schedule, fires when reconciliation falls below the team’s threshold. Ninety-eight percent in the sketch is illustrative; you do not invent the real line. The description on placed-in-service date says whether the field means acceptance or the day depreciation starts. That is the why behind the input, sitting where the field is picked.</p>
+<p><strong>What changes in behavior.</strong> A null site is the contract manufacturer’s row, not a shared inbox. An exception has an age, and the one past thirty-one days is a close-out conversation with an owner. “Reconciled” is the merged measure. A side spreadsheet that divides tagged assets by lines ordered is a different metric, and it cannot replace the tile without a pull request.</p>
+
+<h2 id="s6">6. How to say it in the call</h2>
+<div class="say">
+  <p class="label">Sixty seconds — how a BI tool works</p>
+  <p>A BI tool is seven layers, and the chart is only the fifth. The rows stay in the warehouse, the ERP, or the system of record. The connection is either live, meaning the tool asks the source every time, or an extract, a copy that is only as fresh as its last refresh. The layer that protects data integrity is the semantic layer: one name, one formula, the join and the grain written down, so reconciled means one thing on every tile. The query engine turns that into SQL, checks a cache, and sometimes uses a pre-built aggregate. People see a tile, filter it, and drill to the rows. Distribution is the dashboard, the Monday email, and an alert. Governance decides who sees which programs, and whether that definition is versioned. Excel can hold the rows. It does not hold a definition. The next copy of the file is a second meaning of reconciled.</p>
+</div>
+<div class="doc">
+  <p class="label">What the sources actually support — read this before you improvise</p>
+  <p><strong>/tmp/sources was not on disk</strong> when this primer was written. There was no LSA workbook, no BRD text, and no WBR deep-dive text to quote. What follows is what the numbers canon records about those files (<span class="cite">/workspace/amazon/numbers-reconciliation.md</span>, rows S11.24, S16, S20), not a fresh read of the files. Do not upgrade it.</p>
+  <p><strong>LSA_WBR_2022, Instructions rows 6–9.</strong> A weekly-review format: input to output, a five-to-six-week window, red or green when the week-over-week move is more than 5% relative, week running Monday to Sunday. The canon calls it a format copied from the LSA review. It is an operating-review convention in a spreadsheet. It is not a Looker model and not a Tableau workbook.</p>
+  <p><strong>BRD for Zendesk data in Snowflake, pages 1–5.</strong> You wrote the requirements. The as-is was manual pulls into spreadsheets, an hour and a half to two hours for one week-over-week snapshot of seven metrics. The document names Looker SQL Runner as the reporting surface and Snowflake as the warehouse, and it prices the manual work. The infrastructure team built the pipeline. You froze the seven definitions and the acceptance gate — a parallel run within 1% for consecutive weeks — and you called the cutover. You did not write LookML. The BRD names no table or column.</p>
+  <p><strong>WBR deep dive (the Tech Ops prep book the canon tags S20).</strong> Your own interview-prep notes. The sample weeks are marked illustrative. Not a dashboard you shipped. Not evidence of Tableau, Power BI, or Looker.</p>
+  <p><strong>SQL, narrower than “I built the warehouse.”</strong> The interview workbook’s Austria routing-guide story says you pulled three years of shipment history in SQL yourself, to show true data quality near 55% rather than the 40% that had been reported. That is a pull against a source. It is not a semantic layer. The companion packet’s reading of the resume is the same shape: Tableau and Power BI do not appear in the mapped experience bullets.</p>
+</div>
+<div class="say">
+  <p class="label">The proficiency sentence — say this, then stop</p>
+  <p>I would pick up Looker or Tableau quickly; I have learned three enterprise systems to go-to level.</p>
+</div>
+<div class="rules"><strong>If they ask what you have actually done.</strong> “I built the metrics behind the weekly review in spreadsheets, and I wrote the definitions and the parity gate for the Snowflake pipeline. Looker SQL Runner was the surface the requirements named. I did not build the Looker layer.” If they ask which three systems, do not count Looker, Tableau, or Power BI. Name systems you can walk: the warehouse system you took through cutover, and SAP. Offer a third only if you can open it from memory. This primer does not freeze that third name.</div>
+<div class="say">
+  <p class="label">The line that lands with a data-integrity team</p>
+  <p>The semantic layer is where you stop five spreadsheets from each having their own definition of reconciled.</p>
+</div>
+
+<h3>Ten terms, if they use one</h3>
+<table class="sm">
+  <thead><tr><th style="width:24%">Term</th><th>One sentence</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Semantic layer</strong></td><td>The place a metric is defined once — name, SQL, grain, join — so every tile uses that definition.</td></tr>
+    <tr><td><strong>Dimension</strong></td><td>Something you group or filter by: site, program, owner, a date. You do not sum it.</td></tr>
+    <tr><td><strong>Measure</strong></td><td>An aggregate: a count, a sum, a count distinct, or a ratio of two of those.</td></tr>
+    <tr><td><strong>Explore</strong></td><td>The self-serve surface in Looker: one starting view, its joins, and the field picker.</td></tr>
+    <tr><td><strong>LookML</strong></td><td>Looker’s modeling language. It lives in Git. Production is a merge, which is what makes a definition auditable.</td></tr>
+    <tr><td><strong>PDT</strong></td><td>A persistent derived table: a pre-aggregate Looker builds and refreshes in the warehouse, not inside Looker.</td></tr>
+    <tr><td><strong>Fan-out</strong></td><td>A one-to-many join repeats the left-hand row. A plain count then double-counts. Count distinct on the key, or declare the cardinality and mean it.</td></tr>
+    <tr><td><strong>Row-level security</strong></td><td>A filter the tool applies for you, from who you are. In Looker that is a user attribute plus an access filter. The user cannot take it off.</td></tr>
+    <tr><td><strong>Extract vs live</strong></td><td>An extract is a scheduled copy, fast and possibly stale. Live, or direct query, asks the source at query time and is only as fast as that source.</td></tr>
+    <tr><td><strong>Certified content</strong></td><td>The dataset or dashboard a steward has marked as the one to trust. In Tableau that is a badge on a published source; in Power BI, an endorsement. In Looker the equivalent is LookML merged to production, not a Look in a personal folder. Looker Studio is a different product — do not invent a Looker badge.</td></tr>
+  </tbody>
+</table>
+
+</body>
+</html>

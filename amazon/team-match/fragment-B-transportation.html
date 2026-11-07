@@ -1,0 +1,418 @@
+<section id="part-b">
+<h2 class="page">I. Amazon transportation, end to end</h2>
+<p>This section is the physical path a unit takes, inbound and outbound, and the decisions that sit on that path. Amazon has published the shape of the network: fulfillment centers, sort centers, delivery stations, air hubs, a first-party middle mile, and a last mile run largely by its own logistics. It has not published the clock times, trailer rates, or cost-per-package stack used below. Those worked examples are the generic model, with every assumption stated. Where a figure is Amazon's, the year and the source are in the sentence and again in the list at the end.</p>
+
+<h3>I.1 Inbound: vendor and seller freight to a promiseable unit</h3>
+<p>Two inbound customers share the buildings. A first-party vendor sells the unit to Amazon. A third-party seller keeps title and uses Fulfillment by Amazon, so Amazon stores and ships it. In both cases the transportation question is the same: which building receives the freight, and who pays to put the units near the customers who will buy them.</p>
+<p>Amazon's Carrier Central manual treats an inbound purchase order as collect or prepaid, and it will not book the two on the same shipment line. An Amazon reference number is mandatory for collect freight; the manual says that number is assigned to collect vendors, and that the purchase order has to show as collect in Amazon's system before an appointment is granted. Prepaid purchase orders go on their own carrier reference. In ordinary freight language, collect means the receiver controls and pays the carrier, and prepaid means the shipper does. The manual confirms the two types and the appointment rule. It does not publish a rate card.</p>
+<p>The same manual is the public description of dock discipline. The carrier requests an appointment with the destination, the purchase orders, the pallet and carton counts, and a bill-of-lading or seller reference so Amazon can tie the truck to the advance ship notice. Amazon grants a time. A purchase order pointed at the wrong building, a collect order mixed onto a prepaid line, or a reference that does not match the advance ship notice is rejected or becomes a defect. The generic operating point, which the manual supports without using these words, is that the yard plan and the receive labor are built from the appointment, and the inventory record is built from the advance ship notice. A truck that arrives outside that pair consumes a door and does not become promiseable inventory on time.</p>
+<p>Where the truck goes is the placement decision. A 2016 MIT thesis on Amazon transshipment describes the domestic cross-dock: the vendor sends the network quantity to the cross-dock, and the cross-dock splits it and transships to the destination fulfillment centers, instead of the vendor running a separate truck to each one. A 2019 FHWA briefing describes the same kind of building, the inbound cross-dock, close to ports and rail, destuffing containers and loading fulfillment-center trucks. This packet calls that node the inbound cross-dock. A distinct building officially named a receive center was not verified, so that name is not used as an Amazon fact.</p>
+<p>The economic signal for sellers is public. In its late-2023 fee announcement, Amazon said it would charge an inbound placement service fee, effective March 1, 2024, averaging $0.27 per unit for standard-size products and $1.58 per unit for Large Bulky products, because placing inventory close to customers improves speed and lowers transportation cost. The seller can pay a reduced fee or no fee by shipping to more locations. Amazon's seller-facing explanation of the options is: no fee when the seller sends inventory to the recommended set of locations, generally four or more; a reduced fee for a partial split, generally two or three; and the fee when the seller sends everything to one location and Amazon spreads it. Outbound fulfillment fees were cut at the same time, by an average of $0.20 per unit for standard-size products and $0.61 for Large Bulky, starting April 15, 2024. Read together, Amazon unbundled the cost of placement from the cost of customer delivery, and handed the seller the choice.</p>
+<p>Jassy's 2023 shareholder letter, published in 2024, named the same lever from the company side: inbound fulfillment architecture and the resulting inventory placement were a focus for 2024, after regionalization had already cut transportation distance. Placement is how a unit becomes available against the promise in the region where the order will be placed. Receive and stow are the building steps that make that true in the system. The generic model is: until the unit is received and stowed to a pickable location, it cannot be promised, however close the truck got.</p>
+<pre class="flow">Vendor (1P)                         Seller (FBA)
+collect: Amazon routes the truck    seller picks a placement option
+prepaid: shipper pays the carrier   one site, or several, or four-plus
+        |                                    |
+        +---- ASN  +  dock appointment -----+
+                         |
+                         v
+              Inbound cross-dock
+              consolidate, then transship
+                         |
+            +------------+------------+
+            v            v            v
+          FC-A         FC-B         FC-C
+       receive, stow to a pickable bin
+                         |
+                         v
+            unit is available to promise
+            in the region that holds it
+
+Direct alternative: the shipper runs a separate truck to FC-A, FC-B, and FC-C.
+No cross-dock touch. Three trucks, each partly empty.
+</pre>
+<div class="note">The dollars below are a teaching model of that picture. They are not Amazon's rates, and they are not the inbound placement fee. The fee is a published price. This stack is an illustration of why a price like that exists.</div>
+<h4>Worked example: three partial trucks, or one inbound truck and a shared onward trailer</h4>
+<div class="math">
+<p>Assumptions (illustrative unless cited): 900 cases; a trailer holds 900 cases; linehaul costs $1.50 per truck-mile and nothing else; the three fulfillment centers are 300, 900, and 1,500 miles from the vendor; the inbound cross-dock is 60 miles from the vendor; a direct ship is one truck per center at 300/900 fill; through the cross-dock, the 900 cases fill the inbound truck and then ride as 300/900 of a full trailer on each onward lane; the cross-dock touch is $0.40 per case.</p>
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1. Direct truck count</td><td>one truck per destination</td><td>3 centers</td><td>3 trucks</td></tr>
+<tr><td>2. Direct miles</td><td>d1 + d2 + d3</td><td>300 + 900 + 1,500</td><td>2,700 truck-miles</td></tr>
+<tr><td>3. Direct fill</td><td>cases per truck / trailer</td><td>300 / 900</td><td>33 percent</td></tr>
+<tr><td>4. Direct cost</td><td>miles x rate</td><td>2,700 x $1.50</td><td>$4,050</td></tr>
+<tr><td>5. Direct cost per case</td><td>cost / cases</td><td>4,050 / 900</td><td>$4.50</td></tr>
+<tr><td>6. Cross-dock inbound</td><td>miles x rate</td><td>60 x $1.50</td><td>$90</td></tr>
+<tr><td>7. Onward share of each trailer</td><td>cases on the lane / trailer</td><td>300 / 900</td><td>1/3 of each onward truck</td></tr>
+<tr><td>8. Onward miles attributed</td><td>(d1 + d2 + d3) x share</td><td>2,700 x 1/3</td><td>900 truck-miles</td></tr>
+<tr><td>9. Onward cost</td><td>attributed miles x rate</td><td>900 x $1.50</td><td>$1,350</td></tr>
+<tr><td>10. Transport total</td><td>inbound + onward</td><td>90 + 1,350</td><td>$1,440</td></tr>
+<tr><td>11. Transport per case</td><td>transport / cases</td><td>1,440 / 900</td><td>$1.60</td></tr>
+<tr><td>12. Cross-dock touch</td><td>fee per case x cases</td><td>$0.40 x 900</td><td>$360</td></tr>
+<tr><td>13. All-in through the cross-dock</td><td>transport + touch</td><td>1,440 + 360</td><td>$1,800</td></tr>
+<tr><td>14. All-in per case</td><td>all-in / cases</td><td>1,800 / 900</td><td>$2.00</td></tr>
+<tr><td>15. Truck-equivalents</td><td>inbound trucks + onward share</td><td>1 + 3 x (1/3)</td><td>2 truck-equivalents</td></tr>
+<tr><td>16. Savings per case</td><td>direct - cross-dock</td><td>$4.50 - $2.00</td><td>$2.50 per case</td></tr>
+</tbody>
+</table>
+</div>
+<p>The direct path uses three trucks and 2,700 miles because each lane pays for a whole trailer to move a third of one. The cross-dock path uses two truck-equivalents and puts the long miles on trailers that other freight fills. The $2.50 gap is the room in which a placement fee, a vendor allowance, or an Amazon-paid transship can sit. The 2024 fee is the published version of that choice for sellers: pay Amazon to do the spread, or spend your own freight to deliver into more buildings and pay less fee, down to zero.</p>
+<div class="say">Inbound is a placement decision before it is a freight decision. A vendor or a seller can pay to deliver cases into the fulfillment centers that will ship them, or pay Amazon, through the inbound placement fee, to spread one receipt across the network. The fee is the price of that spread. I would check three things before a shipment moves: the advance ship notice matches the appointment, the destination matches where the demand is, and the cost per case of a partial truck is visible next to the fee.</div>
+
+<h3>I.2 Outbound: promise, pull time, sort, last mile</h3>
+<p>A customer order becomes a promise: a ship option and a delivery date. Amazon's customer help page says the date is the shipping date plus transit time, in business days, with an "order within" countdown when the clock is still open. That promise is the constraint. Everything after it is a path chosen so the attempt happens on or before that date, at a cost the network can live with.</p>
+<p>Amazon Science (October 14, 2022) describes the path in the first-party network. Packages leave fulfillment centers for sort centers, which aggregate shipments from several fulfillment centers, and then go to delivery stations, where vans are loaded for the last mile. The connections are lanes, air and ground. The same article names the label step: SLAM, scan, label, apply, manifest. Amazon's own fulfillment-center tour uses the same expansion and places it after pack and before the outbound trailer: the package is identified, weighed, labeled, and manifested, then sorted to a trailer. In the generic model the label is the moment the package is committed to a lane and a departure. Change the lane after that and you are rehandling.</p>
+<p>The sort center, in Amazon's public description, sorts by destination and hands trailers to delivery stations or to a carrier partner, including the local post office. A 2025 paper by Amazon authors in INFORMS Journal on Applied Analytics describes a further split that regionalization made useful: hubs, which protect trailer fill on the long cross-region haul, and last-mile sort centers, which consolidate for delivery stations. Direct fulfillment-center-to-delivery-station trucks are the bypass. Amazon Science (July 24, 2023) says regionalization created more of those direct trucks, because more of a destination's volume now comes from fulfillment centers inside the region, so a trailer can fill without a stop at the sort center.</p>
+<p>The last mile is a mix. The 2023 sustainability report says more than two-thirds of Amazon packages that year were delivered by Amazon's own logistics network. The public programs on that network are Delivery Service Partners, independent businesses that run the routes; Amazon Flex, drivers using their own vehicles who pick up at a station and deliver a block, typically three to six hours for Amazon.com packages; and, on the rural-network page, Hub Delivery with local businesses. Amazon Science (2022) is explicit about the rest of the history: before the first-party network, deliveries were completed by partners such as the U.S. Postal Service and UPS. The 2025 Form 10-K still says Amazon relies on a limited number of shipping companies to deliver completed orders. A current split among DSP, Flex, USPS, and UPS was not published, so it is not stated here.</p>
+<p>Same-day sites shorten this path by collapsing it. Doug Herrington, July 31, 2023: same-day buildings are smaller, sit near the metros they serve, pick directly to pack, and fulfill, sort, and deliver from one site. He gave the average time from pick to a package on the outbound dock as 11 minutes, more than an hour faster than a traditional fulfillment center, and said same-day was then available across more than 90 U.S. metro areas. Jassy's 2023 letter, published in 2024, counted 58 of these buildings, holding the top 100,000 SKUs, with millions of other SKUs injectable from nearby fulfillment centers, and called them the lowest cost to serve in the network. The 2025 letter calls them Same Day Fulfillment Centers, or SSDs: more than 85 in the U.S., carrying the top 90,000 SKUs. The phrase "sub-same-day" was not verified as Amazon's official expansion of SSD. The operating fact that was verified is the collapsed path: one building, no separate sort center, a very short clock.</p>
+<p>Air is the long-lane version of the same idea. Amazon's August 11, 2021 press release opened the Amazon Air hub at Cincinnati/Northern Kentucky International Airport as the primary U.S. hub, an investment of $1.5 billion, with an 800,000-square-foot sort building meant to process millions of packages a week. The 2023 sustainability report says in-region shipping reduced reliance on air. Air remains the tool for distance that ground cannot cover inside the promise.</p>
+<p>Amazon Freight and Relay are the middle-mile commercial layer, not the last mile. Amazon's supply-chain site distinguishes them: Amazon Freight, in the Relay for Shippers portal, is an inbound less-than-truckload and truckload option, including to non-Amazon destinations in the lower 48; Relay is the capacity side, the trailers and the carriers that haul them. The aboutamazon transportation article describes Relay as the tool small carriers use to book Amazon loads. Treat Freight as a way freight gets into and across the network, and Relay as how truck capacity is matched to those loads.</p>
+<pre class="flow">Order
+  -> promise: ship option and delivery date
+  -> assign a fulfillment center that can hit the date
+  -> pick, pack
+  -> SLAM: scan, label, apply, manifest
+  -> outbound dock
+  -> CPT: last departure that still makes the promise
+  -> linehaul to a sort center (or direct to a delivery station)
+  -> sort by destination
+  -> linehaul to the delivery station
+  -> sort onto a route
+  -> last mile: DSP van, Flex block, or a carrier (USPS, UPS)
+  -> delivery attempt on or before the promised date
+
+Same-day building: pick -> pack -> sort -> dispatch, one site.
+The sort-center leg is the one this path deletes.
+</pre>
+<p>Critical pull time is the outbound clock. Amazon does not define it on a public retail page. A 2016 MIT thesis on Amazon operations defines CPT as the time an item must be picked, palletized, and on a truck, and defines order critical pull time as the time the package must depart Amazon, set from the ship-method cycle time. That is the definition used here: the last time a package can leave the fulfillment center and still make the promised delivery. The hours below are the generic model. They were not taken from an Amazon standard.</p>
+<p>The cascade runs backward from the delivery window. The van has to leave the delivery station early enough to finish the route inside the window. The package has to be through the station's inbound sort before that departure. It therefore has to have left the sort center one linehaul earlier, and it has to have arrived at the sort center before that building's sort window. It therefore has to have left the fulfillment center one linehaul before that. The pack-to-dock buffer sits in front of the departure: a package still at pack when the trailer closes has missed the pull time even if the trailer itself is on time. Miss the pull time and the package waits for the next departure, which is the next promise, unless a recovery truck or air is paid for.</p>
+<pre class="flow">20:00 Tue   promised delivery, last stop of the route
+09:00 Tue   van leaves the delivery station
+07:00 Tue   package is at the delivery station        minus 2 h station sort
+03:00 Tue   package leaves the sort center            minus 4 h linehaul
+00:00 Tue   package arrives at the sort center        minus 3 h sort window
+18:00 Mon   CPT: package leaves the fulfillment center minus 6 h linehaul
+16:00 Mon   pack is complete                          minus 2 h dock buffer
+</pre>
+<h4>Worked example: backward schedule to the critical pull time</h4>
+<div class="math">
+<p>Assumptions (illustrative unless cited): delivery is promised by 8:00 p.m. Tuesday; the route that can meet that promise starts at 9:00 a.m. Tuesday, so the schedule runs back from 9:00 a.m. and not from 8:00 p.m.; delivery-station inbound sort is 2 hours; sort-center-to-station linehaul is 4 hours; sort-center sort window is 3 hours; fulfillment-center-to-sort-center linehaul is 6 hours; pack-to-dock buffer is 2 hours.</p>
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1. Anchor</td><td>route start, not the end of the window</td><td>promise 8:00 p.m. Tuesday, van leaves 9:00 a.m. Tuesday</td><td>9:00 a.m. Tuesday</td></tr>
+<tr><td>2. Arrive at the delivery station</td><td>route start - station sort</td><td>9:00 a.m. - 2 h</td><td>7:00 a.m. Tuesday</td></tr>
+<tr><td>3. Leave the sort center</td><td>station arrival - linehaul</td><td>7:00 a.m. - 4 h</td><td>3:00 a.m. Tuesday</td></tr>
+<tr><td>4. Arrive at the sort center</td><td>sort-center departure - sort window</td><td>3:00 a.m. - 3 h</td><td>12:00 a.m. Tuesday</td></tr>
+<tr><td>5. CPT, leave the fulfillment center</td><td>sort-center arrival - linehaul</td><td>12:00 a.m. - 6 h</td><td>6:00 p.m. Monday</td></tr>
+<tr><td>6. Pack complete</td><td>CPT - dock buffer</td><td>6:00 p.m. - 2 h</td><td>4:00 p.m. Monday</td></tr>
+<tr><td>7. Check the chain</td><td>sum of the four path hours</td><td>2 + 4 + 3 + 6 = 15 h; 9:00 a.m. Tuesday - 15 h</td><td>6:00 p.m. Monday</td></tr>
+</tbody>
+</table>
+</div>
+<p>The critical pull time is 6:00 p.m. Monday. Pack has to be finished by 4:00 p.m. Monday or the package misses a trailer that is itself on time. Each upstream hour is inherited. If the sort-center-to-station linehaul runs five hours instead of four, the pull time moves an hour earlier, to 5:00 p.m. Monday, and so does the pack deadline. That is why a configuration change and a transit change are the same kind of event: both move the clock.</p>
+<p>Cost per package is the same path in dollars. Amazon has not published this stack. It has published the total: in the 2023 shareholder letter, U.S. cost to serve was down by more than $0.45 per unit versus the prior year, the first global per-unit reduction since 2018. The illustration splits a generic package into fulfillment-center outbound handling, two linehauls, a sort, and the last mile, then shows the two denominators that move the variable pieces: packages on the truck, and packages on the route.</p>
+<h4>Worked example: cost per package, and what fill and route size do to it</h4>
+<div class="math">
+<p>Assumptions (illustrative unless cited): fulfillment-center outbound handling is $0.75 per package and sort is $0.30 per package, both unchanged by fill; the fulfillment-center-to-sort-center truck costs $630 and has 1,000 package positions; the sort-center-to-delivery-station truck costs $378 and has 1,000 positions; a last-mile route costs $198; the base case is 70 percent linehaul fill and 150 packages per route; the tighter case is 90 percent fill and 220 packages per route.</p>
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1. Handling</td><td>given per package</td><td>$0.75</td><td>$0.75</td></tr>
+<tr><td>2. Sort</td><td>given per package</td><td>$0.30</td><td>$0.30</td></tr>
+<tr><td>3. Packages on a truck at 70 percent</td><td>fill x positions</td><td>0.70 x 1,000</td><td>700 packages</td></tr>
+<tr><td>4. Linehaul, fulfillment center to sort center, 70 percent</td><td>truck cost / packages</td><td>$630 / 700</td><td>$0.90</td></tr>
+<tr><td>5. Linehaul, sort center to delivery station, 70 percent</td><td>truck cost / packages</td><td>$378 / 700</td><td>$0.54</td></tr>
+<tr><td>6. Last mile at 150 packages</td><td>route cost / packages</td><td>$198 / 150</td><td>$1.32</td></tr>
+<tr><td>7. Base cost per package</td><td>sum of the five pieces</td><td>0.75 + 0.90 + 0.30 + 0.54 + 1.32</td><td>$3.81</td></tr>
+<tr><td>8. Packages on a truck at 90 percent</td><td>fill x positions</td><td>0.90 x 1,000</td><td>900 packages</td></tr>
+<tr><td>9. Linehaul, fulfillment center to sort center, 90 percent</td><td>truck cost / packages</td><td>$630 / 900</td><td>$0.70</td></tr>
+<tr><td>10. Linehaul, sort center to delivery station, 90 percent</td><td>truck cost / packages</td><td>$378 / 900</td><td>$0.42</td></tr>
+<tr><td>11. Last mile at 220 packages</td><td>route cost / packages</td><td>$198 / 220</td><td>$0.90</td></tr>
+<tr><td>12. Tighter cost per package</td><td>sum of the five pieces</td><td>0.75 + 0.70 + 0.30 + 0.42 + 0.90</td><td>$3.07</td></tr>
+<tr><td>13. Difference</td><td>base - tighter</td><td>$3.81 - $3.07</td><td>$0.74 per package</td></tr>
+</tbody>
+</table>
+</div>
+<p>Handling and the sort did not move. The $0.74 came from the denominators: 200 more packages on each truck, and 70 more packages on the route. In the base case the last mile alone is $1.32 of the $3.81, about a third. That is why a delivery-station catchment and a route size belong in a transportation cost review, not only in a last-mile review. The 2023 sustainability report names the real-world version of step 4 and step 9: Amazon cited better truck fill as one of the operating changes that cut emissions per package that year.</p>
+<div class="say">Outbound is a promise walked backward onto a clock. The critical pull time is the last moment a package can leave the fulfillment center and make the delivery window, after you subtract the station sort, both linehauls, and the sort-center window. Cost per package is that same path in dollars: handling, two linehauls, a sort, and the last mile. Fill and packages per route are the two numbers that move the linehaul and the last mile. I would put the clock and the cost on one page before changing either.</div>
+
+<h3>I.3 Where a transportation-engineering team sits</h3>
+<p>Three kinds of decision sit on this network. Configuration is the standing rule a package is executed against: which sort code maps to which building, which ship method is offered, what the critical pull time is, which lane a trailer takes, which ZIP codes belong to a delivery station, and what the customer cutoff is. Planning is the volume that rule will see: the forecast, the labor, and the truck capacity. Design is a change to the structure the rules run on: a new node type, a new building, or a new region boundary. Amazon's 2025 INFORMS paper is explicit that regionalization required all three at once: software changes to inventory, promising, and order assignment; changes to fulfillment-center configuration, network connectivity, and transportation schedules; and a new partition of the country.</p>
+<p>The role language for this conversation is that a supply-chain manager designs or models the chain, breaks a messy network problem into a straight one, and makes the trade-off explicit. On a team that configures and optimizes the outbound network, that posture is the configuration column. The program manager does not pick every ZIP code. The program manager names the decision, the owner, the failure, and the check before and after.</p>
+<p>Nothing in this table is an internal system name. "Who typically owns" is the generic role in a network of this shape.</p>
+<table>
+<thead><tr><th>Decision</th><th>Who typically owns</th><th>What breaks if the config is wrong</th><th>What a program manager checks before and after</th></tr></thead>
+<tbody>
+<tr><td>Sort code and destination mapping (configuration)</td><td>Transportation configuration, with the sort building</td><td>Packages ride to the wrong delivery station or the wrong carrier. Rehandle, a missed day, and a second linehaul.</td><td>Before: a sample of ZIP codes against the building each one is supposed to reach. After: mis-sort rate and the cost of the packages that had to be sent again.</td></tr>
+<tr><td>Ship method and customer cutoff (configuration)</td><td>The promise function, with transportation</td><td>The site offers a date the path cannot make, or it hides a date the path could make.</td><td>Before: the cutoff sits in front of the pull time, with the pack buffer still inside it. After: the share of units attempted on or before the promised date.</td></tr>
+<tr><td>Critical pull time on a lane (configuration)</td><td>Fulfillment-center outbound and transportation together</td><td>An early pull time sends trucks out light. A late one leaves packages on the dock for the next cycle.</td><td>Before: the pull time against the transit-time distribution, not the average alone. After: share of volume that missed the pull time, and trailer fill on that lane.</td></tr>
+<tr><td>Lane assignment, including a direct injection that skips the sort (configuration)</td><td>Network configuration</td><td>An extra touch on volume that could have gone direct, or a direct trailer that cannot fill and cannot make the window.</td><td>Before: touches and transit time against the promise. After: cost per package and the on-time share on that lane.</td></tr>
+<tr><td>Delivery-station ZIP catchment (configuration)</td><td>Last-mile network design, with the station</td><td>Routes too long to finish inside the window, a station in overflow, or a neighboring station starved.</td><td>Before: drive time of the farthest ZIP, and packages per route. After: stops per hour, overtime, and rolled volume.</td></tr>
+<tr><td>Volume forecast (planning)</td><td>Planning</td><td>Too few trucks, or labor and trailers paid for freight that does not show up.</td><td>Before: forecast against trailing actuals, including the peak week. After: rolled packages from no trailer, and cost per package from empty ones.</td></tr>
+<tr><td>Labor plan at the sort center and the delivery station (planning)</td><td>Building operations</td><td>The sort window runs long, so the upstream pull time was fiction.</td><td>Before: planned throughput against the arrival curve. After: sort completion against the window.</td></tr>
+<tr><td>Truck capacity and the carrier plan (planning)</td><td>Transportation planning</td><td>Freight left on the dock, or a trailer dispatched for a pile that never built.</td><td>Before: cube and weight against orders. After: fill, and the volume that rolled.</td></tr>
+<tr><td>A new node type, or a new region boundary (design)</td><td>Network design, with finance</td><td>A building that does not fill, or a region that cannot hold the selection the promise assumes.</td><td>Before: demand, the in-region rate, and the cost-to-serve case. After: miles, touches, in-region fulfillment, and cost per unit.</td></tr>
+</tbody>
+</table>
+<div class="note">Owning a configuration change means owning the metric it will move. A pull-time change that helps on-time delivery and hurts fill is a successful change only if leadership accepted that trade before it shipped.</div>
+<div class="say">A team like TESS lives in the configuration layer: the sort, the lane, the cutoff, the catchment, and the pull time that make a plan executable. Planning sets volume, labor, and trucks. Design changes the nodes and the region boundaries. A wrong configuration looks like a building problem and is usually a mapping problem. Before a change I would name the decision, the owner, and the metric that will move. After it I would read that metric against fill, touches, and the share of packages that still make the promise.</div>
+
+<h3>I.4 Reverse flow and the ordinary exceptions</h3>
+<p>The return path is the generic model, stated briefly because Amazon's public writing is about the forward promise. A customer return or an undeliverable package comes back to a station or a fulfillment center, is graded, and either returns to promiseable stock or leaves the network. It consumes the same doors, the same sort, and often a linehaul in the other direction. It does not repair a forward miss. The forward exceptions below are the ones that hit the promise on the day.</p>
+<table>
+<thead><tr><th>Exception</th><th>What happens in the generic model</th><th>Metric it hits</th></tr></thead>
+<tbody>
+<tr><td>Late linehaul</td><td>The trailer arrives after the delivery station has started, or finished, building routes. Packages miss the van and roll to the next cycle unless the station holds the route, which pushes overtime onto every stop behind them.</td><td>On-time attempt against the promised date. Also route overtime if the station waits.</td></tr>
+<tr><td>Missed critical pull time</td><td>The package is still in the fulfillment center when its trailer closes. The next departure is the recovery, and it may be a day later. A recovery truck or air can buy the promise back at a higher cost per package.</td><td>Pull-time compliance first, then the promised-date attempt if there is no recovery.</td></tr>
+<tr><td>Mis-sort</td><td>The package is on the wrong trailer. It arrives at the wrong building and needs a second sort and a second linehaul. The original route is short a stop; the receiving building has a package it did not plan.</td><td>Mis-sort rate, rehandle cost, and the promised-date attempt when the extra leg misses the day.</td></tr>
+<tr><td>Delivery-station overflow</td><td>More packages arrived than the station has routes, vans, or drivers to clear. The excess rolls, or it is pushed onto Flex or an extra route at a higher cost per package.</td><td>Rolled volume, cost per package on the overflow path, and the promised-date attempt for what rolled.</td></tr>
+<tr><td>Damaged package</td><td>The unit is pulled from the path. The customer is re-promised or refunded. The original package does not get faster by being re-taped into the same truck.</td><td>A damage or concession rate: cost and customer trust. Speed is affected only when a replacement is shipped.</td></tr>
+</tbody>
+</table>
+<p>A 2024 MIT thesis describes Amazon's internal Delivery Estimate Accuracy metric as the percentage of items with a delivery attempt on or before the promised delivery date. That is the right family of metric for the first four rows. Amazon does not publish the rate, and this packet does not invent one. The thesis also names two fulfillment-center causes, a virtual-physical inventory mismatch and a missort, as large contributors to misses. That matches the table: a missort is a configuration and execution defect, and it shows up as a late or wrong attempt, not only as a building-quality score.</p>
+<div class="say">Exceptions are how the promise fails in the middle of the path. A late linehaul and a missed pull time both miss the van. A mis-sort sends the package to the wrong building. Overflow means the station has more packages than routes. Damage takes the unit off the promise. Each one has a different owner and a different metric. I would separate a speed miss from a cost miss before proposing a fix, because adding a truck and adding a recovery path are different decisions.</div>
+
+<h2 class="page">II. How Amazon thinks about transportation network design</h2>
+<p>Three objectives are in tension, and Amazon's own writing names all three. Cost to serve has to come down. Inventory has to sit where the order will be placed. The customer has to get the unit on the date the site promised. Herrington, July 31, 2023, put the mechanism in one place: regionalizing cut miles and handoffs, the distance from sites to the customer was down 15 percent since the start of that year, middle-mile touchpoints were down 12 percent, and same-day was both the fastest path and one of the cheapest. Jassy's letters and the 2024 and 2025 earnings calls then reported the outcome: per-unit cost to serve down, and Prime speed up, in the same years. The design problem is to move all three, and to say which one gives when they cannot.</p>
+
+<h3>II.1 Minimize cost per package</h3>
+<p>In the generic model the cost of a package is the sum of handling, linehaul, sort, and last mile, divided by the packages that actually moved. Four levers change that sum.</p>
+<p>Truck utilization is cube against weight. A trailer fills out on one of them first. Small parcels usually fill the cube while the payload still has room, so the useful denominator is usable cubic feet, not the weight rating. The 2023 sustainability report names truck fill, the share of truck volume used, as a lever Amazon actually pulled.</p>
+<p>Consolidation against frequency is the same trailer counted in time. Two departures a day keep the pull time early and leave each trailer light. One departure fills the trailer and makes every package that missed the single cutoff wait until tomorrow's clock. Amazon Science (October 14, 2022) describes the operating version: a lane is one or more trucks across the day, and the plan assigns volume so the truck does not leave empty and the dock is not left holding a handful of packages.</p>
+<p>Fewer touches is a bypass. A package that goes fulfillment center, sort center, delivery station is handled three times on the middle and last mile. A direct injection from the fulfillment center to the delivery station deletes the sort. Zone skipping, in the generic model, is the same idea aimed at a carrier: induct the package closer to the destination so you do not buy the carrier's long zone. Amazon Science (July 24, 2023) and the 2025 INFORMS paper both describe the direct fulfillment-center-to-delivery-station arc as a designed output of regionalization, because localized volume can fill a direct trailer.</p>
+<p>Last-mile density is stops per hour, which shows up as packages per route. A van costs roughly the same whether it carries a light route or a full one. The catchment, the station's wave, and the promise together set how many stops fit before the window closes.</p>
+<h4>Trailer fill on a 53-foot trailer</h4>
+<div class="math">
+<p>Assumptions (illustrative unless cited): usable cube is 3,000 cubic feet; an average package is 0.5 cubic feet and 2 pounds; payload room is 45,000 pounds, so this freight hits cube before weight; the lane costs $1,512 however full the trailer is; compare 70 percent cube fill with 90 percent.</p>
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1. Cube at 100 percent</td><td>usable cube / cube per package</td><td>3,000 / 0.5</td><td>6,000 packages</td></tr>
+<tr><td>2. Weight at that cube</td><td>packages x pounds</td><td>6,000 x 2</td><td>12,000 pounds</td></tr>
+<tr><td>3. Which constraint binds</td><td>weight against payload</td><td>12,000 vs 45,000</td><td>Cube binds. Weight does not.</td></tr>
+<tr><td>4. Packages at 70 percent</td><td>fill x cube capacity</td><td>0.70 x 6,000</td><td>4,200 packages</td></tr>
+<tr><td>5. Cost per package at 70 percent</td><td>lane cost / packages</td><td>$1,512 / 4,200</td><td>$0.36</td></tr>
+<tr><td>6. Packages at 90 percent</td><td>fill x cube capacity</td><td>0.90 x 6,000</td><td>5,400 packages</td></tr>
+<tr><td>7. Cost per package at 90 percent</td><td>lane cost / packages</td><td>$1,512 / 5,400</td><td>$0.28</td></tr>
+<tr><td>8. Savings</td><td>70 percent cost - 90 percent cost</td><td>$0.36 - $0.28</td><td>$0.08 per package, 22 percent lower linehaul</td></tr>
+</tbody>
+</table>
+</div>
+<p>The trailer did not get cheaper. The same $1,512 was divided by 1,200 more packages. A dense, heavy SKU would flip step 3 and make weight the binding constraint. The check before a fill target is which one binds on that lane.</p>
+<h4>Two light departures, or one full departure</h4>
+<div class="math">
+<p>Assumptions (illustrative unless cited): a trailer has 1,000 package positions and costs $570 to run the lane; two departures a day at 60 percent fill move 1,200 packages; one departure at 95 percent fill moves 950 packages, so the policies are not the same daily volume; with departures spaced evenly, mean wait for the next truck is half the gap between trucks.</p>
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1. Packages per truck, frequent</td><td>fill x positions</td><td>0.60 x 1,000</td><td>600 packages</td></tr>
+<tr><td>2. Cost per package, frequent</td><td>truck cost / packages on that truck</td><td>$570 / 600</td><td>$0.95</td></tr>
+<tr><td>3. Daily throughput, frequent</td><td>trucks x packages</td><td>2 x 600</td><td>1,200 packages, $1,140</td></tr>
+<tr><td>4. Packages on the single truck</td><td>fill x positions</td><td>0.95 x 1,000</td><td>950 packages</td></tr>
+<tr><td>5. Cost per package, consolidated</td><td>truck cost / packages</td><td>$570 / 950</td><td>$0.60</td></tr>
+<tr><td>6. Cost gap</td><td>frequent - consolidated</td><td>$0.95 - $0.60</td><td>$0.35 per package</td></tr>
+<tr><td>7. Mean wait, two departures</td><td>half the gap</td><td>half of 12 h</td><td>6 hours</td></tr>
+<tr><td>8. Mean wait, one departure</td><td>half the gap</td><td>half of 24 h</td><td>12 hours</td></tr>
+<tr><td>9. Delay the consolidation adds</td><td>one-departure wait - two-departure wait</td><td>12 - 6</td><td>6 hours of average wait</td></tr>
+</tbody>
+</table>
+</div>
+<p>You buy $0.35 a package by accepting six more hours of average wait, and you move 950 packages that day instead of 1,200. If the lane's real demand is 950, the honest frequent policy is two half-empty trucks, which is worse than 60 percent fill. If the demand is 1,200, one trailer cannot hold it and the consolidated policy is not available. The comparison is a design choice about scheduled capacity, not a free saving.</p>
+<h4>Packages on the route</h4>
+<div class="math">
+<p>Assumptions (illustrative unless cited): a route costs $264; there are 1.25 packages per stop; compare a route of 150 packages with a route of 220 packages; the route cost does not change with the count.</p>
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1. Stops at 150 packages</td><td>packages / packages per stop</td><td>150 / 1.25</td><td>120 stops</td></tr>
+<tr><td>2. Cost per package at 150</td><td>route cost / packages</td><td>$264 / 150</td><td>$1.76</td></tr>
+<tr><td>3. Cost per stop at 150</td><td>route cost / stops</td><td>$264 / 120</td><td>$2.20</td></tr>
+<tr><td>4. Stops at 220 packages</td><td>packages / packages per stop</td><td>220 / 1.25</td><td>176 stops</td></tr>
+<tr><td>5. Cost per package at 220</td><td>route cost / packages</td><td>$264 / 220</td><td>$1.20</td></tr>
+<tr><td>6. Cost per stop at 220</td><td>route cost / stops</td><td>$264 / 176</td><td>$1.50</td></tr>
+<tr><td>7. Savings per package</td><td>thin route - dense route</td><td>$1.76 - $1.20</td><td>$0.56 per package</td></tr>
+</tbody>
+</table>
+</div>
+<p>The denser route is cheaper per package and cheaper per stop because the same $264 covers 56 more stops. It is also longer. If those 56 stops push the last delivery past the promised window, the saving is real and the promise is broken. Density is a cost result that has to fit inside the pull-time chain from section I.2.</p>
+<div class="say">Cost per package is every touch and every mile, divided by the packages that actually rode. The levers I would walk are trailer fill, how often a lane departs, whether a package can skip a sort, and how many stops a route can hold. Frequency buys a shorter wait and spends fill. Consolidation does the opposite. I would show the dollars per package and the hours of delay in the same sentence, so the trade is explicit before anyone picks a side.</div>
+
+<h3>II.2 Put inventory where it changes the ship</h3>
+<p>Regionalization is an inventory decision whose output is miles and touches. Jassy's 2022 shareholder letter, published in 2023, describes the prior state: one national U.S. network, so a miss at the local fulfillment center shipped from somewhere else in the country, at higher cost and a longer delivery. The replacement was eight interconnected regions, each with broad selection, largely self-sufficient, still able to ship nationally. The letter says the redesign had just been completed and that shorter distances mean a lower cost to serve and a faster order.</p>
+<p>Amazon Science, July 24, 2023, gives the selection logic and the result. Eight was as many regions as the model would support before speed suffered or inventory had to move between regions so often that the design defeated itself. The Northeast and Mid-Atlantic regions switched on January 18, 2023, and the other six were pulled forward. Orders fulfilled entirely from fulfillment centers inside the region went from 62 percent before the switch to 76 percent. Herrington, July 31, 2023, stated the customer-facing version: more than 76 percent of fulfilled orders came from within the customer's region, distance from sites to the customer was down 15 percent from the start of the year, and middle-mile touchpoints were down 12 percent. The 2023 sustainability report adds the volume and the miles: in the fourth quarter of 2023 Amazon shipped nearly 544 million more items from in-region fulfillment centers than in the fourth quarter of 2022, and in-region shipping to delivery stations avoided nearly 16 million miles in 2023. The 2025 INFORMS paper dates full deployment to March 2023 and describes the method: cluster ZIP codes, assign fulfillment-center capacity to the clusters, simulate, then judge the design on cost to serve and delivery speed.</p>
+<p>On the Q4 2025 earnings call, February 5, 2026, finance said the U.S. regionalized network was operating at scale and that the next productivity work was still inventory placement: less distance, fewer touches per package, better package consolidation. The 76 percent, the 15 percent, and the 12 percent are 2023 results. They were not restated as 2025 rates.</p>
+<p>The inventory math under that story is the generic square-root law, associated with Maister (1976). It is not an Amazon formula. If demand is split across n equal, independent regions, and lead time and the service level stay the same, total safety stock grows with the square root of n. Pool the slow movers, where a long ship is rare. Spread the fast movers, where almost every unit would otherwise travel.</p>
+<h4>Safety stock at one node and at eight regions</h4>
+<div class="math">
+<p>Assumptions (illustrative unless cited): one national demand stream with a weekly standard deviation of 400 units; cycle-service z of 1.65; lead time of 1 week; the eight regions are equal and independent, so each region's standard deviation is the national standard deviation divided by sqrt(8); safety stock is z times sigma times sqrt(lead time).</p>
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1. Safety stock, one node</td><td>z x sigma x sqrt(L)</td><td>1.65 x 400 x sqrt(1)</td><td>660 units</td></tr>
+<tr><td>2. Scale factor for 8 regions</td><td>sqrt(n)</td><td>sqrt(8) = 2.828</td><td>2.828 times</td></tr>
+<tr><td>3. Safety stock, 8 regions</td><td>SS_1 x sqrt(n)</td><td>660 x 2.828</td><td>1,866 units</td></tr>
+<tr><td>4. Exact value without the rounded root</td><td>660 x sqrt(8)</td><td>660 x 2.828427</td><td>1,867 units</td></tr>
+<tr><td>5. Extra stock from splitting</td><td>SS_8 - SS_1</td><td>1,867 - 660</td><td>1,207 units</td></tr>
+<tr><td>6. Check from the per-region sigma</td><td>n x z x (sigma / sqrt(n)) x sqrt(L)</td><td>8 x 1.65 x (400 / 2.8284)</td><td>1,867 units</td></tr>
+</tbody>
+</table>
+</div>
+<p>Splitting this demand into eight regions holds about 2.83 times the safety stock, 1,207 more units, for the same cycle service and the same one-week lead time. That is the inventory bill for being local. It is worth paying when the transportation saved on the flow is larger than the holding cost of those 1,207 units, which is the fast-mover case below. It is not worth paying when the flow is thin.</p>
+<h4>Expected miles, one national draw against eight regional sources</h4>
+<p>The distance table is illustrative. It is the mileage from a customer in region 4 to a fulfilling region. Under a national policy the fulfilling region is equally likely to be any of the eight. Under a regional policy it is region 4.</p>
+<table>
+<thead><tr><th>Fulfilling region</th><th>Miles to the customer in region 4</th><th>National probability</th></tr></thead>
+<tbody>
+<tr><td>Region 1</td><td>1,800</td><td>1/8</td></tr>
+<tr><td>Region 2</td><td>1,200</td><td>1/8</td></tr>
+<tr><td>Region 3</td><td>600</td><td>1/8</td></tr>
+<tr><td>Region 4, the customer's region</td><td>250</td><td>1/8</td></tr>
+<tr><td>Region 5</td><td>600</td><td>1/8</td></tr>
+<tr><td>Region 6</td><td>1,200</td><td>1/8</td></tr>
+<tr><td>Region 7</td><td>1,800</td><td>1/8</td></tr>
+<tr><td>Region 8</td><td>2,200</td><td>1/8</td></tr>
+</tbody>
+</table>
+<div class="math">
+<p>Assumptions (illustrative unless cited): the miles in the table above; national sourcing draws the fulfilling region with equal probability; regional sourcing always ships inside region 4 at 250 miles; this is not a reconstruction of Amazon's 15 percent result.</p>
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1. Sum of source miles</td><td>add the eight distances</td><td>1,800 + 1,200 + 600 + 250 + 600 + 1,200 + 1,800 + 2,200</td><td>9,650 miles</td></tr>
+<tr><td>2. Expected miles, national</td><td>sum / 8</td><td>9,650 / 8</td><td>1,206 miles</td></tr>
+<tr><td>3. Expected miles, regional</td><td>in-region distance</td><td>250</td><td>250 miles</td></tr>
+<tr><td>4. Miles avoided in this drawing</td><td>national - regional</td><td>1,206 - 250</td><td>956 miles</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">Do not quote 956 miles, or a drop from 1,206 to 250, as Amazon's result. This drawing assumes the pre-change network shipped from a random region. Amazon Science said 62 percent of orders were already fulfilled inside the future region before the switch, so the real base was already partly local. The published result to cite is Herrington, July 31, 2023: distance from sites to the customer down 15 percent, and middle-mile touchpoints down 12 percent, since the start of that year.</div>
+<h4>One ASIN, spread or pooled</h4>
+<div class="math">
+<p>Assumptions (illustrative unless cited): in-region ship costs $3 and cross-region ship costs $6; demand is spread evenly, so two stocked regions cover 25 percent of demand in-region and 75 percent cross-region; the fast mover sells 5,000 units a week and the extra safety stock of eight regions versus two is 1,130 units held at $0.07 per unit per week; the slow mover sells 20 units a week, and each region that stocks it carries a 15-unit minimum because the case pack dominates the square-root safety stock, held at $0.96 per unit per week.</p>
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1. Fast mover, extra transport if held in 2 regions</td><td>cross-region units x premium</td><td>0.75 x 5,000 x ($6 - $3)</td><td>$15,000 per week</td></tr>
+<tr><td>2. Fast mover, extra holding if placed in 8</td><td>extra units x hold rate</td><td>1,130 x $0.07</td><td>$79 per week</td></tr>
+<tr><td>3. Fast-mover decision</td><td>transport saved - holding added</td><td>$15,000 - $79</td><td>Place in 8 regions. Net about $14,900 a week.</td></tr>
+<tr><td>4. Slow mover, stock if placed in 8</td><td>regions x minimum</td><td>8 x 15</td><td>120 units</td></tr>
+<tr><td>5. Slow mover, stock if held in 2</td><td>regions x minimum</td><td>2 x 15</td><td>30 units</td></tr>
+<tr><td>6. Slow mover, extra holding to spread</td><td>extra units x hold rate</td><td>(120 - 30) x $0.96</td><td>$86 per week</td></tr>
+<tr><td>7. Slow mover, extra transport if held in 2</td><td>cross-region units x premium</td><td>0.75 x 20 x ($6 - $3)</td><td>$45 per week</td></tr>
+<tr><td>8. Slow-mover decision</td><td>holding added - transport saved</td><td>$86 - $45</td><td>Hold in 2 regions. Spreading costs $41 a week net.</td></tr>
+</tbody>
+</table>
+</div>
+<p>The fast mover pays for its own forward placement: about $79 of holding avoids about $15,000 of long shipments. The slow mover does not. Spreading it costs $86 a week of inventory to avoid $45 of freight, so the cross-region ship is the cheaper policy, and those 15 long shipments a week are an accepted cost. The 2024 inbound placement fee is this comparison turned into a price the seller sees. Amazon's late-2023 announcement said the fee reflects the cost of distributing inventory to fulfillment centers close to customers, and that the seller can remove it by doing that distribution.</p>
+<div class="say">Regionalization is an inventory decision that shows up as miles and touches. Fast movers earn a forward position in each region because the extra safety stock is small next to a long ship. Slow movers do not, and the cross-region ship is the cheaper plan. The square-root law is why safety stock grows as demand is split, and it is a generic inventory model, not an Amazon formula. I would place an ASIN by setting the holding cost of another region next to the freight that placement avoids.</div>
+
+<h3>II.3 The customer gets it on the day that was promised</h3>
+<p>A promise is a radius plus a clock. Same-day requires the unit inside the metro, in a building that can pick, sort, and dispatch before the afternoon route leaves. Herrington's 2023 description of the same-day building is that path. Next-day, or Prime one-day, requires the unit inside the region and a pull time that connects the fulfillment center, the sort, and the station inside one cycle. Two-day is the national backup when the region does not hold the unit. Jassy's 2024 letter, published in 2025, gives the selection that sits on those tiers: Prime began as two-day on a million items and had grown to more than 300 million items, with tens of millions available in one day or better, and a rising share same-day. The letter says the speed came from the regional redesign, new placement algorithms, and same-day fulfillment centers, and that a faster promise raises the rate at which customers complete the purchase and the rate at which they come back.</p>
+<p>The cost curve is not "faster always costs more." Jassy's 2023 letter, published in 2024, called the same-day facilities the lowest cost to serve in the network, because they delete middle-mile distance. Herrington said the same thing in July 2023. The expensive version of faster is the one that keeps the old path and buys frequency or air on top of it. The cheap version deletes a touch.</p>
+<p>Reliability is a separate axis from the promised speed. The customer help page explains how the date is built. It does not publish the share of attempts that hit it. The 2024 MIT thesis names that share, internally, Delivery Estimate Accuracy: items attempted on or before the promised delivery date. Cite it as an internal metric described in a public thesis. Do not cite a percentage. On the Q4 2025 call, February 5, 2026, Amazon reported a third year of fastest-ever Prime speeds together with a lower cost to serve, and said U.S. Prime members received over 8 billion items the same or next day in 2025, up more than 30 percent year over year. Speed and the cost line moved together in the reported years. The accuracy rate was not part of that disclosure.</p>
+<h4>How far a station reaches, and how many a metro needs</h4>
+<div class="math">
+<p>Assumptions (illustrative unless cited): average speed is 45 miles per hour; the outbound window is 3 hours if the vehicle only drives; a 60-minute drive-time cap is the coverage rule; a station's coverage is a circle; the illustrative metro and its surroundings cover 4,000 square miles; that metro originates 60,000 packages a day, a route holds 200, and a station runs 50 routes in the wave; pi is 3.1416.</p>
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1. Upper-bound radius</td><td>speed x window</td><td>45 mph x 3 h</td><td>135 miles</td></tr>
+<tr><td>2. Radius under a 60-minute cap</td><td>speed x 1 hour</td><td>45 x 1</td><td>45 miles</td></tr>
+<tr><td>3. Area of that circle</td><td>pi x radius squared</td><td>3.1416 x 45 x 45</td><td>6,362 square miles</td></tr>
+<tr><td>4. Stations the drive time requires</td><td>metro area / circle area, rounded up</td><td>4,000 / 6,362</td><td>1 station. The circle is larger than the metro.</td></tr>
+<tr><td>5. Routes the volume requires</td><td>daily packages / packages per route</td><td>60,000 / 200</td><td>300 routes</td></tr>
+<tr><td>6. Stations the volume requires</td><td>routes / routes per station</td><td>300 / 50</td><td>6 stations</td></tr>
+<tr><td>7. Which constraint binds</td><td>compare the two station counts</td><td>6 against 1</td><td>Volume binds. Drive time does not.</td></tr>
+</tbody>
+</table>
+</div>
+<p>The 135 miles is an upper bound: it assumes three hours of driving and no stops. A real route spends most of its window at stops, so the practical radius is well inside 45 miles, and step 4 would rise. Even then, in this illustration the package count asks for six stations before the map does. Drive time sets a floor. Doors, vans, and the sort wave set the number you build. Using the 135-mile figure as a station spacing would under-build a metro.</p>
+<h4>What one day faster costs</h4>
+<div class="math">
+<p>Assumptions (illustrative unless cited): the ground lane is the consolidated truck from section II.1, $570 for 950 packages, $0.60 per package, one departure a day; 30 percent of packages are packed after that departure and would otherwise be promised a day later; a second truck doubles the truck cost and splits the same 950 packages; air on a long lane costs $4.00 per package more than the ground it replaces, and it is used only on the 30 percent.</p>
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1. Ground cost per package</td><td>truck cost / packages</td><td>$570 / 950</td><td>$0.60</td></tr>
+<tr><td>2. Two trucks, same volume</td><td>(2 x truck cost) / packages</td><td>$1,140 / 950</td><td>$1.20</td></tr>
+<tr><td>3. Blended increase from the second truck</td><td>two-truck cost - ground</td><td>$1.20 - $0.60</td><td>$0.60 on every package</td></tr>
+<tr><td>4. Cost per package whose promise improved</td><td>blended increase / share improved</td><td>$0.60 / 0.30</td><td>$2.00 per package pulled forward</td></tr>
+<tr><td>5. Fill on the two-truck plan</td><td>packages / (trucks x positions)</td><td>950 / (2 x 1,000)</td><td>47.5 percent</td></tr>
+<tr><td>6. Air, blended across the lane</td><td>share flown x premium</td><td>0.30 x $4.00</td><td>$1.20 on every package</td></tr>
+<tr><td>7. Compare</td><td>second truck against air</td><td>$0.60 vs $1.20 blended</td><td>The second truck is cheaper when a few hours of earlier departure is enough to gain the day. Air is the tool when the transit itself cannot make the day by road.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Paying $0.60 on every package to pull 30 percent of them forward is $2.00 per package you actually accelerated, and it cuts fill from 95 percent to 47.5 percent. Flying that 30 percent costs more in this illustration, $1.20 blended. The design choice follows the constraint. If the miss is a cutoff inside a region, add the departure or move the pull time. If the miss is distance, air or a closer inventory position is what changes the promise. Buying air on the whole lane, including packages that were already on time, is the version of this math with the share set to 100 percent: $4.00 instead of $1.20.</p>
+<div class="say">A delivery promise is a radius and a clock. Same-day, next-day, and two-day are different drive times and different pull times, and each one has a cost. Delivery estimate accuracy, an internal metric described in a public thesis, is the share of units attempted on or before the promised date. Amazon has not published the rate. I would not buy a faster promise with a blanket air upgrade. I would price the units that miss the ground cutoff, then choose an earlier truck or air only for that slice.</div>
+
+<h3>II.4 How a network designer decomposes the problem</h3>
+<p>The decomposition Amazon has actually described, in the 2025 INFORMS paper and in Amazon Science (July 24, 2023 and October 14, 2022), lines up with the way an industrial engineer would expect a manager to hold the problem.</p>
+<p>Define the demand surface. The paper treats five-digit ZIP codes as the points, on a surface that is dense in some corridors and thin in others. A national average is the wrong input. The Northeast and the Northwest do not cluster the same way, which is why the authors say a single algorithm was not enough and the boundaries were adjusted by hand.</p>
+<p>Define the nodes and what each one costs. A fulfillment center costs labor, space, and a safety-stock position. A sort center or a hub costs a touch and a trailer. A delivery station costs routes. A same-day building costs a constrained assortment and deletes a middle-mile leg. Direct fulfillment-center-to-station lanes cost a trailer and save a sort. The cost function is lumpy: a truck costs nearly the same at 60 percent fill and at 95 percent, which is why fill shows up as cost per package.</p>
+<p>Set the service constraint before the solve. Cost to serve and delivery speed were the success metrics the paper names for the regionalization pilot. A design that cuts cost and misses the promise fails the constraint. A design that makes the promise by emptying the trailers fails the other one.</p>
+<p>Solve at the level a manager can say out loud. One new building wants to sit near the center of gravity of the demand it will serve, pulled toward the dense ZIP codes and away from cheap land that adds drive time. Several buildings sharing one market is a p-median idea: choose p sites so the demand-weighted distance, inside the service radius, is as small as it can be. Region boundaries are a clustering of ZIP codes under a cap on demand and on distance, which is the method the INFORMS paper reports, followed by an assignment of fulfillment centers to those regions. Lane frequency is an assignment of flow to paths, including the choice to skip the sort. None of these needs a formula in the conversation. Each one needs the input, the constraint, and the output.</p>
+<p>Stress the answer on peak and on failure. Peak is a volume the average day does not see, and it breaks pull times, door counts, and route caps together. A node down, or a carrier late, is a missing path: the packages reroute, the fills change, and some promises move out by a day. Amazon Science describes the planning analogue of safety stock: buffer transportation capacity held against demand uncertainty, and a plan stable enough that the people who hired labor and booked trucks can actually run it. A design that only works on the mean, with no buffer and no second path, is not finished.</p>
+<table>
+<thead><tr><th>Question</th><th>Data needed</th><th>Model</th><th>Output</th><th>Decision owner</th></tr></thead>
+<tbody>
+<tr><td>Where should the next building go?</td><td>Demand by ZIP, drive time, labor and land cost</td><td>Center of gravity for one site. A p-median view when several sites share the demand.</td><td>A short list of locations and the demand each one captures inside the radius.</td><td>Network design</td></tr>
+<tr><td>How many regions, and where are the boundaries?</td><td>The demand surface, fulfillment-center capacity, how deep the selection must be</td><td>Cluster ZIP codes under a demand cap and a distance cap, then assign buildings. This is the approach Amazon published for the eight-region design.</td><td>Boundaries, and which buildings serve which region.</td><td>Network design, with finance on the cost case</td></tr>
+<tr><td>Which lanes run, and how many trucks?</td><td>Forecast volume, cube, weight, transit time, the pull time</td><td>A linear program. Variables are trailers by lane and departure. Objective is cost. Constraints are cube, the pull time, and the promise.</td><td>A trailer plan, expected fill, and cost per package.</td><td>Transportation planning</td></tr>
+<tr><td>What pull time is safe on a lane?</td><td>Transit-time history, sort duration, what a miss costs to recover</td><td>A simulation, or a chosen quantile of the transit distribution. The average is the wrong input.</td><td>A cutoff, and the share of trucks that miss it on a bad day.</td><td>The configuration owner, with the building</td></tr>
+<tr><td>How many dock doors?</td><td>Trailers per hour, minutes to unload, how uneven the arrivals are</td><td>A queue. Watch utilization and the wait in the tail, because the tail is what misses the pull time.</td><td>A door count that keeps the tail inside the cutoff.</td><td>Building design and operations</td></tr>
+<tr><td>Did the change survive peak and a failure?</td><td>Miles, touches, fill, on-time attempts, cost per package, plus one peak week and one missed linehaul</td><td>Compare the plan to the week after, and to the stress case. No new solver.</td><td>Keep the change, tune it, or roll it back.</td><td>The program manager</td></tr>
+</tbody>
+</table>
+<p>How to talk about this with an industrial engineer. Avinash's background is operations research, Lean Six Sigma, and production planning, so the useful altitude is the decision, the binding constraint, and the tail. A lane plan is a linear program: trailers by lane and by departure, cost as the objective, cube and the pull time as the constraints. You do not solve it in the room. You say whether fill or the clock is binding. A pull time is a quantile of a transit-time distribution, and a simulation is how you see the share of trucks that miss it, which the average hides. Dock doors are a queue: as utilization gets high, the wait grows out of proportion, and the packages in that wait miss the pull time. The sentence to offer is the binding constraint, the metric you would read the week after, and what you would roll back if the tail shows up. Leave the solver unnamed.</p>
+<div class="say">I would decompose a network change the way an industrial engineer expects. Start with the demand surface, name the nodes and what each one costs, set the service constraint, then choose a location or a lane plan and stress it on peak and on a missed truck. A linear program assigns lanes, a simulation sets the pull time against a transit-time distribution, and a queue tells you when a dock will miss that pull time. I would talk about the binding constraint and the decision, and leave the solver unnamed.</div>
+
+<h3>II.5 Public facts cited</h3>
+<p>Numbers in the worked examples are illustrative unless the sentence and this list both name a source. Years below are the year of the fact, with the publication year where it differs.</p>
+<ol>
+<li>Eight interconnected, largely self-sufficient U.S. regions, replacing one national fulfillment network. Andy Jassy, 2022 letter to shareholders, published 2023. https://www.aboutamazon.com/news/company-news/amazon-ceo-andy-jassy-2022-letter-to-shareholders</li>
+<li>More than 76 percent of fulfilled orders came from within the customer's region; distance from sites to the customer down 15 percent since the start of 2023; middle-mile touchpoints down 12 percent; same-day buildings fulfill, sort, and deliver from one site; pick to outbound dock averages 11 minutes; same-day across more than 90 U.S. metro areas. Doug Herrington, July 31, 2023. https://www.aboutamazon.com/news/operations/doug-herrington-amazon-prime-delivery-speed</li>
+<li>In-region fulfillment, measured as orders fulfilled entirely from fulfillment centers inside the region, rose from 62 percent to 76 percent. Pilot regions Northeast and Mid-Atlantic switched on January 18, 2023. Eight was the highest region count that preserved speed without excessive inter-regional inventory movement. Direct fulfillment-center-to-delivery-station trucks became easier to fill. Amazon Science, July 24, 2023. https://www.amazon.science/news-and-features/how-amazon-reworked-its-fulfillment-network-to-meet-customer-demand</li>
+<li>Full regional deployment by March 2023. Region design described as ZIP-code clustering under demand and distance limits, then fulfillment-center assignment, then simulation, judged on cost to serve and delivery speed. Middle-mile buildings specialized into hubs, for long-haul fill, and last-mile sort centers, for delivery stations. INFORMS Journal on Applied Analytics, 2025. https://pubsonline.informs.org/doi/full/10.1287/inte.2025.0295</li>
+<li>2023 restructuring into eight regions. Fourth quarter of 2023: nearly 544 million more items shipped from in-region fulfillment centers than in the fourth quarter of 2022. In-region shipping to delivery stations avoided nearly 16 million miles in 2023. More than two-thirds of Amazon packages in 2023 were delivered by Amazon's own logistics network. Truck fill named as an operating lever. 2023 Amazon Sustainability Report, published 2024. https://sustainability.aboutamazon.com/2023-amazon-sustainability-report.pdf</li>
+<li>In 2023, more than 7 billion items arrived same or next day, including more than 4 billion in the U.S. and more than 2 billion in Europe. Same-day or overnight items in the U.S. up nearly 70 percent year over year. First global per-unit cost-to-serve reduction since 2018. U.S. cost to serve down by more than $0.45 per unit year over year. Inbound placement called out as 2024 work. 58 same-day facilities, top 100,000 SKUs, millions of other SKUs injectable from nearby fulfillment centers, lowest cost to serve in the network. Andy Jassy, 2023 letter to shareholders, published 2024. https://www.aboutamazon.com/news/company-news/amazon-ceo-andy-jassy-2023-letter-to-shareholders</li>
+<li>2024 was the second year in a row of a lower global cost to serve per unit. Fourth-quarter transportation productivity came from better inventory placement, higher units per package, and shorter distances. CFO remarks, Q4 2024 earnings call, February 6, 2025. https://www.freightwaves.com/news/amazon-beats-q4-expectations-forecasts-slower-q1-growth</li>
+<li>Prime selection above 300 million items, with tens of millions available in one day or better. Speed attributed to regionalization, placement algorithms, and same-day fulfillment centers. A faster promise raises purchase completion and purchase frequency. Rural plan: more than a billion packages a year across 13,000 ZIP codes and 1.2 million square miles. Andy Jassy, 2024 letter to shareholders, published 2025. https://www.aboutamazon.com/news/company-news/amazon-ceo-andy-jassy-2024-letter-to-shareholders</li>
+<li>For the third year in a row, in 2025, fastest-ever Prime delivery speeds globally and a lower cost to serve. U.S. Prime members received over 8 billion items the same or next day, up more than 30 percent year over year. Next productivity levers named as distance, touches per package, and package consolidation. The regionalized U.S. network described as operating at scale. Q4 2025 earnings call, February 5, 2026. https://www.fool.com/earnings/call-transcripts/2026/02/05/amazon-amzn-q4-2025-earnings-call-transcript/</li>
+<li>Same Day Fulfillment Centers, SSDs: more than 85 in the U.S., top 90,000 SKUs, more than 500 million same-day units in 2026 year to date at the time of the letter. More than $4 billion committed to the rural delivery network. Same-day fresh grocery in more than 2,300 towns and cities. Andy Jassy, 2025 letter to shareholders, published 2026. https://www.aboutamazon.com/news/company-news/amazon-ceo-andy-jassy-2025-letter-to-shareholders</li>
+<li>NielsenIQ click-to-door of 1.9 days for Amazon versus 4.4 days for other U.S. digital retailers. The measurement reported by eMarketer is July 2022, from an August 2022 NielsenIQ analysis. eMarketer, January 11, 2023. https://www.emarketer.com/content/delivery-sped-up-us-retailers-amazon</li>
+<li>The same 1.9-day figure, "as of July," NielsenIQ via Insider Intelligence. Business Insider, January 18, 2023. https://www.businessinsider.com/amazon-package-delivery-speed-walmart-target-2023-1</li>
+<li>Amazon cited NielsenIQ in February 2023: packages arrived 1.9 days after the order on average, about half the time of other retailers. The post does not restate the July 2022 measurement window. Amazon, LinkedIn, February 24, 2023. https://www.linkedin.com/posts/amazon_recent-nielseniq-data-shows-that-on-average-activity-7034899766161330176-ytJc</li>
+<li>Inbound placement service fee effective March 1, 2024, averaging $0.27 per unit for standard-size products and $1.58 for Large Bulky. Reason stated: placing inventory close to customers improves speed and lowers transportation cost. Fee reduced or removed when the seller ships to multiple locations. Outbound fulfillment fees cut by an average of $0.20 (standard-size) and $0.61 (Large Bulky) from April 15, 2024. Amazon Selling Partners announcement, late 2023. https://sellingpartners.aboutamazon.com/Update%20to%20US%20referral%20and%20Fulfillment%20by%20Amazon%20fees</li>
+<li>Placement options tied to that fee: generally four or more inbound locations at no fee, two or three at a reduced fee, and a single location at the fee, with Amazon spreading the inventory. Amazon seller documentation, as posted in a Seller Central discussion of the March 1, 2024 fee. https://sellercentral.amazon.com/seller-forums/discussions/t/f9677779-2a5f-42f6-8ffa-252f902e556d</li>
+<li>Collect and prepaid are distinct inbound purchase-order types. An Amazon reference number is mandatory for collect freight and is assigned to collect vendors. Collect and prepaid purchase orders are not booked on the same shipment line. The bill-of-lading field is what links the appointment to the advance ship notice. Appointments are requested and granted in Carrier Central. Amazon Carrier Central manual, public PDF, no publication year printed on the document. https://images-na.ssl-images-amazon.com/images/G/01/magicarp/common/Carrier_Central_Manual_USAmazon.pdf</li>
+<li>SLAM expanded as scan, label, apply, manifest. Path described as fulfillment center, then sort center, then delivery station. Before the first-party network, deliveries were completed by carriers such as USPS and UPS. Lanes are air and ground. A lane is one or more scheduled trucks, filled so the truck does not leave empty and the dock is not left holding packages. Amazon Science, October 14, 2022. https://www.amazon.science/blog/maximizing-the-efficiency-of-amazons-own-delivery-networks</li>
+<li>Fulfillment-center flow, including the SLAM step between pack and the outbound trailer, and the handoff to a sort center. Amazon fulfillment-center tour. https://www.aboutamazon.com/news/operations/amazon-fulfillment-center-photo-tour</li>
+<li>Middle mile from fulfillment centers by freight and air into sort centers, sorted by ZIP, then to delivery stations or carrier partners such as the local post office. Relay described as the tool carriers use to book Amazon loads. Amazon, transportation network article. https://www.aboutamazon.com/news/operations/powering-amazons-transportation-network</li>
+<li>Amazon Air's primary U.S. hub opened at Cincinnati/Northern Kentucky International Airport on August 11, 2021. Investment stated as $1.5 billion. Sortation building stated as 800,000 square feet, processing millions of packages per week. https://press.aboutamazon.com/2021/8/amazon-air-launches-state-of-the-art-air-cargo-hub-in-northern-kentucky-creating-more-than-2-000-jobs</li>
+<li>Amazon Freight, in Relay for Shippers, is an inbound less-than-truckload and truckload option, including non-Amazon destinations in the lower 48. Distinguished on the same page from the partner-carrier program. https://supplychain.amazon.com/partner-carrier-program</li>
+<li>Delivery Service Partner program: independent businesses delivering for Amazon. Page states the program launched in 2018. https://www.aboutamazon.com/impact/empowerment/delivery-partners</li>
+<li>Last mile described as delivery stations plus Delivery Service Partners, Amazon Flex, and Hub Delivery. https://www.aboutamazon.com/news/transportation/amazon-investment-delivery-network-small-town-rural-us</li>
+<li>Amazon Flex: drivers use their own vehicles; Amazon.com blocks are typically 3 to 6 hours; pickup is at a delivery station. https://flex.amazon.com/ and https://flex.amazon.com/support/faq</li>
+<li>Delivery dates are shipping date plus transit time. An "order within" countdown is shown when it applies. Amazon Customer Service. https://www.amazon.com/gp/help/customer/display.html?nodeId=GV8H5D3MMAR7JBLF</li>
+<li>Amazon relies on a limited number of shipping companies to deliver inventory inbound and completed orders to customers. Form 10-K for the year ended December 31, 2025. https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm</li>
+<li>Critical pull time, in a 2016 MIT thesis on Amazon transshipment: the time an item must be picked, palletized, and on a truck. Order critical pull time: the time the package must depart Amazon, set from the ship-method cycle time. The same thesis describes the domestic cross-dock: vendor freight into the cross-dock, then transship to destination fulfillment centers. http://hdl.handle.net/1721.1/106075</li>
+<li>Delivery Estimate Accuracy, in a 2024 MIT thesis: the percentage of items with a delivery attempt on or before the promised delivery date. The thesis discusses virtual-physical mismatch and missort as causes. No rate is published. https://hdl.handle.net/1721.1/155603</li>
+<li>Inbound cross-dock as a facility type near ports and rail, feeding fulfillment centers, with sortation centers and delivery stations downstream. Academic description of Amazon's network, FHWA Talking Freight, December 2019, Jean-Paul Rodrigue. Not an Amazon statement. https://www.fhwa.dot.gov/Planning/freight_planning/talking_freight/december_2019/talkingfreight12_19_19jpr.pdf</li>
+<li>Square-root law of safety stock: total safety stock scales with the square root of the number of locations when demand is split into equal independent pools at the same lead time and service level. Generic inventory model, Maister, 1976, "Centralisation of Inventories and the 'Square Root Law'," International Journal of Physical Distribution. No stable open URL was verified for this session.</li>
+</ol>
+<h4>Looked for, and not used as an Amazon fact</h4>
+<ul>
+<li>An official aboutamazon definition, or any numeric standard, for critical pull time. The term is used as defined in the 2016 MIT thesis. The hours in the backward schedule are the generic model.</li>
+<li>A published Delivery Estimate Accuracy percentage, or any customer-facing on-time percentage for the U.S. network in 2023 through 2025.</li>
+<li>"Sub-same-day" as the official expansion of SSD. The 2025 shareholder letter expands SSD as Same Day Fulfillment Centers.</li>
+<li>A current official building type named "receive center," separate from the inbound cross-dock described in the 2016 thesis and the 2019 FHWA briefing.</li>
+<li>An official public list of the names of all eight regions. Amazon Science names the pilot pair, Northeast and Mid-Atlantic. The INFORMS paper discusses Northeast and Northwest as density extremes and shows an approximate map. The other names are not stated as a roster here.</li>
+<li>A dollar cost-to-serve reduction for 2024 or for 2025. The calls say the per-unit cost fell again. They do not restate a figure like the 2023 "more than $0.45."</li>
+<li>A current mix of packages among Delivery Service Partners, Amazon Flex, USPS, and UPS. The sourced facts are "more than two-thirds by Amazon's own logistics" in 2023, historical use of USPS and UPS, sort centers handing to the local post office, and the 2025 10-K reliance on shipping companies.</li>
+<li>Any internal system name for the transportation-engineering stack. Public papers name modeling approaches. Those names are not repeated here, so they do not get recited as inside knowledge.</li>
+</ul>
+<div class="say">When I use a number I will give the year and the source, and I will say when a figure is Amazon's and when it is an illustration. The public record supports the eight-region shift, the in-region fulfillment rate, the distance and touch reductions, the placement fee, and three years of lower cost to serve alongside faster Prime speeds. It does not publish a critical-pull-time standard or a delivery-estimate-accuracy rate. Those stay in the generic model, and I would label them that way out loud.</div>
+</section>

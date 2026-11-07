@@ -1,0 +1,7 @@
+owner_id,user_id,person_name,role_code,role_name,home_site_id
+OWN-GSM,usr_priya_gsm,Priya Raman,GSM,Global Supply Manager,
+OWN-TPM,usr_david_tpm,David Cho,TPM,Technical Program Manager,
+OWN-AME,usr_elena_ame,Elena Vasquez,AME,Advanced Manufacturing Engineer,
+OWN-CMA,usr_wei_cma,Wei Chen,CM_A,CM site A coordinator,CM-A
+OWN-CMB,usr_jordan_cmb,Jordan Hale,CM_B,CM site B coordinator,CM-B
+OWN-FIN,usr_morgan_fin,Morgan Ellis,FIN,Finance fixed assets,

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Amazon NACF Loop Allocation — Part A0 — Rajesh Rishiyur Chandrasekaran</title>
+<style>
+@page{size:letter;margin:.55in .58in .62in}
+*{box-sizing:border-box}body{margin:0;color:#202020;font:9.2pt/1.34 Arial,"Liberation Sans",sans-serif}
+h1{font-size:22pt;line-height:1.08;margin:0 0 7px;color:#17233e}h2{font-size:14pt;color:#17233e;border-top:2px solid #17233e;padding-top:7px;margin:15px 0 6px;page-break-after:avoid}
+h2.break{page-break-before:always}h3{font-size:11.5pt;color:#17233e;margin:12px 0 5px;page-break-after:avoid}p{margin:0 0 6px}
+.cover{min-height:9.15in;display:flex;flex-direction:column;padding-top:1.05in;page-break-after:always}.kicker{font-size:8pt;letter-spacing:.17em;text-transform:uppercase;color:#8b1e2d;font-weight:bold}
+.subtitle{font-size:13pt;color:#555;margin:5px 0 22px}.panel{background:#17233e;color:white;padding:16px 18px;margin:8px 0 12px}.panel b{color:#f0d5a2}.rule,.safe,.trade,.learn,.design,.checkpoint{padding:7px 10px;margin:6px 0;border-left:4px solid #8b1e2d;background:#f8f2f0}
+.checkpoint{border-color:#b27a00;background:#fff8e6}.safe{border-color:#634c88;background:#f5f1fa}.trade{border-color:#176b75;background:#eef7f8}.learn{border-color:#8b1e2d}.design{border-color:#b27a00;background:#fff4cc;font-weight:bold}
+.small{font-size:8.2pt;color:#555}.num{color:#8b1e2d;font-weight:bold}.badge{display:inline-block;background:#17233e;color:white;border-radius:9px;padding:1px 6px;font-size:7pt;letter-spacing:.06em;text-transform:uppercase}
+table{width:100%;border-collapse:collapse;margin:5px 0 10px;page-break-inside:auto}thead{display:table-header-group}tr{page-break-inside:avoid}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #d8d8d8;padding:3px 4px}th{font-size:7.2pt;text-transform:uppercase;letter-spacing:.035em;color:#555;border-bottom:1.5px solid #17233e}
+table.inv{font-size:7.15pt;line-height:1.22;table-layout:fixed}table.inv th:nth-child(1){width:5%}table.inv th:nth-child(2){width:13%}table.inv th:nth-child(3){width:9%}table.inv th:nth-child(4){width:7%}table.inv th:nth-child(5){width:10%}table.inv th:nth-child(6){width:15%}table.inv th:nth-child(7){width:8%}table.inv th:nth-child(8){width:5%}table.inv th:nth-child(9){width:11%}table.inv th:nth-child(10){width:10%}table.inv th:nth-child(11){width:7%}
+.story{page-break-before:always}.meta{background:#eef2f7;border-left:4px solid #17233e;padding:6px 10px;margin:5px 0}.star{background:#fcfbf8;border:1px solid #d9d0c1;padding:7px 10px;margin:5px 0}.stag{color:#8b1e2d;font-weight:bold}.say{font-family:Georgia,"Liberation Serif",serif;background:#f7f3eb;border-left:4px solid #8b1e2d;padding:7px 10px;margin:5px 0}.label{font:700 7.5pt Arial;text-transform:uppercase;letter-spacing:.09em;color:#8b1e2d;margin-bottom:3px}
+.qa{border-left:3px solid #ccc;padding-left:8px;margin:5px 0}.q{font-weight:bold;color:#17233e}.lp{list-style:none;padding:0;margin:4px 0}.lp li{border-left:3px solid #8b1e2d;padding-left:7px;margin:3px 0}.page{page-break-before:always}.summary{background:#eaf3ec;border-left:4px solid #2f6d4f;padding:7px 10px}
+</style>
+</head>
+<body>
+<section class="cover">
+  <div class="kicker">Part A0 · phase 1 · cross-loop allocation</div>
+  <h1>Amazon NACF<br>Master Story Inventory &amp; Loop Allocation</h1>
+  <div class="subtitle">Rajesh Rishiyur Chandrasekaran · Friday, October 30, 2026 (PDT)</div>
+  <div class="panel">
+    <p><b>10:00 · Rocky Goforth</b> — Amazon Infrastructure + Bar Raiser: deployment, cadence, stakeholder leadership, cost versus speed.</p>
+    <p><b>11:00 · James Cabreros</b> — placement/configuration architecture: process redesign, policy governance, sequencing, self-service.</p>
+    <p><b>12:00 · Venkata Josyula</b> — Principal PM, FBA + Bar Raiser: product judgment, customer mechanisms, LP depth.</p>
+  </div>
+  <div class="rule"><b>Debrief rule:</b> one primary owner per story. A second interviewer may receive only a materially different facet, with the shared facts unchanged.</div>
+  <div class="rule"><b>Already spent Thursday:</b> S/4HANA/ISM; FF App estimation; Shipment Visibility; safety stock; 200-lane analysis. Do not lead with these for Rocky or James. Shipment Visibility remains available to Venkata as an explicitly planned product story.</div>
+  <div class="checkpoint"><b>Phase-1 checkpoint.</b> The six worker packets were still arriving. Rocky BR ended after R2 and James after J3 when this edition was frozen. “Unused” therefore means no standalone full STAR in the six named in-flight packets at this checkpoint. Phase 2 must re-read all final files.</div>
+  <p class="small" style="margin-top:auto">Corpora read: Amazon master S1–S21/E1–E12; Google Fiber master v8; Apple PM III workbook v11 including failures; earlier Amazon loop/NACF packets. Basis vocabulary: record · record-from-docs · user anchor · modeled · illustrative.</p>
+</section>
+
+<h2>Read this first — allocation in sixty seconds</h2>
+<table>
+<thead><tr><th>Interviewer</th><th>Open</th><th>Then</th><th>Failure</th><th>Do not spend</th></tr></thead>
+<tbody>
+<tr><td><b>Rocky</b></td><td>S2 UDC dual inventory: about a dozen systems, ~30 build tracks, 15 months</td><td>S18 RP→JDA; S5 council; Locus; A5 launch gate</td><td>G2 RF-device dependency</td><td>S11, S12, S10, S15, S13 as primaries</td></tr>
+<tr><td><b>James</b></td><td>S17 carrier-bid process or S10 Austria if Venkata has not spent it</td><td>S15 governance; A4 one truth; E8/E9 explicitly as design cases</td><td>G3 security review or G1 load criteria</td><td>Walmart designs as delivered; Thursday’s S1/S3 family</td></tr>
+<tr><td><b>Venkata</b></td><td>S11 Shipment Visibility product launch: 7→68 customers, 9.7×</td><td>S14 trust; S16 ownership; S9 scale; S13 crisis; I1 AI product</td><td>G1 UAT concurrency miss</td><td>S18 full telling; S15 if James has already used it</td></tr>
+</tbody></table>
+<div class="rule"><b>Five facts to hold:</b> S11 is 7→68 customers (9.7×), and 32,000 shipments was a target. S9 is a thousand-lane program with 597 carrying 80% of spend first. S18 uses “hundreds of RF devices”; training moved 1.5 weeks and go-live held. S14’s $2.5M is order value and its $10M is initiative won. S16’s six-figure annual value was priced, not claimed as realized savings.</div>
+
+<h2 class="break">A · Master story inventory</h2>
+<p class="small"><b>Location codes:</b> RPM Rocky PM planned · RBR Rocky Bar Raiser checkpoint · UDC dual-inventory/Canada planned · J James checkpoint/planned · VM Venkata main/current · VX Venkata extras planned. “Today” means Thursday’s completed interviews. Apple and earlier-loop aliases are shown because the request was chapter-complete; aliases are not new achievements.</p>
+<table class="inv">
+<thead><tr><th>ID</th><th>One-line title</th><th>Company / period</th><th>Type</th><th>LP tags</th><th>Scale + headline number (basis)</th><th>Lens</th><th>Told today?</th><th>Current / planned packet</th><th>Fit R / J / V</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>S1</td><td>One signed “available”</td><td>Sephora 2024–25</td><td>REAL</td><td>Trust, Own, Backbone</td><td>Recurring oversell→0 through two go-lives; dollars are user-anchor/modeled</td><td>process</td><td>YES</td><td>Bridge only; older James</td><td>L/L/L — spent</td><td>SKIP tomorrow</td></tr>
+<tr><td>S2</td><td>UDC comingle + robotics</td><td>Sephora 2024–25</td><td>REAL</td><td>Own, Big, Results</td><td>~12 systems; ~30 tracks; 15 months; +15% efficiency (record)</td><td>program</td><td>No</td><td>RPM, UDC, RBR</td><td>H/M/M — infrastructure scale</td><td>PRIMARY Rocky</td></tr>
+<tr><td>S3</td><td>One Financial On-Hand</td><td>Sephora 2024–25</td><td>REAL</td><td>Trust, Simplify</td><td>Two truths→one; ~$0.6M modeled</td><td>process</td><td>YES family</td><td>older James</td><td>L/M/L</td><td>SKIP; spent family</td></tr>
+<tr><td>S4</td><td>In-transit promise-rule failure</td><td>Sephora 2025</td><td>REAL</td><td>ARL, Trust, Own</td><td>Failure direction fixed; no unsupported dollar</td><td>failure</td><td>No</td><td>RPM/RBR bench</td><td>M/H/M</td><td>BACKUP James</td></tr>
+<tr><td>S5</td><td>Architecture council sign-off</td><td>Sephora 2024</td><td>REAL</td><td>Trust, Big, Backbone</td><td>~12 systems; sign-off before build (record)</td><td>program</td><td>No</td><td>RPM, UDC</td><td>H/H/M</td><td>PRIMARY Rocky</td></tr>
+<tr><td>S6</td><td>Supply/demand view</td><td>Elementum</td><td>REAL</td><td>Customer, Simplify</td><td>Planner collaboration +50%; finished-goods grain (record)</td><td>product</td><td>YES safety-stock family</td><td>VM bridge</td><td>L/M/L</td><td>SKIP; spent</td></tr>
+<tr><td>S7</td><td>CM data/revision story</td><td>Elementum</td><td>REAL / weak</td><td>Deep, Standards</td><td>Support conflicts with finished-goods-only framing</td><td>process</td><td>No</td><td>None</td><td>L/L/L</td><td>SKIP integrity risk</td></tr>
+<tr><td>S8</td><td>Measured lane distributions</td><td>Elementum</td><td>REAL</td><td>Deep, Own</td><td>~$1.5M carrying cost released (record)</td><td>process</td><td>YES</td><td>RBR inventory; VM theme</td><td>L/M/L</td><td>SKIP; spent</td></tr>
+<tr><td>S9</td><td>Thousand-lane program</td><td>Elementum</td><td>REAL</td><td>Big, Backbone, Results</td><td>1,000 across 25 locations; 597/80% first (record + user anchor)</td><td>program</td><td>No</td><td>VM</td><td>M/H/H</td><td>PRIMARY Venkata</td></tr>
+<tr><td>S10</td><td>Austria routing guide</td><td>Elementum</td><td>REAL</td><td>Deep, Right, Frugal</td><td>~55%→99% within a quarter; ~$8M across 25 locations (record)</td><td>process</td><td>No</td><td>RBR R1; VM</td><td>M/H/M</td><td>PRIMARY James; resolve VM clash</td></tr>
+<tr><td>S11</td><td>Shipment Visibility launch</td><td>Flexport 2021–22</td><td>REAL</td><td>Customer, Standards, Results</td><td>7→68 customers = 9.7×; CTS $0.66→$0.03 (~95%) (record)</td><td>product</td><td>YES</td><td>VM planned; RBR bench</td><td>L/L/H</td><td>PRIMARY Venkata exception</td></tr>
+<tr><td>S12</td><td>FF App roadmap flip</td><td>Flexport 2022</td><td>REAL</td><td>Backbone, Frugal, Results</td><td>66% effort reduction; about $5M avoided (record)</td><td>product</td><td>YES</td><td>VM recut/RBR inventory</td><td>L/L/M</td><td>BACKUP Venkata only</td></tr>
+<tr><td>S13</td><td>Cyber Monday at 4 AM</td><td>Manhattan</td><td>REAL</td><td>Bias, Own, Results</td><td>99% fill; ~$8M of day’s sales protected (record)</td><td>program/crisis</td><td>No</td><td>RPM bench; J planned; VM</td><td>M/M/H</td><td>PRIMARY Venkata</td></tr>
+<tr><td>S14</td><td>OMS↔WMS discrepancy</td><td>Manhattan</td><td>REAL</td><td>Trust, Customer, Backbone</td><td>~200 orders / $2.5M order value; $10M initiative won (user anchor)</td><td>behavioral</td><td>No</td><td>RPM bench; VM</td><td>M/M/H</td><td>PRIMARY Venkata</td></tr>
+<tr><td>S15</td><td>Agile conversion</td><td>Sephora</td><td>REAL</td><td>Trust, Develop, Simplify</td><td>20 people; 6 weeks; four-week cadence (record)</td><td>process/people</td><td>No</td><td>RPM bench; J planned; VM</td><td>M/H/M</td><td>PRIMARY James</td></tr>
+<tr><td>S16</td><td>Snowflake pipeline + late security review</td><td>Flexport</td><td>REAL</td><td>Own, Simplify, Trust</td><td>Four systems→one; 60%→90%; annual value priced (record)</td><td>product/failure</td><td>No</td><td>VM</td><td>M/H/H</td><td>PRIMARY Venkata</td></tr>
+<tr><td>S17</td><td>Carrier-bid reconciliation</td><td>Elementum</td><td>REAL / anchors</td><td>Simplify, Deep, Backbone</td><td>~6 weeks→~3; no award dollar (user anchor)</td><td>process</td><td>No</td><td>RBR R2</td><td>M/H/M</td><td>PRIMARY James</td></tr>
+<tr><td>S18</td><td>RP→JDA migration</td><td>Sephora 2022</td><td>REAL</td><td>Standards, Learn, Results</td><td>2 DCs; 8 months; ~$1.8M budget, ~3% under (record)</td><td>program</td><td>No</td><td>RPM, RBR; VM recut</td><td>H/M/M</td><td>PRIMARY Rocky</td></tr>
+<tr><td>S19</td><td>Promise buffer as a dial</td><td>Walmart prep</td><td>DESIGN CASE</td><td>Customer, Deep</td><td>All outcomes illustrative and “in the model”</td><td>design</td><td>No</td><td>J1; VM bench</td><td>L/H/M</td><td>James design probe only</td></tr>
+<tr><td>S20</td><td>Promise WBR + Andon</td><td>Walmart prep</td><td>DESIGN CASE</td><td>Own, Deep</td><td>Modeled metrics only</td><td>design</td><td>No</td><td>J2; VM bench</td><td>L/H/M</td><td>James design probe only</td></tr>
+<tr><td>S21</td><td>Managed-shipping shadow gate</td><td>Walmart prep</td><td>DESIGN CASE</td><td>Bias, Results</td><td>Modeled cohort gates only</td><td>design</td><td>No</td><td>J3</td><td>L/H/M</td><td>James design probe only</td></tr>
+<tr><td>E1</td><td>Contractor/truck stock</td><td>GFiber prep</td><td>DESIGN CASE</td><td>Own, Broad Resp.</td><td>No delivered result; controls proposed</td><td>design</td><td>No</td><td>J planned</td><td>M/H/M</td><td>BACKUP James design</td></tr>
+<tr><td>E2</td><td>Serialized chain</td><td>GFiber prep</td><td>DESIGN CASE</td><td>Standards, Deep</td><td>No delivered result</td><td>design</td><td>No</td><td>J planned</td><td>M/H/M</td><td>BACKUP James design</td></tr>
+<tr><td>E3</td><td>Vendor EDI + VMI</td><td>GFiber prep</td><td>DESIGN CASE</td><td>Customer, Big</td><td>95% ASN gate is proposed, not achieved</td><td>design</td><td>No</td><td>J planned</td><td>M/H/M</td><td>BACKUP James design</td></tr>
+<tr><td>E4</td><td>CRM→ERP fulfillment</td><td>GFiber prep</td><td>DESIGN CASE</td><td>Simplify, Deep</td><td>No delivered result</td><td>design</td><td>No</td><td>J planned</td><td>M/H/M</td><td>BACKUP James design</td></tr>
+<tr><td>E5</td><td>3PL reconciliation</td><td>GFiber prep</td><td>DESIGN CASE</td><td>Standards, Trust</td><td>No delivered result</td><td>design</td><td>No</td><td>J planned</td><td>M/H/M</td><td>BACKUP James design</td></tr>
+<tr><td>E6</td><td>PLM change→ERP</td><td>GFiber prep</td><td>DESIGN CASE</td><td>Deep, Standards</td><td>Finished-goods framing only</td><td>design</td><td>No</td><td>J planned</td><td>M/M/M</td><td>SKIP unless asked</td></tr>
+<tr><td>E7</td><td>New-market supply/demand</td><td>GFiber prep</td><td>DESIGN CASE</td><td>Big, Customer</td><td>Illustrative planning method</td><td>design</td><td>No</td><td>J planned</td><td>M/H/M</td><td>BACKUP James design</td></tr>
+<tr><td>E8</td><td>Monthly release/regression</td><td>GFiber prep</td><td>DESIGN CASE</td><td>Standards, Results</td><td>Illustrative release controls</td><td>process design</td><td>No</td><td>J planned</td><td>M/H/M</td><td>James design; pair S15</td></tr>
+<tr><td>E9</td><td>ERP cutover</td><td>GFiber prep</td><td>DESIGN CASE</td><td>Bias, Results</td><td>Illustrative cutover controls</td><td>program design</td><td>No</td><td>J planned</td><td>M/H/M</td><td>James design; pair S18</td></tr>
+<tr><td>E10</td><td>Returns / RMA</td><td>GFiber prep</td><td>DESIGN CASE</td><td>Customer, Own</td><td>No delivered result</td><td>design</td><td>No</td><td>J planned</td><td>L/H/M</td><td>BACKUP James design</td></tr>
+<tr><td>E11</td><td>Direct procurement</td><td>GFiber prep</td><td>DESIGN CASE</td><td>Frugal, Own</td><td>No delivered result</td><td>design</td><td>No</td><td>J planned</td><td>L/M/M</td><td>SKIP unless asked</td></tr>
+<tr><td>E12</td><td>Smart vending/consignment</td><td>GFiber prep</td><td>DESIGN CASE</td><td>Simplify, Big</td><td>No delivered result</td><td>design</td><td>No</td><td>J planned</td><td>L/M/M</td><td>SKIP unless asked</td></tr>
+<tr><td>A1</td><td>SV wave launch (alias S11)</td><td>Flexport</td><td>REAL alias</td><td>Results, Standards</td><td>7→68 customers; 170 MAU target</td><td>product</td><td>YES</td><td>VM</td><td>L/L/H</td><td>PRIMARY Venkata as S11</td></tr>
+<tr><td>A2</td><td>SV WBR measurement</td><td>Flexport</td><td>REAL</td><td>Deep, Own</td><td>CTS and automation measurement</td><td>process/product</td><td>YES family</td><td>VM/RBR references</td><td>L/L/M</td><td>Venkata probe only</td></tr>
+<tr><td>A3</td><td>SV WBR automation (alias S16)</td><td>Flexport</td><td>REAL alias</td><td>Frugal, Simplify</td><td>Four systems→one; 60%→90%</td><td>product</td><td>No</td><td>VM</td><td>M/H/H</td><td>Venkata as S16</td></tr>
+<tr><td>A4</td><td>Apples-to-apples decommission</td><td>Flexport 2021–22</td><td>REAL</td><td>Right, Deep, Own</td><td>79 customers; $185,892 ARR; 294,581 containers (docs)</td><td>process/product</td><td>No</td><td>RBR inventory; VM Crux bench</td><td>M/H/H</td><td>ADD-ON James</td></tr>
+<tr><td>A5</td><td>Hundred-container launch gate</td><td>Flexport 2021</td><td>REAL</td><td>Standards, Results</td><td>500 containers/20 min/99.6%; 86% tracked (docs)</td><td>program</td><td>No</td><td>References, no standalone</td><td>H/M/H</td><td>ADD-ON Rocky</td></tr>
+<tr><td>B1</td><td>FF App complete launch (alias S12)</td><td>Flexport 2022</td><td>REAL alias</td><td>Customer, Results</td><td>April import-side app; export later</td><td>product</td><td>YES</td><td>bridge only</td><td>L/L/M</td><td>SKIP; spent family</td></tr>
+<tr><td>B2</td><td>FF App CTS options</td><td>Flexport 2022</td><td>REAL alias</td><td>Backbone, Frugal</td><td>66% effort reduction; about $5M avoided</td><td>product</td><td>YES</td><td>bridge only</td><td>L/L/M</td><td>SKIP; spent family</td></tr>
+<tr><td>B3</td><td>Compressed dual-program go-live</td><td>Flexport 2022</td><td>REAL</td><td>Bias, Results, Trust</td><td>One month pulled forward; both landed; compressed one &lt;4 weeks</td><td>program</td><td>No</td><td>RBR inventory only</td><td>H/M/M</td><td>ADD-ON Rocky</td></tr>
+<tr><td>C1</td><td>UDC rollout (alias S2)</td><td>Sephora</td><td>REAL alias</td><td>Own, Big</td><td>15 months; zero customer-facing incidents</td><td>program</td><td>No</td><td>RPM/UDC</td><td>H/M/M</td><td>Rocky as S2</td></tr>
+<tr><td>C2</td><td>UDC counted issues log</td><td>Sephora</td><td>REAL</td><td>Deep, Own, Standards</td><td>836 rows; 85.4% closed; bugs 115 (record)</td><td>program/process</td><td>No</td><td>UDC planned; RBR refs</td><td>H/H/M</td><td>BACKUP Rocky</td></tr>
+<tr><td>C3</td><td>Locus robotics</td><td>Sephora</td><td>REAL</td><td>Bias, Standards</td><td>98% gate; week-two 94%; full automation week 3 (record/anchor)</td><td>program</td><td>No</td><td>RPM/UDC</td><td>H/M/M</td><td>PRIMARY Rocky</td></tr>
+<tr><td>C4</td><td>UDC council (alias S5)</td><td>Sephora</td><td>REAL alias</td><td>Trust, Backbone</td><td>Sign-off before build</td><td>program</td><td>No</td><td>RPM/UDC</td><td>H/H/M</td><td>Rocky as S5</td></tr>
+<tr><td>D1</td><td>RP→JDA rollout (alias S18)</td><td>Sephora</td><td>REAL alias</td><td>Learn, Results</td><td>2 DCs; 8 months</td><td>program</td><td>No</td><td>RPM/RBR</td><td>H/M/M</td><td>Rocky as S18</td></tr>
+<tr><td>D2</td><td>Mock-cutover rigor</td><td>Sephora</td><td>REAL</td><td>Deep, Standards</td><td>7%→1.8%→0.3% vs 0.5% tolerance (record)</td><td>program</td><td>No</td><td>RPM/RBR</td><td>H/H/M</td><td>Rocky depth</td></tr>
+<tr><td>D3</td><td>Twenty people, no mandate (S15)</td><td>Sephora</td><td>REAL alias</td><td>Trust, Develop</td><td>Four-week cadence in six weeks</td><td>people/process</td><td>No</td><td>J/VM</td><td>M/H/M</td><td>James as S15</td></tr>
+<tr><td>F1</td><td>Lane onboarding (alias S9)</td><td>Elementum</td><td>REAL alias</td><td>Big, Backbone</td><td>1,000 asked; 597 first</td><td>program</td><td>No</td><td>VM</td><td>M/H/H</td><td>Venkata as S9</td></tr>
+<tr><td>F2</td><td>Routing-guide engine (S10)</td><td>Elementum</td><td>REAL alias</td><td>Deep, Right</td><td>~$8M validated across 25 locations</td><td>process</td><td>No</td><td>RBR/VM</td><td>M/H/M</td><td>James as S10</td></tr>
+<tr><td>F3</td><td>Shortage alert</td><td>Elementum</td><td>REAL</td><td>Customer, Deep, Simplify</td><td>70%→85% forecast accuracy; 3 months; +50% collaboration</td><td>product</td><td>YES family</td><td>RBR inventory</td><td>L/M/M</td><td>SKIP; spent theme</td></tr>
+<tr><td>F4</td><td>Measured lead-time distributions (S8)</td><td>Elementum</td><td>REAL alias</td><td>Deep, Own</td><td>~$1.5M carrying cost released</td><td>process</td><td>YES</td><td>bridge only</td><td>L/L/L</td><td>SKIP</td></tr>
+<tr><td>M1</td><td>Cyber Monday (alias S13)</td><td>Manhattan</td><td>REAL alias</td><td>Bias, Results</td><td>99% fill; ~$8M protected</td><td>crisis</td><td>No</td><td>RPM/J/VM</td><td>M/M/H</td><td>Venkata as S13</td></tr>
+<tr><td>I1</td><td>LLM triage agent</td><td>Independent build</td><td>REAL build</td><td>Simplify, Frugal, Deep</td><td>$25→$0.40/incident; 98% cut; 100% citations (record)</td><td>product</td><td>No</td><td>RBR inventory; J planned</td><td>M/H/H</td><td>ADD-ON Venkata</td></tr>
+<tr><td>G1</td><td>UAT concurrency miss</td><td>Elementum</td><td>REAL FAILURE</td><td>Right, Trust, Standards</td><td>5 users×10 scenarios passed; all-user load failed 2 days before sign-off</td><td>failure</td><td>No</td><td>RBR, VM</td><td>H/H/H</td><td>PRIMARY Venkata failure</td></tr>
+<tr><td>G2</td><td>RF-device script miss</td><td>Sephora</td><td>REAL FAILURE</td><td>Right, Trust, Results</td><td>Hundreds of devices; training +1.5 weeks; go-live held</td><td>failure</td><td>No</td><td>RPM/RBR/VM</td><td>H/M/M</td><td>PRIMARY Rocky failure</td></tr>
+<tr><td>G3</td><td>Late security review</td><td>Flexport</td><td>REAL FAILURE</td><td>Own, Trust, Right</td><td>Review discovered late; no invented delay/dollar</td><td>failure</td><td>No</td><td>J planned; VM</td><td>M/H/H</td><td>PRIMARY James failure</td></tr>
+<tr><td>L19</td><td>Trace-ID bug localization</td><td>Flexport loop cut</td><td>REAL / source cut</td><td>Deep, Simplify</td><td>Per-hop trace; no separate outcome claimed</td><td>product/process</td><td>No</td><td>RBR inventory/Tripathy</td><td>M/H/H</td><td>BACKUP James</td></tr>
+<tr><td>L20</td><td>Monitoring before customer-ready</td><td>Flexport loop cut</td><td>REAL / source cut</td><td>Standards, Own</td><td>Processed-vs-tracked counters; no separate result</td><td>product</td><td>No</td><td>References</td><td>M/H/H</td><td>Venkata probe</td></tr>
+<tr><td>L21</td><td>Production test + source switches</td><td>Flexport loop cut</td><td>REAL / source cut</td><td>Bias, Standards</td><td>One-week hold at 76% vs 80% gate (record/packet)</td><td>program</td><td>No</td><td>References</td><td>H/M/H</td><td>Rocky probe</td></tr>
+<tr><td>L22</td><td>Customs vs FFA ownership</td><td>Flexport 2022</td><td>REAL DOC</td><td>Own, Trust, Simplify</td><td>15 work items: 12 export + 3 import; final boundary signed (docs)</td><td>process/product</td><td>No</td><td>RBR inventory only</td><td>M/H/H</td><td>ADD-ON James</td></tr>
+<tr><td>L23</td><td>Hundred-container test (alias A5)</td><td>Flexport 2021</td><td>REAL alias</td><td>Standards, Results</td><td>500/20 min/99.6%; 86% tracked</td><td>program</td><td>No</td><td>References</td><td>H/M/H</td><td>Rocky as A5</td></tr>
+<tr><td>L24</td><td>UDC launch/log (alias C2)</td><td>Sephora</td><td>REAL alias</td><td>Own, Deep</td><td>836-row work-triage system</td><td>program</td><td>No</td><td>UDC</td><td>H/H/M</td><td>Rocky depth</td></tr>
+<tr><td>L25</td><td>Interface study: refuse, then reverse</td><td>Sephora loop cut</td><td>REAL / secondary</td><td>Right, Frugal</td><td>17 interfaces→2 critical uses; $42K funded, $25K contingent (secondary)</td><td>behavioral</td><td>No</td><td>older James only</td><td>M/H/M</td><td>ADD-ON James, verify provenance</td></tr>
+<tr><td>L26</td><td>Input/output lever map</td><td>Flexport loop cut</td><td>REAL method</td><td>Deep, Simplify</td><td>No separate result; WBR method</td><td>process</td><td>No</td><td>J/VM references</td><td>L/H/H</td><td>Probe, not standalone</td></tr>
+<tr><td>UDC-B1</td><td>UDC council-to-hypercare full arc (S2/S5/C2/C3)</td><td>Sephora 2024–25</td><td>REAL composite</td><td>Trust, Own, Standards, Results</td><td>44 requirement rows / 23 named systems; 2 go-lives; 0 customer incidents (docs/record)</td><td>program</td><td>No</td><td>UDC final; RPM planned</td><td>H/H/M</td><td>PRIMARY Rocky as S2/S5</td></tr>
+<tr><td>CAN-B2</td><td>US-managed bulk ship to Canada</td><td>Sephora 2023</td><td>REAL PLAN; outcome VERIFY</td><td>Bias, Frugal, Customer</td><td>~13% volume; 99 brands; 20/40/39 waves; ~2.5M-unit front-load (docs)</td><td>program/process</td><td>No</td><td>UDC final</td><td>H/H/M</td><td>BACKUP Rocky; plan-only result</td></tr>
+<tr><td>UDC-B3</td><td>Enable a new node type twice</td><td>Sephora 2023–25</td><td>REAL composite</td><td>Deep, Simplify, Standards</td><td>UDC 44 rows/23 systems; Canada 6 changes, 5 small (docs)</td><td>process</td><td>No</td><td>UDC final</td><td>M/H/M</td><td>BACKUP James; distinct config facet</td></tr>
+</tbody></table>
+
+<h2 class="break">C · Ranked unused / underdeveloped additions</h2>
+<table>
+<thead><tr><th>Rank</th><th>Story</th><th>Why add it now</th><th>Best owner</th><th>Question types</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>A4 apples-to-apples decommission</td><td>Real product retirement and one-truth governance; not a standalone STAR in the six worker packets.</td><td>James</td><td>Are Right Q3; Dive Deep Q2; Ownership Q4</td></tr>
+<tr><td>2</td><td>A5 hundred-container launch gate</td><td>Concrete readiness proof with honest imperfection; stronger than another architecture answer.</td><td>Rocky</td><td>Highest Standards Q4; Deliver Results Q2</td></tr>
+<tr><td>3</td><td>L22 Customs/FFA ownership</td><td>Direct match to James’s centralized-policy and cross-team boundary work; primary document exists.</td><td>James</td><td>Ownership Q3; Earn Trust Q3; Simplify Q1</td></tr>
+<tr><td>4</td><td>B3 compressed dual-program go-live</td><td>Resource collision and speed/cost trade-off for an infrastructure leader.</td><td>Rocky</td><td>Bias Q1; Deliver Results Q1; Earn Trust Q5</td></tr>
+<tr><td>5</td><td>I1 LLM triage agent</td><td>Hands-on product/AI example with an eval contract and explicit unit economics.</td><td>Venkata</td><td>Invent Q1; Frugality Q1; Learn Q2</td></tr>
+<tr><td>6</td><td>L25 interface-study reversal</td><td>A rare clean “I changed my mind” story; useful only with conservative secondary-source wording.</td><td>James</td><td>Are Right Q4; Frugality Q4; Dive Deep Q3</td></tr>
+</tbody></table>
+
+<section class="story">
+<h3>ADD-ON 1 · A4 — Apples to apples before decommission <span class="badge">Real</span></h3>
+<div class="meta"><b>Best owner:</b> James · <b>LPs:</b> Are Right, A Lot · Dive Deep · Ownership · <b>Headline:</b> 79 legacy customers, $185,892 ARR and 294,581 annual containers received a segment path (record-from-docs).</div>
+<div class="say"><div class="label">20-second version</div>“Leadership was comparing our 25% reliability with a competitor’s 63% on unlike source mixes. I normalized both to the same basis; the competitor re-scored to about 27%, exposing measurement—not product—as the immediate gap. I then assigned all 79 legacy customers a destination and retired the duplicate truth while improving reliability to 90% against an 80% north star.”</div>
+<div class="star">
+<p><span class="stag">S — Situation.</span> At Flexport, the new visibility product was being judged at 25% schedule reliability against a competitor’s 63%, while a legacy source still billed 79 customers and $185,892 in annual recurring revenue. The source mixes were unlike, yet the comparison could have written off the new product and preserved two competing truths.</p>
+<p><span class="stag">T — Task.</span> I owned the retirement risk: establish an honest comparison, expose any residual product gap, and give every legacy customer an explicit path rather than letting decommission drift across another planning cycle.</p>
+<p><span class="stag">A — Action.</span> I put decommission at the top of the risk register with an owner, mitigation and date. I rebuilt the benchmark on identical sources; on that basis the competitor’s 63% re-scored to about 27% versus our 25%. I showed the old dashboard’s defenders that their figure was valid on its own basis, then changed the basis rather than attacking the team. I did not stop at normalization: it also exposed variance of sixteen days versus eight as the real gap, so I secured six months for source additions. In parallel, I segmented all 79 customers into migrate, white-label or cancel, with one canonical reliability definition and one executive forum signing both the improvement and retirement plans.</p>
+<p><span class="stag">R — Result.</span> The 79-customer legacy base—294,581 annual containers—received a disposition, the duplicate truth retired, and reliability reached 90% against an 80% north star after source work. Leadership could now separate measurement correction from product improvement. The durable mechanism was “reconcile before compare.”</p>
+</div>
+<div class="trade"><b>TRADE-OFF I MADE:</b> I retired $185,892 of legacy ARR rather than preserve a small revenue stream that forced two products and two scoreboards. Normalization bought time; it did not substitute for the six months of product work.</div>
+<div class="learn"><b>FAILURE / LEARNING:</b> I should have established the canonical-source rule before the first executive comparison. Once dashboards have constituencies, a cheap definition becomes an expensive negotiation.</div>
+<ul class="lp"><li><b>Are Right, A Lot:</b> I changed the decision by making both products use the same evidence.</li><li><b>Dive Deep:</b> I exposed the remaining variance gap instead of using normalization only to flatter us.</li><li><b>Ownership:</b> every customer received a destination and date.</li></ul>
+<div class="safe"><b>SAFE-SAY:</b> “The transition document records 79 customers, $185,892 of annual recurring revenue and 294,581 annual containers. The 90% result is the workbook record; the normalized comparison is about 27% versus 25%.”<br><b>If asked for source:</b> “The Crux transition RAPID and my 2022 product-management record, reconciled in Apple workbook v11 A4.”</div>
+<div class="qa"><p class="q">Was normalization spin?</p><p>No. It cut both ways: it removed the false 63-versus-25 alarm and exposed the unfavorable sixteen-versus-eight-day variance. That residual drove the six-month backlog.</p></div>
+<div class="qa"><p class="q">What was yours versus the team’s?</p><p>I rebuilt the comparison, wrote the one-source rule and set the sequence. Engineering added sources; transition owners built the customer paths with me.</p></div>
+</section>
+
+<h2 class="break">B · LP × interviewer allocation</h2>
+<p class="small">Each cell is <b>PRIMARY / backup — landing number</b>. The question column uses the AIQB’s wording (lightly shortened only where marked with an ellipsis). No story is primary for two interviewers in this matrix.</p>
+<table>
+<thead><tr><th>LP + AIQB question</th><th>Rocky</th><th>James</th><th>Venkata</th></tr></thead>
+<tbody>
+<tr><td><b>Customer Obsession</b><br>Q3: “anticipate a customer need…they didn’t know they needed”</td><td>S2 / A5 — +15% efficiency</td><td>A4 / S17 — 79 customers</td><td>S11 / S14 — 7→68</td></tr>
+<tr><td><b>Ownership</b><br>Q3: initiative benefiting company/customers that no group owned</td><td>S18 / S5 — 2 DCs, 8 months</td><td>L22 / S17 — 15 work items</td><td>S16 / S14 — 4 systems→1</td></tr>
+<tr><td><b>Invent and Simplify</b><br>Q1: “complex problem…simple solution”</td><td>S5 / C2 — one council gate</td><td>S17 / L22 — ~6→~3 weeks</td><td>I1 / S16 — $25→$0.40</td></tr>
+<tr><td><b>Are Right, A Lot</b><br>Q4: bad decision; impact; learning; application</td><td>G2 / S4 — training +1.5 weeks</td><td>A4 / L25 — ~27% vs 25%</td><td>G1 / S16 — 2 days before sign-off</td></tr>
+<tr><td><b>Learn and Be Curious</b><br>Q2: work outside comfort; build expertise; outcome</td><td>S18 / C3 — 3 mocks</td><td>S10 / E9 — ~55%→99%</td><td>I1 / S9 — 100% citations</td></tr>
+<tr><td><b>Hire and Develop the Best</b><br>Q4: coaching; what started it; outcome</td><td>S2 / S18 — ~30 tracks</td><td>S15 / C2 — 20 people</td><td>S9 / G1 — 25 locations</td></tr>
+<tr><td><b>Insist on Highest Standards</b><br>Q4: decision between standards and delivery</td><td>A5 / G2 — 500 in 20 min</td><td>S10 / E8 — 99% data gate</td><td>S11 / G1 — 86% tracked, named gap</td></tr>
+<tr><td><b>Think Big</b><br>Q1: opportunity to do something bigger than initial focus</td><td>S2 / S5 — one omni facility</td><td>S10 / S17 — 25 locations</td><td>S9 / S11 — 1,000 lanes</td></tr>
+<tr><td><b>Bias for Action</b><br>Q1: calculated risk where speed was critical</td><td>B3 / C3 — &lt;4 weeks</td><td>S17 / E9 — one live parallel run</td><td>S13 / S11 — 4 AM bridge</td></tr>
+<tr><td><b>Frugality</b><br>Q4: trade-offs between quality and cost</td><td>S18 / B3 — ~3% under budget</td><td>L25 / S17 — $42K study</td><td>I1 / S16 — 98% unit-cost cut</td></tr>
+<tr><td><b>Earn Trust</b><br>Q3: influence a peer with a differing opinion</td><td>S5 / G2 — sign-off before build</td><td>S15 / A4 — cadence adopted without mandate</td><td>S14 / S16 — ~$2.5M order value</td></tr>
+<tr><td><b>Dive Deep</b><br>Q2: dig deep to root cause</td><td>C2 / A5 — 836 rows</td><td>S10 / A4 — 3 years of history</td><td>S16 / G1 — 60%→90%</td></tr>
+<tr><td><b>Have Backbone; Disagree and Commit</b><br>Q1: strongly disagreed with manager or peer</td><td>S5 / B3 — one architecture decision</td><td>L22 / S15 — 12 export + 3 import</td><td>S14 / S9 — transparent correction</td></tr>
+<tr><td><b>Deliver Results</b><br>Q1: important project under a tight deadline</td><td>S18 / B3 — 8 months</td><td>S10 / S17 — within a quarter</td><td>S13 / S11 — 99% fill</td></tr>
+<tr><td><b>Earth’s Best Employer</b><br>Q5: compassion in a high-pressure situation</td><td>G2 / B3 — protected scarce SME windows</td><td>S15 / G3 — skeptics authored the gate</td><td>G1 / S16 — owned miss, no blame</td></tr>
+<tr><td><b>Success and Scale Bring Broad Responsibility</b><br>Q2: changed a decision due to unintended customer consequences</td><td>S2 / C3 — throttled automation by zone</td><td>A4 / S4 — retired two truths deliberately</td><td>S11 / S9 — held a wave one week</td></tr>
+</tbody></table>
+
+<h3>Clash detector — resolve before 10:00</h3>
+<table>
+<thead><tr><th>Collision</th><th>Where it appears</th><th>Resolution</th></tr></thead>
+<tbody>
+<tr><td>S10 Austria</td><td>RBR R1 + current VM primary</td><td>Give James the full process-improvement story. Venkata uses it only if James did not; otherwise use S9.</td></tr>
+<tr><td>S13 Cyber Monday</td><td>RPM bench + James Manhattan plan + VM primary</td><td>Venkata owns the full crisis STAR. Rocky may cite only the heartbeat mechanism; James skips it.</td></tr>
+<tr><td>S15 agile governance</td><td>RPM bench + James plan + VM primary</td><td>James owns people/change governance. Venkata uses I1 or S9 for the relevant LP.</td></tr>
+<tr><td>S18 migration</td><td>RPM primary + VM recut</td><td>Rocky owns the full program. Venkata may mention only “published tolerance before mock one” if probed.</td></tr>
+<tr><td>S11 Shipment Visibility</td><td>Thursday telling + Rocky references + VM planned</td><td>Venkata gets the product/launch facet by explicit exception. Rocky and James do not retell it.</td></tr>
+<tr><td>S14 discrepancy</td><td>RPM/James potential Manhattan + VM primary</td><td>Venkata owns trust/transparency. Others use S5 or A4.</td></tr>
+<tr><td>G1 failure</td><td>RBR and VM full failure arcs; James may use load criteria</td><td>Venkata owns full failure. James uses G3; Rocky uses G2.</td></tr>
+<tr><td>Walmart S19–S21</td><td>J1–J3 and VM bench</td><td>James alone uses them, always bannered DESIGN CASE and paired with a lived analog.</td></tr>
+<tr><td>UDC-B1 / UDC-B3</td><td>New UDC/Canada pack tells the same UDC base to Rocky and James</td><td>Rocky owns the end-to-end UDC program. James may use only Canada node configuration or the 44-row governance mechanism, explicitly saying it is the same UDC program.</td></tr>
+</tbody></table>
+
+<section class="story">
+<h3>ADD-ON 2 · A5 — A hundred containers before a customer <span class="badge">Real</span></h3>
+<div class="meta"><b>Best owner:</b> Rocky · <b>LPs:</b> Insist on Highest Standards · Deliver Results · Dive Deep · <b>Headline:</b> 500 containers in 20 minutes at 99.6% connectivity; dry run 100% processed and 86% tracked (record-from-docs).</div>
+<div class="say"><div class="label">20-second version</div>“I replaced a launch date with two evidence gates. A hundred real containers carried seven checks and every miss had a defect ID. The performance proof processed 500 containers in 20 minutes at 99.6% connectivity; the end-to-end run exposed an 86% tracked gap, which I shipped only as a named, owned workstream. Both checkpoints passed and the first pilot launched on schedule.”</div>
+<div class="star">
+<p><span class="stag">S — Situation.</span> Before Flexport’s first paying 4PL visibility customer could launch, leadership wanted a date, but the product’s promise—trustworthy tracking—had not been proven through a representative production path. If the date became the test, the customer would absorb our defects.</p>
+<p><span class="stag">T — Task.</span> I owned the readiness verdict. I had to define business and technical gates before decision week, create evidence that joined defects to real containers, and balance an imperfect tracking gap against the customer and schedule cost of indefinite delay.</p>
+<p><span class="stag">A — Action.</span> I published two go/no-go gates, both required to pass. I made a hundred real containers the UAT spine, with checks for creation, subscription, returned data, route, milestones, exceptions and webhooks. Every mismatch carried a Jira ID, so clusters—not anecdotes—burned down. I set an 80% minor-or-no-issues bar before customer-facing UAT and used named shadow accounts first. The weekly data-quality bar rose through the final four weeks, and a thin sample could not print green. I also required load evidence: 500 containers in 20 minutes at 99.6% connectivity. The end-to-end run processed everything but tracked 86%; I refused to hide that fourteen-point gap, assigned its causes and owner, and put it on the launch dashboard.</p>
+<p><span class="stag">R — Result.</span> Both checkpoints passed, defect clusters reached zero before customer exposure, and the first pilot launched on schedule. The unresolved tracking gap shipped measured and owned, not as a surprise. Decision week became a readout of pre-published evidence rather than a negotiation over the date.</p>
+</div>
+<div class="trade"><b>TRADE-OFF I MADE:</b> I chose evidence with a visible imperfection over either perfection-driven delay or an unmeasured launch. The cost was carrying a named follow-on workstream and defending 86% tracked in public.</div>
+<div class="learn"><b>FAILURE / LEARNING:</b> I named the processed-versus-tracked gap too late. I now put the gap on the dashboard from the first test cycle.</div>
+<ul class="lp"><li><b>Highest Standards:</b> a date could not substitute for two published gates.</li><li><b>Deliver Results:</b> the pilot launched on schedule after both gates passed.</li><li><b>Dive Deep:</b> each container-level failure mapped to a defect cluster and owner.</li></ul>
+<div class="safe"><b>SAFE-SAY:</b> “The source records 500 containers in 20 minutes at 99.6% connectivity and an end-to-end run at 100% processed, 86% tracked. That was launch evidence, not a steady-state scale claim.”<br><b>If asked for source:</b> “The launch-status guide, product-testing approach, hundred-container CSV and November 2021 program status.”</div>
+<div class="qa"><p class="q">Why launch with one in seven not tracked?</p><p>The causes were known, bounded and owned. Delay would not remove weak-lane coverage; putting the gap on the dashboard created an accountable improvement path.</p></div>
+<div class="qa"><p class="q">What was yours?</p><p>I designed the gates, UAT spine and decision week. Engineering ran the harness and fixed defects; QA co-owned test execution.</p></div>
+</section>
+
+<section class="story">
+<h3>ADD-ON 3 · L22 — Customs and FFA: one boundary, fifteen work items <span class="badge">Real · doc-backed</span></h3>
+<div class="meta"><b>Best owner:</b> James · <b>LPs:</b> Ownership · Earn Trust · Invent and Simplify · <b>Headline:</b> 15 planned 2023 work items—12 export and 3 import—mapped to one ownership agreement (record-from-docs).</div>
+<div class="say"><div class="label">20-second version</div>“Customs Platform and Freight Forwarding Applications overlapped on fifteen work items. I turned the argument into a row-by-row ownership proposal: domain decision, operational execution, data owner, API and exception. The final meeting assigned FFA all work items except ISF filing, with explicit APIs and shared cost-to-serve goals where the seam remained.”</div>
+<div class="star">
+<p><span class="stag">S — Situation.</span> In 2022, Flexport’s Customs Platform and Freight Forwarding Applications teams overlapped on customs-declaration work, especially AMS. The next-year roadmap contained fifteen work items—twelve export and three import—and ambiguous ownership would create duplicate builds, dependency queues and inconsistent status for operators.</p>
+<p><span class="stag">T — Task.</span> I needed to produce a durable boundary that let each organization stay in its domain while preserving an end-to-end operator flow. Neither team reported to me, and a slogan such as “Customs owns customs” was too vague to configure.</p>
+<p><span class="stag">A — Action.</span> I decomposed the roadmap work item by work item and wrote the operating decision beside each: who plans, who executes, who owns the backend and data model, which actions remain offline, what API is required, and where status returns. I separated customs-domain planning and filing from FFA’s operational execution of moving cargo. For disputed seams—EAD, port filing, ISF and AMS—I documented current capability, future capability and interim ownership instead of pretending the target architecture already existed. I used the same sheet in the final cross-team meeting, captured unresolved decisions explicitly, and tied shared seams to shared cost-to-serve goals. A future capability never erased the named interim owner.</p>
+<p><span class="stag">R — Result.</span> The November 3 ownership agreement assigned FFA all work items except ISF filing. AMS used Customs APIs for create, amend, query and delete; ISF retained a query dependency; AES aligned on integration. The roadmap now had one accountable owner per row and explicit interfaces where ownership crossed organizational lines.</p>
+</div>
+<div class="trade"><b>TRADE-OFF I MADE:</b> I chose a pragmatic interim boundary with some offline work over waiting for a perfect platform split. That preserved delivery but left API dependencies to govern.</div>
+<div class="learn"><b>FAILURE / LEARNING:</b> The first framing was organization-based and too abstract. The agreement emerged only after I moved to work-item and state-transition grain.</div>
+<ul class="lp"><li><b>Ownership:</b> I took the seam no organization could solve alone.</li><li><b>Earn Trust:</b> capability gaps and unresolved rows stayed visible.</li><li><b>Invent and Simplify:</b> one row-level matrix replaced a domain argument.</li></ul>
+<div class="safe"><b>SAFE-SAY:</b> “The proposal states fifteen 2023 work items: twelve export and three import. The final agreement says FFA owned all except ISF filing; it does not claim a quantified business outcome.”<br><b>If asked for source:</b> “Customs Platform / FFA Ownership Proposal, pages 1 and 14.”</div>
+<div class="qa"><p class="q">Did you decide the boundary yourself?</p><p>No. I created the decision artifact and drove convergence; the accountable leaders signed the ownership agreement.</p></div>
+<div class="qa"><p class="q">How did you know it worked?</p><p>The documented result is decision closure and explicit interfaces. I would not invent a defect or cycle-time reduction that the source does not report.</p></div>
+</section>
+
+<section class="story">
+<h3>ADD-ON 4 · B3 — Two programs, one engineering team <span class="badge">Real</span></h3>
+<div class="meta"><b>Best owner:</b> Rocky · <b>LPs:</b> Bias for Action · Deliver Results · Earn Trust · <b>Headline:</b> strategic go-live pulled forward one month; compressed program landed inside four weeks; Rajesh’s program held its date (record).</div>
+<div class="say"><div class="label">20-second version</div>“Leadership pulled a strategic launch forward one month and shared my engineers across two programs. I stopped arguing priorities and ran one RAID log, one 45-minute forum and one blocker ruler. True blockers used written onsite-to-offshore handoffs. The compressed launch landed inside four weeks and mine held its original date.”</div>
+<div class="star">
+<p><span class="stag">S — Situation.</span> At Flexport, leadership pulled a strategic go-live forward by one month and reassigned engineers from my program. Two programs now shared one team and one immovable business-adoption window. A rushed technical launch that the floor rejected would simply move the failure downstream.</p>
+<p><span class="stag">T — Task.</span> I had to land both programs without asking people to work around the clock, make the resource collision visible to leadership, and protect business adoption rather than optimize only for code complete on paper.</p>
+<p><span class="stag">A — Action.</span> I ran both programs as one operating system: one RAID log, one 45-minute daily forum and one ruler—true blocker, non-blocker or requirements gap. Within a week, that classification removed most false blockers from engineering’s queue. True blockers entered a two-pass war room: onsite and offshore teams handed off in writing, creating round-the-clock issue velocity without a person working a full day. I published both burn-downs together and escalated only priced choices, never complaints. Every same-day escalation stated what option A cost and what option B cost. The go/no-go read the agreed blocker floor rather than the calendar. I also wrote a ten-step quick-reference guide for the floor so adoption did not become the hidden schedule risk.</p>
+<p><span class="stag">R — Result.</span> The pulled-forward program landed inside four weeks; my original program held its committed date; the business adopted on time. The primary record supports the monthly value-at-stake rate, but I lead with the dates and the operating mechanism rather than a derived cumulative dollar.</p>
+</div>
+<div class="trade"><b>TRADE-OFF I MADE:</b> I accepted a heavier, tightly bounded daily cadence to preserve both dates. I rejected invisible overtime and serial priority fights. The cost landed on a managed team calendar.</div>
+<div class="learn"><b>FAILURE / LEARNING:</b> The floor guide shipped only the week before cutover. Under compression, documentation dies first; I would draft it when the collision begins.</div>
+<ul class="lp"><li><b>Bias for Action:</b> one forum and a common ruler were operating in days.</li><li><b>Deliver Results:</b> one program landed in under four weeks and the other held date.</li><li><b>Earn Trust:</b> both burn-downs and resource consequences stayed public.</li></ul>
+<div class="safe"><b>SAFE-SAY:</b> “The record says the launch moved one month earlier, the compressed program landed inside four weeks, and mine held date. I do not lead with a multiplied dollar.”<br><b>If asked for source:</b> “My 2022 ambiguity record and Apple workbook v11 B3.”</div>
+<div class="qa"><p class="q">Did you oppose leadership’s decision?</p><p>I made the collision and value visible, then committed. My disagreement was with hidden cost, not with the chosen priority.</p></div>
+<div class="qa"><p class="q">What was yours?</p><p>The shared RAID, forum, blocker taxonomy, escalation framing and floor guide. Engineers built and fixed; operators adopted.</p></div>
+</section>
+
+<section class="story">
+<h3>ADD-ON 5 · I1 — LLM triage with a balance sheet and contract <span class="badge">Real build</span></h3>
+<div class="meta"><b>Best owner:</b> Venkata · <b>LPs:</b> Invent and Simplify · Frugality · Learn and Be Curious · Dive Deep · <b>Headline:</b> cost per triaged incident $25→$0.40, a 98% cut, with 100% citation coverage and accuracy held on the eval set (record).</div>
+<div class="say"><div class="label">20-second version</div>“I built an incident-triage agent end to end, but the first version cost $25 per incident—a demo, not a product. I created a graded eval set, enforced ‘no citation, no proposal,’ and routed easy classes to smaller models. Cost fell to $0.40, 100% of proposals cited evidence, and accuracy held on the eval set.”</div>
+<div class="star">
+<p><span class="stag">S — Situation.</span> I independently built an LLM agent to read operational incidents, classify them and propose the first action. The naïve version worked, but at $25 per incident it was an expensive demo. An uncited proposal would also force an operator to redo the analysis, destroying trust.</p>
+<p><span class="stag">T — Task.</span> I owned the stack and the product bar: preserve triage accuracy, make every proposal auditable, and bring unit cost below one dollar before treating the tool as operational.</p>
+<p><span class="stag">A — Action.</span> I built the eval set before optimizing the agent: historical incidents with known-correct outcomes, graded and rerun after every prompt, model or routing change. I established a hard contract—no citation, no proposal—binding each recommendation to ticket evidence and a runbook line. I then treated inference cost like a program budget. A cheap classifier routed common, easy incident classes to smaller models; only the hard tail reached the expensive model. I rejected the cheaper alternative of removing evidence because that would transfer verification cost to operators. I tracked one dashboard with three measures: eval-set accuracy, citation coverage and cost per incident. I built the Python, FastAPI, tool-use and SQLite path myself, so I could isolate each cost and failure mode rather than negotiate across owners.</p>
+<p><span class="stag">R — Result.</span> Cost fell from $25 to $0.40 per triaged incident—a 98% reduction—while accuracy held on the eval set. Citation coverage reached 100%, and the $0.40 outcome cleared the sub-dollar operations bar without transferring evidence-checking work back to the operator.</p>
+</div>
+<div class="trade"><b>TRADE-OFF I MADE:</b> I chose tiered routing over one premium model for every incident. The eval set paid the complexity cost by proving which classes were safe to route cheaply.</div>
+<div class="learn"><b>FAILURE / LEARNING:</b> I did not freeze the first eval-set version early enough. A growing baseline made early accuracy claims harder to compare; I now version the contract before tuning.</div>
+<ul class="lp"><li><b>Invent and Simplify:</b> the router reserved expensive reasoning for the hard tail.</li><li><b>Frugality:</b> unit cost fell 98% against a stated bar.</li><li><b>Learn and Be Curious:</b> I learned by building and instrumenting the full stack.</li></ul>
+<div class="safe"><b>SAFE-SAY:</b> “This was my independent build. The recorded result is $25 to $0.40 per triaged incident, with accuracy held on my graded eval set and 100% citation coverage.”<br><b>If asked for source:</b> “My project record, carried into Apple workbook v11 I1; it is not an employer production claim.”</div>
+<div class="qa"><p class="q">Is this just another demo?</p><p>A demo has no regression contract or unit economics. This one gated every change on an eval set and engineered to a sub-dollar bar.</p></div>
+<div class="qa"><p class="q">Where would it break at Amazon scale?</p><p>Data sensitivity, eval maintenance and volume economics become programs. I would require access review and production monitoring before deployment.</p></div>
+</section>
+
+<section class="story">
+<h3>ADD-ON 6 · L25 — The interface study I first refused <span class="badge">Real · secondary-source caution</span></h3>
+<div class="meta"><b>Best owner:</b> James · <b>LPs:</b> Are Right, A Lot · Frugality · Dive Deep · <b>Headline:</b> 17 interfaces narrowed to 2 critical usages; $42K study funded with $25K contingent (secondary packet record; verify provenance).</div>
+<div class="say"><div class="label">20-second version</div>“A partner requested a $42K interface study. I first refused because seventeen interfaces sounded like broad documentation. Evidence then showed two usages sat on the critical path. I reversed my decision, funded the study with $25K contingent on findings, and narrowed the scope to those two usages. The lesson was to be frugal about scope, not evidence.”</div>
+<div class="star">
+<p><span class="stag">S — Situation.</span> During the Sephora inventory program, a partner requested a $42K study across seventeen interfaces. My first reaction was no: the request looked like paying to document everything when only a subset could affect the launch.</p>
+<p><span class="stag">T — Task.</span> I had to protect scarce program funds without creating a blind spot on the critical path. More importantly, I had to be willing to reverse my own decision if the evidence changed the risk classification.</p>
+<p><span class="stag">A — Action.</span> I asked for a usage-level dependency map instead of a generic interface list: which business event crossed each interface, which go-live gate depended on it, whether a mock exercised it, and what failure would look like. The map showed that two usages were critical, not all seventeen. That changed the decision. I went back to the sponsor, stated that my initial refusal had treated interface count as a proxy for risk, and recommended funding the $42K study with $25K contingent on what the first pass found. I narrowed the charter to the two critical usages and required the study to produce test cases and an owner—not a shelf document. I preserved a visible stop decision if evidence did not support further work.</p>
+<p><span class="stag">R — Result.</span> The study was funded on a gated basis and the broad seventeen-interface concern became two testable critical usages with named owners and gates. The value of the story is the judgment reversal and scoped evidence; the source does not support a separate delivered-savings claim.</p>
+</div>
+<div class="trade"><b>TRADE-OFF I MADE:</b> I spent $42K to reduce a launch blind spot but kept $25K contingent. I rejected both a blanket refusal and an open-ended study.</div>
+<div class="learn"><b>FAILURE / LEARNING:</b> My first no was too fast. I confused a large inventory with low marginal value. I now classify usage criticality before pricing assurance.</div>
+<ul class="lp"><li><b>Are Right, A Lot:</b> I reversed my own call when the dependency evidence changed.</li><li><b>Frugality:</b> scope and follow-on funding were gated.</li><li><b>Dive Deep:</b> business-event usage replaced interface count.</li></ul>
+<div class="safe"><b>SAFE-SAY:</b> “An earlier loop packet records seventeen interfaces, two critical usages, a $42K funded study and $25K contingent. I would verify the original artifact before using the dollars; the safe story is that I reversed a refusal after usage-level evidence.”<br><b>If asked for source:</b> “The earlier Amazon loop packet, story S25; the primary artifact is not in the current source set.”</div>
+<div class="qa"><p class="q">Why include a story with secondary provenance?</p><p>Only as a backup after verification. The behavior is useful, but I will not upgrade packet figures into primary-record facts.</p></div>
+<div class="qa"><p class="q">What if Rajesh cannot verify it?</p><p>Drop the dollars and say: “I narrowed a broad interface study to two critical usages and reversed my initial refusal.”</p></div>
+</section>
+
+<h2 class="break">D · Swap table</h2>
+<table>
+<thead><tr><th>If this has already been spent…</th><th>Do not repeat it to…</th><th>Swap to</th><th>Different number to land</th></tr></thead>
+<tbody>
+<tr><td>S2 UDC to Rocky</td><td>James / Venkata</td><td>James S17; Venkata S9</td><td>~6→~3 weeks / 597 first</td></tr>
+<tr><td>S18 migration to Rocky</td><td>Venkata</td><td>G1 or S16</td><td>2 days before sign-off / 4 systems→1</td></tr>
+<tr><td>S10 Austria to James</td><td>Venkata</td><td>S9</td><td>1,000 asked; 597 first</td></tr>
+<tr><td>S15 governance to James</td><td>Venkata</td><td>I1</td><td>$25→$0.40 per incident</td></tr>
+<tr><td>A4 decommission to James</td><td>Venkata</td><td>S14</td><td>~200 orders / $2.5M order value</td></tr>
+<tr><td>S11 product launch to Venkata</td><td>Rocky / James</td><td>Rocky A5; James L22</td><td>500/20 min/99.6% / 15 work items</td></tr>
+<tr><td>S13 crisis to Venkata</td><td>Rocky / James</td><td>Rocky B3; James S17</td><td>&lt;4 weeks / cycle about halved</td></tr>
+<tr><td>G1 failure to Venkata</td><td>Rocky / James</td><td>Rocky G2; James G3</td><td>training +1.5 weeks / late review owned</td></tr>
+<tr><td>I1 AI product to Venkata</td><td>James</td><td>L22 ownership boundary</td><td>12 export + 3 import</td></tr>
+<tr><td>Thursday’s S1/S3/S6/S8/S12</td><td>Rocky / James</td><td>Rocky S2; James S17</td><td>15 months / ~6→~3 weeks</td></tr>
+</tbody></table>
+
+<h3>Top 10 per interviewer — order of play</h3>
+<table>
+<thead><tr><th>#</th><th>Rocky</th><th>James</th><th>Venkata</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>S2 UDC — 15 months, ~30 tracks</td><td>S17 carrier bid — cycle about halved</td><td>S11 SV — 7→68, 9.7×</td></tr>
+<tr><td>2</td><td>S18 migration — 2 DCs, 8 months</td><td>S10 Austria — ~55%→99%</td><td>S14 trust — ~$2.5M order value</td></tr>
+<tr><td>3</td><td>S5 council — sign-off before build</td><td>S15 change — 20 people, 6 weeks</td><td>S16 pipeline — 4 systems→1</td></tr>
+<tr><td>4</td><td>C3 Locus — 94% vs 98% gate</td><td>A4 decommission — 79 customers</td><td>S9 scale — 597/80% first</td></tr>
+<tr><td>5</td><td>A5 launch gate — 500/20 min/99.6%</td><td>L22 ownership — 15 work items</td><td>S13 crisis — 99% fill</td></tr>
+<tr><td>6</td><td>B3 collision — &lt;4 weeks</td><td>G3 security failure — own it early</td><td>G1 failure — 2 days before sign-off</td></tr>
+<tr><td>7</td><td>C2 issue mechanism — 836 rows</td><td>E8 DESIGN CASE + S15 lived analog</td><td>I1 AI — $25→$0.40</td></tr>
+<tr><td>8</td><td>G2 failure — training +1.5 weeks</td><td>E9 DESIGN CASE + S18 lived analog</td><td>S15 only if James did not spend</td></tr>
+<tr><td>9</td><td>D2 cutover — 7%→0.3%</td><td>L25 reversal — verify first</td><td>S12 different facet only</td></tr>
+<tr><td>10</td><td>CAN-B2 — 99-brand plan; outcome VERIFY</td><td>UDC-B3 — node configuration, same UDC umbrella</td><td>A4 only if James did not spend</td></tr>
+</tbody></table>
+
+<h2 class="break">E · Source trace for Section C</h2>
+<table>
+<thead><tr><th>Number / claim</th><th>Story</th><th>Source</th><th>Page / row</th><th>Match</th></tr></thead>
+<tbody>
+<tr><td>25% vs 63%; normalized ~27%; variance 16 vs 8 days; +6 months; 80%→90%</td><td>A4</td><td>Apple workbook v11 A4; 2022 PM record</td><td>Apple pp12–13 / text 600–683</td><td>Y</td></tr>
+<tr><td>79 customers; $15,491 MRR; $185,892 ARR; 294,581 containers</td><td>A4</td><td>RAPID — Crux Customer Transition; Apple A4</td><td>Apple p13 / text 640–683</td><td>Y</td></tr>
+<tr><td>100-container UAT; seven checks; named defect IDs</td><td>A5</td><td>100 Container Debugging Session CSV; Apple A5</td><td>Apple pp14–15 / text 688–775</td><td>Y</td></tr>
+<tr><td>500 containers / 20 min / 99.6%; 100% processed / 86% tracked</td><td>A5</td><td>Technology Program Management Status, Nov 19 2021; Apple A5</td><td>Apple p14 / text 728–765</td><td>Y</td></tr>
+<tr><td>80% minor/no-issues UAT bar; sample ≥20</td><td>A5</td><td>SV Product Testing Approach; Launch Status Guidance</td><td>Apple pp14–15 / text 724–764</td><td>Y</td></tr>
+<tr><td>15 work items: 12 export, 3 import</td><td>L22</td><td>Customs Platform / FFA Ownership Proposal</td><td>p1 / text rows 5–17</td><td>Y</td></tr>
+<tr><td>FFA owns all except ISF; Nov 3 2022; AMS API actions</td><td>L22</td><td>Customs Platform / FFA Ownership Proposal</td><td>p14 / text rows 342–359</td><td>Y</td></tr>
+<tr><td>One month earlier; two programs; 45-minute daily; &lt;4 weeks</td><td>B3</td><td>2022 Senior TPM Ambiguity record; Apple B3</td><td>Apple pp20–21 / text 1028–1103</td><td>Y</td></tr>
+<tr><td>~$200K/month/DC; cumulative protection framing</td><td>B3</td><td>Same as above</td><td>Apple pp20–21</td><td>Y; rate safer than cumulative</td></tr>
+<tr><td>$25→$0.40 per incident; 98% cut; 100% citations</td><td>I1</td><td>Rajesh TPM stories; Apple I1</td><td>Apple pp42–43 / text 2159–2224</td><td>Y</td></tr>
+<tr><td>17 interfaces→2 critical uses; $42K funded; $25K contingent</td><td>L25</td><td>Earlier Amazon loop packet S25 / older James packet S1-e</td><td>secondary packet; old HTML row 190</td><td>VERIFY primary provenance</td></tr>
+</tbody></table>
+
+<h3>VERIFY checklist and exact safe sentences</h3>
+<ul>
+<li><b>L25 primary artifact.</b> Safe: “An earlier loop packet records seventeen interfaces narrowed to two critical usages. Until I confirm the source artifact, I will describe the reversal and omit the dollar amounts.”</li>
+<li><b>S17 cycle-time figures.</b> Safe: “My program anchor is about six weeks to about three; I claim no award savings.”</li>
+<li><b>A4 ARR retirement interpretation.</b> Safe: “The document records the legacy revenue base; I am not claiming that the full amount was lost in one period.”</li>
+<li><b>B3 value framing.</b> Safe: “I can defend the monthly per-DC rate in the program record; the strongest result is that both dates held.”</li>
+<li><b>Earth’s Best Employer coverage.</b> Safe: “I did not manage a direct-report organization in these stories; my evidence is how I protected operators and SMEs under pressure.”</li>
+</ul>
+
+<h2 class="break">Phase-1 report</h2>
+<div class="summary">
+<p><b>What the mining found.</b> The master has enough real stories to keep designs off the behavioral path. The strongest underused records are A4’s product-retirement governance, A5’s launch evidence, L22’s ownership boundary, B3’s resource collision and I1’s AI unit economics. L25 is useful only after provenance verification. The newly arrived UDC/Canada pack adds a real 99-brand cross-border plan and a 44-row node-governance mechanism; post-launch Canada outcomes remain VERIFY.</p>
+<p><b>Six add-on headlines.</b> A4: 79 customers / $185,892 ARR / 294,581 containers. A5: 500 containers in 20 minutes at 99.6%, with 86% tracked named honestly. L22: 15 work items, one signed boundary. B3: one month pulled forward, compressed launch inside four weeks, both dates held. I1: $25→$0.40 per incident, 100% citations. L25: 17 interfaces→2 critical usages, secondary-source dollars to verify.</p>
+<p><b>Primary collision fixes.</b> S10→James, S13→Venkata, S15→James, S18→Rocky, S11→Venkata, S14→Venkata; G2/G3/G1 become Rocky/James/Venkata’s distinct failures.</p>
+<p><b>Design discipline.</b> S19–S21 and E1–E12 remain DESIGN CASES, never delivered results. Pair E8 with lived S15, E9 with lived S18, and Walmart promise ideas with lived F4 only if needed.</p>
+</div>
+</body></html>

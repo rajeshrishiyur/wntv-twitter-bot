@@ -1,0 +1,2 @@
+program_id,as_of_date,po_lines,lines_with_an_asset,reconciliation_rate,alert_below,alert_fires,missing_pis,pis_completeness,passed_on_first_entry,ftr_assets,first_time_right_rate,aging_0_7,aging_8_30,aging_31_plus,person_dependent_fields
+TS-LINE-RAMP,2026-03-16,40,38,0.95,0.98,true,12,0.7,21,40,0.525,7,7,7,3

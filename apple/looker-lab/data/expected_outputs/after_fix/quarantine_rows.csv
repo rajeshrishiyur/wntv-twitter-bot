@@ -1,0 +1,3 @@
+source_file,po_line_id,site_raw,po_date_raw,reasons
+raw_cm_tracker_siteA,00901,SITE-Z,2026-02-02,unknown_site; not_on_equipment_list
+raw_cm_tracker_siteB,(blank),Site B,13/32/2026,blank_po_line; bad_po_date

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Part 4B — James Cabreros — process-improvement STAR stories (S17 · S10 · S15 · A4 · L22 · G3 failure)</title>
+<style>
+  @page { size: letter; margin: 0.62in 0.68in 0.68in 0.68in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", "Inter", Arial, sans-serif; font-size: 10.3pt; line-height: 1.38; color: #1c1c1c; }
+  h1 { font-size: 20pt; line-height: 1.15; margin: 0 0 6px; letter-spacing: -0.02em; }
+  h2 { font-size: 13pt; margin: 16px 0 6px; padding-top: 8px; border-top: 2px solid #1a2744; page-break-after: avoid; }
+  h2.break { page-break-before: always; }
+  h3 { font-size: 11.3pt; margin: 12px 0 4px; page-break-after: avoid; color: #1a2744; }
+  h3.st { font-size: 12pt; color: #1c1c1c; border-left: 4px solid #1a2744; padding-left: 8px; margin-top: 16px; page-break-before: always; }
+  h4 { font-size: 10.3pt; margin: 9px 0 3px; page-break-after: avoid; color: #8a1c2b; }
+  p { margin: 0 0 7px; }
+  ul, ol { margin: 2px 0 8px; padding-left: 18px; }
+  li { margin: 0 0 3px; }
+  .kicker { font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .title { padding-top: 0.2in; }
+  .title .role { font-size: 12.5pt; color: #1a2744; margin: 0 0 12px; }
+  .title .who { background: #1a2744; color: #fff; padding: 14px 18px; margin: 10px 0 14px; }
+  .title .who .nm { font-size: 15pt; font-weight: 700; letter-spacing: -0.01em; }
+  .title .who .tt { font-size: 10.5pt; color: #e6ddcb; margin-top: 3px; }
+  .title .who .sh { font-size: 9.5pt; color: #e6ddcb; margin-top: 6px; }
+  .strat { background: #f7f4ee; border-left: 4px solid #8a1c2b; padding: 10px 14px; margin: 8px 0; font-size: 10.2pt; }
+  .strat strong { color: #8a1c2b; }
+  .lpg { font-size: 9.6pt; color: #333; margin-top: 8px; }
+  .lpg em { color: #7a5a00; font-style: normal; font-weight: 700; }
+  .meta { background: #f4f1ea; border-left: 4px solid #1a2744; padding: 8px 12px; margin: 8px 0 10px; font-size: 9.8pt; }
+  .meta div { margin: 1px 0; }
+  .say { background: #f7f4ee; border: 1px solid #d9d0c1; border-left: 4px solid #8a1c2b; padding: 8px 12px 4px; margin: 6px 0 10px; page-break-inside: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, serif; font-size: 10.4pt; line-height: 1.42; }
+  .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin-bottom: 4px; }
+  .star { background: #fcfbf8; border: 1px solid #d9d0c1; padding: 7px 12px 3px; margin: 4px 0 10px; font-size: 9.7pt; }
+  .star p { margin: 0 0 5px; }
+  .stag { font-weight: 700; color: #8a1c2b; }
+  .hon { background: #f3f0fa; border-left: 4px solid #5b4a8a; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.3pt; color: #333; }
+  .hon strong { color: #5b4a8a; }
+  .doc { background: #eef4f6; border: 1px solid #c3d5da; border-left: 4px solid #1f6f7a; padding: 7px 12px 4px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .doc p { margin: 0 0 5px; }
+  .doc .label { color: #1f6f7a; }
+  .inf { background: #fbf7ec; border-left: 4px solid #b8860b; padding: 5px 10px; margin: 4px 0 8px; font-size: 9.4pt; }
+  .inf strong { color: #7a5a00; }
+  .rules { background: #fdf0f0; border: 1px solid #e3b7b7; border-left: 4px solid #8a1c2b; padding: 7px 12px; margin: 6px 0 10px; font-size: 9.5pt; }
+  .rules strong { color: #8a1c2b; }
+  .qa { border-left: 3px solid #d9d0c1; padding: 2px 0 2px 10px; margin: 0 0 9px; font-size: 9.5pt; page-break-inside: avoid; }
+  .qa p { margin: 0 0 3px; }
+  .qa p.q { color: #1a2744; font-weight: 700; }
+  .sh { font-size: 8.8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #8a1c2b; font-weight: 700; margin: 10px 0 4px; border-bottom: 1px solid #d9d0c1; padding-bottom: 2px; page-break-after: avoid; }
+  ul.res { margin: 2px 0 8px; padding-left: 16px; font-size: 9.7pt; }
+  ul.res li { margin: 0 0 3px; }
+  ul.lp { margin: 2px 0 8px; padding-left: 16px; font-size: 9.5pt; }
+  ul.lp li { margin: 0 0 3px; }
+  .pb { font-weight: 700; color: #1a2744; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 9.1pt; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #ddd; padding: 4px 6px 4px 0; }
+  th { font-size: 8.2pt; letter-spacing: 0.04em; text-transform: uppercase; color: #555; border-bottom: 1.5px solid #1a2744; }
+  td.c { color: #8a1c2b; font-weight: 700; }
+  span.new { display: inline-block; background: #8a1c2b; color: #fff; font-size: 7.4pt; letter-spacing: 0.08em; padding: 1px 5px; border-radius: 3px; vertical-align: middle; margin-left: 4px; text-transform: uppercase; }
+  span.fail { display: inline-block; background: #5b4a8a; color: #fff; font-size: 7.4pt; letter-spacing: 0.08em; padding: 1px 5px; border-radius: 3px; vertical-align: middle; margin-left: 4px; text-transform: uppercase; }
+  span.b { display: inline-block; background: #e8eef6; color: #1a2744; font-size: 7.6pt; padding: 0 4px; border-radius: 3px; margin-left: 2px; }
+  .toc div { margin: 2px 0; font-size: 9.8pt; }
+  .toc .grp { font-weight: 700; color: #8a1c2b; margin-top: 8px; }
+  .cite { color: #1f6f7a; font-size: 8.6pt; }
+</style>
+</head>
+<body>
+
+<div class="title">
+  <div class="kicker">Part 4B — James Cabreros — process-improvement STAR stories</div>
+  <h1>Part 4B — James Cabreros (11:00 slot; schedule listed Zhaowen Lan) — Sr Manager Supply Chain, placement architecture · process improvement · configuration governance</h1>
+  <div class="role">Amazon — Senior Supply Chain Manager, NACF Supply Chain (L6) · Rajesh Rishiyur Chandrasekaran · Friday, October 30, 2026</div>
+  <div class="who">
+    <div class="nm">Six lived-record process-improvement stories, one of them a full failure</div>
+    <div class="tt">S17 carrier-bid process · S10 Austria routing-guide data quality · S15 change governance · A4 Crux decommission (apples-to-apples lens) · L22 Customs/FFA ownership at work-item grain · G3 late security review (FAILURE, 3-level probes)</div>
+    <div class="sh">Companion to the James front matter (cram sheet, his bullets → my stories, trade-off ledger, toolkit) in <i>amazon-nacf-panel-4-cabreros-process-star-kimi-k3</i> and to UDC pack B3 (node enablement) and B6 (retail end-to-end near-miss). This file adds stories only; it does not repeat those.</div>
+  </div>
+  <div class="strat"><strong>How to use this file in the room.</strong> James leads a legacy placement-rules-engine migration to a centralized policy platform, AI-assisted configuration tooling, crossdock / escape-routing / capacity-signalling design, and configuration governance (pre-deployment validation, change-management SOPs, post-incident corrective actions, auditability across hundreds of weekly changes). Every story below is a <em>process</em> story told by the person who owned the rule, the gate or the boundary — not the award, not the build. Each ends with a line that maps it to one of his bullets. The failure story (G3) is told in full with three levels of probing, because he will ask for one. Nothing in this file is a design case.</div>
+  <div class="lpg"><em>Integrity rules on every page:</em> every number carries a basis label — <b>record</b> (Apple v11 / master packet), <b>record-from-docs</b> (a page of a source document), <b>modeled</b> (my model, inputs stated), <b>illustrative</b>. S17 claims no award dollar. A4's $185,892 ARR is the documented legacy base, not a one-period loss. L22's result is decision closure, not a quantified business outcome. Already told on Thursday and never primary here: S/4HANA / ISM, Flexport estimation / FF App, Shipment Visibility, safety stock, the 200-lane program.</div>
+  <div class="lpg"><em>Manhattan Associates note.</em> The master packet and GFiber v8 carry exactly two Manhattan stories, S13 (Cyber Monday allocation) and S14 (the OMS↔WMS discrepancy); both are allocated to Venkata and are not retold here. No other Manhattan process-improvement story exists in any source, so I do not invent one. What James gets is the Manhattan <b>configuration context</b> — Manhattan DOM/OMS is the only platform I personally configured (record) — carried as a one-paragraph bridge in section 7, mapped to his configuration-governance bullet.</div>
+  <div class="toc">
+    <div class="grp">Contents</div>
+    <div>1 · S17 — Elementum: the semi-annual carrier bid — a lane master and explicit constraint rules cut the cycle from about six weeks to about three (no award dollar claimed)</div>
+    <div>2 · S10 — Elementum: Austria — routing-guide data quality from about 55% true to about 99% within a quarter; the Finance-signed method before the number</div>
+    <div>3 · S15 — Sephora: change governance — a 20-person Product/Eng/QA team to a four-week cadence in six weeks; the gate owned by the skeptic</div>
+    <div>4 · A4 — Flexport: the Crux decommission — an apples-to-apples reliability lens (79 customers · $185,892 ARR documented base · 294,581 annual containers · about 27% vs 25% · 90% against an 80% north star)</div>
+    <div>5 · L22 — Flexport: Customs Platform vs FFA ownership resolved at work-item grain (15 work items, 12 export + 3 import; FFA all except ISF filing)</div>
+    <div>6 · G3 — Flexport: the security review I discovered instead of planned — FULL FAILURE STAR with three-level probes</div>
+    <div>7 · Manhattan configuration-context bridge · the one-line failure ledger across all six · 20-second versions on one page</div>
+  </div>
+</div>
+
+<!-- ============================ STORY 1 · S17 ============================ -->
+<h3 class="st">1 · S17 — Elementum: the semi-annual carrier bid — a lane master and explicit constraint rules cut the cycle from about six weeks to about three <span class="new">lived record</span></h3>
+<div class="meta">
+  <div><b>Company / role:</b> Elementum, customer transportation team · I owned requirements, the constraint rules and the parallel run — not the award (Transportation and Procurement ran it).</div>
+  <div><b>LPs:</b> Invent and Simplify (primary) · Dive Deep (the time audit) · Frugality · Earn Trust (the dollar I refused to claim).</div>
+  <div><b>Headline:</b> carrier-bid cycle about six weeks → about three (record); pilot region finished three weeks early (record); back-test mismatch under 5% against the last two awards before the optimizer could run (record, the published gate). <b>No award dollar claimed.</b></div>
+  <div><b>His bullet:</b> policy platform migration (rules engine → explicit, reviewable rules) · pre-deployment validation (the back-test gate) · AI/tool-assisted configuration for non-specialists.</div>
+</div>
+
+<p class="sh">60-second pitch</p>
+<div class="say">
+  <div class="label">Say this, then stop on the primary metric</div>
+  <p><b>Situation.</b> The customer's transportation team ran a carrier bid twice a year: hundreds of lanes, dozens of carrier rate files, constraints like incumbency floors and volume commitments. Each cycle took about six weeks and everyone in the room called it an optimization problem. <b>Task.</b> I owned the requirements, the constraint rules and the parallel run — Transportation, Procurement and engineering did not report to me, and I never owned the award. <b>Action.</b> I sat through one full cycle logging hours, and the audit contradicted the room: the six weeks went to reconciling lane names and mode codes across carriers, not to analysis. So I wrote a lane master — one normalized origin, destination and mode key — and turned every tribal constraint into one explicit, written rule. I published a validation gate before any optimizer ran: the rules had to reproduce the last two real awards with under five percent mismatch, and every scenario had to be explainable in one sentence to an incumbent carrier. I rejected a black-box cheapest-lane solver in writing. Then I parallel-ran one region's real bid, tool against manual. <b>Result.</b> The pilot region finished three weeks early and the cycle went from about six weeks to about three; the other regions adopted the tool without a mandate because each region's own constraints lived in it as rules. I do not claim a dollar on the award — the people who ran the negotiation own that.</p>
+</div>
+
+<p class="sh">STAR — first person</p>
+<div class="star">
+  <p><span class="stag">S — Situation.</span> Semi-annual carrier bid at an Elementum transportation customer: hundreds of lanes, dozens of rate files, constraints (volume commitments, incumbency floors, mode eligibility), about six weeks per cycle. Origin/destination naming and mode codes differed per carrier. The team, my sponsor and engineering all assumed the bottleneck was optimization.</p>
+  <p><span class="stag">T — Task.</span> Own the requirements, the constraint rules and the parallel run; get a defensible award in less time without owning the award itself. No line authority over Transportation, Procurement or engineering.</p>
+  <p><span class="stag">A — Action.</span> (1) <i>Discovery:</i> I sat one entire cycle and kept an hour log by activity; reconciliation dominated, analysis was the minority; I wrote the problem-class statement and got Transportation to agree the cost was reconciliation. (2) <i>Design:</i> I specified the lane master (origin / destination / mode normalization), wrote constraints one per rule, published the pre-run validation gate (under 5% mismatch against the last two awards), made scenario comparison a first-class output and rejected the black-box solver in writing. (3) <i>Build and test:</i> I held engineering to the spec, ran the back-test read-out where every mismatch against two historical awards was classified — naming, mode code, constraint semantics — with an owner, and required a stale-data banner past ten days. (4) <i>Pilot:</i> parallel run on one region's real bid; acceptance was the regional team's own judgment: the tool matched their defensible choices and beat cycle time; the manual process stayed alive as rollback. (5) <i>Adoption:</i> weekly rate-file refresh cadence; Procurement brought into the constraint definitions — late, which is my named miss.</p>
+  <p><span class="stag">R — Result.</span></p>
+  <ul class="res">
+    <li>Cycle time about six weeks → about three, roughly half (record); pilot region finished three weeks early (record).</li>
+    <li>Back-test mismatch under 5% against both prior awards before the optimizer was allowed to run (record — the published gate).</li>
+    <li>Regions adopted without a mandate; constraint definitions now written with Procurement in the room (record).</li>
+    <li>Analyst hours returned: modeled only, on illustrative analyst and region counts; I state the range and label it. No savings on the award — Transportation and Procurement ran it.</li>
+  </ul>
+</div>
+
+<p class="sh">Who I influenced, and how</p>
+<p><b>Transportation</b> — by the hour log: I showed them where their own six weeks went, and they signed the rules. <b>Engineering</b> — they wanted a cheapest-lane solver; I made explainability the spec (scenario comparison first-class; under-5% back-test before any run). Objection became co-ownership of the gate. <b>Regional bid teams</b> — I made their judgment the acceptance test, so the pilot's result was theirs. <b>Procurement</b> — too late; "incumbency floor" meant different things to Transportation and the category manager, and I only learned that after design sign-off.</p>
+
+<div class="inf"><strong>TRADE-OFF I MADE.</strong> Options: (a) a black-box cheapest-lane solver, fast to build; (b) a lane master plus explicit rules with a historical back-test gate, slower first cycle; (c) keep the manual process and add staff. I chose (b): a slower first cycle to write and validate the rules, for a tool that roughly halved every cycle after. I rejected (a) because an award nobody can explain in a carrier meeting does not survive the incumbent; I rejected (c) because the problem class was reconciliation, which staff does not fix. What it cost: one slower first cycle, and a dollar figure I will never be able to claim because the award was not mine.</div>
+<div class="hon"><strong>Failure / learning.</strong> Procurement joined after design sign-off, and the constraint-semantics risk fired exactly where I had not put them in the room. Rule since: every function that owns a word in a rule is in discovery on day one.</div>
+
+<p class="sh">LP tags</p>
+<ul class="lp">
+  <li><b>Invent and Simplify</b> — a time audit that contradicted the room, then one lane master and explicit rules beat the fancier solver.</li>
+  <li><b>Dive Deep</b> — I logged hours for a full cycle instead of interviewing; the data overturned the "optimization" belief.</li>
+  <li><b>Frugality</b> — simplification over a new solver; the manual process stayed as free rollback.</li>
+  <li><b>Earn Trust</b> — I refused the award dollar I could not defend, which is what makes the numbers I do defend credible.</li>
+</ul>
+
+<div class="rules"><strong>SAFE-SAY.</strong> Most attackable number: "My program anchor is about six weeks to about three; I claim no award savings — Transportation and Procurement ran the award." Source question: "The cycle time, the pilot finishing three weeks early and the five-percent back-test gate are the record in my master packet; analyst counts, region counts and any dollar on hours are my model, labeled as such."</div>
+
+<div class="say"><div class="label">20-second version</div><p>"A six-week carrier bid everyone called an optimization problem turned out, when I logged the hours, to be a reconciliation problem. I wrote a lane master and explicit constraint rules, gated the optimizer on reproducing the last two awards within five percent, and parallel-ran one region. The cycle went to about three weeks and other regions adopted without a mandate. I claim no dollar on the award."</p></div>
+
+<p class="sh">Probes — answer the one asked, then stop</p>
+<div class="qa"><p class="q">Q1. Why does this count as process improvement rather than a tool build?</p><p>Because the artifact that mattered was the rule set and the gate, not the code. The lane master made the data configurable by non-specialists — a regional analyst could add a lane or a constraint as a row, not a ticket — and the back-test gate was a pre-deployment validation that stopped a bad configuration from reaching an award. Engineering built to that spec; the process was mine.</p></div>
+<div class="qa"><p class="q">Q2. How did you validate the rules before anyone trusted the output?</p><p>Against two historical awards: the model's award had to match the actual award on more than 95% of lanes evaluated. Every mismatch was classified — naming, mode code, constraint semantics — with an owner, in one read-out. That is where most of the reconciliation logic got fixed, and the optimizer did not run below the bar.</p></div>
+<div class="qa"><p class="q">Q3. What went wrong, and what did you change?</p><p>Procurement was not in discovery. "Incumbency floor" meant different things to Transportation and the category manager, and the rule carried only one meaning. I brought Procurement into the constraint definitions late, and for the next cycle they were in discovery on day one. The checklist change: a rule's words are owned by every function that uses them.</p></div>
+<div class="qa"><p class="q">Q4. Surely the faster bid saved freight dollars?</p><p>Possibly, and that claim belongs to the people who ran the award. What I can defend is the cycle halving, the five-percent back-test and the analyst hours returned — the hours modeled and labeled. Refusing the dollar I cannot defend is what keeps the ones I do defend credible.</p></div>
+
+<div class="doc"><div class="label">How this maps to his bullets</div><p><b>Policy platform migration</b> — tribal constraints became explicit, reviewable rules in one master (the same move as a legacy placement rules engine to a centralized policy platform). <b>Pre-deployment validation</b> — the under-5% back-test against real history is a change gate before anything reaches production. <b>AI-assisted / self-serve configuration</b> — the lane master let non-specialist regional analysts configure their own constraints as rows; the stale-data banner is the auditability control. <b>Point of contact</b> — Transportation, Procurement, engineering, regional teams.</p></div>
+
+<!-- ============================ STORY 2 · S10 ============================ -->
+<h3 class="st">2 · S10 — Elementum: Austria — "the noise said carriers; the data said measurement" — routing-guide data quality from about 55% true to about 99% within a quarter <span class="new">lived record</span></h3>
+<div class="meta">
+  <div><b>Company / role:</b> Elementum, customer transportation (Austria site first, then 25 EU sites) · I owned the analysis and the rules design and pulled the data myself; the data-platform team built the engine; Finance signed the savings method.</div>
+  <div><b>LPs:</b> Are Right, A Lot (primary) · Dive Deep · Earn Trust (Finance-signed method before the number) · Success and Scale Bring Broad Responsibility (one site's fix became 25 sites' instrument).</div>
+  <div><b>Headline:</b> routing-guide data quality about 55% true (40% reported) → about 99% within a quarter (record); manual reconciliation 8–10 → 1–2 hours a week (record); $500K/yr at Austria on a Finance-signed, executed-only method, about $8M across 25 EU sites (record).</div>
+  <div><b>His bullet:</b> post-incident corrective actions at the defect-class level · pre-deployment validation (the scorecard gate) · a rules engine with "no-hit pages a human, never a default" · governance SOPs (super-users, one-page runbook).</div>
+</div>
+
+<p class="sh">60-second pitch</p>
+<div class="say">
+  <div class="label">Say this, then stop on the primary metric</div>
+  <p><b>Situation.</b> Transportation at the customer's Austria site could not measure on-time delivery. The report said data quality was 40%, the team spent eight to ten hours a week reconciling promised against actual dates by hand, and everyone — the site, the carrier account teams, my own sponsor — believed the carriers were late. <b>Task.</b> I owned the analysis and the rules design. <b>Action.</b> I pulled three years of shipment history in SQL myself and ran a defect census: missing rates, wrong-grain lanes, five spellings of one carrier, brochure transit times posing as promises. True quality was about 55%, not 40%, and the problem was measurement, not carriers. I designed the promised-delivery-date as a routing-guide rules engine — lookup by ship-from, ship-to, mode, volume band, Incoterm and SLA, with a no-hit paging a human instead of defaulting a carrier. Before any dollar was claimed I had Finance sign the savings method: contracted guide rate minus paid rate, executed shipments only. I treated defects as classes with reason-code alerts and a weekly burn-down, and I would not release the carrier scorecard until automated on-time delivery matched a manual sample per lane cohort. <b>Result.</b> Data quality went from about 55% true to about 99% within a quarter; manual reconciliation fell from eight to ten hours a week to one or two; the carriers never disputed the scorecard. Austria delivered $500K a year on the signed method, and the same rules file plus one data-quality cycle per site rolled to 25 EU sites, about $8M.</p>
+</div>
+
+<p class="sh">STAR — first person</p>
+<div class="star">
+  <p><span class="stag">S — Situation.</span> Austria site, freight base about $5M a year, no enforceable on-time delivery. Reported data quality 40% (a single-field proxy); 8–10 hours a week of manual reconciliation; a shared belief that carriers were the problem.</p>
+  <p><span class="stag">T — Task.</span> Own the analysis and the rules design; produce an on-time measure the carriers could not dispute and a savings number Finance would stand behind.</p>
+  <p><span class="stag">A — Action.</span> (1) <i>Discovery:</i> three years of history in SQL, pulled by me; defect census by class; true quality about 55%; sponsor accepted the reframe on the evidence. (2) <i>Design:</i> rules-engine spec with Incoterm in the key (about 8% of lanes needed it, because Incoterm changes who owns the clock); no-hit pages a human, never a default carrier; reason-code alert design; the Finance-signed savings method before any claim; a published scorecard gate — automated OTD must equal the manual sample per lane cohort. (3) <i>Build and test:</i> held engineering to the spec; weekly defect burn-down by reason code; manual-sample comparison per cohort. (4) <i>Cutover:</i> released the scorecard only after the gate passed; retired manual reconciliation; stood up the per-shipment savings ledger. (5) <i>Scale:</i> super-user per region, a one-page runbook (add a lane · read a no-hit · when to escalate), two shadowed rule reviews per site, then site by site.</p>
+  <p><span class="stag">R — Result.</span></p>
+  <ul class="res">
+    <li>Routing-guide data quality about 55% true → about 99% within a quarter (record).</li>
+    <li>Manual reconciliation 8–10 → 1–2 hours a week per site (record); carriers did not dispute the scorecard (record).</li>
+    <li>$500K/yr at Austria, 10% of a roughly $5M base, Finance-signed executed-only method (record); about $8M across 25 EU sites and 400+ lanes (record). Negotiated-but-not-executed never counted.</li>
+    <li>Adoption cost per site: a rules file plus one data-quality cycle, measured in days (record).</li>
+  </ul>
+</div>
+
+<p class="sh">Who I influenced, and how</p>
+<p><b>My sponsor</b> — wanted the scorecard fast and was unhappy for weeks; I showed defect classes trending down weekly and the manual-sample gate it had to pass. <b>Finance</b> — I asked them to sign the method before the number existed, which made every later dollar un-arguable. <b>Carrier account teams</b> — they had been blamed for our measurement error; a scorecard built on valid promises only was one they could accept. <b>Regional super-users</b> — I handed them the rules file, the runbook and two shadowed reviews, then stepped back.</p>
+
+<div class="inf"><strong>TRADE-OFF I MADE.</strong> Options: (a) ship the scorecard on the data we had and fix later; (b) delay the scorecard weeks until automated OTD matched the manual sample per cohort; (c) buy a carrier-performance product. I chose (b) — I traded date for evidence and kept scope whole. I rejected (a) because a scorecard on 55% data would have been disputed and the carriers would have won; I rejected (c) because the defect was in our own lane and promise data, which no vendor fixes. What it cost: a sponsor unhappy for weeks and the manual process kept alive longer than anyone wanted.</div>
+<div class="hon"><strong>Failure / learning.</strong> I proved the brochure transit times wrong lane by lane; starting from an industry transit benchmark would have reached the same answer faster. Rule since: measure before you blame, and sign the method before the number.</div>
+
+<p class="sh">LP tags</p>
+<ul class="lp">
+  <li><b>Are Right, A Lot</b> — the room said carriers; three years of data said measurement, and I changed the decision on the evidence.</li>
+  <li><b>Dive Deep</b> — I pulled the data myself and classified every blank into a defect class before proposing anything.</li>
+  <li><b>Earn Trust</b> — Finance-signed, executed-only savings method before the first dollar was spoken.</li>
+  <li><b>Success and Scale Bring Broad Responsibility</b> — one site's fix became a 25-site instrument with a runbook and super-users, so it survived me.</li>
+</ul>
+
+<div class="rules"><strong>SAFE-SAY.</strong> Most attackable number: "About $8M is the executed-only ledger across 25 sites on the method Finance signed before the first claim; the Austria $500K is that method's proof. I say eight million, never a smaller figure, and never anything merely negotiated." Source question: "The data-quality, hours and savings figures are record in my master packet; the analyst-capacity dollars are my model and I label them."</div>
+
+<div class="say"><div class="label">20-second version</div><p>"Austria could not measure on-time delivery and blamed the carriers. I pulled three years of data myself: true quality was about 55%, not the 40% reported, and the problem was our measurement. I designed the promised date as a rules engine, had Finance sign the savings method first, and gated the scorecard on matching a manual sample. Quality reached about 99% within a quarter; the fix rolled to 25 sites."</p></div>
+
+<p class="sh">Probes — answer the one asked, then stop</p>
+<div class="qa"><p class="q">Q1. How is this a configuration-governance story?</p><p>The routing guide is a rules engine; a no-hit paged a human rather than defaulting a carrier, which is the "no unintended deployment" principle. The scorecard had a pre-release gate (automated equals manual sample per cohort). And the post-incident loop was corrective action at the defect-class level — alerts by reason code, burned down weekly — not one-off fixes.</p></div>
+<div class="qa"><p class="q">Q2. Why pull the data yourself instead of asking the team?</p><p>Because the room already had an explanation. Three years in SQL was faster than a request queue and could not be argued with. Once the sponsor saw every blank classified, the reframe held.</p></div>
+<div class="qa"><p class="q">Q3. How did you make the rollout to 25 sites repeatable?</p><p>Each site cost a rules file and one data-quality cycle. A regional super-user ran the file after two shadowed rule reviews using a one-page runbook: add a lane, read a no-hit, when to escalate. That is a change-management SOP; adding a site took days.</p></div>
+<div class="qa"><p class="q">Q4. What would you do differently?</p><p>Start with the industry benchmark for lane transit times instead of disproving the brochure lane by lane — same answer, weeks faster. And I would publish the scorecard gate on day one so the sponsor's impatience had a visible finish line.</p></div>
+
+<div class="doc"><div class="label">How this maps to his bullets</div><p><b>Post-incident corrective actions</b> — defect classes with reason codes, weekly burn-down, the same metric proving the fix. <b>Pre-deployment validation</b> — the scorecard could not ship until automated matched manual per cohort. <b>Governance SOPs</b> — runbook, super-users, shadowed reviews; adoption cost measured. <b>Escape routing analog</b> — a no-hit pages a human, never a silent default. <b>Point of contact</b> — Transportation, Finance, carrier account teams, regional operations.</p></div>
+
+<!-- ============================ STORY 3 · S15 ============================ -->
+<h3 class="st">3 · S15 — Sephora: change governance — a 20-person Product/Engineering/QA team moved to a four-week cadence in six weeks, with the gate owned by the skeptic <span class="new">lived record</span></h3>
+<div class="meta">
+  <div><b>Company / role:</b> Sephora, supply-chain technology · newly joined, VP air cover, no line authority over anyone in the room; the QA lead authored the definition-of-done — I coached the frame, she owned the gate.</div>
+  <div><b>LPs:</b> Hire and Develop the Best (primary) · Insist on the Highest Standards (the gate) · Strive to be Earth's Best Employer (QA elevated, not blamed) · Earn Trust.</div>
+  <div><b>Headline:</b> 20-person team converted from a six-week hybrid cadence to four-week agile in six weeks (record); critical defects per release down about 50% under the drop-date rule (record); the gate defended by its owner after I stepped back (record). Dollars are modeled only; no headcount invented.</div>
+  <div><b>His bullet:</b> change-management SOPs (definition-of-done, entry criteria, drop date with reason codes) · auditability across many changes (Jira benefit-ranking and review-status fields) · fewer unintended deployments (nothing enters QA that does not meet entry criteria).</div>
+</div>
+
+<p class="sh">60-second pitch</p>
+<div class="say">
+  <div class="label">Say this, then stop on the primary metric</div>
+  <p><b>Situation.</b> Newly joined at Sephora, the VP of Supply Chain asked me to move a 20-person Product, Engineering and QA team from a six-week hybrid cadence to four-week agile. QA — a contracting firm — and in-house engineering were heading for a standoff: QA feared compressed test windows, and they were right. <b>Task.</b> Convert the cadence in weeks, not quarters, without the standoff becoming the story, and with no line authority over anyone in the room. <b>Action.</b> I did one-on-ones with every person and named an influencer per function. Then I made the most skeptical person — the QA lead — the author of the definition-of-done: I coached what a gate needs to say no and survive a release-day argument; she wrote the content. In Jira I added benefit-ranking and review-status fields so a story entered QA only when its entry criteria were met, and I put a QA drop date with reason codes on every sprint, so a heavy story landing in the last two days became a visible re-scope rather than a silent slide. I seated QA on the product-business calls with pre-approved scenarios, and I had Sev-1 causes classified so story-accuracy defects stopped being blamed on test. <b>Result.</b> The team was on a four-week cadence in six weeks; critical defects per release fell about half under the drop-date rule; and the QA lead defended the gate to engineering herself. I stepped back from the review line and neighbouring teams copied the ceremony from the user guide.</p>
+</div>
+
+<p class="sh">STAR — first person</p>
+<div class="star">
+  <p><span class="stag">S — Situation.</span> 20-person Product/Engineering/QA team; six-week hybrid cadence; VP mandate for four-week agile; QA (contractor) versus engineering (in-house) standoff over the compressed test window — a legitimate fear.</p>
+  <p><span class="stag">T — Task.</span> Convert in weeks with no rise in escaped criticals and the QA window protected by rule. VP sponsorship, no line authority.</p>
+  <p><span class="stag">A — Action.</span> (1) <i>Discovery, weeks 1–2:</i> one-on-ones with everyone; objections heard privately; the QA lead agreed to author the gate before anything was scheduled. (2) <i>Design, weeks 2–3:</i> four-week ceremony calendar; definition-of-done frame (hers in content, mine in frame); Jira field spec; user-guide outline; engineering reviewed entry criteria — review, not veto. (3) <i>Build, weeks 3–5:</i> user guide from grooming to completion; live dashboard; QA drop date with reason codes; QA on product-business calls with pre-approved scenarios; Sev-1 cause classification. (4) <i>Cutover, week 6:</i> one facilitated retro; a data read-out to the VP; the gate handed to the QA lead to defend herself. (5) <i>Hypercare:</i> I left the review line; two cycles of stories meeting entry criteria and drop-date reasons trending to genuine re-scopes; neighbouring teams copied the ceremony.</p>
+  <p><span class="stag">R — Result.</span></p>
+  <ul class="res">
+    <li>Four-week cadence live in six weeks (record); releases per year rise from about 8.7 to 13 (modeled from the cadence).</li>
+    <li>Critical defects per release down about 50% under the drop-date rule (record; baseline count not in the record, so I do not quote one).</li>
+    <li>The gate survived my leaving: the QA lead defended it to engineering without me (record).</li>
+    <li>Dollars: about $130K/yr modeled on illustrative defect counts and benchmark costs; I say "modeled" every time.</li>
+  </ul>
+</div>
+
+<p class="sh">Who I influenced, and how</p>
+<p><b>The QA lead</b> — by giving her the load-bearing artifact and the frame, not by writing it for her. <b>Engineering</b> — review rights on the entry criteria and cover from me for the low-impact stories they had to drop; objection became co-ownership. <b>The VP</b> — a data read-out, not a status; the rollback (revert to six weeks) named at kickoff as a two-way door and never used. <b>Neighbouring teams</b> — adoption by copying the user guide, without a mandate.</p>
+
+<div class="inf"><strong>TRADE-OFF I MADE.</strong> Options: (a) write the definition-of-done myself and impose it fast; (b) let the skeptic author it, slower by a week or two and riskier to the VP's timeline; (c) keep six weeks and add QA capacity. I chose (b). I rejected (a) because a gate I write dies when I leave; I rejected (c) because the mandate was cadence and the constraint was the window, not headcount. What it cost: low-impact stories dropped under the drop-date rule — dev's date protected, QA's window protected, and I covered some of those drops myself.</div>
+<div class="hon"><strong>Failure / learning.</strong> I went to engineering first and QA second. I should have gone to QA first and put the QA lead's name on the review line from week one; development that depends on me staying is not development.</div>
+
+<p class="sh">LP tags</p>
+<ul class="lp">
+  <li><b>Hire and Develop the Best</b> — the skeptic authored and then defended the standard; I measured development by whether the gate survived my leaving.</li>
+  <li><b>Insist on the Highest Standards</b> — a gate that can say no, entry criteria per story type, drop date with reason codes.</li>
+  <li><b>Strive to be Earth's Best Employer</b> — QA moved from blamed afterthought to owner of the standard, with cause classification protecting them.</li>
+  <li><b>Earn Trust</b> — rollback named at kickoff; hard feedback sideways through the issues rows, and the evidence got overloaded people help.</li>
+</ul>
+
+<div class="rules"><strong>SAFE-SAY.</strong> Most attackable number: "Critical defects per release fell about half under the drop-date rule; the record gives me the percentage, not the base count, so I do not quote one." Source question: "The six weeks, the four-week cadence and the 50% are the record in my master packet; the dollars are my model on illustrative counts, and I did not invent a headcount."</div>
+
+<div class="say"><div class="label">20-second version</div><p>"Asked to move a 20-person team from six-week to four-week cadence with no authority over anyone, I had the most skeptical person — the QA lead — author the definition-of-done, added entry-criteria fields in Jira and a drop date with reason codes. Converted in six weeks; critical defects per release fell about half; she defended the gate without me."</p></div>
+
+<p class="sh">Probes — answer the one asked, then stop</p>
+<div class="qa"><p class="q">Q1. This is a software-cadence story — why does it matter for configuration governance?</p><p>Because the mechanism is identical: nothing enters the next stage without meeting written entry criteria; every late change gets a reason code instead of a silent slide; the person with the most to lose owns the gate; and the same metric that found the problem proves the fix. Swap "story" for "network configuration change" and it is a change-management SOP with an audit trail.</p></div>
+<div class="qa"><p class="q">Q2. Why hand the load-bearing artifact to the skeptic?</p><p>A gate the skeptic owns survives pressure; one I write dies when I leave. I coached the frame — what a gate needs to say no and survive a release-day argument — and she wrote the content. Engineering reviewed, did not veto.</p></div>
+<div class="qa"><p class="q">Q3. Faster cadence usually means more escapes — why did yours fall?</p><p>Because the gate got stronger as the window got shorter. Entry criteria authored by the person with the most to lose, and a drop date that converted silent late lands into visible re-scopes. I count per year, not per release: halving per release at 13 releases still nets fewer escapes than the old cadence.</p></div>
+<div class="qa"><p class="q">Q4. How did you know you could step back?</p><p>Two cycles of stories entering QA meeting their entry criteria, drop-date reasons trending toward genuine re-scopes, Sev-1 causes classified, and the QA lead defending the gate to engineering herself. Then I stopped attending the review line.</p></div>
+
+<div class="doc"><div class="label">How this maps to his bullets</div><p><b>Change-management SOPs</b> — definition-of-done with entry criteria; drop date with reason codes; user guide from grooming to completion. <b>Auditability across hundreds of weekly changes</b> — Jira benefit-ranking and review-status fields make every change's state visible. <b>Fewer unintended deployments</b> — nothing crosses the gate without meeting criteria. <b>Training delivery</b> — the user guide neighbouring teams copied. <b>Point of contact</b> — Product, Engineering, QA, the VP.</p></div>
+
+<!-- ============================ STORY 4 · A4 ============================ -->
+<h3 class="st">4 · A4 — Flexport: the Crux decommission — an apples-to-apples reliability lens before retiring a legacy source (79 customers · $185,892 ARR documented base · 294,581 annual containers) <span class="new">lived record · doc-backed</span></h3>
+<div class="meta">
+  <div><b>Company / role:</b> Flexport, 2021–22, visibility program · I owned the decommission risk, the comparison method and the one-canonical-source rule; engineering added sources; the transition-document owners built the per-customer paths with me.</div>
+  <div><b>LPs:</b> Are Right, A Lot (primary) · Dive Deep · Ownership · Success and Scale Bring Broad Responsibility (retiring two truths deliberately).</div>
+  <div><b>Headline:</b> normalized comparison about 27% versus our 25% (record); reliability 90% against an 80% north star after source work (record); legacy base 79 customers, $185,892 ARR, 294,581 annual containers, each with a per-segment path (record-from-docs, RAPID Crux transition). <b>The ARR is the documented legacy base, not a one-period loss.</b></div>
+  <div><b>His bullet:</b> policy platform migration (retire the legacy engine on evidence, one canonical definition) · post-incident corrective action (reconcile before compare) · Finance / Topology partnership (one scoreboard).</div>
+  <div class="cite">Different-angle rule: Rocky may hear Crux as program/cutover; Venkata as product/customer. James gets the analytics-and-governance lens only.</div>
+</div>
+
+<p class="sh">60-second pitch</p>
+<div class="say">
+  <div class="label">Say this, then stop on the primary metric</div>
+  <p><b>Situation.</b> At Flexport the biggest risk on the visibility program was decommissioning the legacy source — a parallel product still billing 79 customers and about $186K of annual recurring revenue, with defenders in the room — while leadership stared at our 25% schedule reliability against a competitor's 63%, a comparison run on unlike source mixes. Unmanaged, that ends in a write-off of the new product and a legacy that never retires. <b>Task.</b> I owned the mitigation: an honest comparison, the residual product gap exposed, and every legacy customer given a destination instead of letting the decommission drift another cycle. <b>Action.</b> I put the decommission at the top of the risk register with an owner, plan and date. I rebuilt the comparison instead of arguing it — normalized both products to the same sources, and the competitor's 63% re-scored to about 27% against our 25%: a measurement gap, not a product gap. The same normalization also exposed the real gap, variance of sixteen days against their eight, which I named myself and handed to the source-addition backlog with six months to close. I segmented all 79 legacy customers into migrate, white-label or cancel so keeping both products carried a visible weekly cost, wrote the one-canonical-source rule — one definition of reliability, one scoreboard — and made one forum sign the improvement plan and the retirement plan in the same week. <b>Result.</b> The decommission went through on evidence: 79 customers and 294,581 containers a year, each with a path; reliability climbed to 90% against an 80% north star once sources were added; and the norm that survived was that two numbers that disagree get reconciled before they get compared.</p>
+</div>
+
+<p class="sh">STAR — first person</p>
+<div class="star">
+  <p><span class="stag">S — Situation.</span> New visibility product judged at 25% schedule reliability against a competitor's 63%, on unlike source mixes. Legacy source still billing 79 customers / $185,892 ARR (record-from-docs). Two dashboards, two truths, each with a constituency.</p>
+  <p><span class="stag">T — Task.</span> Own the retirement risk: establish an honest comparison, expose any residual product gap, give every legacy customer an explicit path and date.</p>
+  <p><span class="stag">A — Action.</span> (1) Risk register: decommission as top risk with owner, mitigation, date. (2) Rebuilt the benchmark on identical sources — 63% re-scored to about 27% vs 25%; gave the old dashboard's defenders a dignified retirement (their number was valid on its own basis; I changed the basis, not the team). (3) Named the unfavorable residual — variance sixteen days vs eight — and secured six months of source additions. (4) Segmented all 79 customers (enterprise and mid-market → new product; carriers and brokers → white-label or cancel; SaaS lookalikes → cancel) with a destination and date each. (5) Wrote the one-canonical-source rule and ran one forum that signed improvement and retirement together.</p>
+  <p><span class="stag">R — Result.</span></p>
+  <ul class="res">
+    <li>Normalized comparison about 27% vs 25% — measurement, not product, was the immediate gap (record).</li>
+    <li>Reliability 90% against an 80% north star after source work (record) — real work, not normalized math.</li>
+    <li>79 customers, 294,581 annual containers, $185,892 ARR documented base — every customer with a per-segment disposition (record-from-docs).</li>
+    <li>Durable mechanism: one definition, one scoreboard; reconcile before compare (record).</li>
+  </ul>
+</div>
+
+<p class="sh">Who I influenced, and how</p>
+<p><b>Leadership</b> — by changing the basis of the comparison in front of them, not by defending the number. <b>The team whose dashboard had won the old comparison</b> — their figure was cited as the prompt for the source work, never mocked as the loser; people accept a new canonical source when the old one is buried with honors. <b>Engineering</b> — got a named residual (variance) and six months, rather than an argument. <b>Transition-document owners</b> — built the per-customer paths with me under one forum.</p>
+
+<div class="inf"><strong>TRADE-OFF I MADE.</strong> Options: (a) add sources first and skip the comparison fight — quarters of work while a write-off takes one meeting; (b) normalize first to earn the time, then improve to deserve it; (c) keep both products and both dashboards. I chose (b). I rejected (a) on sequence — the decision was already on the table; I rejected (c) because running two truths cost ops and engineering more every week than the revenue was worth. The deliberate cost: $185,892 of legacy ARR retired on purpose, and six months of patience before the honest 90%.</div>
+<div class="hon"><strong>Failure / learning.</strong> I should have written the one-canonical-source rule before the first executive comparison, not after the first bad one. Once dashboards have constituencies, a cheap definition becomes an expensive negotiation.</div>
+
+<p class="sh">LP tags</p>
+<ul class="lp">
+  <li><b>Are Right, A Lot</b> — I changed the decision by making both products use the same evidence, and the normalization cut both ways.</li>
+  <li><b>Dive Deep</b> — I exposed the sixteen-versus-eight-day variance residual instead of using normalization only to flatter us.</li>
+  <li><b>Ownership</b> — every one of 79 customers received a destination and a date; the decommission stopped drifting.</li>
+  <li><b>Success and Scale Bring Broad Responsibility</b> — retired two truths deliberately so a hundred teams stop arguing about whose number is real.</li>
+</ul>
+
+<div class="rules"><strong>SAFE-SAY.</strong> Most attackable number: "The transition document records 79 customers, $185,892 of annual recurring revenue and 294,581 annual containers — that ARR is the documented legacy base, not a claim that we lost it in one period. The 90% is the workbook record; the normalized comparison is about 27% versus 25%." Source question: "The Crux customer-transition RAPID and my 2022 product-management record, reconciled in my Apple workbook chapter A4."</div>
+
+<div class="say"><div class="label">20-second version</div><p>"Leadership was comparing our 25% reliability with a competitor's 63% on unlike source mixes while a legacy product still billed 79 customers. I normalized both to one basis — the competitor re-scored to about 27% — named the real gap, gave all 79 customers a path, and retired the duplicate truth while reliability rose to 90% against an 80% north star."</p></div>
+
+<p class="sh">Probes — answer the one asked, then stop</p>
+<div class="qa"><p class="q">Q1. Wasn't the normalization just spin?</p><p>It cut both ways, which is why it was credible. It removed the false 63-versus-25 alarm, and it exposed the unfavorable variance — sixteen days against their eight — which I named myself and handed to the backlog. A normalization that only flatters is spin; one that also exposes is analysis.</p></div>
+<div class="qa"><p class="q">Q2. Why does retiring about $186K of ARR matter — that is small revenue?</p><p>Because the revenue was small and the drag was not: every week both products ran, ops and engineering paid for two truths and prospects compared us against ourselves. The transition document priced all 79 customers by segment. Retiring small revenue deliberately is harder than growing big revenue, and it was planned, not drifted into.</p></div>
+<div class="qa"><p class="q">Q3. What was yours versus the team's?</p><p>I rebuilt the comparison, wrote the one-source rule, priced the legacy base per segment and made the sequence call — normalize to earn the time, improve to deserve it. Engineering added the sources; the transition-document owners built the per-customer paths with me.</p></div>
+<div class="qa"><p class="q">Q4. How would this travel to a placement-policy migration?</p><p>Anywhere two engines disagree — legacy rules versus new policy — I would reconcile the definitions before anyone compares outputs, run one scoreboard, give every legacy rule or node a disposition and date, and have one forum sign the improvement plan and the retirement plan together. The rule outlives the slide.</p></div>
+
+<div class="doc"><div class="label">How this maps to his bullets</div><p><b>Policy platform migration</b> — retiring a legacy engine on evidence with every legacy customer (read: rule, lane or node) given a destination and a date. <b>Post-incident corrective action</b> — the one-canonical-source rule as the structural fix, not a one-off re-score. <b>Point of contact with Finance / Network Topology</b> — one definition, one scoreboard that both sides read the same day. <b>Governance</b> — one forum signs improvement and retirement together.</p></div>
+
+<!-- ============================ STORY 5 · L22 ============================ -->
+<h3 class="st">5 · L22 — Flexport: Customs Platform versus Freight Forwarding Applications — ownership resolved at work-item grain (15 work items: 12 export + 3 import; FFA all except ISF filing) <span class="new">lived record · doc-backed</span></h3>
+<div class="meta">
+  <div><b>Company / role:</b> Flexport, 2022 · I created the decision artifact and drove convergence; neither team reported to me; the accountable engineering leaders signed the ownership agreement (Nov 3, 2022).</div>
+  <div><b>LPs:</b> Ownership (primary) · Earn Trust · Invent and Simplify · Have Backbone; Disagree and Commit.</div>
+  <div><b>Headline:</b> 15 planned 2023 work items — 12 export, 3 import — mapped row by row to one ownership agreement; final boundary: FFA owns all work items except ISF filing; AMS via Customs APIs (create, amend, query, delete); shared cost-to-serve goals where the seam remained (record-from-docs). <b>The documented result is decision closure and explicit interfaces, not a quantified business outcome.</b></div>
+  <div><b>His bullet:</b> placement-architecture point of contact across organizations · inbound/outbound connectivity contracts (who plans, who executes, which API, where status returns) · governance SOPs (named interim owner for every seam).</div>
+</div>
+
+<p class="sh">60-second pitch</p>
+<div class="say">
+  <div class="label">Say this, then stop on the primary metric</div>
+  <p><b>Situation.</b> In 2022 Flexport's Customs Platform and Freight Forwarding Applications teams overlapped on customs-declaration work, especially the automated manifest system. The 2023 roadmap carried fifteen work items — twelve export, three import — and ambiguous ownership meant duplicate builds, dependency queues and inconsistent status for operators. <b>Task.</b> Produce a durable boundary that let each organization stay in its domain while preserving one end-to-end operator flow. Neither team reported to me, and "Customs owns customs" was too vague to configure. <b>Action.</b> I stopped arguing about organizations and decomposed the roadmap work item by work item. Beside each I wrote the operating decision: who plans, who executes, who owns the backend and data model, which actions stay offline, what API is required, and where status returns. I separated customs-domain planning and filing from FFA's operational execution of moving cargo. For the disputed seams — EAD, port filing, ISF, AMS — I documented current capability, future capability and an interim owner instead of pretending the target architecture already existed; a future capability never erased the named interim owner. I used the same sheet in the final cross-team meeting and captured the unresolved rows explicitly. <b>Result.</b> The November 3 ownership agreement assigned FFA all work items except ISF filing; AMS used Customs APIs for create, amend, query and delete; ISF kept a query dependency; AES aligned on integration; and where the seam remained, both teams shared cost-to-serve goals. The roadmap had one accountable owner per row and an explicit interface wherever ownership crossed an organizational line.</p>
+</div>
+
+<p class="sh">STAR — first person</p>
+<div class="star">
+  <p><span class="stag">S — Situation.</span> Two tech organizations, one customs-declaration domain, fifteen 2023 work items (12 export, 3 import). Duplicate work and dependency queues were the default outcome.</p>
+  <p><span class="stag">T — Task.</span> One boundary both leaders could sign; each team in its domain; one operator flow preserved. No authority over either team.</p>
+  <p><span class="stag">A — Action.</span> (1) Reframed from organization grain to work-item and state-transition grain. (2) For every work item: user group, description, exists-in-core, proposed owner, notes, engineering conclusion — the decision written beside the row. (3) Separated customs planning and filing from operational execution of cargo. (4) Disputed seams got current capability, future capability, interim owner; AES filing explicitly parked as "need more time" rather than forced. (5) Ran the final meeting off the same sheet; captured open rows; tied shared seams to shared cost-to-serve goals.</p>
+  <p><span class="stag">R — Result.</span></p>
+  <ul class="res">
+    <li>Ownership agreement, Nov 3 2022: FFA owns all work items except ISF filing (record-from-docs, proposal p.14).</li>
+    <li>AMS: Customs API for filing-request creation, amendment, query and deletion; AMS broadcasts filing status (record-from-docs).</li>
+    <li>ISF: Customs owns filing; FFA retains API query for status; AES aligned on API integration; import work items API-only (record-from-docs).</li>
+    <li>One accountable owner per row and an explicit interface at every cross-organization seam. No defect or cycle-time claim — the source does not report one.</li>
+  </ul>
+</div>
+
+<p class="sh">Who I influenced, and how</p>
+<p><b>Two engineering leaders</b> — by giving them a row-level artifact where disagreement had a specific address instead of a slogan; they signed. <b>Operations engineering</b> — the "where does this work item live" questions were routed to them explicitly rather than assumed. <b>Operators</b> — the design criterion throughout was one end-to-end flow with status returning to the place they worked.</p>
+
+<div class="inf"><strong>TRADE-OFF I MADE.</strong> Options: (a) wait for a clean platform split before assigning anything; (b) a pragmatic interim boundary with some offline work and API dependencies to govern; (c) a top-down ruling by organization. I chose (b). I rejected (a) because delivery would have stalled behind architecture; I rejected (c) because "Customs owns customs" cannot be configured and would have re-opened every sprint. What it cost: API dependencies on Customs Tech that FFA still had to manage, and a few rows parked as explicitly unresolved.</div>
+<div class="hon"><strong>Failure / learning.</strong> My first framing was organization-based and too abstract, and it went nowhere. The agreement emerged only after I moved to work-item and state-transition grain. Rule since: boundaries are configured at the grain where work actually changes hands.</div>
+
+<p class="sh">LP tags</p>
+<ul class="lp">
+  <li><b>Ownership</b> — I took the seam no organization could solve alone and carried it to a signed agreement.</li>
+  <li><b>Earn Trust</b> — capability gaps and unresolved rows stayed visible in the artifact rather than being smoothed over.</li>
+  <li><b>Invent and Simplify</b> — one row-level matrix replaced a domain argument.</li>
+  <li><b>Have Backbone; Disagree and Commit</b> — I pushed back on the slogan framing, then committed to the interim boundary the leaders signed.</li>
+</ul>
+
+<div class="rules"><strong>SAFE-SAY.</strong> Most attackable claim: "The proposal states fifteen 2023 work items — twelve export and three import. The final agreement says FFA owned all except ISF filing; it does not claim a quantified business outcome, and neither do I." Source question: "The Customs Platform / FFA Ownership Proposal, pages 1 and 14, including the November 3, 2022 agreement."</div>
+
+<div class="say"><div class="label">20-second version</div><p>"Two tech organizations overlapped on fifteen customs work items. I turned the argument into a row-by-row ownership proposal — who plans, who executes, which API, where status returns — with an interim owner for every disputed seam. The final meeting assigned FFA everything except ISF filing, with explicit APIs and shared cost-to-serve goals where the seam remained."</p></div>
+
+<p class="sh">Probes — answer the one asked, then stop</p>
+<div class="qa"><p class="q">Q1. Did you decide the boundary yourself?</p><p>No. I created the decision artifact and drove convergence; the accountable leaders signed the ownership agreement. My authority was the quality of the sheet.</p></div>
+<div class="qa"><p class="q">Q2. How do you know it worked?</p><p>The documented result is decision closure and explicit interfaces — one owner per row, an API at every seam. I would not invent a defect or cycle-time reduction that the source does not report.</p></div>
+<div class="qa"><p class="q">Q3. What did you do with rows nobody would own?</p><p>Parked them explicitly — AES filing was recorded as "need more time to resolve," with the preferred future state (API integration) and the current operator path both written down. An unresolved row that is visible is governance; one that is hidden is a future incident.</p></div>
+<div class="qa"><p class="q">Q4. How does this translate to being the placement-architecture point of contact?</p><p>Same artifact: for every connectivity or routing change, who decides the policy, who executes, who owns the data model, which interface carries it, and where the status comes back — with Transportation, Finance, Topology and Operations each owning the rows that are theirs and a named interim owner wherever the target architecture is not built yet.</p></div>
+
+<div class="doc"><div class="label">How this maps to his bullets</div><p><b>Point of contact across Transportation, Finance, Network Topology, Operations</b> — a row-level ownership matrix across organizations. <b>Inbound/outbound connectivity</b> — explicit API contracts (create, amend, query, delete; status broadcast) at every seam. <b>Governance SOPs</b> — named interim owner; unresolved rows captured, not hidden. <b>Crossdock / escape routing analog</b> — the operator flow is preserved end to end even when ownership changes hands mid-process.</p></div>
+
+<!-- ============================ STORY 6 · G3 FAILURE ============================ -->
+<h3 class="st">6 · G3 — Flexport: the security review I discovered instead of planned — the full FAILURE story <span class="fail">failure · lived record</span></h3>
+<div class="meta">
+  <div><b>Company / role:</b> Flexport · the Snowflake pipeline that automated my manual four-system weekly business review (Apple workbook A3 / master S16 family) · I owned the BRD and the cutover; the infrastructure team owned the build.</div>
+  <div><b>LPs:</b> Earn Trust (owned upward the same day) · Are Right, A Lot (the learning) · Dive Deep (root cause: scoping, not "slow security") · Ownership.</div>
+  <div><b>Headline:</b> the customer-content data-access review was absent from my BRD and surfaced mid-build; it cost two weeks of schedule margin (record). No weekly review was skipped; cutover still waited for manual and automated metrics to agree within one percent for consecutive weeks; system accuracy closed at 90% from a 60% baseline (record). <b>The miss cost margin, not delivery.</b></div>
+  <div><b>His bullet:</b> pre-deployment validation (approval lead time is a gate, not a formality) · post-incident corrective action (the kickoff checklist changed permanently) · change-management SOP (keep the old path alive until the new one clears access and correctness).</div>
+  <div class="cite">Freshness note: S16's pipeline is the same program family as Shipment Visibility, told Thursday. Here it appears only as the failure, with the process lesson as the point — never as the pipeline achievement story.</div>
+</div>
+
+<p class="sh">60-second pitch</p>
+<div class="say">
+  <div class="label">Say this, then stop on the primary metric</div>
+  <p><b>Situation.</b> At Flexport I was replacing a manual, four-system weekly business review with a Snowflake pipeline. One source was ticket data carrying customer content. I had planned the extracts, the loads, the metric parity and the parallel-run cutover gate. I had not planned the data-access security review. <b>Task.</b> I owned the BRD and the cutover; when the review surfaced mid-build I had to complete it without skipping a single Monday operating review and without weakening the one-percent parity gate. <b>Action.</b> I owned the miss upward the same day as a scoping failure — the BRD had priced the build and never the review — not as "security is slow." The root cause was that I had treated approval as a formality instead of a workstream with lead time; customer content makes it a gate. I re-sequenced rather than bypass: the manual path stayed live during the parallel run, so the Monday review continued. I closed the review properly — cross-reference table documented, data classes named, read access made explicit. Then I changed the kickoff checklist permanently: security has an owner and a lead time in the BRD, and every data program since starts with "whose approval does this data need, and how long does that take?" <b>Result.</b> The access review cost two weeks of margin; no weekly review was skipped; the pipeline cut over only after manual and automated metrics agreed within one percent for consecutive weeks, and accuracy closed at 90% from a 60% baseline. The miss cost margin, not delivery — and the scar is the useful part.</p>
+</div>
+
+<p class="sh">STAR — first person</p>
+<div class="star">
+  <p><span class="stag">S — Situation.</span> Snowflake pipeline replacing a manual four-system Monday review; ticket data with customer content in scope; BRD covered extracts, loads, parity, cutover gate — and not the data-access security review (record).</p>
+  <p><span class="stag">T — Task.</span> Complete the review, keep every Monday review alive, keep the one-percent parity gate intact.</p>
+  <p><span class="stag">A — Action.</span> (1) Owned it upward immediately as my scoping miss. (2) First principles: the noise said "security is slow"; the cause was that I had not treated approval as a lead-time workstream. (3) Re-sequenced: parallel run kept the manual path live, so the program absorbed two weeks without skipping delivery. (4) Closed the review properly: cross-reference table, named data classes, explicit read access. (5) Corrective action: a standing security line with owner and lead time in every BRD; the kickoff question on approval and lead time.</p>
+  <p><span class="stag">R — Result.</span></p>
+  <ul class="res">
+    <li>Two weeks of schedule margin lost (record) — the failure.</li>
+    <li>Zero skipped review weeks; cutover on the one-percent parallel-run gate for consecutive weeks (record).</li>
+    <li>System accuracy 60% → 90% (record). Late on the review, on target everywhere else.</li>
+    <li>A permanent checklist change that has since applied to every data program I have run (record).</li>
+  </ul>
+</div>
+
+<p class="sh">Who I influenced, and how</p>
+<p><b>My leadership</b> — I framed the slip as my scoping failure before anyone else framed it as the security team's slowness; that is why the conversation stayed on the fix. <b>The security reviewers</b> — got a complete artifact (data classes, cross-reference, access model) instead of a request for an exception. <b>The infrastructure team</b> — were kept out of the blame; the BRD was mine.</p>
+
+<div class="inf"><strong>TRADE-OFF I MADE.</strong> Options: (a) ask for an access exception and cut over on schedule; (b) keep the labor-intensive manual path alive and absorb the two weeks; (c) pause the program until the review cleared. I chose (b). I rejected (a) because customer-content access was a gate, and bypassing it would have converted a schedule miss into a trust and compliance risk; I rejected (c) because the Monday review had to keep running. What it cost: two more weeks of my own time running the manual stitch, and two weeks of margin I never got back.</div>
+<div class="hon"><strong>Failure / learning.</strong> The parallel run saved me partly by luck — I had designed it as a correctness gate, not a schedule buffer. Now I plan that resilience deliberately: the old path stays alive until the new path clears both access and correctness. And: planned, not discovered.</div>
+
+<p class="sh">LP tags</p>
+<ul class="lp">
+  <li><b>Earn Trust</b> — owned upward the same day, as my scoping failure, before anyone framed it differently.</li>
+  <li><b>Are Right, A Lot</b> — I changed how I scope every data program: approval lead time is a workstream with an owner.</li>
+  <li><b>Dive Deep</b> — the cause was structural (approval treated as a formality), not situational; that is why it earned a post-mortem.</li>
+  <li><b>Ownership</b> — I kept the manual path running myself rather than ask for an exception.</li>
+</ul>
+
+<div class="rules"><strong>SAFE-SAY.</strong> Most attackable claim: "I under-planned the customer-data access review by two weeks; the manual path kept every Monday review alive, and cutover still waited for one-percent parity." Source question: "My Apple workbook, chapter G3 and A3; the two-week miss and the parity gate are record, not modeled."</div>
+
+<div class="say"><div class="label">20-second version</div><p>"I discovered a customer-data security review mid-build and lost two weeks because it was absent from my BRD. I owned it upward as a scoping miss, kept the manual path alive so no weekly review was skipped, and cut over only on one-percent parity. Security lead time is now planned at kickoff, never discovered."</p></div>
+
+<p class="sh">Probes — three levels; answer the one asked, then stop</p>
+<h4>Level 1 — the facts</h4>
+<div class="qa"><p class="q">Q1. Two weeks is small — why call it a failure?</p><p>Because the cause was structural, not situational. Any data program touching customer content needs an access review, and I had not planned one — so without a checklist change I would have repeated it on every future program. Small miss, systemic cause; those are the ones worth a post-mortem.</p></div>
+<div class="qa"><p class="q">Q2. Why not ask for an exception and hold the date?</p><p>Customer-content access was a gate. Bypassing it would have turned a schedule miss into a trust and compliance risk — the kind of unintended deployment a governance process exists to stop. I spent margin instead.</p></div>
+<h4>Level 2 — the mechanism</h4>
+<div class="qa"><p class="q">Q3. Why did the parallel run save you — was that design or luck?</p><p>Both, and I say so. I built it as a correctness gate — manual versus pipeline within one percent — and it happened to double as a schedule buffer. The honest admission is that I got resilience I had not planned. Now I plan it: the old path stays alive until the new path clears both access and correctness.</p></div>
+<div class="qa"><p class="q">Q4. What does "planned, not discovered" look like in practice now?</p><p>A named line in the plan with an owner and a lead time, priced in the BRD next to the build cost, and a kickoff question — whose approval does this data need and how long does it take. In a later independent build I ran, access boundaries and citation discipline were designed in on day one rather than retrofitted.</p></div>
+<h4>Level 3 — the person</h4>
+<div class="qa"><p class="q">Q5. What did this reveal about how you scope, and has it recurred?</p><p>It revealed that I scoped what I could build and under-scoped what I had to be permitted to do. It has not recurred on a data program since, because the checklist forces the question before the build is priced. I would rather carry that scar visibly than claim I never had it.</p></div>
+<div class="qa"><p class="q">Q6. How would this failure show up in configuration governance at Amazon?</p><p>Pre-deployment validation must include approvals and their lead times, not just technical checks; the old configuration path stays live until the new one clears both; and every post-incident corrective action should change a checklist, not just fix the incident. That is exactly the shape of the control this miss left me with.</p></div>
+
+<div class="doc"><div class="label">How this maps to his bullets</div><p><b>Pre-deployment validation</b> — approval lead time is part of the gate. <b>Post-incident corrective actions</b> — the kickoff checklist changed permanently; the same KPI that found the miss proved the fix. <b>Change-management SOP</b> — keep the prior path alive until access and correctness both clear. <b>Fewer unintended deployments</b> — I refused the exception that would have deployed customer-content access without review.</p></div>
+
+<!-- ============================ SECTION 7 · BRIDGE + LEDGER ============================ -->
+<h3 class="st">7 · Manhattan configuration-context bridge · the failure ledger across all six · 20-second versions on one page</h3>
+
+<p class="sh">Manhattan Associates — configuration-context bridge (not a full story)</p>
+<div class="doc"><div class="label">Why there is no additional Manhattan story, and what to say instead</div>
+<p>The master packet and GFiber v8 contain exactly two Manhattan Associates stories — S13 (Cyber Monday 4 AM allocation across three DCs and about a hundred stores) and S14 (the OMS↔WMS discrepancy) — and both are allocated to Venkata. No other Manhattan process-improvement story exists in any source, so none is written here. The verified Manhattan fact that belongs to James is the configuration context: <b>Manhattan DOM/OMS is the only platform I have personally configured</b> (record). One-paragraph bridge, if he asks where my hands-on configuration experience comes from:</p>
+<p><i>"My hands-on configuration years were on Manhattan's distribution order management suite — allocation and promising rules across three DCs and about a hundred stores. That is where I learned that a rule change is a deployment: it changes where units go the next morning. Everything since — the lane master at Elementum, the routing-guide rules engine, the definition-of-done at Sephora — has been about putting a validation gate and an owner in front of that kind of change. The two Manhattan stories I tell in full are allocated to another interviewer today, so I will not repeat them here unless you want one."</i></p>
+<p class="cite">Guardrail: never claim Manhattan process-improvement numbers that are not in S13/S14; never say "I configured SAP." Manhattan DOM is the only first-hand platform-configuration claim in canon.</p></div>
+
+<p class="sh">The one-line failure / learning ledger — one per story, for "tell me about another time"</p>
+<table>
+  <thead><tr><th style="width:9%">Story</th><th style="width:30%">What went wrong, my part</th><th>What changed</th></tr></thead>
+  <tbody>
+    <tr><td class="c">S17</td><td>Procurement joined after design sign-off; "incumbency floor" meant two things.</td><td>Every function that owns a word in a rule is in discovery on day one.</td></tr>
+    <tr><td class="c">S10</td><td>I disproved brochure transit times lane by lane — slow.</td><td>Start from an industry benchmark; measure before you blame; sign the method before the number.</td></tr>
+    <tr><td class="c">S15</td><td>I went to engineering first, QA second.</td><td>Go to the skeptic first; put her name on the review line from week one.</td></tr>
+    <tr><td class="c">A4</td><td>The one-canonical-source rule came after the first bad executive comparison.</td><td>Write the definition before dashboards have constituencies.</td></tr>
+    <tr><td class="c">L22</td><td>My first framing was organization-based and too abstract.</td><td>Configure boundaries at the grain where work changes hands.</td></tr>
+    <tr><td class="c">G3</td><td>Security review absent from the BRD; two weeks of margin lost (the full failure).</td><td>Approval lead time planned, not discovered; old path alive until access and correctness clear.</td></tr>
+  </tbody>
+</table>
+
+<p class="sh">20-second versions — one page, in speaking order</p>
+<table>
+  <thead><tr><th style="width:9%">Story</th><th style="width:22%">Headline (basis)</th><th>Say</th></tr></thead>
+  <tbody>
+    <tr><td class="c">S17</td><td>about 6 → about 3 weeks (record); no award $</td><td>A six-week bid everyone called optimization was reconciliation when I logged the hours; lane master, explicit rules, under-5% back-test gate, one-region parallel run; about three weeks; adopted without a mandate.</td></tr>
+    <tr><td class="c">S10</td><td>about 55% → about 99% within a quarter (record)</td><td>Austria blamed carriers; three years of data said measurement. Rules engine, Finance-signed method first, scorecard gated on a manual sample; rolled to 25 sites.</td></tr>
+    <tr><td class="c">S15</td><td>20 people, 4-week cadence in 6 weeks; criticals about −50% (record)</td><td>The skeptic authored the definition-of-done; entry-criteria fields and a drop date with reason codes; she defended the gate without me.</td></tr>
+    <tr><td class="c">A4</td><td>about 27% vs 25%; 90% vs 80% north star (record); 79 customers / $185,892 ARR base / 294,581 containers (docs)</td><td>Normalized an unlike comparison, named the real gap, gave all 79 customers a path, retired the duplicate truth.</td></tr>
+    <tr><td class="c">L22</td><td>15 work items, 12 export + 3 import; FFA all except ISF (docs)</td><td>Turned an organization argument into a row-level ownership matrix with an interim owner per seam; leaders signed.</td></tr>
+    <tr><td class="c">G3</td><td>2 weeks of margin lost; 1% parity held; 60% → 90% (record)</td><td>Discovered a customer-data access review mid-build; owned it upward; kept the manual path alive; planned, not discovered, ever since.</td></tr>
+  </tbody>
+</table>
+
+<p class="sh">VERIFY items in this file</p>
+<ul class="lp">
+  <li><b>S17</b> — no VERIFY on the record figures; analyst-hours dollars are modeled. Safe sentence: "My program anchor is about six weeks to about three; I claim no award savings."</li>
+  <li><b>A4</b> — the ARR is the documented legacy base, not a one-period loss; say it that way every time.</li>
+  <li><b>L22</b> — no quantified outcome exists in the source; say "decision closure and explicit interfaces," never a defect or cycle-time number.</li>
+  <li><b>Manhattan</b> — no process-improvement story beyond S13/S14 exists in any source; use the configuration-context bridge only.</li>
+</ul>
+
+</body>
+</html>
