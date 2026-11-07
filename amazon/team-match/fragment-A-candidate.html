@@ -35,18 +35,18 @@
 <tr>
 <td>Analytical and problem-solving</td>
 <td>4.1 Measured lanes, safety stock, spend cut (Elementum)</td>
-<td>4.3 Cost per container and graduation gates (Flexport)</td>
+<td>4.3b Crux against 4PL, T-30 scored against T-0; then 4.3 cost per container (Flexport)</td>
 <td>4.8 One published available-for-sale</td>
-<td>99 percent lane accuracy; 580,000 units out, about $1.5 million, one time</td>
-<td>4.1, 4.3</td>
+<td>99 percent lane accuracy; 63 against 25 became 27 against 25, then 90 against an 80 bar; $0.66 to $0.03</td>
+<td>4.1, 4.3b, 4.3</td>
 </tr>
 <tr>
 <td>Cross-functional and stakeholder management</td>
 <td>4.5 Partner route and the reuse rule (Flexport)</td>
-<td>4.1 Spend share taken two levels up (Elementum)</td>
+<td>4.3b The comparison that kept 4PL (Flexport); 4.1 spend share taken two levels up (Elementum)</td>
 <td>4.9 Council dates through two go-lives</td>
-<td>Value in month 6, not 18; about $5 million avoided, said once</td>
-<td>4.5</td>
+<td>Value in month 6, not 18; about $5 million avoided, said once; a write-off reversed on evidence</td>
+<td>4.5, 4.3b</td>
 </tr>
 <tr>
 <td>Ownership and proactivity</td>
@@ -255,6 +255,93 @@
 <li>How did volume alone not get you to three cents? The page says volume alone, spreading a fixed cost five times, would have left about thirteen cents. The rest is the automation. Say that only with the worksheet in front of you, and do not pretend the after-state inputs hit three cents without the unpriced bulk term.</li>
 </ul>
 
+<h3>4.3b Flexport — Crux against the 4PL platform: T-30 scored against T-0 on every milestone, and the comparison that kept 4PL</h3>
+<p>Analytical and stakeholder. This is the decision story inside 4.3. Use it when he asks how you changed a leadership decision with data, how you compare two systems, or how you handle a number that is about to kill a product. Say the normalized pair first, then the residual you named against yourself.</p>
+<div class="note">
+<p>Wording. Your record carries this comparison two ways: "Crux's 63 percent" and "a competitor's published 63 percent." You told me it was Crux. Say Crux, and say it the same way all hour. If he has read the record and asks, say "the legacy dashboard" and move on. 4PL means containers Flexport did not forward; 3PL means containers Flexport did forward and is the control group in the review.</p>
+</div>
+<h4>SITUATION/TASK</h4>
+<p>At Flexport in 2022, after Shipment Visibility launched, leadership put two numbers side by side: the new 4PL platform at 25 percent schedule reliability, and Crux, the acquired tracker we still ran for 79 customers, at 63 percent. The question was whether to deprecate 4PL and keep Crux. The two numbers used different containers, milestones and scoring windows. I owned the retirement risk, the comparison and the evidence for the forum. The target was one definition both products were scored on before anyone decided, with the real gap named.</p>
+<h4>ACTION</h4>
+<p>I rebuilt the comparison instead of arguing it. One definition: for every container and every milestone, take the time predicted thirty days out and score it against the actual at time zero, inside one tolerance, on the same containers, sources and week. Crux's 63 had been scored on the milestones its feeds covered, close to the event. On the common basis it re-scored to about 27 against our 25. I changed the basis, not the team: their number stayed valid on its own denominator. I named our residual against ourselves, arrival variance of sixteen days against eight, and secured six months of source additions with gates. Decommission went to the top of the risk register, and all 79 Crux customers got a destination and a date.</p>
+<h4>RESULTS</h4>
+<p>The write-off died on evidence. 4PL stayed. Reliability went from the mid-twenties to 90 percent against an 80 percent north star once sources were added. Crux retired by segment, cancellations dated through October 24, 2022, and 294,581 annual containers each with a path. The rule that survived: reconcile before you compare.</p>
+<h4>MATH</h4>
+<p>How one container is scored. The horizon is the point before the event at which you freeze the prediction. The weekly review carried the instrument as accuracy at ATD minus 28, minus 10 and minus 5 days, with mean absolute error and the standard deviation of that error at each horizon (record-from-docs, LSA WBR 2022, Ocean FCL lines 30 to 33). Say T-30 as the round number; the sheet used T-28. Dates and the one-day tolerance below are illustrative.</p>
+<div class="math">
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Error at horizon h = predicted at T-h minus actual at T-0, in days</td><td>Arrival at port of discharge. Predicted at T-30: March 30. Actual: April 2.</td><td>3 days early. Illustrative container.</td></tr>
+<tr><td>2</td><td>Hit if the absolute error is at or inside the tolerance</td><td>3 days against a tolerance of 1 day. Tolerance is illustrative; the record does not print it.</td><td>Miss at T-30</td></tr>
+<tr><td>3</td><td>Same milestone, later horizons</td><td>At T-10 the prediction was April 1: error 1 day. At T-5 it was April 2: error 0.</td><td>Hit at T-10. Hit at T-5. The same container scores differently depending on when you freeze it.</td></tr>
+<tr><td>4</td><td>Repeat for every milestone on the container</td><td>Departure estimate, actual departure, transshipment arrival, discharge-port arrival, discharge, gate-out, delivery. Each has its own error at each horizon.</td><td>One row per container per milestone per horizon</td></tr>
+<tr><td>5</td><td>Reliability at horizon h = hits at h / milestones scored at h</td><td>Reported at T-28, T-10 and T-5 so the decay is visible.</td><td>Reliability rises as the horizon shortens. Two numbers at different horizons are not comparable.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Why 63 became about 27. The 63, the about 27 and the 25 are record. The populations below are illustrative and chosen so the division lands on the record figures.</p>
+<div class="math">
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Crux dashboard, its own basis</td><td>Scored only the container-milestones its carrier feeds covered, near the event: 400 of 1,000 in the week. Hits 252. 252 / 400.</td><td>63 percent. Valid on its own denominator.</td></tr>
+<tr><td>2</td><td>Common basis for Crux</td><td>All 1,000 container-milestones, same week, same sources, frozen at T-30. Hits 270. 270 / 1,000.</td><td>About 27 percent</td></tr>
+<tr><td>3</td><td>Common basis for the 4PL platform</td><td>Same 1,000. Hits 250. 250 / 1,000.</td><td>25 percent</td></tr>
+<tr><td>4</td><td>Raw gap and normalized gap</td><td>63 minus 25. Then 27 minus 25.</td><td>38 points raw. 2 points normalized. 36 of the 38 points were basis, not product.</td></tr>
+<tr><td>5</td><td>What the 2 points meant</td><td>Inside the week-to-week movement of either number.</td><td>No product decision could rest on it. The decision moved to the residual.</td></tr>
+</tbody>
+</table>
+</div>
+<p>The residual I named against ourselves. Record figures.</p>
+<div class="math">
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Spread ratio = our variance / theirs</td><td>16 days / 8 days</td><td>2.0 times the spread. A T-30 prediction with twice the spread lands inside the same tolerance less often. That was the real gap.</td></tr>
+<tr><td>2</td><td>What closes it</td><td>Sources, not arithmetic: direct carrier feeds and terminal feeds on the lanes we were weakest on.</td><td>Six months of source additions, with gates. Record.</td></tr>
+<tr><td>3</td><td>Outcome against the bar</td><td>90 minus 80</td><td>10 points over the north star. Record. Real work, not normalization.</td></tr>
+</tbody>
+</table>
+</div>
+<p>What was on the table. Record-from-docs, the Crux transition RAPID.</p>
+<div class="math">
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Annual recurring revenue = monthly x 12</td><td>$15,491 x 12</td><td>$185,892. Ties to the record.</td></tr>
+<tr><td>2</td><td>Customers by segment</td><td>2 global key accounts + 14 enterprise + 39 SMB = 55 trade. 9 motor carriers + 3 truck brokers + 5 forwarders + 1 customs broker + 4 3PLs + 2 SaaS = 24 non-trade. 55 + 24.</td><td>79 customers</td></tr>
+<tr><td>3</td><td>Revenue that could not move to the client app</td><td>About 75 percent of Crux revenue was non-trade. 0.75 x 185,892.</td><td>About $139,000 a year. Derived. Say "about three quarters of the revenue."</td></tr>
+<tr><td>4</td><td>Containers a week</td><td>294,581 / 52</td><td>About 5,665 a week. Derived.</td></tr>
+<tr><td>5</td><td>Cost to keep Crux running</td><td>Not on record.</td><td>Say "two platforms, two cost bases, two versions of the truth." Do not quote a dollar.</td></tr>
+</tbody>
+</table>
+</div>
+<p>What the weekly review priced. Record-from-docs from the uploaded LSA WBR 2022 and the E-Team takeaways of February 1, 2022. This is where the $0.18 in story 4.3 comes from.</p>
+<div class="math">
+<table>
+<thead><tr><th>Step</th><th>Formula</th><th>Substitution</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Price per interaction = cost-to-serve reduction / interactions eliminated</td><td>Forwarding Platform lines 2 and 12, week 48: $44,074.08 / 244,856. Week 49: $41,015.52 / 227,864.</td><td>$0.18 both weeks. Finance's price of one eliminated touch. It is the same $0.18 that makes 0.66 / 0.18 about 3.7 touches.</td></tr>
+<tr><td>2</td><td>The E-Team decision, February 1, 2022</td><td>Goal 1: lower cost to serve by replacing human track-and-trace with the automated product, which also makes 4PL cheap to offer. Action: measure cost to serve for 3PL plus 4PL against 4PL only, in the weekly review.</td><td>The 4PL question was framed as a cost-to-serve question, not a feature question. That is the frame the comparison had to answer.</td></tr>
+<tr><td>3</td><td>The review the team published</td><td>As of February 14, 2022: the visibility team publishes its own weekly review; priority is arrival-estimate accuracy at the discharge port and interaction-elimination reporting.</td><td>Those two lines are the instrument that the T-30 scoring and the $0.18 fed.</td></tr>
+<tr><td>4</td><td>Review rules</td><td>Five consecutive weeks of trend; green or red at a favorable or unfavorable variance above 5 percent relative; input metrics the team controls, output metrics the stakeholder cares about.</td><td>The plus or minus 5 percent week-over-week rule in your record is this sheet's rule.</td></tr>
+</tbody>
+</table>
+</div>
+<h4>SOLUTION APPROACH</h4>
+<p>Inputs were every milestone prediction the two platforms had held, with its timestamp, and the actuals. The model fixed three things before any division: the same containers, the same sources and week, and the same horizon, T-30, with the tolerance per milestone written down. The decision rule was reconcile before compare: no decision on two numbers with different denominators. I simplified by refusing a feature-by-feature debate and scoring one definition. I extended by reporting three horizons so the decay was visible, and by naming our own residual in the same readout. The long-term risk was a product written off on a measurement artifact, and a legacy that never retires because nobody owned the retirement. The risk-register entry, the per-segment destinations and the one forum that signed improvement and retirement in the same week are what closed it.</p>
+<h4>IF THEY PROBE</h4>
+<ul>
+<li>Isn't normalizing just making your number look better? A normalization that only flatters is spin. This one exposed our variance at sixteen days against eight, and I led the readout with it.</li>
+<li>Why T-30 and not T-5? A shipper plans labor, drayage and inventory against the date it had a month out. At T-5 the ship is nearly in port and every tracker looks good. We reported T-28, T-10 and T-5 so nobody could pick the flattering one.</li>
+<li>Who decided? The product leads recommended and performed; two executives agreed and decided. I was input and I owned the transition mechanics. I will not say I was the decider.</li>
+<li>Why not keep Crux as well? Two platforms, two cost bases, two truths. About three quarters of Crux revenue was non-trade customers who could not use the client app, so each got a path: migrate, partner, API, or cancel with notice.</li>
+<li>What did it cost? $185,892 of annual recurring revenue retired. Six months of source work. The credibility risk of normalizing first, which the named residual protected.</li>
+<li>What would you do differently? Write the canonical-source rule before the first executive comparison. Once a dashboard has a constituency, a cheap definition becomes an expensive negotiation.</li>
+<li>Was Crux off on time? The target was end of 2022. The record shows dated cancellations through October 24, 2022, and the remaining trade clients on the second-half roll-out. I will not claim a single switch-off date that is not on record.</li>
+</ul>
+
 <h3>4.4 Flexport — weekly review automation, seven definitions</h3>
 <p>Ownership. This is the measurement system inside 4.3, told only if he asks how the review itself got built. Do not take credit for the customer count twice.</p>
 <h4>SITUATION/TASK</h4>
@@ -288,6 +375,7 @@
 <li>Name the seven metrics. The document says it names seven and that I froze the ones already in the review. I will stand on cost per container, system accuracy, automation rate, and the forwarder-versus-carrier timeliness pair. I will not invent the other names.</li>
 <li>Why only ninety percent accuracy if the gate was one percent? Ninety percent is the product measure, milestones against the source. One percent is the migration gate, new pipeline against the manual pull. Different questions.</li>
 <li>Who disagreed? Nobody had to. Infrastructure prioritized it because the price was in their own hours. That was the point of writing the number down.</li>
+<li>Where did the review come from? The E-Team on February 1, 2022 asked for cost to serve measured for 3PL plus 4PL against 4PL only, and for the visibility team to publish its own weekly review. By February 14 the shell existed, with arrival accuracy at the discharge port and interaction elimination as the first two lines. The sheet's rules were five weeks of trend and red or green at 5 percent relative variance.</li>
 </ul>
 
 <h3>4.5 Flexport — freight-forwarding app, partner route, reuse, eighteen months to six</h3>
@@ -313,6 +401,8 @@
 <tr><td>7</td><td>Model versus the record</td><td>2.85 million + 1.52 million = 4.37 million, which the packet rounds to $4.4 million. (5.0 - 4.4) / 5.0</td><td>12 percent under the record $5 million. Say the five million once. Call the split a model. Do not also say "annual reduction."</td></tr>
 <tr><td>8</td><td>Confidence buffer, if asked</td><td>(10 x 1.0 + 10 x 1.4) x 1.15. Two illustrative ten-week modules. The 1.0, 1.4, and 15 percent testing buffer are the record rule.</td><td>27.6 weeks against 20 naive. Buffers inflate the low-confidence items only.</td></tr>
 <tr><td>9</td><td>Import partners</td><td>48 / 53</td><td>90.6 percent, the documents print 90.5 percent. Say 48 of 53 import partners in a month. Not export partners.</td></tr>
+<tr><td>10</td><td>Scope share of the partner-first slice, record-from-docs</td><td>FFA Options Summary, comprehensive scoping: total scoped 905.9 engineer-months, which the sheet converts to 75.5 engineer-years. P0 Export Partners FCL: 126.9 engineer-months, 10.6 engineer-years. 126.9 / 905.9.</td><td>14 percent of the whole scoped app. The partner-first launch was one seventh of the scope, on the chassis the rest reused. P1 alone was 219.4 engineer-months.</td></tr>
+<tr><td>11</td><td>Testing buffer, record-from-docs</td><td>The same sheet notes "+15 percent effort in roadmap to account for pre-launch testing." Matches the 1.15 in step 8.</td><td>The buffer rule you quote is the sheet's rule, not yours alone.</td></tr>
 </tbody>
 </table>
 </div>
@@ -557,6 +647,12 @@ capacity = confirmed supply, never the requested date</pre>
 <td>The standard is the data, not the transport. No silent default. A custom map is a hold, not a favor.</td>
 <td>How a one-off sort pattern or a one-off pickup gets into production, and whether it expires or lives forever as an exception the next change has to route around.</td>
 </tr>
+<tr>
+<td>Keep or deprecate, when two scoreboards disagree</td>
+<td>4.3b. Crux at 63 against the 4PL platform at 25, on different containers and different horizons. Normalize first to earn the time, then improve to deserve it.</td>
+<td>Reconcile before compare: same containers, same sources, same week, same horizon. Name the residual against yourself in the same readout. One forum signs the improvement plan and the retirement plan together.</td>
+<td>When two systems report the same lane or the same pull time differently, which one the network is configured from, who owns the reconciliation, and whether a model's recommendation and a planner's override are scored on the same basis before one of them is retired.</td>
+</tr>
 </tbody>
 </table>
 
@@ -637,7 +733,7 @@ capacity = confirmed supply, never the requested date</pre>
 <tr><td>0–5</td><td>Thank him. Sixty-second introduction, section 1. Stop. If he talks, listen. One sentence on the role you think this is: config, cost, and the clock.</td><td>The thirty-second cut, if he starts with his own introduction and leaves you little time.</td></tr>
 <tr><td>5–10</td><td>Why this team, section 2, sixty seconds. Then ask question 3, the path from request to live config, and let him answer. That answer tells you which story to tell.</td><td>The public facts, unless the eight regions or the 1.9 days fit in one clause. Do not recite them as a briefing.</td></tr>
 <tr><td>10–22</td><td>Analytical, first. Story 4.1, the lanes, the tail, the two-sided release. This is a transportation team. If he leans into cost, bridge to 4.3 and the cents, and be ready for the worksheet.</td><td>Story 4.2, the eight domains, unless he asks how the data got clean. Do not add the two dollars.</td></tr>
-<tr><td>22–32</td><td>Cross-functional. Story 4.3 if you have not told it: gates, the held wave, cost per container. If he is more interested in a decision than in a metric, tell 4.5 instead and say the five million once.</td><td>The automation percentage. The minutes line. The bulk price you do not have.</td></tr>
+<tr><td>22–32</td><td>Cross-functional. Story 4.3b first if he has asked anything about comparing systems, deprecating a product, or changing a leadership decision: Crux at 63 against 4PL at 25, T-30 scored against T-0, 27 against 25, the residual you named, 4PL kept. Otherwise 4.3: gates, the held wave, cost per container. If he is more interested in a roadmap decision than a metric, tell 4.5 and say the five million once.</td><td>The automation percentage. The minutes line. The bulk price you do not have. Calling the 63 "a competitor's" after you have called it Crux.</td></tr>
 <tr><td>32–40</td><td>Ownership. Story 4.4, the review you took because nobody owned it, twenty-four hours a week out of the priced baseline, parity within one percent. If he asks for a failure, switch to 4.10 and stop on the kickoff question.</td><td>4.6 and 4.7 unless the clock is healthy and he asks for a shorter process story. 4.8 and 4.9 only if he asks what you do now.</td></tr>
 <tr><td>40–55</td><td>Your questions. Order if time is short: 3 the change path, 5 the metric he is behind on, 7 the ninety-day object, 8 where the model is already wrong, then the closer. Skip a question he has already answered.</td><td>Questions 1, 2, 4, 6, 9, and 10 if the conversation has already covered them. Do not read the list.</td></tr>
 <tr><td>55–60</td><td>Close. One sentence: you configure a network so the package moves at the lowest cost that still meets the promise, and you want a gate in front of the change. Ask the closer if you have not. Stop. Thank him.</td><td>A new story. Do not open 4.11 in the last five minutes unless he asked how you would think about a promise network.</td></tr>
@@ -675,7 +771,16 @@ capacity = confirmed supply, never the requested date</pre>
 <tr><td>Cost per container, endpoints</td><td>$0.66 to $0.03; about 95 percent</td><td>4.3</td><td>1331</td><td>record endpoints</td></tr>
 <tr><td>Before worksheet</td><td>2,000 a week; 60 percent automated; 800 tickets; $1.50 and $120 illustrative; (1,200+120)/2,000 = $0.66</td><td>4.3</td><td>1331</td><td>illustrative rates chosen to land on the record endpoint. Do not say the minutes line. 12/60 x 75 = $15, not $1.50.</td></tr>
 <tr><td>After worksheet</td><td>10,000 a week; 97 percent; 300 tickets; $0.80 and $150 illustrative; sum $0.039</td><td>4.3</td><td>1331</td><td>illustrative. Does not reproduce $0.03. Gap $0.009. Bulk price not on the page.</td></tr>
-<tr><td>Touch cousin check</td><td>$0.18 a eliminated interaction; 0.66/0.18 about 3.7; 0.03/0.18 about 0.17</td><td>4.3</td><td>1237</td><td>Finance's rate for one interaction. Not the ticket price.</td></tr>
+<tr><td>Touch cousin check</td><td>$0.18 an eliminated interaction; 0.66/0.18 about 3.7; 0.03/0.18 about 0.17</td><td>4.3, 4.3b</td><td>1237; LSA WBR 2022 Forwarding Platform lines 2 and 12: 44,074.08 / 244,856 = 0.18</td><td>Finance's rate for one interaction, confirmed by the uploaded review sheet. Not the ticket price.</td></tr>
+<tr><td>Crux against 4PL, raw</td><td>25 percent against 63 percent schedule reliability</td><td>4.3b</td><td>229, 1252</td><td>record. Your record also words the 63 as "a competitor's." Say Crux consistently.</td></tr>
+<tr><td>Crux against 4PL, normalized</td><td>about 27 percent against 25 percent, same containers, sources, week, horizon</td><td>4.3b</td><td>229, 1252</td><td>record endpoints. The 1,000 / 400 / 252 / 270 / 250 populations are illustrative.</td></tr>
+<tr><td>Residual gap</td><td>arrival variance 16 days against 8; six months of source additions</td><td>4.3b</td><td>229, 1252</td><td>record</td></tr>
+<tr><td>Reliability after sources</td><td>90 percent against an 80 percent north star</td><td>4.3b</td><td>229, 1252</td><td>record</td></tr>
+<tr><td>Scoring horizons</td><td>accuracy at ATD-28 and ATD-10; MAE; standard deviation of MAE at T-28, T-10, T-5</td><td>4.3b</td><td>LSA WBR 2022, Ocean FCL lines 30 to 33</td><td>record-from-docs. Say T-30 as the round number.</td></tr>
+<tr><td>Crux base</td><td>79 customers; $15,491 a month = $185,892 a year; 294,581 containers in 2021; about 75 percent non-trade revenue</td><td>4.3b</td><td>61, 920</td><td>record-from-docs, RAPID. Cost to run Crux not on record.</td></tr>
+<tr><td>Crux cancellations</td><td>August 1, September 1, October 24, 2022</td><td>4.3b</td><td>61</td><td>record-from-docs. No single switch-off date on record.</td></tr>
+<tr><td>E-Team frame</td><td>February 1, 2022: Goal 1 lower cost to serve; measure CTS for 3PL plus 4PL against 4PL only; visibility team publishes its own review, arrival accuracy and interaction elimination first</td><td>4.3b, 4.4</td><td>uploaded E-Team takeaways; packet 16474</td><td>record-from-docs</td></tr>
+<tr><td>FFA scope</td><td>905.9 engineer-months total, 75.5 engineer-years; P0 Export Partners FCL 126.9 engineer-months = 14 percent; P1 219.4; +15 percent pre-launch testing</td><td>4.5</td><td>uploaded FFA Options Summary</td><td>record-from-docs</td></tr>
 <tr><td>Automation, spoken if asked</td><td>about 40 percent to about 90 percent</td><td>4.3</td><td>reconciled against the packet's 60 to 97 worksheet on 1331</td><td>record is 40 to 90. Worksheet is 60 to 97. Do not blend.</td></tr>
 <tr><td>System accuracy</td><td>60 percent to 90 percent; parity within 1 percent</td><td>4.3, 4.4</td><td>270</td><td>record. Not arrival accuracy.</td></tr>
 <tr><td>Wave hold</td><td>arrival accuracy 76 percent vs 80 percent</td><td>4.3</td><td>1331</td><td>record</td></tr>
