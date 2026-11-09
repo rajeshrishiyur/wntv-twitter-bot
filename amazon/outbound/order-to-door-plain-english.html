@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Order to door, in plain English — one package, one day, the things that go wrong, the measurements, and the dashboard — Rajesh Rishiyur Chandrasekaran</title>
+<title>Order to door, in plain English — one package, one day, the things that go wrong, the measurements, the dashboard, and transportation planning — Rajesh Rishiyur Chandrasekaran</title>
 <style>
   @page { size: letter; margin: 0.65in; }
   * { box-sizing: border-box; }
@@ -31,6 +31,7 @@
   th, td { text-align: left; vertical-align: top; border: 1px solid #b9b2a4; padding: 4px 6px; }
   th { background: #e9e5db; font-size: 8.6pt; letter-spacing: 0.03em; text-transform: uppercase; color: #333; }
   td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.a { font-weight: 700; color: #10243e; }
   table.toc td { border: none; border-bottom: 1px dotted #b9b2a4; padding: 3px 6px; font-size: 10pt; }
   table.toc td.pg { text-align: right; width: 48px; font-variant-numeric: tabular-nums; }
   table.toc td.sub { padding-left: 22px; font-size: 9.5pt; }
@@ -46,11 +47,11 @@
 
 <p class="kicker">Plain-English companion to the outbound network design packet</p>
 <h1>Order to door, in plain English</h1>
-<p style="font-size:12.5pt;color:#333;margin-bottom:10px">One package, happy path. One whole day, happy path. Then the things that go wrong, one at a time. Then the measurements, the weekly scorecard, and how this job would build the dashboard.</p>
+<p style="font-size:12.5pt;color:#333;margin-bottom:10px">One package, happy path. One whole day, happy path. Then the things that go wrong, one at a time. Then the measurements, the weekly scorecard, how this job would build the dashboard, and transportation planning: what is in a trailer, what is in a mile, and how to buy service with trucks.</p>
 <div class="meta">
   <div><strong>Who this is for.</strong> Rajesh Rishiyur Chandrasekaran, preparing for a role that owns the design of a large outbound transportation and sorting network. Written so that someone with no logistics background could follow every step and every calculation.</div>
   <div><strong>How it is written.</strong> No abbreviations. Every calculation is shown as arithmetic you can check with a pencil. We use one made-up network with one set of numbers, stated in full in Chapter 1, and we never change them. We walk one customer's package first with nothing going wrong. Then one whole day with nothing going wrong. Only after that do we add problems, one at a time, and show what each one costs and how you would measure it. The measurements are explained from that same example, so there is nothing to memorize.</div>
-  <div><strong>What is real and what is made up.</strong> The shape of the journey (warehouse, truck, sorting hub, truck, neighborhood depot, van) is how Amazon has publicly described its network; the sources are in Chapter 8. Every rate, time, and dollar amount is made up for the example so the arithmetic is clear. None of them is an Amazon figure. Chapter 8 also gives the words you will hear in the interview for the plain words used here.</div>
+  <div><strong>What is real and what is made up.</strong> The shape of the journey (warehouse, truck, sorting hub, truck, neighborhood depot, van) is how Amazon has publicly described its network; the sources are in Chapter 9. Every rate, time, and dollar amount is made up for the example so the arithmetic is clear. None of them is an Amazon figure. Chapter 9 also gives the words you will hear in the interview for the plain words used here.</div>
 </div>
 
 <h3>Contents</h3>
@@ -93,10 +94,19 @@
 <tr><td class="sub">7.6 Colors, alerts, and clicking down to the cause</td><td class="pg" data-k="K76">24</td></tr>
 <tr><td class="sub">7.7 Who builds what, in what order</td><td class="pg" data-k="K77">25</td></tr>
 <tr><td class="sub">7.8 Mistakes that ruin dashboards, and how to avoid each</td><td class="pg" data-k="K78">25</td></tr>
-<tr><td><b>Chapter 8 — Plain words and interview words; what is real and what is made up</b></td><td class="pg" data-k="C8">27</td></tr>
+<tr><td><b>Chapter 8 — Transportation planning: what is in a trailer, what is in a mile, and how to buy service with trucks</b></td><td class="pg" data-k="C8">27</td></tr>
+<tr><td class="sub">8.1 The transportation question in one sentence</td><td class="pg" data-k="K81">27</td></tr>
+<tr><td class="sub">8.2 What is in a trailer: units, cases, pallets, gaylords, cube and weight</td><td class="pg" data-k="K82">27</td></tr>
+<tr><td class="sub">8.3 What is in the $3.20 a mile, and how cost per mile becomes cost per package</td><td class="pg" data-k="K83">28</td></tr>
+<tr><td class="sub">8.4 Lane planning: how many trucks a day, and when a direct truck beats the hub</td><td class="pg" data-k="K84">28</td></tr>
+<tr><td class="sub">8.5 Tractors, trailers and drivers: sizing the fleet for one lane</td><td class="pg" data-k="K85">29</td></tr>
+<tr><td class="sub">8.6 Service level in transportation terms: how you buy a faster promise with trucks</td><td class="pg" data-k="K86">29</td></tr>
+<tr><td class="sub">8.7 The transportation scorecard</td><td class="pg" data-k="K87">30</td></tr>
+<tr><td class="sub">8.8 The optimization model in the companion workbook</td><td class="pg" data-k="K88">30</td></tr>
+<tr><td><b>Chapter 9 — Plain words and interview words; what is real and what is made up</b></td><td class="pg" data-k="C9">32</td></tr>
 </table>
 
-<div class="note"><p><strong>How to read this.</strong> Read Chapters 1 to 3 in order with a pencil; recompute three or four of the boxes yourself. Chapter 4 can be read one problem at a time. Chapter 5 should make sense without effort once Chapter 4 is done, because every measurement is a problem from Chapter 4 turned into a fraction. Chapters 6 and 7 are what the job produces every week. The long, detailed packet in the same folder covers the same ground with more depth; this one is the explanation to read first.</p></div>
+<div class="note"><p><strong>How to read this.</strong> Read Chapters 1 to 3 in order with a pencil; recompute three or four of the boxes yourself. Chapter 4 can be read one problem at a time. Chapter 5 should make sense without effort once Chapter 4 is done, because every measurement is a problem from Chapter 4 turned into a fraction. Chapters 6 and 7 are what the job produces every week. Chapter 8 goes one level down into the trucks: trailers, miles, lanes, fleet, and the optimization model in the companion workbook. The long, detailed packet in the same folder covers the same ground with more depth; this one is the explanation to read first.</p></div>
 
 <h1 class="sec" id="C1">Chapter 1 — Our pretend network and every number we will use</h1>
 <p>Here is the whole network. A package goes through six places in order. We give each a plain name and use only that name.</p>
@@ -894,7 +904,185 @@
 <p>I start with a table of who looks, how often, and what decision they are about to make, and I only build tiles that answer a question on that table. Then I write a definition card for each of the twelve measurements, with the fraction, the owner, the plan, and the source, and get finance and operations to sign them before any pipeline exists. The data is the scans: fourteen per package, folded once a day into four tables, one row per package, per trailer trip, per van route, per building-day. Three tie-outs run before every refresh and print at the top of the screen. There are three screens: today, which is counts and clocks for the people on the dock; yesterday, which is causes for the directors; and this week, which is the scorecard and the mix-versus-rate bridge generated, not typed. Every tile drills to the list of packages behind it. I build the weekly screen first because that is where decisions are made and trust is earned, the hourly screen last because it is the most fragile, and alerts after that, with a two-day rule so they are not muted. And I measure whether people open it.</p>
 </div>
 
-<h1 class="sec" id="C8">Chapter 8 — Plain words and interview words; what is real and what is made up</h1>
+<h1 class="sec" id="C8">Chapter 8 — Transportation planning: what is in a trailer, what is in a mile, and how to buy service with trucks</h1>
+<p>Everything so far costed a truck as "$640 a trip ÷ 1,590 packages." A transportation planner is asked the questions underneath that line: what exactly fills the trailer, why $3.20 a mile and not $2.50, how many trucks a lane needs, how many tractors, trailers and drivers that takes, and how you buy a faster promise with trucks. This chapter answers those with the same arithmetic style, and ends with the scorecard a transportation team runs and the optimization model in the companion workbook.</p>
+
+<h2 class="first" id="K81">8.1 The transportation question in one sentence</h2>
+<p><strong>Spend the fewest dollars on trucks such that every package makes its deadline.</strong> Dollars on trucks = trucks × miles × cost per mile. So there are exactly three levers, and every transportation decision is one of them:</p>
+<table>
+<tr><th style="width:18%">Lever</th><th style="width:42%">What it means</th><th>Where it appeared already</th></tr>
+<tr><td>Fewer miles</td><td>Shorter paths; the right hub in the right place; a direct truck where the hub adds a detour</td><td>Chapter 4.6: through the hub is 200 + 120 = 320 miles; direct to Depot 3 is 90</td></tr>
+<tr><td>Fuller trucks</td><td>More packages sharing each truck's cost</td><td>Chapter 4.2: 1,600 aboard is $0.40 a package; 800 is $0.80</td></tr>
+<tr><td>Cheaper miles</td><td>Paying less for the same mile: a dedicated fleet where volume is steady, for-hire carriers where it is not, bidding lanes, avoiding empty return trips</td><td>Not yet; Section 8.3</td></tr>
+</table>
+<p>"Service" enters as the constraint, not the objective: a truck that leaves at the right time to make the hub window, a lane with a departure every day, a direct truck that skips a 3-hour sort window so a package can arrive the same day.</p>
+
+<h2 id="K82">8.2 What is in a trailer: units, cases, pallets, gaylords, cube and weight</h2>
+<p>Before any truck arithmetic, ask "a trailer of what?" The same 53-foot trailer holds very different counts depending on what is loaded and how. There are two hierarchies, one coming into the warehouse and one going out.</p>
+<div class="math"><div class="cap">Going out: packages → gaylords → trailer (what this packet's trucks carry)</div>
+<table>
+<tr><th style="width:5%">Step</th><th style="width:20%">Question</th><th style="width:47%">Arithmetic</th><th style="width:28%">Answer</th></tr>
+<tr><td>1</td><td>How big is an average package?</td><td>A shoebox is about half a cubic foot; a kettle box is one. Average across the mix</td><td class="a">0.6 cubic feet, 2.5 pounds</td></tr>
+<tr><td>2</td><td>What is a gaylord?</td><td>A large cardboard box on a pallet, 48 × 40 × 48 inches, filled with packages all going to the same destination</td><td class="a">53.3 cubic feet</td></tr>
+<tr><td>3</td><td>How many packages fit in a gaylord?</td><td>Packages are irregular and the box is closed when the truck leaves, not when it is full: about 45% of the space is used. 53.3 × 0.45 ÷ 0.6</td><td class="a">40 packages</td></tr>
+<tr><td>4</td><td>How many gaylords in a trailer?</td><td>A 53-foot trailer has 26 floor positions for a 48 × 40 pallet; gaylords stack two high</td><td class="a">52 gaylords</td></tr>
+<tr><td>5</td><td>How many packages in a trailer, by space?</td><td>52 × 40</td><td class="a">2,080, which this packet rounds to 2,000</td></tr>
+<tr><td>6</td><td>How many by weight?</td><td>Legal gross weight 80,000 pounds; tractor and trailer about 36,000; payload 44,000. Minus 52 empty gaylords at 30 pounds = 1,560. (44,000 − 1,560) ÷ 2.5</td><td class="a">16,976 packages</td></tr>
+<tr><td>7</td><td>Which limit binds?</td><td>Space fills at 2,080 packages; at that point the load weighs 2,080 × 2.5 + 1,560 = 6,760 pounds, a seventh of the limit</td><td class="a"><b>Space.</b> The trailer "cubes out." Small-package freight almost always does.</td></tr>
+<tr><td>8</td><td>When would weight bind instead?</td><td>If the average package weighed 25 pounds (appliances, pet food, water): 44,000 ÷ 25</td><td class="a">1,760 packages, under the 2,080 the space allows: it "weighs out." Then you plan the trailer by pounds, not positions.</td></tr>
+<tr><td>9</td><td>What if there are no gaylords at all?</td><td>"Fluid load": packages stacked loose from floor to ceiling. Uses the space better but must be unloaded one package at a time</td><td class="a">2,500–3,000 small packages; unload 4 hours instead of 2 (Chapter 4.1 shows what two extra hours at a door cost)</td></tr>
+<tr><td>10</td><td>Why plan for 80% and not 100%?</td><td>Chapter 4.2: the day's volume swings; planning at 1,600 of 2,000 means the truck is almost never over-full and the dock is almost never left holding packages when it leaves</td><td class="a">1,600 planned (1,664 at 2,080); the fill measured every week against this</td></tr>
+</table>
+</div>
+<div class="math"><div class="cap">Coming in: units → cases → pallets → trailer (stock arriving at the warehouse; the question an interviewer means by "how many units per pallet")</div>
+<table>
+<tr><th style="width:5%">Step</th><th style="width:20%">Question</th><th style="width:47%">Arithmetic</th><th style="width:28%">Answer</th></tr>
+<tr><td>1</td><td>Units per case?</td><td>The supplier packs 12 kettles in a case</td><td class="a">12 units</td></tr>
+<tr><td>2</td><td>Cases per pallet?</td><td>A 48 × 40 inch pallet, stacked 48 inches high (so it can double-stack): 5 layers × 12 cases</td><td class="a">60 cases, so 60 × 12 = 720 units a pallet</td></tr>
+<tr><td>3</td><td>Pallets per trailer?</td><td>26 single-stacked; 52 if the pallets are stable enough to double-stack</td><td class="a">26 or 52 pallets; 18,720 or 37,440 units</td></tr>
+<tr><td>4</td><td>Does it weigh out?</td><td>A case of kettles is 10 pounds; a pallet 600 pounds plus 50 for the pallet itself; 52 × 650</td><td class="a">33,800 pounds, under 44,000: cubes out at 52</td></tr>
+<tr><td>5</td><td>And a heavy item?</td><td>Cases of bottled water at 40 pounds: a pallet is 60 × 40 + 50 = 2,450 pounds; 44,000 ÷ 2,450</td><td class="a">17 pallets fit by weight, though 52 fit by space: weighs out at 17. A planner who books 26 positions for water has booked 9 empty ones.</td></tr>
+</table>
+</div>
+<p>The habit to show: before quoting any cost per unit, state the unit, state the container, state the trailer count by space and by weight, and say which binds. That one minute of arithmetic is what separates a transportation answer from a guess.</p>
+
+<h2 id="K83">8.3 What is in the $3.20 a mile, and how cost per mile becomes cost per package</h2>
+<div class="math"><div class="cap">The $3.20 a loaded mile, taken apart (illustrative; a truckload rate in a normal year is $2.00–$3.00 per loaded mile before the empty return)</div>
+<table>
+<tr><th style="width:30%">Piece</th><th style="width:44%">What it pays for</th><th>$ per loaded mile</th></tr>
+<tr><td>Driver</td><td>Wages and benefits: $30 an hour at 50 miles an hour is $0.60; plus paid waiting at docks</td><td class="n">$0.75</td></tr>
+<tr><td>Fuel</td><td>7 miles per gallon at $4 a gallon</td><td class="n">$0.57</td></tr>
+<tr><td>Tractor</td><td>Lease or depreciation, about $2,500 a month over 9,000 miles</td><td class="n">$0.28</td></tr>
+<tr><td>Trailer</td><td>Lease and tires; a trailer pool is bigger than the tractor pool (Chapter 3.2: 60 trailers for 35 tractors)</td><td class="n">$0.12</td></tr>
+<tr><td>Maintenance and tires</td><td></td><td class="n">$0.20</td></tr>
+<tr><td>Insurance, permits, tolls</td><td></td><td class="n">$0.18</td></tr>
+<tr><td>Carrier overhead and margin (if for-hire)</td><td>Dispatch, safety, back office, profit</td><td class="n">$0.30</td></tr>
+<tr class="total"><td>Cost per mile driven</td><td></td><td class="n">$2.40</td></tr>
+<tr><td>The empty return</td><td>Our lanes are out-and-back. If every trailer came home empty, half of all miles would be empty. A planner who finds a return load (inbound freight to the warehouse, empty gaylords and totes going back) for half the trips gets the empty share down to a quarter of all miles. Loaded miles have to pay for the empty ones: $2.40 ÷ (1 − 0.25) = $3.20, so the empty return adds $0.80 to every loaded mile</td><td class="n">+ $0.80</td></tr>
+<tr class="total"><td>Cost per loaded mile, what the package pays</td><td></td><td class="n"><b>$3.20</b></td></tr>
+</table>
+</div>
+<p><strong>Three ways to buy the mile.</strong> A <em>dedicated fleet</em> (our tractors, our drivers, or a carrier's assigned to us full time) costs about $2.40–$2.60 a mile all-in when it is kept busy, because there is no margin for a middleman and no empty-return premium if the planner pairs lanes; but the cost is paid whether the truck runs or not, so it only pays on lanes with steady daily volume, which is exactly what the warehouse-to-hub lanes are. A <em>for-hire contract carrier</em> is paid per load at a lane rate bid once a year, about $3.00–$3.40 a loaded mile; it absorbs variation, and the risk is that in a tight market the carrier declines the load (the share accepted is the "tender acceptance" line on the scorecard) and the load goes to the <em>spot market</em> at $4.00–$6.00. A network usually runs dedicated on its thick, steady lanes and contract carriers on the rest, with spot as the safety valve.</p>
+<div class="math"><div class="cap">From cost per mile to cost per package: the same lane, three ways to cut it</div>
+<table>
+<tr><th style="width:30%">Change</th><th style="width:40%">Arithmetic (warehouse → hub, 200 miles)</th><th style="width:30%">Cost per package</th></tr>
+<tr><td>As is</td><td>$3.20 × 200 ÷ 1,600</td><td class="n">$0.400</td></tr>
+<tr><td>Fuller: 1,800 aboard</td><td>$3.20 × 200 ÷ 1,800</td><td class="n">$0.356, saves 4.4 cents</td></tr>
+<tr><td>Cheaper mile: dedicated at $2.60</td><td>$2.60 × 200 ÷ 1,600</td><td class="n">$0.325, saves 7.5 cents</td></tr>
+<tr><td>Fewer miles: a hub 20 miles closer to the warehouse</td><td>$3.20 × 180 ÷ 1,600</td><td class="a">$0.360, saves 4 cents (but every hub → depot leg changes too; this is the network design question)</td></tr>
+<tr><td>Better return loads: empty share from a quarter to a tenth</td><td>$2.40 ÷ (1 − 0.10) = $2.67 a loaded mile; $2.67 × 200 ÷ 1,600</td><td class="n">$0.333, saves 6.7 cents</td></tr>
+<tr><td>No return loads at all: empty share half</td><td>$2.40 ÷ (1 − 0.50) = $4.80 a loaded mile; $4.80 × 200 ÷ 1,600</td><td class="n">$0.600, costs 20 cents more</td></tr>
+</table>
+</div>
+<p>The last two rows show the trap. Cost per loaded mile already contains an assumption about empty miles, and two planners quoting "$3.20" may mean different things: the same truck is $2.67 a mile with good return loads and $4.80 with none. The empty return is worth as much as the fill. The scorecard therefore carries <em>empty miles share</em> as its own line, and the rate is always quoted with it.</p>
+
+<h2 id="K84">8.4 Lane planning: how many trucks a day, and when a direct truck beats the hub</h2>
+<p>A <em>lane</em> is one origin and one destination with a schedule. Planning a lane is three questions: how many packages a day, how many trucks a day that needs, and whether the trucks will be full enough to be worth running or whether the packages should ride a consolidated lane through a hub instead.</p>
+<div class="math"><div class="cap">A thick lane and a thin lane, from the companion workbook's region (4,000 packages a day across 12 zones)</div>
+<table>
+<tr><th style="width:5%">Step</th><th style="width:20%">Question</th><th style="width:47%">Arithmetic</th><th style="width:28%">Answer</th></tr>
+<tr><td>1</td><td>Downtown zone gets 4,400 packages a week from Warehouse A, 145 miles away. Trucks a day for a direct lane?</td><td>4,400 ÷ 7 = 629 a day; ÷ 2,080 a trailer = 0.30 trailers, but next-day service needs a truck every day</td><td class="a">1 truck a day, 30% full</td></tr>
+<tr><td>2</td><td>What does that lane cost a week?</td><td>7 trucks × 145 miles × $3.20</td><td class="a">$3,248 a week; ÷ 4,400 = $0.74 a package</td></tr>
+<tr><td>3</td><td>What does the hub path cost those packages?</td><td>Warehouse A → Hub West, 65 miles at $0.0019 a package-mile (consolidated lane at 80% fill) = $0.125; hub handling $0.16; Hub West → Downtown 80 miles = $0.154; Hub West's $4,000 a week spread over its 16,000 packages = $0.25</td><td class="a">$0.69 a package</td></tr>
+<tr><td>4</td><td>Break-even for a direct lane</td><td>Direct pays when daily packages × (hub-path cost per package − direct per-package costs) ≥ truck cost per day. $464 a day ÷ $0.69</td><td class="a">672 packages a day. Downtown's 629 is just under: the model keeps Downtown on the hub when cost is all that matters, and moves it to a direct truck the moment same-day service is required (Section 8.8).</td></tr>
+<tr><td>5</td><td>Farmlands gets 1,600 a week from Warehouse A, 75 miles. Direct?</td><td>229 a day, 11% of a trailer; 7 × 75 × $3.20 = $1,680 a week ÷ 1,600</td><td class="a">$1.05 a package direct against $0.125 + 0.16 + 0.19 + 0.25 = $0.73 through the hub. The hub wins by a third. Thin lanes are what hubs are for.</td></tr>
+<tr><td>6</td><td>The same lane in the big network of Chapter 3 (100,000 a day)</td><td>A zone taking 8,000 a day from one warehouse fills 4 trailers a day at 96%</td><td class="a">Direct wins outright. Whether a hub earns its keep is a question about lane thickness, and the answer flips with scale. This is why Amazon runs direct trucks from big warehouses to big delivery stations and hubs for everything else.</td></tr>
+</table>
+</div>
+<p><strong>The schedule is part of the lane.</strong> One truck a day leaving at 9 PM serves next-day; the same lane serving same-day needs a second departure at 11 AM, so the lane's cost doubles while its volume does not. Departure times are chosen from the deadline chain in Chapter 2.2, working backward from the van wave they feed; the number of departures is chosen from the volume; and the fill falls out as volume ÷ (departures × trailer). The planner's weekly job is to look at every lane's fill and ask whether a departure can come off (Chapter 6's "17th trailer added on Tuesday and never removed").</p>
+
+<h2 id="K85">8.5 Tractors, trailers and drivers: sizing the fleet for one lane</h2>
+<div class="math"><div class="cap">The warehouse → hub lane from Chapter 3: 64 trailers a day, 200 miles, 4 leave times</div>
+<table>
+<tr><th style="width:5%">Step</th><th style="width:20%">Question</th><th style="width:47%">Arithmetic</th><th style="width:28%">Answer</th></tr>
+<tr><td>1</td><td>How long is one round trip for a tractor?</td><td>4 hours out + 2 hours while the trailer is unloaded (or 0.5 if the driver drops it and hooks an empty one) + 4 hours back + 1 hour in yards</td><td class="a">11 hours (7.5 with drop-and-hook)</td></tr>
+<tr><td>2</td><td>Round trips per tractor per day?</td><td>24 ÷ 11, less time for fueling and inspections</td><td class="a">2 a day</td></tr>
+<tr><td>3</td><td>Tractors?</td><td>64 trips ÷ 2, plus 10% for repairs</td><td class="a">35 tractors</td></tr>
+<tr><td>4</td><td>Trailers?</td><td>In motion or being unloaded: 64 × 11 ÷ 24 = 29; being loaded at the warehouse: 16; waiting at the hub for the return: 16</td><td class="a">About 60 trailers, nearly two per tractor. Trailers are cheap to own and expensive to run short of.</td></tr>
+<tr><td>5</td><td>Drivers? (A driver may drive 11 hours and be on duty 14 in a day, then rest 10)</td><td>One round trip is 8 hours of driving and 11 on duty: one driver, one round trip, one shift. 64 round trips a day</td><td class="a">64 driver-shifts a day; with days off and leave, × 7 ÷ 5 ≈ 90 drivers on the roster</td></tr>
+<tr><td>6</td><td>What if the lane were 350 miles?</td><td>7 hours out, 7 back: 14 hours of driving, over the 11-hour limit</td><td class="a">Either a team of two drivers, a relay at the midpoint, or the driver sleeps at the far end and the tractor does one trip a day instead of two: the tractor count doubles. Lane length changes fleet cost in steps, not smoothly.</td></tr>
+</table>
+</div>
+
+<h2 id="K86">8.6 Service level in transportation terms: how you buy a faster promise with trucks</h2>
+<p>In transportation, "service level" means one thing: of the trucks that had a deadline, how many beat it. Chapter 4.1 did the arithmetic for one lane (90 trips in 100 are under 4 hours 27 minutes; the hub needs the truck by 1:36 AM; 4 in 100 are late). Here is the menu of ways to buy a better number, each priced.</p>
+<table>
+<tr><th style="width:24%">Way to buy service</th><th style="width:42%">What it does to the clock</th><th>What it costs</th></tr>
+<tr><td>Leave earlier</td><td>Adds spare time at the far end</td><td>Nothing in dollars; the customers' order deadline moves earlier and some orders go a day slower (Chapter 4.1)</td></tr>
+<tr><td>Unload faster (3-person crews, drop-and-hook)</td><td>Moves the "latest useful arrival" later</td><td>Labor hours unchanged, staffing shape changes; drop-and-hook needs the spare trailers of 8.5</td></tr>
+<tr><td>Add a departure</td><td>A package that misses one truck waits hours instead of a day</td><td>One more truck a day: $640 × 360 = $230,000 a year on a 200-mile lane, and the fill of every departure falls</td></tr>
+<tr><td>Skip the hub (direct truck)</td><td>Removes the 3-hour sort window and one leg: Chapter 4.6's 9.5 hours become 2</td><td>Cheap on thick lanes, expensive on thin ones (8.4); it is the only way to reach same-day over distance</td></tr>
+<tr><td>Faster mode (team drivers, expedited)</td><td>A 700-mile leg in 12 hours instead of 24</td><td>Roughly double the cost per mile; used for a few lanes feeding a promise, never for the base</td></tr>
+<tr><td>Outside carrier for the far tail</td><td>Their network, their schedule</td><td>$4.50 a package against $2.58; buys reach, not speed (two-day)</td></tr>
+</table>
+<p>The companion workbook turns this into two numbers per path: a path is <em>same-day eligible</em> if a package can be at the delivery station within 4 hours of leaving the warehouse dock (truck leaves late morning, afternoon van wave), and <em>next-day eligible</em> within 9.5 hours (leaves 9 PM, at the depot by 6:30 AM). Through a hub, hours = drive + 3-hour window + drive, so same-day through a hub is impossible at any realistic distance and next-day needs the two drives to total under 6.5 hours. Direct, hours = drive, so same-day reaches about 175 miles. "Buy 30% same-day" then means: enough packages on direct trucks, which means thin lanes running daily, which has a price the model computes.</p>
+
+<h2 id="K87">8.7 The transportation scorecard</h2>
+<p>This is the page the transportation team reads on Monday, underneath the network page of Chapter 6. Same rules: a fraction with its bottom printed, a plan, an owner, a cause for every red cell. The "our model" column is the companion workbook's baseline region.</p>
+<table>
+<tr><th style="width:17%">Measurement</th><th style="width:21%">The fraction</th><th style="width:11%">Our model</th><th style="width:9%">Plan</th><th style="width:12%">Owner</th><th>When it is red</th></tr>
+<tr><td>Transportation cost per package (dock to door)</td><td>dock-to-door dollars ÷ packages delivered</td><td class="n">$2.35</td><td class="n">$2.40</td><td>This role</td><td>Mix versus rate (Chapter 6.2)</td></tr>
+<tr><td>Cost per loaded truck mile</td><td>linehaul dollars ÷ loaded miles</td><td class="n">$3.20</td><td class="n">$3.20</td><td>Procurement</td><td>Lane bids; dedicated where steady; fuel surcharge</td></tr>
+<tr><td>Cost per package-mile</td><td>linehaul dollars ÷ the sum over all packages of (miles each one rode)</td><td class="n">$0.0019</td><td class="n">$0.0022</td><td>Network design</td><td>Rises with thin direct lanes and light trailers; the single best summary of middle-mile efficiency</td></tr>
+<tr><td>Truck miles a week</td><td>sum over lanes of (trips × lane miles)</td><td class="n">2,520</td><td class="n">plan by lane</td><td>Planning</td><td>Departures added for a surge and never removed</td></tr>
+<tr><td>Trailer trips a week</td><td>count of departures</td><td class="n">34</td><td class="n">plan</td><td>Planning</td><td>Each over plan is $640–$930</td></tr>
+<tr><td>Packages per trailer trip</td><td>package-trips ÷ trailer trips</td><td class="n">1,664</td><td class="n">1,660</td><td>Planning</td><td>Under 1,500: take a departure off</td></tr>
+<tr><td>Fill, consolidated lanes (by cube)</td><td>packages aboard at door-close ÷ packages per trailer</td><td class="n">80%</td><td class="n">80%</td><td>Dock leads</td><td>Under 75% three weeks: lane review</td></tr>
+<tr><td>Fill, direct lanes</td><td>direct packages ÷ (trucks × days × packages per trailer)</td><td class="n">—</td><td class="n">≥ 40%</td><td>Network design</td><td>Under 40% unless the lane is buying same-day</td></tr>
+<tr><td>Empty miles share</td><td>empty miles ÷ all miles</td><td class="n">25% (assumed)</td><td class="n">≤ 25%</td><td>Planning</td><td>Pair lanes with inbound or returns</td></tr>
+<tr><td>Trucks leaving on time</td><td>departures within 15 minutes ÷ scheduled</td><td class="n">measured</td><td class="n">≥ 98%</td><td>Warehouse dock</td><td>Chapter 4.5</td></tr>
+<tr><td>Trucks arriving before the latest useful time</td><td>arrivals before the deadline ÷ trips due</td><td class="n">measured</td><td class="n">≥ 97%</td><td>Road and hub</td><td>Chapter 4.1</td></tr>
+<tr><td>Dwell at dock</td><td>sum of (unload start − arrival) ÷ number of arrivals</td><td class="n">measured</td><td class="n">≤ 30 min</td><td>Hub and depot leads</td><td>Door bunching; crews; spread departures</td></tr>
+<tr><td>Tender acceptance (for-hire)</td><td>loads accepted at contract ÷ loads offered</td><td class="n">measured</td><td class="n">≥ 95%</td><td>Procurement</td><td>Under 90% the spot market is pricing you; re-bid or go dedicated</td></tr>
+<tr><td>Same-day share · next-day share · average hours</td><td>packages on eligible paths ÷ all; package-weighted hours</td><td class="n">0% · 100% · 7.0</td><td class="n">scenario</td><td>This role</td><td>Section 8.8</td></tr>
+<tr><td>Damage and loss per 1,000</td><td>claims ÷ packages × 1,000</td><td class="n">measured</td><td class="n">≤ 0.5</td><td>Hub and transportation</td><td>Gaylord fill rules; load bars; chute speed</td></tr>
+</table>
+<p>How it rolls up: cost per loaded mile × miles ÷ packages is the linehaul part of transportation cost per package; fill and departures are why miles per package move; on-time departure and arrival are why the network page's "arrived on the promised day" moves. When the Chapter 6 page shows cost up, this page says which of the three levers slipped.</p>
+
+<h2 id="K88">8.8 The optimization model in the companion workbook</h2>
+<p>The workbook <em>outbound-network-design-model.xlsx</em>, in the same folder, holds two models you can run with Excel's Solver. The first is the uploaded root-beer transshipment baseline (plants → distribution centers → customers), rebuilt with formulas and pre-solved: $78,524 a week, $39.26 a barrel, five centers open, the level-of-service rules met (average 23.5 miles against a 25-mile maximum; 86.5% of barrels within 50 miles against an 80% minimum). The second is that same structure turned into an outbound transportation network, and this section is its plain-English description.</p>
+<div class="math"><div class="cap">What the model decides, and what it is told</div>
+<table>
+<tr><th style="width:22%">Piece</th><th>Content</th></tr>
+<tr><td>Decides</td><td>How many packages a week ride each path (warehouse → hub → zone for 2 warehouses × 5 hubs × 12 zones; warehouse → zone direct; warehouse → outside carrier); how many trucks a day run on each direct lane (whole numbers); which hubs are open (yes or no). 185 cells for Excel's Solver to change.</td></tr>
+<tr><td>Minimizes</td><td>Cost per package = (warehouse handling + inbound linehaul + hub fixed cost + hub handling + outbound linehaul + direct-lane trucks + carrier charges + delivery station and van) ÷ packages.</td></tr>
+<tr><td>Subject to</td><td>Every zone's demand delivered. A hub sorts at most its capacity, and only if open. A warehouse ships at most its capacity. A direct lane carries at most trucks a day × 7 × packages per trailer. Hubs open between a minimum and maximum. Same-day share ≥ target. Next-day share ≥ target. Average hours ≤ target. Direct lanes and the carrier allowed or not.</td></tr>
+<tr><td>Is told</td><td>Map coordinates of 2 warehouses, 5 candidate hubs, 12 zones (distances are formulas, so a hub can be moved); $3.20 a mile; the trailer build-up of 8.2; 80% planned fill on consolidated lanes; speeds and yard times; the 4.0 and 9.5-hour eligibility rules; hub capacities, fixed costs, handling rates; zone demand and van cost by density; the $4.50 carrier.</td></tr>
+<tr><td>The one modeling choice to defend</td><td>Consolidated hub lanes are costed per package at planned fill, because those trucks carry other network volume outside this 4,000-a-day slice. Direct lanes are dedicated to one warehouse and one zone, so they pay for whole trucks every day. That asymmetry is the real economics of 8.4, and it is what makes the model choose hubs for thin flows and direct trucks for thick ones or for same-day service.</td></tr>
+</table>
+</div>
+<div class="math"><div class="cap">The twelve scenarios, solved</div>
+<table>
+<tr><th style="width:4%">#</th><th style="width:30%">Scenario</th><th>Cost per package</th><th>Dock to door</th><th>Hubs open</th><th>Same-day</th><th>Next-day</th><th>Direct share</th><th>What it says</th></tr>
+<tr><td>1</td><td>Lowest cost, no service rule</td><td class="n">$3.123</td><td class="n">$2.351</td><td class="n">2 (West, East)</td><td class="n">0%</td><td class="n">100%</td><td class="n">0%</td><td>Two hubs, nothing direct</td></tr>
+<tr><td>2</td><td>Next-day ≥ 90%</td><td class="n">$3.123</td><td class="n">$2.351</td><td class="n">2</td><td class="n">0%</td><td class="n">100%</td><td class="n">0%</td><td>Next-day is free at this geography</td></tr>
+<tr><td>3</td><td>Next-day ≥ 95%, same-day ≥ 15%</td><td class="n">$3.160</td><td class="n">$2.396</td><td class="n">2</td><td class="n">16%</td><td class="n">100%</td><td class="n">16%</td><td>+3.7 cents: two direct lanes at 30% fill</td></tr>
+<tr><td>4</td><td>Same-day ≥ 30%</td><td class="n">$3.176</td><td class="n">$2.412</td><td class="n">1 (West)</td><td class="n">44%</td><td class="n">94%</td><td class="n">44%</td><td>Whole trucks are lumpy: 30% costs the same as 44%</td></tr>
+<tr><td>5</td><td>Same-day ≥ 50%</td><td class="n">$3.235</td><td class="n">$2.465</td><td class="n">1</td><td class="n">50%</td><td class="n">94%</td><td class="n">50%</td><td>+11 cents over no same-day</td></tr>
+<tr><td>6</td><td>At most 1 hub</td><td class="n">$3.176</td><td class="n">$2.412</td><td class="n">1</td><td class="n">44%</td><td class="n">94%</td><td class="n">44%</td><td>One hub plus direct lanes: 5 cents more, 6% lose next-day</td></tr>
+<tr><td>7</td><td>All 5 hubs forced open</td><td class="n">$3.533</td><td class="n">$2.762</td><td class="n">5</td><td class="n">0%</td><td class="n">100%</td><td class="n">0%</td><td>Three idle hubs cost 41 cents a package</td></tr>
+<tr><td>8</td><td>Hubs only, same-day ≥ 15%</td><td colspan="6" style="text-align:center">infeasible</td><td>Same-day cannot be bought with hubs</td></tr>
+<tr><td>9</td><td>Peak week, +25% demand</td><td class="n">$3.113</td><td class="n">$2.341</td><td class="n">2</td><td class="n">21%</td><td class="n">96%</td><td class="n">21%</td><td>Hubs full; overflow goes direct</td></tr>
+<tr><td>10</td><td>Peak + expand Hub West (×1.5, +$1,500 a week)</td><td class="n">$3.132</td><td class="n">$2.360</td><td class="n">2</td><td class="n">5%</td><td class="n">100%</td><td class="n">5%</td><td>Saves $834 of trucks, costs $1,500: does not pay; break-even $834</td></tr>
+<tr><td>11</td><td>Dedicated fleet, cost per mile −20% (scenario 3 service)</td><td class="n">$3.088</td><td class="n">$2.324</td><td class="n">2</td><td class="n">16%</td><td class="n">100%</td><td class="n">16%</td><td>7 cents a package</td></tr>
+<tr><td>12</td><td>Average hours ≤ 6.0</td><td class="n">$3.176</td><td class="n">$2.412</td><td class="n">1</td><td class="n">44%</td><td class="n">94%</td><td class="n">44%</td><td>A speed target is bought the same way as same-day</td></tr>
+</table>
+</div>
+<div class="math"><div class="cap">The cost–service frontier: what each level of same-day costs (next-day ≥ 90% throughout)</div>
+<table>
+<tr><th>Same-day target</th><th class="n">0%</th><th class="n">10%</th><th class="n">20%</th><th class="n">30%</th><th class="n">40%</th><th class="n">50%</th><th class="n">60%</th><th class="n">70%</th><th class="n">80%</th></tr>
+<tr><td>Cost per package</td><td class="n">$3.123</td><td class="n">$3.160</td><td class="n">$3.176</td><td class="n">$3.176</td><td class="n">$3.176</td><td class="n">$3.235</td><td class="n">$3.275</td><td class="n">$3.343</td><td class="n">$3.418</td></tr>
+<tr><td>Added cost</td><td class="n">—</td><td class="n">3.7¢</td><td class="n">5.3¢</td><td class="n">5.3¢</td><td class="n">5.3¢</td><td class="n">11.2¢</td><td class="n">15.2¢</td><td class="n">22.0¢</td><td class="n">29.5¢</td></tr>
+<tr><td>Hubs open</td><td class="n">2</td><td class="n">2</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">1</td></tr>
+<tr><td>Fill on direct lanes</td><td class="n">—</td><td class="n">30%</td><td class="n">17%</td><td class="n">17%</td><td class="n">17%</td><td class="n">19%</td><td class="n">19%</td><td class="n">17%</td><td class="n">18%</td></tr>
+</table>
+</div>
+<p>How to read it in the room: the curve is flat then steep. The first 15% of same-day is cheap because two zones are thick enough that their direct trucks run a third full. Past that, each extra ten points needs another thin lane with a daily truck at a fifth full, and the cost climbs 4 to 7 cents a step. The business decision is where on this curve the extra revenue from a same-day promise stops covering the extra trucks, and that is a number marketing and finance supply; the model's job is to make the curve honest.</p>
+<div class="say"><div class="label">If someone asks "how would you plan the transportation?" — 186 words</div>
+<p>I start with what is in the trailer: forty packages to a gaylord, fifty-two gaylords to a trailer, two thousand packages, and it cubes out at a seventh of the weight limit, so I plan by positions, not pounds. Then what is in the mile: about two dollars forty to run the truck and eighty cents for the empty return, so three twenty a loaded mile, and I quote it with the empty share. Then each lane: packages a day, trucks a day, fill; a direct truck pays when the daily volume beats truck cost divided by what the hub path costs a package, about six hundred fifty a day on a hundred-and-fifty-mile lane. Fleet is trips times cycle hours over twenty-four, plus ten percent. Service is a constraint, bought with earlier departures, faster unloads, extra departures or direct trucks, each with a price. The scorecard is cost per mile, cost per package-mile, fill, miles, departures, on-time, dwell, empty miles, tender acceptance. And the workbook puts all of it in one model: minimize cost per package subject to same-day and next-day targets, and draws the curve.</p>
+</div>
+
+<h1 class="sec" id="C9">Chapter 9 — Plain words and interview words; what is real and what is made up</h1>
 
 <h3>The plain words used here, and the words you will hear in the interview</h3>
 <table>
@@ -920,6 +1108,18 @@
 <tr><td>Which road: through the hub, direct, carrier</td><td>Network path; ship method; injection strategy</td><td>Direct trucks from a fulfillment center to a delivery station are called direct injection.</td></tr>
 <tr><td>Mix versus rate</td><td>Volume, rate, and mix variance; the bridge; the waterfall</td><td>Chapter 6.2.</td></tr>
 <tr><td>The weekly scorecard and meeting</td><td>Weekly business review</td><td></td></tr>
+<tr><td>Gaylord; the trailer is full by space / by weight</td><td>Gaylord (also "GL" or bulk container); cube out / weigh out; cube utilization</td><td>Chapter 8.2. Always say which limit binds.</td></tr>
+<tr><td>Packages stacked loose, no containers</td><td>Fluid load; floor load</td><td>More packages, slower unload.</td></tr>
+<tr><td>Cost per loaded mile; the empty return</td><td>Linehaul rate; all-in rate per mile; deadhead (empty miles); round-trip pricing</td><td>Chapter 8.3. Quote the rate with the empty share.</td></tr>
+<tr><td>Our own trucks and drivers, kept busy</td><td>Dedicated fleet; private fleet</td><td>Cheaper per mile only when utilization is steady.</td></tr>
+<tr><td>A carrier paid per load at a yearly bid rate; whether they take the load</td><td>Contract (for-hire) truckload carrier; lane bid / RFP; tender acceptance; spot market</td><td>Chapter 8.3 and the scorecard.</td></tr>
+<tr><td>One origin, one destination, a schedule</td><td>Lane; departures per day; frequency</td><td>Chapter 8.4.</td></tr>
+<tr><td>Driver leaves the trailer and takes an empty one</td><td>Drop and hook (versus live unload)</td><td>Shortens the tractor cycle; needs spare trailers.</td></tr>
+<tr><td>How long a driver may drive and work in a day</td><td>Hours of service: 11 hours driving, 14 on duty, 10 off</td><td>Chapter 8.5; United States federal rule.</td></tr>
+<tr><td>Two drivers sharing a tractor; a fast premium service</td><td>Team drivers; expedited</td><td>Roughly double cost per mile.</td></tr>
+<tr><td>Cost per package-mile</td><td>Cost per package-mile; cost per cube-mile; cost per hundredweight (CWT) in general freight</td><td>Chapter 8.7's best single efficiency number.</td></tr>
+<tr><td>The cost–service curve</td><td>Efficient frontier; Pareto frontier; cost-to-serve curve</td><td>Chapter 8.8.</td></tr>
+<tr><td>Transshipment problem; which buildings to open</td><td>Transshipment / network flow problem; facility location; mixed-integer linear program (MILP); Solver (Simplex LP with integer constraints)</td><td>The workbook's two models.</td></tr>
 </table>
 
 <h3>What is real and what is made up</h3>
@@ -939,6 +1139,6 @@
 <p><strong>Not public, and therefore not claimed here:</strong> any Amazon cost per package, trailer fullness, sorter speed, van cost, truck rate, or on-time percentage; any official standard for critical pull time; the names of any internal systems. When any of these comes up in the room, the honest sentence is: "In a reference network I built with stated assumptions, the number is X; I would not guess Amazon's."</p>
 
 <h3>How this companion relates to the detailed packet</h3>
-<p>The detailed packet in the same folder covers the same network with more: the eight job responsibilities worked one by one (new network designs, whether a sorting building earns its rent, the business case for a new building, how to run a pilot, how to write the recommendation), the candidate's own record mapped to each, and a formula sheet. Read this companion first. When the detailed packet uses a term, this chapter's first table translates it.</p>
+<p>The companion workbook <em>outbound-network-design-model.xlsx</em> holds the baseline transshipment model and the outbound model of Chapter 8.8, both set up for Excel's Solver, with the twelve scenarios and the frontier. The detailed packet in the same folder covers the same network with more: the eight job responsibilities worked one by one (new network designs, whether a sorting building earns its rent, the business case for a new building, how to run a pilot, how to write the recommendation), the candidate's own record mapped to each, and a formula sheet. Read this companion first. When the detailed packet uses a term, this chapter's first table translates it.</p>
 
 </body></html>
