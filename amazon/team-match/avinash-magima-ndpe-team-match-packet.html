@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Team match with Avinash Magima — Supply Chain Manager II, Network Design, Planning and Engineering — Rajesh Rishiyur Chandrasekaran</title>
+<style>
+  @page { size: letter; margin: 0.65in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Liberation Sans", Arial, Helvetica, sans-serif; font-size: 11pt; line-height: 1.42; color: #1a1a1a; }
+  h1 { font-size: 18pt; line-height: 1.15; margin: 0 0 6px; color: #10243e; }
+  h1.sec { page-break-before: always; border-bottom: 2.5px solid #10243e; padding-bottom: 5px; margin-bottom: 10px; }
+  h2 { font-size: 13.5pt; margin: 16px 0 6px; color: #10243e; page-break-after: avoid; border-top: 1.5px solid #c9c2b4; padding-top: 8px; }
+  h2.first { page-break-before: avoid; border-top: none; padding-top: 0; }
+  h2.pb { page-break-before: always; border-top: none; padding-top: 0; }
+  h3 { font-size: 11.5pt; margin: 12px 0 4px; color: #7a1c28; page-break-after: avoid; }
+  p { margin: 0 0 8px; }
+  .kicker { font-size: 8.5pt; letter-spacing: 0.12em; text-transform: uppercase; color: #7a1c28; font-weight: 700; margin-bottom: 4px; }
+  .meta { background: #f3f0e9; border-left: 4px solid #10243e; padding: 8px 12px; margin: 8px 0 10px; font-size: 10.2pt; }
+  .meta div { margin: 3px 0; }
+  .say { background: #faf7f1; border: 1px solid #d8cfbf; border-left: 4px solid #7a1c28; padding: 8px 12px 3px; margin: 8px 0 10px; page-break-inside: avoid; }
+  .say p { font-family: "Liberation Serif", Georgia, "Times New Roman", serif; font-size: 11.5pt; line-height: 1.45; }
+  .say p b { font-family: "Liberation Sans", Arial, sans-serif; font-size: 9pt; letter-spacing: 0.06em; text-transform: uppercase; color: #10243e; }
+  .say .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8pt; letter-spacing: 0.1em; text-transform: uppercase; color: #7a1c28; font-weight: 700; margin-bottom: 4px; }
+  .note { background: #fff7e6; border: 1px solid #e6cf9a; border-left: 4px solid #b8860b; padding: 7px 12px; margin: 8px 0 10px; font-size: 10pt; page-break-inside: avoid; }
+  .note strong { color: #7a5a00; }
+  .math { background: #f1f3f8; border: 1px solid #c9d0de; border-left: 4px solid #10243e; padding: 6px 10px 2px; margin: 4px 0 10px; }
+  .math table { font-size: 9.4pt; margin: 4px 0 6px; background: #fff; }
+  .math .cap { font-size: 9.6pt; color: #10243e; font-weight: 700; margin: 2px 0 4px; }
+  .math p { font-size: 10pt; }
+  table { width: 100%; border-collapse: collapse; margin: 5px 0 10px; font-size: 9.4pt; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; border: 1px solid #b9b2a4; padding: 4px 6px; }
+  th { background: #e9e5db; font-size: 8.6pt; letter-spacing: 0.03em; text-transform: uppercase; color: #333; }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.a { font-weight: 700; color: #10243e; }
+  td.c { text-align: center; white-space: nowrap; }
+  table.toc td { border: none; border-bottom: 1px dotted #b9b2a4; padding: 3px 6px; font-size: 10pt; }
+  table.toc td.pg { text-align: right; width: 48px; font-variant-numeric: tabular-nums; }
+  table.toc td.sub { padding-left: 22px; font-size: 9.5pt; }
+  td.g { background: #e6f2e6; } td.r { background: #f8e3e3; } td.y { background: #fbf3d9; }
+  pre.sql { font-family: "Liberation Mono", "DejaVu Sans Mono", monospace; font-size: 8.5pt; line-height: 1.32; background: #f6f8fa; border: 1px solid #c9d0de; border-left: 4px solid #10243e; padding: 7px 10px; margin: 5px 0 6px; white-space: pre-wrap; page-break-inside: avoid; }
+  table.out { width: auto; font-family: "Liberation Mono", "DejaVu Sans Mono", monospace; font-size: 8.4pt; margin: 3px 0 8px; }
+  table.out th { font-family: "Liberation Mono", "DejaVu Sans Mono", monospace; text-transform: none; letter-spacing: 0; font-size: 8.4pt; background: #eef1f6; }
+  table.out td, table.out th { padding: 2px 8px; border-color: #c9d0de; }
+  table.data { font-size: 8.8pt; }
+  .why { font-size: 9.8pt; color: #3a3a3a; margin: -3px 0 9px; }
+  .why b { color: #10243e; }
+  .qa { page-break-inside: avoid; }
+  ul, ol { margin: 0 0 8px; padding-left: 22px; }
+  li { margin: 0 0 4px; }
+  .total td { font-weight: 700; background: #f3f0e9; }
+  tr.grp { break-after: avoid; page-break-after: avoid; }
+  tr.grp td { background: #e9e5db; color: #10243e; letter-spacing: 0.03em; font-weight: 700; }
+  code { font-family: "Liberation Mono", "DejaVu Sans Mono", monospace; font-size: 9pt; background: #f1f3f8; padding: 0 3px; }
+  .two { display: flex; gap: 14px; } .two > div { flex: 1; }
+</style>
+</head>
+<body>
+
+<p class="kicker">One-hour team match · Amazon · Network Design, Planning and Engineering</p>
+<h1>Team match with Avinash Magima</h1>
+<p style="font-size:12.5pt;color:#333;margin-bottom:10px">Supply Chain Manager II, Network Design, Planning and Engineering (job 10481680). Flexport and Elementum stories for the three competencies, each with its arithmetic shown; a step-by-step guide to building a weekly supply chain scorecard with input and output measurements; SQL, Excel and dashboard questions with worked answers; and the questions to ask him.</p>
+<div class="meta">
+  <div><strong>Who this is for.</strong> Rajesh Rishiyur Chandrasekaran. One hour with Avinash Magima, Senior Manager, Transportation Engineering Systems. The three competencies named for the role: analytical and problem-solving skills; cross-functional and stakeholder management; ownership and proactivity.</div>
+  <div><strong>How to read this.</strong> Read Chapter 1 the night before; it is the plan for the hour. Chapters 2 to 4 are the stories: each has a boxed version to say aloud in Situation, Task, Action, Result order, then the arithmetic one step at a time, then the follow-up questions he is likely to ask. Chapter 5 builds a scorecard from an empty page. Chapter 6 is practice for SQL, Excel and dashboards. Chapter 7 is your questions for him and a one-page number card.</div>
+  <div><strong>How it is written.</strong> Plain words. Every calculation starts from a small example and shows each step, so you can redo it with a pencil. Where a short trade word is unavoidable, it is explained the first time it appears.</div>
+  <div><strong>What is real and what is an example.</strong> Three labels are used throughout. <b>Record</b> means a career fact from your resume and reconciled notes; say it as it is written. <b>Example</b> means a made-up number chosen to show the arithmetic; never present it as a result. <b>Model</b> means my estimate built on stated assumptions. Every SQL query in Chapter 6 was run against the sample tables printed there, and the results shown are the actual output.</div>
+  <div><strong>The earlier packet.</strong> A 47-page packet for this same interviewer already exists (<code>amazon/team-match/amazon-tess-team-match-packet.pdf</code>). It remains the deep reference for how Amazon's transportation network works and for back-up stories. This packet is the one to carry into the hour: it is aimed at this job posting, and it adds the scorecard guide and the SQL, Excel and dashboard practice the earlier one did not have.</div>
+</div>
+
+<h3>Contents</h3>
+<table class="toc">
+<tr><td><b>Chapter 1 — The hour at a glance</b></td><td class="pg" data-k="C1">2</td></tr>
+<tr><td class="sub">1.1 Who you are meeting</td><td class="pg" data-k="K11">2</td></tr>
+<tr><td class="sub">1.2 What the job is, in plain words, and what you bring to each line</td><td class="pg" data-k="K12">2</td></tr>
+<tr><td class="sub">1.3 The sixty minutes, planned</td><td class="pg" data-k="K13">2</td></tr>
+<tr><td class="sub">1.4 Your opening: who you are, and why this team</td><td class="pg" data-k="K14">3</td></tr>
+<tr><td class="sub">1.5 Which story answers which question</td><td class="pg" data-k="K15">3</td></tr>
+<tr><td><b>Chapter 2 — Analytical and problem-solving skills</b></td><td class="pg" data-k="C2">4</td></tr>
+<tr><td class="sub">2.1 Flexport: two scoreboards that were not measuring the same thing</td><td class="pg" data-k="K21">4</td></tr>
+<tr><td class="sub">2.2 Elementum: two hundred shipping lanes planned on measured lead time</td><td class="pg" data-k="K22">5</td></tr>
+<tr><td class="sub">2.3 If he gives you a live problem: on-time delivery dropped. Why?</td><td class="pg" data-k="K23">7</td></tr>
+<tr><td><b>Chapter 3 — Cross-functional and stakeholder management</b></td><td class="pg" data-k="C3">8</td></tr>
+<tr><td class="sub">3.1 Flexport: Shipment Visibility across nine teams</td><td class="pg" data-k="K31">8</td></tr>
+<tr><td class="sub">3.2 Flexport: changing a roadmap that had my manager's name on it</td><td class="pg" data-k="K32">10</td></tr>
+<tr><td><b>Chapter 4 — Ownership and proactivity</b></td><td class="pg" data-k="C4">12</td></tr>
+<tr><td class="sub">4.1 Flexport: the weekly review nobody owned</td><td class="pg" data-k="K41">12</td></tr>
+<tr><td class="sub">4.2 Elementum: Austria, where everyone blamed the carriers</td><td class="pg" data-k="K42">13</td></tr>
+<tr><td class="sub">4.3 A failure: the security review I planned too late</td><td class="pg" data-k="K43">14</td></tr>
+<tr><td class="sub">4.4 Spare story — Elementum: the shortage alert</td><td class="pg" data-k="K44">14</td></tr>
+<tr><td><b>Chapter 5 — How to build a supply chain scorecard, step by step</b></td><td class="pg" data-k="C5">15</td></tr>
+<tr><td class="sub">5.1 What "Amazon style" means: inputs and outputs</td><td class="pg" data-k="K51">15</td></tr>
+<tr><td class="sub">5.2 The example network and its numbers</td><td class="pg" data-k="K52">15</td></tr>
+<tr><td class="sub">5.3 The ten steps</td><td class="pg" data-k="K53">16</td></tr>
+<tr><td class="sub">5.4 The finished page: six weeks</td><td class="pg" data-k="K54">18</td></tr>
+<tr><td class="sub">5.5 Reading the page: week 6, from the red cell to the decision</td><td class="pg" data-k="K55">18</td></tr>
+<tr><td class="sub">5.6 How to say all of this in two minutes</td><td class="pg" data-k="K56">20</td></tr>
+<tr><td><b>Chapter 6 — SQL, Excel and dashboard questions, with worked answers</b></td><td class="pg" data-k="C6">21</td></tr>
+<tr><td class="sub">6.1 The practice tables</td><td class="pg" data-k="K61">21</td></tr>
+<tr><td class="sub">6.2 SQL: eight questions, written out and run</td><td class="pg" data-k="K62">21</td></tr>
+<tr><td class="sub">6.3 SQL: twelve quick questions</td><td class="pg" data-k="K63">25</td></tr>
+<tr><td class="sub">6.4 Excel: eight questions</td><td class="pg" data-k="K64">26</td></tr>
+<tr><td class="sub">6.5 Dashboards: eight questions</td><td class="pg" data-k="K65">28</td></tr>
+<tr><td><b>Chapter 7 — Your questions for Avinash, and the number card</b></td><td class="pg" data-k="C7">29</td></tr>
+<tr><td class="sub">7.1 Questions to ask him</td><td class="pg" data-k="K71">29</td></tr>
+<tr><td class="sub">7.2 The number card</td><td class="pg" data-k="K72">30</td></tr>
+<tr><td class="sub">7.3 Words you will hear, and sources</td><td class="pg" data-k="K73">30</td></tr>
+</table>
+
+<h1 class="sec" id="C1">Chapter 1 — The hour at a glance</h1>
+
+<h2 class="first" id="K11">1.1 Who you are meeting</h2>
+<p>Everything in this table is from Avinash Magima's public LinkedIn profile. Check it once more on the morning of the interview in case it has changed. Use it to understand how he thinks. Do not recite it to him.</p>
+<table>
+<thead><tr><th style="width:27%">What his profile says</th><th style="width:36%">What that tells you about him</th><th style="width:37%">So in the room, you</th></tr></thead>
+<tr><td>Senior Manager, Transportation Engineering Systems. At Amazon since October 2017: product manager, then senior product manager (2019), then manager of program management (2020), in Bellevue.</td><td>He has built products and run programs inside Amazon for about nine years, and now leads a transportation engineering group. He knows the difference between a plan and what the network does.</td><td>Speak about what was measured and what was decided. Skip general statements about supply chains; he has heard them all.</td></tr>
+<tr><td>Before Amazon he was a planning engineer for a manufacturer: he planned about $220 million of orders across five locations and raised on-time delivery by 12 percent. He also built a production planning team of five.</td><td>He has done the planning work by hand. On-time delivery is a number he has personally moved.</td><td>Give the before number, the after number, and how each was counted. He will ask how it was counted.</td></tr>
+<tr><td>Master's degree in industrial engineering. Lists Lean Six Sigma, choosing performance measures, cost-benefit analysis and operations research modeling.</td><td>He thinks in baselines, root causes and trade-offs. He will be comfortable with arithmetic and will notice if a number does not add up.</td><td>Show the arithmetic when it helps, in one or two steps. Say what the improvement cost, not only what it gained.</td></tr>
+<tr><td>He writes that understanding a product's limitations early is one of his strengths.</td><td>He respects people who say what their work could not do.</td><td>In every story, say one limit plainly: what you did not own, what the number does not prove, what you would do differently.</td></tr>
+</table>
+
+<h2 id="K12">1.2 What the job is, in plain words, and what you bring to each line</h2>
+<p>The team is Network Design, Planning and Engineering. In the posting's words it plans "how packages flow from fulfillment centers to final delivery destinations, balancing speed, cost, on-time accuracy, and environmental impact." In plain words: for every package, there are many possible paths from the warehouse to the door. This team decides which paths the network should use, builds the measurements that show whether the decision is working, and explains the result to the people who build the systems.</p>
+<table>
+<thead><tr><th style="width:31%">The posting asks for</th><th style="width:25%">In plain words</th><th style="width:30%">Your proof (all record)</th><th style="width:14%">Where</th></tr></thead>
+<tr><td>Partner with product, science and engineering to understand what questions the business needs answered, then design and deliver the data solutions.</td><td>Find out what people need to decide, then give them a number they can trust.</td><td>Flexport: ran Shipment Visibility across nine teams, about a hundred people, with one shared measure and written entry rules.</td><td>3.1</td></tr>
+<tr><td>Build network design recommendations and maintain interactive dashboards that track how the network is performing.</td><td>Recommend a change, and keep the scoreboard that shows whether it worked.</td><td>Elementum: 200 shipping lanes re-planned on measured lead time. Flexport: the weekly review rebuilt on one pipeline.</td><td>2.2, 4.1, Ch. 5</td></tr>
+<tr><td>Deep-dive analyses, root causes, improvements backed by data.</td><td>When a number moves, find out why, and prove it.</td><td>Flexport: 63 against 25 turned out to be 27 against 25. Elementum Austria: the carriers were not the problem; the measurement was.</td><td>2.1, 4.2, 2.3</td></tr>
+<tr><td>Proactively make reports and dashboards faster, more accurate, easier to use.</td><td>Fix the scoreboard without being asked.</td><td>Flexport: the weekly review, four hand-stitched exports into one pipeline; accuracy 60 to 90 percent.</td><td>4.1</td></tr>
+<tr><td>Analyze historical trends to support planning and forecasting.</td><td>Use what happened to plan what will happen.</td><td>Elementum: a year of shipments per lane to set lead times; three years of shipments in SQL at Austria.</td><td>2.2, 4.2</td></tr>
+<tr><td>Advanced Excel (pivot tables, lookups) and SQL.</td><td>You can get the answer out of the data yourself.</td><td>Practice questions with worked answers.</td><td>Ch. 6</td></tr>
+</table>
+
+<h2 id="K13">1.3 The sixty minutes, planned</h2>
+<p>A team match is a two-way conversation: he is deciding whether you fit the team, and you are deciding whether the team fits you. Plan the hour so that he hears one strong story for each of the three competencies and you still have a quarter of an hour for your questions. If he runs the hour differently, follow him; the stories and the order of priority stay the same.</p>
+<table>
+<thead><tr><th style="width:11%">Minutes</th><th style="width:47%">What you do</th><th style="width:42%">If time is short</th></tr></thead>
+<tr><td class="n">0 – 5</td><td>Thank him. Give your one-minute introduction (1.4). Stop and let him respond.</td><td>Use the thirty-second version.</td></tr>
+<tr><td class="n">5 – 8</td><td>If he asks why this team, give the answer in 1.4. If not, ask him one question from 7.1 ("What question is your team trying to answer this quarter?") and listen. His answer tells you which story to lead with.</td><td>Skip; go to the first story.</td></tr>
+<tr><td class="n">8 – 20</td><td><b>Analytical.</b> Story 2.1 (Flexport, two scoreboards). If he wants a second, 2.2 (Elementum, 200 lanes). If he gives you a live problem instead, use the five steps in 2.3.</td><td>One story only: 2.1.</td></tr>
+<tr><td class="n">20 – 31</td><td><b>Cross-functional.</b> Story 3.1 (Flexport, nine teams). If he asks about disagreeing with a manager or changing a plan, 3.2 (the roadmap).</td><td>One story only: 3.1.</td></tr>
+<tr><td class="n">31 – 42</td><td><b>Ownership.</b> Story 4.1 (Flexport, the weekly review). If he asks for a second, 4.2 (Elementum, Austria). If he asks for a failure, 4.3, and keep it to ninety seconds.</td><td>One story only: 4.1.</td></tr>
+<tr><td class="n">42 – 47</td><td>Skills. If he asks about scorecards, give the two-minute answer in 5.6. If he asks an SQL, Excel or dashboard question, think aloud and write the query or formula step by step, as in Chapter 6.</td><td>Offer one sentence: "I write my own SQL and build my own pivot tables; I'm glad to do one now."</td></tr>
+<tr><td class="n">47 – 57</td><td>Your questions (7.1). Ask the four marked "protect" first.</td><td>Ask the two you care about most, then the closing question.</td></tr>
+<tr><td class="n">57 – 60</td><td>Close in one sentence: what you would bring, and that you want the job. Thank him.</td><td>Never skip the close.</td></tr>
+</table>
+<div class="note"><strong>Three rules for the hour.</strong> One: each story is about two minutes spoken; stop at the result and let him ask. Two: when he asks "how did you measure that," answer with the definition first (what was counted, divided by what), then the number. Three: if you do not know something, say "I don't know; here is how I would find out," and give the first two steps. With an industrial engineer, that answer scores better than a guess.</div>
+
+<h2 id="K14">1.4 Your opening: who you are, and why this team</h2>
+<div class="say"><div class="label">Tell me about yourself — say this — 159 words, about one minute</div>
+<p>I have spent fifteen years making a network's plan match what actually moves. I started at Manhattan Associates on order-management programs: three distribution centers, a hundred stores, and 99 percent fill against a 95 percent goal on Cyber Monday. Then MetricStream, as a program manager. At Elementum, 2017 to 2019, I moved two hundred shipping lanes off the lead time printed in the carrier's brochure and onto lead time we had measured, and safety stock followed the measurement. At Flexport, 2021 to 2022, I ran Shipment Visibility across nine teams: seven customers to sixty-eight, and the cost to serve a container from 66 cents to 3 cents. I also rebuilt the weekly review that program was steered by. Since April 2023 at Sephora I have owned the inventory number each warehouse publishes. Your team decides how packages should flow from the fulfillment center to the door, and proves it with data. That is the work I want to do.</p>
+</div>
+<div class="say"><div class="label">Thirty-second version — 77 words</div>
+<p>Fifteen years in supply chain programs. At Elementum I re-planned two hundred shipping lanes on measured lead time instead of the brochure. At Flexport I ran Shipment Visibility across nine teams, seven customers to sixty-eight, cost to serve from 66 cents to 3 cents a container, and I rebuilt the weekly review behind it. I define the measurement, get people to trust it, and bring the recommendation. That is what your team does for the transportation network.</p>
+</div>
+<div class="say"><div class="label">Why this team — say this — 136 words</div>
+<p>Three reasons. First, the question. Your team decides how freight should flow so that it is fast, cheap and on time at once, and those three pull against each other. I have worked that trade on a small scale: lead time against inventory at Elementum, growth against cost per container at Flexport. Second, the way the job is described: analysis, dashboards, and recommendations made with product, science and engineering. That is the seat I have held. I define the measurement, get the definition agreed, and bring the recommendation; engineers build. Third, the scale. Amazon said publicly in 2023 that it reorganized the United States network into eight regions so packages travel shorter distances. A change like that is thousands of lane decisions, and each one has to be measured. I want to work on those decisions.</p>
+</div>
+<div class="note"><strong>Facts behind the opening.</strong> Years: Elementum 2017 to 2019; Flexport 2021 to 2022 for the visibility program; Sephora April 2023 to now. Fifteen years is your reconciled total. The eight regions come from Amazon's own 2023 description of its United States network (source in 7.3). Do not add a client name or a dollar figure for MetricStream; none is on your record.</div>
+
+<h2 id="K15">1.5 Which story answers which question</h2>
+<table>
+<thead><tr><th style="width:23%">Competency</th><th style="width:37%">He might ask</th><th style="width:26%">Lead with</th><th style="width:14%">Then</th></tr></thead>
+<tr><td rowspan="3"><b>Analytical and problem-solving</b></td><td>Tell me about a time you used data to change a decision.</td><td>2.1 Flexport, two scoreboards</td><td>4.2</td></tr>
+<tr><td>Tell me about a complex problem and how you broke it down.</td><td>2.2 Elementum, 200 lanes</td><td>2.1</td></tr>
+<tr><td>A number on our dashboard dropped. What do you do?</td><td>2.3 the five steps</td><td>5.5</td></tr>
+<tr><td rowspan="3"><b>Cross-functional and stakeholder management</b></td><td>Tell me about leading people who did not report to you.</td><td>3.1 Flexport, nine teams</td><td>3.2</td></tr>
+<tr><td>Tell me about a disagreement with a manager or a senior stakeholder.</td><td>3.2 Flexport, the roadmap</td><td>2.1</td></tr>
+<tr><td>Tell me about saying no, or delivering bad news.</td><td>3.1 (the wave you held at 76 against 80)</td><td>4.2</td></tr>
+<tr><td rowspan="3"><b>Ownership and proactivity</b></td><td>Tell me about something you fixed that was not your job.</td><td>4.1 Flexport, the weekly review</td><td>4.2</td></tr>
+<tr><td>Tell me about a time you dug deeper than you were asked to.</td><td>4.2 Elementum, Austria</td><td>2.2</td></tr>
+<tr><td>Tell me about a mistake or a failure.</td><td>4.3 the security review</td><td>—</td></tr>
+</table>
+<div class="note"><strong>Two numbers you never add together.</strong> Elementum has two separate one-time inventory results: about $1.5 million of carrying cost released on the 200-lane program (story 2.2), and about $2 million of safety stock released on the shortage-alert program (story 4.4). They are different programs. Never say "$3.5 million." Likewise, the Flexport figure of about $5 million in story 3.2 is avoided cost; say it once and never call it an annual saving.</div>
+
+<h1 class="sec" id="C2">Chapter 2 — Analytical and problem-solving skills</h1>
+<p>What he is listening for: did you find the real problem rather than the obvious one; did you define the measurement before you trusted it; can you explain the arithmetic simply; and did the analysis change a decision. Each story below is written in Situation, Task, Action, Result order. Say the boxed version. The arithmetic underneath is for you, so that any follow-up question has an answer.</p>
+
+<h2 id="K21">2.1 Flexport: two scoreboards that were not measuring the same thing</h2>
+<p><b>Use it for:</b> using data to change a decision; a deep dive; comparing two systems; handling a number that is about to kill a project. <b>One-line version:</b> leadership saw 63 percent against 25 percent and was ready to shut down the newer product; measured the same way, it was 27 against 25.</p>
+<div class="say"><div class="label">Say this — 267 words, about two minutes</div>
+<p><b>Situation.</b> At Flexport in 2022, after we launched Shipment Visibility, leadership had two numbers side by side. Our new platform showed 25 percent schedule reliability, meaning one prediction in four of when a container would arrive was right. Crux, an older tracking product that Flexport had acquired and still ran for 79 customers, showed 63 percent. The proposal was to shut down the new platform and keep Crux.</p>
+<p><b>Task.</b> I owned the comparison and the evidence for the decision meeting. I had to find out whether 63 against 25 was a real gap.</p>
+<p><b>Action.</b> I did not argue with either number. I took both apart, and found they measured different things: different containers, scored at different moments before arrival. Crux's 63 counted only the shipments its data feeds covered, with the prediction taken close to arrival, when predicting is easy. So I wrote one definition: same containers, same week, take the arrival date each product predicted thirty days before, and compare it with the actual date. I re-scored both. Then I looked for the real gap and reported it against my own product: our predictions were spread across sixteen days where theirs were spread across eight.</p>
+<p><b>Result.</b> On the same basis it was about 27 percent against 25. Thirty-six of the thirty-eight points were the measurement, not the product. Leadership kept the new platform and funded six months of new data sources, and reliability reached 90 percent against a target of 80. Crux was retired on a schedule, with a path for each customer. What I took from it: make two numbers comparable before you compare them.</p>
+</div>
+
+<h3>The arithmetic, one step at a time</h3>
+<div class="math">
+<p class="cap">Step A. What "schedule reliability" means, on one container (example dates)</p>
+<p>Thirty days before a container is due, the product predicts the arrival date. When the container actually arrives, you compare. If the prediction was within the allowed margin, it is a hit. Otherwise it is a miss.</p>
+<table>
+<thead><tr><th style="width:36%">Item</th><th style="width:34%">Value</th><th style="width:30%">Meaning</th></tr></thead>
+<tr><td>Arrival date predicted 30 days ahead</td><td>March 30</td><td>The date the customer planned around.</td></tr>
+<tr><td>Actual arrival date</td><td>April 2</td><td>What happened.</td></tr>
+<tr><td>Error</td><td>April 2 − March 30 = 3 days</td><td>How wrong the prediction was.</td></tr>
+<tr><td>Allowed margin (example)</td><td>1 day</td><td>Your record does not state the margin; 1 day is for illustration.</td></tr>
+<tr><td>Hit or miss?</td><td class="a">3 days is more than 1 day → miss</td><td>This prediction counts against the product.</td></tr>
+</table>
+<p><b>Schedule reliability = number of hits ÷ number of predictions scored.</b> If 250 of 1,000 predictions are hits, reliability is 250 ÷ 1,000 = 25 percent.</p>
+<p>The same container can be a miss at thirty days and a hit at five days, because close to arrival every prediction gets easier. That is why the moment of the prediction has to be fixed before two products are compared.</p>
+</div>
+<div class="math">
+<p class="cap">Step B. How one product can score 63 percent or 27 percent (example counts chosen to land on the record percentages)</p>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:30%">What was scored</th><th style="width:22%">Predictions scored</th><th style="width:12%">Hits</th><th style="width:32%">Reliability</th></tr></thead>
+<tr><td>1</td><td>Crux, its own way: only shipments its feeds covered, prediction made close to arrival</td><td class="n">400 of the 1,000</td><td class="n">252</td><td class="a">252 ÷ 400 = 63%</td></tr>
+<tr><td>2</td><td>Crux, the common way: all shipments, prediction made 30 days ahead</td><td class="n">1,000</td><td class="n">270</td><td class="a">270 ÷ 1,000 = 27%</td></tr>
+<tr><td>3</td><td>The new platform, the common way</td><td class="n">1,000</td><td class="n">250</td><td class="a">250 ÷ 1,000 = 25%</td></tr>
+</table>
+<p>Row 1 is not a lie. It is a correct answer to an easier question: fewer shipments, and a prediction made later. The 63, the 27 and the 25 are record. The counts 400, 252, 270 and 250 are examples that show how the division works.</p>
+</div>
+<div class="math">
+<p class="cap">Step C. How much of the gap was real</p>
+<table>
+<thead><tr><th style="width:44%">Calculation</th><th style="width:22%">Result</th><th style="width:34%">In words</th></tr></thead>
+<tr><td>Gap as first presented: 63 − 25</td><td class="a">38 points</td><td>What leadership saw.</td></tr>
+<tr><td>Gap on the same basis: 27 − 25</td><td class="a">2 points</td><td>What was left once both were measured the same way.</td></tr>
+<tr><td>Gap caused by the measurement: 38 − 2</td><td class="a">36 points</td><td>36 ÷ 38 = 95 percent of the gap was the way of measuring.</td></tr>
+<tr><td>The real difference: spread of our predictions ÷ spread of theirs = 16 days ÷ 8 days</td><td class="a">2 times</td><td>Our errors were scattered twice as widely. A wider scatter lands inside the allowed margin less often. This was the true weakness, and I reported it myself.</td></tr>
+<tr><td>After six months of added data sources: 90 − 80</td><td class="a">10 points above target</td><td>Reliability 90 percent against a target of 80. This is real improvement, not re-measurement.</td></tr>
+</table>
+</div>
+<div class="math">
+<p class="cap">Step D. What was at stake (record, from the transition document)</p>
+<table>
+<thead><tr><th style="width:44%">Calculation</th><th style="width:22%">Result</th><th style="width:34%">In words</th></tr></thead>
+<tr><td>Crux revenue: $15,491 a month × 12 months</td><td class="a">$185,892 a year</td><td>The revenue retired when Crux was closed.</td></tr>
+<tr><td>Crux customers</td><td class="a">79</td><td>Each one was given a destination and a date.</td></tr>
+<tr><td>Containers tracked by Crux: 294,581 a year ÷ 52 weeks</td><td class="a">about 5,665 a week</td><td>The volume that needed a new home.</td></tr>
+</table>
+</div>
+
+<h3>If he asks</h3>
+<p><b>"Isn't re-measuring just a way to make your number look better?"</b> It would be if it only helped me. It did not. The same analysis exposed our own weakness, sixteen days of spread against eight, and I put that first in the readout. That is why the room believed the rest.</p>
+<p><b>"Why score the prediction thirty days ahead and not five?"</b> Because a customer books trucks, labor and warehouse space against the date they had a month out. Five days before arrival the ship is nearly in port and every tracker looks good. We reported several lead times so nobody could choose the flattering one.</p>
+<p><b>"Who made the decision?"</b> The product leads recommended; two executives decided. I supplied the comparison and ran the transition. I was not the decider.</p>
+<p><b>"What would you do differently?"</b> Write down which source is the official one before the first executive comparison. Once a dashboard has supporters, changing its definition costs far more.</p>
+<div class="note"><strong>How this fits his team.</strong> A network design team constantly compares options: this route against that route, this month against last month, one building against another. The first question is always whether both sides were counted the same way: same packages, same clock, same definition of "on time." This story shows you ask that question first. <strong>Wording:</strong> say "Crux" every time. Do not also call the 63 "a competitor's number."</div>
+
+<h2 id="K22">2.2 Elementum: two hundred shipping lanes planned on measured lead time</h2>
+<p><b>Use it for:</b> breaking down a complex problem; using historical data for planning; an analysis that released money. <b>One-line version:</b> planners used the lead time printed in the carrier's brochure; I measured the real one on 200 lanes, and safety stock was re-sized from the measurement. A lane is one origin-to-destination route, for example one supplier's factory to one warehouse.</p>
+<div class="say"><div class="label">Say this — 262 words, about two minutes</div>
+<p><b>Situation.</b> At Elementum, between 2017 and 2019, I worked with a manufacturer that planned two hundred shipping lanes using the lead time printed in each carrier's brochure. Nobody had measured how long shipments really took. To be safe, planners held large safety stock, and added their own padding on top.</p>
+<p><b>Task.</b> I owned the measurement. The goal was a lead time for each lane that we could defend, and safety stock sized from it.</p>
+<p><b>Action.</b> For each lane I took about a year of shipments and looked at the whole range of transit times, not only the average. Take one lane as an example: the brochure said 18 days, the real average was 21, and it took 34 days before 99 shipments in 100 had arrived. I planned to the 34. Then I opened up the old safety stock formula and found that almost all of it came from a lead-time swing nobody had measured, a default value typed into the system. I replaced it with two measured pieces: cover for late shipments, and cover for swings in demand. Finance signed the rule before any stock moved, and the rule cut both ways: release stock where the measurement was tighter than the guess, add stock where it was worse.</p>
+<p><b>Result.</b> On that example lane the buffer goes from 12,937 units to 8,102. Across the two hundred lanes the program released 580,000 units, about 1.5 million dollars of inventory carrying cost, one time, with lead-time accuracy at 99 percent. Some lanes received more stock, not less. That is why Finance trusted the release.</p>
+</div>
+
+<h3>The arithmetic, one step at a time</h3>
+<p>The lane below is a worked example. Its inputs are illustrative. The program totals at the end (200 lanes, 99 percent, 580,000 units, about $1.5 million) are record.</p>
+<div class="math">
+<p class="cap">Step A. The example lane, and three words</p>
+<table>
+<thead><tr><th style="width:34%">Thing</th><th style="width:18%">Number</th><th style="width:48%">What it means</th></tr></thead>
+<tr><td>Demand</td><td class="n">500 units a day</td><td>What the factory uses from this lane each day, on average.</td></tr>
+<tr><td>Demand swing</td><td class="n">150 units a day</td><td>How much a typical day differs from 500. (The statistical name is standard deviation. It is the same "swing" used for trailer overflow in the outbound packet.)</td></tr>
+<tr><td>Lead time in the brochure</td><td class="n">18 days</td><td>What the carrier advertises.</td></tr>
+<tr><td>Lead-time swing in the system</td><td class="n">8 days</td><td>A default somebody typed in years ago. Never measured.</td></tr>
+<tr><td>Measured average lead time</td><td class="n">21 days</td><td>From about a year of real shipments.</td></tr>
+<tr><td>Measured "99 in 100" lead time</td><td class="n">34 days</td><td>By day 34, 99 of every 100 shipments had arrived.</td></tr>
+<tr><td>Safety multiplier for 99 percent</td><td class="n">2.33</td><td>On a bell-shaped curve, average plus 2.33 swings covers 99 cases in 100. Finance had agreed to 99 percent service.</td></tr>
+</table>
+<p><b>Safety stock</b> is extra inventory held in case demand is higher than expected or a shipment is later than expected. There are two risks, so there are two parts to the calculation.</p>
+</div>
+<div class="math">
+<p class="cap">Step B. The old buffer: 12,937 units</p>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:36%">What</th><th style="width:36%">Arithmetic</th><th style="width:24%">Result</th></tr></thead>
+<tr><td>1</td><td>Demand risk: lead time × demand swing × demand swing</td><td>18 × 150 × 150</td><td class="a">405,000</td></tr>
+<tr><td>2</td><td>Lead-time risk: demand × demand × lead-time swing × lead-time swing</td><td>500 × 500 × 8 × 8</td><td class="a">16,000,000</td></tr>
+<tr><td>3</td><td>Add the two</td><td>405,000 + 16,000,000</td><td class="a">16,405,000</td></tr>
+<tr><td>4</td><td>Take the square root, to get back to units</td><td>√16,405,000</td><td class="a">4,050 units</td></tr>
+<tr><td>5</td><td>Multiply by the safety multiplier</td><td>2.33 × 4,050</td><td class="a">9,437 units</td></tr>
+<tr><td>6</td><td>Add the planners' habit: one extra week</td><td>7 days × 500 units = 3,500</td><td class="a">9,437 + 3,500 = 12,937 units</td></tr>
+<tr><td>7</td><td>The same buffer in days of demand</td><td>12,937 ÷ 500</td><td class="a">25.9 days</td></tr>
+</table>
+<p><b>The finding.</b> Look at rows 1 and 2. The lead-time risk is 16,000,000 out of 16,405,000. That is 16,000,000 ÷ 16,405,000 = <b>97.5 percent</b>. Almost the whole buffer rested on the 8-day swing that nobody had ever measured.</p>
+</div>
+<div class="math">
+<p class="cap">Step C. The new buffer: 8,102 units</p>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:36%">What</th><th style="width:36%">Arithmetic</th><th style="width:24%">Result</th></tr></thead>
+<tr><td>1</td><td>Cover for late shipments: daily demand × (the 99-in-100 lead time − the average lead time)</td><td>500 × (34 − 21) = 500 × 13</td><td class="a">6,500 units</td></tr>
+<tr><td>2</td><td>Cover for demand swings: multiplier × demand swing × √(average lead time)</td><td>2.33 × 150 × √21 = 2.33 × 150 × 4.583</td><td class="a">1,602 units</td></tr>
+<tr><td>3</td><td>New buffer. No habit week, because the plan already holds 99 percent.</td><td>6,500 + 1,602</td><td class="a">8,102 units</td></tr>
+<tr><td>4</td><td>Released on this lane</td><td>12,937 − 8,102</td><td class="a">4,835 units</td></tr>
+<tr><td>5</td><td>As a share of the old buffer</td><td>4,835 ÷ 12,937</td><td class="a">37.4 percent less</td></tr>
+</table>
+<p>Why row 1 uses the measured 34 days directly instead of a formula: real transit times are not bell-shaped. Most shipments arrive near the average and a few arrive very late, so the curve has a long tail on the late side. A formula that assumes a bell shape would understate that tail. Reading the 99-in-100 day straight from the shipment history avoids the assumption.</p>
+</div>
+<div class="math">
+<p class="cap">Step D. A lane that went the other way, and the program total</p>
+<table>
+<thead><tr><th style="width:40%">What</th><th style="width:36%">Arithmetic</th><th style="width:24%">Result</th></tr></thead>
+<tr><td>Second example lane, old buffer</td><td>given</td><td class="a">5,238 units</td></tr>
+<tr><td>Cover for late shipments (200 units a day; average 30 days; 99-in-100 is 58 days)</td><td>200 × (58 − 30) = 200 × 28</td><td class="a">5,600 units</td></tr>
+<tr><td>Cover for demand swings (swing 80 a day)</td><td>2.33 × 80 × √30 = 2.33 × 80 × 5.477</td><td class="a">1,021 units</td></tr>
+<tr><td>New buffer</td><td>5,600 + 1,021</td><td class="a">6,621 units</td></tr>
+<tr><td>Change on this lane</td><td>6,621 − 5,238</td><td class="a">1,383 units added</td></tr>
+<tr class="total"><td>Program, all 200 lanes (record)</td><td>releases minus additions</td><td>580,000 units released, net</td></tr>
+<tr class="total"><td>Value (record)</td><td>about $1,500,000 ÷ 580,000 units = about $2.59 a unit</td><td>about $1.5 million, one time</td></tr>
+</table>
+<p>The second lane is the one that makes the story believable. A blanket cut of 37 percent on every lane would have left that lane short. The rule Finance signed released stock on some lanes and added it on others.</p>
+</div>
+
+<h3>If he asks</h3>
+<p><b>"Why not plan to the average lead time?"</b> If you promise the average, about half of the shipments arrive after the promise. The commitment has to sit where nearly all shipments have arrived. That is the 34, not the 21.</p>
+<p><b>"How did Finance come to trust the number?"</b> The rule was written and signed before any stock moved, lane by lane, and it included the lanes where stock went up. It is a one-time release. I do not present it as an annual saving.</p>
+<p><b>"What keeps it right over time?"</b> A lane is re-opened if its measured late tail moves more than two days past the plan, if its spread widens by a quarter, or if four or more shipments in a hundred run late.</p>
+<p><b>"What would you do differently?"</b> Show the add-stock lane on the first page. It is what won Finance over, and I showed it second.</p>
+<div class="note"><strong>How this fits his team.</strong> Replace "supplier to factory" with "fulfillment center to sorting hub" and the method is the same: measure how long the trip really takes, look at the whole range and not only the average, and set the plan where nearly all trips have finished. The trade is also the same: a longer planned time means fewer late packages and a slower promise. <strong>Limit to state:</strong> I did not own the forecast or the inventory itself. I owned the measurement and the rule.</div>
+
+<h2 class="pb" id="K23">2.3 If he gives you a live problem: on-time delivery dropped. Why?</h2>
+<p>He may skip the past and ask how you would handle a problem on his team. The posting names this work directly: "deep-dive analyses into operational performance, uncover root causes." Use the same five steps every time, and say them aloud as you go.</p>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:22%">Step</th><th style="width:40%">What you actually do</th><th style="width:34%">Your proof that you work this way</th></tr></thead>
+<tr><td>1</td><td><b>Is the number real?</b></td><td>Check the measurement before the operation. Did the definition change? Is some data late or missing? Did the count of packages (the bottom of the fraction) change?</td><td>Flexport: 63 against 25 was two different measurements (2.1).</td></tr>
+<tr><td>2</td><td><b>Where is it?</b></td><td>Cut the number by lane, building, day of week, departure time and carrier. A network average usually hides one or two bad spots.</td><td>Flexport: tickets tagged by carrier and terminal, ranked by cost (3.1).</td></tr>
+<tr><td>3</td><td><b>Mix or rate?</b></td><td>Did a group get worse (rate), or did more volume move into a group that was always worse (mix)? The arithmetic is below.</td><td>Elementum: stock released on some lanes and added on others, never one blanket rule (2.2).</td></tr>
+<tr><td>4</td><td><b>Which input moved first?</b></td><td>Late deliveries are an output. Look at the things that happen earlier: was the volume above plan, were trailers too full, did trucks leave late, did packages miss their truck?</td><td>The scorecard in Chapter 5 is built for this.</td></tr>
+<tr><td>5</td><td><b>What do we do, what does it cost, how will we know?</b></td><td>One recommendation, its cost, the number that should move, and the date you will check.</td><td>Flexport: the wave held one week at 76 against 80, then retested (3.1).</td></tr>
+</table>
+
+<h3>Step 3 with numbers: mix or rate</h3>
+<div class="math">
+<p class="cap">Example. Two lanes. Last week the network was 96.0 percent on time. This week it is 94.55 percent. What happened?</p>
+<table>
+<thead><tr><th style="width:18%">Lane</th><th class="n" style="width:14%">Share of packages, last week</th><th class="n" style="width:13%">On time, last week</th><th class="n" style="width:14%">Share of packages, this week</th><th class="n" style="width:13%">On time, this week</th><th style="width:28%">What changed</th></tr></thead>
+<tr><td>Short lane</td><td class="n">75%</td><td class="n">98%</td><td class="n">65%</td><td class="n">97%</td><td>Smaller share, and 1 point worse</td></tr>
+<tr><td>Long lane</td><td class="n">25%</td><td class="n">90%</td><td class="n">35%</td><td class="n">90%</td><td>Bigger share, same performance</td></tr>
+</table>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:38%">What</th><th style="width:38%">Arithmetic</th><th style="width:20%">Result</th></tr></thead>
+<tr><td>1</td><td>Network on time, last week: each lane's share × its on-time, added up</td><td>0.75 × 98 + 0.25 × 90 = 73.5 + 22.5</td><td class="a">96.0%</td></tr>
+<tr><td>2</td><td>Network on time, this week</td><td>0.65 × 97 + 0.35 × 90 = 63.05 + 31.5</td><td class="a">94.55%</td></tr>
+<tr><td>3</td><td>Total drop</td><td>96.0 − 94.55</td><td class="a">1.45 points</td></tr>
+<tr><td>4</td><td><b>Mix effect:</b> keep last week's on-time rates, use this week's shares</td><td>0.65 × 98 + 0.35 × 90 = 63.7 + 31.5 = 95.2; then 96.0 − 95.2</td><td class="a">0.80 points</td></tr>
+<tr><td>5</td><td><b>Rate effect:</b> this week's share of the lane that got worse × how much worse</td><td>0.65 × (98 − 97) = 0.65 × 1</td><td class="a">0.65 points</td></tr>
+<tr><td>6</td><td>Check: the two effects add up to the total</td><td>0.80 + 0.65</td><td class="a">1.45 points ✓</td></tr>
+</table>
+<p><b>In words.</b> A little over half of the drop (0.80 of 1.45 points) came from more volume moving onto the long lane, which was always less reliable. Nothing broke there; the network simply sent more packages down a harder path. The rest (0.65 points) is a real decline on the short lane, and that is where to look for a broken process. Two different causes, two different owners, two different fixes. A person who only looks at the network average sees one number and guesses.</p>
+</div>
+<div class="say"><div class="label">How to say the five steps — 105 words</div>
+<p>First I would check that the drop is real: same definition, same packages counted, no late data. Second, I would find where it is, by lane, building, day and departure time, because an average usually hides one or two bad spots. Third, I would separate mix from rate: did a lane get worse, or did more volume move onto a lane that was always worse. Fourth, I would look at what happened upstream, such as volume against plan, how full the trailers were, and whether trucks left on time. Fifth, I would bring one recommendation with its cost and the number I expect to move.</p>
+</div>
+
+<h1 class="sec" id="C3">Chapter 3 — Cross-functional and stakeholder management</h1>
+<p>What he is listening for: can you get people who do not report to you to move in one direction; do you agree the rules before the argument starts; can you hold a line when someone senior is unhappy; and do you say clearly what was yours and what was not. The posting describes the daily version of this: "partner with internal stakeholders across product, science, and engineering."</p>
+
+<h2 id="K31">3.1 Flexport: Shipment Visibility across nine teams</h2>
+<p><b>Use it for:</b> leading without authority; aligning many teams; saying no; delivering a result at lower cost. <b>One-line version:</b> nine teams, about a hundred people, none reporting to me; customers went from 7 to 68 while the cost to serve a container fell from 66 cents to 3 cents.</p>
+<div class="say"><div class="label">Say this — 256 words, about two minutes</div>
+<p><b>Situation.</b> At Flexport, from 2021 to 2022, customers wanted one screen showing where all their containers were, including containers carried by other companies. When the system could not track a container on its own, it opened a ticket, and a person typed in the updates. We had seven pilot customers, and serving one container cost 66 cents.</p>
+<p><b>Task.</b> I ran the program across nine teams, about a hundred people. None of them reported to me, and I did not own the engineering. The goal was to grow the customer base while the cost per container went down.</p>
+<p><b>Action.</b> Three things. First, one shared measure. I got the teams to agree that every ticket was a case where the automation had failed. We tagged each ticket by ocean carrier and port terminal and ranked the fix list by tickets times cost. Nine teams then worked from one priority list instead of nine. Second, written entry rules. Customers joined in waves, and a wave started only when six published checks passed on that customer's own containers. Third, I held the rule when it was uncomfortable. Wave three was due, and arrival accuracy was 76 percent against a bar of 80. I held the wave, the source data was fixed, we retested for a week, and then it went.</p>
+<p><b>Result.</b> Customers went from seven to sixty-eight, two months ahead of plan. The cost to serve a container fell from 66 cents to 3 cents, about 95 percent, while volume grew about five times. No wave had to be reversed.</p>
+</div>
+
+<h3>The arithmetic, one step at a time</h3>
+<p>The endpoints, 66 cents and 3 cents, are record; they are Finance's numbers. The weekly worksheet below uses example inputs that show how such a number is built. If he asks for the automation rate on your record, it is about 40 percent rising to about 90 percent. Say that, and do not mix it with the worksheet's example rates.</p>
+<div class="math">
+<p class="cap">Step A. Before: how a cost of 66 cents a container is built (example week)</p>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:40%">What</th><th style="width:34%">Arithmetic</th><th style="width:22%">Result</th></tr></thead>
+<tr><td>1</td><td>Containers tracked in the week</td><td>given</td><td class="a">2,000</td></tr>
+<tr><td>2</td><td>Share tracked with no person involved</td><td>given</td><td class="a">60%</td></tr>
+<tr><td>3</td><td>Containers that needed a person, so a ticket was opened</td><td>2,000 × (100% − 60%) = 2,000 × 0.40</td><td class="a">800 tickets</td></tr>
+<tr><td>4</td><td>People cost, at $1.50 of a person's time per ticket</td><td>800 × $1.50</td><td class="a">$1,200</td></tr>
+<tr><td>5</td><td>Software and data cost for the week</td><td>given</td><td class="a">$120</td></tr>
+<tr><td>6</td><td>Total cost for the week</td><td>$1,200 + $120</td><td class="a">$1,320</td></tr>
+<tr><td>7</td><td><b>Cost to serve one container</b> = total cost ÷ containers</td><td>$1,320 ÷ 2,000</td><td class="a">$0.66</td></tr>
+</table>
+<p>Notice where the money is: $1,200 of the $1,320 is people working tickets. That is 1,200 ÷ 1,320 = 91 percent. So the way to cut the cost is to cut tickets, and that is why the ticket became the shared measure.</p>
+</div>
+<div class="math">
+<p class="cap">Step B. After: the same worksheet at five times the volume</p>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:40%">What</th><th style="width:34%">Arithmetic</th><th style="width:22%">Result</th></tr></thead>
+<tr><td>1</td><td>Containers tracked in the week</td><td>2,000 × 5</td><td class="a">10,000</td></tr>
+<tr><td>2</td><td>Share tracked with no person involved</td><td>given</td><td class="a">97%</td></tr>
+<tr><td>3</td><td>Tickets</td><td>10,000 × (100% − 97%) = 10,000 × 0.03</td><td class="a">300 tickets</td></tr>
+<tr><td>4</td><td>People cost, at $0.80 a ticket (faster, because the screen is pre-filled)</td><td>300 × $0.80</td><td class="a">$240</td></tr>
+<tr><td>5</td><td>Software and data cost for the week</td><td>given</td><td class="a">$150</td></tr>
+<tr><td>6</td><td>Total cost for the week</td><td>$240 + $150</td><td class="a">$390</td></tr>
+<tr><td>7</td><td>Cost to serve one container</td><td>$390 ÷ 10,000</td><td class="a">$0.039, about 4 cents</td></tr>
+</table>
+<p>The worksheet lands at about 4 cents. Finance's recorded figure is 3 cents; the last cent came from cheaper bulk prices on the data sources, and that price is not on your worksheet. If asked, say exactly that. Do not invent the bulk price.</p>
+</div>
+<div class="math">
+<p class="cap">Step C. The three numbers you say, and one check that growth alone did not do it</p>
+<table>
+<thead><tr><th style="width:44%">What</th><th style="width:34%">Arithmetic</th><th style="width:22%">Result</th></tr></thead>
+<tr><td>How much the cost fell</td><td>($0.66 − $0.03) ÷ $0.66 = $0.63 ÷ $0.66</td><td class="a">95.5%, say "about 95 percent"</td></tr>
+<tr><td>How much the customer base grew</td><td>68 ÷ 7</td><td class="a">9.7 times</td></tr>
+<tr><td>The wave you held</td><td>measured 76% against a bar of 80%</td><td class="a">4 points short → hold one week</td></tr>
+<tr><td>Check 1: suppose volume had grown five times and automation had stayed at 60 percent</td><td>10,000 × 0.40 = 4,000 tickets; 4,000 × $1.50 = $6,000; ($6,000 + $150) ÷ 10,000</td><td class="a">$0.615 a container</td></tr>
+<tr><td>Check 2: suppose, generously, that tickets had stayed at 800 while volume grew five times</td><td>800 × $1.50 = $1,200; ($1,200 + $150) ÷ 10,000</td><td class="a">$0.135 a container</td></tr>
+</table>
+<p><b>In words.</b> If only the volume had grown, the cost per container would have stayed near 62 cents, because tickets grow with volume. Even in the generous case, where the same 800 tickets are spread over five times the containers, it would still be about 13 cents. The fall to a few cents came from removing the tickets, not from being bigger.</p>
+</div>
+<div class="math">
+<p class="cap">The six checks a customer had to pass before joining (record)</p>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:48%">Check</th><th style="width:48%">Bar</th></tr></thead>
+<tr><td>1</td><td>Problems reviewed quickly</td><td>Reviewed within 24 hours, at least 90 percent of the time</td></tr>
+<tr><td>2</td><td>Data quality against the source</td><td>At least 90 percent, and at least as good as the older product</td></tr>
+<tr><td>3</td><td>Arrival accuracy</td><td>At least 80 percent (wave three was held at 76)</td></tr>
+<tr><td>4</td><td>System stable in production</td><td>Yes</td></tr>
+<tr><td>5</td><td>Real use</td><td>At least 100 containers, and the main features in use</td></tr>
+<tr><td>6</td><td>Customer view</td><td>No blocking problems, and satisfaction at least equal to the average</td></tr>
+</table>
+</div>
+
+<h3>If he asks</h3>
+<p><b>"What exactly was yours?"</b> The definitions, the six checks, the ranking of the fix list, and the call on each wave. Engineering built the product. I will not say I built it.</p>
+<p><b>"How did you get nine teams to agree on one list?"</b> I did not ask them to agree with me. I asked them to agree on one count, tickets, and one price for a ticket. Once the list was ranked by tickets times cost, the order was arithmetic, and nobody had to lose an argument.</p>
+<p><b>"How did people react when you held the wave?"</b> The rule and the bar had been published before any customer was named, so the hold was the rule working, not my opinion. It cost one week.</p>
+<p><b>"Did you ever throw away a good-looking number?"</b> Yes. One week the automation rate printed 99.4 percent, but it rested on three observations. I discarded it and showed the gap. A flattering number on three cases should not steer a rollout.</p>
+<p><b>"What would you do differently?"</b> Put the security review on the kickoff list. The ticket data contained customer content, and I found that mid-build. That is story 4.3.</p>
+<div class="note"><strong>How this fits his team.</strong> His team works between product managers, scientists and engineers. This story shows the method you would bring: agree on one measure, publish the rule before the decision, and let the rule make the call. <strong>Limit to state:</strong> "32,000 shipments" was a public target for that program, not a result. The results that landed two months early were 68 customers and 170 monthly users.</div>
+
+<h2 class="pb" id="K32">3.2 Flexport: changing a roadmap that had my manager's name on it</h2>
+<p><b>Use it for:</b> disagreeing with a manager; influencing a decision you did not own; choosing between two plans with data. <b>One-line version:</b> an 18-month plan was reordered so that value arrived in month 6, with 66 percent less engineering effort.</p>
+<div class="say"><div class="label">Say this — 255 words, about two minutes</div>
+<p><b>Situation.</b> At Flexport I inherited a roadmap for our freight-forwarding app. It built screens for our own operators first and for partner companies later, eighteen months in all. It had already been shown to leadership, with my manager's name on it. Engineering capacity was fixed.</p>
+<p><b>Task.</b> I owned the recommendation on the order of work, not the roadmap itself. I believed the order was wrong, and I had to change it without undermining the person who owned it.</p>
+<p><b>Action.</b> I measured before I argued. One departed shipment took 339.5 minutes of operator time. With engineering, I priced both orders feature by feature. Operators first: cost per shipment down about 25 percent, in nine months. Partners first: down about 50 percent, in six months, on components the operator screens could reuse later. I took it to my manager privately, before anyone else saw it. He challenged two points and I changed one. Engineering then had two days to try to break the estimate. I also wrote down what the change would cost: operators would stay on the old screens for two more quarters. That went on the page, with the condition under which we would reverse the decision. He presented the change under his own name.</p>
+<p><b>Result.</b> First value came in month six instead of month eighteen, with 66 percent less engineering effort, about five million dollars of avoided cost. The import side went live in April 2022 with eleven partners in ten countries, and 48 of 53 import partners moved onto it within a month.</p>
+</div>
+
+<h3>The arithmetic, one step at a time</h3>
+<div class="math">
+<p class="cap">Step A. What one shipment cost in people's time (record inputs)</p>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:40%">What</th><th style="width:34%">Arithmetic</th><th style="width:22%">Result</th></tr></thead>
+<tr><td>1</td><td>Operator time on one departed shipment</td><td>measured</td><td class="a">339.5 minutes</td></tr>
+<tr><td>2</td><td>That is, in hours</td><td>339.5 ÷ 60</td><td class="a">5.66 hours</td></tr>
+<tr><td>3</td><td>Cost of one minute, blended across three groups of staff paid $0.56, $0.61 and $0.24 a minute</td><td>blend</td><td class="a">about $0.45 a minute</td></tr>
+<tr><td>4</td><td>People cost of one shipment</td><td>339.5 × $0.45</td><td class="a">$152.78, say "about $153"</td></tr>
+</table>
+</div>
+<div class="math">
+<p class="cap">Step B. The two orders of work, side by side</p>
+<table>
+<thead><tr><th style="width:34%">&nbsp;</th><th style="width:33%">Operators first (the inherited plan)</th><th style="width:33%">Partners first (my recommendation)</th></tr></thead>
+<tr><td>Cut in cost per shipment</td><td>about 25%</td><td>about 50%</td></tr>
+<tr><td>Dollars saved per shipment</td><td>$153 × 0.25 = <b>about $38</b></td><td>$153 × 0.50 = <b>about $76</b></td></tr>
+<tr><td>Months until the first value</td><td>about 9</td><td>about 6</td></tr>
+<tr><td>What it leaves behind</td><td>Operators still spend a fifth of their time in the old app</td><td>Operators wait two more quarters for new screens</td></tr>
+</table>
+<p>Twice the saving per shipment, three months sooner. The honest cost is the last row: the operators wait. That cost was written down and agreed, not hidden.</p>
+</div>
+<div class="math">
+<p class="cap">Step C. The result numbers</p>
+<table>
+<thead><tr><th style="width:44%">What</th><th style="width:34%">Arithmetic</th><th style="width:22%">Result</th></tr></thead>
+<tr><td>How much sooner value arrived (record)</td><td>month 18 − month 6</td><td class="a">12 months sooner</td></tr>
+<tr><td>Engineering effort needed, compared with the old plan (record)</td><td>100% − 66%</td><td class="a">34% of the old plan</td></tr>
+<tr><td>Import partners who moved within a month (record)</td><td>48 ÷ 53</td><td class="a">about 91%; say "48 of 53"</td></tr>
+<tr><td>Avoided cost (record)</td><td>—</td><td class="a">about $5 million, said once</td></tr>
+</table>
+</div>
+<div class="math">
+<p class="cap">Step D. A rough check on the $5 million (model: the three assumptions are mine, not measured)</p>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:40%">What</th><th style="width:34%">Arithmetic</th><th style="width:22%">Result</th></tr></thead>
+<tr><td>1</td><td>Engineering time in the old plan, assuming 12 engineers</td><td>12 engineers × 18 months</td><td class="a">216 engineer-months</td></tr>
+<tr><td>2</td><td>Effort avoided</td><td>216 × 66%</td><td class="a">142.56 engineer-months</td></tr>
+<tr><td>3</td><td>In dollars, assuming $20,000 per engineer-month</td><td>142.56 × $20,000</td><td class="a">$2,851,200</td></tr>
+<tr><td>4</td><td>One year of savings that started a year sooner, assuming 20,000 shipments a year</td><td>$76 × 20,000</td><td class="a">$1,520,000</td></tr>
+<tr><td>5</td><td>Total</td><td>$2,851,200 + $1,520,000</td><td class="a">$4,371,200, about $4.4 million</td></tr>
+<tr><td>6</td><td>Distance from the recorded figure</td><td>($5.0 million − $4.4 million) ÷ $5.0 million</td><td class="a">12% below</td></tr>
+</table>
+<p>Use this only if he asks where five million comes from. Say: "The five million is the figure on record. My own rough build-up, on assumed headcount and volume, lands within about 12 percent of it."</p>
+</div>
+
+<h3>If he asks</h3>
+<p><b>"How did your manager take it?"</b> He asked for the estimate, argued two points, and I changed one of them because he was right. Then he put his name on the change. That is why I went to him privately first: he could change his own plan instead of having it corrected in public.</p>
+<p><b>"What did you give up?"</b> Operators stayed on old screens for two more quarters. It was priced and published, with the condition for reversing.</p>
+<p><b>"Is the five million a yearly saving?"</b> No. It is cost avoided: engineering not spent, plus value that arrived a year sooner. I say it once and I do not call it annual.</p>
+<p><b>"Was this the export launch?"</b> No. April 2022 was the import side. The export scope came later.</p>
+<div class="note"><strong>How this fits his team.</strong> A network recommendation often changes a plan that someone else has already announced. This story shows the order you work in: measure first, go to the owner privately, let engineering test the estimate, write down what the change costs, and let the owner present it.</div>
+
+<h1 class="sec" id="C4">Chapter 4 — Ownership and proactivity</h1>
+<p>What he is listening for: did you act before anyone asked; did you treat a problem as yours when it had no owner; did you finish it, including the dull parts; and when it went wrong, did you say so first. The posting uses the word itself: "proactively look for ways to make existing reports and dashboards faster, more accurate, and easier to use." Story 4.1 is that sentence, already done once.</p>
+
+<h2 id="K41">4.1 Flexport: the weekly review nobody owned</h2>
+<p><b>Use it for:</b> fixing something that was not your job; improving a report or dashboard; removing a single point of failure. <b>One-line version:</b> four hand-stitched exports became one pipeline; the accuracy of the weekly numbers went from 60 percent to 90 percent, and nothing switched until old and new matched within 1 percent.</p>
+<div class="say"><div class="label">Say this — 270 words, about two minutes</div>
+<p><b>Situation.</b> The Shipment Visibility program at Flexport was steered by a review every Monday. Behind it were four separate systems: support tickets, the container list, platform tracking, and the count of open problems. I was joining the four exports by hand. Nobody owned the process. The numbers were right about 60 percent of the time, and if I was out, there was no Monday review.</p>
+<p><b>Task.</b> Nobody asked me to fix it. I decided it was mine, because a vice president was making rollout decisions on those numbers.</p>
+<p><b>Action.</b> First, I froze the seven measurement definitions in writing, with the people who would be judged by them. Second, I wrote the requirements for one automated pipeline, and I put a price on the manual process in the document: thirty hours a week across the team, against six once automated. With a price on it, the infrastructure team could rank it against their other work, and I did not need to escalate. Third, I would not switch on trust. Old and new ran side by side, and nothing moved until every measure matched within 1 percent for consecutive weeks, with each mismatch explained. I kept the manual path as a fallback, and added an alert for a failed data feed, so that silence could never pass for a good week.</p>
+<p><b>Result.</b> Accuracy of the weekly numbers went from 60 percent to 90. The first thing the new alert caught was a routine software update that had quietly dropped about 4 percent of the tickets. No Monday review was missed during the change, and the review no longer depended on one person.</p>
+</div>
+
+<h3>The arithmetic, one step at a time</h3>
+<div class="math">
+<p class="cap">Step A. The price of the manual process (record: the arithmetic in the requirements document; the $90 an hour is the document's assumption)</p>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:40%">What</th><th style="width:34%">Arithmetic</th><th style="width:22%">Result</th></tr></thead>
+<tr><td>1</td><td>Hours a week before: people × hours each × weekly reviews</td><td>3 × 5 × 2</td><td class="a">30 hours a week</td></tr>
+<tr><td>2</td><td>Hours a week after</td><td>3 × 1 × 2</td><td class="a">6 hours a week</td></tr>
+<tr><td>3</td><td>Hours freed each week</td><td>30 − 6</td><td class="a">24 hours a week</td></tr>
+<tr><td>4</td><td>Yearly cost before, on a 48-week working year</td><td>30 × 48 × $90</td><td class="a">$129,600</td></tr>
+<tr><td>5</td><td>Yearly cost after</td><td>6 × 48 × $90</td><td class="a">$25,920</td></tr>
+<tr><td>6</td><td>Difference</td><td>$129,600 − $25,920</td><td class="a">$103,680 a year</td></tr>
+</table>
+<p>Say it as "the document priced the manual process at about $104,000 a year more than the automated one." It is a price that helped a team prioritize. It is not a saving you booked, and the six hours that remain are real.</p>
+</div>
+<div class="math">
+<p class="cap">Step B. What "matched within 1 percent" means (example counts)</p>
+<p>For each of the seven measures, each week, compare the number from the hand-built report with the number from the new pipeline. <b>Difference = (manual − pipeline) ÷ manual</b>, ignoring the sign.</p>
+<table>
+<thead><tr><th style="width:26%">Week (example)</th><th class="n" style="width:14%">Manual count of tickets</th><th class="n" style="width:14%">Pipeline count</th><th style="width:26%">Arithmetic</th><th style="width:20%">Verdict</th></tr></thead>
+<tr><td>A normal week</td><td class="n">1,250</td><td class="n">1,241</td><td>(1,250 − 1,241) ÷ 1,250 = 9 ÷ 1,250</td><td class="a">0.72% → pass</td></tr>
+<tr><td>The week of the software update</td><td class="n">1,250</td><td class="n">1,200</td><td>(1,250 − 1,200) ÷ 1,250 = 50 ÷ 1,250</td><td class="a">4.0% → fail, investigate</td></tr>
+</table>
+<p>The second row is what the 4 percent drop looked like: the pipeline was suddenly missing about one ticket in twenty-five. Without a side-by-side check, the Monday number would simply have looked a little better, and nobody would have known why.</p>
+</div>
+<div class="math">
+<p class="cap">Step C. Two different "accuracy" numbers. Do not mix them.</p>
+<table>
+<thead><tr><th style="width:26%">Number</th><th style="width:44%">Question it answers</th><th style="width:30%">Value</th></tr></thead>
+<tr><td>Accuracy of the review</td><td>Of the facts checked, how many matched the true source?</td><td class="a">60% → 90% (record)</td></tr>
+<tr><td>The switch-over test</td><td>Does the new pipeline give the same answer as the old manual method?</td><td class="a">within 1% (record)</td></tr>
+</table>
+</div>
+
+<h3>If he asks</h3>
+<p><b>"Why did the infrastructure team agree to build it?"</b> Because the cost was written in hours they could compare with their own backlog. I did not have to escalate; the price did the prioritizing.</p>
+<p><b>"Why only seven measures?"</b> Those were the seven already in the review. Adding new ones during a migration would have made it impossible to tell a pipeline error from a definition change.</p>
+<p><b>"What went wrong?"</b> I planned the security review too late. Ticket data contains customer content, and the access review cost two extra weeks on the manual path. That is story 4.3.</p>
+<p><b>"What did the review look like?"</b> One line per measure. Input measures the team controls on top; output measures the stakeholder cares about below. Five consecutive weeks of trend. A cell turned green or red when the week-over-week change was more than 5 percent. Chapter 5 rebuilds that format for a transportation network.</p>
+<div class="note"><strong>How this fits his team.</strong> This is the closest match in your history to the posting's line about making reports and dashboards "faster, more accurate, and easier to use." Three habits carry over directly: freeze the definitions first, run old and new side by side before switching, and alert on a failed feed.</div>
+
+<h2 id="K42">4.2 Elementum: Austria, where everyone blamed the carriers</h2>
+<p><b>Use it for:</b> digging deeper than you were asked to; finding a root cause; a transportation result with Finance's signature on it. <b>One-line version:</b> I was asked for a carrier scorecard; I first proved that the measurement was broken, fixed it, and the result rolled out to 25 European locations.</p>
+<div class="say"><div class="label">Say this — 275 words, about two minutes</div>
+<p><b>Situation.</b> At Elementum, one customer's site in Austria could not measure whether its carriers delivered on time. The report said only 40 percent of the shipment data was usable. The team spent eight to ten hours a week correcting dates by hand. The site, the carrier managers and my own sponsor all believed the carriers were simply late.</p>
+<p><b>Task.</b> I had been asked for a carrier scorecard. Nobody asked for a root cause. I decided to check the measurement before judging the carriers.</p>
+<p><b>Action.</b> I pulled three years of shipments with SQL and counted the defects by type: missing rates, one carrier spelled five different ways, lanes recorded at the wrong level, and brochure transit times used as if they were promises. The data was better than reported, about 55 percent usable, and the real gap was ours: we had no reliable promised date. So I defined the promised date as a lookup in the routing guide, by origin, destination, mode, shipment size and service level. When a shipment matched no rule, a person was alerted; the system did not guess. I asked Finance to sign the savings method before any saving existed: paid rate against contracted rate, only on shipments that had actually moved. And I held the carrier scorecard back until the automated on-time figure matched a sample checked by hand.</p>
+<p><b>Result.</b> Usable data went from about 55 percent to about 99 percent within a quarter. The carriers did not dispute the scorecard. Austria was worth about 500,000 dollars a year on the signed method, and the same rules then went to 25 European locations, about 8 million dollars of validated freight savings.</p>
+</div>
+
+<h3>The arithmetic, one step at a time</h3>
+<div class="math">
+<p class="cap">Step A. "Usable data," on 1,000 shipments (the percentages are record; the count of 1,000 is an example)</p>
+<p><b>Usable share = shipments on which on-time delivery can be worked out ÷ all shipments.</b> A shipment is usable when it has a carrier you can identify, a lane, a promised date and an actual delivery date.</p>
+<table>
+<thead><tr><th style="width:36%">Stage</th><th class="n" style="width:16%">Usable shipments</th><th style="width:22%">Arithmetic</th><th style="width:26%">Usable share</th></tr></thead>
+<tr><td>As reported, judged on one field only</td><td class="n">400</td><td>400 ÷ 1,000</td><td class="a">40%</td></tr>
+<tr><td>True starting point, after counting every defect type across three years</td><td class="n">550</td><td>550 ÷ 1,000</td><td class="a">about 55%</td></tr>
+<tr><td>After the routing-guide rules and one clean-up cycle</td><td class="n">990</td><td>990 ÷ 1,000</td><td class="a">about 99%</td></tr>
+</table>
+<p>The reported 40 percent was too pessimistic, and it pointed at the wrong culprit. The census showed which defects mattered, in order of size. That list was the work plan.</p>
+</div>
+<div class="math">
+<p class="cap">Step B. On-time delivery, once a promised date exists</p>
+<p><b>On-time share = shipments delivered on or before the promised date ÷ shipments measured.</b> The promised date comes from the routing guide: for this origin, destination, mode, size and service level, the agreed transit time is so many days.</p>
+<table>
+<thead><tr><th style="width:36%">Example shipment</th><th style="width:38%">Arithmetic</th><th style="width:26%">Result</th></tr></thead>
+<tr><td>Shipped Monday June 3; routing guide says 4 days</td><td>June 3 + 4 days</td><td class="a">Promised Friday June 7</td></tr>
+<tr><td>Delivered Thursday June 6</td><td>June 6 is on or before June 7</td><td class="a">On time</td></tr>
+<tr><td>Delivered Monday June 10</td><td>June 10 is after June 7</td><td class="a">Late by 3 days</td></tr>
+</table>
+<p>Before this rule, "late" was judged against the carrier's brochure, which the carriers had never agreed to as a promise. A scorecard built on that would have been disputed, and the carriers would have been right.</p>
+</div>
+<div class="math">
+<p class="cap">Step C. The savings method Finance signed, and the totals</p>
+<table>
+<thead><tr><th style="width:40%">What</th><th style="width:36%">Arithmetic</th><th style="width:24%">Result</th></tr></thead>
+<tr><td>One shipment (example): contracted rate $900, amount paid $1,000</td><td>$1,000 − $900</td><td class="a">$100 recoverable</td></tr>
+<tr><td>Counted only if the shipment actually moved</td><td>a negotiated rate on a shipment that never moved counts as zero</td><td class="a">no paper savings</td></tr>
+<tr class="total"><td>Austria (record)</td><td>sum over a year of shipments</td><td>about $500,000 a year</td></tr>
+<tr class="total"><td>25 European locations (record)</td><td>the same rules, one clean-up cycle per site</td><td>about $8 million</td></tr>
+<tr><td>Average per location (derived, not measured site by site)</td><td>$8,000,000 ÷ 25</td><td class="a">$320,000</td></tr>
+</table>
+</div>
+
+<h3>If he asks</h3>
+<p><b>"Why not publish the scorecard on the data you had?"</b> A scorecard built on data that was 55 percent usable would have been challenged in the first meeting. I would rather be late with a number that holds.</p>
+<p><b>"How long did it take?"</b> Within a quarter for the data quality at Austria. The pilot itself was implemented inside about a month.</p>
+<p><b>"What did it cost you?"</b> A sponsor who was unhappy for some weeks, because he had asked for a scorecard and I brought him a data problem. And the manual correction work had to continue until the automated figure matched the hand-checked sample.</p>
+<p><b>"What would you do differently?"</b> Start from an industry benchmark for transit time as a first guess, then correct it lane by lane. I proved the brochure wrong one lane at a time, which was slower than it needed to be.</p>
+<div class="note"><strong>How this fits his team.</strong> "Uncover root causes of issues" is in the posting. This story shows the order you work in: check the measurement first, count defects by type and size, agree the definition of the promise, agree the method for counting money before the money exists, and release the number only when it survives a hand check. <strong>Wording:</strong> say "within a quarter." Do not give a count of lanes for this program.</div>
+
+<h2 id="K43">4.3 A failure: the security review I planned too late</h2>
+<p><b>Use it for:</b> "tell me about a mistake." Own it in the first sentence. Keep it to ninety seconds. End on what changed.</p>
+<div class="say"><div class="label">Say this — 162 words</div>
+<p><b>Situation.</b> On the Flexport weekly review pipeline, the support ticket data contained customer content. Using it needed an access and security review.</p>
+<p><b>Task.</b> I owned the plan. I had treated that review as an engineering detail. It is a dependency with its own lead time, and I had not put it in the plan.</p>
+<p><b>Action.</b> It surfaced mid-build. The same day, I told leadership the gap was mine, not a delay caused by the security team. I moved forward the work that did not touch customer content, kept the Monday review running on the manual path, and did not ask anyone to skip the review to save the date.</p>
+<p><b>Result.</b> It cost two weeks. No Monday review was missed, and the pipeline still passed its switch-over test. What changed for good is one question I now ask at every kickoff: whose approval does this data need, and how long does that take? I plan that time now. I do not discover it.</p>
+</div>
+<p><b>If he asks what it cost in dollars:</b> two weeks of schedule. There is no dollar figure on record for it, and you should not invent one. <b>If he asks whether the customer noticed:</b> no; the Monday decisions kept running on the manual numbers.</p>
+
+<h2 id="K44">4.4 Spare story — Elementum: the shortage alert</h2>
+<p><b>Use it only if</b> he asks for another ownership example or asks about forecasting. It is a different program from story 2.2. Never add its $2 million to the $1.5 million in 2.2.</p>
+<div class="say"><div class="label">Say this — 203 words</div>
+<p><b>Situation.</b> At Elementum, planners at a manufacturer found out about a parts shortage when the production line stopped. The information existed, but it sat in about eight separate areas of their SAP system that never met in one view.</p>
+<p><b>Task.</b> I owned the definitions, the data checks, and the way forecast accuracy was measured. I did not own the forecast; the planners did.</p>
+<p><b>Action.</b> I wrote one definition of supply: stock on hand, stock in transit that will arrive, production that will arrive, and released orders only. Orders not yet confirmed stayed out, because they change with every planning run. Each data area went live behind a check its owner could fail. Each morning the numbers were reconciled to SAP before any alert was trusted. And I published forecast accuracy for the most important items, with the direction of the error beside it.</p>
+<p><b>Result.</b> The shortage alert was live in three months. Forecast accuracy on the most important items went from 70 percent to 85. Collaboration among planners went up 50 percent once the side spreadsheets were no longer needed. About 2 million dollars of safety stock was released, one time, only where both the forecast error and the lead-time error had improved.</p>
+</div>
+<div class="math">
+<p class="cap">The arithmetic: what "forecast accuracy" means (the four weeks are an example; 70 and 85 percent are record)</p>
+<p><b>Accuracy = 100 percent − the average size of the error.</b> The error for one week is the gap between forecast and actual, as a share of actual, ignoring whether it was over or under.</p>
+<table>
+<thead><tr><th style="width:12%">Week</th><th class="n" style="width:14%">Forecast</th><th class="n" style="width:14%">Actual</th><th class="n" style="width:14%">Gap</th><th style="width:26%">Gap ÷ actual</th><th style="width:20%">Error</th></tr></thead>
+<tr><td>1</td><td class="n">130</td><td class="n">100</td><td class="n">30</td><td>30 ÷ 100</td><td class="a">30.0%</td></tr>
+<tr><td>2</td><td class="n">110</td><td class="n">120</td><td class="n">10</td><td>10 ÷ 120</td><td class="a">8.3%</td></tr>
+<tr><td>3</td><td class="n">100</td><td class="n">80</td><td class="n">20</td><td>20 ÷ 80</td><td class="a">25.0%</td></tr>
+<tr><td>4</td><td class="n">90</td><td class="n">100</td><td class="n">10</td><td>10 ÷ 100</td><td class="a">10.0%</td></tr>
+<tr class="total"><td colspan="4">Average error</td><td>(30.0 + 8.3 + 25.0 + 10.0) ÷ 4</td><td>18.3%</td></tr>
+<tr class="total"><td colspan="4">Accuracy</td><td>100 − 18.3</td><td>81.7%</td></tr>
+<tr><td colspan="4">Direction of the error: total forecast 430, total actual 400</td><td>(430 − 400) ÷ 400</td><td class="a">+7.5%, forecasting too high</td></tr>
+</table>
+<p>On your record, the average error on the most important items fell from 30 percent (accuracy 70) to 15 percent (accuracy 85). The direction matters as well as the size: a forecast that is always too high can show a decent accuracy and still fill the warehouse.</p>
+</div>
+
+<h1 class="sec" id="C5">Chapter 5 — How to build a supply chain scorecard, step by step</h1>
+<p>A scorecard is one page, produced every week, that tells a team whether its part of the network is healthy and where to look if it is not. This chapter builds one from an empty page for the kind of work this team does: planning how packages flow from the warehouse to the door. It uses one small made-up network so that every number can be checked by hand. You have built this format before: the Flexport weekly review in story 4.1 followed the same rules.</p>
+
+<h2 class="first" id="K51">5.1 What "Amazon style" means: inputs and outputs</h2>
+<p>There are two kinds of measurement on the page, and the whole method rests on keeping them apart.</p>
+<table>
+<thead><tr><th style="width:14%">Kind</th><th style="width:30%">What it is</th><th style="width:28%">Example in a transportation network</th><th style="width:28%">Example from everyday life</th></tr></thead>
+<tr><td><b>Output</b></td><td>The result the customer or the company feels. You cannot change it directly. By the time it moves, the cause is already in the past.</td><td>Share of packages delivered late. Cost per package.</td><td>Your weight on the bathroom scale.</td></tr>
+<tr><td><b>Input</b></td><td>Something the team controls this week, that moves before the output does, and that causes the output to move.</td><td>How full the trailers are. Whether trucks leave on time. How close the volume plan was to the real volume.</td><td>What you ate and how far you walked.</td></tr>
+</table>
+<p>Staring at the scale does not change your weight. Managing meals and walking does. Amazon runs its business the same way, and has said so publicly. From its 2009 letter to shareholders: "we believe that focusing our energy on the controllable inputs to our business is the most effective way to maximize financial outputs over time."</p>
+<p>Two former Amazon executives, Colin Bryar and Bill Carr, have described in their book <i>Working Backwards</i> how this is done every week in a meeting called the weekly business review. The points that matter for building a scorecard are these.</p>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:40%">The practice, as publicly described</th><th style="width:56%">What it means when you build the page</th></tr></thead>
+<tr><td>1</td><td>Input measures come first, then the outputs they drive.</td><td>Put the things the team controls at the top of the page. Put results underneath.</td></tr>
+<tr><td>2</td><td>Every measure is shown the same way, every week.</td><td>Same order, same layout, same definitions. Nobody spends time working out how to read the page.</td></tr>
+<tr><td>3</td><td>Each measure shows the last six weeks, the last twelve months, last year's value and the target.</td><td>One week alone means nothing. You need the trend, the season, and the goal beside it.</td></tr>
+<tr><td>4</td><td>The meeting discusses only the exceptions.</td><td>If a measure is where it should be, the owner says so and moves on. Time goes to what moved.</td></tr>
+<tr><td>5</td><td>Each measure has one owner who explains it.</td><td>A name beside every line, not a department.</td></tr>
+<tr><td>6</td><td>Measures are added and dropped as the team learns.</td><td>If an input stops explaining the output, replace it. The page is not permanent.</td></tr>
+</table>
+<p>Your own Flexport review used the same rules in a slightly simpler form: input measures the team controlled, output measures the stakeholder cared about, five consecutive weeks of trend, and a cell colored green or red when the week-over-week change was more than 5 percent. The scorecard below uses six weeks and the same 5 percent rule.</p>
+<div class="note"><strong>What you do not know, and should say so.</strong> You have not seen this team's actual scorecard, its measure names or its targets. Everything in this chapter is a method, shown on made-up numbers. If he asks how you would build theirs, say: "I would start from the decisions your team makes each week, and I would ask to see the page you use today before changing anything."</div>
+
+<h2 id="K52">5.2 The example network and its numbers</h2>
+<p>One warehouse, called Warehouse A, sends packages by truck to three sorting hubs. From each hub, packages go on to local depots and then by van to the customer. This is the same pretend network as in the outbound packet, cut down to one warehouse. Every number is made up.</p>
+<table>
+<thead><tr><th style="width:36%">Thing</th><th style="width:24%">Number</th><th style="width:40%">Meaning</th></tr></thead>
+<tr><td>Packages in a normal week</td><td class="n">560,000</td><td>80,000 a day × 7 days.</td></tr>
+<tr><td>Lanes</td><td class="n">3</td><td>Warehouse A to Hub 1, to Hub 2, and to Hub 3. Each is 200 miles.</td></tr>
+<tr><td>Trailer, completely full</td><td class="n">2,000 packages</td><td>What fits when every space is used.</td></tr>
+<tr><td>Trailer, planned load</td><td class="n">1,600 packages</td><td>The plan is to fill 80 percent and leave room, because volume varies from day to day.</td></tr>
+<tr><td>Cost of one planned truck trip</td><td class="n">$640</td><td>200 miles × $3.20 a mile.</td></tr>
+<tr><td>Cost of an extra trailer ordered the same day</td><td class="n">$960</td><td>One and a half times the planned price: $640 × 1.5.</td></tr>
+<tr><td>Planned trips in a normal week</td><td class="n">350</td><td>560,000 packages ÷ 1,600 per trailer. That is 50 a day.</td></tr>
+<tr><td>Cost of everything after the first truck</td><td class="n">$2.17 a package</td><td>Hub $0.30 + trucks to depots $0.25 + depots $0.30 + vans $1.32.</td></tr>
+</table>
+<div class="math">
+<p class="cap">A normal week, worked out</p>
+<table>
+<thead><tr><th style="width:44%">What</th><th style="width:34%">Arithmetic</th><th style="width:22%">Result</th></tr></thead>
+<tr><td>Truck cost for the week</td><td>350 trips × $640</td><td class="a">$224,000</td></tr>
+<tr><td>Truck cost per package</td><td>$224,000 ÷ 560,000</td><td class="a">$0.40</td></tr>
+<tr><td>Transportation cost per package, warehouse door to customer door</td><td>$0.40 + $2.17</td><td class="a">$2.57</td></tr>
+<tr><td>How full the trailers are</td><td>560,000 ÷ (350 × 2,000) = 560,000 ÷ 700,000</td><td class="a">80%</td></tr>
+</table>
+</div>
+
+<h2 id="K53">5.3 The ten steps</h2>
+
+<h3>Step 1. Write down who will use the page and what they decide each week</h3>
+<p>A scorecard exists to support decisions. If no decision depends on a number, the number does not belong on the page. For this example, the users are the network planning team and the managers of the warehouse and hubs. Each week they decide: how many truck trips to schedule on each lane, when trucks should leave, and whether any lane needs a different plan.</p>
+
+<h3>Step 2. Choose the output measures: what the customer and the company feel</h3>
+<p>Keep to three or four. The posting itself lists what this team balances: "speed, cost, on-time accuracy, and environmental impact." That gives the outputs.</p>
+<table>
+<thead><tr><th style="width:6%">#</th><th style="width:28%">Output measure</th><th style="width:40%">How it is counted</th><th style="width:26%">Who feels it</th></tr></thead>
+<tr><td>O1</td><td>Late deliveries</td><td>Packages delivered after the promised date ÷ packages delivered</td><td>The customer</td></tr>
+<tr><td>O2</td><td>Transportation cost per package</td><td>All dollars from warehouse door to customer door ÷ packages delivered</td><td>The company</td></tr>
+<tr><td>O3</td><td>Days from order to door</td><td>Total days for all packages ÷ packages delivered</td><td>The customer</td></tr>
+</table>
+<p>For environmental impact, add truck miles per package when lanes differ in length: truck miles driven ÷ packages delivered. Fuller trailers and shorter paths both lower it. In this example every lane is 200 miles, so it would only repeat what the fill measure already says, and it is left off the page.</p>
+
+<h3>Step 3. Break each output into its causes, using arithmetic</h3>
+<p>Ask of each output: what has to happen earlier for this number to be good? Keep asking until you reach something the team can change this week.</p>
+<div class="math">
+<p class="cap">Cost per package, taken apart</p>
+<p><b>Truck cost per package = cost of one trip ÷ packages on the trailer.</b> And packages on the trailer = 2,000 × how full it is.</p>
+<table>
+<thead><tr><th style="width:24%">How full</th><th style="width:26%">Packages on the trailer</th><th style="width:26%">Arithmetic</th><th style="width:24%">Truck cost per package</th></tr></thead>
+<tr><td>70%</td><td>2,000 × 0.70 = 1,400</td><td>$640 ÷ 1,400</td><td class="a">$0.457</td></tr>
+<tr><td>80% (the plan)</td><td>2,000 × 0.80 = 1,600</td><td>$640 ÷ 1,600</td><td class="a">$0.400</td></tr>
+<tr><td>90%</td><td>2,000 × 0.90 = 1,800</td><td>$640 ÷ 1,800</td><td class="a">$0.356</td></tr>
+</table>
+<p>So trailer fill is a cause of cost. It is something the team controls, through the number of trips it schedules. It is an input.</p>
+</div>
+<div class="math">
+<p class="cap">Late deliveries, taken apart: the chain of causes, read from left to right</p>
+<table>
+<thead><tr><th style="width:20%">First</th><th style="width:20%">Then</th><th style="width:20%">Then</th><th style="width:20%">Then</th><th style="width:20%">Finally (output)</th></tr></thead>
+<tr><td>Real volume is higher than the plan</td><td>Trailers are fuller than planned</td><td>Loading runs late, and trucks leave late</td><td>Some packages miss their planned truck and ride a later one</td><td class="a">Those packages are delivered late</td></tr>
+</table>
+<p>Each of the first four boxes happens hours or days before the customer sees a late package. Each can be counted. Each is a candidate input.</p>
+</div>
+
+<h3>Step 4. Choose the input measures</h3>
+<p>Four to six is enough. An input earns its place only if it passes three tests: the team can change it this week; it moves before the output moves; and it can be counted every week from data that already exists.</p>
+<table>
+<thead><tr><th style="width:6%">#</th><th style="width:26%">Input measure</th><th style="width:40%">How it is counted</th><th style="width:28%">The lever behind it</th></tr></thead>
+<tr><td>I1</td><td>Volume plan error</td><td>Gap between real and planned packages ÷ planned packages</td><td>The forecast, and how often it is refreshed</td></tr>
+<tr><td>I2</td><td>Trailer fill</td><td>Packages loaded ÷ (trips × 2,000)</td><td>The number of trips scheduled</td></tr>
+<tr><td>I3</td><td>Trucks leaving late</td><td>Trips that left after the scheduled time ÷ all trips</td><td>Departure times and loading capacity</td></tr>
+<tr><td>I4</td><td>Packages that missed their planned truck</td><td>Packages that left on a later truck than planned ÷ all packages</td><td>Order deadlines, trailer room</td></tr>
+<tr><td>I5</td><td>Complete records</td><td>Packages with every time stamp present ÷ all packages</td><td>The data feeds. This one measures the scorecard itself.</td></tr>
+</table>
+
+<h3>Step 5. Write a definition card for every measure</h3>
+<p>Most arguments about a number are really arguments about its definition. Write the definition once, get the owner to agree to it, and freeze it. At Flexport you froze seven. Here is a complete card for input I4.</p>
+<table>
+<thead><tr><th style="width:26%">Field</th><th style="width:74%">Packages that missed their planned truck</th></tr></thead>
+<tr><td>In one sentence</td><td>Of all packages that left the warehouse this week, the share that left on a later truck than the one they were planned for.</td></tr>
+<tr><td>Top of the fraction</td><td>Count of packages whose actual truck is different from their planned truck.</td></tr>
+<tr><td>Bottom of the fraction</td><td>Count of all packages that left the warehouse in the week.</td></tr>
+<tr><td>Level of detail</td><td>One row per package. Can be cut by lane, by day and by departure time.</td></tr>
+<tr><td>Which week a package belongs to</td><td>The week of its planned truck. Weeks run Sunday to Saturday.</td></tr>
+<tr><td>Left out, and why</td><td>Orders cancelled before packing; they never needed a truck.</td></tr>
+<tr><td>Where the data comes from</td><td>The package table: planned trip and actual trip.</td></tr>
+<tr><td>Kind</td><td>Input.</td></tr>
+<tr><td>Target</td><td>1.0 percent or less.</td></tr>
+<tr><td>Colored red when</td><td>Above target, or more than 5 percent worse than last week.</td></tr>
+<tr><td>Owner</td><td>One named person, for example the outbound manager at Warehouse A.</td></tr>
+<tr><td>Why it is on the page</td><td>A package that misses its truck today is usually a late delivery tomorrow.</td></tr>
+</table>
+
+<h3>Step 6. Set the target, and the rule for red and green</h3>
+<p>Each measure is tested two ways every week.</p>
+<table>
+<thead><tr><th style="width:22%">Test</th><th style="width:40%">Rule</th><th style="width:38%">Why</th></tr></thead>
+<tr><td><b>Against the target</b></td><td>Worse than the target → red.</td><td>Tells you whether you are where you promised to be.</td></tr>
+<tr><td><b>Against last week</b></td><td>Changed by more than 5 percent of last week's value → red if worse, green if better.</td><td>Tells you something moved, even if you are still inside the target.</td></tr>
+</table>
+<div class="math">
+<p class="cap">The 5 percent rule, with numbers. Change = (this week − last week) ÷ last week.</p>
+<table>
+<thead><tr><th style="width:30%">Measure</th><th class="n" style="width:12%">Last week</th><th class="n" style="width:12%">This week</th><th style="width:28%">Arithmetic</th><th style="width:18%">Verdict</th></tr></thead>
+<tr><td>Late deliveries</td><td class="n">4.09%</td><td class="n">7.00%</td><td>(7.00 − 4.09) ÷ 4.09 = 2.91 ÷ 4.09</td><td class="a">+71% → red</td></tr>
+<tr><td>The same week, counted as on-time deliveries</td><td class="n">95.91%</td><td class="n">93.00%</td><td>(93.00 − 95.91) ÷ 95.91 = −2.91 ÷ 95.91</td><td class="a">−3.0% → no color</td></tr>
+</table>
+<p><b>The lesson.</b> Both rows describe the same week. Counted as successes, the change is 3 percent and nothing lights up. Counted as failures, it is 71 percent. When a success rate is close to 100 percent, put the failures on the page: late deliveries, not on-time deliveries.</p>
+<p><b>Two ways to state a change. Always say which one you mean.</b> From 4.09 percent to 7.00 percent is a rise of 2.91 <i>percentage points</i> (7.00 − 4.09). It is also a rise of 71 <i>percent</i> (2.91 ÷ 4.09). Both are correct. Mixing them up in a meeting is one of the most common ways to lose a room.</p>
+</div>
+<p>One more point about targets. For most measures, lower is better or higher is better. Trailer fill is different: too low wastes money, too high causes overflow. Its target is a range, here 76 to 84 percent, and the cell turns red on either side.</p>
+
+<h3>Step 7. Build the weekly table from the raw records</h3>
+<p>Every measure on the page must be calculated from the lowest level of detail, never typed in. Three raw tables are enough for this scorecard.</p>
+<table>
+<thead><tr><th style="width:18%">Raw table</th><th style="width:22%">One row is</th><th style="width:60%">Columns needed</th></tr></thead>
+<tr><td>Packages</td><td>One package</td><td>Lane, planned truck, actual truck, promised date, delivered date, order time</td></tr>
+<tr><td>Trips</td><td>One truck trip</td><td>Lane, scheduled leaving time, actual leaving time, packages loaded, capacity, cost</td></tr>
+<tr><td>Plan</td><td>One lane for one week</td><td>Planned packages</td></tr>
+</table>
+<p>A query adds these up to one row per lane per week, and the scorecard reads from that. The exact queries are in Chapter 6 (questions 1, 2, 3 and 5 are these very measures). Two rules matter more than the query language. First, always calculate a share from its two totals: add up all the late packages, add up all the packages, then divide. Never average percentages that were already calculated; Chapter 6 shows how that gives a wrong answer. Second, decide once which week a record belongs to, and write it on the definition card.</p>
+
+<h3>Step 8. Lay out the page</h3>
+<p>One line per measure. Inputs on top, in the order in which they happen. Outputs underneath. For each line: the target, the last six weeks, the change against last week, and a color. The finished page is in 5.4. In a dashboard tool, each line would also open into a chart of the last twelve months with last year's line behind it, and could be cut by lane and by day.</p>
+
+<h3>Step 9. Check the numbers before anyone else sees them</h3>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:30%">Check</th><th style="width:66%">How</th></tr></thead>
+<tr><td>1</td><td>Trace a sample by hand</td><td>Pick 20 to 30 packages. Follow each through the raw records. Confirm the scorecard counted it the way the definition card says.</td></tr>
+<tr><td>2</td><td>Tie the totals</td><td>Packages on the scorecard must equal packages in the shipping system for the same week. If they differ, find out why before publishing.</td></tr>
+<tr><td>3</td><td>Run old and new side by side</td><td>If the scorecard replaces an older report, run both until they agree within 1 percent for consecutive weeks, and explain every difference. This is the rule you used at Flexport.</td></tr>
+<tr><td>4</td><td>Show how fresh the data is</td><td>Print "data through Saturday 11:59 PM" on the page.</td></tr>
+<tr><td>5</td><td>Alert when a feed fails</td><td>A missing feed must raise an alarm. It must never show up as a quiet, good-looking week.</td></tr>
+</table>
+
+<h3>Step 10. Run the weekly meeting, and keep the page honest</h3>
+<p>The same day and time every week. The page goes out beforehand. Each owner speaks only about cells with a color, in four sentences: what happened; why; what we are doing; by when. Cells with no color are passed over. Any change to a definition is written into a change log with the date and the reason, and the old and new numbers are shown side by side for a few weeks. Once a quarter, ask of each input: is it still explaining the output? If not, replace it.</p>
+
+<h2 class="pb" id="K54">5.4 The finished page: six weeks</h2>
+<p>Weeks 1 to 5 are normal. Week 6 is the one to read. Colors apply to week 6 only: red means worse than target, or more than 5 percent worse than week 5; green means inside target and steady or better.</p>
+<table class="score">
+<thead><tr><th style="width:4%">#</th><th style="width:25%">Measure</th><th style="width:11%">Target</th><th class="n">Wk 1</th><th class="n">Wk 2</th><th class="n">Wk 3</th><th class="n">Wk 4</th><th class="n">Wk 5</th><th class="n">Wk 6</th><th class="n" style="width:13%">Change, wk 5 to 6</th></tr></thead>
+<tr class="grp"><td colspan="10">INPUTS — what the team controls, in the order it happens</td></tr>
+<tr><td>I1</td><td>Volume plan error</td><td>5% or less</td><td class="n">0.7%</td><td class="n">0.6%</td><td class="n">0.5%</td><td class="n">1.1%</td><td class="n">1.1%</td><td class="n r">8.9%</td><td class="n r">+7.9 points</td></tr>
+<tr><td>I2</td><td>Trailer fill</td><td>76% to 84%</td><td class="n">80.0%</td><td class="n">80.0%</td><td class="n">79.9%</td><td class="n">79.9%</td><td class="n">80.2%</td><td class="n g">83.3%</td><td class="n g">+3.9%</td></tr>
+<tr><td>I3</td><td>Trucks leaving late</td><td>5% or less</td><td class="n">3.4%</td><td class="n">3.7%</td><td class="n">3.1%</td><td class="n">4.0%</td><td class="n">3.6%</td><td class="n r">9.0%</td><td class="n r">+148%</td></tr>
+<tr><td>I4</td><td>Packages that missed their planned truck</td><td>1.0% or less</td><td class="n">0.60%</td><td class="n">0.60%</td><td class="n">0.55%</td><td class="n">0.64%</td><td class="n">0.70%</td><td class="n r">4.10%</td><td class="n r">+488%</td></tr>
+<tr><td>I5</td><td>Complete records</td><td>99% or more</td><td class="n">99.2%</td><td class="n">99.1%</td><td class="n">99.3%</td><td class="n">99.2%</td><td class="n">99.1%</td><td class="n g">99.0%</td><td class="n g">−0.1%</td></tr>
+<tr class="grp"><td colspan="10">OUTPUTS — what the customer and the company feel</td></tr>
+<tr><td>O1</td><td>Late deliveries</td><td>5.0% or less</td><td class="n">3.90%</td><td class="n">3.99%</td><td class="n">3.80%</td><td class="n">3.94%</td><td class="n">4.09%</td><td class="n r">7.00%</td><td class="n r">+71%</td></tr>
+<tr><td>O2</td><td>Transportation cost per package</td><td>$2.60 or less</td><td class="n">$2.57</td><td class="n">$2.57</td><td class="n">$2.57</td><td class="n">$2.57</td><td class="n">$2.57</td><td class="n g">$2.56</td><td class="n g">−0.3%</td></tr>
+<tr><td>O3</td><td>Days from order to door</td><td>2.00 or less</td><td class="n">1.90</td><td class="n">1.90</td><td class="n">1.90</td><td class="n">1.90</td><td class="n">1.90</td><td class="n g">1.93</td><td class="n g">+1.5%</td></tr>
+</table>
+<p>Data through Saturday of week 6. Every number is calculated from the weekly totals below. The change column shows the percent change from week 5, except for the plan error, which is normally close to zero and is shown in points (from 1.1 to 8.9).</p>
+<table class="data">
+<thead><tr><th style="width:26%">Weekly totals (raw)</th><th class="n">Wk 1</th><th class="n">Wk 2</th><th class="n">Wk 3</th><th class="n">Wk 4</th><th class="n">Wk 5</th><th class="n">Wk 6</th></tr></thead>
+<tr><td>Planned packages</td><td class="n">556,000</td><td class="n">560,000</td><td class="n">564,000</td><td class="n">560,000</td><td class="n">568,000</td><td class="n">560,000</td></tr>
+<tr><td>Real packages</td><td class="n">560,000</td><td class="n">563,500</td><td class="n">561,000</td><td class="n">566,000</td><td class="n">574,000</td><td class="n">610,000</td></tr>
+<tr><td>Truck trips (week 6 includes 16 extra)</td><td class="n">350</td><td class="n">352</td><td class="n">351</td><td class="n">354</td><td class="n">358</td><td class="n">366</td></tr>
+<tr><td>Trips that left late</td><td class="n">12</td><td class="n">13</td><td class="n">11</td><td class="n">14</td><td class="n">13</td><td class="n">33</td></tr>
+<tr><td>Packages that missed their truck</td><td class="n">3,360</td><td class="n">3,400</td><td class="n">3,100</td><td class="n">3,600</td><td class="n">4,000</td><td class="n">25,000</td></tr>
+<tr><td>Packages delivered late</td><td class="n">21,840</td><td class="n">22,500</td><td class="n">21,300</td><td class="n">22,300</td><td class="n">23,500</td><td class="n">42,700</td></tr>
+<tr><td>Truck cost</td><td class="n">$224,000</td><td class="n">$225,280</td><td class="n">$224,640</td><td class="n">$226,560</td><td class="n">$229,120</td><td class="n">$239,360</td></tr>
+</table>
+<div class="math">
+<p class="cap">Week 6, every cell worked out</p>
+<table>
+<thead><tr><th style="width:6%">#</th><th style="width:30%">Measure</th><th style="width:42%">Arithmetic</th><th style="width:22%">Result</th></tr></thead>
+<tr><td>I1</td><td>Volume plan error</td><td>(610,000 − 560,000) ÷ 560,000 = 50,000 ÷ 560,000</td><td class="a">8.9%</td></tr>
+<tr><td>I2</td><td>Trailer fill</td><td>610,000 ÷ (366 × 2,000) = 610,000 ÷ 732,000</td><td class="a">83.3%</td></tr>
+<tr><td>I3</td><td>Trucks leaving late</td><td>33 ÷ 366</td><td class="a">9.0%</td></tr>
+<tr><td>I4</td><td>Missed their planned truck</td><td>25,000 ÷ 610,000</td><td class="a">4.10%</td></tr>
+<tr><td>O1</td><td>Late deliveries</td><td>42,700 ÷ 610,000</td><td class="a">7.00%</td></tr>
+<tr><td>O2</td><td>Truck cost</td><td>350 planned × $640 + 16 extra × $960 = $224,000 + $15,360</td><td class="a">$239,360</td></tr>
+<tr><td>O2</td><td>Truck cost per package</td><td>$239,360 ÷ 610,000</td><td class="a">$0.392</td></tr>
+<tr><td>O2</td><td>Transportation cost per package</td><td>$0.392 + $2.17</td><td class="a">$2.56</td></tr>
+</table>
+</div>
+
+<h2 id="K55">5.5 Reading the page: week 6, from the red cell to the decision</h2>
+<p>This is the part that shows analytical skill. Read it in the same five steps as section 2.3.</p>
+<h3>First: what the outputs say, and what they hide</h3>
+<p>Late deliveries are red: 7.00 percent against a target of 5.0. That is the customer's pain. Now look at the other two outputs. Cost per package is green; it even improved by a cent. Days from order to door barely moved, from 1.90 to 1.93. <b>Two of the three results look fine in the week the customer was let down.</b> Cost improved because the trailers were fuller, and fuller trailers are cheaper per package. The average number of days hardly moved because 93 packages in 100 still arrived on time; an average hides the 7 that did not. This is why cost and service sit on the same page, and why no single output is trusted alone.</p>
+<h3>Second: the inputs show the cause, in order</h3>
+<p>Read down the input rows. Volume plan error: 8.9 percent, red. Real volume was 50,000 packages above the plan. Trucks leaving late: 9.0 percent, red. Missed their planned truck: 4.10 percent, red; that is 25,000 packages. The chain from Step 3 is visible on the page: more volume than planned, late trucks, missed trucks, late deliveries.</p>
+<p>Trailer fill deserves a second look. At 83.3 percent it is inside its range and shows green. That is a network average, and the second of the five steps in 2.3 says an average usually hides one or two bad spots. So cut it by lane.</p>
+<h3>Third: where it is</h3>
+<table>
+<thead><tr><th style="width:17%">Lane, week 6</th><th class="n">Planned packages</th><th class="n">Real packages</th><th class="n">Real against plan</th><th class="n">Trips</th><th class="n">Trailer fill</th><th class="n">Missed their truck</th><th class="n">Share missed</th></tr></thead>
+<tr><td>A to Hub 1</td><td class="n">280,000</td><td class="n">283,000</td><td class="n">+1.1%</td><td class="n">175</td><td class="n">80.9%</td><td class="n">1,600</td><td class="n">0.6%</td></tr>
+<tr><td>A to Hub 2</td><td class="n">168,000</td><td class="n r">212,000</td><td class="n r">+26.2%</td><td class="n">105 + 16 extra</td><td class="n r">87.6%</td><td class="n r">22,300</td><td class="n r">10.5%</td></tr>
+<tr><td>A to Hub 3</td><td class="n">112,000</td><td class="n">115,000</td><td class="n">+2.7%</td><td class="n">70</td><td class="n">82.1%</td><td class="n">1,100</td><td class="n">1.0%</td></tr>
+<tr class="total"><td>All three</td><td class="n">560,000</td><td class="n">610,000</td><td class="n">+8.9%</td><td class="n">366</td><td class="n">83.3%</td><td class="n">25,000</td><td class="n">4.1%</td></tr>
+</table>
+<div class="math">
+<p class="cap">The Hub 2 lane, worked out</p>
+<table>
+<thead><tr><th style="width:44%">What</th><th style="width:36%">Arithmetic</th><th style="width:20%">Result</th></tr></thead>
+<tr><td>Real volume against plan</td><td>(212,000 − 168,000) ÷ 168,000 = 44,000 ÷ 168,000</td><td class="a">+26.2%</td></tr>
+<tr><td>Room on the 105 trips that were scheduled</td><td>105 × 2,000</td><td class="a">210,000 spaces</td></tr>
+<tr><td>Packages against scheduled room</td><td>212,000 ÷ 210,000</td><td class="a">101%: more packages than spaces</td></tr>
+<tr><td>Fill after 16 extra trailers were ordered</td><td>212,000 ÷ ((105 + 16) × 2,000) = 212,000 ÷ 242,000</td><td class="a">87.6%</td></tr>
+<tr><td>Share of the network's missed packages on this one lane</td><td>22,300 ÷ 25,000</td><td class="a">89%</td></tr>
+</table>
+<p><b>In words.</b> One lane out of three carries 89 percent of the problem. The other two lanes ran normally. On the Hub 2 lane there were more packages than trailer spaces, so extra trailers were ordered the same day, but they arrived after the planned trucks had gone, and 22,300 packages rode later trucks.</p>
+</div>
+<h3>Fourth: what it cost, and what to do</h3>
+<div class="math">
+<p class="cap">What week 6 cost</p>
+<table>
+<thead><tr><th style="width:44%">What</th><th style="width:36%">Arithmetic</th><th style="width:20%">Result</th></tr></thead>
+<tr><td>Extra trailers ordered the same day</td><td>16 × $960</td><td class="a">$15,360</td></tr>
+<tr><td>What the same 16 trips would have cost if planned ahead</td><td>16 × $640</td><td class="a">$10,240</td></tr>
+<tr><td>Premium paid for ordering late</td><td>$15,360 − $10,240</td><td class="a">$5,120</td></tr>
+<tr><td>Late packages in a usual week of this size, at about 4%</td><td>610,000 × 0.04</td><td class="a">24,400</td></tr>
+<tr><td>Extra late packages</td><td>42,700 − 24,400</td><td class="a">18,300</td></tr>
+<tr><td>Cost of those, if a late package costs $2 in customer contacts and credits (example value)</td><td>18,300 × $2</td><td class="a">$36,600</td></tr>
+</table>
+</div>
+<div class="math">
+<p class="cap">The fix, priced both ways</p>
+<table>
+<thead><tr><th style="width:44%">What</th><th style="width:36%">Arithmetic</th><th style="width:20%">Result</th></tr></thead>
+<tr><td>Trips the Hub 2 lane needs at the planned load, if 212,000 is the new level</td><td>212,000 ÷ 1,600 = 132.5, rounded up</td><td class="a">133 trips a week</td></tr>
+<tr><td>That is, per day</td><td>133 ÷ 7</td><td class="a">19 a day, against 15 today</td></tr>
+<tr><td>Added planned trips, and their cost</td><td>133 − 105 = 28 trips; 28 × $640</td><td class="a">$17,920 a week</td></tr>
+<tr><td>Truck cost per package on the lane, if the volume stays</td><td>133 × $640 ÷ 212,000 = $85,120 ÷ 212,000</td><td class="a">$0.40, back to plan</td></tr>
+<tr><td><b>But</b> if volume drops back to 168,000 and the 133 trips stay</td><td>fill = 168,000 ÷ (133 × 2,000) = 168,000 ÷ 266,000</td><td class="a">63% full</td></tr>
+<tr><td>Truck cost per package in that case</td><td>$85,120 ÷ 168,000</td><td class="a">$0.51, eleven cents over plan</td></tr>
+</table>
+</div>
+<p><b>The recommendation, in the four sentences from Step 10.</b> <i>What happened:</i> late deliveries rose from 4.1 to 7.0 percent. <i>Why:</i> volume on the lane to Hub 2 came in 26 percent above plan; there were more packages than trailer spaces, and 22,300 packages left on later trucks. <i>What we are doing:</i> finding out today, from whoever owns the forecast for that region, whether the extra volume is a one-time event or a new level. If it is a new level, schedule 133 planned trips a week on that lane. The 28 added trips cost $17,920 a week, which is less than repeating week 6 ($15,360 of same-day trailers plus 18,300 extra late packages). If it is one-time, keep 105 and pre-book a small number of standby trailers at the planned price. <i>By when:</i> the forecast answer by Tuesday; the new schedule in place for next week. And one permanent change: add a daily alert when any lane runs more than 5 percent over plan for two days running, so that the next surprise is seen on day two and not in the weekly review.</p>
+
+<h2 id="K56">5.6 How to say all of this in two minutes</h2>
+<div class="say"><div class="label">"How would you build a scorecard for our team?" — say this — 211 words</div>
+<p>I would start with the decisions your team makes each week, because a number nobody acts on does not belong on the page. Then I would pick three or four output measures, the results the customer and the business feel: late deliveries, cost per package, and speed. I would break each output into its causes until I reached things the team controls that week, such as how close the volume plan was, how full the trailers are, whether trucks leave on time, and how many packages miss their truck. Those are the input measures, and they go at the top of the page, because they move first. For every measure I would write a definition card: top of the fraction, bottom of the fraction, the source, the owner and the target. Then I would build it from the raw records, show six weeks of trend, and color a cell when it misses the target or changes more than five percent in a week. Before anyone sees it, I would trace a sample by hand and run it beside the existing report until the two agree. I built the weekly review at Flexport this way: seven frozen definitions, inputs above outputs, and no switch-over until old and new matched within one percent.</p>
+</div>
+<div class="note"><strong>If he pushes: "What makes a good input measure?"</strong> Three tests. The team can change it this week. It moves before the output does. And when you move it, the output follows; if it stops following, you replace it. <strong>"What goes wrong with scorecards?"</strong> Four things, each seen in this chapter: an average that hides one bad lane; a success rate near 100 percent that hides a doubling of failures; a cost measure that looks good while service is failing; and a number nobody has checked against the raw records.</div>
+
+<h1 class="sec" id="C6">Chapter 6 — SQL, Excel and dashboard questions, with worked answers</h1>
+<p>The posting asks for "knowledge of Excel (Pivot Tables, VLookUps) at an advanced level and SQL." He may ask you to talk through a query, or simply ask how you would get a number. Either way, the method is the same: say what one row of the table is, say what you are counting and what you are dividing by, then write it. The questions below use four small tables that fit on one page (two short helper tables are introduced where they are used), so you can check every answer by eye. Every query was run against these tables; the results printed are the actual output.</p>
+
+<h2 class="first" id="K61">6.1 The practice tables</h2>
+<div class="two">
+<div>
+<p><b>lanes</b> — one row per route</p>
+<table class="out">
+<thead><tr><th>lane_id</th><th>from_site</th><th>to_site</th><th>miles</th></tr></thead>
+<tr><td>L1</td><td>Warehouse A</td><td>Hub 1</td><td>200</td></tr>
+<tr><td>L2</td><td>Warehouse A</td><td>Hub 2</td><td>320</td></tr>
+<tr><td>L3</td><td>Warehouse B</td><td>Hub 1</td><td>150</td></tr>
+<tr><td>L4</td><td>Warehouse B</td><td>Hub 2</td><td>410</td></tr>
+</table>
+<p><b>trips</b> — one row per truck trip. Capacity is 2,000 on every trip.</p>
+<table class="out">
+<thead><tr><th>trip_id</th><th>lane_id</th><th>scheduled_leave</th><th>actual_leave</th><th>packages_loaded</th></tr></thead>
+<tr><td>T1</td><td>L1</td><td>Nov 2 15:00</td><td>Nov 2 15:00</td><td>1640</td></tr>
+<tr><td>T2</td><td>L1</td><td>Nov 2 21:00</td><td>Nov 2 21:10</td><td>1580</td></tr>
+<tr><td>T3</td><td>L2</td><td>Nov 2 20:00</td><td>Nov 2 20:00</td><td>1200</td></tr>
+<tr><td>T4</td><td>L3</td><td>Nov 2 22:00</td><td>Nov 2 22:45</td><td>1900</td></tr>
+<tr><td>T5</td><td>L1</td><td>Nov 3 15:00</td><td>Nov 3 14:55</td><td>1700</td></tr>
+<tr><td>T6</td><td>L3</td><td>Nov 3 22:00</td><td>Nov 3 22:00</td><td>1480</td></tr>
+</table>
+<p><b>scans</b> — one row each time a package is scanned</p>
+<table class="out">
+<thead><tr><th>package_id</th><th>scan_time</th><th>place</th></tr></thead>
+<tr><td>P01</td><td>Nov 2 14:10</td><td>Warehouse A</td></tr>
+<tr><td>P01</td><td>Nov 2 19:40</td><td>Hub 1</td></tr>
+<tr><td>P01</td><td>Nov 4 10:05</td><td>Delivered</td></tr>
+<tr><td>P03</td><td>Nov 2 14:50</td><td>Warehouse A</td></tr>
+<tr><td>P03</td><td>Nov 3 02:15</td><td>Hub 1</td></tr>
+<tr><td>P09</td><td>Nov 2 19:30</td><td>Warehouse A</td></tr>
+<tr><td>P09</td><td>Nov 2 19:30</td><td>Warehouse A</td></tr>
+</table>
+</div>
+<div>
+<p><b>packages</b> — one row per package (a sample of twelve)</p>
+<table class="out">
+<thead><tr><th>package_id</th><th>lane_id</th><th>planned_trip</th><th>actual_trip</th><th>promised_date</th><th>delivered_date</th></tr></thead>
+<tr><td>P01</td><td>L1</td><td>T1</td><td>T1</td><td>Nov 4</td><td>Nov 4</td></tr>
+<tr><td>P02</td><td>L1</td><td>T1</td><td>T1</td><td>Nov 4</td><td>Nov 3</td></tr>
+<tr><td>P03</td><td>L1</td><td>T1</td><td>T2</td><td>Nov 4</td><td>Nov 5</td></tr>
+<tr><td>P04</td><td>L1</td><td>T2</td><td>T2</td><td>Nov 4</td><td>Nov 4</td></tr>
+<tr><td>P05</td><td>L1</td><td>T2</td><td>T5</td><td>Nov 4</td><td>Nov 5</td></tr>
+<tr><td>P06</td><td>L1</td><td>T5</td><td>T5</td><td>Nov 5</td><td>Nov 5</td></tr>
+<tr><td>P07</td><td>L2</td><td>T3</td><td>T3</td><td>Nov 5</td><td>Nov 5</td></tr>
+<tr><td>P08</td><td>L2</td><td>T3</td><td>T3</td><td>Nov 5</td><td>Nov 6</td></tr>
+<tr><td>P09</td><td>L2</td><td>T3</td><td>T3</td><td>Nov 5</td><td>(empty)</td></tr>
+<tr><td>P10</td><td>L3</td><td>T4</td><td>T4</td><td>Nov 4</td><td>Nov 4</td></tr>
+<tr><td>P11</td><td>L3</td><td>T4</td><td>T4</td><td>Nov 4</td><td>Nov 4</td></tr>
+<tr><td>P12</td><td>L3</td><td>T6</td><td>T6</td><td>Nov 5</td><td>Nov 5</td></tr>
+</table>
+<p>Things to notice before writing anything, because each one is a trap in a later question:</p>
+<ul>
+<li>P09 has no delivered date. It has not arrived yet. An empty value is called NULL.</li>
+<li>P03 and P05 rode a different truck from the one planned.</li>
+<li>Lane L4 has no trips at all.</li>
+<li>The last two rows of <b>scans</b> are identical: a duplicate.</li>
+<li>The packages table is only a sample of twelve; the trips table holds the true load counts.</li>
+</ul>
+</div>
+</div>
+
+<h2 id="K62">6.2 SQL: eight questions, written out and run</h2>
+<p>A query is read in this order: FROM says which table; WHERE keeps some rows; GROUP BY makes one output row per group; SELECT says what to show for each group; ORDER BY sorts the result.</p>
+
+<h3>Question 1. What share of packages was delivered on time, for each lane?</h3>
+<p><b>Think first.</b> One row is one package. On time means delivered on or before the promised date. Top of the fraction: packages on time. Bottom: packages delivered. P09 has not been delivered, so it cannot yet be on time or late; it stays out of the bottom.</p>
+<pre class="sql">SELECT lane_id,
+       COUNT(*)                                                          AS shipped,
+       COUNT(delivered_date)                                             AS delivered,
+       SUM(CASE WHEN delivered_date &lt;= promised_date THEN 1 ELSE 0 END)  AS on_time,
+       ROUND(100.0 * SUM(CASE WHEN delivered_date &lt;= promised_date THEN 1 ELSE 0 END)
+                   / COUNT(delivered_date), 1)                           AS on_time_pct
+FROM packages
+GROUP BY lane_id
+ORDER BY lane_id;</pre>
+<table class="out">
+<thead><tr><th>lane_id</th><th>shipped</th><th>delivered</th><th>on_time</th><th>on_time_pct</th></tr></thead>
+<tr><td>L1</td><td>6</td><td>6</td><td>4</td><td>66.7</td></tr>
+<tr><td>L2</td><td>3</td><td>2</td><td>1</td><td>50.0</td></tr>
+<tr><td>L3</td><td>3</td><td>3</td><td>3</td><td>100.0</td></tr>
+</table>
+<p><b>Check by eye.</b> Lane L1 has six packages; P03 and P05 arrived on November 5 against a promise of November 4, so four of six are on time: 4 ÷ 6 = 66.7 percent.</p>
+<p><b>What each piece does.</b> <code>CASE WHEN … THEN 1 ELSE 0 END</code> writes a 1 beside each on-time package and a 0 beside the others; <code>SUM</code> adds the 1s. <code>COUNT(*)</code> counts every row. <code>COUNT(delivered_date)</code> counts only rows where that column is filled in, which is why lane L2 shows 3 shipped but 2 delivered.</p>
+<p><b>Three traps to mention aloud.</b> One: the bottom of the fraction. With <code>COUNT(*)</code>, lane L2 would be 1 ÷ 3 = 33.3 percent, and the undelivered package would be silently counted as late. Say which you chose and why. Two: whole-number division. In many databases 4 ÷ 6 with whole numbers gives 0. Writing <code>100.0 *</code> first forces a decimal answer. Three: never average the three lane percentages to get the network figure. (66.7 + 50.0 + 100.0) ÷ 3 = 72.2. The right answer is 8 on time ÷ 11 delivered = 72.7 percent.</p>
+
+<h3>Question 2. How full were the trailers on each lane, and what was the truck cost per package? Show every lane.</h3>
+<p><b>Think first.</b> Miles are in <b>lanes</b>; loads are in <b>trips</b>; the two tables must be joined on lane_id. "Show every lane" means lane L4 must appear even though it has no trips. That needs a LEFT JOIN: keep every row of the left table, and attach matches from the right table where they exist. Truck cost is $3.20 a mile.</p>
+<pre class="sql">SELECT l.lane_id, l.from_site, l.to_site,
+       COUNT(t.trip_id)                                            AS trips,
+       COALESCE(SUM(t.packages_loaded), 0)                         AS packages,
+       ROUND(100.0 * SUM(t.packages_loaded) / SUM(t.capacity), 1)  AS fill_pct,
+       ROUND(COUNT(t.trip_id) * l.miles * 3.20
+             / SUM(t.packages_loaded), 3)                          AS truck_cost_per_package
+FROM lanes l
+LEFT JOIN trips t ON t.lane_id = l.lane_id
+GROUP BY l.lane_id, l.from_site, l.to_site, l.miles
+ORDER BY l.lane_id;</pre>
+<table class="out">
+<thead><tr><th>lane_id</th><th>from_site</th><th>to_site</th><th>trips</th><th>packages</th><th>fill_pct</th><th>truck_cost_per_package</th></tr></thead>
+<tr><td>L1</td><td>Warehouse A</td><td>Hub 1</td><td>3</td><td>4920</td><td>82.0</td><td>0.390</td></tr>
+<tr><td>L2</td><td>Warehouse A</td><td>Hub 2</td><td>1</td><td>1200</td><td>60.0</td><td>0.853</td></tr>
+<tr><td>L3</td><td>Warehouse B</td><td>Hub 1</td><td>2</td><td>3380</td><td>84.5</td><td>0.284</td></tr>
+<tr><td>L4</td><td>Warehouse B</td><td>Hub 2</td><td>0</td><td>0</td><td>NULL</td><td>NULL</td></tr>
+</table>
+<p><b>Check by eye.</b> Lane L1: 1,640 + 1,580 + 1,700 = 4,920 packages on 3 trailers of 2,000: 4,920 ÷ 6,000 = 82.0 percent. Cost: 3 trips × 200 miles × $3.20 = $1,920; $1,920 ÷ 4,920 = $0.39. Lane L2 costs more than twice as much per package ($0.853) because its one trailer was only 60 percent full on a longer road.</p>
+<p><b>Traps.</b> With an ordinary JOIN, lane L4 would disappear and nobody would notice a lane with no trucks. With <code>COUNT(*)</code> instead of <code>COUNT(t.trip_id)</code>, lane L4 would show 1 trip, because the LEFT JOIN still produces one row for it. And the network fill is 9,500 ÷ 12,000 = 79.2 percent, not the average of the three lane figures, which is (82.0 + 60.0 + 84.5) ÷ 3 = 75.5.</p>
+
+<h3>Question 3. Which lanes had packages that missed their planned truck, and were those the late ones?</h3>
+<pre class="sql">SELECT lane_id,
+       COUNT(*)                                                      AS packages,
+       SUM(CASE WHEN actual_trip &lt;&gt; planned_trip THEN 1 ELSE 0 END)  AS missed_truck,
+       ROUND(100.0 * SUM(CASE WHEN actual_trip &lt;&gt; planned_trip THEN 1 ELSE 0 END)
+                   / COUNT(*), 1)                                    AS missed_pct
+FROM packages
+GROUP BY lane_id
+HAVING SUM(CASE WHEN actual_trip &lt;&gt; planned_trip THEN 1 ELSE 0 END) &gt; 0
+ORDER BY missed_pct DESC;</pre>
+<table class="out">
+<thead><tr><th>lane_id</th><th>packages</th><th>missed_truck</th><th>missed_pct</th></tr></thead>
+<tr><td>L1</td><td>6</td><td>2</td><td>33.3</td></tr>
+</table>
+<p><code>&lt;&gt;</code> means "is not equal to." <code>HAVING</code> filters groups after they are added up; here it keeps only lanes with at least one miss. <code>WHERE</code> filters single rows before they are added up, so it cannot be used on a total.</p>
+<p>Then ask whether missing the truck is what made packages late:</p>
+<pre class="sql">SELECT CASE WHEN actual_trip &lt;&gt; planned_trip THEN 'missed its truck'
+            ELSE 'rode its planned truck' END                           AS group_name,
+       COUNT(delivered_date)                                            AS delivered,
+       SUM(CASE WHEN delivered_date &gt; promised_date THEN 1 ELSE 0 END)  AS late
+FROM packages
+GROUP BY 1
+ORDER BY 1;</pre>
+<table class="out">
+<thead><tr><th>group_name</th><th>delivered</th><th>late</th></tr></thead>
+<tr><td>missed its truck</td><td>2</td><td>2</td></tr>
+<tr><td>rode its planned truck</td><td>9</td><td>1</td></tr>
+</table>
+<p><b>In words.</b> Both packages that missed their truck were late (2 of 2). Of the nine that rode the planned truck, one was late (1 of 9). This is an input explaining an output, which is the idea behind the scorecard in Chapter 5.</p>
+
+<h3>Question 4. What is the most recent scan for each package? And are there duplicate scans?</h3>
+<p><b>Think first.</b> A package has many scans. You want one row per package: the latest. Number each package's scans from newest to oldest, then keep number 1.</p>
+<pre class="sql">SELECT package_id, scan_time, place
+FROM (
+  SELECT s.*,
+         ROW_NUMBER() OVER (PARTITION BY package_id ORDER BY scan_time DESC) AS rn
+  FROM scans s
+) x
+WHERE rn = 1
+ORDER BY package_id;</pre>
+<table class="out">
+<thead><tr><th>package_id</th><th>scan_time</th><th>place</th></tr></thead>
+<tr><td>P01</td><td>2026-11-04 10:05:00</td><td>Delivered</td></tr>
+<tr><td>P03</td><td>2026-11-03 02:15:00</td><td>Hub 1</td></tr>
+<tr><td>P09</td><td>2026-11-02 19:30:00</td><td>Warehouse A</td></tr>
+</table>
+<p><code>PARTITION BY package_id</code> restarts the numbering for each package. <code>ORDER BY scan_time DESC</code> puts the newest first. The numbering has to be done in an inner query, because a row number cannot be filtered in the same step that creates it. This pattern, "latest row per thing," is the single most useful one to know.</p>
+<p>To find duplicates, group by every column and keep groups with more than one row:</p>
+<pre class="sql">SELECT package_id, scan_time, place, COUNT(*) AS copies
+FROM scans
+GROUP BY package_id, scan_time, place
+HAVING COUNT(*) &gt; 1;</pre>
+<table class="out">
+<thead><tr><th>package_id</th><th>scan_time</th><th>place</th><th>copies</th></tr></thead>
+<tr><td>P09</td><td>2026-11-02 19:30:00</td><td>Warehouse A</td><td>2</td></tr>
+</table>
+
+<h3>Question 5. Which trucks left late, and by how many minutes?</h3>
+<pre class="sql">SELECT trip_id, lane_id,
+       DATE_DIFF('minute', scheduled_leave, actual_leave) AS minutes_late
+FROM trips
+WHERE actual_leave &gt; scheduled_leave
+ORDER BY minutes_late DESC;</pre>
+<table class="out">
+<thead><tr><th>trip_id</th><th>lane_id</th><th>minutes_late</th></tr></thead>
+<tr><td>T4</td><td>L3</td><td>45</td></tr>
+<tr><td>T2</td><td>L1</td><td>10</td></tr>
+</table>
+<p>Two of six trucks left late, so trucks leaving late = 2 ÷ 6 = 33.3 percent. T5 left five minutes early; it counts as on time. <b>Say this if asked about syntax:</b> the name of the time-difference function varies between databases. On Amazon Redshift it is <code>DATEDIFF(minute, scheduled_leave, actual_leave)</code>. Everything else in this chapter is standard SQL. It is fine to say, "I would check the exact function name for your database."</p>
+
+<h3>Question 6. Which lanes carry most of the volume? Show each lane's share and the running total.</h3>
+<pre class="sql">SELECT lane_id, packages,
+       ROUND(100.0 * packages / SUM(packages) OVER (), 1)       AS share_pct,
+       ROUND(100.0 * SUM(packages) OVER (ORDER BY packages DESC)
+                   / SUM(packages) OVER (), 1)                  AS running_share_pct
+FROM (
+  SELECT lane_id, SUM(packages_loaded) AS packages
+  FROM trips
+  GROUP BY lane_id
+) x
+ORDER BY packages DESC;</pre>
+<table class="out">
+<thead><tr><th>lane_id</th><th>packages</th><th>share_pct</th><th>running_share_pct</th></tr></thead>
+<tr><td>L1</td><td>4920</td><td>51.8</td><td>51.8</td></tr>
+<tr><td>L3</td><td>3380</td><td>35.6</td><td>87.4</td></tr>
+<tr><td>L2</td><td>1200</td><td>12.6</td><td>100.0</td></tr>
+</table>
+<p><code>SUM(packages) OVER ()</code> is the grand total, 9,500, repeated on every row. <code>SUM(packages) OVER (ORDER BY packages DESC)</code> is a running total from the biggest lane down. Two lanes carry 87.4 percent of the volume. This is the same "most important few first" ranking you used at Elementum to decide which lanes to bring on first.</p>
+
+<h3>Question 7. For each week, what was the share of late deliveries, and how much did it change from the week before?</h3>
+<p>This uses a small table <b>weekly_totals</b> holding the six weeks from Chapter 5 (week number, packages, late packages).</p>
+<pre class="sql">SELECT week_no,
+       late_pct,
+       LAG(late_pct) OVER (ORDER BY week_no)                    AS last_week,
+       ROUND(100.0 * (late_pct - LAG(late_pct) OVER (ORDER BY week_no))
+                   / LAG(late_pct) OVER (ORDER BY week_no), 1)  AS change_pct
+FROM (
+  SELECT week_no,
+         ROUND(100.0 * late_packages / packages, 2) AS late_pct
+  FROM weekly_totals
+) w
+ORDER BY week_no;</pre>
+<table class="out">
+<thead><tr><th>week_no</th><th>late_pct</th><th>last_week</th><th>change_pct</th></tr></thead>
+<tr><td>1</td><td>3.9</td><td>NULL</td><td>NULL</td></tr>
+<tr><td>2</td><td>3.99</td><td>3.9</td><td>2.3</td></tr>
+<tr><td>3</td><td>3.8</td><td>3.99</td><td>-4.8</td></tr>
+<tr><td>4</td><td>3.94</td><td>3.8</td><td>3.7</td></tr>
+<tr><td>5</td><td>4.09</td><td>3.94</td><td>3.8</td></tr>
+<tr><td>6</td><td>7.0</td><td>4.09</td><td>71.1</td></tr>
+</table>
+<p><code>LAG(late_pct)</code> fetches the value from the row before. Week 1 has no earlier week, so it shows NULL. Weeks 2 to 5 all move by less than 5 percent, so no cell is colored. Week 6 jumps 71.1 percent: this is the red cell in the scorecard in section 5.4, produced by a query instead of by hand.</p>
+
+<h3>Question 8. On one lane, what is the average trip time, and the time within which 90 trips in 100 finish?</h3>
+<p>Table <b>trip_times</b> holds ten trips on lane L1, in hours: 4.0, 4.1, 4.2, 4.2, 4.3, 4.4, 4.5, 4.8, 5.5, 7.9.</p>
+<pre class="sql">SELECT lane_id,
+       COUNT(*)                                                      AS trips,
+       ROUND(AVG(hours), 2)                                          AS average_hours,
+       ROUND(PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY hours), 2)  AS middle_hours,
+       ROUND(PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY hours), 2)  AS hours_90_in_100
+FROM trip_times
+GROUP BY lane_id;</pre>
+<table class="out">
+<thead><tr><th>lane_id</th><th>trips</th><th>average_hours</th><th>middle_hours</th><th>hours_90_in_100</th></tr></thead>
+<tr><td>L1</td><td>10</td><td>4.79</td><td>4.35</td><td>5.74</td></tr>
+</table>
+<div class="math">
+<p class="cap">The three numbers, by hand</p>
+<table>
+<thead><tr><th style="width:26%">Number</th><th style="width:50%">Arithmetic</th><th style="width:24%">Result</th></tr></thead>
+<tr><td>Average</td><td>(4.0 + 4.1 + 4.2 + 4.2 + 4.3 + 4.4 + 4.5 + 4.8 + 5.5 + 7.9) ÷ 10 = 47.9 ÷ 10</td><td class="a">4.79 hours</td></tr>
+<tr><td>Middle value</td><td>Ten values in order; the middle is halfway between the 5th (4.3) and the 6th (4.4)</td><td class="a">4.35 hours</td></tr>
+<tr><td>90 in 100</td><td>Nine-tenths of the way along the ordered list falls just past the 9th value (5.5), one-tenth of the way toward the 10th (7.9): 5.5 + 0.1 × (7.9 − 5.5) = 5.5 + 0.24</td><td class="a">5.74 hours</td></tr>
+</table>
+<p><b>In words.</b> If you schedule the next step 4.79 hours after departure because that is the average, the truck will not have arrived on 3 trips in 10 (the 4.8, the 5.5 and the 7.9). Planning to 5.74 hours covers 9 trips in 10. One slow trip of 7.9 hours pulled the average above the middle value. This is the Elementum lead-time story (2.2) in one query.</p>
+</div>
+
+<h2 class="pb" id="K63">6.3 SQL: twelve quick questions</h2>
+<table>
+<thead><tr><th style="width:4%">#</th><th style="width:30%">Question</th><th style="width:66%">Answer, in plain words, with the example from the practice tables</th></tr></thead>
+<tr><td>1</td><td>What is the difference between WHERE and HAVING?</td><td>WHERE removes rows before they are grouped. HAVING removes groups after they are added up. "Trips that left late" is WHERE. "Lanes with more than one late trip" is HAVING.</td></tr>
+<tr><td>2</td><td>JOIN or LEFT JOIN?</td><td>An ordinary JOIN keeps only rows that match in both tables. A LEFT JOIN keeps every row of the first table, with empty values where the second has no match. In question 2, the ordinary JOIN would lose lane L4.</td></tr>
+<tr><td>3</td><td>COUNT(*), COUNT(column), COUNT(DISTINCT column)?</td><td>On the packages table: <code>COUNT(*)</code> = 12 rows. <code>COUNT(delivered_date)</code> = 11, because one is empty. <code>COUNT(DISTINCT lane_id)</code> = 3 different lanes.</td></tr>
+<tr><td>4</td><td>Why does <code>WHERE delivered_date = NULL</code> return nothing?</td><td>NULL means "unknown," and nothing is equal to unknown. That query returns 0 rows. The correct test is <code>WHERE delivered_date IS NULL</code>, which returns 1 row (P09).</td></tr>
+<tr><td>5</td><td>UNION or UNION ALL?</td><td>Both stack two results on top of each other. UNION removes duplicate rows; UNION ALL keeps them and is faster. Stacking the lane_id columns of packages and trips gives 3 rows with UNION and 18 with UNION ALL.</td></tr>
+<tr><td>6</td><td>Your total doubled after a join. Why?</td><td>The second table had several rows for each row of the first. Joining packages to scans turns 3 packages into 7 rows, so any package-level number added up afterward is counted two or three times. Fix: add up the many-row table to one row per package first, then join.</td></tr>
+<tr><td>7</td><td>Why did your percentage come out as 0?</td><td>Whole-number division. In several databases, 8 ÷ 11 with whole numbers is 0. Multiply by 100.0 first, or convert one side to a decimal.</td></tr>
+<tr><td>8</td><td>ROW_NUMBER, RANK, DENSE_RANK?</td><td>All three number rows in order. They differ only on ties. For values 10, 10, 8: ROW_NUMBER gives 1, 2, 3; RANK gives 1, 1, 3; DENSE_RANK gives 1, 1, 2. Use ROW_NUMBER when you need exactly one row per group.</td></tr>
+<tr><td>9</td><td>What is a WITH clause, and why use it?</td><td>It gives a name to an inner query so the main query reads top to bottom: first build the lane totals, then rank them. It makes a long query easier to check one step at a time.</td></tr>
+<tr><td>10</td><td>Why can't I use my column's new name in WHERE?</td><td>Because of the order the database works in: FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY. The new name is created in SELECT, which comes after WHERE.</td></tr>
+<tr><td>11</td><td>How do you know your query is right?</td><td>Four checks. Count rows before and after each join. Tie the total to a number you already trust. Pick one record and work it out by hand. Look for empty values and duplicates in the columns you joined on.</td></tr>
+<tr><td>12</td><td>The query is slow. What do you do?</td><td>Filter to the dates you need as early as possible. Select only the columns you need. Add up large tables before joining them, not after. Avoid wrapping the filtered column in a function. Then ask how the table is sorted and read the query plan.</td></tr>
+</table>
+
+<h2 class="pb" id="K64">6.4 Excel: eight questions</h2>
+<p>The same tables, laid out on three sheets: <b>Lanes</b> (A = lane_id, B = from_site, C = to_site, D = miles; data in rows 2 to 5), <b>Trips</b> (A = trip_id, B = lane_id, C = packages_loaded, D = capacity; rows 2 to 7), and <b>Packages</b> (A = package_id, B = lane_id, C = planned_trip, D = actual_trip, E = promised_date, F = delivered_date; rows 2 to 13). The companion workbook has every formula below as a live cell.</p>
+
+<h3>Question 1. Bring the miles for each trip's lane onto the Trips sheet (VLOOKUP)</h3>
+<pre class="sql">=VLOOKUP(B2, Lanes!$A$2:$D$5, 4, FALSE)        result for trip T1: 200</pre>
+<table>
+<thead><tr><th style="width:22%">Part</th><th style="width:78%">Meaning</th></tr></thead>
+<tr><td><code>B2</code></td><td>What to look for: this trip's lane, "L1".</td></tr>
+<tr><td><code>Lanes!$A$2:$D$5</code></td><td>Where to look. Excel searches the <b>first column</b> of this block. The dollar signs lock the block so it does not slide when the formula is copied down.</td></tr>
+<tr><td><code>4</code></td><td>Which column of the block to bring back: the fourth, miles.</td></tr>
+<tr><td><code>FALSE</code></td><td>Exact match only. If you leave this out, Excel may return the nearest match, which is a wrong answer that looks right.</td></tr>
+</table>
+<p><b>When it shows #N/A:</b> the lane is not in the list; or one side has a stray space ("L1 "); or one side is a number and the other is text. Wrap it to show a clear message: <code>=IFERROR(VLOOKUP(B2, Lanes!$A$2:$D$5, 4, FALSE), "lane not found")</code>.</p>
+
+<h3>Question 2. VLOOKUP can only look to the right. How do you look to the left?</h3>
+<p>Example: which lane is 410 miles long? Miles are in column D and the lane name is in column A, to its left.</p>
+<pre class="sql">=INDEX(Lanes!$A$2:$A$5, MATCH(410, Lanes!$D$2:$D$5, 0))        result: L4</pre>
+<p><code>MATCH</code> finds the position of 410 in the miles column (the fourth row of the block). <code>INDEX</code> returns the fourth item of the lane column. In current versions of Excel, one function does the same: <code>=XLOOKUP(410, Lanes!$D$2:$D$5, Lanes!$A$2:$A$5, "not found")</code>. It looks in any direction and matches exactly by default.</p>
+
+<h3>Question 3. Without a pivot table, what are the fill and the on-time share for lane L1? (SUMIFS, COUNTIFS)</h3>
+<pre class="sql">=SUMIFS(Trips!$C$2:$C$7, Trips!$B$2:$B$7, "L1")                          4,920 packages
+=SUMIFS(Trips!$C$2:$C$7, Trips!$B$2:$B$7, "L1")
+   / SUMIFS(Trips!$D$2:$D$7, Trips!$B$2:$B$7, "L1")                      82.0% full
+
+Helper column G on Packages:  =IF(F2="", "", IF(F2&lt;=E2, 1, 0))          1 = on time, 0 = late
+
+=COUNTIFS(Packages!$B$2:$B$13, "L1", Packages!$G$2:$G$13, 1)             4 on time
+=COUNTIFS(Packages!$B$2:$B$13, "L1", Packages!$F$2:$F$13, "&lt;&gt;")          6 delivered
+4 ÷ 6                                                                    66.7% on time</pre>
+<p><code>SUMIFS</code> adds up a column for the rows that meet the conditions: first the column to add, then pairs of "where to look" and "what to find." <code>COUNTIFS</code> counts rows the same way. The condition <code>"&lt;&gt;"</code> means "not empty," which keeps the undelivered package out of the bottom of the fraction.</p>
+
+<h3>Question 4. Build a pivot table of trailer fill by lane</h3>
+<ol>
+<li>Click any cell in the Trips data. Choose Insert, then PivotTable.</li>
+<li>Drag <b>lane_id</b> to Rows.</li>
+<li>Drag <b>packages_loaded</b> and <b>capacity</b> to Values. Each should say "Sum of."</li>
+<li>For the fill, add a calculated field: PivotTable Analyze, then Fields, Items and Sets, then Calculated Field. Name it Fill; formula <code>= packages_loaded / capacity</code>. Format it as a percentage.</li>
+</ol>
+<table class="out">
+<thead><tr><th>lane_id</th><th>Sum of packages_loaded</th><th>Sum of capacity</th><th>Fill</th></tr></thead>
+<tr><td>L1</td><td>4,920</td><td>6,000</td><td>82.0%</td></tr>
+<tr><td>L2</td><td>1,200</td><td>2,000</td><td>60.0%</td></tr>
+<tr><td>L3</td><td>3,380</td><td>4,000</td><td>84.5%</td></tr>
+<tr><td>Grand Total</td><td>9,500</td><td>12,000</td><td>79.2%</td></tr>
+</table>
+<p><b>The trap he may be testing.</b> If the data already had a fill column for each lane and you dragged it to Values as an "Average," the grand total would be the average of the lane percentages: 75.5 percent. The calculated field divides the two totals instead, which gives the right 79.2 percent. Always build a share from its two sums.</p>
+
+<h3>Question 5. Three lanes are 82.0, 60.0 and 84.5 percent full, with 3, 1 and 2 trips. What is the overall fill? (SUMPRODUCT)</h3>
+<p>With the lane table in rows 15 to 17 (column B = trips, column E = fill):</p>
+<pre class="sql">=AVERAGE(E15:E17)                                   75.5%   wrong: treats every lane as equal
+=SUMPRODUCT(B15:B17, E15:E17) / SUM(B15:B17)        79.2%   right: each lane counts by its trips</pre>
+<div class="math">
+<p class="cap">By hand</p>
+<table>
+<thead><tr><th style="width:36%">What</th><th style="width:44%">Arithmetic</th><th style="width:20%">Result</th></tr></thead>
+<tr><td>Simple average</td><td>(82.0 + 60.0 + 84.5) ÷ 3 = 226.5 ÷ 3</td><td class="a">75.5%</td></tr>
+<tr><td>Weighted average</td><td>(3 × 82.0 + 1 × 60.0 + 2 × 84.5) ÷ (3 + 1 + 2) = (246 + 60 + 169) ÷ 6 = 475 ÷ 6</td><td class="a">79.2%</td></tr>
+</table>
+<p>The simple average lets the one half-empty trailer on lane L2 count as much as the three trailers on lane L1. <code>SUMPRODUCT</code> multiplies each lane's fill by its number of trips and adds the results; dividing by the total trips gives the true figure.</p>
+</div>
+
+<h3>Question 6. Mark every measure that changed by more than 5 percent since last week</h3>
+<p>With last week in column B and this week in column C:</p>
+<pre class="sql">=C24/B24 - 1                                                              the change, as a share of last week
+=IF(ABS(C24/B24 - 1) &gt; 0.05, IF(C24 &gt; B24, "up more than 5%", "down more than 5%"), "")</pre>
+<table class="out">
+<thead><tr><th>Measure</th><th>Last week</th><th>This week</th><th>Change</th><th>Flag</th></tr></thead>
+<tr><td>Late deliveries</td><td>4.09%</td><td>7.00%</td><td>+71.1%</td><td>up more than 5%</td></tr>
+<tr><td>Trailer fill</td><td>80.2%</td><td>83.3%</td><td>+3.9%</td><td></td></tr>
+<tr><td>Cost per package</td><td>$2.569</td><td>$2.562</td><td>−0.3%</td><td></td></tr>
+</table>
+<p><code>ABS</code> ignores the sign, so one test catches moves in either direction. To color the cells instead of writing text: Home, Conditional Formatting, New Rule, "Use a formula," enter <code>=ABS($C24/$B24-1)&gt;0.05</code>, and choose a fill color.</p>
+
+<h3>Question 7. Average, middle value, and the 90-in-100 value of a list</h3>
+<pre class="sql">=AVERAGE(A29:A38)                 4.79
+=MEDIAN(A29:A38)                  4.35
+=PERCENTILE.INC(A29:A38, 0.9)     5.74</pre>
+<p>These are the ten trip times from SQL question 8, and the answers are identical. In an interview, the point to make is why you would look at the third number at all: a plan built on the average fails about three trips in ten.</p>
+
+<h3>Question 8. How full must a trailer be for the truck cost to fall to $0.35 a package? (Goal Seek)</h3>
+<p>Put the fill in one cell (B41 = 80%) and the formula in another: <code>=640/(2000*B41)</code>, which shows $0.40. Then choose Data, What-If Analysis, Goal Seek: set the formula cell to 0.35 by changing B41. Excel returns 91.4 percent.</p>
+<div class="math">
+<p class="cap">By hand</p>
+<table>
+<thead><tr><th style="width:36%">What</th><th style="width:44%">Arithmetic</th><th style="width:20%">Result</th></tr></thead>
+<tr><td>Packages a trailer must carry for $0.35</td><td>$640 ÷ $0.35</td><td class="a">1,829 packages</td></tr>
+<tr><td>As a share of a full trailer</td><td>1,829 ÷ 2,000</td><td class="a">91.4% full</td></tr>
+</table>
+<p>Then say the catch: at 91 percent planned fill there is almost no spare room, so on a busy day packages will miss the truck. The saving of five cents a package has to be weighed against that. For questions with many moving parts at once (which lanes should be direct, how many trucks on each), Excel's Solver does what Goal Seek does for one cell; the outbound workbook already in your folder is built that way.</p>
+</div>
+
+<h2 class="pb" id="K65">6.5 Dashboards: eight questions</h2>
+<p>The posting mentions "interactive AI dashboards/visualizations that track how the transportation network is performing," and asks you to make reports "faster, more accurate, and easier to use." Expect questions about how you think, not about a particular tool. If he asks which tools you have used, name the ones on your resume and add: "The tool matters less than the definitions underneath it."</p>
+
+<div class="qa">
+<h3>1. "How would you design a dashboard for a network planning team?"</h3>
+<p>Start with the user and the decision, not the charts. Who opens it, how often, and what do they decide? Then: one page; inputs above outputs; each measure with its target, six weeks of trend and a color; a filter by lane, building and day; and one click from a red cell to the lanes behind it. Print the definition and the time of the last data refresh on the page. Leave out anything nobody acts on.</p>
+</div>
+<div class="qa">
+<h3>2. "The dashboard says 93 percent on time. Finance says 95. What do you do?"</h3>
+<p>Do not argue about which is right. Line the two up, one difference at a time: the same dates and time zone; the same set of packages; the same definition of on time (against the first promise, or the latest one); the same treatment of packages not yet delivered; duplicates. One of these almost always explains it. Then agree which is the official number and write it down. Proof: Flexport, 63 against 25 became 27 against 25 (story 2.1).</p>
+</div>
+<div class="qa">
+<h3>3. "How do you know the numbers on a dashboard are right?"</h3>
+<p>Five checks, from section 5.3: trace a sample of records by hand; tie the totals to the source system; run it beside the old report until they agree within 1 percent; show how fresh the data is; and raise an alarm when a feed fails. Proof: the Flexport pipeline, where the alarm caught a 4 percent drop in tickets (story 4.1).</p>
+</div>
+<div class="qa">
+<h3>4. "A dashboard takes a minute to load. How do you make it faster?"</h3>
+<p>First measure where the time goes: the query, the data transfer, or drawing the charts. The usual fixes, in order of payoff: prepare a small summary table each night at the level the page displays (one row per lane per day) so the dashboard does not read every package; load only the date range shown; cut the number of charts on the first screen; and move detail to a second page that loads on request. Then measure again.</p>
+</div>
+<div class="qa">
+<h3>5. "Which chart would you use?"</h3>
+<p>A line for a trend over time. Bars for comparing lanes or buildings, sorted from largest to smallest. A table with colored cells for a scorecard. A map only when location itself is the decision. Avoid pie charts and avoid two different scales on one chart. And put the number on the chart, so nobody has to estimate it from the axis.</p>
+</div>
+<div class="qa">
+<h3>6. "What makes a dashboard easy to use?"</h3>
+<p>The reader can answer three questions in ten seconds: are we on target, what changed, and where do I look. That means the same layout every week, plain names for measures, color used only for exceptions, and no more than can fit on one screen. A good test: hand it to someone outside the team and ask them what they would do next.</p>
+</div>
+<div class="qa">
+<h3>7. "How would you use AI in a dashboard?"</h3>
+<p>Three uses, each with a guard rail. One: let people ask a question in plain words, such as "which lanes had the most missed trucks last week," and have it answered from the agreed definitions, with the query shown so it can be checked. Two: have it watch every lane every day and point out unusual moves, so people look at ten lanes and not a thousand. Three: have it draft the one-sentence explanation for each red cell, for the owner to correct. The guard rail in every case: the number comes from the agreed query, never from the AI's own arithmetic; and a person reviews a sample each week. Then add honestly: "I would want to learn how your team uses it today before proposing anything."</p>
+</div>
+<div class="qa">
+<h3>8. "Tell me about a report or dashboard you improved."</h3>
+<p>Story 4.1, the Flexport weekly review: four exports joined by hand became one pipeline; seven definitions were frozen first; accuracy rose from 60 to 90 percent; and nothing switched until old and new matched within 1 percent.</p>
+</div>
+
+<h1 class="sec" id="C7">Chapter 7 — Your questions for Avinash, and the number card</h1>
+
+<h2 class="first" id="K71">7.1 Questions to ask him</h2>
+<p>Plan for about ten minutes. You will not ask all of these. The four marked <b>protect</b> are the ones to ask even if time is short. Listen to each answer and follow it up before moving on; a real conversation about one question is worth more than five questions read from a list. Skip anything he has already answered.</p>
+
+<h3>A. The work</h3>
+<div class="qa">
+<p><b>1. (Protect) "What question is your team trying to answer this quarter that it cannot yet answer well?"</b></p>
+<p class="why"><b>Why ask:</b> it shows you where the real work is, and it lets you connect one of your stories to his answer. <b>A good answer</b> names one specific decision or measurement, not a list of values.</p>
+</div>
+<div class="qa">
+<p><b>2. "The posting says the team balances speed, cost, on-time accuracy and environmental impact. When two of those pull apart on a route, how is the call made, and who makes it?"</b></p>
+<p class="why"><b>Why ask:</b> every story you told involved a trade. You want to know how his team handles the same thing. <b>A good answer</b> describes a rule or a forum, and an example.</p>
+</div>
+<div class="qa">
+<p><b>3. "How does a network design recommendation travel from an analysis to a live change in the network? Where does it most often get stuck?"</b></p>
+<p class="why"><b>Why ask:</b> you have always worked between the analysis and the people who build. You need to know the path here. <b>A good answer</b> names the steps and one that is slow today.</p>
+</div>
+
+<h3>B. Measurements and dashboards</h3>
+<div class="qa">
+<p><b>4. (Protect) "Which number does your team look at first each week, and which earlier signal do you trust most to explain it when it moves?"</b></p>
+<p class="why"><b>Why ask:</b> this is the input-and-output question from Chapter 5, asked about his team. <b>A good answer</b> gives one result and one cause, and you learn the team's own words for them.</p>
+</div>
+<div class="qa">
+<p><b>5. "Where are your dashboards strong today, and where do people still go back to a spreadsheet?"</b></p>
+<p class="why"><b>Why ask:</b> the posting asks this role to make reports faster, more accurate and easier to use. The place people still use spreadsheets is usually where the first improvement is. <b>A good answer</b> is specific and a little candid.</p>
+</div>
+<div class="qa">
+<p><b>6. "The posting mentions AI dashboards. What is working well there, and what limitation have you run into?"</b></p>
+<p class="why"><b>Why ask:</b> his profile says he values understanding a product's limitations early. This invites him to talk about exactly that. <b>A good answer</b> names one real use and one real limit.</p>
+</div>
+
+<h3>C. Working with partners</h3>
+<div class="qa">
+<p><b>7. "On a typical project, how is the work divided between the supply chain managers, the data scientists and the data engineers? Where does this role's ownership begin and end?"</b></p>
+<p class="why"><b>Why ask:</b> in every story you were clear about what was yours and what was not. You want the same clarity here. <b>A good answer</b> draws the line plainly.</p>
+</div>
+<div class="qa">
+<p><b>8. "When a model recommends one thing and an experienced planner believes another, how is it settled?"</b></p>
+<p class="why"><b>Why ask:</b> it shows how the team treats evidence and judgment. <b>A good answer</b> describes a test or a rule, not "the model usually wins."</p>
+</div>
+
+<h3>D. The role</h3>
+<div class="qa">
+<p><b>9. (Protect) "What would you want the person in this role to own by day ninety? And at six months, what would make you say this was the right hire?"</b></p>
+<p class="why"><b>Why ask:</b> it gives you something concrete to aim at, and his answer tells you which of your strengths to underline in your close. <b>A good answer</b> is one area, one measure, and one thing delivered.</p>
+</div>
+<div class="qa">
+<p><b>10. "What do people who join from outside Amazon most often underestimate in the first few months?"</b></p>
+<p class="why"><b>Why ask:</b> you are joining from outside. It shows self-awareness, and the answer is useful. <b>A good answer</b> is specific: the scale of the data, the writing culture, the pace.</p>
+</div>
+
+<h3>E. About him</h3>
+<div class="qa">
+<p><b>11. "You moved from planning production for a manufacturer to transportation at Amazon. What carried over, and what did you have to learn from scratch?"</b></p>
+<p class="why"><b>Why ask:</b> it is drawn from his public profile, it is a genuine question, and people remember conversations in which they were asked about their own path. Ask it only if the conversation has been warm.</p>
+</div>
+
+<h3>The closing question</h3>
+<div class="qa">
+<p><b>12. (Protect) "If I joined and it went well, what is one thing that is difficult for the team today that you would want me to have made routine six months from now?"</b></p>
+<p class="why"><b>Why ask:</b> it asks for the real difficulty in his words, and it lets you finish by saying, in one sentence, how your experience fits that difficulty. Then thank him.</p>
+</div>
+<div class="note"><strong>Do not ask</strong> about pay, level or promotion; those belong with the recruiter. Do not ask anything the posting already answers. Do not use the name of any internal Amazon system; if he uses one, ask what it does.</div>
+<div class="say"><div class="label">Your last sentence — say this — 60 words</div>
+<p>Thank you, Avinash. What I would bring is this: I find out what a number really measures, I get the people who depend on it to agree on the definition, and I turn it into a recommendation someone can act on. I would like to do that for your network, and I hope we get the chance to work together.</p>
+</div>
+
+<h2 class="pb" id="K72">7.2 The number card</h2>
+<p>Everything you might say aloud, on one page. <b>Record</b>: say it as written. <b>Example</b> or <b>model</b>: only for explaining arithmetic, and say so.</p>
+<table>
+<thead><tr><th style="width:22%">Topic</th><th style="width:44%">Number</th><th style="width:8%">Story</th><th style="width:26%">Label and wording</th></tr></thead>
+<tr class="grp"><td colspan="4">Introduction</td></tr>
+<tr><td>Experience</td><td>15 years</td><td>1.4</td><td>Record</td></tr>
+<tr><td>Manhattan Associates</td><td>3 distribution centers, 100 stores; 99% fill against a 95% goal on Cyber Monday</td><td>1.4</td><td>Record</td></tr>
+<tr><td>Dates</td><td>Elementum 2017–2019; Flexport 2021–2022 (visibility program); Sephora April 2023 to now</td><td>1.4</td><td>Record</td></tr>
+<tr class="grp"><td colspan="4">Flexport</td></tr>
+<tr><td>Two scoreboards</td><td>63% against 25% as presented; about 27% against 25% on the same basis; 36 of 38 points were the measurement</td><td>2.1</td><td>Record. Always say "Crux."</td></tr>
+<tr><td>The real gap</td><td>Our predictions spread over 16 days, theirs over 8</td><td>2.1</td><td>Record</td></tr>
+<tr><td>After new data sources</td><td>90% reliability against a target of 80%; six months of work</td><td>2.1</td><td>Record</td></tr>
+<tr><td>Crux</td><td>79 customers; $15,491 a month = $185,892 a year; 294,581 containers a year</td><td>2.1</td><td>Record</td></tr>
+<tr><td>Program size</td><td>9 teams, about 100 people</td><td>3.1</td><td>Record</td></tr>
+<tr><td>Customers</td><td>7 to 68, which is 9.7 times; two months early</td><td>3.1</td><td>Record. Not "ten times."</td></tr>
+<tr><td>Cost to serve a container</td><td>$0.66 to $0.03, about 95% lower</td><td>3.1</td><td>Record</td></tr>
+<tr><td>Cost worksheet</td><td>Before: (800 × $1.50 + $120) ÷ 2,000 = $0.66. After: (300 × $0.80 + $150) ÷ 10,000 = $0.039</td><td>3.1</td><td>Example inputs</td></tr>
+<tr><td>The wave you held</td><td>76% arrival accuracy against a bar of 80%; one week; no wave reversed</td><td>3.1</td><td>Record</td></tr>
+<tr><td>Automation, only if asked</td><td>About 40% to about 90%</td><td>3.1</td><td>Record. Do not mix with the worksheet's 60% and 97%.</td></tr>
+<tr><td>Roadmap</td><td>18 months to 6; 66% less engineering effort; about $5 million of avoided cost</td><td>3.2</td><td>Record. Say the $5 million once. Not annual.</td></tr>
+<tr><td>Per shipment</td><td>339.5 minutes; about $153; partners first saves about $76, operators first about $38</td><td>3.2</td><td>Record inputs; the $0.45 a minute is a blend</td></tr>
+<tr><td>Launch</td><td>April 2022, import side; 11 partners in 10 countries; 48 of 53 import partners within a month</td><td>3.2</td><td>Record. Not the export launch.</td></tr>
+<tr><td>Weekly review</td><td>4 systems into 1 pipeline; 7 definitions; accuracy 60% to 90%; matched within 1%; caught a 4% drop</td><td>4.1</td><td>Record</td></tr>
+<tr><td>Price of the manual process</td><td>30 hours a week against 6; $129,600 − $25,920 = $103,680 a year at an assumed $90 an hour</td><td>4.1</td><td>Record of the document's arithmetic. A price, not a saving.</td></tr>
+<tr><td>Failure</td><td>Security review planned too late; two weeks; no Monday missed</td><td>4.3</td><td>Record. No dollar figure.</td></tr>
+<tr class="grp"><td colspan="4">Elementum</td></tr>
+<tr><td>Lanes program</td><td>200 lanes; 99% lead-time accuracy; 580,000 units; about $1.5 million of carrying cost, one time</td><td>2.2</td><td>Record. Never add to the $2 million.</td></tr>
+<tr><td>Example lane</td><td>Brochure 18 days, average 21, 99-in-100 at 34; buffer 12,937 to 8,102 units (37.4% less)</td><td>2.2</td><td>Example lane</td></tr>
+<tr><td>Second example lane</td><td>5,238 to 6,621 units: stock added</td><td>2.2</td><td>Example lane</td></tr>
+<tr><td>Austria</td><td>40% reported, about 55% true, about 99% within a quarter; 8 to 10 hours a week of manual work before</td><td>4.2</td><td>Record. Say "within a quarter."</td></tr>
+<tr><td>Austria money</td><td>About $500,000 a year; about $8 million across 25 European locations</td><td>4.2</td><td>Record. Shipments that moved only.</td></tr>
+<tr><td>Shortage alert</td><td>Live in 3 months; accuracy on the most important items 70% to 85%; about $2 million of safety stock, one time</td><td>4.4</td><td>Record. Never add to the $1.5 million.</td></tr>
+<tr class="grp"><td colspan="4">Public facts</td></tr>
+<tr><td>Amazon's network</td><td>Reorganized into eight regions in the United States (Amazon, 2023)</td><td>1.4</td><td>Public</td></tr>
+<tr><td>Amazon on inputs</td><td>"Focusing our energy on the controllable inputs to our business is the most effective way to maximize financial outputs over time" (2009 letter to shareholders)</td><td>5.1</td><td>Public</td></tr>
+</table>
+
+<h2 id="K73">7.3 Words you will hear, and sources</h2>
+<p>This packet uses plain words. He will use the trade words. Here is the bridge.</p>
+<table>
+<thead><tr><th style="width:26%">Word you may hear</th><th style="width:74%">Plain meaning</th></tr></thead>
+<tr><td>Input metric, output metric</td><td>A measurement of something the team controls (input), and of the result that follows (output). Chapter 5.</td></tr>
+<tr><td>Weekly business review (often shortened to its initials, WBR)</td><td>The weekly meeting where the scorecard is read and the exceptions are explained.</td></tr>
+<tr><td>Deep dive; root cause</td><td>Taking a number apart until you find what actually moved it. Section 2.3.</td></tr>
+<tr><td>Lane</td><td>One route from one place to another, such as Warehouse A to Hub 1.</td></tr>
+<tr><td>Fulfillment center</td><td>The warehouse where items are stored, picked and packed.</td></tr>
+<tr><td>Sort center</td><td>The sorting hub, where packages from many warehouses are sorted by destination.</td></tr>
+<tr><td>Delivery station</td><td>The local depot where packages are loaded into vans.</td></tr>
+<tr><td>Middle mile; linehaul</td><td>The truck trips between buildings. Last mile is the van to the customer's door.</td></tr>
+<tr><td>Fill; cube utilization</td><td>How full a trailer is.</td></tr>
+<tr><td>Critical pull time</td><td>The latest moment a package can leave a building and still be delivered on the promised day.</td></tr>
+<tr><td>On-time delivery; delivery estimate accuracy</td><td>The share of packages that arrived by the date the customer was promised.</td></tr>
+<tr><td>Cost to serve; cost per package</td><td>All the transportation dollars divided by the number of packages.</td></tr>
+<tr><td>Percentile (for example, "p90")</td><td>The value that a given share of cases falls under. "p90 is 5.74 hours" means 90 trips in 100 finish within 5.74 hours.</td></tr>
+<tr><td>Mechanism</td><td>Amazon's word for a repeatable process with an owner and a check, as opposed to good intentions.</td></tr>
+</table>
+<p><b>Sources.</b></p>
+<ul>
+<li>Job posting 10481680, Supply Chain Manager II, Network Design, Planning and Engineering: https://www.amazon.jobs/en/jobs/10481680/supply-chain-manager-ii-network-design-planning-engineering</li>
+<li>Avinash Magima, public LinkedIn profile: https://www.linkedin.com/in/avinashmagima/</li>
+<li>Amazon, 2009 letter to shareholders (the quotation on controllable inputs): https://www.sec.gov/Archives/edgar/data/1018724/000119312510082914/dex991.htm</li>
+<li>Colin Bryar and Bill Carr, <i>Working Backwards</i> (2021), on input and output measures and the weekly business review; summary by the authors at https://workingbackwards.com/concepts/input-metrics/</li>
+<li>Amazon on its eight regions in the United States (2023): https://www.aboutamazon.com/news/operations/doug-herrington-amazon-prime-delivery-speed</li>
+<li>Your career numbers: your resume and the reconciliation file in this folder's parent (<code>amazon/numbers-reconciliation.md</code>).</li>
+</ul>
+<p><b>Companion files in the same folder.</b> <code>ndpe-scorecard-practice.xlsx</code>: the practice tables, every Excel answer from section 6.4 as a live formula, and the six-week scorecard with its colors. <code>amazon-tess-team-match-packet.pdf</code>: the earlier, longer packet for this interviewer. <code>amazon/outbound/order-to-door-plain-english.pdf</code>: how a package moves from order to door, with the cost and the clock at every step.</p>
+
+</body></html>
