@@ -100,12 +100,12 @@
 <tr><td class="sub">8.1 The transportation question in one sentence</td><td class="pg" data-k="K81">27</td></tr>
 <tr><td class="sub">8.2 What is in a trailer: positions, space, weight, and which one runs out first</td><td class="pg" data-k="K82">27</td></tr>
 <tr><td class="sub">8.3 How full to plan the trailer: a choice about days, not packages</td><td class="pg" data-k="K83">29</td></tr>
-<tr><td class="sub">8.4 What is in the $3.20 a mile, and how cost per mile becomes cost per package</td><td class="pg" data-k="K84">30</td></tr>
-<tr><td class="sub">8.5 Lane planning: how many trucks a day, and when a direct truck beats the hub</td><td class="pg" data-k="K85">31</td></tr>
-<tr><td class="sub">8.6 Tractors, trailers and drivers: sizing the fleet for one lane</td><td class="pg" data-k="K86">32</td></tr>
+<tr><td class="sub">8.4 What is in the $3.20 a mile, and how cost per mile becomes cost per package</td><td class="pg" data-k="K84">31</td></tr>
+<tr><td class="sub">8.5 Lane planning: how many trucks a day, and when a direct truck beats the hub</td><td class="pg" data-k="K85">32</td></tr>
+<tr><td class="sub">8.6 Tractors, trailers and drivers: sizing the fleet for one lane</td><td class="pg" data-k="K86">33</td></tr>
 <tr><td class="sub">8.7 Service level in transportation terms: how you buy a faster promise with trucks</td><td class="pg" data-k="K87">33</td></tr>
-<tr><td class="sub">8.8 The transportation scorecard</td><td class="pg" data-k="K88">33</td></tr>
-<tr><td class="sub">8.9 The optimization model in the companion workbook</td><td class="pg" data-k="K89">34</td></tr>
+<tr><td class="sub">8.8 The transportation scorecard</td><td class="pg" data-k="K88">34</td></tr>
+<tr><td class="sub">8.9 The optimization model in the companion workbook</td><td class="pg" data-k="K89">35</td></tr>
 <tr><td><b>Chapter 9 — Plain words and interview words; what is real and what is made up</b></td><td class="pg" data-k="C9">37</td></tr>
 </table>
 
@@ -1003,6 +1003,38 @@
 </table>
 </div>
 <p><strong>How to read "swings of room."</strong> Take the gap between the plan and the roof and ask how many typical swings fit in it. At 80% the roof is 400 packages away and a typical swing is 160, so a day has to be two and a half swings above average to overflow. On the normal bell curve a day that far out happens 0.6% of the time. At 90% the roof is only 200 away and a swing is 180, so a day barely over one swing above average overflows, and that happens 13% of the time. The last column counts zero on the days that fit, so "12 packages a trailer-day" at 90% means that on the one day in seven or eight when it overflows, about 90 packages are left on the dock.</p>
+<p><strong>The same curve, read as a 95% band and a 99% band.</strong> A 95% band is the range of package counts that holds 95 days out of 100. It is drawn the same way every time: start at the average, go 1.96 typical swings up, and go 1.96 typical swings down. A 99% band uses 2.576 swings each way, which is 2.58 to two decimals; the tables keep 2.576 so the package count rounds cleanly. These two numbers, 1.96 and 2.58, are properties of the bell curve and do not depend on the truck. Because the band has two ends, the days that fall outside it split half and half. So 2.5 days in 100 land above the top of a 95% band, and 0.5 days in 100 land above the top of a 99% band.</p>
+<div class="math"><div class="cap">Worked for the 80% plan: average 1,600, swing 160, roof 2,000</div>
+<table>
+<tr><th style="width:22%">Step</th><th style="width:50%">Arithmetic</th><th>Result</th></tr>
+<tr><td>1. Half-width of the 95% band</td><td>1.96 × 160</td><td class="a">314 packages</td></tr>
+<tr><td>2. The 95% band</td><td>1,600 − 314 to 1,600 + 314</td><td class="a">1,286 to 1,914. 95 days in 100 land in here</td></tr>
+<tr><td>3. Days above the top</td><td>(100 − 95) ÷ 2</td><td class="a">2.5 days in 100 are above 1,914</td></tr>
+<tr><td>4. Half-width of the 99% band</td><td>2.576 × 160</td><td class="a">412 packages</td></tr>
+<tr><td>5. The 99% band</td><td>1,600 − 412 to 1,600 + 412</td><td class="a">1,188 to 2,012. 99 days in 100 land in here</td></tr>
+<tr><td>6. Days above that top</td><td>(100 − 99) ÷ 2</td><td class="a">0.5 days in 100 are above 2,012</td></tr>
+<tr><td>7. Where the roof is</td><td>2,000 − 1,914 = 86 above the 95% top; 2,012 − 2,000 = 12 below the 99% top</td><td class="a">The roof sits between the two tops, so the overflow share sits between 2.5% and 0.5%. The first table's 0.6% is that number</td></tr>
+</table>
+</div>
+<div class="math"><div class="cap">The 95% band and the 99% band at all three plans (roof = 2,000 throughout)</div>
+<table>
+<tr><th style="width:8%">Plan</th><th style="width:10%">Average</th><th style="width:24%">95% of days fall between</th><th style="width:24%">99% of days fall between</th><th>Where the roof sits</th></tr>
+<tr><td class="n">80%</td><td class="n">1,600</td><td>1.96 × 160 = 314, so 1,286 to 1,914</td><td>2.576 × 160 = 412, so 1,188 to 2,012</td><td class="a">86 above the 95% top, 12 below the 99% top. Overflow between 0.5% and 2.5%: it is 0.6%</td></tr>
+<tr><td class="n">85%</td><td class="n">1,700</td><td>1.96 × 170 = 333, so 1,367 to 2,033</td><td>2.576 × 170 = 438, so 1,262 to 2,138</td><td class="a">33 below the 95% top. Overflow more often than 2.5%: it is 3.9%</td></tr>
+<tr><td class="n">90%</td><td class="n">1,800</td><td>1.96 × 180 = 353, so 1,447 to 2,153</td><td>2.576 × 180 = 464, so 1,336 to 2,264</td><td class="a">153 below the 95% top. Overflow well above 2.5%: it is 13.3%</td></tr>
+</table>
+</div>
+<p><strong>The one mix-up to avoid.</strong> "95% of days fit under the roof" and "the roof is the top of the 95% band" are different lines, because the band spends half of its leftover days on the light side. The top of the 95% band has 2.5% of days above it, so 97.5% of days are under it. The line with exactly 95% of days under it, and 5% above it, is only 1.645 swings above the average. The line with exactly 99% of days under it is 2.326 swings above the average. Set the roof equal to that line and solve for the plan:</p>
+<div class="math"><div class="cap">The plan that makes the roof cover 95% of days, and the plan that covers 99%</div>
+<table>
+<tr><th style="width:24%">Share of days under the roof</th><th style="width:18%">Swings above the plan</th><th style="width:34%">Arithmetic</th><th>The plan</th></tr>
+<tr><td>95% (5% overflow)</td><td class="n">1.645</td><td>2,000 ÷ (1 + 1.645 × 0.10) = 2,000 ÷ 1.1645 = 1,717</td><td class="a">1,717 packages: 85.9% of the roof</td></tr>
+<tr><td>97.5% (the top of the 95% band)</td><td class="n">1.960</td><td>2,000 ÷ (1 + 1.960 × 0.10) = 2,000 ÷ 1.1960 = 1,672</td><td class="a">1,672 packages: 83.6% of the roof</td></tr>
+<tr><td>99% (1% overflow)</td><td class="n">2.326</td><td>2,000 ÷ (1 + 2.326 × 0.10) = 2,000 ÷ 1.2326 = 1,622.6</td><td class="a">1,623 packages: 81.2% of the roof</td></tr>
+<tr><td>99.5% (the top of the 99% band)</td><td class="n">2.576</td><td>2,000 ÷ (1 + 2.576 × 0.10) = 2,000 ÷ 1.2576 = 1,590</td><td class="a">1,590 packages: 79.5% of the roof</td></tr>
+</table>
+</div>
+<p>Read the last row against the first table. An 80% plan puts the roof almost exactly at the top of the 99% band, which is why that row overflows about 0.5 days in 100 (the measured figure is 0.6). Planning 1,717 a truck, 85.9% of the roof, is what it takes for 95 days in 100 to fit. The 90% plan covers 87 days in 100.</p>
 
 <h3>The two costs being traded</h3>
 <p><strong>Plan low, and every day pays for air.</strong> At 80% the truck carries 1,600 for $640. If it carried 1,800, the same 1,600 packages would need only 1,600 ÷ 1,800 = 0.89 of a trailer, so the network would buy 11% fewer trucks. The saving is (1 − 1,600 ÷ 1,800) × $640 = $71 a day for every 1,600 packages, which is the same as 4.4 cents a package ($0.400 against $0.356). The point is that this saving is given up every single day, including the 99.4% of days when the extra room was never needed. That is what "paying for air" means: the empty fifth of the trailer is bought on purpose, as insurance.</p>
@@ -1234,6 +1266,7 @@
 <tr><td>Cost per package-mile</td><td>Cost per package-mile; cost per cube-mile; cost per hundredweight (CWT) in general freight</td><td>Chapter 8.8's best single efficiency number.</td></tr>
 <tr><td>The cost–service curve</td><td>Efficient frontier; Pareto frontier; cost-to-serve curve</td><td>Chapter 8.9.</td></tr>
 <tr><td>How full to plan the truck; the share of days it overflows</td><td>Planned fill / load factor; service-level quantile; newsvendor critical ratio; roll-over (rolled volume)</td><td>Chapter 8.3.</td></tr>
+<tr><td>The range that holds 95 (or 99) days in 100</td><td>95% / 99% confidence interval; two-sided band (2.5% or 0.5% of days above the top) versus one-sided service level (5% or 1% of days above the line)</td><td>Chapter 8.3. Average ± 1.96 swings, and ± 2.58 swings.</td></tr>
 <tr><td>Cases per layer and layers per pallet</td><td>Ti-hi (tier × height); pallet pattern</td><td>Chapter 8.2, inbound table.</td></tr>
 <tr><td>What runs out first when loading a trailer</td><td>Binding constraint; cube-limited vs weight-limited; density break-even (about 15 pounds per cubic foot)</td><td>Chapter 8.2.</td></tr>
 <tr><td>Transshipment problem; which buildings to open</td><td>Transshipment / network flow problem; facility location; mixed-integer linear program (MILP); Solver (Simplex LP with integer constraints)</td><td>The workbook's two models.</td></tr>
