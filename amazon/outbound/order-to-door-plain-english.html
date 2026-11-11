@@ -106,10 +106,11 @@
 <tr><td class="sub">8.7 Service level in transportation terms: how you buy a faster promise with trucks</td><td class="pg" data-k="K87">33</td></tr>
 <tr><td class="sub">8.8 The transportation scorecard</td><td class="pg" data-k="K88">34</td></tr>
 <tr><td class="sub">8.9 The optimization model in the companion workbook</td><td class="pg" data-k="K89">35</td></tr>
-<tr><td><b>Chapter 9 — Plain words and interview words; what is real and what is made up</b></td><td class="pg" data-k="C9">37</td></tr>
+<tr><td class="sub">8.10 A camera on the gaylord: machine learning that sees the air</td><td class="pg" data-k="K810">37</td></tr>
+<tr><td><b>Chapter 9 — Plain words and interview words; what is real and what is made up</b></td><td class="pg" data-k="C9">39</td></tr>
 </table>
 
-<div class="note"><p><strong>How to read this.</strong> Read Chapters 1 to 3 in order with a pencil; recompute three or four of the boxes yourself. Chapter 4 can be read one problem at a time. Chapter 5 should make sense without effort once Chapter 4 is done, because every measurement is a problem from Chapter 4 turned into a fraction. Chapters 6 and 7 are what the job produces every week. Chapter 8 goes one level down into the trucks, in the same question-arithmetic-answer style: what fills a trailer, how full to plan it, what is in a mile, when a lane deserves its own truck, how many tractors and drivers, how to buy service, the transportation scorecard, and the optimization model in the companion workbook. The long, detailed packet in the same folder covers the same ground with more depth; this one is the explanation to read first.</p></div>
+<div class="note"><p><strong>How to read this.</strong> Read Chapters 1 to 3 in order with a pencil; recompute three or four of the boxes yourself. Chapter 4 can be read one problem at a time. Chapter 5 should make sense without effort once Chapter 4 is done, because every measurement is a problem from Chapter 4 turned into a fraction. Chapters 6 and 7 are what the job produces every week. Chapter 8 goes one level down into the trucks, in the same question-arithmetic-answer style: what fills a trailer, how full to plan it, what is in a mile, when a lane deserves its own truck, how many tractors and drivers, how to buy service, the transportation scorecard, the optimization model in the companion workbook, and a camera that measures the air inside a gaylord. The long, detailed packet in the same folder covers the same ground with more depth; this one is the explanation to read first.</p></div>
 
 <h1 class="sec" id="C1">Chapter 1 — Our pretend network and every number we will use</h1>
 <p>Here is the whole network. A package goes through six places in order. We give each a plain name and use only that name.</p>
@@ -449,6 +450,7 @@
 <p><strong>Why not plan for 2,000, then?</strong> Because the number of packages for a given truck is not the same every day. Say it swings by about 10% around the plan. If we planned 1,800 per trailer, a 10% swing is 180 packages; a day that is 200 over the plan happens about 13% of the time, and on those days packages are left on the dock when the truck leaves. If we plan 1,600, the swing is 160 and we would need to be 400 over, which is two and a half swings; that happens well under 1% of the time. Eighty percent is the balance between a truck that is cheap and a dock that is empty when the truck leaves. The right percentage is different on every route and is one of the numbers this job owns.</p>
 <p><strong>The trade this creates.</strong> At 8:55 PM a trailer has 1,100 packages. Do you hold it twenty minutes to get it to 1,400? The truck gets cheaper ($640 ÷ 1,100 = $0.58 versus $640 ÷ 1,400 = $0.46), but it eats into the spare 36 minutes at the hub, and 4.1 just showed what that costs. The answer depends on the spare time on that route tonight, and that is exactly the kind of rule Chapter 7's dashboard has to show the dock lead in real time.</p>
 <p><strong>Measurement this creates.</strong> <em>Trailer fullness</em>: packages aboard when the doors close ÷ 2,000, averaged over the day's trailers on a route. Plan 80%. Shown next to it: how many trailers went out under 60%.</p>
+<p>That measurement uses the package count. It cannot see air inside a gaylord that was closed early. Section 8.10 is the camera that measures that air, and the arithmetic of what the air is worth.</p>
 
 <h2 id="K43">4.3 More packages than vans</h2>
 <p><strong>What goes wrong.</strong> Depot 7 planned for 6,000 packages and 30 vans. This morning 6,600 arrived.</p>
@@ -908,7 +910,7 @@
 </div>
 
 <h1 class="sec" id="C8">Chapter 8 — Transportation planning: what is in a trailer, what is in a mile, and how to buy service with trucks</h1>
-<p>Everything so far costed a truck as "$640 a trip ÷ 1,590 packages." A transportation planner is asked the questions underneath that line: what exactly fills the trailer and what stops it filling further, how full to plan it, why $3.20 a mile and not $2.50, how many trucks a lane needs and when it deserves its own, how many tractors, trailers and drivers that takes, and how you buy a faster promise with trucks. This chapter answers each of those the same way: say what the thing is, say why it matters, do the arithmetic in the open, read what the arithmetic says, name the lever, and end with how to say it in the room. It closes with the scorecard a transportation team runs and the optimization model in the companion workbook.</p>
+<p>Everything so far costed a truck as "$640 a trip ÷ 1,590 packages." A transportation planner is asked the questions underneath that line: what exactly fills the trailer and what stops it filling further, how full to plan it, why $3.20 a mile and not $2.50, how many trucks a lane needs and when it deserves its own, how many tractors, trailers and drivers that takes, and how you buy a faster promise with trucks. This chapter answers each of those the same way: say what the thing is, say why it matters, do the arithmetic in the open, read what the arithmetic says, name the lever, and end with how to say it in the room. It closes with the scorecard a transportation team runs, the optimization model in the companion workbook, and one machine-learning use case: a camera that measures the air inside a gaylord.</p>
 
 <h2 class="first" id="K81">8.1 The transportation question in one sentence</h2>
 <p><strong>Spend the fewest dollars on trucks such that every package makes its deadline.</strong> That is the whole job in one line, and it is worth taking the line apart.</p>
@@ -1228,6 +1230,98 @@
 <p>I start with what is in the trailer: forty packages to a gaylord, fifty-two gaylords to a trailer, two thousand packages, and it cubes out at a seventh of the weight limit, so I plan by positions, not pounds. I plan the fill as a choice about days: eighty percent overflows one day in a hundred and sixty, ninety one day in seven, and which is right depends on whether a later truck still makes the promise. Then what is in the mile: about two dollars forty to run the truck and eighty cents for the empty return, so three twenty a loaded mile, and I quote it with the empty share. Then each lane: packages a day, trucks a day, fill; a direct truck pays when the daily volume beats truck cost divided by what the hub path costs a package, about six hundred seventy a day on a hundred-and-forty-five-mile lane. Fleet is trips times cycle hours over twenty-four, plus ten percent, with trailers at double the tractors. Service is a constraint, bought with earlier departures, faster unloads, extra departures or direct trucks, each with a price. The scorecard is cost per mile, cost per package-mile, fill, miles, departures, the roll, on-time, dwell, empty miles, tender acceptance. And the workbook puts all of it in one model: minimize cost per package subject to same-day and next-day targets, and draws the curve.</p>
 </div>
 
+
+<h2 id="K810" style="page-break-before: always; border-top: none; padding-top: 0;">8.10 A camera on the gaylord: machine learning that sees the air</h2>
+<p><strong>What this is.</strong> Computer vision is a model that looks at a photograph and returns a measurement. This section is one transportation use case, and only one: a camera over an open gaylord that measures how much air is left in the box. The barcode scan already counts packages. It cannot see the air. Every number below is an example built from this packet's own gaylord (Section 8.2) and this packet's own $640 truck. It is not a system that has been operated.</p>
+<p><strong>Start with two boxes that the scan says are identical.</strong> Both have 30 packages. A person who only reads the scan would treat them the same. The photograph does not.</p>
+<div class="math"><div class="cap">Two gaylords, 30 packages each</div>
+<table>
+<tr><th style="width:22%">Gaylord</th><th style="width:18%">Packages the scan counted</th><th style="width:24%">Freight height in the photo</th><th>What the photo says</th></tr>
+<tr><td>G1</td><td class="n">30</td><td class="n">21.6 inches</td><td>The pile already reaches the plan line. Do not add more.</td></tr>
+<tr><td>G2</td><td class="n">30</td><td class="n">14.4 inches</td><td>Same count, shorter pile. The packages are smaller, and the box was closed with room left.</td></tr>
+</table>
+</div>
+<p>That gap is the whole use case. A count of 30 cannot tell G1 from G2. A height can.</p>
+
+<div class="math"><div class="cap">Where the 21.6-inch line comes from (the same gaylord as Section 8.2)</div>
+<table>
+<tr><th style="width:5%">Step</th><th style="width:32%">Question</th><th style="width:40%">Arithmetic</th><th>Answer</th></tr>
+<tr><td>1</td><td>How tall is the gaylord?</td><td>48 inches, from Section 8.2</td><td class="a">48 inches</td></tr>
+<tr><td>2</td><td>What share of the box does the plan use?</td><td>45 percent. The lid goes on when the truck is due, not when the box is physically full. Section 8.2.</td><td class="a">45%</td></tr>
+<tr><td>3</td><td>Plan height, if the top of the pile is level</td><td>0.45 × 48</td><td class="a">21.6 inches</td></tr>
+<tr><td>4</td><td>Check against the package count</td><td>45% of 53.3 cubic feet is about 24 cubic feet. At 0.6 cubic feet a package, 24 ÷ 0.6</td><td class="a">40 packages, the same 40 as Section 8.2</td></tr>
+</table>
+<p>Step 3 treats the top of the pile as level. A peaked pile makes one height look fuller than the box is. The worked examples below use a level top, and a peaked top is one of the cases the camera is told to hand back to a person.</p>
+</div>
+
+<div class="math"><div class="cap">G2, one step at a time: how much room is really there</div>
+<table>
+<tr><th style="width:5%">Step</th><th style="width:34%">Question</th><th style="width:38%">Arithmetic</th><th>Answer</th></tr>
+<tr><td>1</td><td>How many packages per inch are already in G2?</td><td>30 packages ÷ 14.4 inches</td><td class="a">2.083 packages per inch</td></tr>
+<tr><td>2</td><td>How many packages of that same size reach the plan line?</td><td>2.083 × 21.6 inches</td><td class="a">45 packages</td></tr>
+<tr><td>3</td><td>Room the photo found</td><td>45 − 30</td><td class="a">15 packages</td></tr>
+<tr><td>4</td><td>How many of those 15 are actually waiting for this destination?</td><td>The camera does not know this. The warehouse system does. On this example, 8 are waiting and 7 are not.</td><td class="a">8 packages you can add. The other 7 are real air with nothing to put in them.</td></tr>
+</table>
+<p>G1, for comparison: 30 packages ÷ 21.6 inches = 1.389 packages per inch, and 1.389 × 21.6 = 30. Room found = 30 − 30 = 0. Adding a package to G1 would push it past the line the building planned for.</p>
+<p><strong>Read the two steps as two different questions.</strong> The camera answers "how high is the pile?" The warehouse system answers "is there more freight for this destination still on the dock?" The saving exists only where both answers are yes. A photo of an early lid, with no freight waiting, saves nothing.</p>
+</div>
+
+<div class="math"><div class="cap">One day at this warehouse: 100,000 packages</div>
+<table>
+<tr><th style="width:5%">Step</th><th style="width:34%">Question</th><th style="width:38%">Arithmetic</th><th>Answer</th></tr>
+<tr><td>1</td><td>Gaylords in the day, at the plan of 40 packages each</td><td>100,000 ÷ 40</td><td class="a">2,500 gaylords</td></tr>
+<tr><td>2</td><td>Gaylords the camera flags: pile under the plan line, and more freight waiting</td><td>400 of the 2,500. 400 ÷ 2,500</td><td class="a">16%</td></tr>
+<tr><td>3</td><td>Packages you can actually add, 8 per flagged gaylord</td><td>400 × 8</td><td class="a">3,200 packages</td></tr>
+<tr><td>4</td><td>Trailer-trips those packages no longer need</td><td>3,200 ÷ 1,600. These are spread across the day's lanes, not two trucks on one lane.</td><td class="a">2 trailer-trips</td></tr>
+<tr><td>5</td><td>Dollars in a day</td><td>2 × $640</td><td class="a">$1,280</td></tr>
+<tr><td>6</td><td>Per package</td><td>$1,280 ÷ 100,000</td><td class="a">1.3 cents</td></tr>
+<tr><td>7</td><td>A year, on the same 360-day year as Chapter 4.2</td><td>$1,280 × 360</td><td class="a">$460,800, about $461,000</td></tr>
+</table>
+<p>The $461,000 is a model of this example, and only if the dock holds the lid and puts the 8 packages in. The camera does not save the money. The loader does, because the camera showed the air.</p>
+</div>
+
+<h3>How the model is taught, and when it is allowed to speak</h3>
+<p>Three steps, and only the second one is the learning.</p>
+<ol>
+<li>A fixed camera takes one photo of the open gaylord, from the same angle every time.</li>
+<li>The model marks the rim of the box and the top of the freight. It learned that marking from example photos on which a person had already drawn both lines. An example teaching set is 2,000 such photos. The number 2,000 is an example of the size of the set, not a requirement.</li>
+<li>The height in inches is then ordinary measurement: the distance between the two lines the model marked, scaled to the 48-inch box.</li>
+</ol>
+<p>Copying the person's drawing is not the test that matters. A tape measure is. The rule used here: the camera's height has to land within 2 inches of the tape. Two inches on a 48-inch box is 2 ÷ 48 = 4.2 percent of the height.</p>
+<div class="math"><div class="cap">The tape test, before anyone changes a lid</div>
+<table>
+<tr><th style="width:46%">Test</th><th style="width:30%">Arithmetic</th><th>Result</th></tr>
+<tr><td>First round, 50 gaylords</td><td>46 within 2 inches of the tape. 46 ÷ 50</td><td class="a">92%. Below the bar. The camera may not advise the loader.</td></tr>
+<tr><td>The bar</td><td>95 of 100 within 2 inches</td><td class="a">95%</td></tr>
+<tr><td>After more labeled photos, 100 new gaylords</td><td>96 within 2 inches. 96 ÷ 100</td><td class="a">96%. The camera may light the gaylord. A person still closes the lid.</td></tr>
+</table>
+</div>
+<p>The light has a definition. The flag line is 80 percent of the plan height: 0.80 × 21.6 = 17.28 inches, called 17.3. Amber means the pile is under 17.3 inches and the warehouse system shows more freight for that destination. Green means either the pile has reached 17.3 inches, or nothing more is waiting. The camera supplies the height. The color needs both.</p>
+
+<div class="math"><div class="cap">On 100 gaylords the camera had never seen, checked against the tape</div>
+<p>Truth is the tape: a gaylord is "early" if its freight is under 17.3 inches. The camera says "early" or "ok."</p>
+<table>
+<tr><th></th><th>Tape says early</th><th>Tape says ok</th><th>Row total</th></tr>
+<tr><td>Camera says early</td><td class="n">18</td><td class="n">4</td><td class="n">22</td></tr>
+<tr><td>Camera says ok</td><td class="n">2</td><td class="n">76</td><td class="n">78</td></tr>
+<tr><td>Column total</td><td class="n">20</td><td class="n">80</td><td class="n">100</td></tr>
+</table>
+<table>
+<tr><th style="width:34%">Question</th><th style="width:42%">Arithmetic</th><th>Answer</th></tr>
+<tr><td>Of the boxes the camera flagged, how many were truly early?</td><td>18 ÷ 22</td><td class="a">81.8%. This is the precision.</td></tr>
+<tr><td>Of the boxes that were truly early, how many did the camera catch?</td><td>18 ÷ 20</td><td class="a">90%. This is the recall.</td></tr>
+<tr><td>Of the good boxes, how many did the camera flag by mistake?</td><td>4 ÷ 80</td><td class="a">5%</td></tr>
+</table>
+<p>The 4 false alarms are the expensive kind of mistake at a dock: a loader waits for freight that will not fit, and the truck's clock slips. That is why the first release lights the gaylord and a person still decides. The 2 misses are boxes with room that left anyway. 90 percent caught is the benefit; 5 percent false is the price. Both numbers go on the page, not only the flattering one.</p>
+</div>
+
+<p><strong>What the camera is refused.</strong> A dark dock, a black bag against a black box, rain on the lens, and a peaked pile. Those photos are scored as "no measurement," and a person does the gaylord. The share of photos with no measurement is published next to the 96 percent, because a camera that skips the hard boxes and only reports the easy ones will show a fine accuracy and miss the air.</p>
+<p><strong>What this is not.</strong> A camera at the trailer door, counting gaylords, is a different use case and a weaker one: a barcode on each gaylord already counts boxes, and one photo from the door cannot see a hole hidden behind the rear wall. The scan's blind spot is the air inside the box. That is the photograph worth taking.</p>
+<p><strong>The scorecard row it creates.</strong> Share of gaylords closed under 17.3 inches while more freight for that destination was waiting. It sits with trailer fullness (Chapter 4.2) as an input. The outputs it should move are trailer-trips per day and the $0.40 a package. If the input falls and the trips do not, the dock is seeing the light and not holding the lid.</p>
+<div class="say"><div class="label">If someone asks "where would you use machine learning in transportation?" — 151 words</div>
+<p>One camera, one job: the air inside an open gaylord, which the package count cannot see. Two boxes with thirty packages can be different. One already reaches the plan line of 21.6 inches, so it is full. The other is at 14.4 inches, and the same packages would reach that line at forty-five, so there is room for fifteen more. Only eight of the fifteen are actually waiting, so only eight count. Four hundred gaylords like that, on a day of a hundred thousand packages, is 3,200 packages, two trucks, $1,280, about 1.3 cents a package. I would not let the camera close the lid. First it has to match a tape within two inches on ninety-five boxes out of a hundred. On the test it caught eighteen of twenty early boxes and raised four false alarms out of eighty good ones, and both of those numbers stay on the page.</p>
+</div>
+
 <h1 class="sec" id="C9">Chapter 9 — Plain words and interview words; what is real and what is made up</h1>
 
 <h3>The plain words used here, and the words you will hear in the interview</h3>
@@ -1255,6 +1349,7 @@
 <tr><td>Mix versus rate</td><td>Volume, rate, and mix variance; the bridge; the waterfall</td><td>Chapter 6.2.</td></tr>
 <tr><td>The weekly scorecard and meeting</td><td>Weekly business review</td><td></td></tr>
 <tr><td>Gaylord; the trailer is full by space / by weight</td><td>Gaylord (also "GL" or bulk container); cube out / weigh out; cube utilization</td><td>Chapter 8.2. Always say which limit binds.</td></tr>
+<tr><td>A camera that measures the air in an open gaylord</td><td>Computer vision; a fill model</td><td>Section 8.10. A design example, not a system in operation. The scan counts packages; the camera measures height.</td></tr>
 <tr><td>Packages stacked loose, no containers</td><td>Fluid load; floor load</td><td>More packages, slower unload.</td></tr>
 <tr><td>Cost per loaded mile; the empty return</td><td>Linehaul rate; all-in rate per mile; deadhead (empty miles); round-trip pricing</td><td>Chapter 8.4. Quote the rate with the empty share.</td></tr>
 <tr><td>Our own trucks and drivers, kept busy</td><td>Dedicated fleet; private fleet</td><td>Cheaper per mile only when utilization is steady.</td></tr>
